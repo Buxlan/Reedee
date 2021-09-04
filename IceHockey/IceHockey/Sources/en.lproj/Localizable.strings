@@ -26,6 +26,8 @@
 "Auth.anonymousSignIn" = "Begin without registration";
 "Auth.authDescription" = "Choose a login flow from one of the identity providers above.";
 "Auth.firebaseSectionHeader" = "Places authorization";
+"Auth.authLinkHeader" = "Manage linking between providers";
+"Auth.authLinkFooter" = "Select an unchecked row to link the currently signed in user to that auth provider. To unlink the user from a linked provider, select its corresponding row marked with a checkmark.";
 /* Main tab bar */
 /* Place list */
 "PlacesList.title" = "Top";
@@ -60,3 +62,9 @@
 /* News */
 "News.tabBarTitle" = "News";
 "News.navigationBarTitle" = "Actual";
+/* Events */
+"Events.tabBarItemTitle" = "Events";
+"Events.title" = "Events";
+/* Squads */
+"Squads.tabBarItemTitle" = "Squads";
+"Squads.title" = "Our squads";

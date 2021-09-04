@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		402EDA6026E429C5004A2992 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EDA5F26E429C5004A2992 /* EventsViewModel.swift */; };
+		402EDA6326E42A2A004A2992 /* HockeyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EDA6226E42A2A004A2992 /* HockeyEvent.swift */; };
+		402EDA6626E4303B004A2992 /* HockeySquadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EDA6526E4303B004A2992 /* HockeySquadViewModel.swift */; };
+		402EDA6926E43060004A2992 /* HockeySquad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EDA6826E43060004A2992 /* HockeySquad.swift */; };
 		407028E426E402BE00C6CE5F /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 407028E226E402BE00C6CE5F /* swiftgen.yml */; };
 		407028E526E402BE00C6CE5F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 407028E326E402BE00C6CE5F /* .swiftlint.yml */; };
 		40940BDF26E40C380098EF89 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BD926E40C380098EF89 /* UIView.swift */; };
@@ -23,12 +27,24 @@
 		40940BF926E413200098EF89 /* DataSourceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BF626E413200098EF89 /* DataSourceProtocols.swift */; };
 		40940BFA26E413200098EF89 /* DataSourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BF726E413200098EF89 /* DataSourceProvider.swift */; };
 		40940BFF26E417E00098EF89 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40940BFE26E417E00098EF89 /* GoogleService-Info.plist */; };
+		40940C0526E418E50098EF89 /* MainTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940C0326E418E40098EF89 /* MainTabBarViewModel.swift */; };
+		40940C0626E418E50098EF89 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940C0426E418E50098EF89 /* MainTabBarViewController.swift */; };
 		40A4462726E4054E00129B89 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40A4462926E4054E00129B89 /* Localizable.strings */; };
 		40A4464826E409D900129B89 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4464626E409D800129B89 /* Strings.swift */; };
 		40A4464926E409D900129B89 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4464726E409D800129B89 /* Assets.swift */; };
+		40C106B526E419CB00B619A1 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106B426E419CB00B619A1 /* AppController.swift */; };
+		40C106BB26E41A2200B619A1 /* LastNewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106B926E41A2200B619A1 /* LastNewsTableViewController.swift */; };
+		40C106BC26E41A2200B619A1 /* LastNewsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40C106BA26E41A2200B619A1 /* LastNewsTableView.xib */; };
+		40C106BF26E41E4800B619A1 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106BE26E41E4700B619A1 /* Utils.swift */; };
+		40C106C426E41E9600B619A1 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106C226E41E9600B619A1 /* EventsViewController.swift */; };
+		40C106C526E41E9600B619A1 /* EventsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40C106C326E41E9600B619A1 /* EventsViewController.xib */; };
+		40C106CC26E41F2800B619A1 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106CA26E41F2800B619A1 /* ContactsViewController.swift */; };
+		40C106CD26E41F2800B619A1 /* ContactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40C106CB26E41F2800B619A1 /* ContactsViewController.xib */; };
+		40C106D226E41FD200B619A1 /* HockeySquadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106D026E41FD200B619A1 /* HockeySquadsViewController.swift */; };
+		40C106D326E41FD200B619A1 /* HockeySquadsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40C106D126E41FD200B619A1 /* HockeySquadsViewController.xib */; };
+		40C106D726E4202600B619A1 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106D626E4202600B619A1 /* Log.swift */; };
 		40E7203E26E400FE00A64C60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E7203D26E400FE00A64C60 /* AppDelegate.swift */; };
 		40E7204026E400FE00A64C60 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E7203F26E400FE00A64C60 /* SceneDelegate.swift */; };
-		40E7204226E400FE00A64C60 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E7204126E400FE00A64C60 /* ViewController.swift */; };
 		40E7204526E400FE00A64C60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40E7204326E400FE00A64C60 /* Main.storyboard */; };
 		40E7204726E400FF00A64C60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40E7204626E400FF00A64C60 /* Assets.xcassets */; };
 		40E7204A26E400FF00A64C60 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40E7204826E400FF00A64C60 /* LaunchScreen.storyboard */; };
@@ -38,6 +54,10 @@
 /* Begin PBXFileReference section */
 		2077BE6ED825DC03D5B591AB /* Pods_IceHockey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IceHockey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		398DE94E60E6B28F8D56D4F0 /* Pods-IceHockey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IceHockey.release.xcconfig"; path = "Target Support Files/Pods-IceHockey/Pods-IceHockey.release.xcconfig"; sourceTree = "<group>"; };
+		402EDA5F26E429C5004A2992 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
+		402EDA6226E42A2A004A2992 /* HockeyEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HockeyEvent.swift; sourceTree = "<group>"; };
+		402EDA6526E4303B004A2992 /* HockeySquadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HockeySquadViewModel.swift; sourceTree = "<group>"; };
+		402EDA6826E43060004A2992 /* HockeySquad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HockeySquad.swift; sourceTree = "<group>"; };
 		407028E226E402BE00C6CE5F /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; name = swiftgen.yml; path = ../swiftgen.yml; sourceTree = "<group>"; };
 		407028E326E402BE00C6CE5F /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		40940BD926E40C380098EF89 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -54,14 +74,26 @@
 		40940BF626E413200098EF89 /* DataSourceProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceProtocols.swift; sourceTree = "<group>"; };
 		40940BF726E413200098EF89 /* DataSourceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceProvider.swift; sourceTree = "<group>"; };
 		40940BFE26E417E00098EF89 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		40940C0326E418E40098EF89 /* MainTabBarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewModel.swift; sourceTree = "<group>"; };
+		40940C0426E418E50098EF89 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		40A4462826E4054E00129B89 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40A4462B26E405C300129B89 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40A4464626E409D800129B89 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		40A4464726E409D800129B89 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		40C106B426E419CB00B619A1 /* AppController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
+		40C106B926E41A2200B619A1 /* LastNewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastNewsTableViewController.swift; sourceTree = "<group>"; };
+		40C106BA26E41A2200B619A1 /* LastNewsTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LastNewsTableView.xib; sourceTree = "<group>"; };
+		40C106BE26E41E4700B619A1 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		40C106C226E41E9600B619A1 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		40C106C326E41E9600B619A1 /* EventsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsViewController.xib; sourceTree = "<group>"; };
+		40C106CA26E41F2800B619A1 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		40C106CB26E41F2800B619A1 /* ContactsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactsViewController.xib; sourceTree = "<group>"; };
+		40C106D026E41FD200B619A1 /* HockeySquadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HockeySquadsViewController.swift; sourceTree = "<group>"; };
+		40C106D126E41FD200B619A1 /* HockeySquadsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HockeySquadsViewController.xib; sourceTree = "<group>"; };
+		40C106D626E4202600B619A1 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		40E7203A26E400FE00A64C60 /* IceHockey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IceHockey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40E7203D26E400FE00A64C60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40E7203F26E400FE00A64C60 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		40E7204126E400FE00A64C60 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		40E7204426E400FE00A64C60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		40E7204626E400FF00A64C60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		40E7204926E400FF00A64C60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -81,6 +113,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		402EDA5926E4239F004A2992 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				40E7204826E400FF00A64C60 /* LaunchScreen.storyboard */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
 		40940BD826E40C380098EF89 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +139,8 @@
 			children = (
 				40940BEA26E412F40098EF89 /* Auth */,
 				40940BE726E40D450098EF89 /* HockeyTeam.swift */,
+				402EDA6826E43060004A2992 /* HockeySquad.swift */,
+				402EDA6226E42A2A004A2992 /* HockeyEvent.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -116,6 +158,8 @@
 		40940BF226E413150098EF89 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				40C106D626E4202600B619A1 /* Log.swift */,
+				40C106BE26E41E4700B619A1 /* Utils.swift */,
 				40940BF326E413200098EF89 /* Auth */,
 			);
 			path = Utility;
@@ -139,9 +183,36 @@
 			path = DataSourceProvider;
 			sourceTree = "<group>";
 		};
+		40940C0126E418B10098EF89 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				402EDA5926E4239F004A2992 /* LaunchScreen */,
+				40940C0226E418CF0098EF89 /* MainTabBarViewController */,
+				40C106B826E41A2200B619A1 /* LastNews */,
+				40C106C126E41E7D00B619A1 /* Events */,
+				40C106CF26E41F8500B619A1 /* HockeySquads */,
+				40C106C926E41EDC00B619A1 /* Contacts */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		40940C0226E418CF0098EF89 /* MainTabBarViewController */ = {
+			isa = PBXGroup;
+			children = (
+				40E7204326E400FE00A64C60 /* Main.storyboard */,
+				40940C0426E418E50098EF89 /* MainTabBarViewController.swift */,
+				40940C0326E418E40098EF89 /* MainTabBarViewModel.swift */,
+			);
+			path = MainTabBarViewController;
+			sourceTree = "<group>";
+		};
 		40A4462226E404C500129B89 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				40E7203D26E400FE00A64C60 /* AppDelegate.swift */,
+				40E7203F26E400FE00A64C60 /* SceneDelegate.swift */,
+				40C106B426E419CB00B619A1 /* AppController.swift */,
+				40940C0126E418B10098EF89 /* ViewControllers */,
 				40940BF226E413150098EF89 /* Utility */,
 				40940BE626E40C4F0098EF89 /* Models */,
 				40940BD826E40C380098EF89 /* Extensions */,
@@ -150,6 +221,44 @@
 				40A4462926E4054E00129B89 /* Localizable.strings */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		40C106B826E41A2200B619A1 /* LastNews */ = {
+			isa = PBXGroup;
+			children = (
+				40C106B926E41A2200B619A1 /* LastNewsTableViewController.swift */,
+				40C106BA26E41A2200B619A1 /* LastNewsTableView.xib */,
+			);
+			path = LastNews;
+			sourceTree = "<group>";
+		};
+		40C106C126E41E7D00B619A1 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				40C106C226E41E9600B619A1 /* EventsViewController.swift */,
+				402EDA5F26E429C5004A2992 /* EventsViewModel.swift */,
+				40C106C326E41E9600B619A1 /* EventsViewController.xib */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		40C106C926E41EDC00B619A1 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				40C106CA26E41F2800B619A1 /* ContactsViewController.swift */,
+				40C106CB26E41F2800B619A1 /* ContactsViewController.xib */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
+		40C106CF26E41F8500B619A1 /* HockeySquads */ = {
+			isa = PBXGroup;
+			children = (
+				40C106D026E41FD200B619A1 /* HockeySquadsViewController.swift */,
+				402EDA6526E4303B004A2992 /* HockeySquadViewModel.swift */,
+				40C106D126E41FD200B619A1 /* HockeySquadsViewController.xib */,
+			);
+			path = HockeySquads;
 			sourceTree = "<group>";
 		};
 		40E7203126E400FE00A64C60 = {
@@ -174,12 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				40A4462226E404C500129B89 /* Sources */,
-				40E7203D26E400FE00A64C60 /* AppDelegate.swift */,
-				40E7203F26E400FE00A64C60 /* SceneDelegate.swift */,
-				40E7204126E400FE00A64C60 /* ViewController.swift */,
-				40E7204326E400FE00A64C60 /* Main.storyboard */,
 				40E7204626E400FF00A64C60 /* Assets.xcassets */,
-				40E7204826E400FF00A64C60 /* LaunchScreen.storyboard */,
 				40E7204B26E400FF00A64C60 /* Info.plist */,
 				40940BFE26E417E00098EF89 /* GoogleService-Info.plist */,
 				407028E326E402BE00C6CE5F /* .swiftlint.yml */,
@@ -269,11 +373,15 @@
 			files = (
 				407028E526E402BE00C6CE5F /* .swiftlint.yml in Resources */,
 				40A4462726E4054E00129B89 /* Localizable.strings in Resources */,
+				40C106BC26E41A2200B619A1 /* LastNewsTableView.xib in Resources */,
+				40C106D326E41FD200B619A1 /* HockeySquadsViewController.xib in Resources */,
 				40E7204A26E400FF00A64C60 /* LaunchScreen.storyboard in Resources */,
+				40C106C526E41E9600B619A1 /* EventsViewController.xib in Resources */,
 				40E7204726E400FF00A64C60 /* Assets.xcassets in Resources */,
 				40E7204526E400FE00A64C60 /* Main.storyboard in Resources */,
 				407028E426E402BE00C6CE5F /* swiftgen.yml in Resources */,
 				40940BFF26E417E00098EF89 /* GoogleService-Info.plist in Resources */,
+				40C106CD26E41F2800B619A1 /* ContactsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,24 +470,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40E7204226E400FE00A64C60 /* ViewController.swift in Sources */,
 				40940BE026E40C380098EF89 /* UIColor.swift in Sources */,
 				40940BF826E413200098EF89 /* LoginDelegate.swift in Sources */,
+				40C106D726E4202600B619A1 /* Log.swift in Sources */,
+				402EDA6926E43060004A2992 /* HockeySquad.swift in Sources */,
 				40940BE126E40C380098EF89 /* OtherExtensions.swift in Sources */,
 				40940BF026E412F40098EF89 /* AuthUserActions.swift in Sources */,
+				40940C0626E418E50098EF89 /* MainTabBarViewController.swift in Sources */,
+				40C106CC26E41F2800B619A1 /* ContactsViewController.swift in Sources */,
 				40E7203E26E400FE00A64C60 /* AppDelegate.swift in Sources */,
 				40940BEF26E412F40098EF89 /* AuthProvider.swift in Sources */,
+				402EDA6326E42A2A004A2992 /* HockeyEvent.swift in Sources */,
+				40C106BF26E41E4800B619A1 /* Utils.swift in Sources */,
 				40940BE326E40C380098EF89 /* UIVIewController.swift in Sources */,
+				40940C0526E418E50098EF89 /* MainTabBarViewModel.swift in Sources */,
+				40C106C426E41E9600B619A1 /* EventsViewController.swift in Sources */,
+				40C106D226E41FD200B619A1 /* HockeySquadsViewController.swift in Sources */,
 				40A4464826E409D900129B89 /* Strings.swift in Sources */,
+				402EDA6626E4303B004A2992 /* HockeySquadViewModel.swift in Sources */,
 				40940BFA26E413200098EF89 /* DataSourceProvider.swift in Sources */,
 				40940BE426E40C380098EF89 /* UIFont.swift in Sources */,
 				40A4464926E409D900129B89 /* Assets.swift in Sources */,
 				40940BE226E40C380098EF89 /* UIImage.swift in Sources */,
+				40C106BB26E41A2200B619A1 /* LastNewsTableViewController.swift in Sources */,
 				40940BF926E413200098EF89 /* DataSourceProtocols.swift in Sources */,
 				40940BE826E40D450098EF89 /* HockeyTeam.swift in Sources */,
 				40940BDF26E40C380098EF89 /* UIView.swift in Sources */,
 				40940BEE26E412F40098EF89 /* AuthSection.swift in Sources */,
+				402EDA6026E429C5004A2992 /* EventsViewModel.swift in Sources */,
 				40E7204026E400FE00A64C60 /* SceneDelegate.swift in Sources */,
+				40C106B526E419CB00B619A1 /* AppController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

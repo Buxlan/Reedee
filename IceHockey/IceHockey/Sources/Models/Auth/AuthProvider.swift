@@ -120,8 +120,8 @@ extension AuthProvider: DataSourceProvidable {
     static var authLinkSections: [AuthSection] {
         let allItems = AuthProvider.sections.flatMap { $0.items }
         let header = "Manage linking between providers"
-        let footer =
-            "Select an unchecked row to link the currently signed in user to that auth provider. To unlink the user from a linked provider, select its corresponding row marked with a checkmark."
+        let footer = L10n.Auth.authLinkFooter
+            
         return [Section(headerDescription: header, footerDescription: footer, items: allItems)]
     }
     
