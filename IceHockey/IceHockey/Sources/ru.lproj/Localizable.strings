@@ -1,0 +1,62 @@
+"App.name" = "Place";
+"Onboarding.Buttons.futher1" = "Далее (1 из 3)";
+"Onboarding.Buttons.futher2" = "Далее (2 из 3)";
+"Onboarding.Buttons.Later" = "Начать без регистрации";
+"Onboarding.Buttons.Skip" = "Пропустить";
+"Onboarding.onboardngTitle1" = "Welcome";
+"Onboarding.onboardngTitle2" = "Look, learn and share";
+"Onboarding.onboardngTitle3" = "Join to us";
+"Onboarding.onboardngText1" = "We're glad to see you at Place. Here are we're sharing thoughts, dreams and imaginations about favorite Saint-petersburg places";
+"Onboarding.onboardngText2" = "Share your imaginations! Listen and share audio, text and pictures with other";
+"Onboarding.onboardngText3" = "Регистрация позволит Вам оставлять эссе и предложения о создании новых мест.";
+/* Authentication */
+"SignIn.title" = "Вход в систему";
+"Auth.forgotPassword" = "Забыли пароль?";
+"Auth.title" = "Регистрация позволит Вам оставлять эссе и предложения о создании новых мест.";
+"Auth.usernamePlaceholder" = "Имя / Почта";
+"Auth.passwordPlaceholder" = "Пароль";
+"Auth.signUp" = "Зарегистрироваться";
+"Auth.Buttons.signUpSectionTitle" = "Нет аккаунта?";
+"Auth.Buttons.Login" = "Вход";
+"Auth.emailPasswordSignIn" = "Войти через почту";
+"Auth.appleSignIn" = "Войти через Apple";
+"Auth.googleSignIn" = "Войти через Google";
+"Auth.facebookSignIn" = "Войти через Facebook";
+"Auth.authProvidersTitle" = "Войти с помощью:";
+"Auth.anonymousSignIn" = "Начать без регистрации";
+"Auth.authDescription" = "Выберите любой удобный Вам способ авторизации.";
+"Auth.firebaseSectionHeader" = "Places авторизация";
+/* Main tab bar */
+/* Place list */
+"PlacesList.title" = "Лента";
+"PlacesList.toReviews" = "К обзорам";
+/* Nearest places */
+"NearestPlaces.title" = "Рядом";
+/* Favorite places */
+"FavoritePlaces.title" = "Любимые";
+/* Profile */
+"Profile.title" = "Профиль";
+"Profile.Buttons.SignIn" = "Войти";
+"Profile.Buttons.SignUp" = "Зарегистрироваться";
+"Profile.logout" = "Выйти";
+"Profile.privacy" = "Приватность";
+"Profile.communication" = "Уведомления";
+"Profile.edit" = "Редактировать профиль";
+"Profile.logout" = "Выйти";
+"Profile.changePassword" = "Изменить пароль";
+"Profile.changeUserPhoto" = "Изменить фото";
+/* Settings */
+"Settings.notifications" = "Уведомления";
+"Settings.emails" = "Электронная почта";
+"Settings.allowNotifications" = "Разрешить отправлять уведомления";
+"Settings.allowEmails" = "Разрешить отправлять эл. письма";
+"Settings.crashReposts" = "Отчеты о сбоях";
+"Settings.SectionTitles.general" = "Основные";
+"Settings.SectionTitles.communication" = "Уведомления";
+"Settings.SectionTitles.privacy" = "Безопасность";
+/* User */
+"User.unregistered" = "Аноним";
+"User.displayUnregistered" = "Анонимный пользователь";
+/* News */
+"News.tabBarTitle" = "Новости";
+"News.navigationBarTitle" = "Актуальное";

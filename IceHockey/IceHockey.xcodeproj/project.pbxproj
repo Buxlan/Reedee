@@ -1,0 +1,599 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		407028E426E402BE00C6CE5F /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 407028E226E402BE00C6CE5F /* swiftgen.yml */; };
+		407028E526E402BE00C6CE5F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 407028E326E402BE00C6CE5F /* .swiftlint.yml */; };
+		40940BDF26E40C380098EF89 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BD926E40C380098EF89 /* UIView.swift */; };
+		40940BE026E40C380098EF89 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BDA26E40C380098EF89 /* UIColor.swift */; };
+		40940BE126E40C380098EF89 /* OtherExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BDB26E40C380098EF89 /* OtherExtensions.swift */; };
+		40940BE226E40C380098EF89 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BDC26E40C380098EF89 /* UIImage.swift */; };
+		40940BE326E40C380098EF89 /* UIVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BDD26E40C380098EF89 /* UIVIewController.swift */; };
+		40940BE426E40C380098EF89 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BDE26E40C380098EF89 /* UIFont.swift */; };
+		40940BE826E40D450098EF89 /* HockeyTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BE726E40D450098EF89 /* HockeyTeam.swift */; };
+		40940BEE26E412F40098EF89 /* AuthSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BEB26E412F40098EF89 /* AuthSection.swift */; };
+		40940BEF26E412F40098EF89 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BEC26E412F40098EF89 /* AuthProvider.swift */; };
+		40940BF026E412F40098EF89 /* AuthUserActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BED26E412F40098EF89 /* AuthUserActions.swift */; };
+		40940BF826E413200098EF89 /* LoginDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BF426E413200098EF89 /* LoginDelegate.swift */; };
+		40940BF926E413200098EF89 /* DataSourceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BF626E413200098EF89 /* DataSourceProtocols.swift */; };
+		40940BFA26E413200098EF89 /* DataSourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BF726E413200098EF89 /* DataSourceProvider.swift */; };
+		40940BFF26E417E00098EF89 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40940BFE26E417E00098EF89 /* GoogleService-Info.plist */; };
+		40A4462726E4054E00129B89 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40A4462926E4054E00129B89 /* Localizable.strings */; };
+		40A4464826E409D900129B89 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4464626E409D800129B89 /* Strings.swift */; };
+		40A4464926E409D900129B89 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4464726E409D800129B89 /* Assets.swift */; };
+		40E7203E26E400FE00A64C60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E7203D26E400FE00A64C60 /* AppDelegate.swift */; };
+		40E7204026E400FE00A64C60 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E7203F26E400FE00A64C60 /* SceneDelegate.swift */; };
+		40E7204226E400FE00A64C60 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E7204126E400FE00A64C60 /* ViewController.swift */; };
+		40E7204526E400FE00A64C60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40E7204326E400FE00A64C60 /* Main.storyboard */; };
+		40E7204726E400FF00A64C60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40E7204626E400FF00A64C60 /* Assets.xcassets */; };
+		40E7204A26E400FF00A64C60 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40E7204826E400FF00A64C60 /* LaunchScreen.storyboard */; };
+		8F63BB4E5C1CB48C0618F6D4 /* Pods_IceHockey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2077BE6ED825DC03D5B591AB /* Pods_IceHockey.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2077BE6ED825DC03D5B591AB /* Pods_IceHockey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IceHockey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		398DE94E60E6B28F8D56D4F0 /* Pods-IceHockey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IceHockey.release.xcconfig"; path = "Target Support Files/Pods-IceHockey/Pods-IceHockey.release.xcconfig"; sourceTree = "<group>"; };
+		407028E226E402BE00C6CE5F /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; name = swiftgen.yml; path = ../swiftgen.yml; sourceTree = "<group>"; };
+		407028E326E402BE00C6CE5F /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		40940BD926E40C380098EF89 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		40940BDA26E40C380098EF89 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		40940BDB26E40C380098EF89 /* OtherExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherExtensions.swift; sourceTree = "<group>"; };
+		40940BDC26E40C380098EF89 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		40940BDD26E40C380098EF89 /* UIVIewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVIewController.swift; sourceTree = "<group>"; };
+		40940BDE26E40C380098EF89 /* UIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
+		40940BE726E40D450098EF89 /* HockeyTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HockeyTeam.swift; sourceTree = "<group>"; };
+		40940BEB26E412F40098EF89 /* AuthSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthSection.swift; sourceTree = "<group>"; };
+		40940BEC26E412F40098EF89 /* AuthProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
+		40940BED26E412F40098EF89 /* AuthUserActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthUserActions.swift; sourceTree = "<group>"; };
+		40940BF426E413200098EF89 /* LoginDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginDelegate.swift; sourceTree = "<group>"; };
+		40940BF626E413200098EF89 /* DataSourceProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceProtocols.swift; sourceTree = "<group>"; };
+		40940BF726E413200098EF89 /* DataSourceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceProvider.swift; sourceTree = "<group>"; };
+		40940BFE26E417E00098EF89 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		40A4462826E4054E00129B89 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		40A4462B26E405C300129B89 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		40A4464626E409D800129B89 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		40A4464726E409D800129B89 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		40E7203A26E400FE00A64C60 /* IceHockey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IceHockey.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		40E7203D26E400FE00A64C60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		40E7203F26E400FE00A64C60 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		40E7204126E400FE00A64C60 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		40E7204426E400FE00A64C60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		40E7204626E400FF00A64C60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		40E7204926E400FF00A64C60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		40E7204B26E400FF00A64C60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6403288F669A4049A470FBC8 /* Pods-IceHockey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IceHockey.debug.xcconfig"; path = "Target Support Files/Pods-IceHockey/Pods-IceHockey.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		40E7203726E400FE00A64C60 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F63BB4E5C1CB48C0618F6D4 /* Pods_IceHockey.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		40940BD826E40C380098EF89 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				40940BD926E40C380098EF89 /* UIView.swift */,
+				40940BDA26E40C380098EF89 /* UIColor.swift */,
+				40940BDB26E40C380098EF89 /* OtherExtensions.swift */,
+				40940BDC26E40C380098EF89 /* UIImage.swift */,
+				40940BDD26E40C380098EF89 /* UIVIewController.swift */,
+				40940BDE26E40C380098EF89 /* UIFont.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		40940BE626E40C4F0098EF89 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				40940BEA26E412F40098EF89 /* Auth */,
+				40940BE726E40D450098EF89 /* HockeyTeam.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		40940BEA26E412F40098EF89 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				40940BEB26E412F40098EF89 /* AuthSection.swift */,
+				40940BEC26E412F40098EF89 /* AuthProvider.swift */,
+				40940BED26E412F40098EF89 /* AuthUserActions.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		40940BF226E413150098EF89 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				40940BF326E413200098EF89 /* Auth */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		40940BF326E413200098EF89 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				40940BF426E413200098EF89 /* LoginDelegate.swift */,
+				40940BF526E413200098EF89 /* DataSourceProvider */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		40940BF526E413200098EF89 /* DataSourceProvider */ = {
+			isa = PBXGroup;
+			children = (
+				40940BF626E413200098EF89 /* DataSourceProtocols.swift */,
+				40940BF726E413200098EF89 /* DataSourceProvider.swift */,
+			);
+			path = DataSourceProvider;
+			sourceTree = "<group>";
+		};
+		40A4462226E404C500129B89 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				40940BF226E413150098EF89 /* Utility */,
+				40940BE626E40C4F0098EF89 /* Models */,
+				40940BD826E40C380098EF89 /* Extensions */,
+				40A4464726E409D800129B89 /* Assets.swift */,
+				40A4464626E409D800129B89 /* Strings.swift */,
+				40A4462926E4054E00129B89 /* Localizable.strings */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		40E7203126E400FE00A64C60 = {
+			isa = PBXGroup;
+			children = (
+				40E7203C26E400FE00A64C60 /* IceHockey */,
+				40E7203B26E400FE00A64C60 /* Products */,
+				F04DFA82FC63DB8D9E533CEC /* Pods */,
+				DE0DC7FCA5A5B415B28A941F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		40E7203B26E400FE00A64C60 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				40E7203A26E400FE00A64C60 /* IceHockey.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		40E7203C26E400FE00A64C60 /* IceHockey */ = {
+			isa = PBXGroup;
+			children = (
+				40A4462226E404C500129B89 /* Sources */,
+				40E7203D26E400FE00A64C60 /* AppDelegate.swift */,
+				40E7203F26E400FE00A64C60 /* SceneDelegate.swift */,
+				40E7204126E400FE00A64C60 /* ViewController.swift */,
+				40E7204326E400FE00A64C60 /* Main.storyboard */,
+				40E7204626E400FF00A64C60 /* Assets.xcassets */,
+				40E7204826E400FF00A64C60 /* LaunchScreen.storyboard */,
+				40E7204B26E400FF00A64C60 /* Info.plist */,
+				40940BFE26E417E00098EF89 /* GoogleService-Info.plist */,
+				407028E326E402BE00C6CE5F /* .swiftlint.yml */,
+				407028E226E402BE00C6CE5F /* swiftgen.yml */,
+			);
+			path = IceHockey;
+			sourceTree = "<group>";
+		};
+		DE0DC7FCA5A5B415B28A941F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2077BE6ED825DC03D5B591AB /* Pods_IceHockey.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F04DFA82FC63DB8D9E533CEC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6403288F669A4049A470FBC8 /* Pods-IceHockey.debug.xcconfig */,
+				398DE94E60E6B28F8D56D4F0 /* Pods-IceHockey.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		40E7203926E400FE00A64C60 /* IceHockey */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 40E7204E26E400FF00A64C60 /* Build configuration list for PBXNativeTarget "IceHockey" */;
+			buildPhases = (
+				428A6A5F5D226772ADB86C2F /* [CP] Check Pods Manifest.lock */,
+				407028E726E4030100C6CE5F /* Lint */,
+				407028E826E4031C00C6CE5F /* Swiftgen */,
+				40E7203626E400FE00A64C60 /* Sources */,
+				40E7203726E400FE00A64C60 /* Frameworks */,
+				40E7203826E400FE00A64C60 /* Resources */,
+				52C4532713BF7CDD91F0C93F /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IceHockey;
+			productName = IceHockey;
+			productReference = 40E7203A26E400FE00A64C60 /* IceHockey.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		40E7203226E400FE00A64C60 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					40E7203926E400FE00A64C60 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = 40E7203526E400FE00A64C60 /* Build configuration list for PBXProject "IceHockey" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				ru,
+			);
+			mainGroup = 40E7203126E400FE00A64C60;
+			productRefGroup = 40E7203B26E400FE00A64C60 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				40E7203926E400FE00A64C60 /* IceHockey */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		40E7203826E400FE00A64C60 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				407028E526E402BE00C6CE5F /* .swiftlint.yml in Resources */,
+				40A4462726E4054E00129B89 /* Localizable.strings in Resources */,
+				40E7204A26E400FF00A64C60 /* LaunchScreen.storyboard in Resources */,
+				40E7204726E400FF00A64C60 /* Assets.xcassets in Resources */,
+				40E7204526E400FE00A64C60 /* Main.storyboard in Resources */,
+				407028E426E402BE00C6CE5F /* swiftgen.yml in Resources */,
+				40940BFF26E417E00098EF89 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		407028E726E4030100C6CE5F /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		407028E826E4031C00C6CE5F /* Swiftgen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftgen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = " ${PODS_ROOT}/SwiftGen/bin/swiftgen config run\n";
+		};
+		428A6A5F5D226772ADB86C2F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IceHockey-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		52C4532713BF7CDD91F0C93F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IceHockey/Pods-IceHockey-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IceHockey/Pods-IceHockey-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IceHockey/Pods-IceHockey-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		40E7203626E400FE00A64C60 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40E7204226E400FE00A64C60 /* ViewController.swift in Sources */,
+				40940BE026E40C380098EF89 /* UIColor.swift in Sources */,
+				40940BF826E413200098EF89 /* LoginDelegate.swift in Sources */,
+				40940BE126E40C380098EF89 /* OtherExtensions.swift in Sources */,
+				40940BF026E412F40098EF89 /* AuthUserActions.swift in Sources */,
+				40E7203E26E400FE00A64C60 /* AppDelegate.swift in Sources */,
+				40940BEF26E412F40098EF89 /* AuthProvider.swift in Sources */,
+				40940BE326E40C380098EF89 /* UIVIewController.swift in Sources */,
+				40A4464826E409D900129B89 /* Strings.swift in Sources */,
+				40940BFA26E413200098EF89 /* DataSourceProvider.swift in Sources */,
+				40940BE426E40C380098EF89 /* UIFont.swift in Sources */,
+				40A4464926E409D900129B89 /* Assets.swift in Sources */,
+				40940BE226E40C380098EF89 /* UIImage.swift in Sources */,
+				40940BF926E413200098EF89 /* DataSourceProtocols.swift in Sources */,
+				40940BE826E40D450098EF89 /* HockeyTeam.swift in Sources */,
+				40940BDF26E40C380098EF89 /* UIView.swift in Sources */,
+				40940BEE26E412F40098EF89 /* AuthSection.swift in Sources */,
+				40E7204026E400FE00A64C60 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		40A4462926E4054E00129B89 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				40A4462826E4054E00129B89 /* en */,
+				40A4462B26E405C300129B89 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		40E7204326E400FE00A64C60 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				40E7204426E400FE00A64C60 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		40E7204826E400FF00A64C60 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				40E7204926E400FF00A64C60 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		40E7204C26E400FF00A64C60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		40E7204D26E400FF00A64C60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		40E7204F26E400FF00A64C60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6403288F669A4049A470FBC8 /* Pods-IceHockey.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X9YKGG45V3;
+				INFOPLIST_FILE = IceHockey/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = bx.IceHockey.RedBears;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		40E7205026E400FF00A64C60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 398DE94E60E6B28F8D56D4F0 /* Pods-IceHockey.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X9YKGG45V3;
+				INFOPLIST_FILE = IceHockey/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = bx.IceHockey.RedBears;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		40E7203526E400FE00A64C60 /* Build configuration list for PBXProject "IceHockey" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40E7204C26E400FF00A64C60 /* Debug */,
+				40E7204D26E400FF00A64C60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		40E7204E26E400FF00A64C60 /* Build configuration list for PBXNativeTarget "IceHockey" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40E7204F26E400FF00A64C60 /* Debug */,
+				40E7205026E400FF00A64C60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 40E7203226E400FE00A64C60 /* Project object */;
+}
