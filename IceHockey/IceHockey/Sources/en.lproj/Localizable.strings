@@ -65,6 +65,22 @@
 /* Events */
 "Events.tabBarItemTitle" = "Events";
 "Events.title" = "Events";
+/* Contacts */
+"Contacts.tabBarItemTitle" = "Contacts";
+"Contacts.title" = "Our contacts";
 /* Squads */
 "Squads.tabBarItemTitle" = "Squads";
 "Squads.title" = "Our squads";
+/* Shop */
+"Shop.tabBarItemTitle" = "Shop";
+"Shop.title" = "Shop";
+/* Hockey players */
+"HockeyPlayer.positionStriker" = "Forwarder";
+"HockeyPlayer.positionDefender" = "Defender";
+"HockeyPlayer.positionGoalkeeper" = "Goalkeeper";
+"HockeyPlayer.positionStrikerPlural" = "Forwarders";
+"HockeyPlayer.positionDefenderPlural" = "Defenders";
+"HockeyPlayer.positionGoalkeeperPlural" = "Goalkeepers";
+/* Staff */
+"Staff.coach" = "Coach";
+"Staff.player" = "Player";

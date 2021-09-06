@@ -1,5 +1,5 @@
 //
-//  ContactsViewController.swift
+//  ShopShowcaseViewController.swift
 //  IceHockey
 //
 //  Created by  Buxlan on 9/5/21.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-class ContactsViewController: UIViewController {
+class ShopShowcaseViewController: UIViewController {
 
     // MARK: - Properties
-    let viewModel = EventsViewModel()
+    let viewModel = ShopShowcaseViewModel()
     
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
@@ -72,11 +72,11 @@ class ContactsViewController: UIViewController {
     }
     
     private func configureTabBarItem() {
-        title = L10n.Contacts.title
-        tabBarItem.title = L10n.Contacts.tabBarItemTitle
-        let image = Asset.contacts.image.resizeImage(to: 24,
-                                                            aspectRatio: .current,
-                                                            with: view.tintColor)
+        title = L10n.Shop.title
+        tabBarItem.title = L10n.Shop.tabBarItemTitle
+        let image = Asset.shoppingCart.image.resizeImage(to: 24,
+                                                    aspectRatio: .current,
+                                                    with: view.tintColor)
         tabBarItem.image = image
     }
     
@@ -88,24 +88,24 @@ class ContactsViewController: UIViewController {
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
-extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
+extension ShopShowcaseViewController: UITableViewDelegate, UITableViewDataSource {
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        1
+        viewModel.sections.count
     }
    
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        viewModel.items.count
+        viewModel.sections[section].items.count
     }
     
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = viewModel.items[indexPath.row]
+        let item = viewModel.item(at: indexPath)
                 
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell",
                                                  for: indexPath)
@@ -115,7 +115,7 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    private func configure(cell: UITableViewCell, item: HockeyEvent) {
+    private func configure(cell: UITableViewCell, item: ShopItem) {
         cell.textLabel?.text = item.name
         cell.accessoryType = .disclosureIndicator
     }

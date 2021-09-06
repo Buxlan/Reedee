@@ -1,5 +1,5 @@
 //
-//  ContactsViewController.swift
+//  HockeySquadsViewController.swift
 //  IceHockey
 //
 //  Created by  Buxlan on 9/5/21.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-class ContactsViewController: UIViewController {
+class HockeySquadsViewController: UIViewController {
 
     // MARK: - Properties
-    let viewModel = EventsViewModel()
+    let viewModel = HockeySquadViewModel()
     
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
@@ -72,12 +72,12 @@ class ContactsViewController: UIViewController {
     }
     
     private func configureTabBarItem() {
-        title = L10n.Contacts.title
-        tabBarItem.title = L10n.Contacts.tabBarItemTitle
-        let image = Asset.contacts.image.resizeImage(to: 24,
+        title = L10n.Squads.title
+        tabBarItem.title = L10n.Squads.tabBarItemTitle
+        let image = Asset.person3.image.resizeImage(to: 24,
                                                             aspectRatio: .current,
                                                             with: view.tintColor)
-        tabBarItem.image = image
+        tabBarItem.image = image        
     }
     
     private func configureBars() {
@@ -88,10 +88,14 @@ class ContactsViewController: UIViewController {
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
-extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
+extension HockeySquadsViewController: UITableViewDelegate, UITableViewDataSource {
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let item = viewModel.item(at: indexPath)
+        let vc = HockeySquadDetailViewController()
+        vc.squad = item
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -115,7 +119,7 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    private func configure(cell: UITableViewCell, item: HockeyEvent) {
+    private func configure(cell: UITableViewCell, item: HockeySquad) {
         cell.textLabel?.text = item.name
         cell.accessoryType = .disclosureIndicator
     }

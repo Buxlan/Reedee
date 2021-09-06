@@ -15,11 +15,11 @@ class MainTabBarViewModel {
         
         vc = UINavigationController(rootViewController: HockeySquadsViewController())
         items.append(vc)
-        
-        vc = UINavigationController(rootViewController: EventsViewController())
+                
+        vc = UINavigationController(rootViewController: ContactsViewController())
         items.append(vc)
         
-        vc = UINavigationController(rootViewController: ContactsViewController())
+        vc = UINavigationController(rootViewController: ShopShowcaseViewController())
         items.append(vc)
         
         return items
