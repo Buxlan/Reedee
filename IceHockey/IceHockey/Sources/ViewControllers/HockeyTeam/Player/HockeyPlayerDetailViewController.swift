@@ -10,54 +10,86 @@ import UIKit
 class HockeyPlayerDetailViewController: UIViewController {
     
     // MARK: - Properties
-    var staff: HockeyPlayer? {
+    var staff: SportPlayer? {
         didSet {
             viewModel.staff = staff
+            configureUIData()
         }
     }
     var viewModel = HockeyPlayerDetailViewModel()
+        
+    private lazy var imageView: UIImageView = {
+        let image = Asset.squadLogo.image
+        let view = UIImageView(image: image)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentMode = .scaleAspectFit
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        return view
+    }()
+    
+    private lazy var descriptionLabel: UILabel = {
+        let view = UILabel()
+        view.numberOfLines = 0
+        view.textAlignment = .left
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var displayNameLabel: UILabel = {
+        let view = UILabel()
+        view.numberOfLines = 3
+        view.textAlignment = .center
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        
-        let image = Asset.squadLogo.image
-        let imageView = UIImageView(image: image)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        view.contentMode = .scaleAspectFit
-        scrollView.addSubview(imageView)
-        
-        let displayNameLabel = UILabel()
-        displayNameLabel.numberOfLines = 3
-        displayNameLabel.textAlignment = .center
-        let displayName = "\(L10n.Staff.coach)\n\(staff?.displayName ?? "?")"
-        displayNameLabel.text = displayName
-        displayNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(displayNameLabel)
-        
-        let descriptionLabel = UILabel()
-        descriptionLabel.textAlignment = .left
-        descriptionLabel.numberOfLines = 0
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.text = staff?.displayName
-        scrollView.addSubview(descriptionLabel)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(contentView)
         
         let constraints: [NSLayoutConstraint] = [
-            imageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            imageView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            imageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            imageView.heightAnchor.constraint(equalTo: scrollView.widthAnchor),
-            displayNameLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            displayNameLabel.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+
+            imageView.heightAnchor.constraint(equalTo: contentView.widthAnchor),
+            displayNameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            displayNameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             displayNameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16),
-            displayNameLabel.heightAnchor.constraint(equalTo: scrollView.widthAnchor),
-            descriptionLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            descriptionLabel.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+
+            descriptionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            descriptionLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             descriptionLabel.topAnchor.constraint(equalTo: displayNameLabel.bottomAnchor, constant: 16),
-            descriptionLabel.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor)
+            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
         
         return scrollView
+    }()
+    
+    private lazy var stackView: UIStackView = {
+        let subviews: [UIView] = [imageView, displayNameLabel, descriptionLabel]
+        let view = UIStackView(arrangedSubviews: subviews)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.alignment = .center
+        view.axis = .vertical
+        view.distribution = .fill
+        return view
+    }()
+    
+    private lazy var contentView: UIView = {
+        let view = UIView()
+        view.addSubview(imageView)
+        view.addSubview(displayNameLabel)
+        view.addSubview(descriptionLabel)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
         
     // MARK: - Init
@@ -83,13 +115,26 @@ class HockeyPlayerDetailViewController: UIViewController {
     // MARK: - Hepler functions
     private func configureUI() {
         view.addSubview(scrollView)
+        configureUIData()
+    }
+    
+    private func configureUIData() {
+        guard let staff = staff else {
+            return
+        }
+        let image = staff.image
+        imageView.image = image
+        let displayName = "\(L10n.Staff.player)\n\(staff.displayName)"
+        displayNameLabel.text = displayName
+        let description = "\(L10n.Staff.playerDescription)\n#\(staff.gameNumber)\nString\nString\nString\nString\nString\nString\nString\nString\nString\nString\nString\nString\nString\nString"
+        descriptionLabel.text = description
     }
     
     private func configureConstraints() {
         let constraints: [NSLayoutConstraint] = [
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            scrollView.centerYAnchor.constraint(equalTo: view.layoutMarginsGuide.centerYAnchor),
             scrollView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor)
         ]
         NSLayoutConstraint.activate(constraints)

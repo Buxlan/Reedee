@@ -9,14 +9,25 @@
 /* Begin PBXBuildFile section */
 		400A2AB926E5978000F13BCF /* HockeyPlayerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400A2AB726E5978000F13BCF /* HockeyPlayerDetailViewController.swift */; };
 		400A2ABA26E5978000F13BCF /* HockeyPlayerDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 400A2AB826E5978000F13BCF /* HockeyPlayerDetailViewController.xib */; };
-		400A2ABE26E5982200F13BCF /* CoachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400A2ABC26E5982200F13BCF /* CoachViewController.swift */; };
-		400A2ABF26E5982200F13BCF /* CoachViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 400A2ABD26E5982200F13BCF /* CoachViewController.xib */; };
-		400A2AC226E5987B00F13BCF /* Coach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400A2AC126E5987B00F13BCF /* Coach.swift */; };
-		400A2AC526E59A7E00F13BCF /* HockeyCoachDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400A2AC426E59A7E00F13BCF /* HockeyCoachDetailViewModel.swift */; };
+		400A2ABE26E5982200F13BCF /* SportCoachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400A2ABC26E5982200F13BCF /* SportCoachViewController.swift */; };
+		400A2ABF26E5982200F13BCF /* SportCoachViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 400A2ABD26E5982200F13BCF /* SportCoachViewController.xib */; };
+		400A2AC226E5987B00F13BCF /* SportCoach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400A2AC126E5987B00F13BCF /* SportCoach.swift */; };
+		400A2AC526E59A7E00F13BCF /* SportCoachDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400A2AC426E59A7E00F13BCF /* SportCoachDetailViewModel.swift */; };
 		402EDA6026E429C5004A2992 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EDA5F26E429C5004A2992 /* EventsViewModel.swift */; };
-		402EDA6326E42A2A004A2992 /* HockeyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EDA6226E42A2A004A2992 /* HockeyEvent.swift */; };
+		402EDA6326E42A2A004A2992 /* SportEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EDA6226E42A2A004A2992 /* SportEvent.swift */; };
 		402EDA6626E4303B004A2992 /* HockeySquadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EDA6526E4303B004A2992 /* HockeySquadViewModel.swift */; };
-		402EDA6926E43060004A2992 /* HockeySquad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EDA6826E43060004A2992 /* HockeySquad.swift */; };
+		402EDA6926E43060004A2992 /* SportSquad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EDA6826E43060004A2992 /* SportSquad.swift */; };
+		40369EAB26E6B3FE0083E675 /* LastEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40369EAA26E6B3FE0083E675 /* LastEventsViewModel.swift */; };
+		40369EBA26E6DB490083E675 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40369EB826E6DB490083E675 /* EventDetailViewController.swift */; };
+		40369EBB26E6DB490083E675 /* EventDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40369EB926E6DB490083E675 /* EventDetailViewController.xib */; };
+		40369EC326E6E2EA0083E675 /* LastEventsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40369EC226E6E2EA0083E675 /* LastEventsTableView.xib */; };
+		40369EC626E6E33C0083E675 /* PinnedEventTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40369EC526E6E33C0083E675 /* PinnedEventTableCell.swift */; };
+		4055FCDC26E816D900E5BB79 /* CellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4055FCDB26E816D900E5BB79 /* CellConfigurator.swift */; };
+		4065C95226E84E410084E5F2 /* ComingEventTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065C95126E84E410084E5F2 /* ComingEventTableCell.swift */; };
+		4065C95526E84E990084E5F2 /* EventTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065C95426E84E990084E5F2 /* EventTableCell.swift */; };
+		4065C95D26E853500084E5F2 /* CorneredImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065C95C26E853500084E5F2 /* CorneredImageView.swift */; };
+		4065C96026E854C00084E5F2 /* CorneredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065C95F26E854C00084E5F2 /* CorneredView.swift */; };
+		4065C96326E855150084E5F2 /* PinnedEventCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065C96226E855150084E5F2 /* PinnedEventCollectionCell.swift */; };
 		407028E426E402BE00C6CE5F /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 407028E226E402BE00C6CE5F /* swiftgen.yml */; };
 		407028E526E402BE00C6CE5F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 407028E326E402BE00C6CE5F /* .swiftlint.yml */; };
 		408BD21926E5A2B600D66D9B /* HockeyPlayerDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408BD21826E5A2B600D66D9B /* HockeyPlayerDetailViewModel.swift */; };
@@ -31,7 +42,7 @@
 		40940BE226E40C380098EF89 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BDC26E40C380098EF89 /* UIImageExtension.swift */; };
 		40940BE326E40C380098EF89 /* UIVIewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BDD26E40C380098EF89 /* UIVIewControllerExtension.swift */; };
 		40940BE426E40C380098EF89 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BDE26E40C380098EF89 /* UIFontExtension.swift */; };
-		40940BE826E40D450098EF89 /* HockeyTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BE726E40D450098EF89 /* HockeyTeam.swift */; };
+		40940BE826E40D450098EF89 /* SportTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BE726E40D450098EF89 /* SportTeam.swift */; };
 		40940BEE26E412F40098EF89 /* AuthSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BEB26E412F40098EF89 /* AuthSection.swift */; };
 		40940BEF26E412F40098EF89 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BEC26E412F40098EF89 /* AuthProvider.swift */; };
 		40940BF026E412F40098EF89 /* AuthUserActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BED26E412F40098EF89 /* AuthUserActions.swift */; };
@@ -40,17 +51,18 @@
 		40940BFA26E413200098EF89 /* DataSourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BF726E413200098EF89 /* DataSourceProvider.swift */; };
 		40940C0526E418E50098EF89 /* MainTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940C0326E418E40098EF89 /* MainTabBarViewModel.swift */; };
 		40940C0626E418E50098EF89 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940C0426E418E50098EF89 /* MainTabBarViewController.swift */; };
+		40978DBB26ED6ADB00AE1926 /* ComingEventsSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40978DBA26ED6ADB00AE1926 /* ComingEventsSectionHeaderView.swift */; };
 		4098C04226E572A700F0BBE6 /* UserExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4098C04126E572A700F0BBE6 /* UserExtension.swift */; };
-		4098C04526E5756800F0BBE6 /* HockeyPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4098C04426E5756800F0BBE6 /* HockeyPlayer.swift */; };
+		4098C04526E5756800F0BBE6 /* SportPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4098C04426E5756800F0BBE6 /* SportPlayer.swift */; };
 		4098C05226E575EB00F0BBE6 /* HockeySquadDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4098C05026E575EB00F0BBE6 /* HockeySquadDetailViewController.swift */; };
 		4098C05326E575EB00F0BBE6 /* HockeySquadDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4098C05126E575EB00F0BBE6 /* HockeySquadDetailViewController.xib */; };
 		4098C05626E5767A00F0BBE6 /* HockeySquadDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4098C05526E5767A00F0BBE6 /* HockeySquadDetailViewModel.swift */; };
+		409E685C26ED6937008C4C0B /* EventsSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409E685B26ED6937008C4C0B /* EventsSectionHeaderView.swift */; };
 		40A4462726E4054E00129B89 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40A4462926E4054E00129B89 /* Localizable.strings */; };
 		40A4464826E409D900129B89 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4464626E409D800129B89 /* Strings.swift */; };
 		40A4464926E409D900129B89 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4464726E409D800129B89 /* Assets.swift */; };
 		40C106B526E419CB00B619A1 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106B426E419CB00B619A1 /* AppController.swift */; };
-		40C106BB26E41A2200B619A1 /* LastNewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106B926E41A2200B619A1 /* LastNewsTableViewController.swift */; };
-		40C106BC26E41A2200B619A1 /* LastNewsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40C106BA26E41A2200B619A1 /* LastNewsTableView.xib */; };
+		40C106BB26E41A2200B619A1 /* LastEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106B926E41A2200B619A1 /* LastEventsTableViewController.swift */; };
 		40C106BF26E41E4800B619A1 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106BE26E41E4700B619A1 /* Utils.swift */; };
 		40C106C426E41E9600B619A1 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106C226E41E9600B619A1 /* EventsViewController.swift */; };
 		40C106C526E41E9600B619A1 /* EventsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40C106C326E41E9600B619A1 /* EventsViewController.xib */; };
@@ -59,6 +71,8 @@
 		40C106D226E41FD200B619A1 /* HockeySquadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106D026E41FD200B619A1 /* HockeySquadsViewController.swift */; };
 		40C106D326E41FD200B619A1 /* HockeySquadsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40C106D126E41FD200B619A1 /* HockeySquadsViewController.xib */; };
 		40C106D726E4202600B619A1 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106D626E4202600B619A1 /* Log.swift */; };
+		40C87B4D26EA667400E8217D /* EventCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C87B4C26EA667400E8217D /* EventCollectionViewLayout.swift */; };
+		40DBD76E26E83BFD00CDBADD /* TableCellActionsProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DBD76D26E83BFD00CDBADD /* TableCellActionsProxy.swift */; };
 		40E2D64526E5584D006503C7 /* ShopItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E2D64326E5584D006503C7 /* ShopItemViewController.swift */; };
 		40E2D64626E5584D006503C7 /* ShopItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E2D64426E5584D006503C7 /* ShopItemViewController.xib */; };
 		40E2D64C26E558B6006503C7 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E2D64A26E558B6006503C7 /* ShoppingCartViewController.swift */; };
@@ -69,6 +83,8 @@
 		40E7204526E400FE00A64C60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40E7204326E400FE00A64C60 /* Main.storyboard */; };
 		40E7204726E400FF00A64C60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40E7204626E400FF00A64C60 /* Assets.xcassets */; };
 		40E7204A26E400FF00A64C60 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40E7204826E400FF00A64C60 /* LaunchScreen.storyboard */; };
+		40E949BC26ED54BF00962590 /* ScrollingPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E949BB26ED54BF00962590 /* ScrollingPageControl.swift */; };
+		40E949BF26ED59A600962590 /* CircularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E949BE26ED59A600962590 /* CircularView.swift */; };
 		8F63BB4E5C1CB48C0618F6D4 /* Pods_IceHockey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2077BE6ED825DC03D5B591AB /* Pods_IceHockey.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,14 +93,25 @@
 		398DE94E60E6B28F8D56D4F0 /* Pods-IceHockey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IceHockey.release.xcconfig"; path = "Target Support Files/Pods-IceHockey/Pods-IceHockey.release.xcconfig"; sourceTree = "<group>"; };
 		400A2AB726E5978000F13BCF /* HockeyPlayerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HockeyPlayerDetailViewController.swift; sourceTree = "<group>"; };
 		400A2AB826E5978000F13BCF /* HockeyPlayerDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HockeyPlayerDetailViewController.xib; sourceTree = "<group>"; };
-		400A2ABC26E5982200F13BCF /* CoachViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachViewController.swift; sourceTree = "<group>"; };
-		400A2ABD26E5982200F13BCF /* CoachViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoachViewController.xib; sourceTree = "<group>"; };
-		400A2AC126E5987B00F13BCF /* Coach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coach.swift; sourceTree = "<group>"; };
-		400A2AC426E59A7E00F13BCF /* HockeyCoachDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HockeyCoachDetailViewModel.swift; sourceTree = "<group>"; };
+		400A2ABC26E5982200F13BCF /* SportCoachViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCoachViewController.swift; sourceTree = "<group>"; };
+		400A2ABD26E5982200F13BCF /* SportCoachViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SportCoachViewController.xib; sourceTree = "<group>"; };
+		400A2AC126E5987B00F13BCF /* SportCoach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCoach.swift; sourceTree = "<group>"; };
+		400A2AC426E59A7E00F13BCF /* SportCoachDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCoachDetailViewModel.swift; sourceTree = "<group>"; };
 		402EDA5F26E429C5004A2992 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
-		402EDA6226E42A2A004A2992 /* HockeyEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HockeyEvent.swift; sourceTree = "<group>"; };
+		402EDA6226E42A2A004A2992 /* SportEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportEvent.swift; sourceTree = "<group>"; };
 		402EDA6526E4303B004A2992 /* HockeySquadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HockeySquadViewModel.swift; sourceTree = "<group>"; };
-		402EDA6826E43060004A2992 /* HockeySquad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HockeySquad.swift; sourceTree = "<group>"; };
+		402EDA6826E43060004A2992 /* SportSquad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportSquad.swift; sourceTree = "<group>"; };
+		40369EAA26E6B3FE0083E675 /* LastEventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastEventsViewModel.swift; sourceTree = "<group>"; };
+		40369EB826E6DB490083E675 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
+		40369EB926E6DB490083E675 /* EventDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDetailViewController.xib; sourceTree = "<group>"; };
+		40369EC226E6E2EA0083E675 /* LastEventsTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LastEventsTableView.xib; sourceTree = "<group>"; };
+		40369EC526E6E33C0083E675 /* PinnedEventTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedEventTableCell.swift; sourceTree = "<group>"; };
+		4055FCDB26E816D900E5BB79 /* CellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellConfigurator.swift; sourceTree = "<group>"; };
+		4065C95126E84E410084E5F2 /* ComingEventTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingEventTableCell.swift; sourceTree = "<group>"; };
+		4065C95426E84E990084E5F2 /* EventTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableCell.swift; sourceTree = "<group>"; };
+		4065C95C26E853500084E5F2 /* CorneredImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorneredImageView.swift; sourceTree = "<group>"; };
+		4065C95F26E854C00084E5F2 /* CorneredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorneredView.swift; sourceTree = "<group>"; };
+		4065C96226E855150084E5F2 /* PinnedEventCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedEventCollectionCell.swift; sourceTree = "<group>"; };
 		407028E226E402BE00C6CE5F /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; name = swiftgen.yml; path = ../swiftgen.yml; sourceTree = "<group>"; };
 		407028E326E402BE00C6CE5F /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		408BD21826E5A2B600D66D9B /* HockeyPlayerDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HockeyPlayerDetailViewModel.swift; sourceTree = "<group>"; };
@@ -99,7 +126,7 @@
 		40940BDC26E40C380098EF89 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		40940BDD26E40C380098EF89 /* UIVIewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVIewControllerExtension.swift; sourceTree = "<group>"; };
 		40940BDE26E40C380098EF89 /* UIFontExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
-		40940BE726E40D450098EF89 /* HockeyTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HockeyTeam.swift; sourceTree = "<group>"; };
+		40940BE726E40D450098EF89 /* SportTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportTeam.swift; sourceTree = "<group>"; };
 		40940BEB26E412F40098EF89 /* AuthSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthSection.swift; sourceTree = "<group>"; };
 		40940BEC26E412F40098EF89 /* AuthProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
 		40940BED26E412F40098EF89 /* AuthUserActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthUserActions.swift; sourceTree = "<group>"; };
@@ -108,18 +135,19 @@
 		40940BF726E413200098EF89 /* DataSourceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceProvider.swift; sourceTree = "<group>"; };
 		40940C0326E418E40098EF89 /* MainTabBarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewModel.swift; sourceTree = "<group>"; };
 		40940C0426E418E50098EF89 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		40978DBA26ED6ADB00AE1926 /* ComingEventsSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingEventsSectionHeaderView.swift; sourceTree = "<group>"; };
 		4098C04126E572A700F0BBE6 /* UserExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserExtension.swift; sourceTree = "<group>"; };
-		4098C04426E5756800F0BBE6 /* HockeyPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HockeyPlayer.swift; sourceTree = "<group>"; };
+		4098C04426E5756800F0BBE6 /* SportPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportPlayer.swift; sourceTree = "<group>"; };
 		4098C05026E575EB00F0BBE6 /* HockeySquadDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HockeySquadDetailViewController.swift; sourceTree = "<group>"; };
 		4098C05126E575EB00F0BBE6 /* HockeySquadDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HockeySquadDetailViewController.xib; sourceTree = "<group>"; };
 		4098C05526E5767A00F0BBE6 /* HockeySquadDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HockeySquadDetailViewModel.swift; sourceTree = "<group>"; };
+		409E685B26ED6937008C4C0B /* EventsSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSectionHeaderView.swift; sourceTree = "<group>"; };
 		40A4462826E4054E00129B89 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40A4462B26E405C300129B89 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40A4464626E409D800129B89 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		40A4464726E409D800129B89 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		40C106B426E419CB00B619A1 /* AppController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
-		40C106B926E41A2200B619A1 /* LastNewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastNewsTableViewController.swift; sourceTree = "<group>"; };
-		40C106BA26E41A2200B619A1 /* LastNewsTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LastNewsTableView.xib; sourceTree = "<group>"; };
+		40C106B926E41A2200B619A1 /* LastEventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastEventsTableViewController.swift; sourceTree = "<group>"; };
 		40C106BE26E41E4700B619A1 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		40C106C226E41E9600B619A1 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		40C106C326E41E9600B619A1 /* EventsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsViewController.xib; sourceTree = "<group>"; };
@@ -128,6 +156,8 @@
 		40C106D026E41FD200B619A1 /* HockeySquadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HockeySquadsViewController.swift; sourceTree = "<group>"; };
 		40C106D126E41FD200B619A1 /* HockeySquadsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HockeySquadsViewController.xib; sourceTree = "<group>"; };
 		40C106D626E4202600B619A1 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		40C87B4C26EA667400E8217D /* EventCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionViewLayout.swift; sourceTree = "<group>"; };
+		40DBD76D26E83BFD00CDBADD /* TableCellActionsProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellActionsProxy.swift; sourceTree = "<group>"; };
 		40E2D64326E5584D006503C7 /* ShopItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopItemViewController.swift; sourceTree = "<group>"; };
 		40E2D64426E5584D006503C7 /* ShopItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopItemViewController.xib; sourceTree = "<group>"; };
 		40E2D64A26E558B6006503C7 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +170,8 @@
 		40E7204626E400FF00A64C60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		40E7204926E400FF00A64C60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		40E7204B26E400FF00A64C60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40E949BB26ED54BF00962590 /* ScrollingPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingPageControl.swift; sourceTree = "<group>"; };
+		40E949BE26ED59A600962590 /* CircularView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularView.swift; sourceTree = "<group>"; };
 		6403288F669A4049A470FBC8 /* Pods-IceHockey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IceHockey.debug.xcconfig"; path = "Target Support Files/Pods-IceHockey/Pods-IceHockey.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,9 +190,9 @@
 		400A2AB426E5974200F13BCF /* Coach */ = {
 			isa = PBXGroup;
 			children = (
-				400A2ABC26E5982200F13BCF /* CoachViewController.swift */,
-				400A2ABD26E5982200F13BCF /* CoachViewController.xib */,
-				400A2AC426E59A7E00F13BCF /* HockeyCoachDetailViewModel.swift */,
+				400A2ABC26E5982200F13BCF /* SportCoachViewController.swift */,
+				400A2ABD26E5982200F13BCF /* SportCoachViewController.xib */,
+				400A2AC426E59A7E00F13BCF /* SportCoachDetailViewModel.swift */,
 			);
 			path = Coach;
 			sourceTree = "<group>";
@@ -175,13 +207,13 @@
 			path = Player;
 			sourceTree = "<group>";
 		};
-		400A2AC726E59AB700F13BCF /* HockeyStaff */ = {
+		400A2AC726E59AB700F13BCF /* TeamStaff */ = {
 			isa = PBXGroup;
 			children = (
-				4098C04426E5756800F0BBE6 /* HockeyPlayer.swift */,
-				400A2AC126E5987B00F13BCF /* Coach.swift */,
+				4098C04426E5756800F0BBE6 /* SportPlayer.swift */,
+				400A2AC126E5987B00F13BCF /* SportCoach.swift */,
 			);
-			path = HockeyStaff;
+			path = TeamStaff;
 			sourceTree = "<group>";
 		};
 		402EDA5926E4239F004A2992 /* LaunchScreen */ = {
@@ -190,6 +222,46 @@
 				40E7204826E400FF00A64C60 /* LaunchScreen.storyboard */,
 			);
 			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		40369EB726E6DB2F0083E675 /* EventDetail */ = {
+			isa = PBXGroup;
+			children = (
+				40369EB826E6DB490083E675 /* EventDetailViewController.swift */,
+				40369EB926E6DB490083E675 /* EventDetailViewController.xib */,
+			);
+			path = EventDetail;
+			sourceTree = "<group>";
+		};
+		4065C95726E850ED0084E5F2 /* TableViews */ = {
+			isa = PBXGroup;
+			children = (
+				409E685E26ED6940008C4C0B /* Headers */,
+				40369EC526E6E33C0083E675 /* PinnedEventTableCell.swift */,
+				40E949BB26ED54BF00962590 /* ScrollingPageControl.swift */,
+				40E949BE26ED59A600962590 /* CircularView.swift */,
+				4065C95426E84E990084E5F2 /* EventTableCell.swift */,
+				4065C95126E84E410084E5F2 /* ComingEventTableCell.swift */,
+			);
+			path = TableViews;
+			sourceTree = "<group>";
+		};
+		4065C95926E8510A0084E5F2 /* CollectionViews */ = {
+			isa = PBXGroup;
+			children = (
+				4065C96226E855150084E5F2 /* PinnedEventCollectionCell.swift */,
+				40C87B4C26EA667400E8217D /* EventCollectionViewLayout.swift */,
+			);
+			path = CollectionViews;
+			sourceTree = "<group>";
+		};
+		4065C95A26E853410084E5F2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4065C95C26E853500084E5F2 /* CorneredImageView.swift */,
+				4065C95F26E854C00084E5F2 /* CorneredView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		408CD0F926E537F6005AD6D4 /* Shop */ = {
@@ -219,13 +291,13 @@
 		40940BE626E40C4F0098EF89 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				400A2AC726E59AB700F13BCF /* HockeyStaff */,
+				400A2AC726E59AB700F13BCF /* TeamStaff */,
 				4098C05826E576A100F0BBE6 /* Shop */,
 				40940BEA26E412F40098EF89 /* Auth */,
-				40940BE726E40D450098EF89 /* HockeyTeam.swift */,
+				40940BE726E40D450098EF89 /* SportTeam.swift */,
 				40E2D65026E55E1E006503C7 /* ShopCategoryItem.swift */,
-				402EDA6826E43060004A2992 /* HockeySquad.swift */,
-				402EDA6226E42A2A004A2992 /* HockeyEvent.swift */,
+				402EDA6826E43060004A2992 /* SportSquad.swift */,
+				402EDA6226E42A2A004A2992 /* SportEvent.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -275,7 +347,7 @@
 				408CD0F926E537F6005AD6D4 /* Shop */,
 				402EDA5926E4239F004A2992 /* LaunchScreen */,
 				40940C0226E418CF0098EF89 /* MainTabBarViewController */,
-				40C106B826E41A2200B619A1 /* LastNews */,
+				40C106B826E41A2200B619A1 /* LastEvents */,
 				40C106C126E41E7D00B619A1 /* Events */,
 				40C106C926E41EDC00B619A1 /* Contacts */,
 			);
@@ -321,9 +393,19 @@
 			path = Shop;
 			sourceTree = "<group>";
 		};
+		409E685E26ED6940008C4C0B /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				409E685B26ED6937008C4C0B /* EventsSectionHeaderView.swift */,
+				40978DBA26ED6ADB00AE1926 /* ComingEventsSectionHeaderView.swift */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
 		40A4462226E404C500129B89 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				4065C95A26E853410084E5F2 /* Views */,
 				40E7203D26E400FE00A64C60 /* AppDelegate.swift */,
 				40E7203F26E400FE00A64C60 /* SceneDelegate.swift */,
 				40C106B426E419CB00B619A1 /* AppController.swift */,
@@ -338,18 +420,24 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		40C106B826E41A2200B619A1 /* LastNews */ = {
+		40C106B826E41A2200B619A1 /* LastEvents */ = {
 			isa = PBXGroup;
 			children = (
-				40C106B926E41A2200B619A1 /* LastNewsTableViewController.swift */,
-				40C106BA26E41A2200B619A1 /* LastNewsTableView.xib */,
+				40C106B926E41A2200B619A1 /* LastEventsTableViewController.swift */,
+				40DBD76D26E83BFD00CDBADD /* TableCellActionsProxy.swift */,
+				4055FCDB26E816D900E5BB79 /* CellConfigurator.swift */,
+				40369EAA26E6B3FE0083E675 /* LastEventsViewModel.swift */,
+				40369EC226E6E2EA0083E675 /* LastEventsTableView.xib */,
+				4065C95726E850ED0084E5F2 /* TableViews */,
+				4065C95926E8510A0084E5F2 /* CollectionViews */,
 			);
-			path = LastNews;
+			path = LastEvents;
 			sourceTree = "<group>";
 		};
 		40C106C126E41E7D00B619A1 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				40369EB726E6DB2F0083E675 /* EventDetail */,
 				40C106C226E41E9600B619A1 /* EventsViewController.swift */,
 				402EDA5F26E429C5004A2992 /* EventsViewModel.swift */,
 				40C106C326E41E9600B619A1 /* EventsViewController.xib */,
@@ -514,12 +602,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40369EC326E6E2EA0083E675 /* LastEventsTableView.xib in Resources */,
 				40E2D64626E5584D006503C7 /* ShopItemViewController.xib in Resources */,
 				407028E526E402BE00C6CE5F /* .swiftlint.yml in Resources */,
 				40E2D64D26E558B6006503C7 /* ShoppingCartViewController.xib in Resources */,
 				40A4462726E4054E00129B89 /* Localizable.strings in Resources */,
-				400A2ABF26E5982200F13BCF /* CoachViewController.xib in Resources */,
-				40C106BC26E41A2200B619A1 /* LastNewsTableView.xib in Resources */,
+				400A2ABF26E5982200F13BCF /* SportCoachViewController.xib in Resources */,
 				40C106D326E41FD200B619A1 /* HockeySquadsViewController.xib in Resources */,
 				40E7204A26E400FF00A64C60 /* LaunchScreen.storyboard in Resources */,
 				400A2ABA26E5978000F13BCF /* HockeyPlayerDetailViewController.xib in Resources */,
@@ -528,6 +616,7 @@
 				40E7204726E400FF00A64C60 /* Assets.xcassets in Resources */,
 				408BD21D26E5A54A00D66D9B /* GoogleService-Info.plist in Resources */,
 				40E7204526E400FE00A64C60 /* Main.storyboard in Resources */,
+				40369EBB26E6DB490083E675 /* EventDetailViewController.xib in Resources */,
 				408CD0FD26E5380E005AD6D4 /* ShopShowcaseViewController.xib in Resources */,
 				407028E426E402BE00C6CE5F /* swiftgen.yml in Resources */,
 				40C106CD26E41F2800B619A1 /* ContactsViewController.xib in Resources */,
@@ -622,26 +711,35 @@
 				40940BE026E40C380098EF89 /* UIColorExtension.swift in Sources */,
 				40940BF826E413200098EF89 /* LoginDelegate.swift in Sources */,
 				40C106D726E4202600B619A1 /* Log.swift in Sources */,
-				402EDA6926E43060004A2992 /* HockeySquad.swift in Sources */,
+				40369EAB26E6B3FE0083E675 /* LastEventsViewModel.swift in Sources */,
+				402EDA6926E43060004A2992 /* SportSquad.swift in Sources */,
+				409E685C26ED6937008C4C0B /* EventsSectionHeaderView.swift in Sources */,
 				40940BE126E40C380098EF89 /* OtherExtensions.swift in Sources */,
 				40940BF026E412F40098EF89 /* AuthUserActions.swift in Sources */,
 				40940C0626E418E50098EF89 /* MainTabBarViewController.swift in Sources */,
 				40C106CC26E41F2800B619A1 /* ContactsViewController.swift in Sources */,
 				40E7203E26E400FE00A64C60 /* AppDelegate.swift in Sources */,
-				4098C04526E5756800F0BBE6 /* HockeyPlayer.swift in Sources */,
+				4065C96026E854C00084E5F2 /* CorneredView.swift in Sources */,
+				4098C04526E5756800F0BBE6 /* SportPlayer.swift in Sources */,
 				40940BEF26E412F40098EF89 /* AuthProvider.swift in Sources */,
-				402EDA6326E42A2A004A2992 /* HockeyEvent.swift in Sources */,
+				402EDA6326E42A2A004A2992 /* SportEvent.swift in Sources */,
 				40C106BF26E41E4800B619A1 /* Utils.swift in Sources */,
+				4055FCDC26E816D900E5BB79 /* CellConfigurator.swift in Sources */,
 				40940BE326E40C380098EF89 /* UIVIewControllerExtension.swift in Sources */,
 				40940C0526E418E50098EF89 /* MainTabBarViewModel.swift in Sources */,
 				40C106C426E41E9600B619A1 /* EventsViewController.swift in Sources */,
+				40DBD76E26E83BFD00CDBADD /* TableCellActionsProxy.swift in Sources */,
 				40C106D226E41FD200B619A1 /* HockeySquadsViewController.swift in Sources */,
 				40E2D65126E55E1E006503C7 /* ShopCategoryItem.swift in Sources */,
 				40A4464826E409D900129B89 /* Strings.swift in Sources */,
+				4065C95D26E853500084E5F2 /* CorneredImageView.swift in Sources */,
+				40978DBB26ED6ADB00AE1926 /* ComingEventsSectionHeaderView.swift in Sources */,
 				4098C05626E5767A00F0BBE6 /* HockeySquadDetailViewModel.swift in Sources */,
 				402EDA6626E4303B004A2992 /* HockeySquadViewModel.swift in Sources */,
 				400A2AB926E5978000F13BCF /* HockeyPlayerDetailViewController.swift in Sources */,
-				400A2AC226E5987B00F13BCF /* Coach.swift in Sources */,
+				40369EBA26E6DB490083E675 /* EventDetailViewController.swift in Sources */,
+				4065C96326E855150084E5F2 /* PinnedEventCollectionCell.swift in Sources */,
+				400A2AC226E5987B00F13BCF /* SportCoach.swift in Sources */,
 				4098C05226E575EB00F0BBE6 /* HockeySquadDetailViewController.swift in Sources */,
 				40940BFA26E413200098EF89 /* DataSourceProvider.swift in Sources */,
 				40940BE426E40C380098EF89 /* UIFontExtension.swift in Sources */,
@@ -649,21 +747,27 @@
 				40A4464926E409D900129B89 /* Assets.swift in Sources */,
 				4098C04226E572A700F0BBE6 /* UserExtension.swift in Sources */,
 				40940BE226E40C380098EF89 /* UIImageExtension.swift in Sources */,
-				400A2AC526E59A7E00F13BCF /* HockeyCoachDetailViewModel.swift in Sources */,
+				400A2AC526E59A7E00F13BCF /* SportCoachDetailViewModel.swift in Sources */,
 				40E2D64526E5584D006503C7 /* ShopItemViewController.swift in Sources */,
+				40E949BF26ED59A600962590 /* CircularView.swift in Sources */,
 				408BD21926E5A2B600D66D9B /* HockeyPlayerDetailViewModel.swift in Sources */,
-				40C106BB26E41A2200B619A1 /* LastNewsTableViewController.swift in Sources */,
+				40C106BB26E41A2200B619A1 /* LastEventsTableViewController.swift in Sources */,
+				40C87B4D26EA667400E8217D /* EventCollectionViewLayout.swift in Sources */,
 				40940BF926E413200098EF89 /* DataSourceProtocols.swift in Sources */,
-				40940BE826E40D450098EF89 /* HockeyTeam.swift in Sources */,
+				40940BE826E40D450098EF89 /* SportTeam.swift in Sources */,
+				4065C95226E84E410084E5F2 /* ComingEventTableCell.swift in Sources */,
 				408CD0FC26E5380E005AD6D4 /* ShopShowcaseViewController.swift in Sources */,
 				40940BDF26E40C380098EF89 /* UIViewExtension.swift in Sources */,
-				400A2ABE26E5982200F13BCF /* CoachViewController.swift in Sources */,
+				400A2ABE26E5982200F13BCF /* SportCoachViewController.swift in Sources */,
 				40E2D64C26E558B6006503C7 /* ShoppingCartViewController.swift in Sources */,
+				4065C95526E84E990084E5F2 /* EventTableCell.swift in Sources */,
 				40940BEE26E412F40098EF89 /* AuthSection.swift in Sources */,
 				402EDA6026E429C5004A2992 /* EventsViewModel.swift in Sources */,
 				40E7204026E400FE00A64C60 /* SceneDelegate.swift in Sources */,
+				40369EC626E6E33C0083E675 /* PinnedEventTableCell.swift in Sources */,
 				40C106B526E419CB00B619A1 /* AppController.swift in Sources */,
 				408CD10626E539FD005AD6D4 /* ShopItem.swift in Sources */,
+				40E949BC26ED54BF00962590 /* ScrollingPageControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

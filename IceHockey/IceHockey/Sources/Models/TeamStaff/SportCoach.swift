@@ -11,7 +11,7 @@ protocol Staff {
     var displayName: String { get set }
 }
 
-struct Coach: Staff, Codable, Identifiable {
+struct SportCoach: Staff, Codable, Identifiable {
     var displayName: String
     var description: String
     var imageURL: URL?
@@ -28,9 +28,9 @@ struct Coach: Staff, Codable, Identifiable {
     }
 }
 
-extension Coach {
+extension SportCoach {
     var image: UIImage {
-        let emptyImage = Asset.person.image
+        let emptyImage = Asset.coach0.image
         guard let url = imageURL else {
             return emptyImage
         }

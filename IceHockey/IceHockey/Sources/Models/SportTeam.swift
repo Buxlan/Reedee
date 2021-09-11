@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct HockeyTeam: Codable {    
+struct SportTeam: Codable {    
     var displayName: String
     var uuid: String
     var phoneNumber: String

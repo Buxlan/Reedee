@@ -7,15 +7,15 @@
 
 import UIKit
 
-class CoachViewController: UIViewController {
+class SportCoachViewController: UIViewController {
     
     // MARK: - Properties
-    var staff: Coach? {
+    var staff: SportCoach? {
         didSet {
             viewModel.staff = staff
         }
     }
-    var viewModel = HockeyCoachDetailViewModel()
+    var viewModel = SportCoachDetailViewModel()
         
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()

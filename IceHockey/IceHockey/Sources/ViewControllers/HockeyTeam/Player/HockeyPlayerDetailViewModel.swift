@@ -6,9 +6,9 @@
 //
 
 struct HockeyPlayerDetailViewModel {
-    var staff: HockeyPlayer?
+    var staff: SportPlayer?
     
-    init(staff: HockeyPlayer? = nil) {
+    init(staff: SportPlayer? = nil) {
         self.staff = staff
     }
 }

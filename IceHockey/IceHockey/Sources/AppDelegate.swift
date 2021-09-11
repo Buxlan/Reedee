@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = Asset.main0.color
         UINavigationBar.appearance().barTintColor = Asset.other1.color
         
-        let attr = [NSAttributedString.Key.foregroundColor: Asset.main0.color]
+        let attr = [NSAttributedString.Key.foregroundColor: Asset.other0.color]
         UITabBarItem.appearance().setTitleTextAttributes(attr, for: .selected)
         let attr2 = [NSAttributedString.Key.foregroundColor: Asset.other0.color]
         UITabBarItem.appearance().setTitleTextAttributes(attr2, for: .normal)

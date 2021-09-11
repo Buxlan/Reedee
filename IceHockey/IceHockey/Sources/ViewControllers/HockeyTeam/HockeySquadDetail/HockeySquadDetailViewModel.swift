@@ -9,11 +9,11 @@ import UIKit
 
 struct HockeySquadPlayersSection {
     var role: HockeyPlayerRole
-    var items: [HockeyPlayer]
+    var items: [SportPlayer]
 }
 
 struct HockeySquadDetailViewModel {
-    var squad: HockeySquad?
+    var squad: SportSquad?
     var sections: [HockeySquadPlayersSection] {
         var items = [HockeySquadPlayersSection]()
         guard let squad = squad else {
@@ -25,11 +25,11 @@ struct HockeySquadDetailViewModel {
         return items
     }
     
-    init(squad: HockeySquad? = nil) {
+    init(squad: SportSquad? = nil) {
         self.squad = squad
     }
     
-    func item(at index: IndexPath) -> HockeyPlayer {
+    func item(at index: IndexPath) -> SportPlayer {
         return sections[index.section].items[index.row]
     }
 }

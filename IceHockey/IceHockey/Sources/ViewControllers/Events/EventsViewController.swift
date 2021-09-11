@@ -119,8 +119,8 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    private func configure(cell: UITableViewCell, item: HockeyEvent) {
-        cell.textLabel?.text = item.name
+    private func configure(cell: UITableViewCell, item: SportEvent) {
+        cell.textLabel?.text = item.title
         cell.accessoryType = .disclosureIndicator
     }
 }

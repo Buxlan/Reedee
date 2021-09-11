@@ -10,7 +10,7 @@ import UIKit
 class HockeySquadDetailViewController: UIViewController {
 
     // MARK: - Properties
-    var squad: HockeySquad? {
+    var squad: SportSquad? {
         didSet {
             viewModel.squad = squad
             DispatchQueue.main.async {
@@ -21,9 +21,13 @@ class HockeySquadDetailViewController: UIViewController {
     var viewModel = HockeySquadDetailViewModel()
     
     private lazy var titleView: UIView = {
-        let image = Asset.squadLogo.image
+        let screenWidth = UIScreen.main.bounds.size.width
+        let imageHeight = screenWidth * 0.7
+        let image = Asset.squad2012.image
+            .resizeImage(to: imageHeight, aspectRatio: .current, with: .clear)
         let view = UIImageView(image: image)
         view.contentMode = .scaleAspectFit
+//        view.autoresizingMask = [.flexibleWidth]
         return view
     }()
     
@@ -147,7 +151,7 @@ extension HockeySquadDetailViewController: UITableViewDelegate, UITableViewDataS
         return cell
     }
     
-    private func configure(cell: UITableViewCell, item: HockeyPlayer) {
+    private func configure(cell: UITableViewCell, item: SportPlayer) {
         cell.textLabel?.text = "#\(item.gameNumber) \(item.displayName)"
         cell.accessoryType = .disclosureIndicator
     }

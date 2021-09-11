@@ -61,10 +61,14 @@
 "User.displayUnregistered" = "Анонимный пользователь";
 /* News */
 "News.tabBarTitle" = "Новости";
-"News.navigationBarTitle" = "Актуальное";
+"News.navigationBarTitle" = "Главная";
+"News.tableViewPinnedSectionTitle" = "";
+"News.tableViewNewsSectionTitle" = "Новости";
+"News.tableViewComingSectionTitle" = "Предстоящие мероприятия";
 /* Events */
 "Events.eventsTabBarItemTitle" = "Мероприятия";
 "Events.eventsTitle" = "Мероприятия";
+"Events.defaultActionTitle" = "Подробнее";
 /* Contacts */
 "Contacts.tabBarItemTitle" = "Контакты";
 "Contacts.title" = "Наши контакты";
@@ -82,5 +86,8 @@
 "HockeyPlayer.positionDefenderPlural" = "Защитники";
 "HockeyPlayer.positionGoalkeeperPlural" = "Вратари";
 /* Staff */
-"Staff.coach" = "Coach";
-"Staff.player" = "Player";
+"Staff.coach" = "Тренер";
+"Staff.coachDescription" = "Описание";
+"Staff.player" = "Ф.И.О.";
+"Staff.playerDescription" = "Дополнительные сведения";
+

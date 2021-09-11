@@ -61,10 +61,14 @@
 "User.displayUnregistered" = "Unregistered user";
 /* News */
 "News.tabBarTitle" = "News";
-"News.navigationBarTitle" = "Actual";
+"News.navigationBarTitle" = "Main";
+"News.tableViewPinnedSectionTitle" = "";
+"News.tableViewNewsSectionTitle" = "News";
+"News.tableViewComingSectionTitle" = "Coming events";
 /* Events */
 "Events.tabBarItemTitle" = "Events";
 "Events.title" = "Events";
+"Events.defaultActionTitle" = "More";
 /* Contacts */
 "Contacts.tabBarItemTitle" = "Contacts";
 "Contacts.title" = "Our contacts";
@@ -83,4 +87,7 @@
 "HockeyPlayer.positionGoalkeeperPlural" = "Goalkeepers";
 /* Staff */
 "Staff.coach" = "Coach";
-"Staff.player" = "Player";
+"Staff.coachDescription" = "Coach";
+"Staff.player" = "Player info";
+"Staff.playerDescription" = "Description";
+

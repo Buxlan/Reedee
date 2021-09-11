@@ -10,7 +10,9 @@ class MainTabBarViewModel {
     lazy var viewControllers: [UIViewController] = {
         var items = [UIViewController]()
         var vc: UINavigationController
-        vc = UINavigationController(rootViewController: LastNewsTableViewController())
+        let rootVC = LastEventsTableViewController()
+        rootVC.data = SportTeam(displayName: "Красные медведи", uuid: "Красные медведи", phoneNumber: "+7909555555", logoImage: "logo")
+        vc = UINavigationController(rootViewController: rootVC)
         items.append(vc)
         
         vc = UINavigationController(rootViewController: HockeySquadsViewController())

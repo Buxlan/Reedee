@@ -5,10 +5,10 @@
 //  Created by  Buxlan on 9/6/21.
 //
 
-struct HockeyCoachDetailViewModel {
-    var staff: Coach?
+struct SportCoachDetailViewModel {
+    var staff: SportCoach?
     
-    init(staff: Coach? = nil) {
+    init(staff: SportCoach? = nil) {
         self.staff = staff
     }    
 }

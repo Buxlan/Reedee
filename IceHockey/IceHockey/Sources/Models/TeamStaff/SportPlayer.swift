@@ -25,7 +25,7 @@ enum HockeyPlayerRole: String, Codable {
     }
 }
 
-struct HockeyPlayer: Staff, Codable, Identifiable {
+struct SportPlayer: Staff, Codable, Identifiable {
     var displayName: String
     var imageURL: URL?
     var position: HockeyPlayerRole
@@ -45,9 +45,9 @@ struct HockeyPlayer: Staff, Codable, Identifiable {
     }
 }
 
-extension HockeyPlayer {
+extension SportPlayer {
     var image: UIImage {
-        let emptyImage = Asset.person.image
+        let emptyImage = Asset.player0.image
         guard let url = imageURL else {
             return emptyImage
         }
