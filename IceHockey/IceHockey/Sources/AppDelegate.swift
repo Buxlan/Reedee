@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().backgroundColor = Asset.other1.color
         UITabBar.appearance().unselectedItemTintColor = Asset.other0.color
         UITabBar.appearance().tintColor = Asset.other0.color
-        UINavigationBar.appearance().backgroundColor = Asset.other1.color
+        UINavigationBar.appearance().backgroundColor = Asset.accent1.color
         UINavigationBar.appearance().tintColor = Asset.main0.color
         UINavigationBar.appearance().barTintColor = Asset.other1.color
         

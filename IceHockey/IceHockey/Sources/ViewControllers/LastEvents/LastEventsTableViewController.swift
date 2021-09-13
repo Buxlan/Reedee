@@ -125,17 +125,26 @@ class LastEventsTableViewController: UIViewController, DatableObject {
     private func configureNavigationBar() {
         title = L10n.News.navigationBarTitle
 //        navigationController?.navigationItem.titleView = titleView
-        navigationController?.setToolbarHidden(true, animated: false)
-        navigationController?.setNavigationBarHidden(false, animated: false)
+        guard let navigationController = navigationController else {
+            return
+        }
+        navigationController.setToolbarHidden(true, animated: false)
+        navigationController.setNavigationBarHidden(false, animated: false)
 //        navigationItem.backBarButtonItem?.tintColor = .systemYellow
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.barTintColor = Asset.accent1.color
+        navigationController.navigationBar.prefersLargeTitles = true
+        navigationController.navigationBar.barTintColor = Asset.accent1.color
+        let size = navigationController.navigationBar.frame.size
+        let image = Asset.accent1.color.image(size)
+        navigationController.navigationBar.setBackgroundImage(image,
+                                                              for: .default)
+        navigationController.navigationBar.setBackgroundImage(image,
+                                                              for: .compact)
         
         let titleTextAttributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.foregroundColor: Asset.other3.color
         ]
-        navigationController?.navigationBar.titleTextAttributes = titleTextAttributes
-        navigationController?.navigationBar.largeTitleTextAttributes = titleTextAttributes        
+        navigationController.navigationBar.titleTextAttributes = titleTextAttributes
+        navigationController.navigationBar.largeTitleTextAttributes = titleTextAttributes
     }
     
     private func setupActionHandlers() {
@@ -180,8 +189,13 @@ extension LastEventsTableViewController: UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 { return nil }
-        let reuseId = section == 1 ? EventsSectionHeaderView.reuseIdentifier : ComingEventsSectionHeaderView.reuseIdentifier
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseId)                
+        let config = viewModel.sections[section].header
+        let reuseId = type(of: config).reuseIdentifier
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseId)
+        if let view = view {
+            config.configure(cell: view)
+            view.tag = section
+        }
         return view
     }
     
@@ -195,23 +209,12 @@ extension LastEventsTableViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        let title = viewModel.sections[section].title ?? ""
-        if title.isEmpty {
-            return 12
-        } else {
-            return 40
+        if let config = viewModel.sections[section].header as? Sizeable {
+            return config.size.height
         }
+        let defaultHeight: CGFloat = 40
+        return defaultHeight
     }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return indexPath.section == 0 ? 220 : 300
-//    }
-    
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        var title = viewModel.sections[section].title ?? ""
-//        title = title.isEmpty ? " " : title
-//        return title
-//    }
     
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -225,16 +228,20 @@ extension LastEventsTableViewController: UITableViewDelegate, UITableViewDataSou
         config.configure(cell: cell)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 324
+    }
 }
 
 extension LastEventsTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.pinnedSection.items.count
+        return viewModel.pinnedCollectionViewSection.items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = viewModel.pinnedSection.items[indexPath.item]
+        let item = viewModel.pinnedCollectionViewSection.items[indexPath.item]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PinnedEventCollectionCell.reuseIdentifier, for: indexPath)
         item.configure(cell: cell)
         return cell

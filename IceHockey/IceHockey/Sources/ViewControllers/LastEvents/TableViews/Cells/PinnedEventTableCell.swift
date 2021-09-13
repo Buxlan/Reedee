@@ -8,22 +8,6 @@
 import UIKit
 import Foundation
 
-protocol ConfigurableCell {
-    static var reuseIdentifier: String { get }
-    var isInterfaceConfigured: Bool { get set }
-        
-    associatedtype DataType
-    func configure(with data: DataType)
-}
-extension ConfigurableCell {
-    static var reuseIdentifier: String { String(describing: Self.self) }
-}
-
-protocol ContainedCollectionViewCell {
-    var delegate: UICollectionViewDelegate? { get set }
-    var dataSource: UICollectionViewDataSource? { get set }
-}
-
 class PinnedEventTableCell: UITableViewCell, ConfigurableCell, ContainedCollectionViewCell {
     
     // MARK: - Properties
@@ -36,12 +20,12 @@ class PinnedEventTableCell: UITableViewCell, ConfigurableCell, ContainedCollecti
     var cellHeight: CGFloat = 300
     var timer: Timer?
     
-    private lazy var coloredView: UIView = {
-        let view = UIView()
-        view.backgroundColor = Asset.other2.color
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+//    private lazy var coloredView: UIView = {
+//        let view = UIView()
+//        view.backgroundColor = Asset.other2.color
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        return view
+//    }()
     
     private lazy var collectionView: UICollectionView = {
         let layout = EventCollectionViewLayout()
@@ -61,6 +45,13 @@ class PinnedEventTableCell: UITableViewCell, ConfigurableCell, ContainedCollecti
         
         view.delegate = self
         view.dataSource = self
+
+        view.layer.shadowRadius = 10.0
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize()
+        view.layer.shadowOpacity = 0.8
+        view.layer.shouldRasterize = true
+        view.layer.rasterizationScale = UIScreen.main.scale
         
         let gesture = UILongPressGestureRecognizer(target: self, action: #selector(collectionViewLongPressHandle))
 //        gesture.numberOfTouchesRequired = 1
@@ -95,6 +86,8 @@ class PinnedEventTableCell: UITableViewCell, ConfigurableCell, ContainedCollecti
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Helper functions
+        
     func configure(with data: DataType) {
         configureUI()
         startTimer()
@@ -104,9 +97,9 @@ class PinnedEventTableCell: UITableViewCell, ConfigurableCell, ContainedCollecti
         if isInterfaceConfigured { return }
         contentView.backgroundColor = Asset.other2.color
         tintColor = Asset.other1.color
-        contentView.addSubview(coloredView)
-        coloredView.addSubview(collectionView)
-        coloredView.addSubview(pageControl)
+//        contentView.addSubview(coloredView)
+        contentView.addSubview(collectionView)
+        contentView.addSubview(pageControl)
         configureConstraints()
         isInterfaceConfigured = true
     }
@@ -114,20 +107,20 @@ class PinnedEventTableCell: UITableViewCell, ConfigurableCell, ContainedCollecti
     internal func configureConstraints() {
         let collectionViewHeight = cellHeight
         let constraints: [NSLayoutConstraint] = [
-            coloredView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            coloredView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            coloredView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            coloredView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+//            coloredView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+//            coloredView.topAnchor.constraint(equalTo: contentView.topAnchor),
+//            coloredView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+//            coloredView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
-            collectionView.leadingAnchor.constraint(equalTo: coloredView.leadingAnchor),
-            collectionView.topAnchor.constraint(equalTo: coloredView.topAnchor),
-            collectionView.widthAnchor.constraint(equalTo: coloredView.widthAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: collectionViewHeight),
-            collectionView.bottomAnchor.constraint(equalTo: coloredView.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            collectionView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            collectionView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+//            collectionView.heightAnchor.constraint(equalToConstant: collectionViewHeight),
+            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
-            pageControl.centerXAnchor.constraint(equalTo: coloredView.centerXAnchor),
-            pageControl.bottomAnchor.constraint(equalTo: coloredView.bottomAnchor, constant: -16),
-            pageControl.widthAnchor.constraint(equalTo: coloredView.widthAnchor, multiplier: 0.25),
+            pageControl.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            pageControl.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -28),
+            pageControl.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.25),
             pageControl.heightAnchor.constraint(equalToConstant: 16)
         ]
         NSLayoutConstraint.activate(constraints)
@@ -160,7 +153,8 @@ class PinnedEventTableCell: UITableViewCell, ConfigurableCell, ContainedCollecti
         } else if gestureRecognizer.state == .ended || gestureRecognizer.state == .cancelled {
             startTimer()
         }
-    }
+    }    
+   
 }
 
 extension PinnedEventTableCell: UICollectionViewDelegate, UICollectionViewDataSource {

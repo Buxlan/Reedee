@@ -61,11 +61,17 @@ extension ColorComponent {
     }
 }
 
-struct ColorComponents: Codable {
+struct CodableColor: Codable {
     var red: CGFloat
     var green: CGFloat
     var blue: CGFloat
     var alpha: CGFloat
+}
+
+extension CodableColor {
+    var color: UIColor {
+        UIColor(red: red, green: green, blue: blue, alpha: alpha)
+    }
 }
 
 struct GoodsCategory: Codable {
@@ -92,7 +98,7 @@ protocol ShopItemProtocol: Codable {
     var price: CGFloat { get set }
     var size: CGFloat? { get set }
     var category: ShopCategoryItem { get set }
-    var codableColor: ColorComponents { get set }
+    var codableColor: CodableColor { get set }
     var sizeable: Bool { get set }
 }
 
@@ -102,7 +108,7 @@ struct ShopItem: ShopItemProtocol {
     var imageURL: URL?
     var price: CGFloat
     var size: CGFloat?
-    var codableColor: ColorComponents
+    var codableColor: CodableColor
     var category: ShopCategoryItem
     var sizeable: Bool
     var colorable: Bool
@@ -113,7 +119,7 @@ struct ShopItem: ShopItemProtocol {
          price: CGFloat = 0.0,
          size: CGFloat? = 0.0,
          category: ShopCategoryItem = .init(category: "Category 0"),
-         codableColor: ColorComponents = .init(red: 0, green: 0, blue: 0, alpha: 1),
+         codableColor: CodableColor = .init(red: 0, green: 0, blue: 0, alpha: 1),
          sizeable: Bool = false,
          colorable: Bool = false) {
         self.name = name

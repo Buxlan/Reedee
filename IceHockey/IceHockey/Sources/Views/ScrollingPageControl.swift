@@ -44,8 +44,8 @@ class ScrollingPageControl: UIView {
         }
     }
     
-    var dotColor: UIColor = Asset.other0.color
-    var selectedColor: UIColor = Asset.accent0.color
+    var dotColor: UIColor = Asset.other1.color
+    var selectedColor: UIColor = Asset.other3.color
     
     var dotSize: CGFloat = 6 {
         didSet {
@@ -155,7 +155,9 @@ class ScrollingPageControl: UIView {
     
     private func createViews() {
         dotViews = (0..<numberOfPages).map { index in
-            delegate?.viewForDot(at: index) ?? CircularView(frame: CGRect(origin: .zero, size: CGSize(width: dotSize, height: dotSize)))
+            let size = CGSize(width: dotSize, height: dotSize)
+            return delegate?.viewForDot(at: index) ?? CircularView(frame: CGRect(origin: .zero,
+                                                                          size: size))
         }
     }
     

@@ -12,6 +12,10 @@ protocol CellConfigurator {
     func configure(cell: UIView)
 }
 
+protocol Sizeable {
+    var size: CGSize { get }
+}
+
 struct TableViewCellConfigurator<CellType: ConfigurableCell,
                                  DataType>: CellConfigurator where DataType == CellType.DataType,
                                                                    CellType: UIView {
@@ -44,7 +48,32 @@ struct CollectionViewCellConfigurator<CellType: ConfigurableCell,
     }
 }
 
+struct TableViewHeaderConfigurator<CellType: SizeableConfigurableCell,
+                                   DataType>: Sizeable, CellConfigurator where DataType == CellType.DataType,
+                                                                               CellType: UITableViewHeaderFooterView {
+    
+    static var reuseIdentifier: String { return CellType.reuseIdentifier }
+
+    var size: CGSize {
+        data.size
+    }
+    let data: DataType
+    
+    func configure(cell: UIView) {
+        guard let cell = cell as? CellType else {
+            Log(text: "Can't cast collection view cell to \(CellType.self)", object: self)
+            return
+        }
+        cell.configure(with: data)
+    }
+}
+
+// MARK: - Cells
 typealias PinnedEventCellConfigurator = TableViewCellConfigurator<PinnedEventTableCell, SportEvent>
 typealias EventCellConfigurator = TableViewCellConfigurator<EventTableCell, SportEvent>
 typealias ComingEventCellConfigurator = TableViewCellConfigurator<ComingEventTableCell, SportEvent>
 typealias PinnedEventCollectionCellConfigurator = CollectionViewCellConfigurator<PinnedEventCollectionCell, SportEvent>
+// MARK: - Headers
+typealias PinnedEventsHeaderConfigurator = TableViewHeaderConfigurator<EventsSectionHeaderView, TableViewHeaderConfiguration>
+typealias EventsHeaderConfigurator = TableViewHeaderConfigurator<EventsSectionHeaderView, TableViewHeaderConfiguration>
+typealias ComingEventsHeaderConfigurator = TableViewHeaderConfigurator<ComingEventsSectionHeaderView, TableViewHeaderConfiguration>

@@ -25,6 +25,23 @@ class PinnedEventCollectionCell: UICollectionViewCell, ConfigurableCell {
         return view
     }()
     
+    private lazy var shadowView: ShadowView = {
+        let view = ShadowView()
+        view.backgroundColor = Asset.other3.color
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var bgView: UIView = {
+        let cornerRadius: CGFloat = 24.0
+        let view = UIView()
+        view.backgroundColor = Asset.accent0.color
+        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.roundCorners(corners: [.allCorners], radius: 40)
+//        view.clipsToBounds = true
+        return view
+    }()
+    
     private lazy var dataLabel: UILabel = {
         let view = UILabel()
         view.accessibilityIdentifier = "dataLabel (table cell)"
@@ -33,6 +50,8 @@ class PinnedEventCollectionCell: UICollectionViewCell, ConfigurableCell {
         view.tintColor = Asset.textColor.color
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setContentHuggingPriority(.defaultLow, for: .vertical)
+        view.numberOfLines = 2
+        view.textAlignment = .left
         return view
     }()
         
@@ -42,7 +61,7 @@ class PinnedEventCollectionCell: UICollectionViewCell, ConfigurableCell {
         view.accessibilityIdentifier = "dataImageView"
         view.image = Asset.camera.image.resizeImage(to: imageHeight, aspectRatio: .current, with: .clear)
         view.backgroundColor = Asset.other3.color
-        view.contentMode = .scaleAspectFit
+        view.contentMode = .scaleAspectFill
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -50,10 +69,14 @@ class PinnedEventCollectionCell: UICollectionViewCell, ConfigurableCell {
     private lazy var viewsCountImageView: UIImageView = {
         let view = UIImageView()
         view.accessibilityIdentifier = "viewsCountImageView"
-        view.image = Asset.eye.image.resizeImage(to: 16, aspectRatio: .current, with: .clear)
-        view.backgroundColor = Asset.other3.color
+        view.image = Asset.eye.image.resizeImage(to: 16,
+                                                 aspectRatio: .current,
+                                                 with: Asset.accent0.color).withRenderingMode(.alwaysTemplate)
+        view.tintColor = Asset.other1.color
+        view.backgroundColor = Asset.accent0.color
         view.contentMode = .scaleAspectFit
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
         return view
     }()
     
@@ -61,8 +84,9 @@ class PinnedEventCollectionCell: UICollectionViewCell, ConfigurableCell {
         let view = UILabel()
         view.accessibilityIdentifier = "viewsCountLabel (collection cell)"
 //        view.setMargins(margin: 32.0)
-        view.backgroundColor = Asset.other3.color
-        view.tintColor = Asset.textColor.color
+        view.backgroundColor = Asset.accent0.color
+        view.tintColor = Asset.other1.color
+        view.textColor = Asset.other1.color
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -87,15 +111,18 @@ class PinnedEventCollectionCell: UICollectionViewCell, ConfigurableCell {
         if isInterfaceConfigured { return }
         tintColor = UIColor.black
         backgroundColor = Asset.other3.color
+        contentView.clipsToBounds = true
 //        let backView = UIView()
 //        backView.backgroundColor = Asset.other1.color
 //        backgroundView = backView
 //        contentView.addSubview(roundedView)
-        contentView.addSubview(dataLabel)
+        contentView.addSubview(shadowView)
         contentView.addSubview(dataImageView)
-        contentView.addSubview(viewsCountImageView)
-        contentView.addSubview(viewsCountLabel)
-        contentView.addSubview(actionEventButton)
+        contentView.addSubview(dataLabel)
+        contentView.addSubview(bgView)
+        bgView.addSubview(viewsCountImageView)
+        bgView.addSubview(viewsCountLabel)
+//        contentView.addSubview(actionEventButton)
 //        contentView.addSubview(dataImageView)
         configureConstraints()
         isInterfaceConfigured = true
@@ -103,33 +130,41 @@ class PinnedEventCollectionCell: UICollectionViewCell, ConfigurableCell {
     
     internal func configureConstraints() {
         let constraints: [NSLayoutConstraint] = [
-            dataLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            dataLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             dataLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            dataLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
+            dataLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -8),
             dataLabel.heightAnchor.constraint(equalToConstant: 44),
             
             dataImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 4),
-            dataImageView.topAnchor.constraint(equalTo: dataLabel.bottomAnchor),
-//            dataImageView.heightAnchor.constraint(greaterThanOrEqualToConstant: imageHeight),
+            dataImageView.topAnchor.constraint(equalTo: dataLabel.bottomAnchor, constant: 4),
             dataImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -8),
+            dataImageView.heightAnchor.constraint(equalToConstant: imageHeight),
             
-            viewsCountImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            viewsCountImageView.topAnchor.constraint(equalTo: dataImageView.bottomAnchor, constant: 8),
-            viewsCountImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            bgView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            bgView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            bgView.topAnchor.constraint(equalTo: dataImageView.bottomAnchor),
+            bgView.heightAnchor.constraint(equalToConstant: 40),
+                        
+            shadowView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            shadowView.topAnchor.constraint(equalTo: bgView.topAnchor),
+            shadowView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            shadowView.bottomAnchor.constraint(equalTo: bgView.bottomAnchor),
+            
+            viewsCountImageView.leadingAnchor.constraint(equalTo: bgView.leadingAnchor, constant: 8),
+            viewsCountImageView.centerYAnchor.constraint(equalTo: bgView.centerYAnchor),
             viewsCountImageView.heightAnchor.constraint(equalToConstant: 16),
             viewsCountImageView.widthAnchor.constraint(equalToConstant: 28),
             
             viewsCountLabel.leadingAnchor.constraint(equalTo: viewsCountImageView.trailingAnchor, constant: 4),
             viewsCountLabel.centerYAnchor.constraint(equalTo: viewsCountImageView.centerYAnchor),
-//            viewsCountLabel.bottomAnchor.constraint(equalTo: viewsCountImageView.bottomAnchor),
             viewsCountLabel.heightAnchor.constraint(equalTo: viewsCountImageView.heightAnchor),
-            viewsCountLabel.widthAnchor.constraint(equalTo: dataLabel.widthAnchor, multiplier: 0.25),
+            viewsCountLabel.trailingAnchor.constraint(lessThanOrEqualTo: bgView.trailingAnchor)
             
-            actionEventButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            actionEventButton.centerYAnchor.constraint(equalTo: viewsCountImageView.centerYAnchor),
-            actionEventButton.heightAnchor.constraint(equalToConstant: 32),
+//            actionEventButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+//            actionEventButton.centerYAnchor.constraint(equalTo: viewsCountImageView.centerYAnchor),
+//            actionEventButton.heightAnchor.constraint(equalToConstant: 32),
 //            actionEventButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 130),
-            actionEventButton.leadingAnchor.constraint(greaterThanOrEqualTo: contentView.centerXAnchor, constant: 16)
+//            actionEventButton.leadingAnchor.constraint(greaterThanOrEqualTo: contentView.centerXAnchor, constant: 16)
         ]
         NSLayoutConstraint.activate(constraints)
     }

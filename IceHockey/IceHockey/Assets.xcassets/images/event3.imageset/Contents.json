@@ -1,15 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "homeFill.pdf",
+      "filename" : "Screen Shot 2021-09-13 at 21.12.37.png",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "preserves-vector-representation" : true
   }
 }

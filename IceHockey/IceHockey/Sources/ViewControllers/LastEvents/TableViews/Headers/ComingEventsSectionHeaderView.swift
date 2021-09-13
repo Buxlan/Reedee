@@ -7,12 +7,63 @@
 
 import UIKit
 
-class ComingEventsSectionHeaderView: UITableViewHeaderFooterView, ConfigurableCell {
+class ComingEventsSectionHeaderView: UITableViewHeaderFooterView, SizeableConfigurableCell {
     
     // MARK: - Properties
-    typealias DataType = String
+    typealias DataType = TableViewHeaderConfiguration
     
     var isInterfaceConfigured = false
+    let defaultImageSize = TableViewHeaderConfiguration.defaultImageSize
+    
+    private lazy var dataLabel: UILabel = {
+        let view = UILabel()
+        view.accessibilityIdentifier = "dataLabel (header table view)"
+        view.setMargins(margin: 32.0)
+        view.backgroundColor = Asset.other2.color
+        view.tintColor = Asset.textColor.color
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.setContentHuggingPriority(.defaultLow, for: .vertical)
+        return view
+    }()
+    
+    private lazy var leftImageHeightConstraint: NSLayoutConstraint = {
+        let constraint = leftImageView.heightAnchor.constraint(equalToConstant: defaultImageSize.height)
+        constraint.isActive = true
+        return constraint
+    }()
+    private lazy var leftImageWidthConstraint: NSLayoutConstraint = {
+        let constraint = leftImageView.widthAnchor.constraint(equalToConstant: defaultImageSize.width)
+        constraint.isActive = true
+        return constraint
+    }()
+    private lazy var rightImageHeightConstraint: NSLayoutConstraint = {
+        let constraint = rightImageView.heightAnchor.constraint(equalToConstant: defaultImageSize.height)
+        constraint.isActive = true
+        return constraint
+    }()
+    private lazy var rightImageWidthConstraint: NSLayoutConstraint = {
+        let constraint = rightImageView.widthAnchor.constraint(equalToConstant: defaultImageSize.width)
+        constraint.isActive = true
+        return constraint
+    }()
+    
+    private lazy var leftImageView: UIImageView = {
+        let view = UIImageView()
+        view.accessibilityIdentifier = "leftImageView (header table view)"
+        view.backgroundColor = Asset.other2.color
+        view.contentMode = .scaleAspectFit
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var rightImageView: UIImageView = {
+        let view = UIImageView()
+        view.accessibilityIdentifier = "rightImageView (header table view)"
+        view.backgroundColor = Asset.other2.color
+        view.contentMode = .scaleAspectFit
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     // MARK: - Init
     override init(reuseIdentifier: String?) {
@@ -27,20 +78,51 @@ class ComingEventsSectionHeaderView: UITableViewHeaderFooterView, ConfigurableCe
     // MARK: - Helper functions
     func configureUI() {
         if isInterfaceConfigured { return }
-        tintColor = Asset.other1.color
-        
+        contentView.backgroundColor = Asset.other2.color
+//        contentView.addSubview(leftImageView)
+//        contentView.addSubview(rightImageView)
+//        contentView.addSubview(dataLabel)
         configureConstraints()
         isInterfaceConfigured = true
     }
     
     internal func configureConstraints() {
-        let constraints: [NSLayoutConstraint] = [
-            
-        ]
-        NSLayoutConstraint.activate(constraints)
+//        var constraints: [NSLayoutConstraint] = [
+//            leftImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+//            leftImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+//
+//            dataLabel.leadingAnchor.constraint(equalTo: leftImageView.trailingAnchor, constant: 12),
+//            dataLabel.trailingAnchor.constraint(equalTo: rightImageView.leadingAnchor, constant: -12),
+//            dataLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+//            dataLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor),
+//
+//            rightImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+//            rightImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8)
+//        ]
+//        constraints.append(leftImageWidthConstraint)
+//        constraints.append(leftImageHeightConstraint)
+//        constraints.append(rightImageWidthConstraint)
+//        constraints.append(rightImageHeightConstraint)
+//        NSLayoutConstraint.activate(constraints)
     }
     
-    func configure(with data: String) {
-        // do nothing
+    func configure(with data: DataType) {
+        leftImageView.image = data.leftImage
+        rightImageView.image = data.rightImage
+        dataLabel.text = data.title
+        
+//        if let image = leftImageView.image {
+//            leftImageWidthConstraint.constant = image.size.width
+//            leftImageHeightConstraint.constant = image.size.width
+//            leftImageWidthConstraint.isActive = true
+//            leftImageHeightConstraint.isActive = true
+//        }
+//        if let image = rightImageView.image {
+//            rightImageWidthConstraint.constant = image.size.width
+//            rightImageHeightConstraint.constant = image.size.width
+//            rightImageWidthConstraint.isActive = true
+//            rightImageHeightConstraint.isActive = true
+//        }
+//        setNeedsLayout()
     }
 }
