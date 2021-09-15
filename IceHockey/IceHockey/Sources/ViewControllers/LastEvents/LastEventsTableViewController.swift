@@ -10,7 +10,8 @@ import UIKit
 class LastEventsTableViewController: UIViewController, DatableObject {
     
     // MARK: - Properties
-    var data: SportTeam? {
+    typealias DataType = SportTeam
+    var data: DataType? {
         didSet {
             viewModel.data = data
             DispatchQueue.main.async {
@@ -55,20 +56,30 @@ class LastEventsTableViewController: UIViewController, DatableObject {
                       forCellReuseIdentifier: ComingEventTableCell.reuseIdentifier)
         
         view.register(EventsSectionHeaderView.self,
-                      forHeaderFooterViewReuseIdentifier: EventsSectionHeaderView.reuseIdentifier)
+                      forCellReuseIdentifier: EventsSectionHeaderView.reuseIdentifier)
         
         view.register(ComingEventsSectionHeaderView.self,
-                      forHeaderFooterViewReuseIdentifier: ComingEventsSectionHeaderView.reuseIdentifier)
+                      forCellReuseIdentifier: ComingEventsSectionHeaderView.reuseIdentifier)
                         
 //        view.tableHeaderView = titleView
         view.tableFooterView = UIView()
+        view.showsVerticalScrollIndicator = false
         return view
     }()
         
     // MARK: - Init
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
     init() {
         super.init(nibName: nil, bundle: nil)
         configureTabBarItem()
+        data = SportTeam(displayName: L10n.Team.title,
+                         uuid: "1",
+                         phoneNumber: "79095626666",
+                         logoImageName: "logo")
+        viewModel.data = data
+        viewModel.update()
     }
     
     required init?(coder: NSCoder) {
@@ -131,7 +142,7 @@ class LastEventsTableViewController: UIViewController, DatableObject {
         navigationController.setToolbarHidden(true, animated: false)
         navigationController.setNavigationBarHidden(false, animated: false)
 //        navigationItem.backBarButtonItem?.tintColor = .systemYellow
-        navigationController.navigationBar.prefersLargeTitles = true
+        navigationController.navigationBar.prefersLargeTitles = false
         navigationController.navigationBar.barTintColor = Asset.accent1.color
         let size = navigationController.navigationBar.frame.size
         let image = Asset.accent1.color.image(size)
@@ -148,7 +159,7 @@ class LastEventsTableViewController: UIViewController, DatableObject {
     }
     
     private func setupActionHandlers() {
-        actionProxy.on(.didSelect) { [weak self] (config: PinnedEventCellConfigurator, _) in
+        actionProxy.on(.didSelect) { [weak self] (config: PinnedEventTableCellConfigurator, _) in
             guard let self = self else {
                 return
             }
@@ -187,33 +198,13 @@ extension LastEventsTableViewController: UITableViewDelegate, UITableViewDataSou
         actionProxy.invoke(action: .didSelect, cell: cell, config: config)
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 { return nil }
-        let config = viewModel.sections[section].header
-        let reuseId = type(of: config).reuseIdentifier
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseId)
-        if let view = view {
-            config.configure(cell: view)
-            view.tag = section
-        }
-        return view
-    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
-        viewModel.sections.count
+        1
     }
    
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        section == 0 ? 1 : viewModel.sections[section].items.count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if let config = viewModel.sections[section].header as? Sizeable {
-            return config.size.height
-        }
-        let defaultHeight: CGFloat = 40
-        return defaultHeight
+        viewModel.items.count
     }
     
     func tableView(_ tableView: UITableView,
@@ -221,27 +212,23 @@ extension LastEventsTableViewController: UITableViewDelegate, UITableViewDataSou
         let config = viewModel.item(at: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: type(of: config).reuseIdentifier,
                                                 for: indexPath)
-        if var castedCell = cell as? ContainedCollectionViewCell {
+        if var castedCell = cell as? ContainedCollectionView {
             castedCell.delegate = self
             castedCell.dataSource = self
         }
         config.configure(cell: cell)
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 324
-    }
 }
 
 extension LastEventsTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.pinnedCollectionViewSection.items.count
+        return viewModel.pinnedEventsItems.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = viewModel.pinnedCollectionViewSection.items[indexPath.item]
+        let item = viewModel.pinnedEventsItems[indexPath.item]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PinnedEventCollectionCell.reuseIdentifier, for: indexPath)
         item.configure(cell: cell)
         return cell

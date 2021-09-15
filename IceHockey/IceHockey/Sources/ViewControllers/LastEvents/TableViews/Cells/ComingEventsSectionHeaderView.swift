@@ -7,13 +7,14 @@
 
 import UIKit
 
-class ComingEventsSectionHeaderView: UITableViewHeaderFooterView, SizeableConfigurableCell {
+class ComingEventsSectionHeaderView: UITableViewCell, ConfigurableCell {
     
     // MARK: - Properties
-    typealias DataType = TableViewHeaderConfiguration
+    typealias DataType = ComingEventsTableViewCellHeaderConfiguration
     
     var isInterfaceConfigured = false
-    let defaultImageSize = TableViewHeaderConfiguration.defaultImageSize
+    let defaultSize = DataType.defaultSize
+    let defaultImageSize = DataType.defaultImageSize
     
     private lazy var dataLabel: UILabel = {
         let view = UILabel()
@@ -22,7 +23,7 @@ class ComingEventsSectionHeaderView: UITableViewHeaderFooterView, SizeableConfig
         view.backgroundColor = Asset.other2.color
         view.tintColor = Asset.textColor.color
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.setContentHuggingPriority(.defaultLow, for: .vertical)
+//        view.setContentHuggingPriority(.defaultLow, for: .vertical)
         return view
     }()
     
@@ -47,12 +48,19 @@ class ComingEventsSectionHeaderView: UITableViewHeaderFooterView, SizeableConfig
         return constraint
     }()
     
+    private lazy var contentViewHeightConstraint: NSLayoutConstraint = {
+        let constraint = contentView.heightAnchor.constraint(equalToConstant: defaultSize.height)
+        constraint.isActive = true
+        return constraint
+    }()
+    
     private lazy var leftImageView: UIImageView = {
         let view = UIImageView()
         view.accessibilityIdentifier = "leftImageView (header table view)"
         view.backgroundColor = Asset.other2.color
         view.contentMode = .scaleAspectFit
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.tintColor = Asset.other0.color
         return view
     }()
     
@@ -62,12 +70,13 @@ class ComingEventsSectionHeaderView: UITableViewHeaderFooterView, SizeableConfig
         view.backgroundColor = Asset.other2.color
         view.contentMode = .scaleAspectFit
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.tintColor = Asset.other0.color
         return view
     }()
     
     // MARK: - Init
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureUI()
     }
     
@@ -79,31 +88,36 @@ class ComingEventsSectionHeaderView: UITableViewHeaderFooterView, SizeableConfig
     func configureUI() {
         if isInterfaceConfigured { return }
         contentView.backgroundColor = Asset.other2.color
-//        contentView.addSubview(leftImageView)
-//        contentView.addSubview(rightImageView)
-//        contentView.addSubview(dataLabel)
+        contentView.addSubview(leftImageView)
+        contentView.addSubview(rightImageView)
+        contentView.addSubview(dataLabel)
+        textLabel?.isHidden = true
         configureConstraints()
         isInterfaceConfigured = true
     }
     
     internal func configureConstraints() {
-//        var constraints: [NSLayoutConstraint] = [
-//            leftImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-//            leftImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-//
-//            dataLabel.leadingAnchor.constraint(equalTo: leftImageView.trailingAnchor, constant: 12),
-//            dataLabel.trailingAnchor.constraint(equalTo: rightImageView.leadingAnchor, constant: -12),
-//            dataLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-//            dataLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor),
-//
-//            rightImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-//            rightImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8)
-//        ]
-//        constraints.append(leftImageWidthConstraint)
-//        constraints.append(leftImageHeightConstraint)
-//        constraints.append(rightImageWidthConstraint)
-//        constraints.append(rightImageHeightConstraint)
-//        NSLayoutConstraint.activate(constraints)
+                
+        var constraints: [NSLayoutConstraint] = [
+            contentViewHeightConstraint,
+            
+            leftImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            leftImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            
+            dataLabel.leadingAnchor.constraint(equalTo: leftImageView.trailingAnchor, constant: 12),
+            dataLabel.trailingAnchor.constraint(equalTo: rightImageView.leadingAnchor, constant: -12),
+            dataLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            dataLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor),
+            
+            rightImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            rightImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8)
+        ]
+        constraints.append(leftImageWidthConstraint)
+        constraints.append(leftImageHeightConstraint)
+        constraints.append(rightImageWidthConstraint)
+        constraints.append(rightImageHeightConstraint)
+        
+        NSLayoutConstraint.activate(constraints)
     }
     
     func configure(with data: DataType) {
@@ -111,18 +125,18 @@ class ComingEventsSectionHeaderView: UITableViewHeaderFooterView, SizeableConfig
         rightImageView.image = data.rightImage
         dataLabel.text = data.title
         
-//        if let image = leftImageView.image {
-//            leftImageWidthConstraint.constant = image.size.width
-//            leftImageHeightConstraint.constant = image.size.width
-//            leftImageWidthConstraint.isActive = true
-//            leftImageHeightConstraint.isActive = true
-//        }
-//        if let image = rightImageView.image {
-//            rightImageWidthConstraint.constant = image.size.width
-//            rightImageHeightConstraint.constant = image.size.width
-//            rightImageWidthConstraint.isActive = true
-//            rightImageHeightConstraint.isActive = true
-//        }
-//        setNeedsLayout()
+        if let image = leftImageView.image {
+            leftImageWidthConstraint.constant = image.size.width
+            leftImageHeightConstraint.constant = image.size.width
+            leftImageWidthConstraint.isActive = true
+            leftImageHeightConstraint.isActive = true
+        }
+        if let image = rightImageView.image {
+            rightImageWidthConstraint.constant = image.size.width
+            rightImageHeightConstraint.constant = image.size.width
+            rightImageWidthConstraint.isActive = true
+            rightImageHeightConstraint.isActive = true
+        }
+        contentViewHeightConstraint.constant = data.size.height
     }
 }

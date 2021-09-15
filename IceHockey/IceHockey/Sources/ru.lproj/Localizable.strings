@@ -69,6 +69,12 @@
 "Events.eventsTabBarItemTitle" = "Мероприятия";
 "Events.eventsTitle" = "Мероприятия";
 "Events.defaultActionTitle" = "Подробнее";
+"Events.typeMatch" = "Матч";
+"Events.typeAd" = "Реклама";
+"Events.typeEvent" = "Новости";
+"Events.typeOther" = "Другое";
+"Events.typePhoto" = "Фото";
+"Events.typeComingSoon" = "Скоро";
 /* Contacts */
 "Contacts.tabBarItemTitle" = "Контакты";
 "Contacts.title" = "Наши контакты";
@@ -90,4 +96,5 @@
 "Staff.coachDescription" = "Описание";
 "Staff.player" = "Ф.И.О.";
 "Staff.playerDescription" = "Дополнительные сведения";
-
+/* Team */
+"Team.title" = "Красные медведи";

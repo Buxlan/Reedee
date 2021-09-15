@@ -11,7 +11,7 @@ class MainTabBarViewModel {
         var items = [UIViewController]()
         var vc: UINavigationController
         let rootVC = LastEventsTableViewController()
-        rootVC.data = SportTeam(displayName: "Красные медведи", uuid: "Красные медведи", phoneNumber: "+7909555555", logoImage: "logo")
+        rootVC.data = SportTeam(displayName: "Красные медведи", uuid: "Красные медведи", phoneNumber: "+7909555555", logoImageName: "logo")
         vc = UINavigationController(rootViewController: rootVC)
         items.append(vc)
         

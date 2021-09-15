@@ -8,8 +8,7 @@
 import UIKit
 import Foundation
 
-class PinnedEventTableCell: UITableViewCell, ConfigurableCell, ContainedCollectionViewCell {
-    
+class PinnedEventTableCell: UITableViewCell, ConfigurableCell, ContainedCollectionView {    
     // MARK: - Properties
     typealias DataType = SportEvent
     
@@ -17,7 +16,6 @@ class PinnedEventTableCell: UITableViewCell, ConfigurableCell, ContainedCollecti
     weak var dataSource: UICollectionViewDataSource?
     var isInterfaceConfigured = false
     var imageAspectRate: CGFloat = 1.77
-    var cellHeight: CGFloat = 300
     var timer: Timer?
     
 //    private lazy var coloredView: UIView = {
@@ -105,12 +103,8 @@ class PinnedEventTableCell: UITableViewCell, ConfigurableCell, ContainedCollecti
     }
     
     internal func configureConstraints() {
-        let collectionViewHeight = cellHeight
         let constraints: [NSLayoutConstraint] = [
-//            coloredView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-//            coloredView.topAnchor.constraint(equalTo: contentView.topAnchor),
-//            coloredView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-//            coloredView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            collectionView.heightAnchor.constraint(equalTo: contentView.heightAnchor),
             
             collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             collectionView.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -132,6 +126,7 @@ class PinnedEventTableCell: UITableViewCell, ConfigurableCell, ContainedCollecti
             guard let self = self else {
                 return
             }
+                        
             let pageWidth = self.collectionView.frame.size.width
             let currentPage = Int(self.collectionView.contentOffset.x / pageWidth)
 

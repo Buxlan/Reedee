@@ -11,5 +11,5 @@ struct SportTeam: Codable {
     var displayName: String
     var uuid: String
     var phoneNumber: String
-    var logoImage: String
+    var logoImageName: String
 }

@@ -30,3 +30,7 @@ type_body_length:
 function_body_length:
   - 60 # warning
   - 100 # error
+  
+type_name:
+  - 50 # warning
+  - 70 # error

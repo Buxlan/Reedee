@@ -69,6 +69,12 @@
 "Events.tabBarItemTitle" = "Events";
 "Events.title" = "Events";
 "Events.defaultActionTitle" = "More";
+"Events.typeMatch" = "Match";
+"Events.typeAd" = "Ad";
+"Events.typeEvent" = "News";
+"Events.typeOther" = "Other";
+"Events.typePhoto" = "Photo";
+"Events.typeComingSoon" = "Soon";
 /* Contacts */
 "Contacts.tabBarItemTitle" = "Contacts";
 "Contacts.title" = "Our contacts";
@@ -90,4 +96,6 @@
 "Staff.coachDescription" = "Coach";
 "Staff.player" = "Player info";
 "Staff.playerDescription" = "Description";
+/* Team */
+"Team.title" = "Red bears";
 

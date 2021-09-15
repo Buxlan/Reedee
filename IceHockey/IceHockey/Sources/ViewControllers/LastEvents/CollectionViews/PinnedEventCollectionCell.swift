@@ -13,7 +13,7 @@ class PinnedEventCollectionCell: UICollectionViewCell, ConfigurableCell {
     
     internal var isInterfaceConfigured: Bool = false
     let imageAspectRate: CGFloat = 1.77
-    let imageHeight: CGFloat = 220
+    let imageHeight: CGFloat = 160
     
     private lazy var roundedView: UIView = {
         let cornerRadius: CGFloat = 24.0
@@ -32,13 +32,11 @@ class PinnedEventCollectionCell: UICollectionViewCell, ConfigurableCell {
         return view
     }()
     
-    private lazy var bgView: UIView = {
+    private lazy var bottomBackgroundView: UIView = {
         let cornerRadius: CGFloat = 24.0
         let view = UIView()
-        view.backgroundColor = Asset.accent0.color
+        view.backgroundColor = Asset.other3.color
         view.translatesAutoresizingMaskIntoConstraints = false
-//        view.roundCorners(corners: [.allCorners], radius: 40)
-//        view.clipsToBounds = true
         return view
     }()
     
@@ -61,8 +59,9 @@ class PinnedEventCollectionCell: UICollectionViewCell, ConfigurableCell {
         view.accessibilityIdentifier = "dataImageView"
         view.image = Asset.camera.image.resizeImage(to: imageHeight, aspectRatio: .current, with: .clear)
         view.backgroundColor = Asset.other3.color
-        view.contentMode = .scaleAspectFill
+        view.contentMode = .scaleToFill
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
         return view
     }()
     
@@ -72,8 +71,8 @@ class PinnedEventCollectionCell: UICollectionViewCell, ConfigurableCell {
         view.image = Asset.eye.image.resizeImage(to: 16,
                                                  aspectRatio: .current,
                                                  with: Asset.accent0.color).withRenderingMode(.alwaysTemplate)
-        view.tintColor = Asset.other1.color
-        view.backgroundColor = Asset.accent0.color
+        view.tintColor = Asset.other0.color
+        view.backgroundColor = Asset.other3.color
         view.contentMode = .scaleAspectFit
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
@@ -84,9 +83,8 @@ class PinnedEventCollectionCell: UICollectionViewCell, ConfigurableCell {
         let view = UILabel()
         view.accessibilityIdentifier = "viewsCountLabel (collection cell)"
 //        view.setMargins(margin: 32.0)
-        view.backgroundColor = Asset.accent0.color
-        view.tintColor = Asset.other1.color
-        view.textColor = Asset.other1.color
+        view.backgroundColor = Asset.other3.color
+        view.textColor = Asset.other0.color
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -119,9 +117,9 @@ class PinnedEventCollectionCell: UICollectionViewCell, ConfigurableCell {
         contentView.addSubview(shadowView)
         contentView.addSubview(dataImageView)
         contentView.addSubview(dataLabel)
-        contentView.addSubview(bgView)
-        bgView.addSubview(viewsCountImageView)
-        bgView.addSubview(viewsCountLabel)
+        contentView.addSubview(bottomBackgroundView)
+        bottomBackgroundView.addSubview(viewsCountImageView)
+        bottomBackgroundView.addSubview(viewsCountLabel)
 //        contentView.addSubview(actionEventButton)
 //        contentView.addSubview(dataImageView)
         configureConstraints()
@@ -135,30 +133,30 @@ class PinnedEventCollectionCell: UICollectionViewCell, ConfigurableCell {
             dataLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -8),
             dataLabel.heightAnchor.constraint(equalToConstant: 44),
             
-            dataImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 4),
-            dataImageView.topAnchor.constraint(equalTo: dataLabel.bottomAnchor, constant: 4),
-            dataImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -8),
+            dataImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            dataImageView.topAnchor.constraint(equalTo: dataLabel.bottomAnchor),
+            dataImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             dataImageView.heightAnchor.constraint(equalToConstant: imageHeight),
             
-            bgView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            bgView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            bgView.topAnchor.constraint(equalTo: dataImageView.bottomAnchor),
-            bgView.heightAnchor.constraint(equalToConstant: 40),
+            bottomBackgroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            bottomBackgroundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            bottomBackgroundView.topAnchor.constraint(equalTo: dataImageView.bottomAnchor),
+            bottomBackgroundView.heightAnchor.constraint(equalToConstant: 40),
                         
             shadowView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            shadowView.topAnchor.constraint(equalTo: bgView.topAnchor),
+            shadowView.topAnchor.constraint(equalTo: bottomBackgroundView.topAnchor),
             shadowView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            shadowView.bottomAnchor.constraint(equalTo: bgView.bottomAnchor),
+            shadowView.bottomAnchor.constraint(equalTo: bottomBackgroundView.bottomAnchor),
             
-            viewsCountImageView.leadingAnchor.constraint(equalTo: bgView.leadingAnchor, constant: 8),
-            viewsCountImageView.centerYAnchor.constraint(equalTo: bgView.centerYAnchor),
+            viewsCountImageView.leadingAnchor.constraint(equalTo: bottomBackgroundView.leadingAnchor, constant: 8),
+            viewsCountImageView.centerYAnchor.constraint(equalTo: bottomBackgroundView.centerYAnchor),
             viewsCountImageView.heightAnchor.constraint(equalToConstant: 16),
             viewsCountImageView.widthAnchor.constraint(equalToConstant: 28),
             
             viewsCountLabel.leadingAnchor.constraint(equalTo: viewsCountImageView.trailingAnchor, constant: 4),
             viewsCountLabel.centerYAnchor.constraint(equalTo: viewsCountImageView.centerYAnchor),
             viewsCountLabel.heightAnchor.constraint(equalTo: viewsCountImageView.heightAnchor),
-            viewsCountLabel.trailingAnchor.constraint(lessThanOrEqualTo: bgView.trailingAnchor)
+            viewsCountLabel.trailingAnchor.constraint(lessThanOrEqualTo: bottomBackgroundView.trailingAnchor)
             
 //            actionEventButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 //            actionEventButton.centerYAnchor.constraint(equalTo: viewsCountImageView.centerYAnchor),

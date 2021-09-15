@@ -29,7 +29,7 @@ extension SizeableConfigurableCell {
     static var reuseIdentifier: String { String(describing: Self.self) }
 }
 
-protocol ContainedCollectionViewCell {
+protocol ContainedCollectionView {
     var delegate: UICollectionViewDelegate? { get set }
     var dataSource: UICollectionViewDataSource? { get set }
 }

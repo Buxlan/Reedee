@@ -7,13 +7,14 @@
 
 import UIKit
 
-class EventsSectionHeaderView: UITableViewHeaderFooterView, SizeableConfigurableCell {
+class EventsSectionHeaderView: UITableViewCell, ConfigurableCell {
     
     // MARK: - Properties
-    typealias DataType = TableViewHeaderConfiguration
+    typealias DataType = NewsTableViewCellHeaderConfiguration
     
     var isInterfaceConfigured = false
-    let defaultImageSize = TableViewHeaderConfiguration.defaultImageSize
+    let defaultSize = DataType.defaultSize
+    let defaultImageSize = DataType.defaultImageSize
     
     private lazy var dataLabel: UILabel = {
         let view = UILabel()
@@ -47,6 +48,12 @@ class EventsSectionHeaderView: UITableViewHeaderFooterView, SizeableConfigurable
         return constraint
     }()
     
+    private lazy var contentViewHeightConstraint: NSLayoutConstraint = {
+        let constraint = contentView.heightAnchor.constraint(equalToConstant: defaultSize.height)
+        constraint.isActive = true
+        return constraint
+    }()
+    
     private lazy var leftImageView: UIImageView = {
         let view = UIImageView()
         view.accessibilityIdentifier = "leftImageView (header table view)"
@@ -68,8 +75,8 @@ class EventsSectionHeaderView: UITableViewHeaderFooterView, SizeableConfigurable
     }()
     
     // MARK: - Init
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureUI()
     }
     
@@ -80,10 +87,6 @@ class EventsSectionHeaderView: UITableViewHeaderFooterView, SizeableConfigurable
     // MARK: - Helper functions
     func configureUI() {
         if isInterfaceConfigured { return }
-        let recognizer = UITapGestureRecognizer(target: self, action: #selector(viewTappedHandle))
-        recognizer.numberOfTapsRequired = 1
-        recognizer.numberOfTouchesRequired = 1
-        contentView.addGestureRecognizer(recognizer)
         contentView.backgroundColor = Asset.other2.color
         contentView.addSubview(leftImageView)
         contentView.addSubview(rightImageView)
@@ -96,6 +99,8 @@ class EventsSectionHeaderView: UITableViewHeaderFooterView, SizeableConfigurable
     internal func configureConstraints() {
                 
         var constraints: [NSLayoutConstraint] = [
+            contentViewHeightConstraint,
+            
             leftImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             leftImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
@@ -132,10 +137,6 @@ class EventsSectionHeaderView: UITableViewHeaderFooterView, SizeableConfigurable
             rightImageWidthConstraint.isActive = true
             rightImageHeightConstraint.isActive = true
         }
-    }
-    
-    @objc
-    func viewTappedHandle() {
-        print("viewTappedHandle")
+        contentViewHeightConstraint.constant = data.size.height
     }
 }

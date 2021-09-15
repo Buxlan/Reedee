@@ -12,6 +12,60 @@ enum SportEventType: Int {
     case ad
     case event
     case other
+    case photo
+    case comingSoon
+}
+
+extension SportEventType {
+    var description: String {
+        switch self {
+        case .match:
+            return L10n.Events.typeMatch
+        case .ad:
+            return L10n.Events.typeAd
+        case .event:
+            return L10n.Events.typeEvent
+        case .other:
+            return L10n.Events.typeOther
+        case .photo:
+            return L10n.Events.typePhoto
+        case .comingSoon:
+            return L10n.Events.typeComingSoon
+        }
+    }
+    var backgroundColor: UIColor {
+        switch self {
+        case .match:
+            return Asset.accent0.color
+        case .ad:
+            return Asset.accent1.color
+        case .event:
+            return Asset.accent2.color
+        case .other:
+            return Asset.accent3.color
+        case .photo:
+            return Asset.accent0.color
+        case .comingSoon:
+            return Asset.accent1.color
+        }
+    }
+    
+    var textColor: UIColor {
+        switch self {
+        case .match:
+            return Asset.other2.color
+        case .ad:
+            return Asset.other2.color
+        case .event:
+            return Asset.other2.color
+        case .other:
+            return Asset.other2.color
+        case .photo:
+            return Asset.other2.color
+        case .comingSoon:
+            return Asset.other2.color
+        }
+    }
 }
 
 struct SportEvent {
@@ -21,17 +75,22 @@ struct SportEvent {
     var imageName: String?
     var actionTitle: String?
     var viewsCount: Int?
-    var type: SportEventType = .other
+    var type: SportEventType
+    var date: Date?
     
     init(title: String,
          text: String,
          imageName: String?,
-         imageURL: URL? = nil) {
+         imageURL: URL? = nil,
+         date: Date? = nil,
+         type: SportEventType = .match) {
         self.title = title
         self.text = text
         self.imageURL = imageURL
         self.viewsCount = Int.random(in: 1...10000)
         self.imageName = imageName
+        self.date = date
+        self.type = type
     }
     
     internal init() {
@@ -40,6 +99,8 @@ struct SportEvent {
         self.imageURL = nil
         self.viewsCount = 123
         self.imageName = nil
+        self.date = nil
+        self.type = .match
     }
     
 }
@@ -76,7 +137,8 @@ extension SportEvent {
                        • Удобное время тренировок
                        • Участие в товарищеских играх и хоккейных турнирах
                        • Дружный коллектив
-""", imageName: "event0"),
+""",
+                       imageName: "event0"),
             SportEvent(title: "Открыт набор детей от 3-х лет",
                        text: """
                         ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
@@ -92,15 +154,15 @@ extension SportEvent {
             SportEvent(title: "Прикрепленная новость 4",
                        text: """
                         ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-""", imageName: "event0"),
+""", imageName: "event4"),
             SportEvent(title: "Прикрепленная новость 5",
                        text: """
                         ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-""", imageName: "event1"),
+""", imageName: "event5"),
             SportEvent(title: "Прикрепленная новость 6",
                        text: """
                         ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-""", imageName: "event3")
+""", imageName: "event6")
             
         ]
     }
@@ -110,7 +172,7 @@ extension SportEvent {
                               count: Int = 10) -> [SportEvent] {
         //        eventType = .events
         return [
-            SportEvent(title: "ОТКРЫВАЕТСЯ НАБОР В ГРУППУ ДЛЯ ВЗРОСЛЫХ",
+            SportEvent(title: "Поздравляем команду 2015 г.р. с победой!",
                        text: """
                         ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
                        Хоккейный клуб «КРАСНЫЕ МЕДВЕДИ» открывает набор в группу для взрослых (18+) – МУЖЧИНЫ И ЖЕНЩИНЫ
@@ -120,11 +182,15 @@ extension SportEvent {
                        • Удобное время тренировок
                        • Участие в товарищеских играх и хоккейных турнирах
                        • Дружный коллектив
-""", imageName: "event0"),
-            SportEvent(title: "ОТКРЫВАЕТСЯ НАБОР В ГРУППУ ДЛЯ ВЗРОСЛЫХ",
+""", imageName: "event4", type: .match),
+            SportEvent(title: "Акция на клубную атрибутику в нашем магазине",
                        text: """
                         ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-""", imageName: "event0")
+""", imageName: "event5", type: .other),
+            SportEvent(title: "C Днем Тренера",
+                       text: """
+                        ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
+""", imageName: "event6", type: .other)
             
         ]
     }
@@ -134,7 +200,7 @@ extension SportEvent {
                                 count: Int = 10) -> [SportEvent] {
         //        eventType = .coming
         return [
-            SportEvent(title: "ОТКРЫВАЕТСЯ НАБОР В ГРУППУ ДЛЯ ВЗРОСЛЫХ",
+            SportEvent(title: "Массовое катание",
                        text: """
                         ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
                        Хоккейный клуб «КРАСНЫЕ МЕДВЕДИ» открывает набор в группу для взрослых (18+) – МУЖЧИНЫ И ЖЕНЩИНЫ
@@ -144,11 +210,15 @@ extension SportEvent {
                        • Удобное время тренировок
                        • Участие в товарищеских играх и хоккейных турнирах
                        • Дружный коллектив
-""", imageName: "event0"),
-            SportEvent(title: "ОТКРЫВАЕТСЯ НАБОР В ГРУППУ ДЛЯ ВЗРОСЛЫХ",
+""", imageName: "event4", type: .other),
+            SportEvent(title: "Впервые в России - лазертаг на льду!",
                        text: """
                         ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-""", imageName: "event0")
+""", imageName: "event6"),
+            SportEvent(title: "Сезонные сборы команды 2012 пройдут с 12 по 24 августа 2021",
+                       text: """
+                        ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
+""", imageName: "event7")
             
         ]
     }

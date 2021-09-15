@@ -13,6 +13,7 @@
 		400A2ABF26E5982200F13BCF /* SportCoachViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 400A2ABD26E5982200F13BCF /* SportCoachViewController.xib */; };
 		400A2AC226E5987B00F13BCF /* SportCoach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400A2AC126E5987B00F13BCF /* SportCoach.swift */; };
 		400A2AC526E59A7E00F13BCF /* SportCoachDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400A2AC426E59A7E00F13BCF /* SportCoachDetailViewModel.swift */; };
+		400EB96926F00BFD0026EFB1 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400EB96826F00BFD0026EFB1 /* InsetLabel.swift */; };
 		402EDA6026E429C5004A2992 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EDA5F26E429C5004A2992 /* EventsViewModel.swift */; };
 		402EDA6326E42A2A004A2992 /* SportEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EDA6226E42A2A004A2992 /* SportEvent.swift */; };
 		402EDA6626E4303B004A2992 /* HockeySquadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EDA6526E4303B004A2992 /* HockeySquadViewModel.swift */; };
@@ -62,7 +63,7 @@
 		40A4462726E4054E00129B89 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40A4462926E4054E00129B89 /* Localizable.strings */; };
 		40A4464826E409D900129B89 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4464626E409D800129B89 /* Strings.swift */; };
 		40A4464926E409D900129B89 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4464726E409D800129B89 /* Assets.swift */; };
-		40B947C226EE909100D9E8DA /* TableViewHeaderConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B947C126EE909100D9E8DA /* TableViewHeaderConfiguration.swift */; };
+		40B947C226EE909100D9E8DA /* TableViewCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B947C126EE909100D9E8DA /* TableViewCellConfiguration.swift */; };
 		40B947C526EEBD5E00D9E8DA /* ConfigurableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B947C426EEBD5E00D9E8DA /* ConfigurableCell.swift */; };
 		40C106B526E419CB00B619A1 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106B426E419CB00B619A1 /* AppController.swift */; };
 		40C106BB26E41A2200B619A1 /* LastEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106B926E41A2200B619A1 /* LastEventsTableViewController.swift */; };
@@ -100,6 +101,7 @@
 		400A2ABD26E5982200F13BCF /* SportCoachViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SportCoachViewController.xib; sourceTree = "<group>"; };
 		400A2AC126E5987B00F13BCF /* SportCoach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCoach.swift; sourceTree = "<group>"; };
 		400A2AC426E59A7E00F13BCF /* SportCoachDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCoachDetailViewModel.swift; sourceTree = "<group>"; };
+		400EB96826F00BFD0026EFB1 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
 		402EDA5F26E429C5004A2992 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
 		402EDA6226E42A2A004A2992 /* SportEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportEvent.swift; sourceTree = "<group>"; };
 		402EDA6526E4303B004A2992 /* HockeySquadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HockeySquadViewModel.swift; sourceTree = "<group>"; };
@@ -150,7 +152,7 @@
 		40A4462B26E405C300129B89 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40A4464626E409D800129B89 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		40A4464726E409D800129B89 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
-		40B947C126EE909100D9E8DA /* TableViewHeaderConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeaderConfiguration.swift; sourceTree = "<group>"; };
+		40B947C126EE909100D9E8DA /* TableViewCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellConfiguration.swift; sourceTree = "<group>"; };
 		40B947C426EEBD5E00D9E8DA /* ConfigurableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableCell.swift; sourceTree = "<group>"; };
 		40C106B426E419CB00B619A1 /* AppController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 		40C106B926E41A2200B619A1 /* LastEventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastEventsTableViewController.swift; sourceTree = "<group>"; };
@@ -243,7 +245,6 @@
 			isa = PBXGroup;
 			children = (
 				408EE7CE26EFEDF000C5DDB4 /* Cells */,
-				409E685E26ED6940008C4C0B /* Headers */,
 			);
 			path = TableViews;
 			sourceTree = "<group>";
@@ -261,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				40E949BE26ED59A600962590 /* CircularView.swift */,
+				400EB96826F00BFD0026EFB1 /* InsetLabel.swift */,
 				4065C95C26E853500084E5F2 /* CorneredImageView.swift */,
 				40E949BB26ED54BF00962590 /* ScrollingPageControl.swift */,
 				4065C95F26E854C00084E5F2 /* CorneredView.swift */,
@@ -285,6 +287,8 @@
 				40369EC526E6E33C0083E675 /* PinnedEventTableCell.swift */,
 				4065C95426E84E990084E5F2 /* EventTableCell.swift */,
 				4065C95126E84E410084E5F2 /* ComingEventTableCell.swift */,
+				409E685B26ED6937008C4C0B /* EventsSectionHeaderView.swift */,
+				40978DBA26ED6ADB00AE1926 /* ComingEventsSectionHeaderView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -313,7 +317,7 @@
 				40E2D65026E55E1E006503C7 /* ShopCategoryItem.swift */,
 				402EDA6826E43060004A2992 /* SportSquad.swift */,
 				402EDA6226E42A2A004A2992 /* SportEvent.swift */,
-				40B947C126EE909100D9E8DA /* TableViewHeaderConfiguration.swift */,
+				40B947C126EE909100D9E8DA /* TableViewCellConfiguration.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -407,15 +411,6 @@
 				408CD10526E539FD005AD6D4 /* ShopItem.swift */,
 			);
 			path = Shop;
-			sourceTree = "<group>";
-		};
-		409E685E26ED6940008C4C0B /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				409E685B26ED6937008C4C0B /* EventsSectionHeaderView.swift */,
-				40978DBA26ED6ADB00AE1926 /* ComingEventsSectionHeaderView.swift */,
-			);
-			path = Headers;
 			sourceTree = "<group>";
 		};
 		40A4462226E404C500129B89 /* Sources */ = {
@@ -739,6 +734,7 @@
 				4065C96026E854C00084E5F2 /* CorneredView.swift in Sources */,
 				4098C04526E5756800F0BBE6 /* SportPlayer.swift in Sources */,
 				40940BEF26E412F40098EF89 /* AuthProvider.swift in Sources */,
+				400EB96926F00BFD0026EFB1 /* InsetLabel.swift in Sources */,
 				40B947C526EEBD5E00D9E8DA /* ConfigurableCell.swift in Sources */,
 				402EDA6326E42A2A004A2992 /* SportEvent.swift in Sources */,
 				40C106BF26E41E4800B619A1 /* Utils.swift in Sources */,
@@ -753,7 +749,7 @@
 				4065C95D26E853500084E5F2 /* CorneredImageView.swift in Sources */,
 				40978DBB26ED6ADB00AE1926 /* ComingEventsSectionHeaderView.swift in Sources */,
 				404C028B26EFDE1800CFAF3F /* ShadowView.swift in Sources */,
-				40B947C226EE909100D9E8DA /* TableViewHeaderConfiguration.swift in Sources */,
+				40B947C226EE909100D9E8DA /* TableViewCellConfiguration.swift in Sources */,
 				4098C05626E5767A00F0BBE6 /* HockeySquadDetailViewModel.swift in Sources */,
 				402EDA6626E4303B004A2992 /* HockeySquadViewModel.swift in Sources */,
 				400A2AB926E5978000F13BCF /* HockeyPlayerDetailViewController.swift in Sources */,

@@ -69,11 +69,16 @@ struct TableViewHeaderConfigurator<CellType: SizeableConfigurableCell,
 }
 
 // MARK: - Cells
-typealias PinnedEventCellConfigurator = TableViewCellConfigurator<PinnedEventTableCell, SportEvent>
-typealias EventCellConfigurator = TableViewCellConfigurator<EventTableCell, SportEvent>
-typealias ComingEventCellConfigurator = TableViewCellConfigurator<ComingEventTableCell, SportEvent>
-typealias PinnedEventCollectionCellConfigurator = CollectionViewCellConfigurator<PinnedEventCollectionCell, SportEvent>
+typealias PinnedEventTableCellConfigurator = TableViewCellConfigurator<PinnedEventTableCell,
+                                                                       SportEvent>
+typealias EventCellConfigurator = TableViewCellConfigurator<EventTableCell,
+                                                            SportEvent>
+typealias ComingEventCellConfigurator = TableViewCellConfigurator<ComingEventTableCell,
+                                                                  SportEvent>
+typealias PinnedEventCollectionCellConfigurator = CollectionViewCellConfigurator<PinnedEventCollectionCell,
+                                                                                 SportEvent>
 // MARK: - Headers
-typealias PinnedEventsHeaderConfigurator = TableViewHeaderConfigurator<EventsSectionHeaderView, TableViewHeaderConfiguration>
-typealias EventsHeaderConfigurator = TableViewHeaderConfigurator<EventsSectionHeaderView, TableViewHeaderConfiguration>
-typealias ComingEventsHeaderConfigurator = TableViewHeaderConfigurator<ComingEventsSectionHeaderView, TableViewHeaderConfiguration>
+typealias NewsTableViewHeaderConfigurator = TableViewCellConfigurator<EventsSectionHeaderView,
+                                                                      NewsTableViewCellHeaderConfiguration>
+typealias ComingEventsHeaderConfigurator = TableViewCellConfigurator<ComingEventsSectionHeaderView,
+                                                                     ComingEventsTableViewCellHeaderConfiguration>
