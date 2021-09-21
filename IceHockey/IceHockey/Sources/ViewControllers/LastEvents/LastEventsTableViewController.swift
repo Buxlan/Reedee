@@ -13,13 +13,16 @@ class LastEventsTableViewController: UIViewController, DatableObject {
     typealias DataType = SportTeam
     var data: DataType? {
         didSet {
+            guard let data = data else {
+                return
+            }
             viewModel.data = data
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
     }
-    var viewModel = LastEventsViewModel()
+    var viewModel = LastEventsViewModel(data: SportTeam.current)
     var actionProxy: CellActionProxy = .init()
         
     private lazy var titleView: UIView = {
@@ -44,20 +47,21 @@ class LastEventsTableViewController: UIViewController, DatableObject {
         view.allowsSelectionDuringEditing = false
         view.allowsMultipleSelectionDuringEditing = false
         view.translatesAutoresizingMaskIntoConstraints = false
+//        view.rowHeight = UITableView.automaticDimension
+        view.estimatedRowHeight = 300
         view.rowHeight = UITableView.automaticDimension
-        view.estimatedRowHeight = UITableView.automaticDimension
-//        view.rowHeight = 60
 //        view.estimatedRowHeight = 60
-        view.register(PinnedEventTableCell.self,
-                      forCellReuseIdentifier: PinnedEventTableCell.reuseIdentifier)
+        view.register(ActionsTableCell.self,
+                      forCellReuseIdentifier: ActionsTableCell.reuseIdentifier)
         view.register(EventTableCell.self,
                       forCellReuseIdentifier: EventTableCell.reuseIdentifier)
         view.register(ComingEventTableCell.self,
                       forCellReuseIdentifier: ComingEventTableCell.reuseIdentifier)
+        view.register(PhotoGalleryTableCell.self,
+                      forCellReuseIdentifier: ComingEventTableCell.reuseIdentifier)
         
         view.register(EventsSectionHeaderView.self,
                       forCellReuseIdentifier: EventsSectionHeaderView.reuseIdentifier)
-        
         view.register(ComingEventsSectionHeaderView.self,
                       forCellReuseIdentifier: ComingEventsSectionHeaderView.reuseIdentifier)
                         
@@ -74,12 +78,8 @@ class LastEventsTableViewController: UIViewController, DatableObject {
     init() {
         super.init(nibName: nil, bundle: nil)
         configureTabBarItem()
-        data = SportTeam(displayName: L10n.Team.title,
-                         uuid: "1",
-                         phoneNumber: "79095626666",
-                         logoImageName: "logo")
+        data = SportTeam.current
         viewModel.data = data
-        viewModel.update()
     }
     
     required init?(coder: NSCoder) {
@@ -159,15 +159,9 @@ class LastEventsTableViewController: UIViewController, DatableObject {
     }
     
     private func setupActionHandlers() {
-        actionProxy.on(.didSelect) { [weak self] (config: PinnedEventTableCellConfigurator, _) in
-            guard let self = self else {
-                return
-            }
-            let vc = EventDetailViewController()
-            vc.data = config.data
-            vc.modalTransitionStyle = .crossDissolve
-            self.navigationController?.pushViewController(vc, animated: true)
-        }.on(.didSelect) { [weak self] (config: EventCellConfigurator, _) in
+        actionProxy.on(.didSelect) { (config: CommandTableCellConfigurator, _) in            
+            print("CommandTableCellConfigurator \(config)")
+        }.on(.didSelect) { [weak self] (config: NewsCellConfigurator, _) in
             guard let self = self else {
                 return
             }
@@ -192,7 +186,7 @@ extension LastEventsTableViewController: UITableViewDelegate, UITableViewDataSou
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let config = viewModel.item(at: indexPath)
+        let config = viewModel.items[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: type(of: config).reuseIdentifier,
                                                  for: indexPath)
         actionProxy.invoke(action: .didSelect, cell: cell, config: config)
@@ -204,19 +198,20 @@ extension LastEventsTableViewController: UITableViewDelegate, UITableViewDataSou
    
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        viewModel.items.count
+        1
     }
     
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let config = viewModel.item(at: indexPath)
+        let config = viewModel.items[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: type(of: config).reuseIdentifier,
                                                 for: indexPath)
-        if var castedCell = cell as? ContainedCollectionView {
+        if var castedCell = cell as? (CollectionViewDelegate & CollectionViewDataSource) {
             castedCell.delegate = self
             castedCell.dataSource = self
         }
         config.configure(cell: cell)
+        cell.layoutIfNeeded()
         return cell
     }
 }
@@ -224,12 +219,21 @@ extension LastEventsTableViewController: UITableViewDelegate, UITableViewDataSou
 extension LastEventsTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.pinnedEventsItems.count
+        guard let view = collectionView as? Typeable else {
+            fatalError("collectioh view doesn't conform to Typeable")
+        }        
+        let items = viewModel.sections[view.type] ?? [CellConfigurator]()
+        return items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = viewModel.pinnedEventsItems[indexPath.item]
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PinnedEventCollectionCell.reuseIdentifier, for: indexPath)
+        guard let view = collectionView as? Typeable else {
+            fatalError("Collection view doesn't conform to Typeable")
+        }
+        let items = viewModel.sections[view.type] ?? [CellConfigurator]()
+        let item = items[indexPath.item]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type(of: item).reuseIdentifier,
+                                                      for: indexPath)
         item.configure(cell: cell)
         return cell
     }

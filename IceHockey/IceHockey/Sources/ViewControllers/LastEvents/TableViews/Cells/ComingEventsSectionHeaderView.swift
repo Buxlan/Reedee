@@ -10,7 +10,7 @@ import UIKit
 class ComingEventsSectionHeaderView: UITableViewCell, ConfigurableCell {
     
     // MARK: - Properties
-    typealias DataType = ComingEventsTableViewCellHeaderConfiguration
+    typealias DataType = ComingEventsTableCellHeaderConfiguration
     
     var isInterfaceConfigured = false
     let defaultSize = DataType.defaultSize

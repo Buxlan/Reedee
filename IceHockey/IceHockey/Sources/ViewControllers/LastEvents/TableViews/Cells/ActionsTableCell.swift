@@ -8,12 +8,15 @@
 import UIKit
 import Foundation
 
-class PinnedEventTableCell: UITableViewCell, ConfigurableCell, ContainedCollectionView {    
+class ActionsTableCell: UITableViewCell,
+                        ConfigurableCell,
+                        CollectionViewDelegate, CollectionViewDataSource {
     // MARK: - Properties
-    typealias DataType = SportEvent
+    typealias DataType = QuickAction
     
     weak var delegate: UICollectionViewDelegate?
     weak var dataSource: UICollectionViewDataSource?
+    
     var isInterfaceConfigured = false
     var imageAspectRate: CGFloat = 1.77
     var timer: Timer?
@@ -25,12 +28,20 @@ class PinnedEventTableCell: UITableViewCell, ConfigurableCell, ContainedCollecti
 //        return view
 //    }()
     
-    private lazy var collectionView: UICollectionView = {
-        let layout = EventCollectionViewLayout()
-        layout.delegate = self
-//        layout.scrollDirection = .horizontal
-//        layout.estimatedItemSize = .init(width: cellHeight * imageAspectRate, height: cellHeight)
-        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    private lazy var collectionView: QuickActionsCollectionView = {
+        let layout = QuickActionsCollectionLayout()
+        let inset = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
+        layout.sectionInset = inset
+        layout.minimumLineSpacing = 8
+        layout.minimumInteritemSpacing = 4
+                
+        let width: CGFloat = UIScreen.main.bounds.width - inset.left - inset.right
+        let itemWidth: CGFloat = width / 2 - layout.minimumInteritemSpacing
+        let itemHeight = itemWidth * 0.3
+        let size = CGSize(width: itemWidth, height: itemHeight)
+        layout.itemSize = size
+        
+        let view = QuickActionsCollectionView(frame: .zero, collectionViewLayout: layout)
         view.accessibilityIdentifier = "collectionView (inside table cell)"
         view.backgroundColor = Asset.other1.color
         view.isUserInteractionEnabled = true
@@ -38,8 +49,8 @@ class PinnedEventTableCell: UITableViewCell, ConfigurableCell, ContainedCollecti
         view.allowsMultipleSelection = false
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isPagingEnabled = true
-        view.register(PinnedEventCollectionCell.self,
-                      forCellWithReuseIdentifier: PinnedEventCollectionCell.reuseIdentifier)
+        view.register(ActionsCollectionCell.self,
+                      forCellWithReuseIdentifier: ActionsCollectionCell.reuseIdentifier)
         
         view.delegate = self
         view.dataSource = self
@@ -51,30 +62,9 @@ class PinnedEventTableCell: UITableViewCell, ConfigurableCell, ContainedCollecti
         view.layer.shouldRasterize = true
         view.layer.rasterizationScale = UIScreen.main.scale
         
-        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(collectionViewLongPressHandle))
-//        gesture.numberOfTouchesRequired = 1
-//        gesture.numberOfTapsRequired = 1
-        gesture.minimumPressDuration = 1.0
-        view.addGestureRecognizer(gesture)
+        return view
+    }()
         
-        return view
-    }()
-    
-    private lazy var pageControl: ScrollingPageControl = {
-        let view = ScrollingPageControl()
-        let numberOfPages = collectionView.numberOfItems(inSection: 0)
-        view.numberOfPages = numberOfPages
-//        view.currentPage = 0
-//        view.currentPageIndicatorTintColor = Asset.accent0.color
-//        view.hidesForSinglePage = true
-//        let numberOfPages = collectionView.numberOfItems(inSection: 0)
-//        view.numberOfPages = numberOfPages
-//        view.pageIndicatorTintColor = Asset.other1.color
-//        view.isHidden = false
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -97,25 +87,20 @@ class PinnedEventTableCell: UITableViewCell, ConfigurableCell, ContainedCollecti
         tintColor = Asset.other1.color
 //        contentView.addSubview(coloredView)
         contentView.addSubview(collectionView)
-        contentView.addSubview(pageControl)
         configureConstraints()
         isInterfaceConfigured = true
     }
     
     internal func configureConstraints() {
+//        let collectionViewHeight: CGFloat = 300
         let constraints: [NSLayoutConstraint] = [
-            collectionView.heightAnchor.constraint(equalTo: contentView.heightAnchor),
-            
+//            collectionView.heightAnchor.constraint(equalTo: contentView.heightAnchor),
             collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             collectionView.topAnchor.constraint(equalTo: contentView.topAnchor),
             collectionView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+//            collectionView.heightAnchor.constraint(equalTo: contentView.heightAnchor),
 //            collectionView.heightAnchor.constraint(equalToConstant: collectionViewHeight),
-            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            
-            pageControl.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            pageControl.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -28),
-            pageControl.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.25),
-            pageControl.heightAnchor.constraint(equalToConstant: 16)
+            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
     }
@@ -152,7 +137,7 @@ class PinnedEventTableCell: UITableViewCell, ConfigurableCell, ContainedCollecti
    
 }
 
-extension PinnedEventTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
+extension ActionsTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let dataSource = dataSource else { return 0 }
@@ -169,32 +154,10 @@ extension PinnedEventTableCell: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("touched")
     }
-    
-//    func collectionView(_ collectionView: UICollectionView,
-//                        willDisplay cell: UICollectionViewCell,
-//                        forItemAt indexPath: IndexPath) {
-//
-//        startTimer()
-//    }
-    
-    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-        timer?.invalidate()
-        timer = nil
-    }
-//
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        let page = round(scrollView.contentOffset.x / scrollView.frame.width)
-//        pageControl.currentPage = Int(page)
-        startTimer()
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let page = round(scrollView.contentOffset.x / scrollView.frame.width)
-        pageControl.currentPage = Int(page)
-    }
+
 }
 
-extension PinnedEventTableCell: EventCollectionViewLayoutDelegate {
+extension ActionsTableCell: EventCollectionViewLayoutDelegate {
     
     func collectionView(_ collectionView: UICollectionView, getSizeAtIndexPath indexPath: IndexPath) -> CGSize {
         let width = collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right)

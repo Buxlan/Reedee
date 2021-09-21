@@ -54,7 +54,35 @@ extension TableViewCellHeaderConfiguration {
     }
 }
 
-struct PinnedEventTableViewCellHeaderConfiguration: TableViewCellHeaderConfiguration {
+struct PinnedEventTableCellHeaderConfiguration: TableViewCellHeaderConfiguration {
+    var leftImageName: String?
+    var rightImageName: String?
+    var title: String?
+    var backgroundColor: CodableColor
+    var tintColor: CodableColor
+    var textColor: CodableColor
+    var size: CGSize
+    
+    var leftImageSize: CGSize
+    var rightImageSize: CGSize
+    
+    init(size: CGSize? = nil,
+         leftImageSize: CGSize? = nil,
+         rightImageSize: CGSize? = nil) {
+        // Colors
+        self.backgroundColor = Asset.other2.color.codableColor
+        self.tintColor = Asset.textColor.color.codableColor
+        self.textColor = Asset.textColor.color.codableColor
+        // Size
+        let defaultSize = CGSize(width: 0, height: 44)
+        let defaultImageSize = CGSize(width: 40, height: 24)
+        self.size = size ?? defaultSize
+        self.leftImageSize = leftImageSize ?? defaultImageSize
+        self.rightImageSize = rightImageSize ?? defaultImageSize
+    }
+}
+
+struct PhotoEventTableCellHeaderConfiguration: TableViewCellHeaderConfiguration {
     var leftImageName: String?
     var rightImageName: String?
     var title: String?
@@ -116,7 +144,7 @@ struct NewsTableViewCellHeaderConfiguration: TableViewCellHeaderConfiguration {
     }
 }
 
-struct ComingEventsTableViewCellHeaderConfiguration: TableViewCellHeaderConfiguration {
+struct ComingEventsTableCellHeaderConfiguration: TableViewCellHeaderConfiguration {
     var leftImageName: String?
     var rightImageName: String?
     var title: String?

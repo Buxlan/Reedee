@@ -76,7 +76,7 @@
 "Events.typePhoto" = "Photo";
 "Events.typeComingSoon" = "Soon";
 /* Contacts */
-"Contacts.tabBarItemTitle" = "Contacts";
+"Contacts.tabBarItemTitle" = "About club";
 "Contacts.title" = "Our contacts";
 /* Squads */
 "Squads.tabBarItemTitle" = "Squads";
@@ -98,4 +98,10 @@
 "Staff.playerDescription" = "Description";
 /* Team */
 "Team.title" = "Red bears";
-
+/* Actions */
+"Actions.signUpToClub" = "Join club";
+"Actions.showTrainingSchedule" = "Training schedule";
+"Actions.photoGallery" = "Photos";
+"Actions.contacts" = "Contacts";
+"Actions.action2" = "action2";
+"Actions.action3" = "action3";

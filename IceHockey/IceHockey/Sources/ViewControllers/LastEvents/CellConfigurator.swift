@@ -53,7 +53,7 @@ struct TableViewHeaderConfigurator<CellType: SizeableConfigurableCell,
                                                                                CellType: UITableViewHeaderFooterView {
     
     static var reuseIdentifier: String { return CellType.reuseIdentifier }
-
+    
     var size: CGSize {
         data.size
     }
@@ -69,16 +69,18 @@ struct TableViewHeaderConfigurator<CellType: SizeableConfigurableCell,
 }
 
 // MARK: - Cells
-typealias PinnedEventTableCellConfigurator = TableViewCellConfigurator<PinnedEventTableCell,
-                                                                       SportEvent>
-typealias EventCellConfigurator = TableViewCellConfigurator<EventTableCell,
-                                                            SportEvent>
+typealias CommandTableCellConfigurator = TableViewCellConfigurator<ActionsTableCell,
+                                                                   QuickAction>
+typealias NewsCellConfigurator = TableViewCellConfigurator<EventTableCell,
+                                                           SportEvent>
 typealias ComingEventCellConfigurator = TableViewCellConfigurator<ComingEventTableCell,
                                                                   SportEvent>
-typealias PinnedEventCollectionCellConfigurator = CollectionViewCellConfigurator<PinnedEventCollectionCell,
-                                                                                 SportEvent>
+typealias CommandCollectionCellConfigurator = CollectionViewCellConfigurator<ActionsCollectionCell,
+                                                                             QuickAction>
+typealias PhotoEventCollectionCellConfigurator = CollectionViewCellConfigurator<PhotoGalleryCollectionCell,
+                                                                                SportEvent>
 // MARK: - Headers
 typealias NewsTableViewHeaderConfigurator = TableViewCellConfigurator<EventsSectionHeaderView,
                                                                       NewsTableViewCellHeaderConfiguration>
 typealias ComingEventsHeaderConfigurator = TableViewCellConfigurator<ComingEventsSectionHeaderView,
-                                                                     ComingEventsTableViewCellHeaderConfiguration>
+                                                                     ComingEventsTableCellHeaderConfiguration>

@@ -98,3 +98,10 @@
 "Staff.playerDescription" = "Дополнительные сведения";
 /* Team */
 "Team.title" = "Красные медведи";
+/* Actions */
+"Actions.signUpToClub" = "Записаться в клуб";
+"Actions.showTrainingSchedule" = "Расписание занятий";
+"Actions.photoGallery" = "Фотогалерея";
+"Actions.contacts" = "Контакты";
+"Actions.action2" = "действие 2";
+"Actions.action3" = "действие 3";
