@@ -14,6 +14,13 @@
 		400A2AC226E5987B00F13BCF /* SportCoach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400A2AC126E5987B00F13BCF /* SportCoach.swift */; };
 		400A2AC526E59A7E00F13BCF /* SportCoachDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400A2AC426E59A7E00F13BCF /* SportCoachDetailViewModel.swift */; };
 		400EB96926F00BFD0026EFB1 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400EB96826F00BFD0026EFB1 /* InsetLabel.swift */; };
+		401C9B0E270D034700F91DC6 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C9B0D270D034700F91DC6 /* AuthManager.swift */; };
+		401C9B11270D04BF00F91DC6 /* ViewControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C9B10270D04BF00F91DC6 /* ViewControllerCoordinator.swift */; };
+		401C9B15270D056B00F91DC6 /* Coordinator protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C9B14270D056B00F91DC6 /* Coordinator protocols.swift */; };
+		401C9B19270D07FF00F91DC6 /* ErrorDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C9B18270D07FF00F91DC6 /* ErrorDescriptionViewController.swift */; };
+		401C9B1C270D080F00F91DC6 /* ErrorDescriptionViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 401C9B1B270D080F00F91DC6 /* ErrorDescriptionViewController.storyboard */; };
+		401C9B21270D139800F91DC6 /* MainViewControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C9B20270D139800F91DC6 /* MainViewControllerCoordinator.swift */; };
+		401C9B24270D155C00F91DC6 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C9B23270D155C00F91DC6 /* DatabaseManager.swift */; };
 		402EDA6026E429C5004A2992 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EDA5F26E429C5004A2992 /* EventsViewModel.swift */; };
 		402EDA6326E42A2A004A2992 /* SportEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EDA6226E42A2A004A2992 /* SportEvent.swift */; };
 		402EDA6626E4303B004A2992 /* HockeySquadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EDA6526E4303B004A2992 /* HockeySquadViewModel.swift */; };
@@ -83,6 +90,7 @@
 		40C106D326E41FD200B619A1 /* HockeySquadsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40C106D126E41FD200B619A1 /* HockeySquadsViewController.xib */; };
 		40C106D726E4202600B619A1 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106D626E4202600B619A1 /* Log.swift */; };
 		40C87B4D26EA667400E8217D /* EventCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C87B4C26EA667400E8217D /* EventCollectionViewLayout.swift */; };
+		40D47C3127079B8E0038A801 /* SportModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 40D47C2F27079B8E0038A801 /* SportModel.xcdatamodeld */; };
 		40DBD76E26E83BFD00CDBADD /* TableCellActionsProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DBD76D26E83BFD00CDBADD /* TableCellActionsProxy.swift */; };
 		40E2D64526E5584D006503C7 /* ShopItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E2D64326E5584D006503C7 /* ShopItemViewController.swift */; };
 		40E2D64626E5584D006503C7 /* ShopItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E2D64426E5584D006503C7 /* ShopItemViewController.xib */; };
@@ -109,6 +117,13 @@
 		400A2AC126E5987B00F13BCF /* SportCoach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCoach.swift; sourceTree = "<group>"; };
 		400A2AC426E59A7E00F13BCF /* SportCoachDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCoachDetailViewModel.swift; sourceTree = "<group>"; };
 		400EB96826F00BFD0026EFB1 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
+		401C9B0D270D034700F91DC6 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		401C9B10270D04BF00F91DC6 /* ViewControllerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerCoordinator.swift; sourceTree = "<group>"; };
+		401C9B14270D056B00F91DC6 /* Coordinator protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinator protocols.swift"; sourceTree = "<group>"; };
+		401C9B18270D07FF00F91DC6 /* ErrorDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDescriptionViewController.swift; sourceTree = "<group>"; };
+		401C9B1B270D080F00F91DC6 /* ErrorDescriptionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ErrorDescriptionViewController.storyboard; sourceTree = "<group>"; };
+		401C9B20270D139800F91DC6 /* MainViewControllerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerCoordinator.swift; sourceTree = "<group>"; };
+		401C9B23270D155C00F91DC6 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		402EDA5F26E429C5004A2992 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
 		402EDA6226E42A2A004A2992 /* SportEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportEvent.swift; sourceTree = "<group>"; };
 		402EDA6526E4303B004A2992 /* HockeySquadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HockeySquadViewModel.swift; sourceTree = "<group>"; };
@@ -179,6 +194,7 @@
 		40C106D126E41FD200B619A1 /* HockeySquadsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HockeySquadsViewController.xib; sourceTree = "<group>"; };
 		40C106D626E4202600B619A1 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		40C87B4C26EA667400E8217D /* EventCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionViewLayout.swift; sourceTree = "<group>"; };
+		40D47C3027079B8E0038A801 /* SportModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SportModel.xcdatamodel; sourceTree = "<group>"; };
 		40DBD76D26E83BFD00CDBADD /* TableCellActionsProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellActionsProxy.swift; sourceTree = "<group>"; };
 		40E2D64326E5584D006503C7 /* ShopItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopItemViewController.swift; sourceTree = "<group>"; };
 		40E2D64426E5584D006503C7 /* ShopItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopItemViewController.xib; sourceTree = "<group>"; };
@@ -236,6 +252,41 @@
 				400A2AC126E5987B00F13BCF /* SportCoach.swift */,
 			);
 			path = TeamStaff;
+			sourceTree = "<group>";
+		};
+		401C9B13270D051700F91DC6 /* ViewControllerCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				401C9B10270D04BF00F91DC6 /* ViewControllerCoordinator.swift */,
+				401C9B20270D139800F91DC6 /* MainViewControllerCoordinator.swift */,
+				401C9B14270D056B00F91DC6 /* Coordinator protocols.swift */,
+			);
+			path = ViewControllerCoordinator;
+			sourceTree = "<group>";
+		};
+		401C9B17270D078B00F91DC6 /* ErrorDescription */ = {
+			isa = PBXGroup;
+			children = (
+				401C9B18270D07FF00F91DC6 /* ErrorDescriptionViewController.swift */,
+				401C9B1B270D080F00F91DC6 /* ErrorDescriptionViewController.storyboard */,
+			);
+			path = ErrorDescription;
+			sourceTree = "<group>";
+		};
+		401C9B26270D155F00F91DC6 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				401C9B23270D155C00F91DC6 /* DatabaseManager.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		401C9B27270D156900F91DC6 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				401C9B0D270D034700F91DC6 /* AuthManager.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		402EDA5926E4239F004A2992 /* LaunchScreen */ = {
@@ -384,6 +435,7 @@
 		40940C0126E418B10098EF89 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				401C9B17270D078B00F91DC6 /* ErrorDescription */,
 				4098C04E26E575AF00F0BBE6 /* HockeyTeam */,
 				408CD0F926E537F6005AD6D4 /* Shop */,
 				402EDA5926E4239F004A2992 /* LaunchScreen */,
@@ -438,15 +490,18 @@
 			isa = PBXGroup;
 			children = (
 				4065C95A26E853410084E5F2 /* Views */,
-				40E7203D26E400FE00A64C60 /* AppDelegate.swift */,
-				40E7203F26E400FE00A64C60 /* SceneDelegate.swift */,
-				40C106B426E419CB00B619A1 /* AppController.swift */,
 				40940C0126E418B10098EF89 /* ViewControllers */,
 				40940BF226E413150098EF89 /* Utility */,
 				40940BE626E40C4F0098EF89 /* Models */,
 				40940BD826E40C380098EF89 /* Extensions */,
 				40A4464726E409D800129B89 /* Assets.swift */,
 				40A4464626E409D800129B89 /* Strings.swift */,
+				401C9B13270D051700F91DC6 /* ViewControllerCoordinator */,
+				401C9B27270D156900F91DC6 /* Auth */,
+				401C9B26270D155F00F91DC6 /* Database */,
+				40E7203F26E400FE00A64C60 /* SceneDelegate.swift */,
+				40C106B426E419CB00B619A1 /* AppController.swift */,
+				40E7203D26E400FE00A64C60 /* AppDelegate.swift */,
 				40A4462926E4054E00129B89 /* Localizable.strings */,
 			);
 			path = Sources;
@@ -549,6 +604,7 @@
 				40A4462226E404C500129B89 /* Sources */,
 				40E7204626E400FF00A64C60 /* Assets.xcassets */,
 				408BD21C26E5A54A00D66D9B /* GoogleService-Info.plist */,
+				40D47C2F27079B8E0038A801 /* SportModel.xcdatamodeld */,
 				40E7204B26E400FF00A64C60 /* Info.plist */,
 				407028E326E402BE00C6CE5F /* .swiftlint.yml */,
 				407028E226E402BE00C6CE5F /* swiftgen.yml */,
@@ -649,6 +705,7 @@
 				40E7204726E400FF00A64C60 /* Assets.xcassets in Resources */,
 				408BD21D26E5A54A00D66D9B /* GoogleService-Info.plist in Resources */,
 				40E7204526E400FE00A64C60 /* Main.storyboard in Resources */,
+				401C9B1C270D080F00F91DC6 /* ErrorDescriptionViewController.storyboard in Resources */,
 				40369EBB26E6DB490083E675 /* EventDetailViewController.xib in Resources */,
 				408CD0FD26E5380E005AD6D4 /* ShopShowcaseViewController.xib in Resources */,
 				407028E426E402BE00C6CE5F /* swiftgen.yml in Resources */,
@@ -743,6 +800,8 @@
 			files = (
 				40940BE026E40C380098EF89 /* UIColorExtension.swift in Sources */,
 				40940BF826E413200098EF89 /* LoginDelegate.swift in Sources */,
+				401C9B24270D155C00F91DC6 /* DatabaseManager.swift in Sources */,
+				401C9B15270D056B00F91DC6 /* Coordinator protocols.swift in Sources */,
 				406C306826F8F2320040F0A7 /* QuickActionsCollectionLayout.swift in Sources */,
 				406AF0E826F7BDF9005C9767 /* QuickActionsCollectionView.swift in Sources */,
 				40C106D726E4202600B619A1 /* Log.swift in Sources */,
@@ -770,7 +829,9 @@
 				40E2D65126E55E1E006503C7 /* ShopCategoryItem.swift in Sources */,
 				40A4464826E409D900129B89 /* Strings.swift in Sources */,
 				4065C95D26E853500084E5F2 /* CorneredImageView.swift in Sources */,
+				401C9B0E270D034700F91DC6 /* AuthManager.swift in Sources */,
 				40978DBB26ED6ADB00AE1926 /* ComingEventsSectionHeaderView.swift in Sources */,
+				401C9B19270D07FF00F91DC6 /* ErrorDescriptionViewController.swift in Sources */,
 				404C028B26EFDE1800CFAF3F /* ShadowView.swift in Sources */,
 				406C306F26F909690040F0A7 /* PhotoCollectionView.swift in Sources */,
 				40B947C226EE909100D9E8DA /* TableViewCellConfiguration.swift in Sources */,
@@ -781,6 +842,7 @@
 				400A2AB926E5978000F13BCF /* HockeyPlayerDetailViewController.swift in Sources */,
 				40369EBA26E6DB490083E675 /* EventDetailViewController.swift in Sources */,
 				4065C96326E855150084E5F2 /* ActionsCollectionCell.swift in Sources */,
+				40D47C3127079B8E0038A801 /* SportModel.xcdatamodeld in Sources */,
 				400A2AC226E5987B00F13BCF /* SportCoach.swift in Sources */,
 				4098C05226E575EB00F0BBE6 /* HockeySquadDetailViewController.swift in Sources */,
 				40940BFA26E413200098EF89 /* DataSourceProvider.swift in Sources */,
@@ -804,9 +866,11 @@
 				40940BDF26E40C380098EF89 /* UIViewExtension.swift in Sources */,
 				400A2ABE26E5982200F13BCF /* SportCoachViewController.swift in Sources */,
 				40E2D64C26E558B6006503C7 /* ShoppingCartViewController.swift in Sources */,
+				401C9B11270D04BF00F91DC6 /* ViewControllerCoordinator.swift in Sources */,
 				4065C95526E84E990084E5F2 /* EventTableCell.swift in Sources */,
 				40940BEE26E412F40098EF89 /* AuthSection.swift in Sources */,
 				402EDA6026E429C5004A2992 /* EventsViewModel.swift in Sources */,
+				401C9B21270D139800F91DC6 /* MainViewControllerCoordinator.swift in Sources */,
 				40E7204026E400FE00A64C60 /* SceneDelegate.swift in Sources */,
 				40369EC626E6E33C0083E675 /* ActionsTableCell.swift in Sources */,
 				40C106B526E419CB00B619A1 /* AppController.swift in Sources */,
@@ -1026,6 +1090,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		40D47C2F27079B8E0038A801 /* SportModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				40D47C3027079B8E0038A801 /* SportModel.xcdatamodel */,
+			);
+			currentVersion = 40D47C3027079B8E0038A801 /* SportModel.xcdatamodel */;
+			path = SportModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 40E7203226E400FE00A64C60 /* Project object */;
 }

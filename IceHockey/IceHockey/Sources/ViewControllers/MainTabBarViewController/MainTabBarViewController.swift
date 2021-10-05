@@ -76,7 +76,6 @@ class MainTabBarViewController: UITabBarController {
     
     @objc
     private func obnoardingDismissed() {
-        Log(text: "onboarding dismissed", object: self)
         appController.isFirstLaunch = false
     }
     

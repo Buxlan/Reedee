@@ -13,6 +13,8 @@ class AppController: NSObject {
     // MARK: - Public
     static let shared = AppController()
     
+    var authManager = AuthManager()
+    
     struct Key {
         static let wasLaunchedBefore = "wasLauchedBefore"
         static let bundleVersion = "CFBundleVersion"
@@ -21,6 +23,9 @@ class AppController: NSObject {
         
     var isFirstLaunch: Bool {
         get {
+            if _isFirstLaunch {
+                authManager.signInAnonymously()
+            }
             return _isFirstLaunch
 //            let value = UserDefaults.standard.bool(forKey: "wasLauchedBefore")
 //            return !value

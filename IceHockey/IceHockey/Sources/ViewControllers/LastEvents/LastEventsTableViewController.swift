@@ -94,13 +94,14 @@ class LastEventsTableViewController: UIViewController, DatableObject {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        configureBars()
+        super.viewWillAppear(animated)
+        configureBars()        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         let image = Asset.home.image.resizeImage(to: 24,
-                                                    aspectRatio: .current,
-                                                    with: view.tintColor)
+                                                 aspectRatio: .current,
+                                                 with: view.tintColor)
         tabBarItem.image = image
     }
     
@@ -135,27 +136,18 @@ class LastEventsTableViewController: UIViewController, DatableObject {
     
     private func configureNavigationBar() {
         title = L10n.News.navigationBarTitle
-//        navigationController?.navigationItem.titleView = titleView
-        guard let navigationController = navigationController else {
-            return
-        }
-        navigationController.setToolbarHidden(true, animated: false)
-        navigationController.setNavigationBarHidden(false, animated: false)
+        navigationController?.setToolbarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(false, animated: false)
 //        navigationItem.backBarButtonItem?.tintColor = .systemYellow
-        navigationController.navigationBar.prefersLargeTitles = false
-        navigationController.navigationBar.barTintColor = Asset.accent1.color
-        let size = navigationController.navigationBar.frame.size
-        let image = Asset.accent1.color.image(size)
-        navigationController.navigationBar.setBackgroundImage(image,
-                                                              for: .default)
-        navigationController.navigationBar.setBackgroundImage(image,
-                                                              for: .compact)
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.barTintColor = Asset.accent1.color
+        let size = navigationController?.navigationBar.frame.size ?? .zero
         
         let titleTextAttributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.foregroundColor: Asset.other3.color
         ]
-        navigationController.navigationBar.titleTextAttributes = titleTextAttributes
-        navigationController.navigationBar.largeTitleTextAttributes = titleTextAttributes
+        navigationController?.navigationBar.titleTextAttributes = titleTextAttributes
+        navigationController?.navigationBar.largeTitleTextAttributes = titleTextAttributes
     }
     
     private func setupActionHandlers() {
@@ -190,10 +182,6 @@ extension LastEventsTableViewController: UITableViewDelegate, UITableViewDataSou
         let cell = tableView.dequeueReusableCell(withIdentifier: type(of: config).reuseIdentifier,
                                                  for: indexPath)
         actionProxy.invoke(action: .didSelect, cell: cell, config: config)
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        1
     }
    
     func tableView(_ tableView: UITableView,
