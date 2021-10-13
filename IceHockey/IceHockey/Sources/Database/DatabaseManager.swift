@@ -11,5 +11,3 @@ struct DatabaseManager {
         FirebaseApp.configure()
     }
 }
-
-

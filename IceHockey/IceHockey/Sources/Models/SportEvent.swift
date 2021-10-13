@@ -168,8 +168,8 @@ extension SportEvent {
     }
     
     static func photoEvents(team: SportTeam,
-                             from: Int,
-                             count: Int = 10) -> [SportEvent] {
+                            from: Int,
+                            count: Int = 10) -> [SportEvent] {
         //        eventType = .pinned
         return [
             SportEvent(title: "Открыт набор во взрослую любителькую команду",

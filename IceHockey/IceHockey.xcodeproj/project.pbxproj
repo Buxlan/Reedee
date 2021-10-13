@@ -51,6 +51,7 @@
 		408CD0FD26E5380E005AD6D4 /* ShopShowcaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 408CD0FB26E5380E005AD6D4 /* ShopShowcaseViewController.xib */; };
 		408CD10226E53849005AD6D4 /* ShopShowcaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408CD10126E53849005AD6D4 /* ShopShowcaseViewModel.swift */; };
 		408CD10626E539FD005AD6D4 /* ShopItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408CD10526E539FD005AD6D4 /* ShopItem.swift */; };
+		4093D9A9271780E000DCF35D /* ApplicationUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4093D9A8271780E000DCF35D /* ApplicationUser.swift */; };
 		40940BDF26E40C380098EF89 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BD926E40C380098EF89 /* UIViewExtension.swift */; };
 		40940BE026E40C380098EF89 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BDA26E40C380098EF89 /* UIColorExtension.swift */; };
 		40940BE126E40C380098EF89 /* OtherExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BDB26E40C380098EF89 /* OtherExtensions.swift */; };
@@ -154,6 +155,7 @@
 		408CD0FB26E5380E005AD6D4 /* ShopShowcaseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopShowcaseViewController.xib; sourceTree = "<group>"; };
 		408CD10126E53849005AD6D4 /* ShopShowcaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopShowcaseViewModel.swift; sourceTree = "<group>"; };
 		408CD10526E539FD005AD6D4 /* ShopItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopItem.swift; sourceTree = "<group>"; };
+		4093D9A8271780E000DCF35D /* ApplicationUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationUser.swift; sourceTree = "<group>"; };
 		40940BD926E40C380098EF89 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		40940BDA26E40C380098EF89 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		40940BDB26E40C380098EF89 /* OtherExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherExtensions.swift; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 				40940BEB26E412F40098EF89 /* AuthSection.swift */,
 				40940BEC26E412F40098EF89 /* AuthProvider.swift */,
 				40940BED26E412F40098EF89 /* AuthUserActions.swift */,
+				4093D9A8271780E000DCF35D /* ApplicationUser.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -811,6 +814,7 @@
 				40940BE126E40C380098EF89 /* OtherExtensions.swift in Sources */,
 				40940BF026E412F40098EF89 /* AuthUserActions.swift in Sources */,
 				40940C0626E418E50098EF89 /* MainTabBarViewController.swift in Sources */,
+				4093D9A9271780E000DCF35D /* ApplicationUser.swift in Sources */,
 				40C106CC26E41F2800B619A1 /* ContactsViewController.swift in Sources */,
 				40E7203E26E400FE00A64C60 /* AppDelegate.swift in Sources */,
 				4065C96026E854C00084E5F2 /* CorneredView.swift in Sources */,

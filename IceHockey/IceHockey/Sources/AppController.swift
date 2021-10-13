@@ -10,10 +10,8 @@ import UIKit
 
 class AppController: NSObject {
     
-    // MARK: - Public
+    // MARK: - Properties
     static let shared = AppController()
-    
-    var authManager = AuthManager()
     
     struct Key {
         static let wasLaunchedBefore = "wasLauchedBefore"
@@ -23,10 +21,7 @@ class AppController: NSObject {
         
     var isFirstLaunch: Bool {
         get {
-            if _isFirstLaunch {
-                authManager.signInAnonymously()
-            }
-            return _isFirstLaunch
+            _isFirstLaunch
 //            let value = UserDefaults.standard.bool(forKey: "wasLauchedBefore")
 //            return !value
         }
@@ -38,6 +33,8 @@ class AppController: NSObject {
     
     private var _isFirstLaunch = true
         
+    // MARK: - Lifecircle
+    
     override init() {
         super.init()
         
@@ -52,7 +49,7 @@ class AppController: NSObject {
         }
     }
     
-    // MARK: - Private
+    // MARK: - Helper methods
     
     private func updateVersion(old: String, new: String) {
         Utils.log("updating version to ", object: new)

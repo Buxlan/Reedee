@@ -13,6 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var appController = AppController()
+    var authManager: AuthManager?
     var coordinator: ViewControllerCoordinator?
 
     func application(_ application: UIApplication,
@@ -24,9 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         prepareWindow()
         
-        prepareToFirstLaunch()
+        prepareFirstLaunch()
         
         configureAppearance()
+        
+        authManager = AuthManager()
+        authManager?.signInAnonymously()
         
         return true
     }
@@ -60,7 +64,7 @@ extension AppDelegate {
         window?.makeKeyAndVisible()
     }
     
-    private func prepareToFirstLaunch() {
+    private func prepareFirstLaunch() {
         
     }
     
@@ -84,6 +88,10 @@ extension AppDelegate {
 //            UserDefaults.standard.register(defaults:
 //                                            [UserDefaultKey.loggedUser.rawValue: data])
 //        }
+    }
+    
+    private func signIn() {
+        authManager?.signInAnonymously()
     }
     
 }
