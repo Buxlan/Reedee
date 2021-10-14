@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ShadowView: UIView {
+class ShadowCorneredView: UIView {
     override var bounds: CGRect {
         didSet {
             setupShadow()

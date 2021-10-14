@@ -71,8 +71,8 @@ struct TableViewHeaderConfigurator<CellType: SizeableConfigurableCell,
 // MARK: - Cells
 typealias CommandTableCellConfigurator = TableViewCellConfigurator<ActionsTableCell,
                                                                    QuickAction>
-typealias NewsCellConfigurator = TableViewCellConfigurator<EventTableCell,
-                                                           SportEvent>
+//typealias NewsCellConfigurator = TableViewCellConfigurator<EventTableCell,
+//                                                           SportEvent>
 typealias ComingEventCellConfigurator = TableViewCellConfigurator<ComingEventTableCell,
                                                                   SportEvent>
 typealias CommandCollectionCellConfigurator = CollectionViewCellConfigurator<ActionsCollectionCell,

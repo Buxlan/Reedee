@@ -16,7 +16,7 @@ class MainViewControllerCoordinator: ViewControllerCoordinator {
     }
     
     func start() {
-        let vc = LastEventsTableViewController()
+        let vc = HomeViewController()
         navigationController.pushViewController(vc, animated: false)
     }
 }

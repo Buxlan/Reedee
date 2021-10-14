@@ -3,7 +3,7 @@
 "Onboarding.Buttons.futher2" = "Next (2 from 3)";
 "Onboarding.onboardngTitle1" = "Welcome";
 "Onboarding.onboardngTitle2" = "Look, learn and share";
-"Onboarding.onboardngTitle3" = "Join to us";
+"Onboarding.onboardngTitle3" = "Join us";
 "Onboarding.onboardngText1" = "We're glad to see you at Place. Here are we're sharing thoughts, dreams and imaginations about favorite Saint-petersburg places";
 "Onboarding.onboardngText2" = "Share your imaginations! Listen and share audio, text and pictures with other";
 "Onboarding.onboardngText3" = "Joining us allow to share you own essay about variable places...";
@@ -99,7 +99,7 @@
 /* Team */
 "Team.title" = "Red bears";
 /* Actions */
-"Actions.signUpToClub" = "Join club";
+"Actions.signUpToClub" = "Join us";
 "Actions.showTrainingSchedule" = "Training schedule";
 "Actions.photoGallery" = "Photos";
 "Actions.contacts" = "Contacts";

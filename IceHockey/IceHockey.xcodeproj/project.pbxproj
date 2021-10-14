@@ -25,12 +25,12 @@
 		402EDA6326E42A2A004A2992 /* SportEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EDA6226E42A2A004A2992 /* SportEvent.swift */; };
 		402EDA6626E4303B004A2992 /* HockeySquadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EDA6526E4303B004A2992 /* HockeySquadViewModel.swift */; };
 		402EDA6926E43060004A2992 /* SportSquad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EDA6826E43060004A2992 /* SportSquad.swift */; };
-		40369EAB26E6B3FE0083E675 /* LastEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40369EAA26E6B3FE0083E675 /* LastEventsViewModel.swift */; };
+		40369EAB26E6B3FE0083E675 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40369EAA26E6B3FE0083E675 /* HomeViewModel.swift */; };
 		40369EBA26E6DB490083E675 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40369EB826E6DB490083E675 /* EventDetailViewController.swift */; };
 		40369EBB26E6DB490083E675 /* EventDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40369EB926E6DB490083E675 /* EventDetailViewController.xib */; };
-		40369EC326E6E2EA0083E675 /* LastEventsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40369EC226E6E2EA0083E675 /* LastEventsTableView.xib */; };
+		40369EC326E6E2EA0083E675 /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40369EC226E6E2EA0083E675 /* HomeView.xib */; };
 		40369EC626E6E33C0083E675 /* ActionsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40369EC526E6E33C0083E675 /* ActionsTableCell.swift */; };
-		404C028B26EFDE1800CFAF3F /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C028A26EFDE1800CFAF3F /* ShadowView.swift */; };
+		404C028B26EFDE1800CFAF3F /* ShadowCorneredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C028A26EFDE1800CFAF3F /* ShadowCorneredView.swift */; };
 		4055FCDC26E816D900E5BB79 /* CellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4055FCDB26E816D900E5BB79 /* CellConfigurator.swift */; };
 		4065C95226E84E410084E5F2 /* ComingEventTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065C95126E84E410084E5F2 /* ComingEventTableCell.swift */; };
 		4065C95526E84E990084E5F2 /* EventTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065C95426E84E990084E5F2 /* EventTableCell.swift */; };
@@ -81,7 +81,7 @@
 		40B947C226EE909100D9E8DA /* TableViewCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B947C126EE909100D9E8DA /* TableViewCellConfiguration.swift */; };
 		40B947C526EEBD5E00D9E8DA /* ConfigurableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B947C426EEBD5E00D9E8DA /* ConfigurableCell.swift */; };
 		40C106B526E419CB00B619A1 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106B426E419CB00B619A1 /* AppController.swift */; };
-		40C106BB26E41A2200B619A1 /* LastEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106B926E41A2200B619A1 /* LastEventsTableViewController.swift */; };
+		40C106BB26E41A2200B619A1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106B926E41A2200B619A1 /* HomeViewController.swift */; };
 		40C106BF26E41E4800B619A1 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106BE26E41E4700B619A1 /* Utils.swift */; };
 		40C106C426E41E9600B619A1 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106C226E41E9600B619A1 /* EventsViewController.swift */; };
 		40C106C526E41E9600B619A1 /* EventsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40C106C326E41E9600B619A1 /* EventsViewController.xib */; };
@@ -91,8 +91,10 @@
 		40C106D326E41FD200B619A1 /* HockeySquadsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40C106D126E41FD200B619A1 /* HockeySquadsViewController.xib */; };
 		40C106D726E4202600B619A1 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106D626E4202600B619A1 /* Log.swift */; };
 		40C87B4D26EA667400E8217D /* EventCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C87B4C26EA667400E8217D /* EventCollectionViewLayout.swift */; };
+		40CDC4BF2718B69A00990C6A /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CDC4BE2718B69A00990C6A /* EventManager.swift */; };
 		40D47C3127079B8E0038A801 /* SportModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 40D47C2F27079B8E0038A801 /* SportModel.xcdatamodeld */; };
 		40DBD76E26E83BFD00CDBADD /* TableCellActionsProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DBD76D26E83BFD00CDBADD /* TableCellActionsProxy.swift */; };
+		40DEC8B42718D083008A59A8 /* SportEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DEC8B32718D083008A59A8 /* SportEventType.swift */; };
 		40E2D64526E5584D006503C7 /* ShopItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E2D64326E5584D006503C7 /* ShopItemViewController.swift */; };
 		40E2D64626E5584D006503C7 /* ShopItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E2D64426E5584D006503C7 /* ShopItemViewController.xib */; };
 		40E2D64C26E558B6006503C7 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E2D64A26E558B6006503C7 /* ShoppingCartViewController.swift */; };
@@ -129,12 +131,13 @@
 		402EDA6226E42A2A004A2992 /* SportEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportEvent.swift; sourceTree = "<group>"; };
 		402EDA6526E4303B004A2992 /* HockeySquadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HockeySquadViewModel.swift; sourceTree = "<group>"; };
 		402EDA6826E43060004A2992 /* SportSquad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportSquad.swift; sourceTree = "<group>"; };
-		40369EAA26E6B3FE0083E675 /* LastEventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastEventsViewModel.swift; sourceTree = "<group>"; };
+		402F0EAE2718BF6E002E031E /* LastEventSectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastEventSectionType.swift; sourceTree = "<group>"; };
+		40369EAA26E6B3FE0083E675 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		40369EB826E6DB490083E675 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		40369EB926E6DB490083E675 /* EventDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDetailViewController.xib; sourceTree = "<group>"; };
-		40369EC226E6E2EA0083E675 /* LastEventsTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LastEventsTableView.xib; sourceTree = "<group>"; };
+		40369EC226E6E2EA0083E675 /* HomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeView.xib; sourceTree = "<group>"; };
 		40369EC526E6E33C0083E675 /* ActionsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsTableCell.swift; sourceTree = "<group>"; };
-		404C028A26EFDE1800CFAF3F /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		404C028A26EFDE1800CFAF3F /* ShadowCorneredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowCorneredView.swift; sourceTree = "<group>"; };
 		4055FCDB26E816D900E5BB79 /* CellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellConfigurator.swift; sourceTree = "<group>"; };
 		4065C95126E84E410084E5F2 /* ComingEventTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingEventTableCell.swift; sourceTree = "<group>"; };
 		4065C95426E84E990084E5F2 /* EventTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableCell.swift; sourceTree = "<group>"; };
@@ -186,7 +189,7 @@
 		40B947C126EE909100D9E8DA /* TableViewCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellConfiguration.swift; sourceTree = "<group>"; };
 		40B947C426EEBD5E00D9E8DA /* ConfigurableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableCell.swift; sourceTree = "<group>"; };
 		40C106B426E419CB00B619A1 /* AppController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
-		40C106B926E41A2200B619A1 /* LastEventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastEventsTableViewController.swift; sourceTree = "<group>"; };
+		40C106B926E41A2200B619A1 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		40C106BE26E41E4700B619A1 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		40C106C226E41E9600B619A1 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		40C106C326E41E9600B619A1 /* EventsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsViewController.xib; sourceTree = "<group>"; };
@@ -196,8 +199,10 @@
 		40C106D126E41FD200B619A1 /* HockeySquadsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HockeySquadsViewController.xib; sourceTree = "<group>"; };
 		40C106D626E4202600B619A1 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		40C87B4C26EA667400E8217D /* EventCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionViewLayout.swift; sourceTree = "<group>"; };
+		40CDC4BE2718B69A00990C6A /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		40D47C3027079B8E0038A801 /* SportModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SportModel.xcdatamodel; sourceTree = "<group>"; };
 		40DBD76D26E83BFD00CDBADD /* TableCellActionsProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellActionsProxy.swift; sourceTree = "<group>"; };
+		40DEC8B32718D083008A59A8 /* SportEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportEventType.swift; sourceTree = "<group>"; };
 		40E2D64326E5584D006503C7 /* ShopItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopItemViewController.swift; sourceTree = "<group>"; };
 		40E2D64426E5584D006503C7 /* ShopItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopItemViewController.xib; sourceTree = "<group>"; };
 		40E2D64A26E558B6006503C7 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
@@ -337,7 +342,7 @@
 				4065C95C26E853500084E5F2 /* CorneredImageView.swift */,
 				40E949BB26ED54BF00962590 /* ScrollingPageControl.swift */,
 				4065C95F26E854C00084E5F2 /* CorneredView.swift */,
-				404C028A26EFDE1800CFAF3F /* ShadowView.swift */,
+				404C028A26EFDE1800CFAF3F /* ShadowCorneredView.swift */,
 				406CD2C926F7248E00F1EDFE /* ScaleAspectFitImageView.swift */,
 			);
 			path = Views;
@@ -388,8 +393,10 @@
 				40940BEA26E412F40098EF89 /* Auth */,
 				40940BE726E40D450098EF89 /* SportTeam.swift */,
 				40E2D65026E55E1E006503C7 /* ShopCategoryItem.swift */,
+				40CDC4BE2718B69A00990C6A /* EventManager.swift */,
 				402EDA6826E43060004A2992 /* SportSquad.swift */,
 				402EDA6226E42A2A004A2992 /* SportEvent.swift */,
+				40DEC8B32718D083008A59A8 /* SportEventType.swift */,
 				40B947C126EE909100D9E8DA /* TableViewCellConfiguration.swift */,
 				409560C826F93F6D00BCA664 /* QuickActions.swift */,
 			);
@@ -443,7 +450,7 @@
 				408CD0F926E537F6005AD6D4 /* Shop */,
 				402EDA5926E4239F004A2992 /* LaunchScreen */,
 				40940C0226E418CF0098EF89 /* MainTabBarViewController */,
-				40C106B826E41A2200B619A1 /* LastEvents */,
+				40C106B826E41A2200B619A1 /* Home */,
 				40C106C126E41E7D00B619A1 /* Events */,
 				40C106C926E41EDC00B619A1 /* Contacts */,
 			);
@@ -510,19 +517,20 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		40C106B826E41A2200B619A1 /* LastEvents */ = {
+		40C106B826E41A2200B619A1 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				40C106B926E41A2200B619A1 /* LastEventsTableViewController.swift */,
+				40C106B926E41A2200B619A1 /* HomeViewController.swift */,
 				40DBD76D26E83BFD00CDBADD /* TableCellActionsProxy.swift */,
+				402F0EAE2718BF6E002E031E /* LastEventSectionType.swift */,
 				4055FCDB26E816D900E5BB79 /* CellConfigurator.swift */,
 				40B947C426EEBD5E00D9E8DA /* ConfigurableCell.swift */,
-				40369EAA26E6B3FE0083E675 /* LastEventsViewModel.swift */,
-				40369EC226E6E2EA0083E675 /* LastEventsTableView.xib */,
+				40369EAA26E6B3FE0083E675 /* HomeViewModel.swift */,
+				40369EC226E6E2EA0083E675 /* HomeView.xib */,
 				4065C95726E850ED0084E5F2 /* TableViews */,
 				4065C95926E8510A0084E5F2 /* CollectionViews */,
 			);
-			path = LastEvents;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		40C106C126E41E7D00B619A1 /* Events */ = {
@@ -646,6 +654,7 @@
 				40E7203726E400FE00A64C60 /* Frameworks */,
 				40E7203826E400FE00A64C60 /* Resources */,
 				52C4532713BF7CDD91F0C93F /* [CP] Embed Pods Frameworks */,
+				BEC77700EDC2B01CF026DD1F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -694,7 +703,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40369EC326E6E2EA0083E675 /* LastEventsTableView.xib in Resources */,
+				40369EC326E6E2EA0083E675 /* HomeView.xib in Resources */,
 				40E2D64626E5584D006503C7 /* ShopItemViewController.xib in Resources */,
 				407028E526E402BE00C6CE5F /* .swiftlint.yml in Resources */,
 				40E2D64D26E558B6006503C7 /* ShoppingCartViewController.xib in Resources */,
@@ -794,6 +803,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IceHockey/Pods-IceHockey-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		BEC77700EDC2B01CF026DD1F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IceHockey/Pods-IceHockey-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IceHockey/Pods-IceHockey-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IceHockey/Pods-IceHockey-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -808,9 +834,10 @@
 				406C306826F8F2320040F0A7 /* QuickActionsCollectionLayout.swift in Sources */,
 				406AF0E826F7BDF9005C9767 /* QuickActionsCollectionView.swift in Sources */,
 				40C106D726E4202600B619A1 /* Log.swift in Sources */,
-				40369EAB26E6B3FE0083E675 /* LastEventsViewModel.swift in Sources */,
+				40369EAB26E6B3FE0083E675 /* HomeViewModel.swift in Sources */,
 				402EDA6926E43060004A2992 /* SportSquad.swift in Sources */,
 				409E685C26ED6937008C4C0B /* EventsSectionHeaderView.swift in Sources */,
+				40CDC4BF2718B69A00990C6A /* EventManager.swift in Sources */,
 				40940BE126E40C380098EF89 /* OtherExtensions.swift in Sources */,
 				40940BF026E412F40098EF89 /* AuthUserActions.swift in Sources */,
 				40940C0626E418E50098EF89 /* MainTabBarViewController.swift in Sources */,
@@ -825,6 +852,7 @@
 				402EDA6326E42A2A004A2992 /* SportEvent.swift in Sources */,
 				40C106BF26E41E4800B619A1 /* Utils.swift in Sources */,
 				4055FCDC26E816D900E5BB79 /* CellConfigurator.swift in Sources */,
+				40DEC8B42718D083008A59A8 /* SportEventType.swift in Sources */,
 				40940BE326E40C380098EF89 /* UIVIewControllerExtension.swift in Sources */,
 				40940C0526E418E50098EF89 /* MainTabBarViewModel.swift in Sources */,
 				40C106C426E41E9600B619A1 /* EventsViewController.swift in Sources */,
@@ -836,7 +864,7 @@
 				401C9B0E270D034700F91DC6 /* AuthManager.swift in Sources */,
 				40978DBB26ED6ADB00AE1926 /* ComingEventsSectionHeaderView.swift in Sources */,
 				401C9B19270D07FF00F91DC6 /* ErrorDescriptionViewController.swift in Sources */,
-				404C028B26EFDE1800CFAF3F /* ShadowView.swift in Sources */,
+				404C028B26EFDE1800CFAF3F /* ShadowCorneredView.swift in Sources */,
 				406C306F26F909690040F0A7 /* PhotoCollectionView.swift in Sources */,
 				40B947C226EE909100D9E8DA /* TableViewCellConfiguration.swift in Sources */,
 				409560C926F93F6D00BCA664 /* QuickActions.swift in Sources */,
@@ -860,7 +888,7 @@
 				40E2D64526E5584D006503C7 /* ShopItemViewController.swift in Sources */,
 				40E949BF26ED59A600962590 /* CircularView.swift in Sources */,
 				408BD21926E5A2B600D66D9B /* HockeyPlayerDetailViewModel.swift in Sources */,
-				40C106BB26E41A2200B619A1 /* LastEventsTableViewController.swift in Sources */,
+				40C106BB26E41A2200B619A1 /* HomeViewController.swift in Sources */,
 				40C87B4D26EA667400E8217D /* EventCollectionViewLayout.swift in Sources */,
 				40940BF926E413200098EF89 /* DataSourceProtocols.swift in Sources */,
 				40940BE826E40D450098EF89 /* SportTeam.swift in Sources */,

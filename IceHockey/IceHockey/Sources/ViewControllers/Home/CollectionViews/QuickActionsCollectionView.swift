@@ -7,9 +7,7 @@
 
 import UIKit
  
-class QuickActionsCollectionView: UICollectionView, Typeable {
-    
-    var type: LastEventsSectionType = .actions
+class QuickActionsCollectionView: UICollectionView {    
     
     override var intrinsicContentSize: CGSize {
         self.layoutIfNeeded()

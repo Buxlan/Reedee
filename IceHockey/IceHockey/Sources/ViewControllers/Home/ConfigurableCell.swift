@@ -7,6 +7,14 @@
 
 import UIKit
 
+protocol ConfigurableEventCell {
+    static var reuseIdentifier: String { get }
+    func configure(with data: SportEvent)
+}
+extension ConfigurableEventCell {
+    static var reuseIdentifier: String { String(describing: Self.self) }
+}
+
 protocol ConfigurableCell {
     static var reuseIdentifier: String { get }
     var isInterfaceConfigured: Bool { get set }

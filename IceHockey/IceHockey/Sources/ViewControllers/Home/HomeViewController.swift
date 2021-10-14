@@ -7,22 +7,11 @@
 
 import UIKit
 
-class LastEventsTableViewController: UIViewController, DatableObject {
+class HomeViewController: UIViewController {
     
     // MARK: - Properties
     typealias DataType = SportTeam
-    var data: DataType? {
-        didSet {
-            guard let data = data else {
-                return
-            }
-            viewModel.data = data
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
-    var viewModel = LastEventsViewModel(data: SportTeam.current)
+    var viewModel = HomeViewModel()
     var actionProxy: CellActionProxy = .init()
         
     private lazy var titleView: UIView = {
@@ -40,7 +29,7 @@ class LastEventsTableViewController: UIViewController, DatableObject {
         let view = UITableView(frame: .zero, style: .plain)
         view.isUserInteractionEnabled = true
         view.delegate = self
-        view.dataSource = self
+        view.dataSource = viewModel.dataSource
         view.backgroundColor = Asset.other2.color
         view.allowsSelection = true
         view.allowsMultipleSelection = false
@@ -64,6 +53,7 @@ class LastEventsTableViewController: UIViewController, DatableObject {
                       forCellReuseIdentifier: EventsSectionHeaderView.reuseIdentifier)
         view.register(ComingEventsSectionHeaderView.self,
                       forCellReuseIdentifier: ComingEventsSectionHeaderView.reuseIdentifier)
+        viewModel.dataSource?.bind(to: view)
                         
 //        view.tableHeaderView = titleView
         view.tableFooterView = UIView()
@@ -78,8 +68,6 @@ class LastEventsTableViewController: UIViewController, DatableObject {
     init() {
         super.init(nibName: nil, bundle: nil)
         configureTabBarItem()
-        data = SportTeam.current
-        viewModel.data = data
     }
     
     required init?(coder: NSCoder) {
@@ -90,7 +78,7 @@ class LastEventsTableViewController: UIViewController, DatableObject {
         super.viewDidLoad()
         configureUI()
         configureConstraints()
-        setupActionHandlers()
+//        setupActionHandlers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -150,80 +138,63 @@ class LastEventsTableViewController: UIViewController, DatableObject {
         navigationController?.navigationBar.largeTitleTextAttributes = titleTextAttributes
     }
     
-    private func setupActionHandlers() {
-        actionProxy.on(.didSelect) { (config: CommandTableCellConfigurator, _) in            
-            print("CommandTableCellConfigurator \(config)")
-        }.on(.didSelect) { [weak self] (config: NewsCellConfigurator, _) in
-            guard let self = self else {
-                return
-            }
-            let vc = EventDetailViewController()
-            vc.data = config.data
-            vc.modalTransitionStyle = .crossDissolve
-            self.navigationController?.pushViewController(vc, animated: true)
-        }.on(.didSelect) { [weak self] (config: ComingEventCellConfigurator, _) in
-            guard let self = self else {
-                return
-            }
-            let vc = EventDetailViewController()
-            vc.data = config.data
-            vc.modalTransitionStyle = .crossDissolve
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
+//    private func setupActionHandlers() {
+//        actionProxy.on(.didSelect) { (config: CommandTableCellConfigurator, _) in
+//            print("CommandTableCellConfigurator \(config)")
+//        }.on(.didSelect) { [weak self] (event: SportEvent, _) in
+//            guard let self = self else {
+//                return
+//            }
+//            let vc = EventDetailViewController()
+//            vc.data = config.data
+//            vc.modalTransitionStyle = .crossDissolve
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }.on(.didSelect) { [weak self] (config: ComingEventCellConfigurator, _) in
+//            guard let self = self else {
+//                return
+//            }
+//            let vc = EventDetailViewController()
+//            vc.data = config.data
+//            vc.modalTransitionStyle = .crossDissolve
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }
+//    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
-extension LastEventsTableViewController: UITableViewDelegate, UITableViewDataSource {
+extension HomeViewController: UITableViewDelegate {
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let config = viewModel.items[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: type(of: config).reuseIdentifier,
-                                                 for: indexPath)
-        actionProxy.invoke(action: .didSelect, cell: cell, config: config)
-    }
-   
-    func tableView(_ tableView: UITableView,
-                   numberOfRowsInSection section: Int) -> Int {
-        1
-    }
-    
-    func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let config = viewModel.items[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: type(of: config).reuseIdentifier,
-                                                for: indexPath)
-        if var castedCell = cell as? (CollectionViewDelegate & CollectionViewDataSource) {
-            castedCell.delegate = self
-            castedCell.dataSource = self
-        }
-        config.configure(cell: cell)
-        cell.layoutIfNeeded()
-        return cell
+//        let config = viewModel.items[indexPath.row]
+//        let cell = tableView.dequeueReusableCell(withIdentifier: type(of: config).reuseIdentifier,
+//                                                 for: indexPath)
+//        actionProxy.invoke(action: .didSelect, cell: cell, config: config)
     }
 }
 
-extension LastEventsTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let view = collectionView as? Typeable else {
-            fatalError("collectioh view doesn't conform to Typeable")
-        }        
-        let items = viewModel.sections[view.type] ?? [CellConfigurator]()
-        return items.count
+//        guard let view = collectionView as? Typeable else {
+//            fatalError("collectioh view doesn't conform to Typeable")
+//        }
+//        let items = viewModel.sections[view.type] ?? [CellConfigurator]()
+//        return items.count
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let view = collectionView as? Typeable else {
-            fatalError("Collection view doesn't conform to Typeable")
-        }
-        let items = viewModel.sections[view.type] ?? [CellConfigurator]()
-        let item = items[indexPath.item]
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type(of: item).reuseIdentifier,
-                                                      for: indexPath)
-        item.configure(cell: cell)
-        return cell
+//        guard let view = collectionView as? Typeable else {
+//            fatalError("Collection view doesn't conform to Typeable")
+//        }
+//        let items = viewModel.sections[view.type] ?? [CellConfigurator]()
+//        let item = items[indexPath.item]
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type(of: item).reuseIdentifier,
+//                                                      for: indexPath)
+//        item.configure(cell: cell)
+//        return cell
+        return UICollectionViewCell()
     }
     
 }

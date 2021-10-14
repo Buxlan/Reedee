@@ -7,13 +7,7 @@
 
 import UIKit
 
-protocol Typeable {
-    var type: LastEventsSectionType { get set }
-}
- 
-class PhotoCollectionView: UICollectionView, Typeable {
-    
-    var type: LastEventsSectionType = .photo
+class PhotoCollectionView: UICollectionView {
     
     override var intrinsicContentSize: CGSize {
         self.layoutIfNeeded()

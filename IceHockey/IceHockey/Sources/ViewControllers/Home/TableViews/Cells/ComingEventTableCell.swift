@@ -1,5 +1,5 @@
 //
-//  EventTableCell.swift
+//  ComingEventTableCell.swift
 //  IceHockey
 //
 //  Created by  Buxlan on 9/8/21.
@@ -7,13 +7,14 @@
 
 import UIKit
 
-class EventTableCell: UITableViewCell, ConfigurableCell {
+class ComingEventTableCell: UITableViewCell, ConfigurableCell {
     
     // MARK: - Properties
     typealias DataType = SportEvent
     
     var isInterfaceConfigured = false
     var imageAspectRate: CGFloat = 1.77
+    var cellHeight: CGFloat = 244
     let imageHeight: CGFloat = 160
     
     private lazy var dataImageView: UIImageView = {
@@ -28,8 +29,8 @@ class EventTableCell: UITableViewCell, ConfigurableCell {
         return view
     }()
     
-    private lazy var shadowView: ShadowView = {
-        let view = ShadowView()
+    private lazy var shadowView: ShadowCorneredView = {
+        let view = ShadowCorneredView()
         view.backgroundColor = Asset.other3.color
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -51,7 +52,7 @@ class EventTableCell: UITableViewCell, ConfigurableCell {
         view.backgroundColor = Asset.other3.color
         view.tintColor = Asset.textColor.color
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        view.setContentHuggingPriority(.defaultLow, for: .vertical)
         view.numberOfLines = 2
         view.textAlignment = .left
         view.font = .bxBody
@@ -97,8 +98,7 @@ class EventTableCell: UITableViewCell, ConfigurableCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Helper functions
-        
+    // MARK: - Helper functions        
     func configure(with data: DataType) {
         configureUI()
         dataImageView.image = data.image
@@ -113,9 +113,6 @@ class EventTableCell: UITableViewCell, ConfigurableCell {
             dateString = formatter.string(from: date)
         }
         dateLabel.text = dateString
-        
-        typeLabel.backgroundColor = data.type.backgroundColor
-        typeLabel.textColor = data.type.textColor
         typeLabel.text = data.type.description.uppercased()
     }
     
@@ -135,7 +132,9 @@ class EventTableCell: UITableViewCell, ConfigurableCell {
     }
     
     internal func configureConstraints() {
+        let collectionViewHeight = cellHeight
         let constraints: [NSLayoutConstraint] = [
+            
             dataImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             dataImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             dataImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -144,7 +143,7 @@ class EventTableCell: UITableViewCell, ConfigurableCell {
             dataLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             dataLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             dataLabel.topAnchor.constraint(equalTo: dataImageView.bottomAnchor, constant: 4),
-            dataLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 32),
+            dataLabel.heightAnchor.constraint(equalToConstant: 52),
             
             typeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             typeLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 80),
@@ -153,7 +152,7 @@ class EventTableCell: UITableViewCell, ConfigurableCell {
             
             dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             dateLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            dateLabel.topAnchor.constraint(equalTo: dataLabel.lastBaselineAnchor, constant: 0),
+            dateLabel.topAnchor.constraint(equalTo: dataLabel.bottomAnchor),
             dateLabel.heightAnchor.constraint(equalToConstant: 32),
             dateLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -12),
             

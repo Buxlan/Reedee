@@ -25,8 +25,8 @@ class PhotoGalleryCollectionCell: UICollectionViewCell, ConfigurableCell {
         return view
     }()
     
-    private lazy var shadowView: ShadowView = {
-        let view = ShadowView()
+    private lazy var shadowView: ShadowCorneredView = {
+        let view = ShadowCorneredView()
         view.backgroundColor = Asset.other3.color
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
