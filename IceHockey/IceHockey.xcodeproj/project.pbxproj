@@ -361,9 +361,9 @@
 		408EE7CE26EFEDF000C5DDB4 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				4065C95426E84E990084E5F2 /* EventTableCell.swift */,
 				40369EC526E6E33C0083E675 /* ActionsTableCell.swift */,
 				406C306B26F8FD260040F0A7 /* PhotoGalleryTableCell.swift */,
-				4065C95426E84E990084E5F2 /* EventTableCell.swift */,
 				4065C95126E84E410084E5F2 /* ComingEventTableCell.swift */,
 				409E685B26ED6937008C4C0B /* EventsSectionHeaderView.swift */,
 				40978DBA26ED6ADB00AE1926 /* ComingEventsSectionHeaderView.swift */,
@@ -521,11 +521,11 @@
 			isa = PBXGroup;
 			children = (
 				40C106B926E41A2200B619A1 /* HomeViewController.swift */,
+				40369EAA26E6B3FE0083E675 /* HomeViewModel.swift */,
 				40DBD76D26E83BFD00CDBADD /* TableCellActionsProxy.swift */,
 				402F0EAE2718BF6E002E031E /* LastEventSectionType.swift */,
 				4055FCDB26E816D900E5BB79 /* CellConfigurator.swift */,
 				40B947C426EEBD5E00D9E8DA /* ConfigurableCell.swift */,
-				40369EAA26E6B3FE0083E675 /* HomeViewModel.swift */,
 				40369EC226E6E2EA0083E675 /* HomeView.xib */,
 				4065C95726E850ED0084E5F2 /* TableViews */,
 				4065C95926E8510A0084E5F2 /* CollectionViews */,

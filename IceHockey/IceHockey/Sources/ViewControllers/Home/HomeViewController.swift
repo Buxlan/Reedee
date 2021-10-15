@@ -6,6 +6,12 @@
 //
 
 import UIKit
+import FirebaseDatabase
+
+protocol CellUpdatable: class {
+    func updateCellImage(event: SportEvent, indexPath: IndexPath, image: UIImage?)
+    func configureCell(at indexPath: IndexPath, event: SportEvent) -> UITableViewCell
+}
 
 class HomeViewController: UIViewController {
     
@@ -13,7 +19,7 @@ class HomeViewController: UIViewController {
     typealias DataType = SportTeam
     var viewModel = HomeViewModel()
     var actionProxy: CellActionProxy = .init()
-        
+            
     private lazy var titleView: UIView = {
         let screenWidth = UIScreen.main.bounds.size.width
         let imageHeight = screenWidth * 0.7
@@ -53,7 +59,6 @@ class HomeViewController: UIViewController {
                       forCellReuseIdentifier: EventsSectionHeaderView.reuseIdentifier)
         view.register(ComingEventsSectionHeaderView.self,
                       forCellReuseIdentifier: ComingEventsSectionHeaderView.reuseIdentifier)
-        viewModel.dataSource?.bind(to: view)
                         
 //        view.tableHeaderView = titleView
         view.tableFooterView = UIView()
@@ -83,7 +88,8 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        configureBars()        
+        configureBars()
+        configureViewModel()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -91,9 +97,11 @@ class HomeViewController: UIViewController {
                                                  aspectRatio: .current,
                                                  with: view.tintColor)
         tabBarItem.image = image
+        viewModel.dataSource?.unbind()
     }
     
     // MARK: - Hepler functions
+    
     private func configureUI() {
         view.addSubview(tableView)
         navigationController?.navigationItem.titleView = titleView
@@ -127,15 +135,18 @@ class HomeViewController: UIViewController {
         navigationController?.setToolbarHidden(true, animated: false)
         navigationController?.setNavigationBarHidden(false, animated: false)
 //        navigationItem.backBarButtonItem?.tintColor = .systemYellow
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.barTintColor = Asset.accent1.color
-        let size = navigationController?.navigationBar.frame.size ?? .zero
-        
         let titleTextAttributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.foregroundColor: Asset.other3.color
         ]
         navigationController?.navigationBar.titleTextAttributes = titleTextAttributes
         navigationController?.navigationBar.largeTitleTextAttributes = titleTextAttributes
+    }
+    
+    private func configureViewModel() {
+        viewModel.delegate = self
+        viewModel.dataSource?.bind(to: tableView)
     }
     
 //    private func setupActionHandlers() {
@@ -181,7 +192,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 //        }
 //        let items = viewModel.sections[view.type] ?? [CellConfigurator]()
 //        return items.count
-        return 0
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -197,4 +208,29 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return UICollectionViewCell()
     }
     
+}
+
+extension HomeViewController: CellUpdatable {
+    
+    func updateCellImage(event: SportEvent, indexPath: IndexPath, image: UIImage?) {
+        DispatchQueue.main.async {
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: event.type.identifier,
+                                                          for: indexPath)
+            if let cell = cell as? ConfigurableEventCell {
+//                cell.setImage(image: image)
+                self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+        }
+    }
+    
+    func configureCell(at indexPath: IndexPath, event: SportEvent) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: event.type.identifier,
+                                                 for: indexPath)
+        let image = viewModel.getEventImage(event)
+        if let cell = cell as? ConfigurableEventCell {
+            cell.configure(with: event)
+            cell.setImage(image: image)
+        }
+        return cell
+    }
 }

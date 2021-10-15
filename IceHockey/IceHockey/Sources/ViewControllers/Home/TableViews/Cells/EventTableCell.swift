@@ -12,6 +12,7 @@ class EventTableCell: UITableViewCell, ConfigurableEventCell {
     // MARK: - Properties
     typealias DataType = SportEvent
     
+    var isConfigured = false
     var isInterfaceConfigured = false
     var imageAspectRate: CGFloat = 1.77
     let imageHeight: CGFloat = 160
@@ -20,7 +21,7 @@ class EventTableCell: UITableViewCell, ConfigurableEventCell {
         let cornerRadius: CGFloat = 32.0
         let view = UIImageView()
         view.accessibilityIdentifier = "dataImageView"
-        view.image = Asset.camera.image.resizeImage(to: imageHeight, aspectRatio: .current, with: .clear)
+//        view.image = Asset.camera.image.resizeImage(to: imageHeight, aspectRatio: .current, with: .clear)
         view.backgroundColor = Asset.other3.color
         view.contentMode = .scaleToFill
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -101,7 +102,7 @@ class EventTableCell: UITableViewCell, ConfigurableEventCell {
         
     func configure(with data: DataType) {
         configureUI()
-        dataImageView.image = data.image
+//        dataImageView.image = data.image
         dataLabel.text = data.title
         
         var dateString: String = "12 АВГ/2021"
@@ -119,6 +120,14 @@ class EventTableCell: UITableViewCell, ConfigurableEventCell {
         typeLabel.text = data.type.description.uppercased()
     }
     
+    func setImage(image: UIImage?) {
+//        dataImageView.isHidden = false
+        if image == nil { return }
+        dataImageView.image = image
+        isConfigured = true
+        setNeedsLayout()
+    }
+    
     func configureUI() {
         if isInterfaceConfigured { return }
         contentView.backgroundColor = Asset.other3.color
@@ -130,6 +139,8 @@ class EventTableCell: UITableViewCell, ConfigurableEventCell {
         contentView.addSubview(shadowView)
         contentView.addSubview(dateLabel)
         
+//        dataImageView.isHidden = (dataImageView.image == nil)
+        
         configureConstraints()
         isInterfaceConfigured = true
     }
@@ -139,7 +150,7 @@ class EventTableCell: UITableViewCell, ConfigurableEventCell {
             dataImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             dataImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             dataImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            dataImageView.heightAnchor.constraint(equalToConstant: imageHeight),
+            dataImageView.heightAnchor.constraint(equalTo: dataImageView.widthAnchor),
             
             dataLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             dataLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),

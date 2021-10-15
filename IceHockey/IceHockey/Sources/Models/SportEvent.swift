@@ -8,12 +8,11 @@
 import UIKit
 import Firebase
 
-struct SportEvent {
+struct SportEvent: Hashable {
     var uid: String
     var title: String
     var text: String
-    var imageURL: String?
-    var imageName: String?
+    var imagePath: String
     var actionTitle: String?
     var viewsCount: Int?
     var type: SportEventType
@@ -22,7 +21,7 @@ struct SportEvent {
     init(uid: String,
          title: String,
          text: String,
-         imageName: String?,
+         imagePath: String,
          imageURL: String? = nil,
          actionTitle: String? = nil,
          date: Date? = nil,
@@ -30,8 +29,7 @@ struct SportEvent {
         self.uid = uid
         self.title = title
         self.text = text
-        self.imageURL = imageURL
-        self.imageName = imageName
+        self.imagePath = imagePath
         self.viewsCount = Int.random(in: 1...10000)
         self.actionTitle = actionTitle
         self.date = date
@@ -42,12 +40,10 @@ struct SportEvent {
         self.uid = ""
         self.title = .empty
         self.text = .empty
-        self.imageURL = nil
-        self.imageName = nil
+        self.imagePath = ""
         self.actionTitle = nil
         self.viewsCount = 123
         self.viewsCount = Int.random(in: 1...10000)
-        self.imageName = nil
         self.date = nil
         self.type = .match
     }
@@ -65,7 +61,7 @@ struct SportEvent {
         self.text = text
         self.title = title
         self.date = Date(timeIntervalSince1970: TimeInterval(dateInterval))
-        self.imageURL = dict["imageURL"] as? String ?? nil
+        self.imagePath = dict["imagePath"] as? String ?? ""
         self.type = type
     }
     
@@ -75,19 +71,19 @@ extension SportEvent {
     
     static let empty = SportEvent()
     
-    var image: UIImage {
-        let emptyImage = Asset.event0.image
-        var image: UIImage?
-        if let imageName = imageName {
-            image = UIImage(named: imageName)
-        } else if let urlString = imageURL,
-                  let url = URL(string: urlString) {            
-            if let data = try? Data(contentsOf: url) {
-                image = UIImage(data: data)
-            }
-        }
-        return image ?? emptyImage
-    }
+//    var image: UIImage {
+//        let emptyImage = Asset.event0.image
+//        var image: UIImage?
+//        if let imagePath = imagePath {
+//            image = UIImage(named: imagePath)
+//        } else if let urlString = imageURL,
+//                  let url = URL(string: urlString) {            
+//            if let data = try? Data(contentsOf: url) {
+//                image = UIImage(data: data)
+//            }
+//        }
+//        return image ?? emptyImage
+//    }
     
 }
     

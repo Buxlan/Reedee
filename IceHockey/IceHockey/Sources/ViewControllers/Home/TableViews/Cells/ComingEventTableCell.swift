@@ -101,7 +101,7 @@ class ComingEventTableCell: UITableViewCell, ConfigurableCell {
     // MARK: - Helper functions        
     func configure(with data: DataType) {
         configureUI()
-        dataImageView.image = data.image
+//        dataImageView.image = data.image
         dataLabel.text = data.title
         
         var dateString: String = "12 АВГ/2021"
@@ -114,6 +114,10 @@ class ComingEventTableCell: UITableViewCell, ConfigurableCell {
         }
         dateLabel.text = dateString
         typeLabel.text = data.type.description.uppercased()
+    }
+    
+    func setImage(image: UIImage?) {
+        dataImageView.image = image
     }
     
     func configureUI() {

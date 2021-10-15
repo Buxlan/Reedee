@@ -177,7 +177,7 @@ class PhotoGalleryCollectionCell: UICollectionViewCell, ConfigurableCell {
     // MARK: - Helper functions
     func configure(with data: DataType) {
         configureInterface()
-        dataImageView.image = data.image
+//        dataImageView.image = data.image
         dataLabel.text = data.title
         viewsCountLabel.text = "\(data.viewsCount ?? 0)"
         actionEventButton.setTitle(data.actionTitle ?? L10n.Events.defaultActionTitle, for: .normal)
