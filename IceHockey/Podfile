@@ -7,6 +7,7 @@ target 'IceHockey' do
 
   # Pods for IceHockey
   pod 'FirebaseUI'
+  pod 'FirebaseUI/Storage'
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'

@@ -12,11 +12,12 @@ struct SportEvent: Hashable {
     var uid: String
     var title: String
     var text: String
-    var imagePath: String
+    var mainImageName: String
     var actionTitle: String?
     var viewsCount: Int?
     var type: SportEventType
     var date: Date?
+    var imageNames: [String] = []
     
     init(uid: String,
          title: String,
@@ -29,7 +30,7 @@ struct SportEvent: Hashable {
         self.uid = uid
         self.title = title
         self.text = text
-        self.imagePath = imagePath
+        self.mainImageName = imagePath
         self.viewsCount = Int.random(in: 1...10000)
         self.actionTitle = actionTitle
         self.date = date
@@ -40,7 +41,7 @@ struct SportEvent: Hashable {
         self.uid = ""
         self.title = .empty
         self.text = .empty
-        self.imagePath = ""
+        self.mainImageName = ""
         self.actionTitle = nil
         self.viewsCount = 123
         self.viewsCount = Int.random(in: 1...10000)
@@ -61,7 +62,8 @@ struct SportEvent: Hashable {
         self.text = text
         self.title = title
         self.date = Date(timeIntervalSince1970: TimeInterval(dateInterval))
-        self.imagePath = dict["imagePath"] as? String ?? ""
+        self.mainImageName = dict["imagePath"] as? String ?? ""
+        self.imageNames = dict["imageNames"] as? [String] ?? []
         self.type = type
     }
     
@@ -69,7 +71,14 @@ struct SportEvent: Hashable {
 
 extension SportEvent {
     
-    static let empty = SportEvent()
+    var imageStorageReference: StorageReference {
+        let storageReference = FirebaseManager.shared.storageRootReference
+        return storageReference.child("events/" + self.mainImageName)
+    }
+    
+//    static let empty = SportEvent()
+    
+    
     
 //    var image: UIImage {
 //        let emptyImage = Asset.event0.image

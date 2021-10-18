@@ -73,10 +73,15 @@ typealias CommandTableCellConfigurator = TableViewCellConfigurator<ActionsTableC
                                                                    QuickAction>
 //typealias NewsCellConfigurator = TableViewCellConfigurator<EventTableCell,
 //                                                           SportEvent>
+typealias EventPhotoTableViewCellConfigurator = TableViewCellConfigurator<EventDetailPhotoTableCell,
+                                                                          [String]>
 typealias ComingEventCellConfigurator = TableViewCellConfigurator<ComingEventTableCell,
                                                                   SportEvent>
 typealias CommandCollectionCellConfigurator = CollectionViewCellConfigurator<ActionsCollectionCell,
                                                                              QuickAction>
+typealias EventDetailPhotoCollectionCellConfigurator = CollectionViewCellConfigurator<EventDetailPhotoCollectionViewCell,
+                                                                                      String>
+// Not using
 typealias PhotoEventCollectionCellConfigurator = CollectionViewCellConfigurator<PhotoGalleryCollectionCell,
                                                                                 SportEvent>
 // MARK: - Headers

@@ -9,8 +9,20 @@ import UIKit
 import FirebaseDatabase
 
 protocol CellUpdatable: class {
-    func updateCellImage(event: SportEvent, indexPath: IndexPath, image: UIImage?)
     func configureCell(at indexPath: IndexPath, event: SportEvent) -> UITableViewCell
+    func configureCell(at indexPath: IndexPath, configurator: CellConfigurator) -> UITableViewCell
+    func reloadData()
+}
+
+extension CellUpdatable {
+    func configureCell(at indexPath: IndexPath, event: SportEvent) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    func configureCell(at indexPath: IndexPath, configurator: CellConfigurator) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    func reloadData() {        
+    }
 }
 
 class HomeViewController: UIViewController {
@@ -176,6 +188,11 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDelegate {
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let event = viewModel.item(at: indexPath)
+        let vc = EventDetailViewController()
+        vc.modalTransitionStyle = .crossDissolve
+        vc.inputData = event
+        navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
 //        let config = viewModel.items[indexPath.row]
 //        let cell = tableView.dequeueReusableCell(withIdentifier: type(of: config).reuseIdentifier,
@@ -212,24 +229,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 extension HomeViewController: CellUpdatable {
     
-    func updateCellImage(event: SportEvent, indexPath: IndexPath, image: UIImage?) {
-        DispatchQueue.main.async {
-            let cell = self.tableView.dequeueReusableCell(withIdentifier: event.type.identifier,
-                                                          for: indexPath)
-            if let cell = cell as? ConfigurableEventCell {
-//                cell.setImage(image: image)
-                self.tableView.reloadRows(at: [indexPath], with: .automatic)
-            }
-        }
-    }
-    
     func configureCell(at indexPath: IndexPath, event: SportEvent) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: event.type.identifier,
                                                  for: indexPath)
-        let image = viewModel.getEventImage(event)
         if let cell = cell as? ConfigurableEventCell {
             cell.configure(with: event)
-            cell.setImage(image: image)
         }
         return cell
     }

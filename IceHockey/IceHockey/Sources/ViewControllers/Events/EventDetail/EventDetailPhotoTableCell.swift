@@ -1,23 +1,21 @@
 //
-//  PhotoGalleryTableCell.swift
+//  EventDetailPhotoTableCell.swift
 //  IceHockey
 //
-//  Created by  Buxlan on 9/20/21.
+//  Created by  Buxlan on 10/19/21.
 //
 
 import UIKit
-import Foundation
 
-class PhotoGalleryTableCell: UITableViewCell, ConfigurableCell, CollectionViewDelegate {
+class EventDetailPhotoTableCell: UITableViewCell, CollectionViewDelegate {
     
     // MARK: - Properties
-    typealias DataType = SportEvent
-    
-    weak var delegate: UICollectionViewDelegate?
-    weak var dataSource: UICollectionViewDataSource?
+    typealias DataType = [String]
     var isInterfaceConfigured = false
     var imageAspectRate: CGFloat = 1
     var timer: Timer?
+    weak var delegate: UICollectionViewDelegate?
+    private var viewModel = EventDetailPhotoCellModel()
     
     private lazy var collectionView: PhotoCollectionView = {
         let layout = EventCollectionViewLayout()
@@ -30,8 +28,8 @@ class PhotoGalleryTableCell: UITableViewCell, ConfigurableCell, CollectionViewDe
         view.allowsMultipleSelection = false
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isPagingEnabled = true
-        view.register(PhotoGalleryCollectionCell.self,
-                      forCellWithReuseIdentifier: PhotoGalleryCollectionCell.reuseIdentifier)
+        view.register(EventDetailPhotoCollectionViewCell.self,
+                      forCellWithReuseIdentifier: EventDetailPhotoCollectionViewCell.reuseIdentifier)
         
         view.delegate = self
         view.dataSource = self
@@ -68,11 +66,6 @@ class PhotoGalleryTableCell: UITableViewCell, ConfigurableCell, CollectionViewDe
     }
     
     // MARK: - Helper functions
-        
-    func configure(with data: DataType) {
-        configureUI()
-        startTimer()
-    }
     
     func configureUI() {
         if isInterfaceConfigured { return }
@@ -86,7 +79,6 @@ class PhotoGalleryTableCell: UITableViewCell, ConfigurableCell, CollectionViewDe
     }
     
     internal func configureConstraints() {
-        let collectionViewHeight: CGFloat = 300
         let constraints: [NSLayoutConstraint] = [
 //            collectionView.heightAnchor.constraint(equalTo: contentView.heightAnchor),
             collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -106,11 +98,10 @@ class PhotoGalleryTableCell: UITableViewCell, ConfigurableCell, CollectionViewDe
     
     func startTimer() {
         timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] (_) in
+        timer = Timer.scheduledTimer(withTimeInterval: 8.0, repeats: true) { [weak self] (_) in
             guard let self = self else {
                 return
             }
-                        
             let pageWidth = self.collectionView.frame.size.width
             let currentPage = Int(self.collectionView.contentOffset.x / pageWidth)
 
@@ -133,20 +124,30 @@ class PhotoGalleryTableCell: UITableViewCell, ConfigurableCell, CollectionViewDe
             startTimer()
         }
     }
-   
 }
 
-extension PhotoGalleryTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
+extension EventDetailPhotoTableCell: ConfigurableCell {
+    
+    func configure(with data: DataType) {
+        configureUI()
+        viewModel.images = data
+        collectionView.reloadData()
+        startTimer()
+    }
+    
+}
+
+extension EventDetailPhotoTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let dataSource = dataSource else { return 0 }
-        let count = dataSource.collectionView(collectionView, numberOfItemsInSection: section)
-        return count
+        return viewModel.images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let dataSource = dataSource else { return UICollectionViewCell() }
-        let cell = dataSource.collectionView(collectionView, cellForItemAt: indexPath)
+        let item = viewModel.item(at: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type(of: item).reuseIdentifier,
+                                                      for: indexPath)
+        item.configure(cell: cell)
         return cell
     }
     
@@ -169,7 +170,7 @@ extension PhotoGalleryTableCell: UICollectionViewDelegate, UICollectionViewDataS
     }
 }
 
-extension PhotoGalleryTableCell: EventCollectionViewLayoutDelegate {
+extension EventDetailPhotoTableCell: EventCollectionViewLayoutDelegate {
     
     func collectionView(_ collectionView: UICollectionView, getSizeAtIndexPath indexPath: IndexPath) -> CGSize {
         let width = collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right)

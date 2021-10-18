@@ -6,13 +6,13 @@
 //
 
 import UIKit
+import FirebaseStorageUI
 
-class EventTableCell: UITableViewCell, ConfigurableEventCell {
+class EventTableCell: UITableViewCell {
     
     // MARK: - Properties
     typealias DataType = SportEvent
     
-    var isConfigured = false
     var isInterfaceConfigured = false
     var imageAspectRate: CGFloat = 1.77
     let imageHeight: CGFloat = 160
@@ -27,6 +27,9 @@ class EventTableCell: UITableViewCell, ConfigurableEventCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
         return view
+    }()
+    private lazy var placeholderImage: UIImage = {
+        Asset.camera.image.resizeImage(to: imageHeight, aspectRatio: .current, with: .clear)
     }()
     
     private lazy var shadowView: ShadowCorneredView = {
@@ -89,7 +92,7 @@ class EventTableCell: UITableViewCell, ConfigurableEventCell {
         return view
     }()
     
-    // MARK: - Init
+    // MARK: - Lifecircle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
@@ -98,36 +101,12 @@ class EventTableCell: UITableViewCell, ConfigurableEventCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        dataImageView.image = nil
+        isInterfaceConfigured = false
+    }
+    
     // MARK: - Helper functions
-        
-    func configure(with data: DataType) {
-        configureUI()
-//        dataImageView.image = data.image
-        dataLabel.text = data.title
-        
-        var dateString: String = "12 АВГ/2021"
-        if let date = data.date {
-            let formatter = DateFormatter()
-            formatter.dateStyle = .medium
-            formatter.timeStyle = .none
-            formatter.locale = Locale.current
-            dateString = formatter.string(from: date)
-        }
-        dateLabel.text = dateString
-        
-        typeLabel.backgroundColor = data.type.backgroundColor
-        typeLabel.textColor = data.type.textColor
-        typeLabel.text = data.type.description.uppercased()
-    }
-    
-    func setImage(image: UIImage?) {
-//        dataImageView.isHidden = false
-        if image == nil { return }
-        dataImageView.image = image
-        isConfigured = true
-        setNeedsLayout()
-    }
-    
     func configureUI() {
         if isInterfaceConfigured { return }
         contentView.backgroundColor = Asset.other3.color
@@ -176,4 +155,30 @@ class EventTableCell: UITableViewCell, ConfigurableEventCell {
         ]
         NSLayoutConstraint.activate(constraints)
     }
+}
+
+extension EventTableCell: ConfigurableEventCell {
+    
+    func configure(with data: DataType) {
+        configureUI()
+//        dataImageView.image = data.image
+        dataLabel.text = data.title
+        
+        var dateString: String = "12 АВГ/2021"
+        if let date = data.date {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .none
+            formatter.locale = Locale.current
+            dateString = formatter.string(from: date)
+        }
+        dateLabel.text = dateString
+        
+        typeLabel.backgroundColor = data.type.backgroundColor
+        typeLabel.textColor = data.type.textColor
+        typeLabel.text = data.type.description.uppercased()
+        
+        dataImageView.sd_setImage(with: data.imageStorageReference, placeholderImage: placeholderImage)
+    }
+    
 }

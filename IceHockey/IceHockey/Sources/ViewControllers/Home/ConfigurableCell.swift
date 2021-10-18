@@ -10,8 +10,7 @@ import UIKit
 protocol ConfigurableEventCell {
     static var reuseIdentifier: String { get }
     func configure(with data: SportEvent)
-    func setImage(image: UIImage?)
-    var isConfigured: Bool { get set }
+    var isInterfaceConfigured: Bool { get set }
 }
 extension ConfigurableEventCell {
     static var reuseIdentifier: String { String(describing: Self.self) }

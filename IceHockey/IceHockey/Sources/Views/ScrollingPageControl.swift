@@ -121,29 +121,9 @@ class ScrollingPageControl: UIView {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        isOpaque = false
     }
-    
-//    override func draw(_ rect: CGRect) {
-//        let horizontalOffset = CGFloat(-pageOffset + 2) * (dotSize + spacing) + (rect.width - intrinsicContentSize.width) / 2
-//        let centerPage = 1 + pageOffset
-//        (0..<pages).forEach { page in
-//            (page == selectedPage ? selectedColor : dotColor).setFill()
-//            let center = CGPoint(x: horizontalOffset + rect.minX + dotSize / 2 + (dotSize + spacing) * CGFloat(page), y: rect.midY)
-//            var scale: CGFloat {
-//                let distance = abs(page - (1 + pageOffset))
-//                switch distance {
-//                case 0, 1: return 1
-//                case 2: return 0.66
-//                case 3: return 0.33
-//                case _: return 0
-//                }
-//            }
-//            let size: CGSize = CGSize(side: dotSize * scale)
-//            let rect = CGRect(center: center, size: size)
-//            UIBezierPath(ovalIn: rect).fill()
-//        }
-//    }
     
     private var lastSize = CGSize.zero
     open override func layoutSubviews() {
