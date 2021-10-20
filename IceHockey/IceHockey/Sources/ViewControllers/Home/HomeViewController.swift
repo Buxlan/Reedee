@@ -31,24 +31,21 @@ class HomeViewController: UIViewController {
     var viewModel = HomeViewModel()
     var actionProxy: CellActionProxy = .init()
     var team = SportTeam.current
-            
-    private lazy var titleView: UIView = {
-        let screenWidth = UIScreen.main.bounds.size.width
-        let imageHeight = screenWidth * 0.7
-        let image = Asset.squad2012.image
-            .resizeImage(to: imageHeight, aspectRatio: .current, with: .clear)
-        let view = UIImageView(image: image)
-        view.contentMode = .scaleAspectFit
-//        view.autoresizingMask = [.flexibleWidth]
-        return view
-    }()
     
-    private lazy var tableFooterView: EventDetailTableFooterView = {
-        let frame = CGRect(x: 0, y: 0, width: 0, height: 150)
-        let view = EventDetailTableFooterView(frame: frame)
-        view.configure(with: team)
-        return view
-    }()
+//    private lazy var addEventButton: UIButton = {
+//        let view = UIButton()
+//        view.accessibilityIdentifier = "addEventButton"
+//        view.backgroundColor = Asset.accent1.color
+//        view.tintColor = Asset.other0.color
+//        view.addTarget(self, action: #selector(addEventHandle), for: .touchUpInside)
+//        let image = Asset.plus.image.withRenderingMode(.alwaysTemplate)
+//        view.setImage(image, for: .normal)
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.layer.cornerRadius = 16
+//        view.contentEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
+//
+//        return view
+//    }()
     
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
@@ -78,10 +75,16 @@ class HomeViewController: UIViewController {
                       forCellReuseIdentifier: EventsSectionHeaderView.reuseIdentifier)
         view.register(ComingEventsSectionHeaderView.self,
                       forCellReuseIdentifier: ComingEventsSectionHeaderView.reuseIdentifier)
-                        
-//        view.tableHeaderView = titleView
+
         view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = false
+        return view
+    }()
+    
+    private lazy var tableFooterView: EventDetailTableFooterView = {
+        let frame = CGRect(x: 0, y: 0, width: 0, height: 150)
+        let view = EventDetailTableFooterView(frame: frame)
+        view.configure(with: team)
         return view
     }()
         
@@ -124,7 +127,7 @@ class HomeViewController: UIViewController {
     private func configureUI() {
         view.backgroundColor = Asset.accent1.color
         view.addSubview(tableView)
-        navigationController?.navigationItem.titleView = titleView
+//        view.addSubview(addEventButton)
     }
     
     private func configureConstraints() {
@@ -132,7 +135,12 @@ class HomeViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             tableView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            tableView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor)
+            tableView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor),
+            
+//            addEventButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+//            addEventButton.widthAnchor.constraint(equalToConstant: 44),
+//            addEventButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -50),
+//            addEventButton.heightAnchor.constraint(equalToConstant: 44)
         ]
         NSLayoutConstraint.activate(constraints)
     }
@@ -155,13 +163,23 @@ class HomeViewController: UIViewController {
         navigationController?.setToolbarHidden(true, animated: false)
         navigationController?.setNavigationBarHidden(false, animated: false)
 //        navigationItem.backBarButtonItem?.tintColor = .systemYellow
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.barTintColor = Asset.accent1.color
         let titleTextAttributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.foregroundColor: Asset.other3.color
         ]
         navigationController?.navigationBar.titleTextAttributes = titleTextAttributes
         navigationController?.navigationBar.largeTitleTextAttributes = titleTextAttributes
+        let image = Asset.plus.image
+            .resizeImage(to: 32, aspectRatio: .current)
+            .withRenderingMode(.alwaysTemplate)
+        let item = UIBarButtonItem(image: image,
+                                   style: .plain,
+                                   target: self,
+                                   action: #selector(addEventHandle))
+//        item.imageInsets = .init(top: 0, left: 8, bottom: 8, right: 8)
+        item.tintColor = .white
+        navigationItem.rightBarButtonItem = item
     }
     
     private func configureViewModel() {
@@ -229,6 +247,15 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return UICollectionViewCell()
     }
     
+}
+
+extension HomeViewController {
+    @objc
+    private func addEventHandle() {
+        let vc = EditEventViewController(editMode: .new)
+        vc.modalPresentationStyle = .pageSheet
+        present(vc, animated: true, completion: nil)
+    }
 }
 
 extension HomeViewController: CellUpdatable {

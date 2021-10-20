@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EventDetailCopyrightTableViewCell: UITableViewCell {
+class EventDetailCopyrightCell: UITableViewCell {
     
     // MARK: - Properties
     
@@ -95,7 +95,7 @@ class EventDetailCopyrightTableViewCell: UITableViewCell {
     
 }
 
-extension EventDetailCopyrightTableViewCell: ConfigurableCell {
+extension EventDetailCopyrightCell: ConfigurableCell {
     typealias DataType = SportTeam
     func configure(with data: DataType) {
         configureUI()

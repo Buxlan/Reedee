@@ -22,7 +22,7 @@ class EventDetailTableFooterView: UIView {
                                                  with: Asset.accent0.color).withRenderingMode(.alwaysTemplate)
         view.tintColor = Asset.other0.color
         view.backgroundColor = Asset.other2.color
-        view.contentMode = .scaleAspectFill
+        view.contentMode = .scaleAspectFit
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
         return view
@@ -76,7 +76,7 @@ class EventDetailTableFooterView: UIView {
     internal func configureConstraints() {
         let constraints: [NSLayoutConstraint] = [
             imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            imageView.widthAnchor.constraint(equalToConstant: frame.height),
+            imageView.widthAnchor.constraint(equalTo: self.heightAnchor),
             imageView.topAnchor.constraint(equalTo: self.topAnchor),
             imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
             imageView.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor),

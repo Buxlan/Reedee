@@ -66,6 +66,9 @@
 "News.tableViewNewsSectionTitle" = "Новости";
 "News.tableViewComingSectionTitle" = "Предстоящие мероприятия";
 /* Events */
+"Events.addEventTitle" = "Редактирование новости";
+"Events.editEventTitlePlaceholder" = "Заголовок новости";
+"Events.editEventTextPlaceholder" = "Текст новости";
 "Events.eventsTabBarItemTitle" = "Мероприятия";
 "Events.eventsTitle" = "Мероприятия";
 "Events.defaultActionTitle" = "Подробнее";

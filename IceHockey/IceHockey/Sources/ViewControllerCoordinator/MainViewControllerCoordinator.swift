@@ -16,7 +16,7 @@ class MainViewControllerCoordinator: ViewControllerCoordinator {
     }
     
     func start() {
-        let vc = HomeViewController()
+        let vc = MainTabBarViewController()
         navigationController.pushViewController(vc, animated: false)
     }
 }

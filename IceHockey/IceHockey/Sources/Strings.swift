@@ -78,8 +78,14 @@ internal enum L10n {
   }
 
   internal enum Events {
+    /// Editing event
+    internal static let addEventTitle = L10n.tr("Localizable", "Events.addEventTitle")
     /// More
     internal static let defaultActionTitle = L10n.tr("Localizable", "Events.defaultActionTitle")
+    /// Enter text
+    internal static let editEventTextPlaceholder = L10n.tr("Localizable", "Events.editEventTextPlaceholder")
+    /// Enter title
+    internal static let editEventTitlePlaceholder = L10n.tr("Localizable", "Events.editEventTitlePlaceholder")
     /// Events
     internal static let tabBarItemTitle = L10n.tr("Localizable", "Events.tabBarItemTitle")
     /// Events

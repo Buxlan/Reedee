@@ -56,7 +56,7 @@ class EventTableCell: UITableViewCell {
         view.tintColor = Asset.textColor.color
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        view.numberOfLines = 2
+        view.numberOfLines = 3
         view.textAlignment = .left
         view.font = .bxBody
         return view

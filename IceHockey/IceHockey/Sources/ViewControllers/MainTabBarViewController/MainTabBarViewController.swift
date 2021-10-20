@@ -18,6 +18,11 @@ class MainTabBarViewController: UITabBarController {
     private let appController = AppController.shared
         
     // MARK: - Init
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)        
     }

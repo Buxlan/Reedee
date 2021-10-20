@@ -14,12 +14,12 @@ class EventDetailViewModel: NSObject {
     var dataSource: SportEvent? {
         didSet {
             if let data = dataSource {
-                tableItems = [EventPhotoTableViewCellConfigurator(data: data.imageNames),
-                              EventDetailUsefulButtonsTableViewCellConfigurator(data: data),
-                              EventDetailTitleTableViewCellConfigurator(data: data),
-                              EventDetailDescriptionTableViewCellConfigurator(data: data),
-                              EventDetailBoldTextTableViewCellConfigurator(data: data),
-                              EventDetailCopyrightTableViewCellConfigurator(data: SportTeam.current)
+                tableItems = [EventPhotoCellConfigurator(data: data.imageNames),
+                              EventDetailUsefulButtonsCellConfigurator(data: data),
+                              EventDetailTitleCellConfigurator(data: data),
+                              EventDetailDescriptionCellConfigurator(data: data),
+                              EventDetailBoldTextCellConfigurator(data: data),
+                              EventDetailCopyrightCellConfigurator(data: SportTeam.current)
                 ]
                 delegate?.reloadData()
             }

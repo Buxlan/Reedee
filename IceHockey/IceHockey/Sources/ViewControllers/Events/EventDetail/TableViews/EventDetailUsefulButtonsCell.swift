@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EventDetailUsefulButtonsTableViewCell: UITableViewCell {
+class EventDetailUsefulButtonsCell: UITableViewCell {
     
     // MARK: - Properties
     
@@ -128,7 +128,7 @@ class EventDetailUsefulButtonsTableViewCell: UITableViewCell {
 }
 
 // MARK: - Control Handlers
-extension EventDetailUsefulButtonsTableViewCell {
+extension EventDetailUsefulButtonsCell {
     
     @objc
     private func shareButtonTapped() {
@@ -145,7 +145,7 @@ extension EventDetailUsefulButtonsTableViewCell {
 }
 
 // MARK: - ConfigurableCell extension
-extension EventDetailUsefulButtonsTableViewCell: ConfigurableCell {
+extension EventDetailUsefulButtonsCell: ConfigurableCell {
         
     typealias DataType = SportEvent
     func configure(with data: DataType) {

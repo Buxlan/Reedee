@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EventDetailTitleTableViewCell: UITableViewCell {
+class EventDetailTitleCell: UITableViewCell {
     
     // MARK: - Properties
     
@@ -61,7 +61,7 @@ class EventDetailTitleTableViewCell: UITableViewCell {
 }
 
 // MARK: - ConfigurableCell extension
-extension EventDetailTitleTableViewCell: ConfigurableCell {
+extension EventDetailTitleCell: ConfigurableCell {
         
     typealias DataType = SportEvent
     func configure(with data: DataType) {

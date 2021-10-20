@@ -73,24 +73,30 @@ struct TableViewHeaderConfigurator<CellType: SizeableConfigurableCell,
 //                                                           SportEvent>
 
 // MARK: - Event detail configurators
-typealias EventPhotoTableViewCellConfigurator = TableViewCellConfigurator<EventDetailPhotoTableCell,
-                                                                          [String]>
+typealias EventPhotoCellConfigurator = TableViewCellConfigurator<EventDetailPhotoTableCell,
+                                                                 [String]>
 typealias EventDetailPhotoCollectionCellConfigurator = CollectionViewCellConfigurator<EventDetailPhotoCollectionViewCell,
                                                                                       String>
-typealias EventDetailUsefulButtonsTableViewCellConfigurator = TableViewCellConfigurator<EventDetailUsefulButtonsTableViewCell,
-                                                                                        SportEvent>
-typealias EventDetailTitleTableViewCellConfigurator = TableViewCellConfigurator<EventDetailTitleTableViewCell,
-                                                                                SportEvent>
-typealias EventDetailDescriptionTableViewCellConfigurator = TableViewCellConfigurator<EventDetailDescriptionTableViewCell,
-                                                                                      SportEvent>
-typealias EventDetailBoldTextTableViewCellConfigurator = TableViewCellConfigurator<EventDetailBoldTextTableViewCell,
-                                                                                   SportEvent>
-typealias EventDetailCopyrightTableViewCellConfigurator = TableViewCellConfigurator<EventDetailCopyrightTableViewCell,
-                                                                                    SportTeam>
+typealias EventDetailUsefulButtonsCellConfigurator = TableViewCellConfigurator<EventDetailUsefulButtonsCell,
+                                                                               SportEvent>
+typealias EventDetailTitleCellConfigurator = TableViewCellConfigurator<EventDetailTitleCell,
+                                                                       SportEvent>
+typealias EventDetailDescriptionCellConfigurator = TableViewCellConfigurator<EventDetailDescriptionCell,
+                                                                             SportEvent>
+typealias EventDetailBoldTextCellConfigurator = TableViewCellConfigurator<EventDetailBoldViewCell,
+                                                                          SportEvent>
+typealias EventDetailCopyrightCellConfigurator = TableViewCellConfigurator<EventDetailCopyrightCell,
+                                                                           SportTeam>
+
+// MARK: - Event detail configurators
+typealias EditEventTitleCellConfigurator = TableViewCellConfigurator<EditEventTitleCell,
+                                                                     String?>
+typealias EditEventTitleTextFieldCellConfigurator = TableViewCellConfigurator<EditEventTitleTextFieldCell,
+                                                                              String?>
 
 // MARK: - Actions configurators
-typealias ActionTableViewCellConfigurator = TableViewCellConfigurator<ActionsTableCell,
-                                                                      QuickAction>
+typealias ActionCellConfigurator = TableViewCellConfigurator<ActionsTableCell,
+                                                             QuickAction>
 
 typealias ComingEventCellConfigurator = TableViewCellConfigurator<ComingEventTableCell,
                                                                   SportEvent>

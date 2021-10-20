@@ -10,7 +10,7 @@ import UIKit
 class ContactsViewController: UIViewController {
 
     // MARK: - Properties
-    let viewModel = EventsViewModel()
+    let viewModel = ContactsViewModel()
     
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
@@ -108,8 +108,7 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
         let item = viewModel.items[indexPath.row]
                 
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell",
-                                                 for: indexPath)
-        
+                                                 for: indexPath)        
         configure(cell: cell, item: item)
         
         return cell

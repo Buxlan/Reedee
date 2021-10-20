@@ -66,6 +66,9 @@
 "News.tableViewNewsSectionTitle" = "News";
 "News.tableViewComingSectionTitle" = "Coming events";
 /* Events */
+"Events.addEventTitle" = "Editing event";
+"Events.editEventTitlePlaceholder" = "Enter title";
+"Events.editEventTextPlaceholder" = "Enter text";
 "Events.tabBarItemTitle" = "Events";
 "Events.title" = "Events";
 "Events.defaultActionTitle" = "More";

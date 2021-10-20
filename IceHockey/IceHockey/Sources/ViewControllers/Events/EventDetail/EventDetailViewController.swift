@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FirebaseDatabase
 
 class EventDetailViewController: UIViewController, InputData {
     
@@ -47,16 +46,16 @@ class EventDetailViewController: UIViewController, InputData {
 //        view.estimatedRowHeight = 60
         view.register(EventDetailPhotoTableCell.self,
                       forCellReuseIdentifier: EventDetailPhotoTableCell.reuseIdentifier)
-        view.register(EventDetailUsefulButtonsTableViewCell.self,
-                      forCellReuseIdentifier: EventDetailUsefulButtonsTableViewCell.reuseIdentifier)
-        view.register(EventDetailDescriptionTableViewCell.self,
-                      forCellReuseIdentifier: EventDetailDescriptionTableViewCell.reuseIdentifier)
-        view.register(EventDetailBoldTextTableViewCell.self,
-                      forCellReuseIdentifier: EventDetailBoldTextTableViewCell.reuseIdentifier)
-        view.register(EventDetailTitleTableViewCell.self,
-                      forCellReuseIdentifier: EventDetailTitleTableViewCell.reuseIdentifier)
-        view.register(EventDetailCopyrightTableViewCell.self,
-                      forCellReuseIdentifier: EventDetailCopyrightTableViewCell.reuseIdentifier)
+        view.register(EventDetailUsefulButtonsCell.self,
+                      forCellReuseIdentifier: EventDetailUsefulButtonsCell.reuseIdentifier)
+        view.register(EventDetailDescriptionCell.self,
+                      forCellReuseIdentifier: EventDetailDescriptionCell.reuseIdentifier)
+        view.register(EventDetailBoldViewCell.self,
+                      forCellReuseIdentifier: EventDetailBoldViewCell.reuseIdentifier)
+        view.register(EventDetailTitleCell.self,
+                      forCellReuseIdentifier: EventDetailTitleCell.reuseIdentifier)
+        view.register(EventDetailCopyrightCell.self,
+                      forCellReuseIdentifier: EventDetailCopyrightCell.reuseIdentifier)
                         
 //        view.tableHeaderView = titleView
         view.tableFooterView = tableFooterView
