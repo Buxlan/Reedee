@@ -16,8 +16,8 @@ class EventDetailPhotoCollectionViewCell: UICollectionViewCell, ConfigurableCell
     typealias DataType = String
     
     internal var isInterfaceConfigured: Bool = false
-    let imageAspectRate: CGFloat = 1.77
-    let imageHeight: CGFloat = 160
+    let imageAspectRate: CGFloat = 1
+    let imageHeight: CGFloat = UIScreen.main.bounds.width
     
     private lazy var roundedView: UIView = {
         let cornerRadius: CGFloat = 24.0
@@ -52,7 +52,7 @@ class EventDetailPhotoCollectionViewCell: UICollectionViewCell, ConfigurableCell
         view.contentMode = .scaleAspectFill
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
-        view.image = Asset.camera.image.resizeImage(to: imageHeight, aspectRatio: .current, with: .clear)
+//        view.image = Asset.camera.image.resizeImage(to: imageHeight, aspectRatio: .current, with: .clear)
         return view
     }()
     private lazy var placeholderImage: UIImage = {
@@ -69,9 +69,9 @@ class EventDetailPhotoCollectionViewCell: UICollectionViewCell, ConfigurableCell
 //        backgroundView = backView
 //        contentView.addSubview(roundedView)
         
-        contentView.addSubview(shadowView)
+//        contentView.addSubview(shadowView)
         contentView.addSubview(dataImageView)
-        contentView.addSubview(bottomBackgroundView)
+//        contentView.addSubview(bottomBackgroundView)
         configureConstraints()
         isInterfaceConfigured = true
     }
@@ -83,19 +83,19 @@ class EventDetailPhotoCollectionViewCell: UICollectionViewCell, ConfigurableCell
             dataImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             dataImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
 //            dataImageView.heightAnchor.constraint(equalToConstant: imageHeight),
-            dataImageView.heightAnchor.constraint(equalTo: dataImageView.widthAnchor, multiplier: 0.7),
-            dataImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+//            dataImageView.heightAnchor.constraint(equalToConstant: 300),
+            dataImageView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor)
 
-            bottomBackgroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            bottomBackgroundView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            bottomBackgroundView.topAnchor.constraint(equalTo: dataImageView.bottomAnchor),
-            bottomBackgroundView.heightAnchor.constraint(equalToConstant: 40),
-            bottomBackgroundView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor),
+//            bottomBackgroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+//            bottomBackgroundView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+//            bottomBackgroundView.topAnchor.constraint(equalTo: dataImageView.bottomAnchor),
+//            bottomBackgroundView.heightAnchor.constraint(equalToConstant: 40),
+//            bottomBackgroundView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor),
 
-            shadowView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            shadowView.topAnchor.constraint(equalTo: bottomBackgroundView.topAnchor),
-            shadowView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            shadowView.heightAnchor.constraint(equalTo: bottomBackgroundView.heightAnchor)
+//            shadowView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+//            shadowView.topAnchor.constraint(equalTo: bottomBackgroundView.topAnchor),
+//            shadowView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+//            shadowView.heightAnchor.constraint(equalTo: bottomBackgroundView.heightAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
     }
@@ -109,4 +109,3 @@ class EventDetailPhotoCollectionViewCell: UICollectionViewCell, ConfigurableCell
         }
     }
 }
-

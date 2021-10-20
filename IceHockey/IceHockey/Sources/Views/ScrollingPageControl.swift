@@ -47,7 +47,7 @@ class ScrollingPageControl: UIView {
     var dotColor: UIColor = Asset.other1.color
     var selectedColor: UIColor = Asset.other0.color
     
-    var dotSize: CGFloat = 6 {
+    var dotSize: CGFloat = 9 {
         didSet {
             dotSize = max(1, dotSize)
             dotViews.forEach {
@@ -57,7 +57,7 @@ class ScrollingPageControl: UIView {
             updatePositions()
         }
     }
-    var spacing: CGFloat = 4 {
+    var spacing: CGFloat = 6 {
         didSet {
             spacing = max(1, spacing)
             updatePositions()

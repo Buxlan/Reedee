@@ -1,5 +1,5 @@
 //
-//  PinnedEventsLayout.swift
+//  QuickActionsCollectionLayout.swift
 //  IceHockey
 //
 //  Created by  Buxlan on 9/20/21.

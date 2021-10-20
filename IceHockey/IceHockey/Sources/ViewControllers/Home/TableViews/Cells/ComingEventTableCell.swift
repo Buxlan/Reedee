@@ -116,10 +116,6 @@ class ComingEventTableCell: UITableViewCell, ConfigurableCell {
         typeLabel.text = data.type.description.uppercased()
     }
     
-    func setImage(image: UIImage?) {
-        dataImageView.image = image
-    }
-    
     func configureUI() {
         if isInterfaceConfigured { return }
         contentView.backgroundColor = Asset.other3.color

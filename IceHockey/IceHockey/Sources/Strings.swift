@@ -243,7 +243,7 @@ internal enum L10n {
   }
 
   internal enum Team {
-    /// Red bears
+    /// Red Bears Hockey Team from Saint-Petersburg
     internal static let title = L10n.tr("Localizable", "Team.title")
   }
 

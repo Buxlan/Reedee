@@ -99,6 +99,7 @@ internal enum Asset {
   internal static let event7 = ImageAsset(name: "event7")
   internal static let login = ImageAsset(name: "login")
   internal static let logo = ImageAsset(name: "logo")
+  internal static let logoRedBGColor = ImageAsset(name: "logoRedBGColor")
   internal static let onboarding1 = ImageAsset(name: "onboarding1")
   internal static let onboarding2 = ImageAsset(name: "onboarding2")
   internal static let onboarding3 = ImageAsset(name: "onboarding3")

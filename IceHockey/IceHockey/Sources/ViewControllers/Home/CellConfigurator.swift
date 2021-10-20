@@ -69,18 +69,33 @@ struct TableViewHeaderConfigurator<CellType: SizeableConfigurableCell,
 }
 
 // MARK: - Cells
-typealias CommandTableCellConfigurator = TableViewCellConfigurator<ActionsTableCell,
-                                                                   QuickAction>
 //typealias NewsCellConfigurator = TableViewCellConfigurator<EventTableCell,
 //                                                           SportEvent>
+
+// MARK: - Event detail configurators
 typealias EventPhotoTableViewCellConfigurator = TableViewCellConfigurator<EventDetailPhotoTableCell,
                                                                           [String]>
+typealias EventDetailPhotoCollectionCellConfigurator = CollectionViewCellConfigurator<EventDetailPhotoCollectionViewCell,
+                                                                                      String>
+typealias EventDetailUsefulButtonsTableViewCellConfigurator = TableViewCellConfigurator<EventDetailUsefulButtonsTableViewCell,
+                                                                                        SportEvent>
+typealias EventDetailTitleTableViewCellConfigurator = TableViewCellConfigurator<EventDetailTitleTableViewCell,
+                                                                                SportEvent>
+typealias EventDetailDescriptionTableViewCellConfigurator = TableViewCellConfigurator<EventDetailDescriptionTableViewCell,
+                                                                                      SportEvent>
+typealias EventDetailBoldTextTableViewCellConfigurator = TableViewCellConfigurator<EventDetailBoldTextTableViewCell,
+                                                                                   SportEvent>
+typealias EventDetailCopyrightTableViewCellConfigurator = TableViewCellConfigurator<EventDetailCopyrightTableViewCell,
+                                                                                    SportTeam>
+
+// MARK: - Actions configurators
+typealias ActionTableViewCellConfigurator = TableViewCellConfigurator<ActionsTableCell,
+                                                                      QuickAction>
+
 typealias ComingEventCellConfigurator = TableViewCellConfigurator<ComingEventTableCell,
                                                                   SportEvent>
 typealias CommandCollectionCellConfigurator = CollectionViewCellConfigurator<ActionsCollectionCell,
                                                                              QuickAction>
-typealias EventDetailPhotoCollectionCellConfigurator = CollectionViewCellConfigurator<EventDetailPhotoCollectionViewCell,
-                                                                                      String>
 // Not using
 typealias PhotoEventCollectionCellConfigurator = CollectionViewCellConfigurator<PhotoGalleryCollectionCell,
                                                                                 SportEvent>

@@ -28,9 +28,9 @@ extension CellUpdatable {
 class HomeViewController: UIViewController {
     
     // MARK: - Properties
-    typealias DataType = SportTeam
     var viewModel = HomeViewModel()
     var actionProxy: CellActionProxy = .init()
+    var team = SportTeam.current
             
     private lazy var titleView: UIView = {
         let screenWidth = UIScreen.main.bounds.size.width
@@ -40,6 +40,13 @@ class HomeViewController: UIViewController {
         let view = UIImageView(image: image)
         view.contentMode = .scaleAspectFit
 //        view.autoresizingMask = [.flexibleWidth]
+        return view
+    }()
+    
+    private lazy var tableFooterView: EventDetailTableFooterView = {
+        let frame = CGRect(x: 0, y: 0, width: 0, height: 150)
+        let view = EventDetailTableFooterView(frame: frame)
+        view.configure(with: team)
         return view
     }()
     
@@ -73,7 +80,7 @@ class HomeViewController: UIViewController {
                       forCellReuseIdentifier: ComingEventsSectionHeaderView.reuseIdentifier)
                         
 //        view.tableHeaderView = titleView
-        view.tableFooterView = UIView()
+        view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = false
         return view
     }()
@@ -115,6 +122,7 @@ class HomeViewController: UIViewController {
     // MARK: - Hepler functions
     
     private func configureUI() {
+        view.backgroundColor = Asset.accent1.color
         view.addSubview(tableView)
         navigationController?.navigationItem.titleView = titleView
     }
@@ -190,14 +198,10 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let event = viewModel.item(at: indexPath)
         let vc = EventDetailViewController()
-        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .pageSheet
         vc.inputData = event
-        navigationController?.pushViewController(vc, animated: true)
+        present(vc, animated: true, completion: nil)
         tableView.deselectRow(at: indexPath, animated: true)
-//        let config = viewModel.items[indexPath.row]
-//        let cell = tableView.dequeueReusableCell(withIdentifier: type(of: config).reuseIdentifier,
-//                                                 for: indexPath)
-//        actionProxy.invoke(action: .didSelect, cell: cell, config: config)
     }
 }
 

@@ -14,15 +14,26 @@ class EventDetailViewModel: NSObject {
     var dataSource: SportEvent? {
         didSet {
             if let data = dataSource {
-                tableItems = [EventPhotoTableViewCellConfigurator(data: data.imageNames)]
+                tableItems = [EventPhotoTableViewCellConfigurator(data: data.imageNames),
+                              EventDetailUsefulButtonsTableViewCellConfigurator(data: data),
+                              EventDetailTitleTableViewCellConfigurator(data: data),
+                              EventDetailDescriptionTableViewCellConfigurator(data: data),
+                              EventDetailBoldTextTableViewCellConfigurator(data: data),
+                              EventDetailCopyrightTableViewCellConfigurator(data: SportTeam.current)
+                ]
                 delegate?.reloadData()
             }
         }
     }
-    weak var delegate: CellUpdatable?
+    private weak var delegate: CellUpdatable?
     private var tableItems: [CellConfigurator] = []
     
     // MARK: Lifecircle
+    
+    init(delegate: CellUpdatable) {
+        super.init()
+        self.delegate = delegate
+    }    
         
     // MARK: - Hepler functions
 }

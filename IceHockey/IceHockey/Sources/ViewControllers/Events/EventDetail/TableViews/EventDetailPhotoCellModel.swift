@@ -30,7 +30,7 @@ struct EventDetailPhotoCellModel {
     // MARK: - Helper functions
     
     func item(at indexPath: IndexPath) -> CellConfigurator {
-        guard indexPath.row > 0,
+        guard indexPath.row >= 0,
               indexPath.row < dataSource.count else {
             fatalError("Wrong index path")
         }

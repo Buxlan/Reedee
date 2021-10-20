@@ -12,6 +12,7 @@ struct SportEvent: Hashable {
     var uid: String
     var title: String
     var text: String
+    var boldText: String
     var mainImageName: String
     var actionTitle: String?
     var viewsCount: Int?
@@ -22,6 +23,7 @@ struct SportEvent: Hashable {
     init(uid: String,
          title: String,
          text: String,
+         boldText: String,
          imagePath: String,
          imageURL: String? = nil,
          actionTitle: String? = nil,
@@ -35,6 +37,7 @@ struct SportEvent: Hashable {
         self.actionTitle = actionTitle
         self.date = date
         self.type = type
+        self.boldText = boldText
     }
     
     internal init() {
@@ -47,12 +50,14 @@ struct SportEvent: Hashable {
         self.viewsCount = Int.random(in: 1...10000)
         self.date = nil
         self.type = .match
+        self.boldText = ""
     }
     
     init?(snapshot: DataSnapshot) {
         guard let dict = snapshot.value as? [String: Any] else { return nil }
         guard let uid = dict["uid"] as? String else { return nil }
         guard let text = dict["text"] as? String else { return nil }
+        guard let boldText = dict["boldText"] as? String else { return nil }
         guard let title = dict["title"] as? String else { return nil }
         guard let rawType = dict["type"] as? Int,
               let type = SportEventType(rawValue: rawType) else { return nil }
@@ -63,8 +68,9 @@ struct SportEvent: Hashable {
         self.title = title
         self.date = Date(timeIntervalSince1970: TimeInterval(dateInterval))
         self.mainImageName = dict["imagePath"] as? String ?? ""
-        self.imageNames = dict["imageNames"] as? [String] ?? []
+        self.imageNames = dict["images"] as? [String] ?? []
         self.type = type
+        self.boldText = boldText
     }
     
 }

@@ -32,5 +32,9 @@ function_body_length:
   - 100 # error
   
 type_name:
-  - 50 # warning
-  - 70 # error
+    min_length: 2
+    max_length: 50
+#  warning: 50
+#  error: 70
+#  - 50 # warning
+#  - 70 # error

@@ -97,7 +97,7 @@
 "Staff.player" = "Ф.И.О.";
 "Staff.playerDescription" = "Дополнительные сведения";
 /* Team */
-"Team.title" = "Красные медведи";
+"Team.title" = "Хоккейный клуб «Красные медведи» (Санкт-Петербург)";
 /* Actions */
 "Actions.signUpToClub" = "Записаться в клуб";
 "Actions.showTrainingSchedule" = "Расписание занятий";

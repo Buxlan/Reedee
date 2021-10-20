@@ -17,8 +17,18 @@ class EventDetailViewController: UIViewController, InputData {
             viewModel.dataSource = inputData
         }
     }
-    var viewModel = EventDetailViewModel()
+    private lazy var viewModel: EventDetailViewModel = {
+        return EventDetailViewModel(delegate: self)
+    }()
     var actionProxy: CellActionProxy = .init()
+    private var swipeDirection: UISwipeGestureRecognizer.Direction?
+    
+    private lazy var tableFooterView: EventDetailTableFooterView = {
+        let frame = CGRect(x: 0, y: 0, width: 0, height: 150)
+        let view = EventDetailTableFooterView(frame: frame)
+        view.configure(with: SportTeam.current)
+        return view
+    }()
     
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
@@ -35,23 +45,23 @@ class EventDetailViewController: UIViewController, InputData {
         view.estimatedRowHeight = 300
         view.rowHeight = UITableView.automaticDimension
 //        view.estimatedRowHeight = 60
-        view.register(ActionsTableCell.self,
-                      forCellReuseIdentifier: ActionsTableCell.reuseIdentifier)
-        view.register(EventTableCell.self,
-                      forCellReuseIdentifier: EventTableCell.reuseIdentifier)
-        view.register(ComingEventTableCell.self,
-                      forCellReuseIdentifier: ComingEventTableCell.reuseIdentifier)
-        view.register(PhotoGalleryTableCell.self,
-                      forCellReuseIdentifier: ComingEventTableCell.reuseIdentifier)
-        
-        view.register(EventsSectionHeaderView.self,
-                      forCellReuseIdentifier: EventsSectionHeaderView.reuseIdentifier)
-        view.register(ComingEventsSectionHeaderView.self,
-                      forCellReuseIdentifier: ComingEventsSectionHeaderView.reuseIdentifier)
+        view.register(EventDetailPhotoTableCell.self,
+                      forCellReuseIdentifier: EventDetailPhotoTableCell.reuseIdentifier)
+        view.register(EventDetailUsefulButtonsTableViewCell.self,
+                      forCellReuseIdentifier: EventDetailUsefulButtonsTableViewCell.reuseIdentifier)
+        view.register(EventDetailDescriptionTableViewCell.self,
+                      forCellReuseIdentifier: EventDetailDescriptionTableViewCell.reuseIdentifier)
+        view.register(EventDetailBoldTextTableViewCell.self,
+                      forCellReuseIdentifier: EventDetailBoldTextTableViewCell.reuseIdentifier)
+        view.register(EventDetailTitleTableViewCell.self,
+                      forCellReuseIdentifier: EventDetailTitleTableViewCell.reuseIdentifier)
+        view.register(EventDetailCopyrightTableViewCell.self,
+                      forCellReuseIdentifier: EventDetailCopyrightTableViewCell.reuseIdentifier)
                         
 //        view.tableHeaderView = titleView
-        view.tableFooterView = UIView()
+        view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = false
+        
         return view
     }()
             
@@ -72,7 +82,7 @@ class EventDetailViewController: UIViewController, InputData {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        configureConstraints()
+        configureRecognizers()
 //        setupActionHandlers()
     }
     
@@ -91,52 +101,46 @@ class EventDetailViewController: UIViewController, InputData {
     
     // MARK: - Hepler functions
     
-    private func configureUI() {        
+    private func configureUI() {
+        view.addSubview(tableView)
+        configureConstraints()
     }
     
     private func configureConstraints() {
-//        let constraints: [NSLayoutConstraint] = [
-//            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            tableView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-//            tableView.widthAnchor.constraint(equalTo: view.widthAnchor),
-//            tableView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor)
-//        ]
-//        NSLayoutConstraint.activate(constraints)
+        let constraints: [NSLayoutConstraint] = [
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            tableView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            tableView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
     }
     
     private func configureTabBarItem() {
-        tabBarItem.title = L10n.Squads.tabBarItemTitle
-        let image = Asset.homeFill.image.resizeImage(to: 24,
-                                                    aspectRatio: .current,
-                                                    with: view.tintColor)
-        tabBarItem.image = image
     }
     
     private func configureBars() {
-        tabBarController?.tabBar.isHidden = false
-        configureNavigationBar()
     }
     
-    private func configureNavigationBar() {
-        title = L10n.News.navigationBarTitle
-        navigationController?.setToolbarHidden(true, animated: false)
-        navigationController?.setNavigationBarHidden(false, animated: false)
-//        navigationItem.backBarButtonItem?.tintColor = .systemYellow
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.barTintColor = Asset.accent1.color
-        let titleTextAttributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.foregroundColor: Asset.other3.color
-        ]
-        navigationController?.navigationBar.titleTextAttributes = titleTextAttributes
-        navigationController?.navigationBar.largeTitleTextAttributes = titleTextAttributes
+    private func configureViewModel() {        
     }
     
-    private func configureViewModel() {
+    private func configureRecognizers() {
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
+        rightSwipe.direction = .right
+        self.view.addGestureRecognizer(rightSwipe)
     }
 }
 
 extension EventDetailViewController: UITableViewDelegate {
        
+}
+
+extension  EventDetailViewController {
+    @objc
+    private func handleSwipes(_ sender: UISwipeGestureRecognizer) {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 extension EventDetailViewController: CellUpdatable {

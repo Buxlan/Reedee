@@ -156,12 +156,3 @@ extension ActionsTableCell: UICollectionViewDelegate, UICollectionViewDataSource
     }
 
 }
-
-extension ActionsTableCell: EventCollectionViewLayoutDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, getSizeAtIndexPath indexPath: IndexPath) -> CGSize {
-        let width = collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right)
-        return .init(width: width, height: collectionView.bounds.height)
-    }
-    
-}

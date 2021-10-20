@@ -10,6 +10,7 @@ import UIKit
 class EventDetailPhotoTableCell: UITableViewCell, CollectionViewDelegate {
     
     // MARK: - Properties
+    
     typealias DataType = [String]
     var isInterfaceConfigured = false
     var imageAspectRate: CGFloat = 1
@@ -18,7 +19,7 @@ class EventDetailPhotoTableCell: UITableViewCell, CollectionViewDelegate {
     private var viewModel = EventDetailPhotoCellModel()
     
     private lazy var collectionView: PhotoCollectionView = {
-        let layout = EventCollectionViewLayout()
+        let layout = EventDetailPhotoCollectionViewLayout()
         layout.delegate = self
         let view = PhotoCollectionView(frame: .zero, collectionViewLayout: layout)
         view.accessibilityIdentifier = "collectionView (inside table cell)"
@@ -34,12 +35,12 @@ class EventDetailPhotoTableCell: UITableViewCell, CollectionViewDelegate {
         view.delegate = self
         view.dataSource = self
 
-        view.layer.shadowRadius = 10.0
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOffset = CGSize()
-        view.layer.shadowOpacity = 0.8
-        view.layer.shouldRasterize = true
-        view.layer.rasterizationScale = UIScreen.main.scale
+//        view.layer.shadowRadius = 10.0
+//        view.layer.shadowColor = UIColor.black.cgColor
+//        view.layer.shadowOffset = CGSize()
+//        view.layer.shadowOpacity = 0.8
+//        view.layer.shouldRasterize = true
+//        view.layer.rasterizationScale = UIScreen.main.scale
         
         let gesture = UILongPressGestureRecognizer(target: self, action: #selector(collectionViewLongPressHandle))
         gesture.minimumPressDuration = 1.0
@@ -50,19 +51,22 @@ class EventDetailPhotoTableCell: UITableViewCell, CollectionViewDelegate {
     
     private lazy var pageControl: ScrollingPageControl = {
         let view = ScrollingPageControl()
-        let numberOfPages = collectionView.numberOfItems(inSection: 0)
-        view.numberOfPages = numberOfPages
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     // MARK: - Lifecircle
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        isInterfaceConfigured = false
     }
     
     // MARK: - Helper functions
@@ -84,9 +88,9 @@ class EventDetailPhotoTableCell: UITableViewCell, CollectionViewDelegate {
             collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             collectionView.topAnchor.constraint(equalTo: contentView.topAnchor),
             collectionView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-//            collectionView.heightAnchor.constraint(equalTo: contentView.heightAnchor),
+            collectionView.heightAnchor.constraint(equalTo: collectionView.widthAnchor),
 //            collectionView.heightAnchor.constraint(equalToConstant: collectionViewHeight),
-            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            collectionView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor),
             
             pageControl.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             pageControl.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
@@ -131,6 +135,7 @@ extension EventDetailPhotoTableCell: ConfigurableCell {
     func configure(with data: DataType) {
         configureUI()
         viewModel.images = data
+        pageControl.numberOfPages = data.count
         collectionView.reloadData()
         startTimer()
     }
@@ -173,8 +178,8 @@ extension EventDetailPhotoTableCell: UICollectionViewDelegate, UICollectionViewD
 extension EventDetailPhotoTableCell: EventCollectionViewLayoutDelegate {
     
     func collectionView(_ collectionView: UICollectionView, getSizeAtIndexPath indexPath: IndexPath) -> CGSize {
-        let width = collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right)
-        return .init(width: width, height: collectionView.bounds.height)
+        let width = UIScreen.main.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right)
+        return .init(width: width, height: width)
     }
     
 }
