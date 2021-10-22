@@ -178,7 +178,7 @@ extension EventTableCell: ConfigurableEventCell {
         typeLabel.textColor = data.type.textColor
         typeLabel.text = data.type.description.uppercased()
         
-        dataImageView.sd_setImage(with: data.imageStorageReference, placeholderImage: placeholderImage)
+        dataImageView.sd_setImage(with: data.mainImageStorageReference, placeholderImage: placeholderImage)
     }
     
 }

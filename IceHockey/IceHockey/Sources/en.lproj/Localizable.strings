@@ -78,6 +78,7 @@
 "Events.typeOther" = "Other";
 "Events.typePhoto" = "Photo";
 "Events.typeComingSoon" = "Soon";
+"Events.Save" = "Save";
 /* Contacts */
 "Contacts.tabBarItemTitle" = "About club";
 "Contacts.title" = "Our contacts";
@@ -108,3 +109,5 @@
 "Actions.contacts" = "Contacts";
 "Actions.action2" = "action2";
 "Actions.action3" = "action3";
+/* Other */
+"Other.done" = "Done";

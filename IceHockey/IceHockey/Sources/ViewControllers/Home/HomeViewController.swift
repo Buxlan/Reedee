@@ -8,12 +8,6 @@
 import UIKit
 import FirebaseDatabase
 
-protocol CellUpdatable: class {
-    func configureCell(at indexPath: IndexPath, event: SportEvent) -> UITableViewCell
-    func configureCell(at indexPath: IndexPath, configurator: CellConfigurator) -> UITableViewCell
-    func reloadData()
-}
-
 extension CellUpdatable {
     func configureCell(at indexPath: IndexPath, event: SportEvent) -> UITableViewCell {
         return UITableViewCell()
@@ -135,8 +129,7 @@ class HomeViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             tableView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            tableView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor),
-            
+            tableView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor)            
 //            addEventButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
 //            addEventButton.widthAnchor.constraint(equalToConstant: 44),
 //            addEventButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -50),

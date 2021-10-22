@@ -9,7 +9,7 @@
 
 import UIKit
 
-class Utils: NSObject {
+struct Utils {
 
     static func log(_ text: String, object: Any?) {
         if let object = object {

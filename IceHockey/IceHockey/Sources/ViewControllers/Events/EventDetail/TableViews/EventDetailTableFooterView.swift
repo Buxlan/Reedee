@@ -9,9 +9,8 @@ import UIKit
 
 class EventDetailTableFooterView: UIView {
     
-    // MARK: - Properties
+    // MARK: - Properties    
     
-    static let reuseIdentifier: String = String(describing: self)
     var isInterfaceConfigured: Bool = false
     
     private lazy var imageView: UIImageView = {

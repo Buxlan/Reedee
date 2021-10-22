@@ -7,9 +7,7 @@
 import Firebase
 
 protocol FirebaseManagerInterface {
-    func configure()
-    var storageRootReference: StorageReference { get }
-    var databaseRootReference: DatabaseReference { get }
+    func configureFirebase()
 }
 
 struct FirebaseManager: FirebaseManagerInterface {
@@ -18,22 +16,14 @@ struct FirebaseManager: FirebaseManagerInterface {
     
     static let shared = FirebaseManager()
     
-    private let databaseUrl = "https://icehockey-40e64-default-rtdb.europe-west1.firebasedatabase.app"
-    private let storageUrl = "https://icehockey-40e64-default-rtdb.europe-west1.firebasedatabase.app"
-    
-    let storageRootReference: StorageReference
-    let databaseRootReference: DatabaseReference
+    let databaseManager = RealtimeDatabaseManager()
+    let storageManager = FirebaseStorageManager()
     
     // MARK: - Lifecircle
     
-    private init() {
-        storageRootReference = Storage.storage().reference()
-        databaseRootReference = Database.database(url: databaseUrl).reference()
-    }
-    
     // MARK: - Helper functions
     
-    func configure() {
+    func configureFirebase() {
         FirebaseApp.configure()
     }
 }

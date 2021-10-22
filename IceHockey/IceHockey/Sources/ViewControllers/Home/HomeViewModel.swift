@@ -24,9 +24,9 @@ class HomeViewModel {
         return delegate.configureCell(at: indexPath, event: event)
     }
     
-    private var databaseReference: DatabaseReference = FirebaseManager.shared.databaseRootReference
+    private var databaseReference: DatabaseReference = FirebaseManager.shared.databaseManager.root
     private var storageReference: StorageReference = {
-        FirebaseManager.shared.storageRootReference.child("events")
+        FirebaseManager.shared.storageManager.root.child("events")
     }()
     var databaseQuery: DatabaseQuery {
         databaseReference.child("events")

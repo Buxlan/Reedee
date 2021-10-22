@@ -1,26 +1,26 @@
 //
-//  EditEventTitleCell.swift
+//  EditEventBoldTextCell.swift
 //  IceHockey
 //
-//  Created by  Buxlan on 10/21/21.
+//  Created by  Buxlan on 10/22/21.
 //
 
 import UIKit
 
-class EditEventTitleCell: UITableViewCell {
+class EditEventBoldTextCell: UITableViewCell {
     
     // MARK: - Properties
+    typealias DataType = String?
+    typealias HandlerType = EditEventHandler
     
-    static let reuseIdentifier: String = String(describing: self)
     var isInterfaceConfigured: Bool = false
         
-    private lazy var titleLabel: UILabel = {
-        let view = UILabel()
-        view.numberOfLines = 2
-        view.text = L10n.Events.addEventTitle
-        view.textAlignment = .center
+    private lazy var eventTextField: UITextView = {
+        let view = UITextView()
+        view.textAlignment = .left
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .boldFont16
+        view.font = .boldFont14
+        view.autocorrectionType = .no
         return view
     }()
 
@@ -44,26 +44,30 @@ class EditEventTitleCell: UITableViewCell {
         if isInterfaceConfigured { return }
         contentView.backgroundColor = Asset.other3.color
         tintColor = Asset.other1.color
-        contentView.addSubview(titleLabel)
+        contentView.addSubview(eventTextField)
         configureConstraints()
         isInterfaceConfigured = true
     }
     
     internal func configureConstraints() {
         let constraints: [NSLayoutConstraint] = [
-            titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            titleLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor)
+            eventTextField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            eventTextField.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
+            eventTextField.topAnchor.constraint(equalTo: contentView.topAnchor),
+            eventTextField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            eventTextField.heightAnchor.constraint(equalToConstant: 200)
         ]
         NSLayoutConstraint.activate(constraints)
     }
     
 }
 
-extension EditEventTitleCell: ConfigurableCell {
-    typealias DataType = String?
-    func configure(with data: DataType = nil) {
+extension EditEventBoldTextCell: ConfigurableActionCell {
+    
+    func configure(with data: DataType = nil, handler: HandlerType) {
         configureUI()
+        eventTextField.text = data
+        eventTextField.delegate = handler
     }
+    
 }

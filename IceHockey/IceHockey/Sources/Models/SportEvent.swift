@@ -20,6 +20,8 @@ struct SportEvent: Hashable {
     var date: Date?
     var imageNames: [String] = []
     
+    var mainImage: UIImage?
+    
     init(uid: String,
          title: String,
          text: String,
@@ -77,14 +79,64 @@ struct SportEvent: Hashable {
 
 extension SportEvent {
     
-    var imageStorageReference: StorageReference {
-        let storageReference = FirebaseManager.shared.storageRootReference
+    var mainImageStorageReference: StorageReference {
+        let storageReference = FirebaseManager.shared.storageManager.root
         return storageReference.child("events/" + self.mainImageName)
     }
     
-//    static let empty = SportEvent()
+    var databaseReference: DatabaseReference {
+        let ref = FirebaseManager.shared.databaseManager.root.child("events")
+        return ref
+    }
     
+    var eventReference: DatabaseReference {
+        var ref: DatabaseReference
+        if isNew {
+            ref = databaseReference.childByAutoId()
+        } else {
+            ref = databaseReference.child(uid)
+        }
+        return ref
+    }
     
+    func checkProperties() -> Bool {
+        return true
+    }
+    
+    func save() -> String? {
+        if !checkProperties() {
+            print("Error. Properties are wrong")
+            return nil
+        }
+        let date = self.date ?? Date()
+        let interval = date.timeIntervalSince1970
+        let dict: [String: Any] = [
+            "uid": self.uid,
+            "title": self.title,
+            "text": self.text,
+            "boldText": self.boldText,
+            "mainImageName": self.mainImageName,
+            "actionTitle": self.actionTitle ?? "",
+            "viewsCount": self.viewsCount ?? 0,
+            "type": self.type.rawValue,
+            "date": Int(interval),
+            "imageNames": self.imageNames
+        ]
+        eventReference.setValue(dict) { (error, ref) in
+            if let error = error {
+                print(error)
+                return
+            }
+            print(ref)
+        }
+        return eventReference.key
+    }
+    
+    var isNew: Bool {
+        return self.uid.isEmpty
+    }
+    
+}
     
 //    var image: UIImage {
 //        let emptyImage = Asset.event0.image
@@ -99,8 +151,7 @@ extension SportEvent {
 //        }
 //        return image ?? emptyImage
 //    }
-    
-}
+
     
 //    static func pinnedEvents(team: SportTeam,
 //                             from: Int,

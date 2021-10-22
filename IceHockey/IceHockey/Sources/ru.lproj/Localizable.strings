@@ -78,6 +78,7 @@
 "Events.typeOther" = "Другое";
 "Events.typePhoto" = "Фото";
 "Events.typeComingSoon" = "Скоро";
+"Events.Save" = "Сохранить";
 /* Contacts */
 "Contacts.tabBarItemTitle" = "Контакты";
 "Contacts.title" = "Наши контакты";
@@ -108,3 +109,5 @@
 "Actions.contacts" = "Контакты";
 "Actions.action2" = "действие 2";
 "Actions.action3" = "действие 3";
+/* Other */
+"Other.done" = "Готово";

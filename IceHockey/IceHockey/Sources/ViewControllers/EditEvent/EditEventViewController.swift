@@ -19,11 +19,14 @@ class EditEventViewController: UIViewController {
     typealias DataType = SportEvent
     var data: DataType
     
-    private lazy var viewModel: EditEventViewModel = {
-        return EditEventViewModel(delegate: self)
+    private lazy var handler: EditEventHandler = {
+        EditEventHandler(delegate: self)
     }()
-    var actionProxy: CellActionProxy = .init()
+    private lazy var viewModel: EditEventViewModel = {
+        return EditEventViewModel(handler: handler)
+    }()
     private var swipeDirection: UISwipeGestureRecognizer.Direction?
+    private var keyboardManager = KeyboardAppearanceManager()
     
     private lazy var tableFooterView: EventDetailTableFooterView = {
         let frame = CGRect(x: 0, y: 0, width: 0, height: 150)
@@ -31,6 +34,7 @@ class EditEventViewController: UIViewController {
         view.configure(with: SportTeam.current)
         return view
     }()
+    private var imagePicker = UIImagePickerController()
     
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
@@ -43,12 +47,14 @@ class EditEventViewController: UIViewController {
         view.allowsSelectionDuringEditing = false
         view.allowsMultipleSelectionDuringEditing = false
         view.translatesAutoresizingMaskIntoConstraints = false
-//        view.rowHeight = UITableView.automaticDimension
         view.estimatedRowHeight = 300
         view.rowHeight = UITableView.automaticDimension
-//        view.estimatedRowHeight = 60
-        view.register(EditEventTitleCell.self,
-                      forCellReuseIdentifier: EditEventTitleCell.reuseIdentifier)
+        
+        EditEventTitleCellConfigurator.registerCell(tableView: view)
+        EditEventTitleTextFieldCellConfigurator.registerCell(tableView: view)
+        EditEventTextCellConfigurator.registerCell(tableView: view)
+        EditEventBoldTextCellConfigurator.registerCell(tableView: view)
+        EditEventSaveCellConfigurator.registerCell(tableView: view)
 
         view.tableFooterView = UIView()
         view.showsVerticalScrollIndicator = false
@@ -89,7 +95,7 @@ class EditEventViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureBars()
-        configureViewModel()
+        keyboardManager.register(scrollView: tableView)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -97,11 +103,13 @@ class EditEventViewController: UIViewController {
                                                  aspectRatio: .current,
                                                  with: view.tintColor)
         tabBarItem.image = image
+        keyboardManager.unregister()
     }
     
     // MARK: - Hepler functions
     
     private func configureUI() {
+        tableView.backgroundColor = Asset.other1.color
         view.addSubview(tableView)
         configureConstraints()
     }
@@ -144,14 +152,55 @@ extension  EditEventViewController {
     }
 }
 
-extension EditEventViewController: CellUpdatable {
+extension EditEventViewController: EditEventHandlerInterface {
+    
+    // MARK: - CellUpdatable
+    
     func configureCell(at indexPath: IndexPath, configurator: CellConfigurator) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: type(of: configurator).reuseIdentifier,
+        let reuseId = type(of: configurator).reuseIdentifier
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseId,
                                                  for: indexPath)
         configurator.configure(cell: cell)
         return cell
     }
+    
     func reloadData() {
         tableView.reloadData()
     }
+    
+    // MARK: - UITextFieldDelegate
+    
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        if reason != .committed {
+            return
+        }
+        viewModel.dataSource?.title = textField.text ?? ""
+    }
+    
+    // MARK: - UITextViewDelegate
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        viewModel.dataSource?.text = textView.text
+    }
+    
+    // MARK: - MediaPickerDelegate
+    
+    func makePhoto() {
+        ImagePickerManager().openCamera(self) { image in
+            print("image is \(image)")
+            self.viewModel.dataSource?.mainImage = image
+        }
+    }
+    
+    func openGallery() {
+        ImagePickerManager().openGallery(self) { image in
+            print("image is \(image)")
+            self.data.mainImage = image
+        }
+    }
+    
+    func save() {
+        viewModel.save()
+    }
+    
 }

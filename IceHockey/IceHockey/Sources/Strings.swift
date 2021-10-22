@@ -86,6 +86,8 @@ internal enum L10n {
     internal static let editEventTextPlaceholder = L10n.tr("Localizable", "Events.editEventTextPlaceholder")
     /// Enter title
     internal static let editEventTitlePlaceholder = L10n.tr("Localizable", "Events.editEventTitlePlaceholder")
+    /// Save
+    internal static let save = L10n.tr("Localizable", "Events.Save")
     /// Events
     internal static let tabBarItemTitle = L10n.tr("Localizable", "Events.tabBarItemTitle")
     /// Events
@@ -165,6 +167,11 @@ internal enum L10n {
       /// Skip
       internal static let skip = L10n.tr("Localizable", "Onboarding.Buttons.Skip")
     }
+  }
+
+  internal enum Other {
+    /// Done
+    internal static let done = L10n.tr("Localizable", "Other.done")
   }
 
   internal enum PlacesList {

@@ -10,8 +10,7 @@ import UIKit
 class EventDetailCopyrightCell: UITableViewCell {
     
     // MARK: - Properties
-    
-    static let reuseIdentifier: String = String(describing: self)
+        
     var isInterfaceConfigured: Bool = false
     
     private lazy var logoImageView: UIImageView = {

@@ -27,6 +27,18 @@ extension ConfigurableCell {
     static var reuseIdentifier: String { String(describing: Self.self) }
 }
 
+protocol ConfigurableActionCell {
+    static var reuseIdentifier: String { get }    
+    var isInterfaceConfigured: Bool { get set }
+        
+    associatedtype DataType
+    associatedtype HandlerType
+    func configure(with data: DataType, handler: HandlerType)
+}
+extension ConfigurableActionCell {
+    static var reuseIdentifier: String { String(describing: Self.self) }
+}
+
 protocol SizeableConfigurableCell {
     static var reuseIdentifier: String { get }
     var isInterfaceConfigured: Bool { get set }
