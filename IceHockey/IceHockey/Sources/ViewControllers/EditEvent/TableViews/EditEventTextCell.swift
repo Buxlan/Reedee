@@ -69,7 +69,7 @@ class EditEventTextCell: UITableViewCell {
             eventTextField.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
             eventTextField.topAnchor.constraint(equalTo: contentView.topAnchor),
             eventTextField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            eventTextField.heightAnchor.constraint(equalToConstant: 250)
+            eventTextField.heightAnchor.constraint(equalToConstant: 150)
         ]
         NSLayoutConstraint.activate(constraints)
     }

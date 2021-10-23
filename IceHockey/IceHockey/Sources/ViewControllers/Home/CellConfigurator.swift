@@ -125,11 +125,11 @@ typealias EditEventSaveCellConfigurator = ActionableTableViewCellConfigurator<Ed
 typealias ActionCellConfigurator = TableViewCellConfigurator<ActionsTableCell,
                                                              QuickAction>
 
-typealias ComingEventCellConfigurator = TableViewCellConfigurator<ComingEventTableCell,
-                                                                  SportEvent>
 typealias CommandCollectionCellConfigurator = CollectionViewCellConfigurator<ActionsCollectionCell,
                                                                              QuickAction>
 // Not using
+typealias ComingEventCellConfigurator = TableViewCellConfigurator<ComingEventTableCell,
+                                                                  SportEvent>
 typealias PhotoEventCollectionCellConfigurator = CollectionViewCellConfigurator<PhotoGalleryCollectionCell,
                                                                                 SportEvent>
 // MARK: - Headers

@@ -54,11 +54,10 @@ extension KeyboardAppearanceManager {
         NotificationCenter.default.removeObserver(self)
     }
     
-    private func keyboardState(for dictionary: [AnyHashable: Any], in view: UIView?) -> (KeyboardState, CGRect?) {
+    private func keyboardState(for dictionary: [AnyHashable: Any], in view: UIView) -> (KeyboardState, CGRect?) {
         
         guard var rectOld = dictionary[UIResponder.keyboardFrameBeginUserInfoKey] as? CGRect,
-              var rectNew = dictionary[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect,
-              let view = view else {
+              var rectNew = dictionary[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
             print("Something goes wrong")
             return (KeyboardState.unknown, CGRect.zero)
         }
@@ -78,26 +77,32 @@ extension KeyboardAppearanceManager {
     }
     
     @objc private func keyboardShow(_ notification: Notification) {
-        let dict = notification.userInfo!
-        let (state, rnew) = keyboardState(for: dict, in: self.scrollView)
+        guard let scrollView = scrollView,
+              let dict = notification.userInfo else {
+            return
+        }        
+        let (state, rnew) = keyboardState(for: dict, in: scrollView)
         if state == .unknown {
             return
         } else if state == .entering {
-            self.oldContentInset = self.scrollView?.contentInset ?? .zero
-            self.oldOffset = self.scrollView?.contentOffset ?? .zero
+            self.oldContentInset = scrollView.contentInset
+            self.oldOffset = scrollView.contentOffset
         }
         if let rnew = rnew {
-            let height = rnew.intersection(self.scrollView?.bounds ?? .zero).height
-            self.scrollView?.contentInset.bottom = height
+            let height = rnew.intersection(scrollView.bounds).height
+            scrollView.contentInset.bottom = height
         }
     }
     
     @objc func keyboardHide(_ notification: Notification) {
-        let dict = notification.userInfo!
-        let (state, _) = keyboardState(for: dict, in: self.scrollView)
+        guard let scrollView = scrollView,
+              let dict = notification.userInfo else {
+            return
+        }
+        let (state, _) = keyboardState(for: dict, in: scrollView)
         if state == .exiting {
-            self.scrollView?.contentOffset = self.oldOffset
-            self.scrollView?.contentInset = self.oldContentInset
+            scrollView.contentOffset = self.oldOffset
+            scrollView.contentInset = self.oldContentInset
         }
     }
     

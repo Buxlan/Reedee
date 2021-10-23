@@ -123,7 +123,6 @@ class PhotoGalleryCollectionCell: UICollectionViewCell, ConfigurableCell {
         bottomBackgroundView.addSubview(viewsCountImageView)
         bottomBackgroundView.addSubview(viewsCountLabel)
         contentView.addSubview(actionEventButton)
-        contentView.addSubview(dataImageView)
         configureConstraints()
         isInterfaceConfigured = true
     }

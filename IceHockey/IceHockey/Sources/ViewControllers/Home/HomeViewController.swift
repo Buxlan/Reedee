@@ -56,20 +56,11 @@ class HomeViewController: UIViewController {
         view.estimatedRowHeight = 300
         view.rowHeight = UITableView.automaticDimension
 //        view.estimatedRowHeight = 60
-        view.register(ActionsTableCell.self,
-                      forCellReuseIdentifier: ActionsTableCell.reuseIdentifier)
         view.register(EventTableCell.self,
                       forCellReuseIdentifier: EventTableCell.reuseIdentifier)
-        view.register(ComingEventTableCell.self,
-                      forCellReuseIdentifier: ComingEventTableCell.reuseIdentifier)
-        view.register(PhotoGalleryTableCell.self,
-                      forCellReuseIdentifier: ComingEventTableCell.reuseIdentifier)
         
-        view.register(EventsSectionHeaderView.self,
-                      forCellReuseIdentifier: EventsSectionHeaderView.reuseIdentifier)
-        view.register(ComingEventsSectionHeaderView.self,
-                      forCellReuseIdentifier: ComingEventsSectionHeaderView.reuseIdentifier)
-
+        ActionCellConfigurator.registerCell(tableView: view)
+        
         view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = false
         return view
