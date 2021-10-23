@@ -45,12 +45,14 @@
 		406C306C26F8FD260040F0A7 /* PhotoGalleryTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406C306B26F8FD260040F0A7 /* PhotoGalleryTableCell.swift */; };
 		406C306F26F909690040F0A7 /* PhotoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406C306E26F909690040F0A7 /* PhotoCollectionView.swift */; };
 		406CD2CA26F7248E00F1EDFE /* ScaleAspectFitImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406CD2C926F7248E00F1EDFE /* ScaleAspectFitImageView.swift */; };
-		406CE6832723EBEB002FDDB6 /* EditEventPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406CE6822723EBEB002FDDB6 /* EditEventPhotoCell.swift */; };
+		406CE6832723EBEB002FDDB6 /* EditEventPhotoCell + CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406CE6822723EBEB002FDDB6 /* EditEventPhotoCell + CollectionView.swift */; };
 		406CE6862723ECB2002FDDB6 /* EditEventPhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406CE6852723ECB2002FDDB6 /* EditEventPhotoCollectionCell.swift */; };
 		406CE68A2723EDE6002FDDB6 /* EditEventPhotoCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406CE6892723EDE6002FDDB6 /* EditEventPhotoCollectionViewLayout.swift */; };
+		406CE68D27241926002FDDB6 /* EditEventPhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406CE68C27241926002FDDB6 /* EditEventPhotoViewModel.swift */; };
 		406D34D1271F7D5400AC9D05 /* EventDetailTableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406D34D0271F7D5400AC9D05 /* EventDetailTableFooterView.swift */; };
 		406D49E5271E3618000A9666 /* EventDetailPhotoCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406D49E4271E3618000A9666 /* EventDetailPhotoCellModel.swift */; };
 		406D49E8271E3806000A9666 /* EventDetailPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406D49E7271E3806000A9666 /* EventDetailPhotoCollectionViewCell.swift */; };
+		406D6FB427243194008ED014 /* EditEventAddPhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406D6FB327243194008ED014 /* EditEventAddPhotoCollectionCell.swift */; };
 		406E36A927219BD600C5FEF0 /* EditEventTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406E36A827219BD600C5FEF0 /* EditEventTextCell.swift */; };
 		406E5AFD271E1FE0005D20AB /* EventDetailPhotoTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406E5AFC271E1FE0005D20AB /* EventDetailPhotoTableCell.swift */; };
 		406E7BFF2722E85A00DAD711 /* KeyboardAccessoryPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406E7BFE2722E85A00DAD711 /* KeyboardAccessoryPhotoView.swift */; };
@@ -62,7 +64,6 @@
 		407028E526E402BE00C6CE5F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 407028E326E402BE00C6CE5F /* .swiftlint.yml */; };
 		40713A7A27204A41005F1265 /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40713A7927204A41005F1265 /* EditEventViewController.swift */; };
 		40713A7D27204A51005F1265 /* EditEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40713A7C27204A51005F1265 /* EditEventViewModel.swift */; };
-		40713A8027204A5F005F1265 /* EditEventStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40713A7F27204A5F005F1265 /* EditEventStoryboard.storyboard */; };
 		40713A8527204BC4005F1265 /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40713A8427204BC4005F1265 /* ContactsViewModel.swift */; };
 		4075F1C627220E1500BEA63A /* EditEventBoldTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4075F1C527220E1500BEA63A /* EditEventBoldTextCell.swift */; };
 		4085A31B27201BDC00CB560E /* EventDetailBoldViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4085A31A27201BDC00CB560E /* EventDetailBoldViewCell.swift */; };
@@ -183,12 +184,14 @@
 		406C306B26F8FD260040F0A7 /* PhotoGalleryTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryTableCell.swift; sourceTree = "<group>"; };
 		406C306E26F909690040F0A7 /* PhotoCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionView.swift; sourceTree = "<group>"; };
 		406CD2C926F7248E00F1EDFE /* ScaleAspectFitImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleAspectFitImageView.swift; sourceTree = "<group>"; };
-		406CE6822723EBEB002FDDB6 /* EditEventPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventPhotoCell.swift; sourceTree = "<group>"; };
+		406CE6822723EBEB002FDDB6 /* EditEventPhotoCell + CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditEventPhotoCell + CollectionView.swift"; sourceTree = "<group>"; };
 		406CE6852723ECB2002FDDB6 /* EditEventPhotoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventPhotoCollectionCell.swift; sourceTree = "<group>"; };
 		406CE6892723EDE6002FDDB6 /* EditEventPhotoCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventPhotoCollectionViewLayout.swift; sourceTree = "<group>"; };
+		406CE68C27241926002FDDB6 /* EditEventPhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventPhotoViewModel.swift; sourceTree = "<group>"; };
 		406D34D0271F7D5400AC9D05 /* EventDetailTableFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailTableFooterView.swift; sourceTree = "<group>"; };
 		406D49E4271E3618000A9666 /* EventDetailPhotoCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailPhotoCellModel.swift; sourceTree = "<group>"; };
 		406D49E7271E3806000A9666 /* EventDetailPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		406D6FB327243194008ED014 /* EditEventAddPhotoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventAddPhotoCollectionCell.swift; sourceTree = "<group>"; };
 		406E36A827219BD600C5FEF0 /* EditEventTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventTextCell.swift; sourceTree = "<group>"; };
 		406E5AFC271E1FE0005D20AB /* EventDetailPhotoTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailPhotoTableCell.swift; sourceTree = "<group>"; };
 		406E7BFE2722E85A00DAD711 /* KeyboardAccessoryPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAccessoryPhotoView.swift; sourceTree = "<group>"; };
@@ -200,7 +203,6 @@
 		407028E326E402BE00C6CE5F /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		40713A7927204A41005F1265 /* EditEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewController.swift; sourceTree = "<group>"; };
 		40713A7C27204A51005F1265 /* EditEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewModel.swift; sourceTree = "<group>"; };
-		40713A7F27204A5F005F1265 /* EditEventStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditEventStoryboard.storyboard; sourceTree = "<group>"; };
 		40713A8427204BC4005F1265 /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
 		4075F1C527220E1500BEA63A /* EditEventBoldTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventBoldTextCell.swift; sourceTree = "<group>"; };
 		4085A31A27201BDC00CB560E /* EventDetailBoldViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailBoldViewCell.swift; sourceTree = "<group>"; };
@@ -444,6 +446,7 @@
 			children = (
 				406CE6852723ECB2002FDDB6 /* EditEventPhotoCollectionCell.swift */,
 				406CE6892723EDE6002FDDB6 /* EditEventPhotoCollectionViewLayout.swift */,
+				406D6FB327243194008ED014 /* EditEventAddPhotoCollectionCell.swift */,
 			);
 			path = CollectionsViews;
 			sourceTree = "<group>";
@@ -462,7 +465,6 @@
 				40713A7927204A41005F1265 /* EditEventViewController.swift */,
 				40713A7C27204A51005F1265 /* EditEventViewModel.swift */,
 				40980AC22720C9BB0022A640 /* EditEventDataModel.swift */,
-				40713A7F27204A5F005F1265 /* EditEventStoryboard.storyboard */,
 				406E7BFD2722E84500DAD711 /* Views */,
 				409403F42721F8C800055FC4 /* Handlers */,
 				40713A8227204A68005F1265 /* TableViews */,
@@ -479,7 +481,8 @@
 				406E36A827219BD600C5FEF0 /* EditEventTextCell.swift */,
 				4075F1C527220E1500BEA63A /* EditEventBoldTextCell.swift */,
 				4032D7052723536D00151A4D /* EditEventSaveCell.swift */,
-				406CE6822723EBEB002FDDB6 /* EditEventPhotoCell.swift */,
+				406CE6822723EBEB002FDDB6 /* EditEventPhotoCell + CollectionView.swift */,
+				406CE68C27241926002FDDB6 /* EditEventPhotoViewModel.swift */,
 			);
 			path = TableViews;
 			sourceTree = "<group>";
@@ -864,7 +867,6 @@
 				4098C05326E575EB00F0BBE6 /* HockeySquadDetailViewController.xib in Resources */,
 				409C69E5271D0935005434A4 /* EventDetailViewController.storyboard in Resources */,
 				40E7204726E400FF00A64C60 /* Assets.xcassets in Resources */,
-				40713A8027204A5F005F1265 /* EditEventStoryboard.storyboard in Resources */,
 				408BD21D26E5A54A00D66D9B /* GoogleService-Info.plist in Resources */,
 				40E7204526E400FE00A64C60 /* Main.storyboard in Resources */,
 				401C9B1C270D080F00F91DC6 /* ErrorDescriptionViewController.storyboard in Resources */,
@@ -996,7 +998,7 @@
 				409E685C26ED6937008C4C0B /* EventsSectionHeaderView.swift in Sources */,
 				40CDC4BF2718B69A00990C6A /* EventManager.swift in Sources */,
 				40940BE126E40C380098EF89 /* OtherExtensions.swift in Sources */,
-				406CE6832723EBEB002FDDB6 /* EditEventPhotoCell.swift in Sources */,
+				406CE6832723EBEB002FDDB6 /* EditEventPhotoCell + CollectionView.swift in Sources */,
 				40940BF026E412F40098EF89 /* AuthUserActions.swift in Sources */,
 				40940C0626E418E50098EF89 /* MainTabBarViewController.swift in Sources */,
 				4093D9A9271780E000DCF35D /* ApplicationUser.swift in Sources */,
@@ -1017,6 +1019,7 @@
 				40940C0526E418E50098EF89 /* MainTabBarViewModel.swift in Sources */,
 				40DBD76E26E83BFD00CDBADD /* TableCellActionsProxy.swift in Sources */,
 				40713A7A27204A41005F1265 /* EditEventViewController.swift in Sources */,
+				406D6FB427243194008ED014 /* EditEventAddPhotoCollectionCell.swift in Sources */,
 				40C106D226E41FD200B619A1 /* HockeySquadsViewController.swift in Sources */,
 				40E2D65126E55E1E006503C7 /* ShopCategoryItem.swift in Sources */,
 				406D34D1271F7D5400AC9D05 /* EventDetailTableFooterView.swift in Sources */,
@@ -1084,6 +1087,7 @@
 				401C9B21270D139800F91DC6 /* MainViewControllerCoordinator.swift in Sources */,
 				40E7204026E400FE00A64C60 /* SceneDelegate.swift in Sources */,
 				40369EC626E6E33C0083E675 /* ActionsTableCell.swift in Sources */,
+				406CE68D27241926002FDDB6 /* EditEventPhotoViewModel.swift in Sources */,
 				40C106B526E419CB00B619A1 /* AppController.swift in Sources */,
 				40980ACE2720D2A60022A640 /* EditEventTitleTextFieldCell.swift in Sources */,
 				408CD10626E539FD005AD6D4 /* ShopItem.swift in Sources */,

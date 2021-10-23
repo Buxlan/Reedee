@@ -55,6 +55,7 @@ class EditEventViewController: UIViewController {
         EditEventTextCellConfigurator.registerCell(tableView: view)
         EditEventBoldTextCellConfigurator.registerCell(tableView: view)
         EditEventSaveCellConfigurator.registerCell(tableView: view)
+        EditEventAddPhotoCellConfigurator.registerCell(tableView: view)
 
         view.tableFooterView = UIView()
         view.showsVerticalScrollIndicator = false

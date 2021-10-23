@@ -19,6 +19,7 @@ class EditEventViewModel: NSObject {
                     EditEventTitleTextFieldCellConfigurator(data: data.title, handler: handler),
                     EditEventTextCellConfigurator(data: data.text, handler: handler),
                     EditEventBoldTextCellConfigurator(data: data.boldText, handler: handler),
+                    EditEventAddPhotoCellConfigurator(data: data.imagesNames, handler: handler),
                     EditEventSaveCellConfigurator(data: nil, handler: handler)
                 ]
                 handler.reloadData()

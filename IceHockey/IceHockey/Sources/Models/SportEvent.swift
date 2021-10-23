@@ -18,7 +18,7 @@ struct SportEvent: Hashable {
     var viewsCount: Int?
     var type: SportEventType
     var date: Date?
-    var imageNames: [String] = []
+    var imagesNames: [String] = []
     
     var mainImage: UIImage?
     
@@ -70,7 +70,7 @@ struct SportEvent: Hashable {
         self.title = title
         self.date = Date(timeIntervalSince1970: TimeInterval(dateInterval))
         self.mainImageName = dict["imagePath"] as? String ?? ""
-        self.imageNames = dict["images"] as? [String] ?? []
+        self.imagesNames = dict["images"] as? [String] ?? []
         self.type = type
         self.boldText = boldText
     }
@@ -120,7 +120,7 @@ extension SportEvent {
             "viewsCount": self.viewsCount ?? 0,
             "type": self.type.rawValue,
             "date": Int(interval),
-            "imageNames": self.imageNames
+            "imageNames": self.imagesNames
         ]
         eventReference.setValue(dict) { (error, ref) in
             if let error = error {

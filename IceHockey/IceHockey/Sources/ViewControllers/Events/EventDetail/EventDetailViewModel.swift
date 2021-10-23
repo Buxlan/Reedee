@@ -14,7 +14,7 @@ class EventDetailViewModel: NSObject {
     var dataSource: SportEvent? {
         didSet {
             if let data = dataSource {
-                tableItems = [EventPhotoCellConfigurator(data: data.imageNames),
+                tableItems = [EventPhotoCellConfigurator(data: data.imagesNames),
                               EventDetailUsefulButtonsCellConfigurator(data: data),
                               EventDetailTitleCellConfigurator(data: data),
                               EventDetailDescriptionCellConfigurator(data: data),

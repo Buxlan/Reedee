@@ -47,13 +47,13 @@ struct TableViewCellConfigurator<CellType: ConfigurableCell,
 
 struct ActionableTableViewCellConfigurator<CellType: ConfigurableActionCell,
                                            DataType,
-                                           ActionHandlerType: CellActionHandler>: CellConfigurator where DataType == CellType.DataType,
-                                                                                                         ActionHandlerType == CellType.HandlerType,
-                                                                                                         CellType: UIView {
+                                           HandlerType: CellActionHandler>: CellConfigurator where DataType == CellType.DataType,
+                                                                                                   HandlerType == CellType.HandlerType,
+                                                                                                   CellType: UIView {
     static var reuseIdentifier: String { return CellType.reuseIdentifier }
     
     let data: DataType
-    let handler: ActionHandlerType
+    let handler: HandlerType
     
     func configure(cell: UIView) {
         guard let cell = cell as? CellType else {
@@ -65,6 +65,29 @@ struct ActionableTableViewCellConfigurator<CellType: ConfigurableActionCell,
     
     static func registerCell(tableView: UITableView) {
         tableView.register(CellType.self, forCellReuseIdentifier: CellType.reuseIdentifier)
+    }
+}
+
+struct ActionableCollectionViewCellConfigurator<CellType: ConfigurableActionCell,
+                                                DataType,
+                                                HandlerType: CellActionHandler>: CellConfigurator where DataType == CellType.DataType,
+                                                                                                        HandlerType == CellType.HandlerType,
+                                                                                                        CellType: UIView {
+    static var reuseIdentifier: String { return CellType.reuseIdentifier }
+    
+    let data: DataType
+    let handler: HandlerType
+    
+    func configure(cell: UIView) {
+        guard let cell = cell as? CellType else {
+            Log(text: "Can't cast collection view cell to \(CellType.self)", object: self)
+            return
+        }
+        cell.configure(with: data, handler: handler)
+    }
+    
+    static func registerCell(collectionView: UICollectionView) {
+        collectionView.register(CellType.self, forCellWithReuseIdentifier: CellType.reuseIdentifier)
     }
 }
 
@@ -117,9 +140,16 @@ typealias EditEventTextCellConfigurator = ActionableTableViewCellConfigurator<Ed
 typealias EditEventBoldTextCellConfigurator = ActionableTableViewCellConfigurator<EditEventBoldTextCell,
                                                                                   String?,
                                                                                   EditEventHandler>
+typealias EditEventAddPhotoCellConfigurator = ActionableTableViewCellConfigurator<EditEventPhotoCell,
+                                                                                  [String],
+                                                                                  EditEventHandler>
 typealias EditEventSaveCellConfigurator = ActionableTableViewCellConfigurator<EditEventSaveCell,
                                                                               String?,
                                                                               EditEventHandler>
+
+typealias EditEventAddPhotoCollectionCellConfigurator = ActionableCollectionViewCellConfigurator<EditEventAddPhotoCollectionCell,
+                                                                                        UIImage?,
+                                                                                        EditEventHandler>
 
 // MARK: - Actions configurators
 typealias ActionCellConfigurator = TableViewCellConfigurator<ActionsTableCell,
