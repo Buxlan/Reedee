@@ -66,6 +66,7 @@
 		40713A7D27204A51005F1265 /* EditEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40713A7C27204A51005F1265 /* EditEventViewModel.swift */; };
 		40713A8527204BC4005F1265 /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40713A8427204BC4005F1265 /* ContactsViewModel.swift */; };
 		4075F1C627220E1500BEA63A /* EditEventBoldTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4075F1C527220E1500BEA63A /* EditEventBoldTextCell.swift */; };
+		40842FC32725E44500E056A9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40842FC22725E44500E056A9 /* NetworkManager.swift */; };
 		4085A31B27201BDC00CB560E /* EventDetailBoldViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4085A31A27201BDC00CB560E /* EventDetailBoldViewCell.swift */; };
 		4085A31E27201D6400CB560E /* EventDetailCopyrightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4085A31D27201D6400CB560E /* EventDetailCopyrightCell.swift */; };
 		4085A3222720216C00CB560E /* EventDetailTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4085A3212720216C00CB560E /* EventDetailTitleCell.swift */; };
@@ -97,7 +98,6 @@
 		409560C926F93F6D00BCA664 /* QuickActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409560C826F93F6D00BCA664 /* QuickActions.swift */; };
 		40978DBB26ED6ADB00AE1926 /* ComingEventsSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40978DBA26ED6ADB00AE1926 /* ComingEventsSectionHeaderView.swift */; };
 		40980AC02720C2490022A640 /* EditEventTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40980ABF2720C2490022A640 /* EditEventTitleCell.swift */; };
-		40980AC32720C9BB0022A640 /* EditEventDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40980AC22720C9BB0022A640 /* EditEventDataModel.swift */; };
 		40980ACE2720D2A60022A640 /* EditEventTitleTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40980ACD2720D2A60022A640 /* EditEventTitleTextFieldCell.swift */; };
 		4098C04226E572A700F0BBE6 /* UserExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4098C04126E572A700F0BBE6 /* UserExtension.swift */; };
 		4098C04526E5756800F0BBE6 /* SportPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4098C04426E5756800F0BBE6 /* SportPlayer.swift */; };
@@ -205,6 +205,7 @@
 		40713A7C27204A51005F1265 /* EditEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewModel.swift; sourceTree = "<group>"; };
 		40713A8427204BC4005F1265 /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
 		4075F1C527220E1500BEA63A /* EditEventBoldTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventBoldTextCell.swift; sourceTree = "<group>"; };
+		40842FC22725E44500E056A9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4085A31A27201BDC00CB560E /* EventDetailBoldViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailBoldViewCell.swift; sourceTree = "<group>"; };
 		4085A31D27201D6400CB560E /* EventDetailCopyrightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailCopyrightCell.swift; sourceTree = "<group>"; };
 		4085A3212720216C00CB560E /* EventDetailTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailTitleCell.swift; sourceTree = "<group>"; };
@@ -236,7 +237,6 @@
 		409560C826F93F6D00BCA664 /* QuickActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActions.swift; sourceTree = "<group>"; };
 		40978DBA26ED6ADB00AE1926 /* ComingEventsSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingEventsSectionHeaderView.swift; sourceTree = "<group>"; };
 		40980ABF2720C2490022A640 /* EditEventTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventTitleCell.swift; sourceTree = "<group>"; };
-		40980AC22720C9BB0022A640 /* EditEventDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventDataModel.swift; sourceTree = "<group>"; };
 		40980ACD2720D2A60022A640 /* EditEventTitleTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventTitleTextFieldCell.swift; sourceTree = "<group>"; };
 		4098C04126E572A700F0BBE6 /* UserExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserExtension.swift; sourceTree = "<group>"; };
 		4098C04426E5756800F0BBE6 /* SportPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportPlayer.swift; sourceTree = "<group>"; };
@@ -464,7 +464,6 @@
 			children = (
 				40713A7927204A41005F1265 /* EditEventViewController.swift */,
 				40713A7C27204A51005F1265 /* EditEventViewModel.swift */,
-				40980AC22720C9BB0022A640 /* EditEventDataModel.swift */,
 				406E7BFD2722E84500DAD711 /* Views */,
 				409403F42721F8C800055FC4 /* Handlers */,
 				40713A8227204A68005F1265 /* TableViews */,
@@ -569,8 +568,8 @@
 				40C106D626E4202600B619A1 /* Log.swift */,
 				40C106BE26E41E4700B619A1 /* Utils.swift */,
 				406E7C0627232B8800DAD711 /* ImagePickerManager.swift */,
-				4032D70227234E9100151A4D /* KeyboardAppearanceManager.swift */,
 				406E7C022723105800DAD711 /* ImagePickerManagerChoosableMode.swift */,
+				4032D70227234E9100151A4D /* KeyboardAppearanceManager.swift */,
 				40940BF326E413200098EF89 /* Auth */,
 				409C69E0271CDB0D005434A4 /* OtherProtocols.swift */,
 			);
@@ -605,7 +604,7 @@
 				40940C0226E418CF0098EF89 /* MainTabBarViewController */,
 				40C106B826E41A2200B619A1 /* Home */,
 				40713A7827204A0C005F1265 /* EditEvent */,
-				40C106C126E41E7D00B619A1 /* Events */,
+				40369EB726E6DB2F0083E675 /* EventDetail */,
 				40C106C926E41EDC00B619A1 /* Contacts */,
 			);
 			path = ViewControllers;
@@ -665,6 +664,7 @@
 				401C9B26270D155F00F91DC6 /* Database */,
 				40E7203F26E400FE00A64C60 /* SceneDelegate.swift */,
 				40C106B426E419CB00B619A1 /* AppController.swift */,
+				40842FC22725E44500E056A9 /* NetworkManager.swift */,
 				40E7203D26E400FE00A64C60 /* AppDelegate.swift */,
 				40A4462926E4054E00129B89 /* Localizable.strings */,
 			);
@@ -685,14 +685,6 @@
 				4065C95926E8510A0084E5F2 /* CollectionViews */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		40C106C126E41E7D00B619A1 /* Events */ = {
-			isa = PBXGroup;
-			children = (
-				40369EB726E6DB2F0083E675 /* EventDetail */,
-			);
-			path = Events;
 			sourceTree = "<group>";
 		};
 		40C106C926E41EDC00B619A1 /* Contacts */ = {
@@ -1042,7 +1034,6 @@
 				402EDA6626E4303B004A2992 /* HockeySquadViewModel.swift in Sources */,
 				4085A3222720216C00CB560E /* EventDetailTitleCell.swift in Sources */,
 				400A2AB926E5978000F13BCF /* HockeyPlayerDetailViewController.swift in Sources */,
-				40980AC32720C9BB0022A640 /* EditEventDataModel.swift in Sources */,
 				40369EBA26E6DB490083E675 /* EventDetailViewController.swift in Sources */,
 				4065C96326E855150084E5F2 /* ActionsCollectionCell.swift in Sources */,
 				40D47C3127079B8E0038A801 /* SportModel.xcdatamodeld in Sources */,
@@ -1070,6 +1061,7 @@
 				40C106BB26E41A2200B619A1 /* HomeViewController.swift in Sources */,
 				409C69DE271CDAA6005434A4 /* EventDetailViewModel.swift in Sources */,
 				40C87B4D26EA667400E8217D /* EventCollectionViewLayout.swift in Sources */,
+				40842FC32725E44500E056A9 /* NetworkManager.swift in Sources */,
 				40940BF926E413200098EF89 /* DataSourceProtocols.swift in Sources */,
 				40940BE826E40D450098EF89 /* SportTeam.swift in Sources */,
 				406E7C0727232B8800DAD711 /* ImagePickerManager.swift in Sources */,

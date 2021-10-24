@@ -31,6 +31,9 @@ class EventTableCell: UITableViewCell {
     private lazy var placeholderImage: UIImage = {
         Asset.camera.image.resizeImage(to: imageHeight, aspectRatio: .current, with: .clear)
     }()
+    private lazy var noImage: UIImage = {
+        Asset.noImage256.image.resizeImage(to: imageHeight, aspectRatio: .current, with: .clear)
+    }()
     
     private lazy var shadowView: ShadowCorneredView = {
         let view = ShadowCorneredView()
@@ -178,7 +181,16 @@ extension EventTableCell: ConfigurableEventCell {
         typeLabel.textColor = data.type.textColor
         typeLabel.text = data.type.description.uppercased()
         
-        dataImageView.sd_setImage(with: data.mainImageStorageReference, placeholderImage: placeholderImage)
+        if let imageName = data.mainImageName {
+            NetworkManager.shared.getImage(withName: imageName) { [weak self] (image) in
+                guard let self = self else { return }
+                if let image = image {
+                    self.dataImageView.image = image
+                } else {
+                    self.dataImageView.image = self.noImage
+                }
+            }
+        }
     }
     
 }

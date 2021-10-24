@@ -35,6 +35,7 @@ class EditEventViewController: UIViewController {
         return view
     }()
     private var imagePicker = UIImagePickerController()
+    private var pickerManager = ImagePickerManager()
     
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
@@ -187,21 +188,27 @@ extension EditEventViewController: EditEventHandlerInterface {
     // MARK: - MediaPickerDelegate
     
     func makePhoto() {
-        ImagePickerManager().openCamera(self) { image in
-            print("image is \(image)")
-            self.viewModel.dataSource?.mainImage = image
+        pickerManager.openCamera(self) { image in
+            if let image = image {
+                self.viewModel.appendImage(image)
+            }
         }
     }
     
     func openGallery() {
-        ImagePickerManager().openGallery(self) { image in
-            print("image is \(image)")
-            self.data.mainImage = image
+        pickerManager.openGallery(self) { image in
+            if let image = image {
+                self.viewModel.appendImage(image)
+            }
         }
     }
     
     func save() {
         viewModel.save()
+    }
+    
+    func deleteImage(withName imageName: String) {
+        viewModel.deleteImage(withName: imageName)
     }
     
 }

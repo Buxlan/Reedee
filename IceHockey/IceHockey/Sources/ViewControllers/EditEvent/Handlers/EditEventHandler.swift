@@ -7,9 +7,10 @@
 
 import UIKit
 
-protocol MediaPickerDelegate {
+protocol MediaPickerDelegate: class {
     func openGallery()
     func makePhoto()
+    func deleteImage(withName imageName: String)
 }
 
 protocol EditEventHandlerInterface: CellActionHandler,
@@ -81,6 +82,10 @@ extension EditEventHandler {
     
     func save() {
         delegate?.save()
+    }
+    
+    func deleteImage(withName imageName: String) {
+        delegate?.deleteImage(withName: imageName)
     }
     
 }

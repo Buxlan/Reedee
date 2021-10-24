@@ -13,7 +13,7 @@ class ImagePickerManager: NSObject,
                           UINavigationControllerDelegate {
 
     var picker = UIImagePickerController()
-    var pickImageCallback: ((UIImage) -> Void)?
+    var pickImageCallback: ((UIImage?) -> Void)?
     
     override init() {
         super.init()
@@ -21,7 +21,7 @@ class ImagePickerManager: NSObject,
     }
     
     func openCamera(_ presentingViewController: UIViewController,
-                    completion: @escaping ((UIImage) -> Void)) {
+                    completion: @escaping ((UIImage?) -> Void)) {
         pickImageCallback = completion
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             picker.sourceType = .camera
@@ -38,8 +38,9 @@ class ImagePickerManager: NSObject,
     }
     
     func openGallery(_ presentingViewController: UIViewController,
-                     completion: @escaping ((UIImage) -> Void)) {
+                     completion: @escaping ((UIImage?) -> Void)) {
         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+            pickImageCallback = completion
             picker.sourceType = .photoLibrary
             picker.allowsEditing = true
             presentingViewController.present(picker, animated: true, completion: nil)
@@ -51,26 +52,28 @@ class ImagePickerManager: NSObject,
                 controller.addAction(action)
                 return controller
             }()
+            completion(nil)
             presentingViewController.present(alertController, animated: true)
         }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
+        picker.dismiss(animated: true) {
+            self.pickImageCallback?(nil)
+            self.pickImageCallback = nil
+        }
     }
     
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        picker.dismiss(animated: true, completion: nil)
-        guard let image = (info[.editedImage] as? UIImage)?
-                .resizeImage(to: 512, aspectRatio: .square) else {
-            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+        picker.dismiss(animated: true) {
+            guard let image = (info[.editedImage] as? UIImage)?
+                    .resizeImage(to: 512, aspectRatio: .square) else {
+                fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+            }
+            self.pickImageCallback?(image)
+            self.pickImageCallback = nil
         }
-        pickImageCallback?(image)
-    }
-    
-    @objc func imagePickerController(_ picker: UIImagePickerController, pickedImage: UIImage?) {
-        
-    }
+    }    
 
 }

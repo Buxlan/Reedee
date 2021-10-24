@@ -7,9 +7,15 @@
 
 import UIKit
 
-class EditEventPhotoCollectionCell: UICollectionViewCell, ConfigurableCell {
+class EditEventPhotoCollectionCell: UICollectionViewCell, ConfigurableActionCell {
+    
     // MARK: - Properties
-    typealias DataType = UIImage
+    
+    typealias DataType = String
+    typealias HandlerType = EditEventHandler
+    
+    private var handler: HandlerType?
+    private var imageName: String?
     
     internal var isInterfaceConfigured: Bool = false
     let imageAspectRate: CGFloat = 1.77
@@ -22,23 +28,24 @@ class EditEventPhotoCollectionCell: UICollectionViewCell, ConfigurableCell {
         view.backgroundColor = Asset.other3.color
         view.contentMode = .scaleAspectFill
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.clipsToBounds = true
-        view.image = Asset.camera.image.resizeImage(to: imageHeight, aspectRatio: .current, with: .clear)
         return view
     }()
     
     private lazy var actionButton: UIButton = {
         let view = UIButton()
-        view.accessibilityIdentifier = "actionEventButton (collection cell)"
+        view.accessibilityIdentifier = "actionButton (collection cell)"
         view.backgroundColor = Asset.other3.color
         view.setTitleColor(Asset.textColor.color, for: .normal)
         view.tintColor = Asset.textColor.color
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 4
+        view.layer.cornerRadius = 18
         view.layer.borderColor = Asset.other0.color.cgColor
         view.layer.borderWidth = 0.5
+        let image = Asset.xmark.image
+        view.setImage(image, for: .normal)
+        view.imageView?.contentMode = .scaleAspectFit
         view.clipsToBounds = true
-        view.contentEdgeInsets = .init(top: 4, left: 8, bottom: 4, right: 8)
+        view.contentEdgeInsets = .init(top: 4, left: 4, bottom: 4, right: 4)
         return view
     }()
     
@@ -46,34 +53,52 @@ class EditEventPhotoCollectionCell: UICollectionViewCell, ConfigurableCell {
         if isInterfaceConfigured { return }
         tintColor = UIColor.black
         backgroundColor = Asset.other3.color
-        contentView.clipsToBounds = true
-        
-        contentView.addSubview(actionButton)
+                
         contentView.addSubview(dataImageView)
+        contentView.addSubview(actionButton)
         configureConstraints()
+        
+        actionButton.addTarget(self, action: #selector(deleteHandle), for: .touchUpInside)
+        
         isInterfaceConfigured = true
     }
     
     internal func configureConstraints() {
         let constraints: [NSLayoutConstraint] = [
-            dataImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            dataImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            dataImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            dataImageView.heightAnchor.constraint(equalTo: dataImageView.widthAnchor, multiplier: 0.7),
-            dataImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
+            dataImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            dataImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            dataImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -24),
+            dataImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, constant: -24),
             
             actionButton.centerXAnchor.constraint(equalTo: dataImageView.centerXAnchor),
             actionButton.centerYAnchor.constraint(equalTo: dataImageView.centerYAnchor),
-            actionButton.widthAnchor.constraint(equalToConstant: 32),
-            actionButton.heightAnchor.constraint(equalToConstant: 32)
+            actionButton.widthAnchor.constraint(equalToConstant: 36),
+            actionButton.heightAnchor.constraint(equalToConstant: 36)
         ]
         NSLayoutConstraint.activate(constraints)
     }
     
     // MARK: - Helper functions
     
-    func configure(with data: DataType) {
+    func configure(with data: DataType, handler: HandlerType) {
         configureInterface()
-        dataImageView.image = data        
+        self.handler = handler
+        self.imageName = data
+        if dataImageView.image == nil {
+            NetworkManager.shared.getImage(withName: data) { (image) in
+                self.dataImageView.image = image
+            }
+        }
     }
+}
+
+extension EditEventPhotoCollectionCell {
+    
+    @objc private func deleteHandle() {
+        if let imageName = imageName {
+            handler?.deleteImage(withName: imageName)
+        }
+    }
+    
 }

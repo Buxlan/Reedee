@@ -30,6 +30,7 @@ class EditEventPhotoCell: UITableViewCell, CollectionViewDelegate {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isPagingEnabled = true
         
+        EditEventPhotoCollectionCellConfigurator.registerCell(collectionView: view)
         EditEventAddPhotoCollectionCellConfigurator.registerCell(collectionView: view)
         
         view.delegate = self

@@ -25,3 +25,11 @@ struct RealtimeDatabaseManager {
         }
     }   
 }
+
+extension RealtimeDatabaseManager {
+    
+    func getNewImageUID() -> String? {
+        root.child("images").childByAutoId().key
+    }
+    
+}

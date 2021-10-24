@@ -104,8 +104,9 @@ class EventDetailPhotoCollectionViewCell: UICollectionViewCell, ConfigurableCell
     func configure(with data: DataType) {
         configureInterface()
         if dataImageView.image == nil {
-            let storageReference = FirebaseManager.shared.storageManager.root.child("events/" + data)
-            dataImageView.sd_setImage(with: storageReference, placeholderImage: placeholderImage)
+            NetworkManager.shared.getImage(withName: data) { (image) in
+                self.dataImageView.image = image
+            }
         }
     }
 }

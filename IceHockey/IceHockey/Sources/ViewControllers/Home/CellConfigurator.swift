@@ -151,6 +151,10 @@ typealias EditEventAddPhotoCollectionCellConfigurator = ActionableCollectionView
                                                                                         UIImage?,
                                                                                         EditEventHandler>
 
+typealias EditEventPhotoCollectionCellConfigurator = ActionableCollectionViewCellConfigurator<EditEventPhotoCollectionCell,
+                                                                                              String,
+                                                                                              EditEventHandler>
+
 // MARK: - Actions configurators
 typealias ActionCellConfigurator = TableViewCellConfigurator<ActionsTableCell,
                                                              QuickAction>

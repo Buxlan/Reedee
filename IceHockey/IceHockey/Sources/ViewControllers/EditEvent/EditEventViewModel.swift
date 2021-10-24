@@ -28,6 +28,7 @@ class EditEventViewModel: NSObject {
     }
     private var handler: EditEventHandler
     private var tableItems: [CellConfigurator] = []
+    private var images: [UIImage] = []
     
     // MARK: Lifecircle
     
@@ -36,7 +37,8 @@ class EditEventViewModel: NSObject {
         super.init()
     }
         
-    // MARK: - Hepler functions
+    // MARK: - Hepler functions    
+    
 }
 
 extension EditEventViewModel: UITableViewDataSource {
@@ -58,4 +60,34 @@ extension EditEventViewModel {
         self.dataSource?.uid = dataSource.save() ?? ""
         
     }
+    
+    func appendImage(_ image: UIImage) {
+        // get uid
+        // append to network cache
+        // append imageName to event's imagesNames
+        if let key = FirebaseManager.shared.databaseManager.getNewImageUID() {
+            let imageName = getImageName(key: key)
+            NetworkManager.shared.appendImageToCache(image, for: key)
+            dataSource?.imagesNames.append(key)
+            handler.reloadData()
+        }
+    }
+    
+}
+
+extension EditEventViewModel {
+    
+    private func getImageName(key: String) -> String {
+        return key + ".png"
+    }
+    
+    func deleteImage(withName imageName: String) {
+        guard var names = dataSource?.imagesNames,
+            let index = names.firstIndex(of: imageName) else {
+            return
+        }
+        names.remove(at: index)
+        dataSource?.imagesNames = names
+    }
+    
 }
