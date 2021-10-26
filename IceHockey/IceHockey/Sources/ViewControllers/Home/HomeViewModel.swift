@@ -24,12 +24,11 @@ class HomeViewModel {
         return delegate.configureCell(at: indexPath, event: event)
     }
     
-    private var databaseReference: DatabaseReference = FirebaseManager.shared.databaseManager.root
     private var storageReference: StorageReference = {
         FirebaseManager.shared.storageManager.root.child("events")
     }()
     var databaseQuery: DatabaseQuery {
-        databaseReference.child("events")
+        FirebaseManager.shared.databaseManager.root.child("events").queryOrdered(byChild: "order")
     }
     
     // MARK: Lifecircle

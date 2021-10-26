@@ -9,11 +9,15 @@ import UIKit
 
 protocol InputData {
     associatedtype DataType
-    var inputData: DataType? { get set }
+    func setInputData(_ inputData: DataType)
 }
 
 protocol CellUpdatable: class {
     func configureCell(at indexPath: IndexPath, event: SportEvent) -> UITableViewCell
     func configureCell(at indexPath: IndexPath, configurator: CellConfigurator) -> UITableViewCell
     func reloadData()
+}
+
+protocol ViewControllerDismissable: class {
+    func dismiss(animated: Bool)
 }

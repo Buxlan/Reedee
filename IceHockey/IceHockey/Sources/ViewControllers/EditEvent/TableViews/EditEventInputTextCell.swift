@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EditEventTextCell: UITableViewCell {
+class EditEventInputTextCell: UITableViewCell {
     
     // MARK: - Properties
     typealias DataType = String?
@@ -32,6 +32,17 @@ class EditEventTextCell: UITableViewCell {
         view.inputAccessoryView = photoAccessoryView
         view.keyboardAppearance = .light
         view.keyboardType = .default
+        view.delegate = self
+        return view
+    }()
+    
+    private lazy var titleLabel: UILabel = {
+        let view = UILabel()
+        view.numberOfLines = 2
+        view.text = L10n.Events.inputTextTitle
+        view.textAlignment = .left
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.font = .regularFont16
         return view
     }()
 
@@ -55,6 +66,7 @@ class EditEventTextCell: UITableViewCell {
         if isInterfaceConfigured { return }
         contentView.backgroundColor = Asset.other3.color
         tintColor = Asset.other1.color
+        contentView.addSubview(titleLabel)
         contentView.addSubview(eventTextField)
         configureConstraints()
         isInterfaceConfigured = true
@@ -65,9 +77,13 @@ class EditEventTextCell: UITableViewCell {
     
     internal func configureConstraints() {
         let constraints: [NSLayoutConstraint] = [
+            titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            
             eventTextField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             eventTextField.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
-            eventTextField.topAnchor.constraint(equalTo: contentView.topAnchor),
+            eventTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
             eventTextField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             eventTextField.heightAnchor.constraint(equalToConstant: 150)
         ]
@@ -76,18 +92,25 @@ class EditEventTextCell: UITableViewCell {
     
 }
 
-extension EditEventTextCell: ConfigurableActionCell {
+extension EditEventInputTextCell: ConfigurableActionCell {
     
     func configure(with data: DataType = nil, handler: HandlerType) {
         configureUI()
         eventTextField.text = data
-        eventTextField.delegate = handler
         self.handler = handler
     }
     
 }
 
-extension EditEventTextCell {
+extension EditEventInputTextCell: UITextViewDelegate {
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        handler?.setText(textView.text)
+    }
+    
+}
+
+extension EditEventInputTextCell {
     
     @objc
     private func cameraButtonHandle(_ sender: UIButton) {

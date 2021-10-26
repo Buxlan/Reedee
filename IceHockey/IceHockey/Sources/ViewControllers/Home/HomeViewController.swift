@@ -201,8 +201,9 @@ extension HomeViewController: UITableViewDelegate {
         let event = viewModel.item(at: indexPath)
         let vc = EventDetailViewController()
         vc.modalPresentationStyle = .pageSheet
-        vc.inputData = event
-        present(vc, animated: true, completion: nil)
+        vc.modalTransitionStyle = .crossDissolve
+        vc.setInputData(event)
+        navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
@@ -238,7 +239,9 @@ extension HomeViewController {
     private func addEventHandle() {
         let vc = EditEventViewController(editMode: .new)
         vc.modalPresentationStyle = .pageSheet
-        present(vc, animated: true, completion: nil)
+        vc.modalTransitionStyle = .crossDissolve
+//        present(vc, animated: true, completion: nil)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

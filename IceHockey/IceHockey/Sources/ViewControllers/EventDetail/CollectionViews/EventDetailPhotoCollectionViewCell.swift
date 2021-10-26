@@ -13,7 +13,7 @@ class EventDetailPhotoCollectionViewCell: UICollectionViewCell, ConfigurableCell
     
     // MARK: - Properties
     
-    typealias DataType = String
+    typealias DataType = ImageDataConfiguration
     
     internal var isInterfaceConfigured: Bool = false
     let imageAspectRate: CGFloat = 1
@@ -58,6 +58,15 @@ class EventDetailPhotoCollectionViewCell: UICollectionViewCell, ConfigurableCell
     private lazy var placeholderImage: UIImage = {
         Asset.camera.image.resizeImage(to: imageHeight, aspectRatio: .current, with: .clear)
     }()
+    
+    // MARK: Lifecircle
+    
+    override func prepareForReuse() {
+        dataImageView.image = nil
+        isInterfaceConfigured = false
+    }
+    
+    // MARK: Helper methods
     
     func configureInterface() {
         if isInterfaceConfigured { return }
@@ -104,7 +113,7 @@ class EventDetailPhotoCollectionViewCell: UICollectionViewCell, ConfigurableCell
     func configure(with data: DataType) {
         configureInterface()
         if dataImageView.image == nil {
-            NetworkManager.shared.getImage(withName: data) { (image) in
+            ImagesManager.shared.getImage(withName: data.name, eventUID: data.eventUID) { (image) in
                 self.dataImageView.image = image
             }
         }

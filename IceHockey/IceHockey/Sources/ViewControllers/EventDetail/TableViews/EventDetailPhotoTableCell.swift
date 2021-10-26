@@ -11,12 +11,12 @@ class EventDetailPhotoTableCell: UITableViewCell, CollectionViewDelegate {
     
     // MARK: - Properties
     
-    typealias DataType = [String]
+    typealias DataType = [ImageDataConfiguration]
     var isInterfaceConfigured = false
     var imageAspectRate: CGFloat = 1
-    var timer: Timer?
+//    var timer: Timer?
     weak var delegate: UICollectionViewDelegate?
-    private var viewModel = EventDetailPhotoCellModel()
+    private var viewModel = EventDetailPhotoViewModel()
     
     private lazy var collectionView: PhotoCollectionView = {
         let layout = EventDetailPhotoCollectionViewLayout()
@@ -42,9 +42,9 @@ class EventDetailPhotoTableCell: UITableViewCell, CollectionViewDelegate {
 //        view.layer.shouldRasterize = true
 //        view.layer.rasterizationScale = UIScreen.main.scale
         
-        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(collectionViewLongPressHandle))
-        gesture.minimumPressDuration = 1.0
-        view.addGestureRecognizer(gesture)
+//        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(collectionViewLongPressHandle))
+//        gesture.minimumPressDuration = 1.0
+//        view.addGestureRecognizer(gesture)
         
         return view
     }()
@@ -100,44 +100,45 @@ class EventDetailPhotoTableCell: UITableViewCell, CollectionViewDelegate {
         NSLayoutConstraint.activate(constraints)
     }
     
-    func startTimer() {
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 8.0, repeats: true) { [weak self] (_) in
-            guard let self = self else {
-                return
-            }
-            let pageWidth = self.collectionView.frame.size.width
-            let currentPage = Int(self.collectionView.contentOffset.x / pageWidth)
-
-            var newItemIndex = currentPage + 1
-            let numberOfPages = self.collectionView.numberOfItems(inSection: 0)
-            if newItemIndex == numberOfPages {
-                newItemIndex = 0
-            }
-            let indexPath = IndexPath(item: newItemIndex, section: 0)
-            self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        }
-    }
+//    func startTimer() {
+//        timer?.invalidate()
+//        timer = Timer.scheduledTimer(withTimeInterval: 8.0, repeats: true) { [weak self] (_) in
+//            guard let self = self else {
+//                return
+//            }
+//            let pageWidth = self.collectionView.frame.size.width
+//            let currentPage = Int(self.collectionView.contentOffset.x / pageWidth)
+//
+//            var newItemIndex = currentPage + 1
+//            let numberOfPages = self.collectionView.numberOfItems(inSection: 0)
+//            if newItemIndex == numberOfPages {
+//                newItemIndex = 0
+//            }
+//            let indexPath = IndexPath(item: newItemIndex, section: 0)
+//            self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+//        }
+//    }
+//
+//    @objc
+//    private func collectionViewLongPressHandle(_ gestureRecognizer: UILongPressGestureRecognizer) {
+//        if gestureRecognizer.state == .began {
+//            timer?.invalidate()
+//            timer = nil
+//        } else if gestureRecognizer.state == .ended || gestureRecognizer.state == .cancelled {
+//            startTimer()
+//        }
+//    }
     
-    @objc
-    private func collectionViewLongPressHandle(_ gestureRecognizer: UILongPressGestureRecognizer) {
-        if gestureRecognizer.state == .began {
-            timer?.invalidate()
-            timer = nil
-        } else if gestureRecognizer.state == .ended || gestureRecognizer.state == .cancelled {
-            startTimer()
-        }
-    }
 }
 
 extension EventDetailPhotoTableCell: ConfigurableCell {
     
     func configure(with data: DataType) {
         configureUI()
-        viewModel.images = data
+        viewModel.setImageData(data: data)
         pageControl.numberOfPages = data.count
         collectionView.reloadData()
-        startTimer()
+//        startTimer()
     }
     
 }
@@ -145,7 +146,7 @@ extension EventDetailPhotoTableCell: ConfigurableCell {
 extension EventDetailPhotoTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.images.count
+        return viewModel.itemsCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -160,15 +161,15 @@ extension EventDetailPhotoTableCell: UICollectionViewDelegate, UICollectionViewD
         print("touched")
     }
     
-    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-        timer?.invalidate()
-        timer = nil
-    }
-
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        startTimer()
-    }
-    
+//    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+//        timer?.invalidate()
+//        timer = nil
+//    }
+//
+//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//        startTimer()
+//    }
+//
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let page = round(scrollView.contentOffset.x / scrollView.frame.width)
         pageControl.currentPage = Int(page)

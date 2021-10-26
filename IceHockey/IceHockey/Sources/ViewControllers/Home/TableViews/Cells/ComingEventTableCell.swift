@@ -104,14 +104,11 @@ class ComingEventTableCell: UITableViewCell, ConfigurableCell {
 //        dataImageView.image = data.image
         dataLabel.text = data.title
         
-        var dateString: String = "12 АВГ/2021"
-        if let date = data.date {
-            let formatter = DateFormatter()
-            formatter.dateStyle = .medium
-            formatter.timeStyle = .none
-            formatter.locale = Locale.current
-            dateString = formatter.string(from: date)
-        }
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        formatter.locale = Locale.current
+        let dateString = formatter.string(from: data.date)
         dateLabel.text = dateString
         typeLabel.text = data.type.description.uppercased()
     }

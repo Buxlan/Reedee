@@ -113,9 +113,9 @@ struct CollectionViewCellConfigurator<CellType: ConfigurableCell,
 
 // MARK: - Event detail configurators
 typealias EventPhotoCellConfigurator = TableViewCellConfigurator<EventDetailPhotoTableCell,
-                                                                 [String]>
+                                                                 [ImageDataConfiguration]>
 typealias EventDetailPhotoCollectionCellConfigurator = CollectionViewCellConfigurator<EventDetailPhotoCollectionViewCell,
-                                                                                      String>
+                                                                                      ImageDataConfiguration>
 typealias EventDetailUsefulButtonsCellConfigurator = TableViewCellConfigurator<EventDetailUsefulButtonsCell,
                                                                                SportEvent>
 typealias EventDetailTitleCellConfigurator = TableViewCellConfigurator<EventDetailTitleCell,
@@ -131,28 +131,31 @@ typealias EventDetailCopyrightCellConfigurator = TableViewCellConfigurator<Event
 typealias EditEventTitleCellConfigurator = ActionableTableViewCellConfigurator<EditEventTitleCell,
                                                                                String?,
                                                                                EditEventHandler>
-typealias EditEventTitleTextFieldCellConfigurator = ActionableTableViewCellConfigurator<EditEventTitleTextFieldCell,
+typealias EditEventTitleTextFieldCellConfigurator = ActionableTableViewCellConfigurator<EditEventInputTitleCell,
                                                                                         String?,
                                                                                         EditEventHandler>
-typealias EditEventTextCellConfigurator = ActionableTableViewCellConfigurator<EditEventTextCell,
+typealias EditEventTextCellConfigurator = ActionableTableViewCellConfigurator<EditEventInputTextCell,
                                                                               String?,
                                                                               EditEventHandler>
-typealias EditEventBoldTextCellConfigurator = ActionableTableViewCellConfigurator<EditEventBoldTextCell,
+typealias EditEventBoldTextCellConfigurator = ActionableTableViewCellConfigurator<EditEventInputBoldTextCell,
                                                                                   String?,
                                                                                   EditEventHandler>
 typealias EditEventAddPhotoCellConfigurator = ActionableTableViewCellConfigurator<EditEventPhotoCell,
-                                                                                  [String],
+                                                                                  [ImageDataConfiguration],
                                                                                   EditEventHandler>
 typealias EditEventSaveCellConfigurator = ActionableTableViewCellConfigurator<EditEventSaveCell,
                                                                               String?,
                                                                               EditEventHandler>
+typealias EditEventInputDateCellConfigurator = ActionableTableViewCellConfigurator<EditEventInputDateCell,
+                                                                                   Date?,
+                                                                                   EditEventHandler>
 
 typealias EditEventAddPhotoCollectionCellConfigurator = ActionableCollectionViewCellConfigurator<EditEventAddPhotoCollectionCell,
                                                                                         UIImage?,
                                                                                         EditEventHandler>
 
 typealias EditEventPhotoCollectionCellConfigurator = ActionableCollectionViewCellConfigurator<EditEventPhotoCollectionCell,
-                                                                                              String,
+                                                                                              ImageDataConfiguration,
                                                                                               EditEventHandler>
 
 // MARK: - Actions configurators

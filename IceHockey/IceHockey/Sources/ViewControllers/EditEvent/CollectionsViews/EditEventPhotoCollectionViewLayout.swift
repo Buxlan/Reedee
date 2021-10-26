@@ -74,6 +74,5 @@ extension EditEventPhotoCollectionViewLayout {
             
             contentWidth = max(contentWidth, xOrigin)
         }
-        
     }
 }

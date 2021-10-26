@@ -17,15 +17,15 @@ class EditEventViewController: UIViewController {
     }
     
     typealias DataType = SportEvent
-    var data: DataType
     
     private lazy var handler: EditEventHandler = {
         EditEventHandler(delegate: self)
     }()
     private lazy var viewModel: EditEventViewModel = {
-        return EditEventViewModel(handler: handler)
+        let viewModel = EditEventViewModel(handler: handler)
+        viewModel.delegate = self
+        return viewModel
     }()
-    private var swipeDirection: UISwipeGestureRecognizer.Direction?
     private var keyboardManager = KeyboardAppearanceManager()
     
     private lazy var tableFooterView: EventDetailTableFooterView = {
@@ -43,7 +43,7 @@ class EditEventViewController: UIViewController {
         view.delegate = self
         view.dataSource = viewModel
         view.backgroundColor = Asset.other2.color
-        view.allowsSelection = true
+        view.allowsSelection = false
         view.allowsMultipleSelection = false
         view.allowsSelectionDuringEditing = false
         view.allowsMultipleSelectionDuringEditing = false
@@ -57,6 +57,7 @@ class EditEventViewController: UIViewController {
         EditEventBoldTextCellConfigurator.registerCell(tableView: view)
         EditEventSaveCellConfigurator.registerCell(tableView: view)
         EditEventAddPhotoCellConfigurator.registerCell(tableView: view)
+        EditEventInputDateCellConfigurator.registerCell(tableView: view)
 
         view.tableFooterView = UIView()
         view.showsVerticalScrollIndicator = false
@@ -66,22 +67,20 @@ class EditEventViewController: UIViewController {
             
     // MARK: - Init
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        data = DataType()
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     init(editMode: EditMode) {
+        super.init(nibName: nil, bundle: nil)
         switch editMode {
         case .new:
-            data = DataType()
+            viewModel.dataSource = DataType()
         case .edit(let data):
-            self.data = data
+            viewModel.dataSource = data
         }
-        super.init(nibName: nil, bundle: nil)
         configureTabBarItem()
     }
     
     required init?(coder: NSCoder) {
-        data = DataType()
         super.init(coder: coder)
         configureTabBarItem()
     }
@@ -89,7 +88,6 @@ class EditEventViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        configureRecognizers()
         configureViewModel()
 //        setupActionHandlers()
     }
@@ -133,25 +131,18 @@ class EditEventViewController: UIViewController {
     }
     
     private func configureViewModel() {
-        viewModel.dataSource = data
     }
     
-    private func configureRecognizers() {
-        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
-        rightSwipe.direction = .right
-        self.view.addGestureRecognizer(rightSwipe)
+}
+
+extension EditEventViewController: InputData {
+    func setInputData(_ inputData: DataType) {
+        viewModel.dataSource = inputData
     }
 }
 
 extension EditEventViewController: UITableViewDelegate {
        
-}
-
-extension  EditEventViewController {
-    @objc
-    private func handleSwipes(_ sender: UISwipeGestureRecognizer) {
-        dismiss(animated: true, completion: nil)
-    }
 }
 
 extension EditEventViewController: EditEventHandlerInterface {
@@ -168,21 +159,6 @@ extension EditEventViewController: EditEventHandlerInterface {
     
     func reloadData() {
         tableView.reloadData()
-    }
-    
-    // MARK: - UITextFieldDelegate
-    
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-        if reason != .committed {
-            return
-        }
-        viewModel.dataSource?.title = textField.text ?? ""
-    }
-    
-    // MARK: - UITextViewDelegate
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        viewModel.dataSource?.text = textView.text
     }
     
     // MARK: - MediaPickerDelegate
@@ -207,8 +183,36 @@ extension EditEventViewController: EditEventHandlerInterface {
         viewModel.save()
     }
     
-    func deleteImage(withName imageName: String) {
-        viewModel.deleteImage(withName: imageName)
+    func setDate(_ value: Date) {
+        viewModel.setDate(value)
+    }
+    
+    func setTitle(_ value: String) {
+        viewModel.setTitle(value)
+    }
+    
+    func setText(_ value: String) {
+        viewModel.setText(value)
+    }
+    
+    func setBoldText(_ value: String) {
+        viewModel.setBoldText(value)
+    }
+    
+    func appendImage(_ image: UIImage) {
+        viewModel.appendImage(image)
+    }
+    
+    func removeImage(withName imageName: String) {
+        viewModel.removeImage(withName: imageName)
+    }
+    
+}
+
+extension EditEventViewController: ViewControllerDismissable {
+    
+    func dismiss(animated: Bool) {
+        navigationController?.popViewController(animated: animated)
     }
     
 }

@@ -79,6 +79,10 @@
 "Events.typePhoto" = "Photo";
 "Events.typeComingSoon" = "Soon";
 "Events.Save" = "Save";
+"Events.inputDateTitle" = "Input date";
+"Events.inputTitle" = "Input title";
+"Events.inputTextTitle" = "Input text";
+"Events.inputBoldTextTitle" = "Input ad text";
 /* Contacts */
 "Contacts.tabBarItemTitle" = "About club";
 "Contacts.title" = "Our contacts";

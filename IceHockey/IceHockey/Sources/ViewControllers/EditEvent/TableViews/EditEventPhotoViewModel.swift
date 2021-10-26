@@ -12,23 +12,22 @@ struct EditEventPhotoViewModel {
     // MARK: - Properties
     var handler: EditEventHandler?
     
-    var imagesNames: [String] = [] {
-        didSet {
-            guard let handler = handler else {
-                return
-            }
-            dataSource = imagesNames.map { (name) -> CellConfigurator in
-                EditEventPhotoCollectionCellConfigurator(data: name, handler: handler)
-            }
-            let addImageItem = EditEventAddPhotoCollectionCellConfigurator(data: nil, handler: handler)
-            dataSource.append(addImageItem)
-        }
-    }
     private var dataSource: [CellConfigurator] = []
     
     // MARK: - Lifecircle
     
     // MARK: - Helper functions
+    
+    mutating func setImageData(data: [ImageDataConfiguration]) {
+        guard let handler = handler else {
+            return
+        }
+        dataSource = data.map { (config) -> CellConfigurator in
+            EditEventPhotoCollectionCellConfigurator(data: config, handler: handler)
+        }
+        let addImageItem = EditEventAddPhotoCollectionCellConfigurator(data: nil, handler: handler)
+        dataSource.append(addImageItem)
+    }
     
     func item(at indexPath: IndexPath) -> CellConfigurator {
         guard indexPath.row >= 0,

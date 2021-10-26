@@ -10,15 +10,21 @@ import UIKit
 protocol MediaPickerDelegate: class {
     func openGallery()
     func makePhoto()
-    func deleteImage(withName imageName: String)
+}
+
+protocol EditEventInterface {
+    func setDate(_ value: Date)
+    func setTitle(_ value: String)
+    func setText(_ setTitlevalue: String)
+    func setBoldText(_ value: String)
+    func appendImage(_ image: UIImage)
+    func removeImage(withName imageName: String)
 }
 
 protocol EditEventHandlerInterface: CellActionHandler,
                                     CellUpdatable,
-                                    UITextViewDelegate,
-                                    UITextFieldDelegate,
-                                    MediaPickerDelegate {
-    
+                                    MediaPickerDelegate,
+                                    EditEventInterface {
     func save()
     
 }
@@ -55,20 +61,6 @@ extension EditEventHandler {
     
 }
 
-// MARK: - UITextFieldDelegate methods
-extension EditEventHandler {
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-        delegate?.textFieldDidEndEditing?(textField, reason: reason)
-    }
-    
-}
-
 // MARK: - MediaPickedDelegate methods
 extension EditEventHandler {
     
@@ -84,8 +76,28 @@ extension EditEventHandler {
         delegate?.save()
     }
     
-    func deleteImage(withName imageName: String) {
-        delegate?.deleteImage(withName: imageName)
+    func setDate(_ value: Date) {
+        delegate?.setDate(value)
+    }
+    
+    func setTitle(_ value: String) {
+        delegate?.setTitle(value)
+    }
+    
+    func setText(_ value: String) {
+        delegate?.setText(value)
+    }
+    
+    func setBoldText(_ value: String) {
+        delegate?.setBoldText(value)
+    }
+    
+    func removeImage(withName imageName: String) {
+        delegate?.removeImage(withName: imageName)
+    }
+    
+    func appendImage(_ image: UIImage) {
+        delegate?.appendImage(image)
     }
     
 }

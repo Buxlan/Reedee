@@ -8,17 +8,10 @@
 import Foundation
 import Firebase
 
-struct EventDetailPhotoCellModel {
+struct EventDetailPhotoViewModel {
     
     // MARK: - Properties
     
-    var images: [String] = [] {
-        didSet {
-            dataSource = images.map { (name) -> CellConfigurator in
-                EventDetailPhotoCollectionCellConfigurator(data: name)
-            }
-        }
-    }
     private var dataSource: [CellConfigurator] = []
     
     // MARK: - Lifecircle
@@ -29,12 +22,22 @@ struct EventDetailPhotoCellModel {
     
     // MARK: - Helper functions
     
+    mutating func setImageData(data: [ImageDataConfiguration]) {
+        dataSource = data.map { (config) -> CellConfigurator in
+            EventDetailPhotoCollectionCellConfigurator(data: config)
+        }
+    }
+    
     func item(at indexPath: IndexPath) -> CellConfigurator {
         guard indexPath.row >= 0,
               indexPath.row < dataSource.count else {
             fatalError("Wrong index path")
         }
         return dataSource[indexPath.row]
+    }
+    
+    var itemsCount: Int {
+        dataSource.count
     }
     
 }

@@ -14,7 +14,11 @@ class EventDetailViewModel: NSObject {
     var dataSource: SportEvent? {
         didSet {
             if let data = dataSource {
-                tableItems = [EventPhotoCellConfigurator(data: data.imagesNames),
+                let config = data.imageIDs.map { (imageUid) -> ImageDataConfiguration in
+                    let imageName = SportEvent.getImageName(forKey: imageUid)
+                    return ImageDataConfiguration(name: imageName, eventUID: data.uid)
+                }
+                tableItems = [EventPhotoCellConfigurator(data: config),
                               EventDetailUsefulButtonsCellConfigurator(data: data),
                               EventDetailTitleCellConfigurator(data: data),
                               EventDetailDescriptionCellConfigurator(data: data),
@@ -38,7 +42,8 @@ class EventDetailViewModel: NSObject {
     // MARK: - Hepler functions
 }
 
-extension EventDetailViewModel: UITableViewDataSource {    
+extension EventDetailViewModel: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableItems.count
     }
@@ -47,4 +52,5 @@ extension EventDetailViewModel: UITableViewDataSource {
         let configurator = tableItems[indexPath.row]
         return delegate?.configureCell(at: indexPath, configurator: configurator) ?? UITableViewCell()
     }
+    
 }

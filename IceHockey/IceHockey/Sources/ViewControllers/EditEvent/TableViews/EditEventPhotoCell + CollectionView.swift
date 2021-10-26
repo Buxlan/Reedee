@@ -11,12 +11,12 @@ class EditEventPhotoCell: UITableViewCell, CollectionViewDelegate {
     
     // MARK: - Properties
     
-    typealias DataType = [String]
+    typealias DataType = [ImageDataConfiguration]
     typealias HandlerType = EditEventHandler
     var isInterfaceConfigured = false
     weak var delegate: UICollectionViewDelegate?
     private var viewModel = EditEventPhotoViewModel()
-    let cellHeight: CGFloat = 80
+    let cellHeight: CGFloat = 120
     
     private lazy var collectionView: PhotoCollectionView = {
         let layout = EditEventPhotoCollectionViewLayout()
@@ -25,10 +25,10 @@ class EditEventPhotoCell: UITableViewCell, CollectionViewDelegate {
         view.accessibilityIdentifier = "collectionView (inside table cell)"
         view.backgroundColor = Asset.other1.color
         view.isUserInteractionEnabled = true
-        view.allowsSelection = true
+        view.allowsSelection = false
         view.allowsMultipleSelection = false
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.isPagingEnabled = true
+        view.isPagingEnabled = false
         
         EditEventPhotoCollectionCellConfigurator.registerCell(collectionView: view)
         EditEventAddPhotoCollectionCellConfigurator.registerCell(collectionView: view)
@@ -69,7 +69,7 @@ class EditEventPhotoCell: UITableViewCell, CollectionViewDelegate {
         let constraints: [NSLayoutConstraint] = [
             collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             collectionView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            collectionView.widthAnchor.constraint(equalTo: collectionView.widthAnchor),
+            collectionView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             collectionView.heightAnchor.constraint(equalToConstant: cellHeight),
             collectionView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor)
         ]
@@ -83,14 +83,14 @@ extension EditEventPhotoCell: ConfigurableActionCell {
     func configure(with data: DataType, handler: HandlerType) {
         configureUI()
         viewModel.handler = handler
-        viewModel.imagesNames = data
+        viewModel.setImageData(data: data)
         collectionView.reloadData()
     }
     
 }
 
 extension EditEventPhotoCell: UICollectionViewDelegate, UICollectionViewDataSource {
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.itemsCount
     }
@@ -103,9 +103,9 @@ extension EditEventPhotoCell: UICollectionViewDelegate, UICollectionViewDataSour
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("touched")
-    }
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        print("touched")
+//    }
     
 }
 

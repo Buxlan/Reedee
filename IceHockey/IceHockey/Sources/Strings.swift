@@ -86,6 +86,14 @@ internal enum L10n {
     internal static let editEventTextPlaceholder = L10n.tr("Localizable", "Events.editEventTextPlaceholder")
     /// Enter title
     internal static let editEventTitlePlaceholder = L10n.tr("Localizable", "Events.editEventTitlePlaceholder")
+    /// Input ad text
+    internal static let inputBoldTextTitle = L10n.tr("Localizable", "Events.inputBoldTextTitle")
+    /// Input date
+    internal static let inputDateTitle = L10n.tr("Localizable", "Events.inputDateTitle")
+    /// Input text
+    internal static let inputTextTitle = L10n.tr("Localizable", "Events.inputTextTitle")
+    /// Input title
+    internal static let inputTitle = L10n.tr("Localizable", "Events.inputTitle")
     /// Save
     internal static let save = L10n.tr("Localizable", "Events.Save")
     /// Events

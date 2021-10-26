@@ -67,8 +67,8 @@
 "News.tableViewComingSectionTitle" = "Предстоящие мероприятия";
 /* Events */
 "Events.addEventTitle" = "Редактирование новости";
-"Events.editEventTitlePlaceholder" = "Заголовок новости";
-"Events.editEventTextPlaceholder" = "Текст новости";
+"Events.editEventTitlePlaceholder" = "Заголовок";
+"Events.editEventTextPlaceholder" = "Текст";
 "Events.eventsTabBarItemTitle" = "Мероприятия";
 "Events.eventsTitle" = "Мероприятия";
 "Events.defaultActionTitle" = "Подробнее";
@@ -79,6 +79,10 @@
 "Events.typePhoto" = "Фото";
 "Events.typeComingSoon" = "Скоро";
 "Events.Save" = "Сохранить";
+"Events.inputDateTitle" = "Введите дату";
+"Events.inputTitle" = "Введите заголовок";
+"Events.inputTextTitle" = "Введите текст";
+"Events.inputBoldTextTitle" = "Введите рекламный текст";
 /* Contacts */
 "Contacts.tabBarItemTitle" = "Контакты";
 "Contacts.title" = "Наши контакты";

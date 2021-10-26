@@ -29,7 +29,9 @@ struct RealtimeDatabaseManager {
 extension RealtimeDatabaseManager {
     
     func getNewImageUID() -> String? {
-        root.child("images").childByAutoId().key
+        let key = root.child("images").childByAutoId().key
+        print("Got key: \(key)")
+        return key
     }
     
 }

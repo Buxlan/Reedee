@@ -165,16 +165,13 @@ extension EventTableCell: ConfigurableEventCell {
     func configure(with data: DataType) {
         configureUI()
 //        dataImageView.image = data.image
-        dataLabel.text = data.title
+        dataLabel.text = data.title        
         
-        var dateString: String = "12 АВГ/2021"
-        if let date = data.date {
-            let formatter = DateFormatter()
-            formatter.dateStyle = .medium
-            formatter.timeStyle = .none
-            formatter.locale = Locale.current
-            dateString = formatter.string(from: date)
-        }
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        formatter.locale = Locale.current
+        let dateString = formatter.string(from: data.date)
         dateLabel.text = dateString
         
         typeLabel.backgroundColor = data.type.backgroundColor
@@ -182,7 +179,7 @@ extension EventTableCell: ConfigurableEventCell {
         typeLabel.text = data.type.description.uppercased()
         
         if let imageName = data.mainImageName {
-            NetworkManager.shared.getImage(withName: imageName) { [weak self] (image) in
+            ImagesManager.shared.getImage(withName: imageName, eventUID: data.uid) { [weak self] (image) in
                 guard let self = self else { return }
                 if let image = image {
                     self.dataImageView.image = image

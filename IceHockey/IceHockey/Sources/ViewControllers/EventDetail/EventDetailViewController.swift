@@ -7,15 +7,10 @@
 
 import UIKit
 
-class EventDetailViewController: UIViewController, InputData {
+class EventDetailViewController: UIViewController {
     
     // MARK: - Properties
     typealias DataType = SportEvent
-    var inputData: SportEvent? {
-        didSet {
-            viewModel.dataSource = inputData
-        }
-    }
     private lazy var viewModel: EventDetailViewModel = {
         return EventDetailViewModel(delegate: self)
     }()
@@ -119,6 +114,9 @@ class EventDetailViewController: UIViewController, InputData {
     }
     
     private func configureBars() {
+        let itemReport = UIBarButtonItem(title: "Report", style: .plain, target: self, action: #selector(reportHandle))
+        let itemEdit = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editHandle))
+        navigationItem.rightBarButtonItems = [itemReport, itemEdit]
     }
     
     private func configureViewModel() {        
@@ -133,6 +131,14 @@ class EventDetailViewController: UIViewController, InputData {
 
 extension EventDetailViewController: UITableViewDelegate {
        
+}
+
+extension EventDetailViewController: InputData {
+    
+    func setInputData(_ inputData: SportEvent) {
+        viewModel.dataSource = inputData
+    }
+    
 }
 
 extension  EventDetailViewController {
@@ -152,4 +158,22 @@ extension EventDetailViewController: CellUpdatable {
     func reloadData() {
         tableView.reloadData()
     }
+}
+
+extension EventDetailViewController {
+    
+    @objc func reportHandle() {
+        
+    }
+    
+    @objc func editHandle() {
+        guard let dataSource = viewModel.dataSource else {
+            return
+        }
+        let vc = EditEventViewController(editMode: .edit(dataSource))
+        vc.modalPresentationStyle = .pageSheet
+        vc.modalTransitionStyle = .crossDissolve
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }

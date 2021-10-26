@@ -7,11 +7,20 @@
 
 import UIKit
 
-class EditEventPhotoCollectionCell: UICollectionViewCell, ConfigurableActionCell {
+struct ImageDataConfiguration {
+    let name: String
+    let eventUID: String
+    init(name: String, eventUID: String) {
+        self.name = name
+        self.eventUID = eventUID
+    }
+}
+
+class EditEventPhotoCollectionCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    typealias DataType = String
+    typealias DataType = ImageDataConfiguration
     typealias HandlerType = EditEventHandler
     
     private var handler: HandlerType?
@@ -20,6 +29,7 @@ class EditEventPhotoCollectionCell: UICollectionViewCell, ConfigurableActionCell
     internal var isInterfaceConfigured: Bool = false
     let imageAspectRate: CGFloat = 1.77
     let imageHeight: CGFloat = 160
+    let actionButtonHeight: CGFloat = 32
         
     private lazy var dataImageView: UIImageView = {
         let cornerRadius: CGFloat = 32.0
@@ -38,16 +48,26 @@ class EditEventPhotoCollectionCell: UICollectionViewCell, ConfigurableActionCell
         view.setTitleColor(Asset.textColor.color, for: .normal)
         view.tintColor = Asset.textColor.color
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 18
+        view.layer.cornerRadius = actionButtonHeight / 2
         view.layer.borderColor = Asset.other0.color.cgColor
         view.layer.borderWidth = 0.5
         let image = Asset.xmark.image
         view.setImage(image, for: .normal)
         view.imageView?.contentMode = .scaleAspectFit
         view.clipsToBounds = true
-        view.contentEdgeInsets = .init(top: 4, left: 4, bottom: 4, right: 4)
         return view
     }()
+    
+    // MARK: - Lifecircle
+    
+    override func prepareForReuse() {
+        dataImageView.image = nil
+        isInterfaceConfigured = false
+        handler = nil
+        imageName = nil
+    }
+        
+    // MARK: - Helper functions
     
     func configureInterface() {
         if isInterfaceConfigured { return }
@@ -68,36 +88,40 @@ class EditEventPhotoCollectionCell: UICollectionViewCell, ConfigurableActionCell
             
             dataImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             dataImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            dataImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -24),
-            dataImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, constant: -24),
+            dataImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -actionButtonHeight-4),
+            dataImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, constant: -actionButtonHeight-4),
             
-            actionButton.centerXAnchor.constraint(equalTo: dataImageView.centerXAnchor),
-            actionButton.centerYAnchor.constraint(equalTo: dataImageView.centerYAnchor),
-            actionButton.widthAnchor.constraint(equalToConstant: 36),
-            actionButton.heightAnchor.constraint(equalToConstant: 36)
+            actionButton.centerXAnchor.constraint(equalTo: dataImageView.trailingAnchor),
+            actionButton.centerYAnchor.constraint(equalTo: dataImageView.topAnchor),
+            actionButton.widthAnchor.constraint(equalToConstant: actionButtonHeight),
+            actionButton.heightAnchor.constraint(equalToConstant: actionButtonHeight)
         ]
         NSLayoutConstraint.activate(constraints)
     }
     
-    // MARK: - Helper functions
+}
+
+extension EditEventPhotoCollectionCell: ConfigurableActionCell {
     
     func configure(with data: DataType, handler: HandlerType) {
         configureInterface()
         self.handler = handler
-        self.imageName = data
+        self.imageName = data.name
+        print("Configuring image cell with name \(data)")
         if dataImageView.image == nil {
-            NetworkManager.shared.getImage(withName: data) { (image) in
+            ImagesManager.shared.getImage(withName: data.name, eventUID: data.eventUID) { (image) in
                 self.dataImageView.image = image
             }
         }
     }
+    
 }
 
 extension EditEventPhotoCollectionCell {
     
     @objc private func deleteHandle() {
         if let imageName = imageName {
-            handler?.deleteImage(withName: imageName)
+            handler?.removeImage(withName: imageName)
         }
     }
     

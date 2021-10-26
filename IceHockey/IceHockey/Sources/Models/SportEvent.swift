@@ -16,18 +16,19 @@ struct SportEvent: Hashable {
     var actionTitle: String?
     var viewsCount: Int?
     var type: SportEventType
-    var date: Date?
-    var imagesNames: [String] = []    
+    var date: Date
+    var imageIDs: [String] = []
+    var order: Int
     
     init(uid: String,
          title: String,
          text: String,
          boldText: String,
-         imagePath: String,
-         imageURL: String? = nil,
+         imagesNames: [String],
          actionTitle: String? = nil,
-         date: Date? = nil,
-         type: SportEventType = .match) {
+         date: Date,
+         type: SportEventType = .match,
+         order: Int) {
         self.uid = uid
         self.title = title
         self.text = text
@@ -36,6 +37,8 @@ struct SportEvent: Hashable {
         self.date = date
         self.type = type
         self.boldText = boldText
+        self.imageIDs = imagesNames
+        self.order = order
     }
     
     internal init() {
@@ -45,45 +48,57 @@ struct SportEvent: Hashable {
         self.actionTitle = nil
         self.viewsCount = 123
         self.viewsCount = Int.random(in: 1...10000)
-        self.date = nil
-        self.type = .match
+        self.date = Date()
+        self.type = .event
         self.boldText = ""
+        self.imageIDs = []
+        self.order = 0
     }
     
     init?(snapshot: DataSnapshot) {
+        let uid = snapshot.key
         guard let dict = snapshot.value as? [String: Any] else { return nil }
-        guard let uid = dict["uid"] as? String else { return nil }
         guard let text = dict["text"] as? String else { return nil }
         guard let boldText = dict["boldText"] as? String else { return nil }
         guard let title = dict["title"] as? String else { return nil }
         guard let rawType = dict["type"] as? Int,
               let type = SportEventType(rawValue: rawType) else { return nil }
         guard let dateInterval = dict["date"] as? Int else { return nil }
-        
+        guard let order = dict["type"] as? Int else { return nil }
+                
         self.uid = uid
         self.text = text
         self.title = title
         self.date = Date(timeIntervalSince1970: TimeInterval(dateInterval))
-        self.imagesNames = dict["images"] as? [String] ?? []
+        self.imageIDs = dict["images"] as? [String] ?? []
         self.type = type
         self.boldText = boldText
+        self.order = order
     }
     
 }
 
 extension SportEvent {
     
-    var databaseReference: DatabaseReference {
-        let ref = FirebaseManager.shared.databaseManager.root.child("events")
+    var eventsDatabaseReference: DatabaseReference {
+        FirebaseManager.shared.databaseManager.root.child("events")
+    }
+    
+    var imagesDatabaseReference: DatabaseReference {
+        FirebaseManager.shared.databaseManager.root.child("images")
+    }
+    
+    var imagesStorageReference: StorageReference {
+        let ref = FirebaseManager.shared.storageManager.root.child("events")
         return ref
     }
     
     var eventReference: DatabaseReference {
         var ref: DatabaseReference
         if isNew {
-            ref = databaseReference.childByAutoId()
+            ref = eventsDatabaseReference.childByAutoId()
         } else {
-            ref = databaseReference.child(uid)
+            ref = eventsDatabaseReference.child(uid)
         }
         return ref
     }
@@ -92,33 +107,74 @@ extension SportEvent {
         return true
     }
     
-    func save() -> String? {
+    func save() throws {
+        
         if !checkProperties() {
             print("Error. Properties are wrong")
-            return nil
         }
-        let date = self.date ?? Date()
-        let interval = date.timeIntervalSince1970
+        
+        // for order purposes
+        var dateComponent = DateComponents()
+        dateComponent.calendar = Calendar.current
+        dateComponent.year = 2024
+        guard let templateDate = dateComponent.date else {
+            fatalError()
+        }
+        let interval = self.date.timeIntervalSince1970
+        let order = templateDate.timeIntervalSince(self.date)
+        
         let dict: [String: Any] = [
             "uid": self.uid,
             "title": self.title,
             "text": self.text,
             "boldText": self.boldText,
-            "mainImageName": self.mainImageName,
             "actionTitle": self.actionTitle ?? "",
             "viewsCount": self.viewsCount ?? 0,
             "type": self.type.rawValue,
             "date": Int(interval),
-            "imageNames": self.imagesNames
+            "images": self.imageIDs,
+            "order": Int(order)
         ]
+        
         eventReference.setValue(dict) { (error, ref) in
             if let error = error {
                 print(error)
                 return
             }
-            print(ref)
+            guard let eventId = ref.key else {
+                return
+            }
+            let imagesManager = ImagesManager.shared
+            for imageId in imageIDs {
+                let imageName = SportEvent.getImageName(forKey: imageId)
+                let imageRef = imagesDatabaseReference.child(imageId)
+                imageRef.setValue(imageName)
+                let ref = imagesStorageReference.child(eventId).child(imageName)
+                if let image = ImagesManager.shared.getCachedImage(forName: imageName),
+                   let data = image.pngData() {
+                    let task = ref.putData(data)
+                    imagesManager.appendUploadTask(task)
+                }
+            }
+            
+//            var imagesDict: [String: String] = [:]
+//            for imageId in imagesNames {
+//                let imageName = getImageName(forKey: imageId)
+//                imagesDict[imageId] = imageName
+//                let ref = imagesStorageReference.child(eventId).child(imageName)
+//                if let image = ImagesManager.shared.getCachedImage(forKey: imageId),
+//                   let data = image.pngData() {
+//                    let task = ref.putData(data)
+//                    imagesManager.appendUploadTask(task)
+//                }
+//            }
+//            imagesDatabaseReference.setValue(imagesDict) { (error, _) in
+//                if let error = error {
+//                    print(error)
+//                    return
+//                }
+//            }
         }
-        return eventReference.key
     }
     
     var isNew: Bool {
@@ -126,10 +182,34 @@ extension SportEvent {
     }
     
     var mainImageName: String? {
-        if imagesNames.count > 0 {
-            return imagesNames[0]
+        if imageIDs.count > 0 {
+            return SportEvent.getImageName(forKey: imageIDs[0])
         }
         return nil
+    }
+    
+}
+
+extension SportEvent {
+    
+    mutating func appendImage(_ image: UIImage) {
+        if let key = FirebaseManager.shared.databaseManager.getNewImageUID() {
+            let imageName = SportEvent.getImageName(forKey: key)
+            ImagesManager.shared.appendToCache(image, for: imageName)
+            imageIDs.append(key)
+        }
+    }
+    
+    mutating func removeImage(withName imageName: String) {
+        guard let index = imageIDs.firstIndex(of: imageName) else {
+            return
+        }
+        ImagesManager.shared.removeFromCache(imageForKey: imageName)
+        imageIDs.remove(at: index)
+    }
+    
+    static func getImageName(forKey key: String) -> String {
+        return key + ".png"
     }
     
 }
