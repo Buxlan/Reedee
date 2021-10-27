@@ -162,7 +162,7 @@ typealias EditEventPhotoCollectionCellConfigurator = ActionableCollectionViewCel
 typealias ActionCellConfigurator = TableViewCellConfigurator<ActionsTableCell,
                                                              QuickAction>
 
-typealias CommandCollectionCellConfigurator = CollectionViewCellConfigurator<ActionsCollectionCell,
+typealias ActionCollectionCellConfigurator = CollectionViewCellConfigurator<ActionsCollectionCell,
                                                                              QuickAction>
 // Not using
 typealias ComingEventCellConfigurator = TableViewCellConfigurator<ComingEventTableCell,

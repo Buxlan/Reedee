@@ -29,9 +29,12 @@
 		40369EAB26E6B3FE0083E675 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40369EAA26E6B3FE0083E675 /* HomeViewModel.swift */; };
 		40369EBA26E6DB490083E675 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40369EB826E6DB490083E675 /* EventDetailViewController.swift */; };
 		40369EC326E6E2EA0083E675 /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40369EC226E6E2EA0083E675 /* HomeView.xib */; };
-		40369EC626E6E33C0083E675 /* ActionsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40369EC526E6E33C0083E675 /* ActionsTableCell.swift */; };
+		40369EC626E6E33C0083E675 /* ActionsTableCell + CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40369EC526E6E33C0083E675 /* ActionsTableCell + CollectionView.swift */; };
 		404C028B26EFDE1800CFAF3F /* ShadowCorneredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C028A26EFDE1800CFAF3F /* ShadowCorneredView.swift */; };
 		4055FCDC26E816D900E5BB79 /* CellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4055FCDB26E816D900E5BB79 /* CellConfigurator.swift */; };
+		4056F2322729D61B00DD75CA /* SportEventFirebaseSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4056F2312729D61B00DD75CA /* SportEventFirebaseSaver.swift */; };
+		4060FBEE2729E28C00349C00 /* NewSportEventFirebaseSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4060FBED2729E28C00349C00 /* NewSportEventFirebaseSaver.swift */; };
+		4060FBF12729E2C600349C00 /* ExistingSportEventFirebaseSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4060FBF02729E2C600349C00 /* ExistingSportEventFirebaseSaver.swift */; };
 		4063EAE9271EE2A100B6B8C7 /* EventDetailPhotoCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4063EAE8271EE2A100B6B8C7 /* EventDetailPhotoCollectionViewLayout.swift */; };
 		4063EAED271EE7E700B6B8C7 /* EventDetailUsefulButtonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4063EAEC271EE7E700B6B8C7 /* EventDetailUsefulButtonsCell.swift */; };
 		4065C95226E84E410084E5F2 /* ComingEventTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065C95126E84E410084E5F2 /* ComingEventTableCell.swift */; };
@@ -125,6 +128,7 @@
 		40C3BC75272802C800BBA67F /* EditEventInputDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C3BC74272802C800BBA67F /* EditEventInputDateCell.swift */; };
 		40C87B4D26EA667400E8217D /* EventCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C87B4C26EA667400E8217D /* EventCollectionViewLayout.swift */; };
 		40CDC4BF2718B69A00990C6A /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CDC4BE2718B69A00990C6A /* EventManager.swift */; };
+		40D010912729EA3100283D99 /* HomeTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D010902729EA3100283D99 /* HomeTableViewHeader.swift */; };
 		40D47C3127079B8E0038A801 /* SportModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 40D47C2F27079B8E0038A801 /* SportModel.xcdatamodeld */; };
 		40DBD76E26E83BFD00CDBADD /* TableCellActionsProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DBD76D26E83BFD00CDBADD /* TableCellActionsProxy.swift */; };
 		40DEC8B42718D083008A59A8 /* SportEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DEC8B32718D083008A59A8 /* SportEventType.swift */; };
@@ -169,9 +173,12 @@
 		40369EAA26E6B3FE0083E675 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		40369EB826E6DB490083E675 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		40369EC226E6E2EA0083E675 /* HomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeView.xib; sourceTree = "<group>"; };
-		40369EC526E6E33C0083E675 /* ActionsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsTableCell.swift; sourceTree = "<group>"; };
+		40369EC526E6E33C0083E675 /* ActionsTableCell + CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActionsTableCell + CollectionView.swift"; sourceTree = "<group>"; };
 		404C028A26EFDE1800CFAF3F /* ShadowCorneredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowCorneredView.swift; sourceTree = "<group>"; };
 		4055FCDB26E816D900E5BB79 /* CellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellConfigurator.swift; sourceTree = "<group>"; };
+		4056F2312729D61B00DD75CA /* SportEventFirebaseSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportEventFirebaseSaver.swift; sourceTree = "<group>"; };
+		4060FBED2729E28C00349C00 /* NewSportEventFirebaseSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSportEventFirebaseSaver.swift; sourceTree = "<group>"; };
+		4060FBF02729E2C600349C00 /* ExistingSportEventFirebaseSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingSportEventFirebaseSaver.swift; sourceTree = "<group>"; };
 		4063EAE8271EE2A100B6B8C7 /* EventDetailPhotoCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailPhotoCollectionViewLayout.swift; sourceTree = "<group>"; };
 		4063EAEC271EE7E700B6B8C7 /* EventDetailUsefulButtonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailUsefulButtonsCell.swift; sourceTree = "<group>"; };
 		4065C95126E84E410084E5F2 /* ComingEventTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingEventTableCell.swift; sourceTree = "<group>"; };
@@ -266,6 +273,7 @@
 		40C3BC74272802C800BBA67F /* EditEventInputDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventInputDateCell.swift; sourceTree = "<group>"; };
 		40C87B4C26EA667400E8217D /* EventCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionViewLayout.swift; sourceTree = "<group>"; };
 		40CDC4BE2718B69A00990C6A /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
+		40D010902729EA3100283D99 /* HomeTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewHeader.swift; sourceTree = "<group>"; };
 		40D47C3027079B8E0038A801 /* SportModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SportModel.xcdatamodel; sourceTree = "<group>"; };
 		40DBD76D26E83BFD00CDBADD /* TableCellActionsProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellActionsProxy.swift; sourceTree = "<group>"; };
 		40DEC8B32718D083008A59A8 /* SportEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportEventType.swift; sourceTree = "<group>"; };
@@ -346,14 +354,17 @@
 			path = ErrorDescription;
 			sourceTree = "<group>";
 		};
-		401C9B26270D155F00F91DC6 /* Database */ = {
+		401C9B26270D155F00F91DC6 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				4056F2312729D61B00DD75CA /* SportEventFirebaseSaver.swift */,
+				4060FBF02729E2C600349C00 /* ExistingSportEventFirebaseSaver.swift */,
+				4060FBED2729E28C00349C00 /* NewSportEventFirebaseSaver.swift */,
 				401C9B23270D155C00F91DC6 /* FirebaseManager.swift */,
 				406E7C0C2723302300DAD711 /* FirebaseStorageManager.swift */,
 				406E7C0927232FFB00DAD711 /* RealtimeDatabaseManager.swift */,
 			);
-			path = Database;
+			path = Firebase;
 			sourceTree = "<group>";
 		};
 		401C9B27270D156900F91DC6 /* Auth */ = {
@@ -418,6 +429,7 @@
 		4065C95726E850ED0084E5F2 /* TableViews */ = {
 			isa = PBXGroup;
 			children = (
+				40D010902729EA3100283D99 /* HomeTableViewHeader.swift */,
 				408EE7CE26EFEDF000C5DDB4 /* Cells */,
 			);
 			path = TableViews;
@@ -510,7 +522,7 @@
 			isa = PBXGroup;
 			children = (
 				4065C95426E84E990084E5F2 /* EventTableCell.swift */,
-				40369EC526E6E33C0083E675 /* ActionsTableCell.swift */,
+				40369EC526E6E33C0083E675 /* ActionsTableCell + CollectionView.swift */,
 				406C306B26F8FD260040F0A7 /* PhotoGalleryTableCell.swift */,
 				4065C95126E84E410084E5F2 /* ComingEventTableCell.swift */,
 				409E685B26ED6937008C4C0B /* EventsSectionHeaderView.swift */,
@@ -671,7 +683,7 @@
 				40A4464626E409D800129B89 /* Strings.swift */,
 				401C9B13270D051700F91DC6 /* ViewControllerCoordinator */,
 				401C9B27270D156900F91DC6 /* Auth */,
-				401C9B26270D155F00F91DC6 /* Database */,
+				401C9B26270D155F00F91DC6 /* Firebase */,
 				40E7203F26E400FE00A64C60 /* SceneDelegate.swift */,
 				40C106B426E419CB00B619A1 /* AppController.swift */,
 				40842FC22725E44500E056A9 /* ImagesManager.swift */,
@@ -989,6 +1001,7 @@
 				409403FA2722072C00055FC4 /* CellActionHandler.swift in Sources */,
 				40713A7D27204A51005F1265 /* EditEventViewModel.swift in Sources */,
 				406C306826F8F2320040F0A7 /* QuickActionsCollectionLayout.swift in Sources */,
+				4056F2322729D61B00DD75CA /* SportEventFirebaseSaver.swift in Sources */,
 				406D49E5271E3618000A9666 /* EventDetailPhotoViewModel.swift in Sources */,
 				406CE68A2723EDE6002FDDB6 /* EditEventPhotoCollectionViewLayout.swift in Sources */,
 				406AF0E826F7BDF9005C9767 /* QuickActionsCollectionView.swift in Sources */,
@@ -996,6 +1009,7 @@
 				40369EAB26E6B3FE0083E675 /* HomeViewModel.swift in Sources */,
 				4032D7062723536D00151A4D /* EditEventSaveCell.swift in Sources */,
 				402EDA6926E43060004A2992 /* SportSquad.swift in Sources */,
+				40D010912729EA3100283D99 /* HomeTableViewHeader.swift in Sources */,
 				406E7BFF2722E85A00DAD711 /* KeyboardAccessoryPhotoView.swift in Sources */,
 				409E685C26ED6937008C4C0B /* EventsSectionHeaderView.swift in Sources */,
 				40CDC4BF2718B69A00990C6A /* EventManager.swift in Sources */,
@@ -1010,6 +1024,7 @@
 				409403FD2722075000055FC4 /* EditEventHandler.swift in Sources */,
 				4065C96026E854C00084E5F2 /* CorneredView.swift in Sources */,
 				4098C04526E5756800F0BBE6 /* SportPlayer.swift in Sources */,
+				4060FBF12729E2C600349C00 /* ExistingSportEventFirebaseSaver.swift in Sources */,
 				40940BEF26E412F40098EF89 /* AuthProvider.swift in Sources */,
 				400EB96926F00BFD0026EFB1 /* InsetLabel.swift in Sources */,
 				40B947C526EEBD5E00D9E8DA /* ConfigurableCell.swift in Sources */,
@@ -1065,6 +1080,7 @@
 				400A2AC526E59A7E00F13BCF /* SportCoachDetailViewModel.swift in Sources */,
 				40E2D64526E5584D006503C7 /* ShopItemViewController.swift in Sources */,
 				40E949BF26ED59A600962590 /* CircularView.swift in Sources */,
+				4060FBEE2729E28C00349C00 /* NewSportEventFirebaseSaver.swift in Sources */,
 				406CE6862723ECB2002FDDB6 /* EditEventPhotoCollectionCell.swift in Sources */,
 				406D49E8271E3806000A9666 /* EventDetailPhotoCollectionViewCell.swift in Sources */,
 				406E36A927219BD600C5FEF0 /* EditEventInputTextCell.swift in Sources */,
@@ -1090,7 +1106,7 @@
 				40940BEE26E412F40098EF89 /* AuthSection.swift in Sources */,
 				401C9B21270D139800F91DC6 /* MainViewControllerCoordinator.swift in Sources */,
 				40E7204026E400FE00A64C60 /* SceneDelegate.swift in Sources */,
-				40369EC626E6E33C0083E675 /* ActionsTableCell.swift in Sources */,
+				40369EC626E6E33C0083E675 /* ActionsTableCell + CollectionView.swift in Sources */,
 				406CE68D27241926002FDDB6 /* EditEventPhotoViewModel.swift in Sources */,
 				40C106B526E419CB00B619A1 /* AppController.swift in Sources */,
 				40980ACE2720D2A60022A640 /* EditEventInputTitleCell.swift in Sources */,

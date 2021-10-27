@@ -114,7 +114,7 @@ class ActionsCollectionCell: UICollectionViewCell, ConfigurableCell {
     func configure(with data: DataType) {
         configureInterface()
         dataImageView.image = data.image
-        dataLabel.text = data.title
+        dataLabel.text = data.description
     }
     
 }

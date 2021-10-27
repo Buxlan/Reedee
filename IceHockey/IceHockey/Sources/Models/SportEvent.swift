@@ -79,30 +79,7 @@ struct SportEvent: Hashable {
 }
 
 extension SportEvent {
-    
-    var eventsDatabaseReference: DatabaseReference {
-        FirebaseManager.shared.databaseManager.root.child("events")
-    }
-    
-    var imagesDatabaseReference: DatabaseReference {
-        FirebaseManager.shared.databaseManager.root.child("images")
-    }
-    
-    var imagesStorageReference: StorageReference {
-        let ref = FirebaseManager.shared.storageManager.root.child("events")
-        return ref
-    }
-    
-    var eventReference: DatabaseReference {
-        var ref: DatabaseReference
-        if isNew {
-            ref = eventsDatabaseReference.childByAutoId()
-        } else {
-            ref = eventsDatabaseReference.child(uid)
-        }
-        return ref
-    }
-    
+        
     func checkProperties() -> Bool {
         return true
     }
@@ -113,26 +90,18 @@ extension SportEvent {
             print("Error. Properties are wrong")
         }
         
-        // for order purposes
-        var dateComponent = DateComponents()
-        dateComponent.calendar = Calendar.current
-        dateComponent.year = 2024
-        guard let templateDate = dateComponent.date else {
-            fatalError()
-        }
-        
-        let order = templateDate.timeIntervalSince(self.date)
-        var dict = valuesDictionary
-        dict["order"] = Int(order)
-        
         if isNew {
-            saveNewEvent(values: valuesDictionary)
+            try ExistingSportEventFirebaseSaver(event: self).save {
+                print("!!!existing ok!!!")
+            }
         } else {
-            saveExistingEvent(values: valuesDictionary)
+            try NewSportEventFirebaseSaver(event: self).save {
+                print("!!!new ok!!!")
+            }
         }
     }
     
-    var valuesDictionary: [String: Any] {
+    func prepareDataForSaving() -> [String: Any] {
         let interval = self.date.timeIntervalSince1970
         let dict: [String: Any] = [
             "uid": self.uid,
@@ -147,82 +116,6 @@ extension SportEvent {
             "order": Int(order)
         ]
         return dict
-    }
-    
-    private func saveExistingEvent(values: [String: Any]) {
-        eventReference.child("images").getData { (error, snapshot) in
-            if let error = error {
-                print(error)
-                return
-            }
-            let oldImageIDs = snapshot.value as? [String] ?? []
-            
-            for imageId in oldImageIDs {
-                if self.imageIDs.firstIndex(of: imageId) != nil {
-                    continue
-                }
-                // need to remove image from storage
-                let imageName = SportEvent.getImageName(forKey: imageId)
-                let imageStorageRef = imagesStorageReference.child(uid).child(imageName)
-                imageStorageRef.delete { (error) in
-                    if let error = error {
-                        print("An error occupied while deleting an image: \(error)")
-                    }
-                }
-            }
-            
-            var newImageIds: [String] = []
-            for imageId in self.imageIDs {
-                if oldImageIDs.firstIndex(of: imageId) != nil {
-                    continue
-                }
-                newImageIds.append(imageId)
-            }
-            
-            eventReference.setValue(values) { (error, ref) in
-                if let error = error {
-                    print(error)
-                    return
-                }
-                guard let eventId = ref.key else {
-                    return
-                }
-                let imagesManager = ImagesManager.shared
-                for imageId in newImageIds {
-                    let imageName = SportEvent.getImageName(forKey: imageId)
-                    let imageRef = imagesDatabaseReference.child(imageId)
-                    imageRef.setValue(imageName)
-                    let ref = imagesStorageReference.child(eventId).child(imageName)
-                    if let image = ImagesManager.shared.getCachedImage(forName: imageName),
-                       let data = image.pngData() {
-                        let task = ref.putData(data)
-                        imagesManager.appendUploadTask(task)
-                    }
-                }
-            }
-        }
-    }
-    
-    private func saveNewEvent(values: [String: Any]) {
-        eventReference.setValue(values) { (error, ref) in
-            if let error = error {
-                print(error)
-                return
-            }
-            guard let eventId = ref.key else { return }
-            let imagesManager = ImagesManager.shared
-            for imageId in imageIDs {
-                let imageName = SportEvent.getImageName(forKey: imageId)
-                let imageRef = imagesDatabaseReference.child(imageId)
-                imageRef.setValue(imageName)
-                let ref = imagesStorageReference.child(eventId).child(imageName)
-                if let image = ImagesManager.shared.getCachedImage(forName: imageName),
-                   let data = image.pngData() {
-                    let task = ref.putData(data)
-                    imagesManager.appendUploadTask(task)
-                }
-            }
-        }
     }
     
     var isNew: Bool {

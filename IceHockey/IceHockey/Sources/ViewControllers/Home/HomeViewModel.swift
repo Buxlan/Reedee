@@ -31,15 +31,33 @@ class HomeViewModel {
         FirebaseManager.shared.databaseManager.root.child("events").queryOrdered(byChild: "order")
     }
     
+    private lazy var actions: [ActionCollectionCellConfigurator] = {
+        [
+            ActionCollectionCellConfigurator(data: QuickAction.joinClub),
+            ActionCollectionCellConfigurator(data: QuickAction.contacts),
+            ActionCollectionCellConfigurator(data: QuickAction.showTrainingSchedule),
+            ActionCollectionCellConfigurator(data: QuickAction.showOnMap)
+        ]
+    }()
+    
+    var actionsCount: Int {
+        actions.count
+    }
+    
     // MARK: Lifecircle
-        
+            
     // MARK: - Hepler functions
+    
     func item(at indexPath: IndexPath) -> SportEvent {
         guard let snapshot = dataSource?.items[indexPath.row],
               let event = SportEvent(snapshot: snapshot) else {
             fatalError("Cant get item at index \(indexPath.row)")
         }
         return event
+    }    
+    
+    func action(at indexPath: IndexPath) -> ActionCollectionCellConfigurator {
+        actions[indexPath.item]
     }
     
 }

@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         Database.database().isPersistenceEnabled = true
         
-        prepareWindow()
+//        prepareWindow()
         
         prepareFirstLaunch()
         
@@ -54,15 +54,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate {
     
-    private func prepareWindow() {
-        let navigationController = UINavigationController()
-        coordinator = MainViewControllerCoordinator(navigationController: navigationController)
-        coordinator?.start()
-        
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
-    }
+//    private func prepareWindow() {
+//        let navigationController = UINavigationController()
+//        coordinator = MainViewControllerCoordinator(navigationController: navigationController)
+//        coordinator?.start()
+//
+//        window = UIWindow(frame: UIScreen.main.bounds)
+//        window?.rootViewController = navigationController
+//        window?.makeKeyAndVisible()
+//    }
     
     private func prepareFirstLaunch() {
         

@@ -80,10 +80,9 @@ class EventTableCell: UITableViewCell {
     }()
     
     private lazy var typeLabel: UILabel = {
-        let insets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
+        let insets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         let view = InsetLabel(insets: insets)
         view.accessibilityIdentifier = "typeLabel (table cell)"
-        view.setMargins(margin: 32.0)
         view.backgroundColor = Asset.accent1.color
         view.textColor = Asset.other3.color
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -91,7 +90,7 @@ class EventTableCell: UITableViewCell {
         view.textAlignment = .center
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
-        view.font = .regularFont12
+        view.font = .boldFont16
         return view
     }()
     
@@ -139,9 +138,9 @@ class EventTableCell: UITableViewCell {
             dataLabel.topAnchor.constraint(equalTo: dataImageView.bottomAnchor, constant: 4),
             dataLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 32),
             
-            typeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            typeLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 80),
-            typeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            typeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+//            typeLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 160),
+            typeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             typeLabel.heightAnchor.constraint(equalToConstant: 24),
             
             dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

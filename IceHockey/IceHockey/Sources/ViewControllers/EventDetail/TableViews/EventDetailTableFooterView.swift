@@ -13,7 +13,14 @@ class EventDetailTableFooterView: UIView {
     
     var isInterfaceConfigured: Bool = false
     
-    private lazy var imageView: UIImageView = {
+    private lazy var contentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = Asset.accent0.color
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var dataImageView: UIImageView = {
         let view = UIImageView()
         view.accessibilityIdentifier = "imageView"
         view.image = Asset.eye.image.resizeImage(to: 16,
@@ -34,6 +41,7 @@ class EventDetailTableFooterView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.font = .regularFont16
         view.textColor = Asset.other3.color
+        view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         return view
     }()
     
@@ -49,43 +57,43 @@ class EventDetailTableFooterView: UIView {
     }()
 
     // MARK: - Lifecircle
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configureUI()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
+        
     // MARK: - Helper functions
     
     func configureUI() {
         if isInterfaceConfigured { return }
         self.backgroundColor = Asset.accent0.color
         tintColor = Asset.other1.color
-        self.addSubview(imageView)
-        self.addSubview(titleLabel)
-        self.addSubview(copyrightLabel)
+        self.addSubview(contentView)
+        contentView.addSubview(dataImageView)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(copyrightLabel)
         configureConstraints()
         isInterfaceConfigured = true
     }
     
     internal func configureConstraints() {
+        let titleLabelTrailingConstraint = titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+        titleLabelTrailingConstraint.priority = .defaultLow
         let constraints: [NSLayoutConstraint] = [
-            imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            imageView.widthAnchor.constraint(equalTo: self.heightAnchor),
-            imageView.topAnchor.constraint(equalTo: self.topAnchor),
-            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
-            imageView.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor),
+            contentView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            contentView.widthAnchor.constraint(equalTo: self.widthAnchor),
+            contentView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            contentView.heightAnchor.constraint(equalTo: self.heightAnchor),
             
-            titleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8),
-            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
+            dataImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            dataImageView.widthAnchor.constraint(equalTo: dataImageView.heightAnchor),
+            dataImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            dataImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+//            imageView.heightAnchor.constraint(equalTo: self.heightAnchor),
+            
+            titleLabel.leadingAnchor.constraint(equalTo: dataImageView.trailingAnchor, constant: 8),
+            titleLabelTrailingConstraint,
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            titleLabel.bottomAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -8),
 //            titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: copyrightLabel.topAnchor, constant: -8),
 //            titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8)
-            
+
             copyrightLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
             copyrightLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             copyrightLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
@@ -99,8 +107,9 @@ class EventDetailTableFooterView: UIView {
 extension EventDetailTableFooterView: ConfigurableCell {
     typealias DataType = SportTeam
     func configure(with data: DataType) {
+        configureUI()
         titleLabel.text = data.displayName
         copyrightLabel.text = data.copyright
-        imageView.image = Asset.logoRedBGColor.image
+        dataImageView.image = Asset.logoRedBGColor.image
     }
 }

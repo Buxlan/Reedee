@@ -61,6 +61,12 @@ class HomeViewController: UIViewController {
         
         ActionCellConfigurator.registerCell(tableView: view)
         
+        let height = UIScreen.main.bounds.width * 0.3 * 2 + 16
+        let frame = CGRect(x: 0, y: 0, width: 0, height: height)
+        let header = HomeTableViewHeader(frame: frame)
+        header.dataSource = self
+        header.configureUI()
+        view.tableHeaderView = header
         view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = false
         return view
@@ -211,25 +217,15 @@ extension HomeViewController: UITableViewDelegate {
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        guard let view = collectionView as? Typeable else {
-//            fatalError("collectioh view doesn't conform to Typeable")
-//        }
-//        let items = viewModel.sections[view.type] ?? [CellConfigurator]()
-//        return items.count
-        return 4
+        return viewModel.actionsCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let view = collectionView as? Typeable else {
-//            fatalError("Collection view doesn't conform to Typeable")
-//        }
-//        let items = viewModel.sections[view.type] ?? [CellConfigurator]()
-//        let item = items[indexPath.item]
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type(of: item).reuseIdentifier,
-//                                                      for: indexPath)
-//        item.configure(cell: cell)
-//        return cell
-        return UICollectionViewCell()
+        let item = viewModel.action(at: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type(of: item).reuseIdentifier,
+                                                      for: indexPath)
+        item.configure(cell: cell)
+        return cell
     }
     
 }
