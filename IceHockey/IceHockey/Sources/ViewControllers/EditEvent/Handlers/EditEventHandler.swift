@@ -18,7 +18,7 @@ protocol EditEventInterface {
     func setText(_ setTitlevalue: String)
     func setBoldText(_ value: String)
     func appendImage(_ image: UIImage)
-    func removeImage(withName imageName: String)
+    func removeImage(withID imageName: String)
 }
 
 protocol EditEventHandlerInterface: CellActionHandler,
@@ -92,8 +92,8 @@ extension EditEventHandler {
         delegate?.setBoldText(value)
     }
     
-    func removeImage(withName imageName: String) {
-        delegate?.removeImage(withName: imageName)
+    func removeImage(withID imageID: String) {
+        delegate?.removeImage(withID: imageID)
     }
     
     func appendImage(_ image: UIImage) {

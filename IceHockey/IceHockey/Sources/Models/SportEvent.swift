@@ -120,9 +120,20 @@ extension SportEvent {
         guard let templateDate = dateComponent.date else {
             fatalError()
         }
-        let interval = self.date.timeIntervalSince1970
-        let order = templateDate.timeIntervalSince(self.date)
         
+        let order = templateDate.timeIntervalSince(self.date)
+        var dict = valuesDictionary
+        dict["order"] = Int(order)
+        
+        if isNew {
+            saveNewEvent(values: valuesDictionary)
+        } else {
+            saveExistingEvent(values: valuesDictionary)
+        }
+    }
+    
+    var valuesDictionary: [String: Any] {
+        let interval = self.date.timeIntervalSince1970
         let dict: [String: Any] = [
             "uid": self.uid,
             "title": self.title,
@@ -135,15 +146,70 @@ extension SportEvent {
             "images": self.imageIDs,
             "order": Int(order)
         ]
-        
-        eventReference.setValue(dict) { (error, ref) in
+        return dict
+    }
+    
+    private func saveExistingEvent(values: [String: Any]) {
+        eventReference.child("images").getData { (error, snapshot) in
             if let error = error {
                 print(error)
                 return
             }
-            guard let eventId = ref.key else {
+            let oldImageIDs = snapshot.value as? [String] ?? []
+            
+            for imageId in oldImageIDs {
+                if self.imageIDs.firstIndex(of: imageId) != nil {
+                    continue
+                }
+                // need to remove image from storage
+                let imageName = SportEvent.getImageName(forKey: imageId)
+                let imageStorageRef = imagesStorageReference.child(uid).child(imageName)
+                imageStorageRef.delete { (error) in
+                    if let error = error {
+                        print("An error occupied while deleting an image: \(error)")
+                    }
+                }
+            }
+            
+            var newImageIds: [String] = []
+            for imageId in self.imageIDs {
+                if oldImageIDs.firstIndex(of: imageId) != nil {
+                    continue
+                }
+                newImageIds.append(imageId)
+            }
+            
+            eventReference.setValue(values) { (error, ref) in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                guard let eventId = ref.key else {
+                    return
+                }
+                let imagesManager = ImagesManager.shared
+                for imageId in newImageIds {
+                    let imageName = SportEvent.getImageName(forKey: imageId)
+                    let imageRef = imagesDatabaseReference.child(imageId)
+                    imageRef.setValue(imageName)
+                    let ref = imagesStorageReference.child(eventId).child(imageName)
+                    if let image = ImagesManager.shared.getCachedImage(forName: imageName),
+                       let data = image.pngData() {
+                        let task = ref.putData(data)
+                        imagesManager.appendUploadTask(task)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func saveNewEvent(values: [String: Any]) {
+        eventReference.setValue(values) { (error, ref) in
+            if let error = error {
+                print(error)
                 return
             }
+            guard let eventId = ref.key else { return }
             let imagesManager = ImagesManager.shared
             for imageId in imageIDs {
                 let imageName = SportEvent.getImageName(forKey: imageId)
@@ -156,24 +222,6 @@ extension SportEvent {
                     imagesManager.appendUploadTask(task)
                 }
             }
-            
-//            var imagesDict: [String: String] = [:]
-//            for imageId in imagesNames {
-//                let imageName = getImageName(forKey: imageId)
-//                imagesDict[imageId] = imageName
-//                let ref = imagesStorageReference.child(eventId).child(imageName)
-//                if let image = ImagesManager.shared.getCachedImage(forKey: imageId),
-//                   let data = image.pngData() {
-//                    let task = ref.putData(data)
-//                    imagesManager.appendUploadTask(task)
-//                }
-//            }
-//            imagesDatabaseReference.setValue(imagesDict) { (error, _) in
-//                if let error = error {
-//                    print(error)
-//                    return
-//                }
-//            }
         }
     }
     
@@ -200,10 +248,11 @@ extension SportEvent {
         }
     }
     
-    mutating func removeImage(withName imageName: String) {
-        guard let index = imageIDs.firstIndex(of: imageName) else {
+    mutating func removeImage(withName imageID: String) {
+        guard let index = imageIDs.firstIndex(of: imageID) else {
             return
         }
+        let imageName = SportEvent.getImageName(forKey: imageID)
         ImagesManager.shared.removeFromCache(imageForKey: imageName)
         imageIDs.remove(at: index)
     }
@@ -213,164 +262,3 @@ extension SportEvent {
     }
     
 }
-    
-//    var image: UIImage {
-//        let emptyImage = Asset.event0.image
-//        var image: UIImage?
-//        if let imagePath = imagePath {
-//            image = UIImage(named: imagePath)
-//        } else if let urlString = imageURL,
-//                  let url = URL(string: urlString) {            
-//            if let data = try? Data(contentsOf: url) {
-//                image = UIImage(data: data)
-//            }
-//        }
-//        return image ?? emptyImage
-//    }
-
-    
-//    static func pinnedEvents(team: SportTeam,
-//                             from: Int,
-//                             count: Int = 10) -> [SportEvent] {
-//        //        eventType = .pinned
-//        return [
-//            SportEvent(title: "Открыт набор во взрослую любителькую команду",
-//                       text: """
-//                        ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-//                       Хоккейный клуб «КРАСНЫЕ МЕДВЕДИ» открывает набор в группу для взрослых (18+) – МУЖЧИНЫ И ЖЕНЩИНЫ
-//
-//                       Мы предлагаем:
-//                       • Профессиональный тренерский состав
-//                       • Удобное время тренировок
-//                       • Участие в товарищеских играх и хоккейных турнирах
-//                       • Дружный коллектив
-//""",
-//                       imageName: "event0"),
-//            SportEvent(title: "Открыт набор детей от 3-х лет",
-//                       text: """
-//                        ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-//""", imageName: "event1"),
-//            SportEvent(title: "Акция: скидка 25% на 2-го ребенка",
-//                       text: """
-//                        ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-//""", imageName: "event2"),
-//            SportEvent(title: "Прикрепленная новость 3",
-//                       text: """
-//                        ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-//""", imageName: "event3"),
-//            SportEvent(title: "Прикрепленная новость 4",
-//                       text: """
-//                        ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-//""", imageName: "event4"),
-//            SportEvent(title: "Прикрепленная новость 5",
-//                       text: """
-//                        ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-//""", imageName: "event5"),
-//            SportEvent(title: "Прикрепленная новость 6",
-//                       text: """
-//                        ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-//""", imageName: "event6")
-//
-//        ]
-//    }
-    
-//    static func photoEvents(team: SportTeam,
-//                            from: Int,
-//                            count: Int = 10) -> [SportEvent] {
-//        //        eventType = .pinned
-//        return [
-//            SportEvent(title: "Открыт набор во взрослую любителькую команду",
-//                       text: """
-//                        ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-//                       Хоккейный клуб «КРАСНЫЕ МЕДВЕДИ» открывает набор в группу для взрослых (18+) – МУЖЧИНЫ И ЖЕНЩИНЫ
-//
-//                       Мы предлагаем:
-//                       • Профессиональный тренерский состав
-//                       • Удобное время тренировок
-//                       • Участие в товарищеских играх и хоккейных турнирах
-//                       • Дружный коллектив
-//""",
-//                       imageName: "event0"),
-//            SportEvent(title: "Открыт набор детей от 3-х лет",
-//                       text: """
-//                        ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-//""", imageName: "event1"),
-//            SportEvent(title: "Акция: скидка 25% на 2-го ребенка",
-//                       text: """
-//                        ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-//""", imageName: "event2"),
-//            SportEvent(title: "Прикрепленная новость 3",
-//                       text: """
-//                        ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-//""", imageName: "event3"),
-//            SportEvent(title: "Прикрепленная новость 4",
-//                       text: """
-//                        ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-//""", imageName: "event4"),
-//            SportEvent(title: "Прикрепленная новость 5",
-//                       text: """
-//                        ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-//""", imageName: "event5"),
-//            SportEvent(title: "Прикрепленная новость 6",
-//                       text: """
-//                        ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-//""", imageName: "event6")
-//
-//        ]
-//    }
-//
-//    static func getLastEvents(team: SportTeam,
-//                              from: Int,
-//                              count: Int = 10) -> [SportEvent] {
-//        //        eventType = .events
-//        return [
-//            SportEvent(title: "Поздравляем команду 2015 г.р. с победой!",
-//                       text: """
-//                        ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-//                       Хоккейный клуб «КРАСНЫЕ МЕДВЕДИ» открывает набор в группу для взрослых (18+) – МУЖЧИНЫ И ЖЕНЩИНЫ
-//
-//                       Мы предлагаем:
-//                       • Профессиональный тренерский состав
-//                       • Удобное время тренировок
-//                       • Участие в товарищеских играх и хоккейных турнирах
-//                       • Дружный коллектив
-//""", imageName: "event4", type: .match),
-//            SportEvent(title: "Акция на клубную атрибутику в нашем магазине",
-//                       text: """
-//                        ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-//""", imageName: "event5", type: .other),
-//            SportEvent(title: "C Днем Тренера",
-//                       text: """
-//                        ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-//""", imageName: "event6", type: .other)
-//
-//        ]
-//    }
-//
-//    static func getComingEvents(team: SportTeam,
-//                                from: Int,
-//                                count: Int = 10) -> [SportEvent] {
-//        //        eventType = .coming
-//        return [
-//            SportEvent(title: "Массовое катание",
-//                       text: """
-//                        ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-//                       Хоккейный клуб «КРАСНЫЕ МЕДВЕДИ» открывает набор в группу для взрослых (18+) – МУЖЧИНЫ И ЖЕНЩИНЫ
-//
-//                       Мы предлагаем:
-//                       • Профессиональный тренерский состав
-//                       • Удобное время тренировок
-//                       • Участие в товарищеских играх и хоккейных турнирах
-//                       • Дружный коллектив
-//""", imageName: "event4", type: .other),
-//            SportEvent(title: "Впервые в России - лазертаг на льду!",
-//                       text: """
-//                        ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-//""", imageName: "event6"),
-//            SportEvent(title: "Сезонные сборы команды 2012 пройдут с 12 по 24 августа 2021",
-//                       text: """
-//                        ВНИМАНИЮ НОВИЧКОВ, ЛЮБИТЕЛЕЙ и ПРОФЕССИОНАЛОВ ХОККЕЯ!
-//""", imageName: "event7")
-//
-//        ]
-//    }  

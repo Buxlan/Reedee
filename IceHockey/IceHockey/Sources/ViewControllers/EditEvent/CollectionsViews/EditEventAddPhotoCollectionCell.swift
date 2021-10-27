@@ -37,9 +37,9 @@ class EditEventAddPhotoCollectionCell: UICollectionViewCell, ConfigurableActionC
         tintColor = UIColor.black
         backgroundColor = Asset.other3.color
         contentView.clipsToBounds = true
-        
         contentView.addSubview(actionButton)
         configureConstraints()
+        actionButton.addTarget(self, action: #selector(actionHandle), for: .touchUpInside)
         isInterfaceConfigured = true
     }
     
@@ -58,6 +58,14 @@ class EditEventAddPhotoCollectionCell: UICollectionViewCell, ConfigurableActionC
     func configure(with data: DataType, handler: HandlerType) {
         configureUI()
         self.handler = handler
+    }
+    
+}
+
+extension EditEventAddPhotoCollectionCell {
+    
+    @objc func actionHandle(_ sender: UIButton) {
+        handler?.openGallery()
     }
     
 }

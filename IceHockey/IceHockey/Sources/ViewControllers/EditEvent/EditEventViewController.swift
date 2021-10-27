@@ -203,8 +203,8 @@ extension EditEventViewController: EditEventHandlerInterface {
         viewModel.appendImage(image)
     }
     
-    func removeImage(withName imageName: String) {
-        viewModel.removeImage(withName: imageName)
+    func removeImage(withID imageName: String) {
+        viewModel.removeImage(withID: imageName)
     }
     
 }

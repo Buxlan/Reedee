@@ -16,7 +16,7 @@ class EditEventViewModel: NSObject {
             if let data = dataSource {
                 let imageData = data.imageIDs.map { (imageUid) -> ImageDataConfiguration in
                     let imageName = SportEvent.getImageName(forKey: imageUid)
-                    return ImageDataConfiguration(name: imageName, eventUID: data.uid)
+                    return ImageDataConfiguration(name: imageName, imageID: imageUid, eventUID: data.uid)
                 }
                 tableItems = [
                     EditEventTitleCellConfigurator(data: nil, handler: handler),
@@ -98,7 +98,7 @@ extension EditEventViewModel: EditEventInterface {
         handler.reloadData()
     }
     
-    func removeImage(withName imageName: String) {
+    func removeImage(withID imageName: String) {
         dataSource?.removeImage(withName: imageName)
         handler.reloadData()
     }

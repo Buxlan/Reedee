@@ -16,7 +16,7 @@ class EventDetailViewModel: NSObject {
             if let data = dataSource {
                 let config = data.imageIDs.map { (imageUid) -> ImageDataConfiguration in
                     let imageName = SportEvent.getImageName(forKey: imageUid)
-                    return ImageDataConfiguration(name: imageName, eventUID: data.uid)
+                    return ImageDataConfiguration(name: imageName, imageID: imageUid, eventUID: data.uid)
                 }
                 tableItems = [EventPhotoCellConfigurator(data: config),
                               EventDetailUsefulButtonsCellConfigurator(data: data),

@@ -7,15 +7,6 @@
 
 import UIKit
 
-struct ImageDataConfiguration {
-    let name: String
-    let eventUID: String
-    init(name: String, eventUID: String) {
-        self.name = name
-        self.eventUID = eventUID
-    }
-}
-
 class EditEventPhotoCollectionCell: UICollectionViewCell {
     
     // MARK: - Properties
@@ -24,7 +15,7 @@ class EditEventPhotoCollectionCell: UICollectionViewCell {
     typealias HandlerType = EditEventHandler
     
     private var handler: HandlerType?
-    private var imageName: String?
+    private var data: DataType?
     
     internal var isInterfaceConfigured: Bool = false
     let imageAspectRate: CGFloat = 1.77
@@ -64,7 +55,7 @@ class EditEventPhotoCollectionCell: UICollectionViewCell {
         dataImageView.image = nil
         isInterfaceConfigured = false
         handler = nil
-        imageName = nil
+        data = nil
     }
         
     // MARK: - Helper functions
@@ -106,7 +97,7 @@ extension EditEventPhotoCollectionCell: ConfigurableActionCell {
     func configure(with data: DataType, handler: HandlerType) {
         configureInterface()
         self.handler = handler
-        self.imageName = data.name
+        self.data = data
         print("Configuring image cell with name \(data)")
         if dataImageView.image == nil {
             ImagesManager.shared.getImage(withName: data.name, eventUID: data.eventUID) { (image) in
@@ -120,8 +111,8 @@ extension EditEventPhotoCollectionCell: ConfigurableActionCell {
 extension EditEventPhotoCollectionCell {
     
     @objc private func deleteHandle() {
-        if let imageName = imageName {
-            handler?.removeImage(withName: imageName)
+        if let data = data {
+            handler?.removeImage(withID: data.id)
         }
     }
     
