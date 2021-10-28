@@ -27,6 +27,9 @@ class EditEventSaveCell: UITableViewCell {
         view.clipsToBounds = true
         view.contentEdgeInsets = .init(top: 4, left: 8, bottom: 4, right: 8)
         view.setTitle(L10n.Events.save, for: .normal)
+//        view.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        view.contentEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
         return view
     }()
 
@@ -57,12 +60,14 @@ class EditEventSaveCell: UITableViewCell {
     }
     
     internal func configureConstraints() {
+        let saveHeightConstraint = saveButton.heightAnchor.constraint(greaterThanOrEqualToConstant: 44)
+        saveHeightConstraint.priority = .defaultLow
         let constraints: [NSLayoutConstraint] = [
             saveButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             saveButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
             saveButton.topAnchor.constraint(equalTo: contentView.topAnchor),
-            saveButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            saveButton.heightAnchor.constraint(equalToConstant: 44)
+            saveButton.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor),
+            saveHeightConstraint
         ]
         NSLayoutConstraint.activate(constraints)
     }

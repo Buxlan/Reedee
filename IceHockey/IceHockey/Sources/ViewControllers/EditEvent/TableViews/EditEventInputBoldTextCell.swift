@@ -36,6 +36,7 @@ class EditEventInputBoldTextCell: UITableViewCell {
     
     private lazy var titleLabel: UILabel = {
         let view = UILabel()
+        view.accessibilityIdentifier = "titleLabel5"
         view.numberOfLines = 2
         view.text = L10n.Events.inputBoldTextTitle
         view.textAlignment = .left

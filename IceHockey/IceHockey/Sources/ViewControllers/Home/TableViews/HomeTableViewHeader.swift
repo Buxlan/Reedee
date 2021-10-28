@@ -44,13 +44,13 @@ class HomeTableViewHeader: UIView,
                 
         let width: CGFloat = UIScreen.main.bounds.width - inset.left - inset.right
         let itemWidth: CGFloat = width / 2 - layout.minimumInteritemSpacing
-        let itemHeight = itemWidth * 0.3
+        let itemHeight = frame.height / 2 - layout.minimumInteritemSpacing * 2
         let size = CGSize(width: itemWidth, height: itemHeight)
         layout.itemSize = size
         
         let view = QuickActionsCollectionView(frame: .zero, collectionViewLayout: layout)
         view.accessibilityIdentifier = "collectionView (inside table cell)"
-        view.backgroundColor = Asset.other1.color
+        view.backgroundColor = Asset.accent1.color
         view.isUserInteractionEnabled = true
         view.allowsSelection = true
         view.allowsMultipleSelection = false

@@ -18,6 +18,7 @@ class EditEventInputDateCell: UITableViewCell {
     
     private lazy var titleLabel: UILabel = {
         let view = UILabel()
+        view.accessibilityIdentifier = "titleLabel2"
         view.numberOfLines = 2
         view.text = L10n.Events.inputDateTitle
         view.textAlignment = .left
@@ -30,6 +31,8 @@ class EditEventInputDateCell: UITableViewCell {
         let view = UIDatePicker()
         view.calendar = Calendar.current
         view.datePickerMode = .date
+        view.backgroundColor = Asset.other3.color
+        view.tintColor = Asset.textColor.color
         
         let currentDate = Date()
         var dateComponentMaximum = DateComponents()
@@ -42,6 +45,13 @@ class EditEventInputDateCell: UITableViewCell {
         view.minimumDate = Calendar.current.date(byAdding: dateComponentMinimum, to: currentDate)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+               
+        if #available(iOS 13.4, *) {
+            view.preferredDatePickerStyle = UIDatePickerStyle.automatic
+        }
+        
+        view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        
         return view
     }()
 
@@ -72,15 +82,17 @@ class EditEventInputDateCell: UITableViewCell {
     }
     
     internal func configureConstraints() {
+        let datePickerBottomConstraint = datePicker.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+//        datePickerBottomConstraint.priority = .defaultLow
         let constraints: [NSLayoutConstraint] = [
             titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            
+
             datePicker.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             datePicker.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
             datePicker.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 0),
-            datePicker.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor)
+            datePickerBottomConstraint
         ]
         NSLayoutConstraint.activate(constraints)
     }

@@ -26,20 +26,7 @@ class HomeViewController: UIViewController {
     var actionProxy: CellActionProxy = .init()
     var team = SportTeam.current
     
-//    private lazy var addEventButton: UIButton = {
-//        let view = UIButton()
-//        view.accessibilityIdentifier = "addEventButton"
-//        view.backgroundColor = Asset.accent1.color
-//        view.tintColor = Asset.other0.color
-//        view.addTarget(self, action: #selector(addEventHandle), for: .touchUpInside)
-//        let image = Asset.plus.image.withRenderingMode(.alwaysTemplate)
-//        view.setImage(image, for: .normal)
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        view.layer.cornerRadius = 16
-//        view.contentEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
-//
-//        return view
-//    }()
+    private let refreshControl = UIRefreshControl()
     
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
@@ -52,16 +39,14 @@ class HomeViewController: UIViewController {
         view.allowsSelectionDuringEditing = false
         view.allowsMultipleSelectionDuringEditing = false
         view.translatesAutoresizingMaskIntoConstraints = false
-//        view.rowHeight = UITableView.automaticDimension
         view.estimatedRowHeight = 300
         view.rowHeight = UITableView.automaticDimension
-//        view.estimatedRowHeight = 60
         view.register(EventTableCell.self,
                       forCellReuseIdentifier: EventTableCell.reuseIdentifier)
         
         ActionCellConfigurator.registerCell(tableView: view)
         
-        let height = UIScreen.main.bounds.width * 0.3 * 2 + 16
+        let height = UIScreen.main.bounds.height * 0.15
         let frame = CGRect(x: 0, y: 0, width: 0, height: height)
         let header = HomeTableViewHeader(frame: frame)
         header.dataSource = self
@@ -69,6 +54,7 @@ class HomeViewController: UIViewController {
         view.tableHeaderView = header
         view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = false
+        view.refreshControl = refreshControl
         return view
     }()
     
@@ -118,7 +104,7 @@ class HomeViewController: UIViewController {
     private func configureUI() {
         view.backgroundColor = Asset.accent1.color
         view.addSubview(tableView)
-//        view.addSubview(addEventButton)
+        refreshControl.addTarget(self, action: #selector(refreshTable(_:)), for: .valueChanged)
     }
     
     private func configureConstraints() {
@@ -177,27 +163,6 @@ class HomeViewController: UIViewController {
         viewModel.dataSource?.bind(to: tableView)
     }
     
-//    private func setupActionHandlers() {
-//        actionProxy.on(.didSelect) { (config: CommandTableCellConfigurator, _) in
-//            print("CommandTableCellConfigurator \(config)")
-//        }.on(.didSelect) { [weak self] (event: SportEvent, _) in
-//            guard let self = self else {
-//                return
-//            }
-//            let vc = EventDetailViewController()
-//            vc.data = config.data
-//            vc.modalTransitionStyle = .crossDissolve
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }.on(.didSelect) { [weak self] (config: ComingEventCellConfigurator, _) in
-//            guard let self = self else {
-//                return
-//            }
-//            let vc = EventDetailViewController()
-//            vc.data = config.data
-//            vc.modalTransitionStyle = .crossDissolve
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }
-//    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -231,14 +196,21 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 }
 
 extension HomeViewController {
-    @objc
-    private func addEventHandle() {
+    
+    @objc private func addEventHandle() {
         let vc = EditEventViewController(editMode: .new)
         vc.modalPresentationStyle = .pageSheet
         vc.modalTransitionStyle = .crossDissolve
 //        present(vc, animated: true, completion: nil)
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @objc private func refreshTable(_ sender: Any) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.refreshControl.endRefreshing()
+        }
+    }
+    
 }
 
 extension HomeViewController: CellUpdatable {
