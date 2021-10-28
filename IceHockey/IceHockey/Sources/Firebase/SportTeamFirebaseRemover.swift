@@ -64,5 +64,6 @@ struct SportTeamFirebaseRemover: FirebaseObjectRemover {
             }
             imagesDatabaseReference.child(largeImageID)
         }
+        completionHandler()
     }    
 }

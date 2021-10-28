@@ -120,7 +120,7 @@ extension HockeySquadsViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     private func configure(cell: UITableViewCell, item: SportSquad) {
-        cell.textLabel?.text = item.name
+        cell.textLabel?.text = item.displayName
         cell.accessoryType = .disclosureIndicator
     }
 }

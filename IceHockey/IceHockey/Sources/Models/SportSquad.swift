@@ -5,12 +5,31 @@
 //  Created by  Buxlan on 9/5/21.
 //
 
-import Foundation
+import Firebase
 
-struct SportSquad {
-    var name: String
+struct SportSquad: FirebaseObject, Codable {
+        
+    // MARK: - Properties
+    
+    var uid: String
+    var displayName: String
     var headCoach: SportCoach?
-    var coaches: [SportCoach]
+    var players: [SportPlayer]
+    
+    // MARK: - Lifecircle
+    
+    init?(snapshot: DataSnapshot) {
+        let uid = snapshot.key
+        guard let dict = snapshot.value as? [String: Any] else { return nil }
+        guard let displayName = dict["displayName"] as? String else { return nil }
+        guard let headCoach = dict["headCoach"] as? SportCoach else { return nil }
+        guard let players = dict["players"] as? [SportPlayer] else { return nil }
+                
+        self.uid = uid
+        self.displayName = displayName
+        self.headCoach = headCoach
+        self.players = players
+    }
     
     var strikers: [SportPlayer] = [
         SportPlayer(id: "0", displayName: "Бушмакин Егор", position: .striker, gameNumber: 1),
@@ -36,5 +55,18 @@ struct SportSquad {
     var goalkeepers: [SportPlayer] = [
         SportPlayer(id: "0", displayName: "Бушмакин Егор", position: .goalkeeper, gameNumber: 1),
         SportPlayer(id: "0", displayName: "Бушмакин Егор", position: .goalkeeper, gameNumber: 2)
-    ]    
+    ]
+    
+    // MARK: - Helper methods
+    
+    func delete() {
+        do {
+            try FirebaseManager.shared.delete(self)
+        } catch AppError.dataMismatch {
+            print("Data mismatch")
+        } catch {
+            print("Some other error")
+        }
+    }
+    
 }

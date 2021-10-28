@@ -105,7 +105,7 @@ class HockeySquadDetailViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        title = squad?.name ?? "?"
+        title = squad?.displayName ?? "?"
 //        navigationController?.navigationItem.titleView = titleView
         navigationController?.setToolbarHidden(true, animated: false)
         navigationController?.setNavigationBarHidden(false, animated: false)
