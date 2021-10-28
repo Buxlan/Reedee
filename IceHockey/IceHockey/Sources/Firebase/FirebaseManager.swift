@@ -26,4 +26,12 @@ struct FirebaseManager: FirebaseManagerInterface {
     func configureFirebase() {
         FirebaseApp.configure()
     }
+    
+    func delete(_ object: SportTeam) throws {
+        let remover = SportTeamFirebaseRemover(object: object)
+        try remover.remove {
+            print("!!!removed!!!")
+        }
+    }
+    
 }

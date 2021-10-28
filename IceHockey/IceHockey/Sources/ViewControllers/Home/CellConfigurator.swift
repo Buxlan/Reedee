@@ -158,6 +158,9 @@ typealias EditEventPhotoCollectionCellConfigurator = ActionableCollectionViewCel
                                                                                               ImageDataConfiguration,
                                                                                               EditEventHandler>
 
+typealias TeamCellConfigurator = TableViewCellConfigurator<TeamTableCell,
+                                                           SportTeam>
+
 // MARK: - Actions configurators
 typealias ActionCellConfigurator = TableViewCellConfigurator<ActionsTableCell,
                                                              QuickAction>

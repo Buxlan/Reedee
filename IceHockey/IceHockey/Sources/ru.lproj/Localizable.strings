@@ -89,6 +89,7 @@
 /* Squads */
 "Squads.tabBarItemTitle" = "Команды";
 "Squads.title" = "Наши команды";
+"Squads.squadsCountTitle" = "Команды: ";
 /* Shop */
 "Shop.tabBarItemTitle" = "Магазин";
 "Shop.title" = "Магазин";

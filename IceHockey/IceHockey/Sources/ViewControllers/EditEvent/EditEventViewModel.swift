@@ -15,7 +15,7 @@ class EditEventViewModel: NSObject {
         didSet {
             if let data = dataSource {
                 let imageData = data.imageIDs.map { (imageUid) -> ImageDataConfiguration in
-                    let imageName = SportEvent.getImageName(forKey: imageUid)
+                    let imageName = ImagesManager.getImageName(forKey: imageUid)
                     return ImageDataConfiguration(name: imageName, imageID: imageUid, eventUID: data.uid)
                 }
                 tableItems = [

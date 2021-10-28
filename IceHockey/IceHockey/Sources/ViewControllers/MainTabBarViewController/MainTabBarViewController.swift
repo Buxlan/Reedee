@@ -38,14 +38,6 @@ class MainTabBarViewController: UITabBarController {
         let items = viewModel.viewControllers
         setViewControllers(items, animated: false)
         
-        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
-        leftSwipe.direction = .left
-        self.view.addGestureRecognizer(leftSwipe)
-        
-        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
-        rightSwipe.direction = .right
-        self.view.addGestureRecognizer(rightSwipe)
-        
         self.navigationController?.isNavigationBarHidden = true
                 
         // remove default border
@@ -82,24 +74,7 @@ class MainTabBarViewController: UITabBarController {
     @objc
     private func obnoardingDismissed() {
         appController.isFirstLaunch = false
-    }
-    
-    @objc
-    private func handleSwipes(_ sender: UISwipeGestureRecognizer) {
-        swipeDirection = sender.direction
-        let items = viewModel.viewControllers
-        if sender.direction == .left {
-            if selectedIndex < items.count - 1 {
-                let vc = items[selectedIndex + 1]
-                selectedViewController = vc
-            }
-        } else if sender.direction == .right {
-            if selectedIndex > 0 {
-                let vc = items[self.selectedIndex - 1]
-                selectedViewController = vc
-            }
-        }
-    }
+    }    
     
     deinit {
         NotificationCenter.default.removeObserver(self)

@@ -89,6 +89,7 @@
 /* Squads */
 "Squads.tabBarItemTitle" = "Squads";
 "Squads.title" = "Our squads";
+"Squads.squadsCountTitle" = "Count of squads: ";
 /* Shop */
 "Shop.tabBarItemTitle" = "Shop";
 "Shop.title" = "Shop";

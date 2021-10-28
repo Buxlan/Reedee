@@ -18,6 +18,17 @@ protocol CellUpdatable: class {
     func reloadData()
 }
 
+extension CellUpdatable {
+    func configureCell(at indexPath: IndexPath, event: SportEvent) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    func configureCell(at indexPath: IndexPath, configurator: CellConfigurator) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    func reloadData() {
+    }
+}
+
 protocol ViewControllerDismissable: class {
     func dismiss(animated: Bool)
 }

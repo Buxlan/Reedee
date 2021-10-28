@@ -1,20 +1,32 @@
 //
-//  LastNewsTableViewController.swift
-//  Places
+//  TeamListViewController.swift
+//  IceHockey
 //
-//  Created by  Buxlan on 9/4/21.
+//  Created by  Buxlan on 10/28/21.
 //
 
 import UIKit
-import FirebaseDatabase
 
-class HomeViewController: UIViewController {
+class TeamListViewController: UIViewController {
     
     // MARK: - Properties
-    var viewModel = HomeViewModel()
-    var team = SportTeam.current
+    var viewModel = TeamListViewModel()
     
     private let refreshControl = UIRefreshControl()
+    
+    private lazy var appendNewObjectButton: UIButton = {
+        let view = UIButton()
+        view.accessibilityIdentifier = "appendNewObjectButton"
+        view.backgroundColor = Asset.accent1.color
+        view.tintColor = Asset.other3.color
+        view.addTarget(self, action: #selector(handleAppendNewObject), for: .touchUpInside)
+        let image = Asset.plus.image.withRenderingMode(.alwaysTemplate)
+        view.setImage(image, for: .normal)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 16
+        view.contentEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
+        return view
+    }()
     
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
@@ -29,31 +41,17 @@ class HomeViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.estimatedRowHeight = 300
         view.rowHeight = UITableView.automaticDimension
-        view.register(EventTableCell.self,
-                      forCellReuseIdentifier: EventTableCell.reuseIdentifier)
+        view.register(TeamTableCell.self,
+                      forCellReuseIdentifier: TeamTableCell.reuseIdentifier)
         
-        ActionCellConfigurator.registerCell(tableView: view)
-        
-        let height = UIScreen.main.bounds.height * 0.15
-        let frame = CGRect(x: 0, y: 0, width: 0, height: height)
-        let header = HomeTableViewHeader(frame: frame)
-        header.dataSource = self
-        header.configureUI()
-        view.tableHeaderView = header
-        view.tableFooterView = tableFooterView
+        view.tableFooterView = UIView()
         view.showsVerticalScrollIndicator = false
         view.refreshControl = refreshControl
         return view
     }()
-    
-    private lazy var tableFooterView: EventDetailTableFooterView = {
-        let frame = CGRect(x: 0, y: 0, width: 0, height: 150)
-        let view = EventDetailTableFooterView(frame: frame)
-        view.configure(with: team)
-        return view
-    }()
         
-    // MARK: - Init
+    // MARK: - Lifecircle
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -70,7 +68,6 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         configureConstraints()
-//        setupActionHandlers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,6 +89,7 @@ class HomeViewController: UIViewController {
     private func configureUI() {
         view.backgroundColor = Asset.accent1.color
         view.addSubview(tableView)
+        view.addSubview(appendNewObjectButton)
         refreshControl.addTarget(self, action: #selector(refreshTable(_:)), for: .valueChanged)
     }
     
@@ -100,18 +98,19 @@ class HomeViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             tableView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            tableView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor)            
-//            addEventButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-//            addEventButton.widthAnchor.constraint(equalToConstant: 44),
-//            addEventButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -50),
-//            addEventButton.heightAnchor.constraint(equalToConstant: 44)
+            tableView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor),
+            appendNewObjectButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            appendNewObjectButton.widthAnchor.constraint(equalToConstant: 44),
+            appendNewObjectButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -50),
+            appendNewObjectButton.heightAnchor.constraint(equalToConstant: 44)
         ]
         NSLayoutConstraint.activate(constraints)
     }
     
     private func configureTabBarItem() {
+        title = L10n.Squads.title
         tabBarItem.title = L10n.Squads.tabBarItemTitle
-        let image = Asset.homeFill.image.resizeImage(to: 24,
+        let image = Asset.person3.image.resizeImage(to: 24,
                                                     aspectRatio: .current,
                                                     with: view.tintColor)
         tabBarItem.image = image
@@ -123,10 +122,9 @@ class HomeViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        title = L10n.News.navigationBarTitle
+        title = L10n.Squads.title
         navigationController?.setToolbarHidden(true, animated: false)
         navigationController?.setNavigationBarHidden(false, animated: false)
-//        navigationItem.backBarButtonItem?.tintColor = .systemYellow
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.barTintColor = Asset.accent1.color
         let titleTextAttributes: [NSAttributedString.Key: Any] = [
@@ -134,16 +132,6 @@ class HomeViewController: UIViewController {
         ]
         navigationController?.navigationBar.titleTextAttributes = titleTextAttributes
         navigationController?.navigationBar.largeTitleTextAttributes = titleTextAttributes
-        let image = Asset.plus.image
-            .resizeImage(to: 32, aspectRatio: .current)
-            .withRenderingMode(.alwaysTemplate)
-        let item = UIBarButtonItem(image: image,
-                                   style: .plain,
-                                   target: self,
-                                   action: #selector(addEventHandle))
-//        item.imageInsets = .init(top: 0, left: 8, bottom: 8, right: 8)
-        item.tintColor = .white
-        navigationItem.rightBarButtonItem = item
     }
     
     private func configureViewModel() {
@@ -154,44 +142,30 @@ class HomeViewController: UIViewController {
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
-extension HomeViewController: UITableViewDelegate {
+extension TeamListViewController: UITableViewDelegate {
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let event = viewModel.item(at: indexPath)
-        let vc = EventDetailViewController()
-        vc.modalPresentationStyle = .pageSheet
-        vc.modalTransitionStyle = .crossDissolve
-        vc.setInputData(event)
-        navigationController?.pushViewController(vc, animated: true)
+//        let event = viewModel.item(at: indexPath)
+//        let vc = EventDetailViewController()
+//        vc.modalPresentationStyle = .pageSheet
+//        vc.modalTransitionStyle = .crossDissolve
+//        vc.setInputData(event)
+//        navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
-}
-
-extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.actionsCount
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = viewModel.action(at: indexPath)
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type(of: item).reuseIdentifier,
-                                                      for: indexPath)
-        item.configure(cell: cell)
-        return cell
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .normal,
+                                                title: "Delete") { (_, indexPath) in
+            self.viewModel.deleteItem(at: indexPath)
+        }
+        deleteAction.backgroundColor = Asset.accent2.color
+        return [deleteAction]
     }
     
 }
 
-extension HomeViewController {
-    
-    @objc private func addEventHandle() {
-        let vc = EditEventViewController(editMode: .new)
-        vc.modalPresentationStyle = .pageSheet
-        vc.modalTransitionStyle = .crossDissolve
-//        present(vc, animated: true, completion: nil)
-        navigationController?.pushViewController(vc, animated: true)
-    }
+extension TeamListViewController {
     
     @objc private func refreshTable(_ sender: Any) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
@@ -199,16 +173,18 @@ extension HomeViewController {
         }
     }
     
+    @objc private func handleAppendNewObject() {
+        
+    }
+    
 }
 
-extension HomeViewController: CellUpdatable {
+extension TeamListViewController: CellUpdatable {
     
-    func configureCell(at indexPath: IndexPath, event: SportEvent) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: event.type.identifier,
+    func configureCell(at indexPath: IndexPath, configurator: CellConfigurator) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: type(of: configurator).reuseIdentifier,
                                                  for: indexPath)
-        if let cell = cell as? ConfigurableEventCell {
-            cell.configure(with: event)
-        }
+        configurator.configure(cell: cell)
         return cell
     }
 }

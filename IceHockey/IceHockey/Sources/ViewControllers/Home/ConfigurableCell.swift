@@ -16,6 +16,15 @@ extension ConfigurableEventCell {
     static var reuseIdentifier: String { String(describing: Self.self) }
 }
 
+protocol ConfigurableTeamCell {
+    static var reuseIdentifier: String { get }
+    func configure(with data: SportTeam)
+    var isInterfaceConfigured: Bool { get set }
+}
+extension ConfigurableTeamCell {
+    static var reuseIdentifier: String { String(describing: Self.self) }
+}
+
 protocol ConfigurableCell {
     static var reuseIdentifier: String { get }
     var isInterfaceConfigured: Bool { get set }
@@ -50,10 +59,10 @@ extension SizeableConfigurableCell {
     static var reuseIdentifier: String { String(describing: Self.self) }
 }
 
-protocol CollectionViewDelegate {
+protocol CollectionViewDelegate: class {
     var delegate: UICollectionViewDelegate? { get set }
 }
 
-protocol CollectionViewDataSource {
+protocol CollectionViewDataSource: class {
     var dataSource: UICollectionViewDataSource? { get set }
 }

@@ -75,8 +75,8 @@ class HockeySquadsViewController: UIViewController {
         title = L10n.Squads.title
         tabBarItem.title = L10n.Squads.tabBarItemTitle
         let image = Asset.person3.image.resizeImage(to: 24,
-                                                            aspectRatio: .current,
-                                                            with: view.tintColor)
+                                                    aspectRatio: .current,
+                                                    with: view.tintColor)
         tabBarItem.image = image        
     }
     

@@ -246,6 +246,8 @@ internal enum L10n {
   }
 
   internal enum Squads {
+    /// Count of squads: 
+    internal static let squadsCountTitle = L10n.tr("Localizable", "Squads.squadsCountTitle")
     /// Squads
     internal static let tabBarItemTitle = L10n.tr("Localizable", "Squads.tabBarItemTitle")
     /// Our squads

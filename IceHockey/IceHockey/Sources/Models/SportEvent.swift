@@ -124,7 +124,7 @@ extension SportEvent {
     
     var mainImageName: String? {
         if imageIDs.count > 0 {
-            return SportEvent.getImageName(forKey: imageIDs[0])
+            return ImagesManager.getImageName(forKey: imageIDs[0])
         }
         return nil
     }
@@ -135,7 +135,7 @@ extension SportEvent {
     
     mutating func appendImage(_ image: UIImage) {
         if let key = FirebaseManager.shared.databaseManager.getNewImageUID() {
-            let imageName = SportEvent.getImageName(forKey: key)
+            let imageName = ImagesManager.getImageName(forKey: key)
             ImagesManager.shared.appendToCache(image, for: imageName)
             imageIDs.append(key)
         }
@@ -145,13 +145,9 @@ extension SportEvent {
         guard let index = imageIDs.firstIndex(of: imageID) else {
             return
         }
-        let imageName = SportEvent.getImageName(forKey: imageID)
+        let imageName = ImagesManager.getImageName(forKey: imageID)
         ImagesManager.shared.removeFromCache(imageForKey: imageName)
         imageIDs.remove(at: index)
-    }
-    
-    static func getImageName(forKey key: String) -> String {
-        return key + ".png"
     }
     
 }

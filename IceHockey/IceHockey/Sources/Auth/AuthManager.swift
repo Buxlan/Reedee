@@ -23,14 +23,11 @@ class AuthManager {
                 print(error)
                 return
             }
-            if let _ = authResult?.user {
+            if authResult?.user != nil {
                 print("Succesfully signed")
             }
             self.currentUser = ApplicationUser()
             Auth.auth().addStateDidChangeListener(self.authStateListener)
         }
-    }
-    
-    
-    
+    } 
 }

@@ -60,8 +60,4 @@ class HomeViewModel {
         actions[indexPath.item]
     }
     
-    func update() {
-        dataSource = FUITableViewDataSource(query: databaseQuery, populateCell: populateCell)
-    }
-    
 }

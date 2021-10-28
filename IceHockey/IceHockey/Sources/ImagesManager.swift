@@ -78,6 +78,7 @@ extension ImagesManager {
 }
 
 extension ImagesManager {
+    
     func appendUploadTask(_ task: StorageUploadTask) {
         task.observe(.success) { (snapshot) in
             if let index = self.uploadTasks.firstIndex(of: snapshot.task) {
@@ -92,4 +93,9 @@ extension ImagesManager {
         uploadTasks.append(task)
         task.resume()
     }
+    
+    static func getImageName(forKey key: String) -> String {
+        return key + ".png"
+    }
+    
 }
