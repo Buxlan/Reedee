@@ -8,8 +8,8 @@
 import UIKit
 
 protocol InputData {
-    associatedtype DataType
-    func setInputData(_ inputData: DataType)
+    associatedtype InputDataType
+    func setInputData(_ inputData: InputDataType)
 }
 
 protocol CellUpdatable: class {

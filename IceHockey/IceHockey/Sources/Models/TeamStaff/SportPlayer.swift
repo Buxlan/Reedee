@@ -6,7 +6,7 @@
 //
 import UIKit
 
-enum HockeyPlayerRole: String, Codable {
+enum HockeyPlayerRole: String, Codable, CustomStringConvertible {
     case striker
     case defender
     case goalkeeper

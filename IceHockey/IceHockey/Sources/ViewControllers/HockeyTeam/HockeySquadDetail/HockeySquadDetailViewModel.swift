@@ -19,9 +19,9 @@ struct HockeySquadDetailViewModel {
         guard let squad = squad else {
             return items
         }
-        items.append(HockeySquadPlayersSection(role: .goalkeeper, items: squad.goalkeepers))
-        items.append(HockeySquadPlayersSection(role: .striker, items: squad.strikers))
-        items.append(HockeySquadPlayersSection(role: .defender, items: squad.defenders))
+//        items.append(HockeySquadPlayersSection(role: .goalkeeper, items: squad.goalkeepers))
+//        items.append(HockeySquadPlayersSection(role: .striker, items: squad.strikers))
+//        items.append(HockeySquadPlayersSection(role: .defender, items: squad.defenders))
         return items
     }
     

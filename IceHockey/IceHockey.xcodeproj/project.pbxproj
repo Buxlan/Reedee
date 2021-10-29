@@ -78,6 +78,11 @@
 		40713A7D27204A51005F1265 /* EditEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40713A7C27204A51005F1265 /* EditEventViewModel.swift */; };
 		40713A8527204BC4005F1265 /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40713A8427204BC4005F1265 /* ContactsViewModel.swift */; };
 		4075F1C627220E1500BEA63A /* EditEventInputBoldTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4075F1C527220E1500BEA63A /* EditEventInputBoldTextCell.swift */; };
+		40781507272CA3D3006D3AD2 /* ExistingSportTeamFirebaseSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40781506272CA3D3006D3AD2 /* ExistingSportTeamFirebaseSaver.swift */; };
+		40781509272CA408006D3AD2 /* NewSportTeamFirebaseSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40781508272CA408006D3AD2 /* NewSportTeamFirebaseSaver.swift */; };
+		40781510272CB1C6006D3AD2 /* SquadDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4078150B272CB1C6006D3AD2 /* SquadDetailViewController.swift */; };
+		40781511272CB1C6006D3AD2 /* SquadDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4078150C272CB1C6006D3AD2 /* SquadDetailViewModel.swift */; };
+		40781512272CB1C6006D3AD2 /* PlayerTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4078150F272CB1C6006D3AD2 /* PlayerTableCell.swift */; };
 		4082AD9E2729745A00FF65F5 /* ImageDataConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4082AD9D2729745A00FF65F5 /* ImageDataConfiguration.swift */; };
 		40842FC32725E44500E056A9 /* ImagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40842FC22725E44500E056A9 /* ImagesManager.swift */; };
 		4085A31B27201BDC00CB560E /* EventDetailBoldViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4085A31A27201BDC00CB560E /* EventDetailBoldViewCell.swift */; };
@@ -232,6 +237,11 @@
 		40713A7C27204A51005F1265 /* EditEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewModel.swift; sourceTree = "<group>"; };
 		40713A8427204BC4005F1265 /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
 		4075F1C527220E1500BEA63A /* EditEventInputBoldTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventInputBoldTextCell.swift; sourceTree = "<group>"; };
+		40781506272CA3D3006D3AD2 /* ExistingSportTeamFirebaseSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingSportTeamFirebaseSaver.swift; sourceTree = "<group>"; };
+		40781508272CA408006D3AD2 /* NewSportTeamFirebaseSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSportTeamFirebaseSaver.swift; sourceTree = "<group>"; };
+		4078150B272CB1C6006D3AD2 /* SquadDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquadDetailViewController.swift; sourceTree = "<group>"; };
+		4078150C272CB1C6006D3AD2 /* SquadDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquadDetailViewModel.swift; sourceTree = "<group>"; };
+		4078150F272CB1C6006D3AD2 /* PlayerTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerTableCell.swift; sourceTree = "<group>"; };
 		4082AD9D2729745A00FF65F5 /* ImageDataConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataConfiguration.swift; sourceTree = "<group>"; };
 		40842FC22725E44500E056A9 /* ImagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesManager.swift; sourceTree = "<group>"; };
 		4085A31A27201BDC00CB560E /* EventDetailBoldViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailBoldViewCell.swift; sourceTree = "<group>"; };
@@ -404,6 +414,8 @@
 			isa = PBXGroup;
 			children = (
 				4056F2312729D61B00DD75CA /* SportEventFirebaseSaver.swift */,
+				40781506272CA3D3006D3AD2 /* ExistingSportTeamFirebaseSaver.swift */,
+				40781508272CA408006D3AD2 /* NewSportTeamFirebaseSaver.swift */,
 				4060FBF02729E2C600349C00 /* ExistingSportEventFirebaseSaver.swift */,
 				4060FBED2729E28C00349C00 /* NewSportEventFirebaseSaver.swift */,
 				401C9B23270D155C00F91DC6 /* FirebaseManager.swift */,
@@ -583,6 +595,32 @@
 			path = TableViews;
 			sourceTree = "<group>";
 		};
+		4078150A272CB1C6006D3AD2 /* SquadDetail */ = {
+			isa = PBXGroup;
+			children = (
+				4078150B272CB1C6006D3AD2 /* SquadDetailViewController.swift */,
+				4078150C272CB1C6006D3AD2 /* SquadDetailViewModel.swift */,
+				4078150D272CB1C6006D3AD2 /* TableViews */,
+			);
+			path = SquadDetail;
+			sourceTree = "<group>";
+		};
+		4078150D272CB1C6006D3AD2 /* TableViews */ = {
+			isa = PBXGroup;
+			children = (
+				4078150E272CB1C6006D3AD2 /* Cells */,
+			);
+			path = TableViews;
+			sourceTree = "<group>";
+		};
+		4078150E272CB1C6006D3AD2 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4078150F272CB1C6006D3AD2 /* PlayerTableCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		408CD0F926E537F6005AD6D4 /* Shop */ = {
 			isa = PBXGroup;
 			children = (
@@ -703,8 +741,9 @@
 				40C106B826E41A2200B619A1 /* Home */,
 				40369EB726E6DB2F0083E675 /* EventDetail */,
 				40713A7827204A0C005F1265 /* EditEvent */,
-				400B8F50272B5DAE008A8AFE /* TeamDetail */,
 				406E3145272B08CC00C2B30F /* TeamList */,
+				400B8F50272B5DAE008A8AFE /* TeamDetail */,
+				4078150A272CB1C6006D3AD2 /* SquadDetail */,
 				40C106C926E41EDC00B619A1 /* Contacts */,
 			);
 			path = ViewControllers;
@@ -1099,6 +1138,7 @@
 				406CE6832723EBEB002FDDB6 /* EditEventPhotoCell + CollectionView.swift in Sources */,
 				40C3BC75272802C800BBA67F /* EditEventInputDateCell.swift in Sources */,
 				4094E6DE272B25A4004ED01B /* TeamTableCell.swift in Sources */,
+				40781507272CA3D3006D3AD2 /* ExistingSportTeamFirebaseSaver.swift in Sources */,
 				40940BF026E412F40098EF89 /* AuthUserActions.swift in Sources */,
 				40940C0626E418E50098EF89 /* MainTabBarViewController.swift in Sources */,
 				4093D9A9271780E000DCF35D /* ApplicationUser.swift in Sources */,
@@ -1158,6 +1198,7 @@
 				40A4464926E409D900129B89 /* Assets.swift in Sources */,
 				409403F62721F8D500055FC4 /* TextFieldEditEventHandler.swift in Sources */,
 				4063EAED271EE7E700B6B8C7 /* EventDetailUsefulButtonsCell.swift in Sources */,
+				40781509272CA408006D3AD2 /* NewSportTeamFirebaseSaver.swift in Sources */,
 				4085A31B27201BDC00CB560E /* EventDetailBoldViewCell.swift in Sources */,
 				4063EAE9271EE2A100B6B8C7 /* EventDetailPhotoCollectionViewLayout.swift in Sources */,
 				406CD2CA26F7248E00F1EDFE /* ScaleAspectFitImageView.swift in Sources */,
@@ -1167,6 +1208,7 @@
 				40E2D64526E5584D006503C7 /* ShopItemViewController.swift in Sources */,
 				40E949BF26ED59A600962590 /* CircularView.swift in Sources */,
 				4060FBEE2729E28C00349C00 /* NewSportEventFirebaseSaver.swift in Sources */,
+				40781510272CB1C6006D3AD2 /* SquadDetailViewController.swift in Sources */,
 				406CE6862723ECB2002FDDB6 /* EditEventPhotoCollectionCell.swift in Sources */,
 				406D49E8271E3806000A9666 /* EventDetailPhotoCollectionViewCell.swift in Sources */,
 				406E36A927219BD600C5FEF0 /* EditEventInputTextCell.swift in Sources */,
@@ -1175,6 +1217,7 @@
 				409C69DE271CDAA6005434A4 /* EventDetailViewModel.swift in Sources */,
 				40C87B4D26EA667400E8217D /* EventCollectionViewLayout.swift in Sources */,
 				40842FC32725E44500E056A9 /* ImagesManager.swift in Sources */,
+				40781512272CB1C6006D3AD2 /* PlayerTableCell.swift in Sources */,
 				40940BF926E413200098EF89 /* DataSourceProtocols.swift in Sources */,
 				40940BE826E40D450098EF89 /* SportTeam.swift in Sources */,
 				406E7C0727232B8800DAD711 /* ImagePickerManager.swift in Sources */,
@@ -1187,6 +1230,7 @@
 				400B8F4B272B4EAC008A8AFE /* SportTeamFirebaseRemover.swift in Sources */,
 				400A2ABE26E5982200F13BCF /* SportCoachViewController.swift in Sources */,
 				40E2D64C26E558B6006503C7 /* ShoppingCartViewController.swift in Sources */,
+				40781511272CB1C6006D3AD2 /* SquadDetailViewModel.swift in Sources */,
 				401C9B11270D04BF00F91DC6 /* ViewControllerCoordinator.swift in Sources */,
 				4065C95526E84E990084E5F2 /* EventTableCell.swift in Sources */,
 				40980AC02720C2490022A640 /* EditEventTitleCell.swift in Sources */,

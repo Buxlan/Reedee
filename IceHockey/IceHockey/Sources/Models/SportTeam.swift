@@ -65,7 +65,45 @@ struct SportTeam: Codable, FirebaseObject {
         self.squadIDs = squadIDs
     }
     
+    var isNew: Bool {
+        return self.uid.isEmpty
+    }
+    
     // MARK: - Helper methods
+        
+    func checkProperties() -> Bool {
+        return true
+    }
+    
+    func prepareDataForSaving() -> [String: Any] {        
+        let dict: [String: Any] = [
+            "uid": self.uid,
+            "copyright": self.copyright,
+            "displayName": self.displayName,
+            "largeLogo": self.largeImageID,
+            "smallLogo": self.smallImageID,
+            "phone": self.phone,
+            "squads": self.squadIDs
+        ]
+        return dict
+    }
+    
+    func save() throws {
+        
+        if !checkProperties() {
+            print("Error. Properties are wrong")
+        }
+        
+        if isNew {
+            try ExistingSportTeamFirebaseSaver(object: self).save {
+                print("!!!existing ok!!!")
+            }
+        } else {
+            try NewSportTeamFirebaseSaver(object: self).save {
+                print("!!!new ok!!!")
+            }
+        }
+    }
     
     func delete() {
         do {

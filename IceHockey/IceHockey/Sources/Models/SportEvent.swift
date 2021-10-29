@@ -79,6 +79,17 @@ struct SportEvent: Hashable {
 }
 
 extension SportEvent {
+    
+    var isNew: Bool {
+        return self.uid.isEmpty
+    }
+    
+    var mainImageName: String? {
+        if imageIDs.count > 0 {
+            return ImagesManager.getImageName(forKey: imageIDs[0])
+        }
+        return nil
+    }
         
     func checkProperties() -> Bool {
         return true
@@ -91,11 +102,11 @@ extension SportEvent {
         }
         
         if isNew {
-            try ExistingSportEventFirebaseSaver(event: self).save {
+            try ExistingSportEventFirebaseSaver(object: self).save {
                 print("!!!existing ok!!!")
             }
         } else {
-            try NewSportEventFirebaseSaver(event: self).save {
+            try NewSportEventFirebaseSaver(object: self).save {
                 print("!!!new ok!!!")
             }
         }
@@ -116,17 +127,6 @@ extension SportEvent {
             "order": Int(order)
         ]
         return dict
-    }
-    
-    var isNew: Bool {
-        return self.uid.isEmpty
-    }
-    
-    var mainImageName: String? {
-        if imageIDs.count > 0 {
-            return ImagesManager.getImageName(forKey: imageIDs[0])
-        }
-        return nil
     }
     
 }

@@ -1,21 +1,21 @@
 //
-//  NewSportEventFirebaseSaver.swift
+//  NewSportTeamFirebaseSaver.swift
 //  IceHockey
 //
-//  Created by  Buxlan on 10/27/21.
+//  Created by  Buxlan on 10/30/21.
 //
 
 import Firebase
 
-struct NewSportEventFirebaseSaver: SportEventFirebaseSaver {
+struct NewSportTeamFirebaseSaver: SportTeamFirebaseSaver {
     
     // MARK: - Properties
     
-    typealias DataType = SportEvent
+    typealias DataType = SportTeam
     internal let object: DataType
     
     internal var eventsDatabaseReference: DatabaseReference {
-        FirebaseManager.shared.databaseManager.root.child("events")
+        FirebaseManager.shared.databaseManager.root.child("teams")
     }
     
     internal var imagesDatabaseReference: DatabaseReference {
@@ -23,7 +23,7 @@ struct NewSportEventFirebaseSaver: SportEventFirebaseSaver {
     }
     
     internal var imagesStorageReference: StorageReference {
-        let ref = FirebaseManager.shared.storageManager.root.child("events")
+        let ref = FirebaseManager.shared.storageManager.root.child("teams")
         return ref
     }
     
@@ -36,19 +36,7 @@ struct NewSportEventFirebaseSaver: SportEventFirebaseSaver {
         }
         return ref
     }
-    
-    private var orderValue: Int {
-        // for order purposes
-        var dateComponent = DateComponents()
-        dateComponent.calendar = Calendar.current
-        dateComponent.year = 2024
-        guard let templateDate = dateComponent.date else {
-            fatalError()
-        }
-        let order = Int(templateDate.timeIntervalSince(object.date))
-        return order
-    }
-    
+        
     // MARK: - Lifecircle
     
     init(object: DataType) {
@@ -59,8 +47,7 @@ struct NewSportEventFirebaseSaver: SportEventFirebaseSaver {
     
     func save(completionHandler: @escaping () -> Void) throws {
         
-        var dataDict = object.prepareDataForSaving()
-        dataDict["order"] = orderValue
+        let dataDict = object.prepareDataForSaving()
         
         eventReference.setValue(dataDict) { (error, ref) in
             if let error = error {
@@ -68,16 +55,17 @@ struct NewSportEventFirebaseSaver: SportEventFirebaseSaver {
                 completionHandler()
                 return
             }
-            guard let eventId = ref.key else {
+            guard let objectId = ref.key else {
                 completionHandler()
                 return
             }
             let imagesManager = ImagesManager.shared
-            for imageId in object.imageIDs {
+            let imageIDs = [object.smallImageID, object.largeImageID]
+            for imageId in imageIDs {
                 let imageName = ImagesManager.getImageName(forKey: imageId)
                 let imageRef = imagesDatabaseReference.child(imageId)
                 imageRef.setValue(imageName)
-                let ref = imagesStorageReference.child(eventId).child(imageName)
+                let ref = imagesStorageReference.child(objectId).child(imageName)
                 if let image = ImagesManager.shared.getCachedImage(forName: imageName),
                    let data = image.pngData() {
                     let task = ref.putData(data)

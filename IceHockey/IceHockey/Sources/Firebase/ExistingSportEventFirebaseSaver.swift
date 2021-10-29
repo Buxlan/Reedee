@@ -10,8 +10,8 @@ import Firebase
 struct ExistingSportEventFirebaseSaver: SportEventFirebaseSaver {
     
     // MARK: - Properties
-    
-    internal let event: SportEvent
+    typealias DataType = SportEvent
+    internal let object: DataType
     
     internal var eventsDatabaseReference: DatabaseReference {
         FirebaseManager.shared.databaseManager.root.child("events")
@@ -28,10 +28,10 @@ struct ExistingSportEventFirebaseSaver: SportEventFirebaseSaver {
     
     internal var eventReference: DatabaseReference {
         var ref: DatabaseReference
-        if event.isNew {
+        if object.isNew {
             ref = eventsDatabaseReference.childByAutoId()
         } else {
-            ref = eventsDatabaseReference.child(event.uid)
+            ref = eventsDatabaseReference.child(object.uid)
         }
         return ref
     }
@@ -44,21 +44,21 @@ struct ExistingSportEventFirebaseSaver: SportEventFirebaseSaver {
         guard let templateDate = dateComponent.date else {
             fatalError()
         }
-        let order = Int(templateDate.timeIntervalSince(event.date))
+        let order = Int(templateDate.timeIntervalSince(object.date))
         return order
     }
     
     // MARK: - Lifecircle
     
-    init(event: SportEvent) {
-        self.event = event
+    init(object: DataType) {
+        self.object = object
     }
     
     // MARK: - Helper functions
     
     func save(completionHandler: @escaping () -> Void) throws {
         
-        var dataDict = event.prepareDataForSaving()
+        var dataDict = object.prepareDataForSaving()
         dataDict["order"] = orderValue
         
         eventReference.child("images").getData { (error, snapshot) in
@@ -70,12 +70,12 @@ struct ExistingSportEventFirebaseSaver: SportEventFirebaseSaver {
             let oldImageIDs = snapshot.value as? [String] ?? []
             
             for imageId in oldImageIDs {
-                if event.imageIDs.firstIndex(of: imageId) != nil {
+                if object.imageIDs.firstIndex(of: imageId) != nil {
                     continue
                 }
                 // need to remove image from storage
                 let imageName = ImagesManager.getImageName(forKey: imageId)
-                let imageStorageRef = imagesStorageReference.child(event.uid).child(imageName)
+                let imageStorageRef = imagesStorageReference.child(object.uid).child(imageName)
                 imageStorageRef.delete { (error) in
                     if let error = error {
                         completionHandler()
@@ -85,7 +85,7 @@ struct ExistingSportEventFirebaseSaver: SportEventFirebaseSaver {
             }
             
             var newImageIds: [String] = []
-            for imageId in event.imageIDs {
+            for imageId in object.imageIDs {
                 if oldImageIDs.firstIndex(of: imageId) != nil {
                     continue
                 }

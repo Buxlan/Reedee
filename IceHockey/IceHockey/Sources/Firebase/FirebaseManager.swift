@@ -34,7 +34,7 @@ struct FirebaseManager: FirebaseManagerInterface {
                 print("!!!removed!!!")
             }
         } else if let object = object as? SportSquad {
-            let remover = SportTeamFirebaseRemover(object: object)
+            let remover = SportSquadFirebaseRemover(object: object)
             try remover.remove {
                 print("!!!removed!!!")
             }

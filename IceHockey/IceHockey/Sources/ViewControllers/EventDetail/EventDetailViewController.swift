@@ -10,7 +10,8 @@ import UIKit
 class EventDetailViewController: UIViewController {
     
     // MARK: - Properties
-    typealias DataType = SportEvent
+    
+    typealias InputDataType = SportEvent
     private lazy var viewModel: EventDetailViewModel = {
         return EventDetailViewModel(delegate: self)
     }()

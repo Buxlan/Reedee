@@ -13,10 +13,10 @@ class EditEventViewController: UIViewController {
     
     enum EditMode {
         case new
-        case edit(DataType)
+        case edit(InputDataType)
     }
     
-    typealias DataType = SportEvent
+    typealias InputDataType = SportEvent
     
     private lazy var handler: EditEventHandler = {
         EditEventHandler(delegate: self)
@@ -73,7 +73,7 @@ class EditEventViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         switch editMode {
         case .new:
-            viewModel.dataSource = DataType()
+            viewModel.dataSource = InputDataType()
         case .edit(let data):
             viewModel.dataSource = data
         }
@@ -136,7 +136,7 @@ class EditEventViewController: UIViewController {
 }
 
 extension EditEventViewController: InputData {
-    func setInputData(_ inputData: DataType) {
+    func setInputData(_ inputData: InputDataType) {
         viewModel.dataSource = inputData
     }
 }
