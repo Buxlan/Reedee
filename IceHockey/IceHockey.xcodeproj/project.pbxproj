@@ -120,6 +120,11 @@
 		40A4462726E4054E00129B89 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40A4462926E4054E00129B89 /* Localizable.strings */; };
 		40A4464826E409D900129B89 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4464626E409D800129B89 /* Strings.swift */; };
 		40A4464926E409D900129B89 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4464726E409D800129B89 /* Assets.swift */; };
+		40A6321B272DE74B0017F6FE /* UniViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A6321A272DE74B0017F6FE /* UniViewModel.swift */; };
+		40A6321D272DF1F30017F6FE /* MapTableCell.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A6321C272DF1F30017F6FE /* MapTableCell.swift.swift */; };
+		40A6321F272DF7160017F6FE /* SportTeamAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A6321E272DF7160017F6FE /* SportTeamAnnotation.swift */; };
+		40A63221272DFD5F0017F6FE /* MKMapViewExtension.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A63220272DFD5F0017F6FE /* MKMapViewExtension.swift.swift */; };
+		40A63223272E00C60017F6FE /* TeamDetailInfoTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A63222272E00C60017F6FE /* TeamDetailInfoTableCell.swift */; };
 		40B6C80F272DB2A600B94A9A /* HockeyPlayerRole.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B6C80E272DB2A600B94A9A /* HockeyPlayerRole.swift.swift */; };
 		40B6C811272DC57F00B94A9A /* TeamDetailHeaderView.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B6C810272DC57F00B94A9A /* TeamDetailHeaderView.swift.swift */; };
 		40B947C226EE909100D9E8DA /* TableViewCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B947C126EE909100D9E8DA /* TableViewCellConfiguration.swift */; };
@@ -270,6 +275,11 @@
 		40A4462B26E405C300129B89 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40A4464626E409D800129B89 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		40A4464726E409D800129B89 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		40A6321A272DE74B0017F6FE /* UniViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniViewModel.swift; sourceTree = "<group>"; };
+		40A6321C272DF1F30017F6FE /* MapTableCell.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableCell.swift.swift; sourceTree = "<group>"; };
+		40A6321E272DF7160017F6FE /* SportTeamAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportTeamAnnotation.swift; sourceTree = "<group>"; };
+		40A63220272DFD5F0017F6FE /* MKMapViewExtension.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewExtension.swift.swift; sourceTree = "<group>"; };
+		40A63222272E00C60017F6FE /* TeamDetailInfoTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailInfoTableCell.swift; sourceTree = "<group>"; };
 		40B6C80E272DB2A600B94A9A /* HockeyPlayerRole.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HockeyPlayerRole.swift.swift; sourceTree = "<group>"; };
 		40B6C810272DC57F00B94A9A /* TeamDetailHeaderView.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailHeaderView.swift.swift; sourceTree = "<group>"; };
 		40B947C126EE909100D9E8DA /* TableViewCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellConfiguration.swift; sourceTree = "<group>"; };
@@ -348,6 +358,9 @@
 			isa = PBXGroup;
 			children = (
 				400B8F55272B5DAE008A8AFE /* SquadTableCell.swift */,
+				40A63222272E00C60017F6FE /* TeamDetailInfoTableCell.swift */,
+				40A6321C272DF1F30017F6FE /* MapTableCell.swift.swift */,
+				40A6321E272DF7160017F6FE /* SportTeamAnnotation.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -621,6 +634,7 @@
 				40940BD926E40C380098EF89 /* UIViewExtension.swift */,
 				40940BDA26E40C380098EF89 /* UIColorExtension.swift */,
 				40940BDC26E40C380098EF89 /* UIImageExtension.swift */,
+				40A63220272DFD5F0017F6FE /* MKMapViewExtension.swift.swift */,
 				40940BDD26E40C380098EF89 /* UIVIewControllerExtension.swift */,
 				40940BDE26E40C380098EF89 /* UIFontExtension.swift */,
 				4098C04126E572A700F0BBE6 /* UserExtension.swift */,
@@ -638,6 +652,7 @@
 				40940BE726E40D450098EF89 /* SportTeam.swift */,
 				40E2D65026E55E1E006503C7 /* ShopCategoryItem.swift */,
 				400B8F4D272B50B5008A8AFE /* FirebaseObject.swift */,
+				40A6321A272DE74B0017F6FE /* UniViewModel.swift */,
 				40B6C80E272DB2A600B94A9A /* HockeyPlayerRole.swift.swift */,
 				40CDC4BE2718B69A00990C6A /* EventManager.swift */,
 				402EDA6826E43060004A2992 /* SportSquad.swift */,
@@ -1081,11 +1096,13 @@
 				40B947C526EEBD5E00D9E8DA /* ConfigurableCell.swift in Sources */,
 				402EDA6326E42A2A004A2992 /* SportEvent.swift in Sources */,
 				40C106BF26E41E4800B619A1 /* Utils.swift in Sources */,
+				40A6321F272DF7160017F6FE /* SportTeamAnnotation.swift in Sources */,
 				4055FCDC26E816D900E5BB79 /* CellConfigurator.swift in Sources */,
 				40DEC8B42718D083008A59A8 /* SportEventType.swift in Sources */,
 				40940BE326E40C380098EF89 /* UIVIewControllerExtension.swift in Sources */,
 				406E7C0D2723302300DAD711 /* FirebaseStorageManager.swift in Sources */,
 				40940C0526E418E50098EF89 /* MainTabBarViewModel.swift in Sources */,
+				40A63223272E00C60017F6FE /* TeamDetailInfoTableCell.swift in Sources */,
 				40DBD76E26E83BFD00CDBADD /* TableCellActionsProxy.swift in Sources */,
 				40713A7A27204A41005F1265 /* EditEventViewController.swift in Sources */,
 				406D6FB427243194008ED014 /* EditEventAddPhotoCollectionCell.swift in Sources */,
@@ -1108,6 +1125,7 @@
 				40B947C226EE909100D9E8DA /* TableViewCellConfiguration.swift in Sources */,
 				409560C926F93F6D00BCA664 /* QuickActions.swift in Sources */,
 				406C306C26F8FD260040F0A7 /* PhotoGalleryTableCell.swift in Sources */,
+				40A6321B272DE74B0017F6FE /* UniViewModel.swift in Sources */,
 				4085A31E27201D6400CB560E /* EventDetailCopyrightCell.swift in Sources */,
 				4085A3222720216C00CB560E /* EventDetailTitleCell.swift in Sources */,
 				40369EBA26E6DB490083E675 /* EventDetailViewController.swift in Sources */,
@@ -1149,6 +1167,7 @@
 				406C306526F8F0820040F0A7 /* PhotoGalleryCollectionCell.swift in Sources */,
 				40940BDF26E40C380098EF89 /* UIViewExtension.swift in Sources */,
 				400B8F4B272B4EAC008A8AFE /* SportTeamFirebaseRemover.swift in Sources */,
+				40A6321D272DF1F30017F6FE /* MapTableCell.swift.swift in Sources */,
 				40E2D64C26E558B6006503C7 /* ShoppingCartViewController.swift in Sources */,
 				40781511272CB1C6006D3AD2 /* SquadDetailViewModel.swift in Sources */,
 				401C9B11270D04BF00F91DC6 /* ViewControllerCoordinator.swift in Sources */,
@@ -1159,6 +1178,7 @@
 				40E7204026E400FE00A64C60 /* SceneDelegate.swift in Sources */,
 				40369EC626E6E33C0083E675 /* ActionsTableCell + CollectionView.swift in Sources */,
 				406CE68D27241926002FDDB6 /* EditEventPhotoViewModel.swift in Sources */,
+				40A63221272DFD5F0017F6FE /* MKMapViewExtension.swift.swift in Sources */,
 				400B8F58272B5DAE008A8AFE /* SquadTableCell.swift in Sources */,
 				40C106B526E419CB00B619A1 /* AppController.swift in Sources */,
 				40980ACE2720D2A60022A640 /* EditEventInputTitleCell.swift in Sources */,

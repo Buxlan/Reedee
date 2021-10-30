@@ -268,8 +268,14 @@ internal enum L10n {
   }
 
   internal enum Team {
+    /// About club
+    internal static let aboutClubTitle = L10n.tr("Localizable", "Team.aboutClubTitle")
     /// Teams
     internal static let listTitle = L10n.tr("Localizable", "Team.listTitle")
+    /// on the map
+    internal static let onTheMapTitle = L10n.tr("Localizable", "Team.onTheMapTitle")
+    /// Phone: 
+    internal static let phoneTitle = L10n.tr("Localizable", "Team.phoneTitle")
   }
 
   internal enum User {

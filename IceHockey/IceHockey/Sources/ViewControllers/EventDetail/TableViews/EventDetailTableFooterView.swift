@@ -15,7 +15,7 @@ class EventDetailTableFooterView: UIView {
     
     private lazy var contentView: UIView = {
         let view = UIView()
-        view.backgroundColor = Asset.accent0.color
+        view.backgroundColor = Asset.other3.color
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -23,9 +23,6 @@ class EventDetailTableFooterView: UIView {
     private lazy var dataImageView: UIImageView = {
         let view = UIImageView()
         view.accessibilityIdentifier = "imageView"
-        view.image = Asset.eye.image.resizeImage(to: 16,
-                                                 aspectRatio: .current,
-                                                 with: Asset.accent0.color).withRenderingMode(.alwaysTemplate)
         view.tintColor = Asset.other0.color
         view.backgroundColor = Asset.other2.color
         view.contentMode = .scaleAspectFit
@@ -40,7 +37,7 @@ class EventDetailTableFooterView: UIView {
         view.textAlignment = .left
         view.translatesAutoresizingMaskIntoConstraints = false
         view.font = .regularFont16
-        view.textColor = Asset.other3.color
+        view.textColor = Asset.other0.color
         view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         return view
     }()
@@ -52,7 +49,7 @@ class EventDetailTableFooterView: UIView {
         view.textAlignment = .left
         view.translatesAutoresizingMaskIntoConstraints = false
         view.font = .regularFont14
-        view.textColor = Asset.other3.color
+        view.textColor = Asset.other0.color
         return view
     }()
 
@@ -85,14 +82,11 @@ class EventDetailTableFooterView: UIView {
             dataImageView.widthAnchor.constraint(equalTo: dataImageView.heightAnchor),
             dataImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             dataImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-//            imageView.heightAnchor.constraint(equalTo: self.heightAnchor),
             
             titleLabel.leadingAnchor.constraint(equalTo: dataImageView.trailingAnchor, constant: 8),
             titleLabelTrailingConstraint,
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -8),
-//            titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: copyrightLabel.topAnchor, constant: -8),
-//            titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8)
 
             copyrightLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
             copyrightLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
@@ -110,6 +104,6 @@ extension EventDetailTableFooterView: ConfigurableCell {
         configureUI()
         titleLabel.text = data.displayName
         copyrightLabel.text = data.copyright
-        dataImageView.image = Asset.logoRedBGColor.image
+        dataImageView.image = Asset.logo.image
     }
 }

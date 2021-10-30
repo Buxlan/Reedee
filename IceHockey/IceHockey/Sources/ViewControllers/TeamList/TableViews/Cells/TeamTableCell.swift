@@ -75,6 +75,7 @@ extension TeamTableCell: ConfigurableCell {
                 } else {
                     self.imageView?.image = self.noImage
                 }
+                self.setNeedsLayout()
             }
         }        
     }

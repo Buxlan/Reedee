@@ -57,6 +57,8 @@ extension ImagesManager {
         ref.getData(maxSize: maxSize) { (data, error) in
             if let error = error {
                 print("Download error: \(error)")
+                handler(nil)
+                return
             }
             if let data = data,
                let image = UIImage(data: data) {

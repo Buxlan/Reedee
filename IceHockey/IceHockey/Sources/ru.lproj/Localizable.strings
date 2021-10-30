@@ -88,6 +88,9 @@
 "Contacts.title" = "Наши контакты";
 /* Teams */
 "Team.listTitle" = "Команды";
+"Team.onTheMapTitle" = "на карте";
+"Team.phoneTitle" = "Телефон: ";
+"Team.aboutClubTitle" = "О клубе";
 /* Squads */
 "Squads.tabBarItemTitle" = "Команды";
 "Squads.listTitle" = "Команды";

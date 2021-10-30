@@ -93,6 +93,9 @@
 "Squads.coachTitle" = "Coach: ";
 /* Teams */
 "Team.listTitle" = "Teams";
+"Team.onTheMapTitle" = "on the map";
+"Team.phoneTitle" = "Phone: ";
+"Team.aboutClubTitle" = "About club";
 /* Shop */
 "Shop.tabBarItemTitle" = "Shop";
 "Shop.title" = "Shop";
