@@ -13,19 +13,23 @@ struct SportSquad: FirebaseObject, Codable {
     
     var uid: String
     var displayName: String
-    var headCoach: SportCoach?
-    var players: [SportPlayer]
+    var headCoach: String
+    var players: [String]
     
     // MARK: - Lifecircle
     
     init?(snapshot: DataSnapshot) {
         let uid = snapshot.key
         guard let dict = snapshot.value as? [String: Any] else { return nil }
-        guard let displayName = dict["displayName"] as? String else { return nil }
-        guard let headCoach = dict["headCoach"] as? SportCoach else { return nil }
-        guard let players = dict["players"] as? [SportPlayer] else { return nil }
+        self.init(key: uid, dict: dict as NSDictionary)
+    }
+    
+    init?(key: String, dict: NSDictionary) {
+        guard let displayName = dict["name"] as? String else { return nil }
+        guard let headCoach = dict["headCoach"] as? String else { return nil }
+        guard let players = dict["players"] as? [String] else { return nil }
                 
-        self.uid = uid
+        self.uid = key
         self.displayName = displayName
         self.headCoach = headCoach
         self.players = players

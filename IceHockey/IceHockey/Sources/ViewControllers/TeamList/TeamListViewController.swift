@@ -145,12 +145,15 @@ class TeamListViewController: UIViewController {
 extension TeamListViewController: UITableViewDelegate {
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let event = viewModel.item(at: indexPath)
-//        let vc = EventDetailViewController()
-//        vc.modalPresentationStyle = .pageSheet
-//        vc.modalTransitionStyle = .crossDissolve
-//        vc.setInputData(event)
-//        navigationController?.pushViewController(vc, animated: true)
+        guard let snapshot = viewModel.dataSource?.snapshot(at: indexPath.row),
+            let object = SportTeam(snapshot: snapshot) else {
+            return
+        }
+        let vc = TeamDetailViewController()
+        vc.modalPresentationStyle = .pageSheet
+        vc.modalTransitionStyle = .crossDissolve
+        vc.setInputData(object)
+        navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

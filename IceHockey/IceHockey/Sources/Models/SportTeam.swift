@@ -49,14 +49,18 @@ struct SportTeam: Codable, FirebaseObject {
     init?(snapshot: DataSnapshot) {
         let uid = snapshot.key
         guard let dict = snapshot.value as? [String: Any] else { return nil }
+        self.init(key: uid, dict: dict as NSDictionary)
+    }
+    
+    init?(key: String, dict: NSDictionary) {
         guard let displayName = dict["displayName"] as? String else { return nil }
         guard let phone = dict["phone"] as? String else { return nil }
         guard let smallImageID = dict["smallLogo"] as? String else { return nil }
         guard let largeImageID = dict["largeLogo"] as? String else { return nil }
         guard let copyright = dict["copyright"] as? String else { return nil }
-        guard let squadIDs = dict["squads"] as? [String] else { return nil }        
+        guard let squadIDs = dict["squads"] as? [String] else { return nil }
                 
-        self.uid = uid
+        self.uid = key
         self.displayName = displayName
         self.phone = phone
         self.smallImageID = smallImageID
