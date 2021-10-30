@@ -248,12 +248,12 @@ internal enum L10n {
   internal enum Squads {
     /// Coach: 
     internal static let coachTitle = L10n.tr("Localizable", "Squads.coachTitle")
+    /// Squads
+    internal static let listTitle = L10n.tr("Localizable", "Squads.listTitle")
     /// Count of squads: 
     internal static let squadsCountTitle = L10n.tr("Localizable", "Squads.squadsCountTitle")
     /// Squads
     internal static let tabBarItemTitle = L10n.tr("Localizable", "Squads.tabBarItemTitle")
-    /// Our squads
-    internal static let title = L10n.tr("Localizable", "Squads.title")
   }
 
   internal enum Staff {
@@ -268,8 +268,8 @@ internal enum L10n {
   }
 
   internal enum Team {
-    /// Red Bears Hockey Team from Saint-Petersburg
-    internal static let title = L10n.tr("Localizable", "Team.title")
+    /// Teams
+    internal static let listTitle = L10n.tr("Localizable", "Team.listTitle")
   }
 
   internal enum User {

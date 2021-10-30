@@ -86,9 +86,11 @@
 /* Contacts */
 "Contacts.tabBarItemTitle" = "Контакты";
 "Contacts.title" = "Наши контакты";
+/* Teams */
+"Team.listTitle" = "Команды";
 /* Squads */
 "Squads.tabBarItemTitle" = "Команды";
-"Squads.title" = "Наши команды";
+"Squads.listTitle" = "Команды";
 "Squads.squadsCountTitle" = "Команды: ";
 "Squads.coachTitle" = "Тренер: ";
 /* Shop */
@@ -106,8 +108,6 @@
 "Staff.coachDescription" = "Описание";
 "Staff.player" = "Ф.И.О.";
 "Staff.playerDescription" = "Дополнительные сведения";
-/* Team */
-"Team.title" = "Хоккейный клуб «Красные медведи» (Санкт-Петербург)";
 /* Actions */
 "Actions.signUpToClub" = "Записаться в клуб";
 "Actions.showTrainingSchedule" = "Расписание занятий";

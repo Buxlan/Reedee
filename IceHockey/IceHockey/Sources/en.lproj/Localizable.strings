@@ -88,9 +88,11 @@
 "Contacts.title" = "Our contacts";
 /* Squads */
 "Squads.tabBarItemTitle" = "Squads";
-"Squads.title" = "Our squads";
+"Squads.listTitle" = "Squads";
 "Squads.squadsCountTitle" = "Count of squads: ";
 "Squads.coachTitle" = "Coach: ";
+/* Teams */
+"Team.listTitle" = "Teams";
 /* Shop */
 "Shop.tabBarItemTitle" = "Shop";
 "Shop.title" = "Shop";
@@ -106,8 +108,6 @@
 "Staff.coachDescription" = "Coach";
 "Staff.player" = "Player info";
 "Staff.playerDescription" = "Description";
-/* Team */
-"Team.title" = "Red Bears Hockey Team from Saint-Petersburg";
 /* Actions */
 "Actions.signUpToClub" = "Join us";
 "Actions.showTrainingSchedule" = "Training schedule";

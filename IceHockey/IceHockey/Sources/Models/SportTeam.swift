@@ -20,7 +20,7 @@ struct SportTeam: Codable, FirebaseObject {
     var copyright: String
     var squadIDs: [String]
     
-    static var current = SportTeam(displayName: L10n.Team.title,
+    static var current = SportTeam(displayName: L10n.Team.listTitle,
                                    uid: "redBears",
                                    phone: "79095626666",
                                    smallImageID: "",

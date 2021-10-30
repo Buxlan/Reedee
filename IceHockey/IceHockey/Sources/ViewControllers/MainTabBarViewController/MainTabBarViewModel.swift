@@ -12,10 +12,7 @@ class MainTabBarViewModel {
         var vc: UINavigationController
         let rootVC = HomeViewController()
         vc = UINavigationController(rootViewController: rootVC)
-        items.append(vc)
-        
-        vc = UINavigationController(rootViewController: HockeySquadsViewController())
-        items.append(vc)
+        items.append(vc)        
                 
         vc = UINavigationController(rootViewController: ContactsViewController())
         items.append(vc)

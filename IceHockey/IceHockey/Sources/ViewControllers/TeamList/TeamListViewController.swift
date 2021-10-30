@@ -28,6 +28,13 @@ class TeamListViewController: UIViewController {
         return view
     }()
     
+    private lazy var tableFooterView: EventDetailTableFooterView = {
+        let frame = CGRect(x: 0, y: 0, width: 0, height: 150)
+        let view = EventDetailTableFooterView(frame: frame)
+        view.configure(with: SportTeam.current)
+        return view
+    }()
+    
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
         view.isUserInteractionEnabled = true
@@ -40,11 +47,10 @@ class TeamListViewController: UIViewController {
         view.allowsMultipleSelectionDuringEditing = false
         view.translatesAutoresizingMaskIntoConstraints = false
         view.estimatedRowHeight = 300
-        view.rowHeight = UITableView.automaticDimension
-        view.register(TeamTableCell.self,
-                      forCellReuseIdentifier: TeamTableCell.reuseIdentifier)
+        view.rowHeight = UITableView.automaticDimension        
+        TeamCellConfigurator.registerCell(tableView: view)
         
-        view.tableFooterView = UIView()
+        view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = false
         view.refreshControl = refreshControl
         return view
@@ -77,7 +83,7 @@ class TeamListViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        let image = Asset.home.image.resizeImage(to: 24,
+        let image = Asset.person3.image.resizeImage(to: 24,
                                                  aspectRatio: .current,
                                                  with: view.tintColor)
         tabBarItem.image = image
@@ -108,7 +114,7 @@ class TeamListViewController: UIViewController {
     }
     
     private func configureTabBarItem() {
-        title = L10n.Squads.title
+        title = L10n.Squads.listTitle
         tabBarItem.title = L10n.Squads.tabBarItemTitle
         let image = Asset.person3.image.resizeImage(to: 24,
                                                     aspectRatio: .current,
@@ -122,7 +128,7 @@ class TeamListViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        title = L10n.Squads.title
+        title = L10n.Team.listTitle
         navigationController?.setToolbarHidden(true, animated: false)
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationBar.prefersLargeTitles = false

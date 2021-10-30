@@ -7,11 +7,7 @@
 
 import UIKit
 
-protocol Staff {
-    var displayName: String { get set }
-}
-
-struct SportCoach: Staff, Codable, Identifiable {
+struct SportCoach: Codable {
     var displayName: String
     var description: String
     var imageURL: URL?
@@ -25,19 +21,5 @@ struct SportCoach: Staff, Codable, Identifiable {
         self.displayName = displayName
         self.imageURL = imageURL
         self.description = description
-    }
-}
-
-extension SportCoach {
-    var image: UIImage {
-        let emptyImage = Asset.coach0.image
-        guard let url = imageURL else {
-            return emptyImage
-        }
-        guard let data = try? Data(contentsOf: url) else {
-            return emptyImage
-        }
-        let image = UIImage(data: data)
-        return image ?? emptyImage
     }
 }
