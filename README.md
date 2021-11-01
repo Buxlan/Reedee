@@ -1,2 +1,2 @@
 # IceHockey
-App for kids in ice hockey
+App for hockey club
