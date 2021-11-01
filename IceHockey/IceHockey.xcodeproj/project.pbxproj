@@ -30,6 +30,7 @@
 		4035DAB127306BC800AAFDA8 /* SimpleSectionTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4035DAB027306BC800AAFDA8 /* SimpleSectionTableHeaderView.swift */; };
 		4035DAB6273077BE00AAFDA8 /* OurSquadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4035DAB4273077BE00AAFDA8 /* OurSquadsViewController.swift */; };
 		4035DAB7273077BE00AAFDA8 /* OurSquadsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4035DAB5273077BE00AAFDA8 /* OurSquadsViewModel.swift */; };
+		4035DAB927309A0A00AAFDA8 /* SquadHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4035DAB827309A0A00AAFDA8 /* SquadHeaderView.swift */; };
 		40369EAB26E6B3FE0083E675 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40369EAA26E6B3FE0083E675 /* HomeViewModel.swift */; };
 		40369EBA26E6DB490083E675 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40369EB826E6DB490083E675 /* EventDetailViewController.swift */; };
 		40369EC626E6E33C0083E675 /* ActionsTableCell + CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40369EC526E6E33C0083E675 /* ActionsTableCell + CollectionView.swift */; };
@@ -183,6 +184,7 @@
 		4035DAB027306BC800AAFDA8 /* SimpleSectionTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSectionTableHeaderView.swift; sourceTree = "<group>"; };
 		4035DAB4273077BE00AAFDA8 /* OurSquadsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OurSquadsViewController.swift; sourceTree = "<group>"; };
 		4035DAB5273077BE00AAFDA8 /* OurSquadsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OurSquadsViewModel.swift; sourceTree = "<group>"; };
+		4035DAB827309A0A00AAFDA8 /* SquadHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquadHeaderView.swift; sourceTree = "<group>"; };
 		40369EAA26E6B3FE0083E675 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		40369EB826E6DB490083E675 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		40369EC526E6E33C0083E675 /* ActionsTableCell + CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActionsTableCell + CollectionView.swift"; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 			children = (
 				4035DAB4273077BE00AAFDA8 /* OurSquadsViewController.swift */,
 				4035DAB5273077BE00AAFDA8 /* OurSquadsViewModel.swift */,
+				4035DAB827309A0A00AAFDA8 /* SquadHeaderView.swift */,
 			);
 			path = OurSquads;
 			sourceTree = "<group>";
@@ -1081,6 +1084,7 @@
 				40CDC4BF2718B69A00990C6A /* EventManager.swift in Sources */,
 				40940BE126E40C380098EF89 /* OtherExtensions.swift in Sources */,
 				406CE6832723EBEB002FDDB6 /* EditEventPhotoCell + CollectionView.swift in Sources */,
+				4035DAB927309A0A00AAFDA8 /* SquadHeaderView.swift in Sources */,
 				40C3BC75272802C800BBA67F /* EditEventInputDateCell.swift in Sources */,
 				4094E6DE272B25A4004ED01B /* TeamTableCell.swift in Sources */,
 				40781507272CA3D3006D3AD2 /* ExistingSportTeamFirebaseSaver.swift in Sources */,
