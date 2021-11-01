@@ -90,12 +90,15 @@
 "Team.listTitle" = "Команды";
 "Team.onTheMapTitle" = "на карте";
 "Team.phoneTitle" = "Телефон: ";
+"Team.addressTitle" = "Адрес: ";
+"Team.emailTitle" = "E-mail: ";
 "Team.aboutClubTitle" = "О клубе";
 /* Squads */
 "Squads.tabBarItemTitle" = "Команды";
 "Squads.listTitle" = "Команды";
 "Squads.squadsCountTitle" = "Команды: ";
 "Squads.coachTitle" = "Тренер: ";
+"Squads.sectionTitle" = "Наши команды: ";
 /* Shop */
 "Shop.tabBarItemTitle" = "Магазин";
 "Shop.title" = "Магазин";

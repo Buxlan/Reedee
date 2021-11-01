@@ -36,6 +36,10 @@ struct SportTeam: Codable, FirebaseObject {
     var copyright: String
     var squadIDs: [String]
     var location: Coord?
+    var address: String = "-"
+    var email: String = ""
+    var ourSquadsTitle: String = ""
+    var webSite: String = ""
     
     static var current = SportTeam(displayName: L10n.Team.listTitle,
                                    uid: "redBears",
@@ -55,7 +59,11 @@ struct SportTeam: Codable, FirebaseObject {
          largeImageID: String,
          copyright: String,
          squadIDs: [String],
-         location: Coord? = nil) {
+         location: Coord? = nil,
+         address: String = "-",
+         email: String = "-",
+         ourSquardTitle: String = "",
+         webSite: String = "") {
         self.uid = uid
         self.displayName = displayName
         self.phone = phone
@@ -64,6 +72,10 @@ struct SportTeam: Codable, FirebaseObject {
         self.copyright = copyright
         self.squadIDs = squadIDs
         self.location = location
+        self.address = address
+        self.email = email
+        self.ourSquadsTitle = ourSquardTitle
+        self.webSite = webSite
     }
     
     init?(snapshot: DataSnapshot) {
@@ -72,20 +84,15 @@ struct SportTeam: Codable, FirebaseObject {
         self.init(key: uid, dict: dict as NSDictionary)
     }
     
+    // swiftlint:disable:next cyclomatic_complexity
     init?(key: String, dict: NSDictionary) {
+        
         guard let displayName = dict["displayName"] as? String else { return nil }
         guard let phone = dict["phone"] as? String else { return nil }
         guard let smallImageID = dict["smallLogo"] as? String else { return nil }
         guard let largeImageID = dict["largeLogo"] as? String else { return nil }
         guard let copyright = dict["copyright"] as? String else { return nil }
         guard let squadIDs = dict["squads"] as? [String] else { return nil }
-    
-        if let coordDict = dict["location"] as? [String: NSNumber],
-           let latitude = coordDict["latitude"] as? Double,
-           let longitude = coordDict["longitude"] as? Double {
-            self.location = Coord(longitude: longitude, latitude: latitude)
-        }
-                
         self.uid = key
         self.displayName = displayName
         self.phone = phone
@@ -93,6 +100,25 @@ struct SportTeam: Codable, FirebaseObject {
         self.largeImageID = largeImageID
         self.copyright = copyright
         self.squadIDs = squadIDs
+        
+        if let webSite = dict["webSite"] as? String {
+            self.webSite = webSite
+        }
+        if let address = dict["address"] as? String {
+            self.address = address
+        }
+        if let email = dict["email"] as? String {
+            self.email = email
+        }
+        if let ourSquadsTitle = dict["ourSquadsTitle"] as? String {
+            self.ourSquadsTitle = ourSquadsTitle
+        }
+        if let coordDict = dict["location"] as? [String: NSNumber],
+           let latitude = coordDict["latitude"] as? Double,
+           let longitude = coordDict["longitude"] as? Double {
+            self.location = Coord(longitude: longitude, latitude: latitude)
+        }
+        
     }
     
     var isNew: Bool {
@@ -113,7 +139,10 @@ struct SportTeam: Codable, FirebaseObject {
             "largeLogo": self.largeImageID,
             "smallLogo": self.smallImageID,
             "phone": self.phone,
-            "squads": self.squadIDs
+            "squads": self.squadIDs,
+            "address": self.address,
+            "email": self.email,
+            "ourSquardTitle": self.ourSquadsTitle
         ]
         
         if let location = location {

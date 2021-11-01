@@ -11,7 +11,7 @@ class QuickActionsCollectionView: UICollectionView {
     
     override var intrinsicContentSize: CGSize {
         self.layoutIfNeeded()
-        var size = self.contentSize
+        let size = self.contentSize
 //        size.width += self.contentInset.left + self.contentInset.right
 //        size.height += self.contentInset.top + self.contentInset.bottom
         return size

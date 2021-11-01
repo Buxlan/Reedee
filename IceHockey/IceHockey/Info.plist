@@ -68,6 +68,8 @@
 	<false/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Please allow Application to have an access to your location</string>
+	<key>teamID</key>
+	<string>nevskiy</string>
 	<key>databaseURL</key>
 	<string>https://icehockey-40e64-default-rtdb.europe-west1.firebasedatabase.app</string>
 </dict>

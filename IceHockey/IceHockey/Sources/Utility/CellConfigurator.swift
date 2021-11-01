@@ -161,7 +161,7 @@ typealias EditEventPhotoCollectionCellConfigurator = ActionableCollectionViewCel
 
 typealias TeamCellConfigurator = TableViewCellConfigurator<TeamTableCell,
                                                            SportTeam>
-typealias TeamDetailInfoCellConfigurator = TableViewCellConfigurator<TeamDetailInfoTableCell,
+typealias TeamDetailInfoCellConfigurator = TableViewCellConfigurator<TeamInfoTableCell,
                                                                      SportTeam>
 typealias MapCellConfigurator = TableViewCellConfigurator<MapTableCell,
                                                           SportTeam>
@@ -176,18 +176,21 @@ typealias SquadCellConfigurator = TableViewCellConfigurator<SquadTableCell,
 typealias PlayerCellConfigurator = TableViewCellConfigurator<PlayerTableCell,
                                                              SportPlayer>
 
-// MARK: - Actions configurators
+// MARK: - Actions
+
 typealias ActionCellConfigurator = TableViewCellConfigurator<ActionsTableCell,
                                                              QuickAction>
 
 typealias ActionCollectionCellConfigurator = CollectionViewCellConfigurator<ActionsCollectionCell,
                                                                              QuickAction>
-// Not using
+// MARK: - Not using
+
 typealias ComingEventCellConfigurator = TableViewCellConfigurator<ComingEventTableCell,
                                                                   SportEvent>
 typealias PhotoEventCollectionCellConfigurator = CollectionViewCellConfigurator<PhotoGalleryCollectionCell,
                                                                                 SportEvent>
 // MARK: - Headers
+
 typealias NewsTableViewHeaderConfigurator = TableViewCellConfigurator<EventsSectionHeaderView,
                                                                       NewsTableViewCellHeaderConfiguration>
 typealias ComingEventsHeaderConfigurator = TableViewCellConfigurator<ComingEventsSectionHeaderView,

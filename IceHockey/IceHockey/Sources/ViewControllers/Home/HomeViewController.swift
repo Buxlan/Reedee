@@ -16,12 +16,18 @@ class HomeViewController: UIViewController {
     
     private let refreshControl = UIRefreshControl()
     
+    private lazy var appendEventImage: UIImage = {
+        Asset.plus.image
+            .resizeImage(to: 32, aspectRatio: .current)
+            .withRenderingMode(.alwaysTemplate)
+    }()
+    
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
         view.isUserInteractionEnabled = true
         view.delegate = self
         view.dataSource = viewModel.dataSource
-        view.backgroundColor = Asset.other2.color
+        view.backgroundColor = Asset.accent1.color
         view.allowsSelection = true
         view.allowsMultipleSelection = false
         view.allowsSelectionDuringEditing = false
@@ -29,20 +35,22 @@ class HomeViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.estimatedRowHeight = 300
         view.rowHeight = UITableView.automaticDimension
-        view.register(EventTableCell.self,
-                      forCellReuseIdentifier: EventTableCell.reuseIdentifier)
-        
-        ActionCellConfigurator.registerCell(tableView: view)
-        
-        let height = UIScreen.main.bounds.height * 0.15
-        let frame = CGRect(x: 0, y: 0, width: 0, height: height)
-        let header = HomeTableViewHeader(frame: frame)
-        header.dataSource = self
-        header.configureUI()
-        view.tableHeaderView = header
+        view.tableHeaderView = tableHeaderView
         view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = false
         view.refreshControl = refreshControl
+        view.register(EventTableCell.self,
+                      forCellReuseIdentifier: EventTableCell.reuseIdentifier)
+        ActionCellConfigurator.registerCell(tableView: view)
+        return view
+    }()
+    
+    private lazy var tableHeaderView: HomeTableViewHeader = {
+        let height = UIScreen.main.bounds.height * 0.15
+        let frame = CGRect(x: 0, y: 0, width: 0, height: height)
+        let view = HomeTableViewHeader(frame: frame)
+        view.dataSource = self
+        view.configureUI()
         return view
     }()
     
@@ -54,23 +62,12 @@ class HomeViewController: UIViewController {
     }()
         
     // MARK: - Init
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    init() {
-        super.init(nibName: nil, bundle: nil)
-        configureTabBarItem()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewDidLoad() {
+        view.backgroundColor = Asset.accent1.color
         super.viewDidLoad()
         configureUI()
         configureConstraints()
-//        setupActionHandlers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,25 +77,20 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        let image = Asset.home.image.resizeImage(to: 24,
-                                                 aspectRatio: .current,
-                                                 with: view.tintColor)
-        tabBarItem.image = image
         viewModel.dataSource?.unbind()
     }
     
     // MARK: - Hepler functions
     
     private func configureUI() {
-        view.backgroundColor = Asset.accent1.color
         view.addSubview(tableView)
         refreshControl.addTarget(self, action: #selector(refreshTable(_:)), for: .valueChanged)
     }
     
     private func configureConstraints() {
         let constraints: [NSLayoutConstraint] = [
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            tableView.centerYAnchor.constraint(equalTo: view.layoutMarginsGuide.centerYAnchor),
             tableView.widthAnchor.constraint(equalTo: view.widthAnchor),
             tableView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor)            
 //            addEventButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
@@ -107,14 +99,6 @@ class HomeViewController: UIViewController {
 //            addEventButton.heightAnchor.constraint(equalToConstant: 44)
         ]
         NSLayoutConstraint.activate(constraints)
-    }
-    
-    private func configureTabBarItem() {
-        tabBarItem.title = L10n.Squads.tabBarItemTitle
-        let image = Asset.homeFill.image.resizeImage(to: 24,
-                                                    aspectRatio: .current,
-                                                    with: view.tintColor)
-        tabBarItem.image = image
     }
     
     private func configureBars() {
@@ -126,24 +110,7 @@ class HomeViewController: UIViewController {
         title = L10n.News.navigationBarTitle
         navigationController?.setToolbarHidden(true, animated: false)
         navigationController?.setNavigationBarHidden(false, animated: false)
-//        navigationItem.backBarButtonItem?.tintColor = .systemYellow
         navigationController?.navigationBar.prefersLargeTitles = false
-        navigationController?.navigationBar.barTintColor = Asset.accent1.color
-        let titleTextAttributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.foregroundColor: Asset.other3.color
-        ]
-        navigationController?.navigationBar.titleTextAttributes = titleTextAttributes
-        navigationController?.navigationBar.largeTitleTextAttributes = titleTextAttributes
-        let image = Asset.plus.image
-            .resizeImage(to: 32, aspectRatio: .current)
-            .withRenderingMode(.alwaysTemplate)
-        let item = UIBarButtonItem(image: image,
-                                   style: .plain,
-                                   target: self,
-                                   action: #selector(addEventHandle))
-//        item.imageInsets = .init(top: 0, left: 8, bottom: 8, right: 8)
-        item.tintColor = .white
-        navigationItem.rightBarButtonItem = item
     }
     
     private func configureViewModel() {
@@ -189,7 +156,6 @@ extension HomeViewController {
         let vc = EditEventViewController(editMode: .new)
         vc.modalPresentationStyle = .pageSheet
         vc.modalTransitionStyle = .crossDissolve
-//        present(vc, animated: true, completion: nil)
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -211,4 +177,5 @@ extension HomeViewController: CellUpdatable {
         }
         return cell
     }
+    
 }

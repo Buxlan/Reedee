@@ -16,7 +16,15 @@ enum TableViewHeaderType: Int, Codable {
     case partners
 }
 
-protocol TableViewCellHeaderConfiguration: Codable, Sizeable {
+protocol SimpleTableHeaderConfiguration {
+    var title: String? { get set }
+}
+
+struct TitleTableHeaderData: SimpleTableHeaderConfiguration {
+    var title: String?
+}
+
+protocol TableViewCellHeaderConfiguration: SimpleTableHeaderConfiguration, Codable, Sizeable {
     var leftImageName: String? { get set }
     var rightImageName: String? { get set }
     var title: String? { get set }

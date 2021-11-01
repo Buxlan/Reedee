@@ -41,7 +41,8 @@ class TeamTableCell: UITableViewCell {
     func configureUI() {
         if isInterfaceConfigured { return }
         contentView.backgroundColor = Asset.other3.color
-        tintColor = Asset.other1.color
+        tintColor = Asset.textColor.color
+        textLabel?.textColor = tintColor
         configureConstraints()
         isInterfaceConfigured = true
     }

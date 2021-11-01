@@ -91,10 +91,13 @@
 "Squads.listTitle" = "Squads";
 "Squads.squadsCountTitle" = "Count of squads: ";
 "Squads.coachTitle" = "Coach: ";
+"Squads.sectionTitle" = "Squads: ";
 /* Teams */
 "Team.listTitle" = "Teams";
 "Team.onTheMapTitle" = "on the map";
 "Team.phoneTitle" = "Phone: ";
+"Team.addressTitle" = "Address: ";
+"Team.emailTitle" = "E-mail: ";
 "Team.aboutClubTitle" = "About club";
 /* Shop */
 "Shop.tabBarItemTitle" = "Shop";

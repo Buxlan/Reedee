@@ -39,7 +39,7 @@ class ContactsViewController: UIViewController {
     // MARK: - Init
     init() {
         super.init(nibName: nil, bundle: nil)
-        configureTabBarItem()
+//        configureTabBarItem()
     }
     
     required init?(coder: NSCoder) {
@@ -71,14 +71,14 @@ class ContactsViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
     }
     
-    private func configureTabBarItem() {
-        title = L10n.Contacts.title
-        tabBarItem.title = L10n.Contacts.tabBarItemTitle
-        let image = Asset.contacts.image.resizeImage(to: 24,
-                                                            aspectRatio: .current,
-                                                            with: view.tintColor)
-        tabBarItem.image = image
-    }
+//    private func configureTabBarItem() {
+//        title = L10n.Contacts.title
+//        tabBarItem.title = L10n.Contacts.tabBarItemTitle
+//        let image = Asset.contacts.image.resizeImage(to: 24,
+//                                                     aspectRatio: .current,
+//                                                     with: view.tintColor)
+//        tabBarItem.image = image
+//    }
     
     private func configureBars() {
         navigationController?.setToolbarHidden(true, animated: false)

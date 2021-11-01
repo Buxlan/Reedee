@@ -250,6 +250,8 @@ internal enum L10n {
     internal static let coachTitle = L10n.tr("Localizable", "Squads.coachTitle")
     /// Squads
     internal static let listTitle = L10n.tr("Localizable", "Squads.listTitle")
+    /// Squads: 
+    internal static let sectionTitle = L10n.tr("Localizable", "Squads.sectionTitle")
     /// Count of squads: 
     internal static let squadsCountTitle = L10n.tr("Localizable", "Squads.squadsCountTitle")
     /// Squads
@@ -270,6 +272,10 @@ internal enum L10n {
   internal enum Team {
     /// About club
     internal static let aboutClubTitle = L10n.tr("Localizable", "Team.aboutClubTitle")
+    /// Address: 
+    internal static let addressTitle = L10n.tr("Localizable", "Team.addressTitle")
+    /// E-mail: 
+    internal static let emailTitle = L10n.tr("Localizable", "Team.emailTitle")
     /// Teams
     internal static let listTitle = L10n.tr("Localizable", "Team.listTitle")
     /// on the map
