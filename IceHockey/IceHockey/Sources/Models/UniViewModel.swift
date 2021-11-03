@@ -14,6 +14,11 @@ enum UniDataType {
     case location(CLLocation)
 }
 
+enum UniViewDataType {
+    case textField(String)
+    case textView(String)
+}
+
 protocol UniDataInterface {
     var value: UniDataType { get set }
     var config: [String: Any] { get set }

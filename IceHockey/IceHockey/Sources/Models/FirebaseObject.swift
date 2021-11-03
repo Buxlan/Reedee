@@ -8,9 +8,14 @@
 import Foundation
 
 protocol FirebaseObject {
-    var uid: String { get set }
-    init?(key: String, dict: NSDictionary)
     static func getObject(by uid: String, completion handler: @escaping (Self?) -> Void)
+    
+    var uid: String { get set }
+    
+    init?(key: String, dict: NSDictionary)
+    
+    func getHeaderData() -> [String: UniDataType]
     func save() throws
     func delete() throws
+    
 }
