@@ -37,14 +37,16 @@ struct SportSquad: FirebaseObject, Codable {
     
     // MARK: - Helper methods
     
-    func delete() {
-        do {
-            try FirebaseManager.shared.delete(self)
-        } catch AppError.dataMismatch {
-            print("Data mismatch")
-        } catch {
-            print("Some other error")
-        }
+    func save() throws {
+        
+    }
+    
+    func delete() throws {
+        try FirebaseManager.shared.delete(self)
+    }
+    
+    static func getObject(by uid: String, completion handler: @escaping (SportSquad?) -> Void) {
+        
     }
     
 }

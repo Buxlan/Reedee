@@ -50,6 +50,14 @@ struct SportTeam: Codable, FirebaseObject {
                                    squadIDs: [],
                                    location: nil)
     
+    var isNew: Bool {
+        return self.uid.isEmpty
+    }
+    
+    private static var databaseObjects: DatabaseReference {
+        FirebaseManager.shared.databaseManager.root.child("teams")
+    }
+    
     // MARK: - Lifecircle
     
     init(displayName: String,
@@ -121,10 +129,6 @@ struct SportTeam: Codable, FirebaseObject {
         
     }
     
-    var isNew: Bool {
-        return self.uid.isEmpty
-    }
-    
     // MARK: - Helper methods
         
     func checkProperties() -> Bool {
@@ -181,6 +185,22 @@ struct SportTeam: Codable, FirebaseObject {
         } catch {
             print("Some other error")
         }
+    }
+    
+    static func getObject(by uid: String, completion handler: @escaping (Self?) -> Void) {
+        Self.databaseObjects
+            .child(uid)
+            .getData { error, snapshot in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                if snapshot.value is NSNull {
+                    fatalError("Current team is nil")
+                }
+                let team = SportTeam(snapshot: snapshot)
+                handler(team)
+            }
     }
     
 }

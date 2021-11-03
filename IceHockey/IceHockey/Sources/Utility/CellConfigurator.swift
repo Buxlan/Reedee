@@ -166,6 +166,9 @@ typealias TeamDetailInfoCellConfigurator = TableViewCellConfigurator<TeamInfoTab
 typealias MapCellConfigurator = TableViewCellConfigurator<MapTableCell,
                                                           SportTeam>
 
+typealias OurSquadsTitleTextViewCellConfigurator = TableViewCellConfigurator<OurSquadsTitleTextViewCell,
+                                                                             SportTeam>
+
 // MARK: Squads
 
 typealias SquadCellConfigurator = TableViewCellConfigurator<SquadTableCell,

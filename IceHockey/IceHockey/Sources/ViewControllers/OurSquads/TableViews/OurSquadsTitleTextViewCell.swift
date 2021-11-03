@@ -1,22 +1,22 @@
 //
-//  EventDetailBoldTextTableViewCell.swift
+//  OurSquadsTitleTextViewCell.swift
 //  IceHockey
 //
-//  Created by  Buxlan on 10/20/21.
+//  Created by  Buxlan on 11/3/21.
 //
 
 import UIKit
 
-class EventDetailBoldViewCell: UITableViewCell {
+class OurSquadsTitleTextViewCell: UITableViewCell {
     
     // MARK: - Properties
     
     var isInterfaceConfigured: Bool = false
     
-    private lazy var boldTextLabel: UILabel = {
-        let view = UILabel()
-        view.numberOfLines = 0
-        view.lineBreakMode = .byWordWrapping
+    private lazy var titleTextView: UITextView = {
+        let view = UITextView()
+        view.isEditable = false
+        view.isScrollEnabled = false
         view.textAlignment = .center
         view.isUserInteractionEnabled = true
         view.font = .boldFont16
@@ -44,17 +44,18 @@ class EventDetailBoldViewCell: UITableViewCell {
         if isInterfaceConfigured { return }
         contentView.backgroundColor = Asset.other3.color
         tintColor = Asset.other1.color
-        contentView.addSubview(boldTextLabel)
+        contentView.addSubview(titleTextView)
         configureConstraints()
         isInterfaceConfigured = true
     }
     
     internal func configureConstraints() {
         let constraints: [NSLayoutConstraint] = [
-            boldTextLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            boldTextLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            boldTextLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -16),
-            boldTextLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8)
+            titleTextView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            titleTextView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            titleTextView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -16),
+            titleTextView.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
+            titleTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
     }
@@ -62,12 +63,12 @@ class EventDetailBoldViewCell: UITableViewCell {
 }
 
 // MARK: - ConfigurableCell extension
-extension EventDetailBoldViewCell: ConfigurableCell {
+extension OurSquadsTitleTextViewCell: ConfigurableCell {
         
-    typealias DataType = SportEvent
+    typealias DataType = SportTeam
     func configure(with data: DataType) {
         configureUI()
-        boldTextLabel.text = data.boldText
+        titleTextView.text = data.webSite
     }
     
 }
