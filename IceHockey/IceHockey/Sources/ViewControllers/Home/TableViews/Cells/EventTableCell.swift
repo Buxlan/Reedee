@@ -11,7 +11,7 @@ import FirebaseStorageUI
 class EventTableCell: UITableViewCell {
     
     // MARK: - Properties
-    typealias DataType = SportEvent
+    typealias DataType = NewsTableCellModel
     
     var isInterfaceConfigured = false
     var imageAspectRate: CGFloat = 1.77
@@ -50,32 +50,28 @@ class EventTableCell: UITableViewCell {
         return view
     }()
     
-    private lazy var dataLabel: InsetLabel = {
-        let insets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
-        let view = InsetLabel(insets: insets)
+    private lazy var dataLabel: UILabel = {
+        let view = UILabel()
         view.accessibilityIdentifier = "dataLabel (table cell)"
-        view.setMargins(margin: 32.0)
         view.backgroundColor = Asset.other3.color
         view.tintColor = Asset.textColor.color
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        view.numberOfLines = 3
+        view.numberOfLines = 5
         view.textAlignment = .left
-        view.font = .bxBody
+        view.font = .regularFont14
         return view
     }()
     
-    private lazy var dateLabel: InsetLabel = {
-        let insets = UIEdgeInsets(top: 4, left: 8, bottom: 8, right: 8)
-        let view = InsetLabel(insets: insets)
+    private lazy var dateLabel: UILabel = {
+        let view = UILabel()
         view.accessibilityIdentifier = "dateLabel (table cell)"
-        view.setMargins(margin: 32.0)
         view.backgroundColor = Asset.other3.color
         view.textColor = Asset.other0.color
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setContentHuggingPriority(.defaultLow, for: .vertical)
         view.textAlignment = .left
-        view.font = .regularFont12
+        view.font = .regularFont14
         return view
     }()
     
@@ -109,6 +105,7 @@ class EventTableCell: UITableViewCell {
     }
     
     // MARK: - Helper functions
+    
     func configureUI() {
         if isInterfaceConfigured { return }
         contentView.backgroundColor = Asset.other3.color
@@ -133,7 +130,7 @@ class EventTableCell: UITableViewCell {
             dataImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             dataImageView.heightAnchor.constraint(equalTo: dataImageView.widthAnchor),
             
-            dataLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            dataLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             dataLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             dataLabel.topAnchor.constraint(equalTo: dataImageView.bottomAnchor, constant: 4),
             dataLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 32),
@@ -143,7 +140,7 @@ class EventTableCell: UITableViewCell {
             typeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             typeLabel.heightAnchor.constraint(equalToConstant: 24),
             
-            dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             dateLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             dateLabel.topAnchor.constraint(equalTo: dataLabel.lastBaselineAnchor, constant: 0),
             dateLabel.heightAnchor.constraint(equalToConstant: 32),
@@ -159,26 +156,22 @@ class EventTableCell: UITableViewCell {
     }
 }
 
-extension EventTableCell: ConfigurableEventCell {
-    
+extension EventTableCell: ConfigurableCell {
     func configure(with data: DataType) {
         configureUI()
-//        dataImageView.image = data.image
-        dataLabel.text = data.title        
+
+        dataLabel.text = data.title
+        dateLabel.text = data.date
         
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .none
-        formatter.locale = Locale.current
-        let dateString = formatter.string(from: data.date)
-        dateLabel.text = dateString
+        typeLabel.backgroundColor = data.typeBackgroundColor
+        typeLabel.textColor = data.typeTextColor
+        typeLabel.text = data.type
         
-        typeLabel.backgroundColor = data.type.backgroundColor
-        typeLabel.textColor = data.type.textColor
-        typeLabel.text = data.type.description.uppercased()
+        let imageID = data.imageID
+        let uid = data.uid
         
-        if let imageName = data.mainImageName {
-            ImagesManager.shared.getImage(withName: imageName, eventUID: data.uid) { [weak self] (image) in
+        if !imageID.isEmpty {
+            ImagesManager.shared.getImage(withName: imageID, eventUID: uid) { [weak self] (image) in
                 guard let self = self else { return }
                 if let image = image {
                     self.dataImageView.image = image
@@ -188,5 +181,4 @@ extension EventTableCell: ConfigurableEventCell {
             }
         }
     }
-    
 }

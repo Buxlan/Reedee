@@ -12,7 +12,7 @@ class MainTabBarViewModel {
         case home = 0
         case ourSquads = 1
         case ourContacts = 2
-        case teamList = 3
+        case profile = 3
         
         init(rawValue: Int) {
             switch rawValue {
@@ -23,7 +23,7 @@ class MainTabBarViewModel {
             case 2:
                 self = .ourContacts
             case 3:
-                self = .teamList
+                self = .profile
             default:
                 fatalError()
             }
@@ -37,8 +37,8 @@ class MainTabBarViewModel {
                 return L10n.Squads.listTitle
             case .ourContacts:
                 return L10n.Contacts.title
-            case .teamList:
-                return L10n.Team.listTitle
+            case .profile:
+                return L10n.Profile.title
             }
         }
         
@@ -54,8 +54,8 @@ class MainTabBarViewModel {
             case .ourContacts:
                 return Asset.contacts.image.resizeImage(to: height, aspectRatio: .current)
                     .withRenderingMode(.alwaysTemplate)
-            case .teamList:
-                return Asset.person3.image.resizeImage(to: height, aspectRatio: .current)
+            case .profile:
+                return Asset.gear.image.resizeImage(to: height, aspectRatio: .current)
                     .withRenderingMode(.alwaysTemplate)
             }
         }
@@ -67,14 +67,14 @@ class MainTabBarViewModel {
                 return Asset.homeFill.image.resizeImage(to: height, aspectRatio: .current)
                     .withRenderingMode(.alwaysOriginal)
             case .ourSquads:
-                return Asset.person3.image.resizeImage(to: height, aspectRatio: .current)
+                return Asset.person3Fill.image.resizeImage(to: height, aspectRatio: .current)
                     .withRenderingMode(.alwaysOriginal)
             case .ourContacts:
                 return Asset.contacts.image.resizeImage(to: height, aspectRatio: .current)
                     .withRenderingMode(.alwaysOriginal)
-            case .teamList:
-                return Asset.person3.image.resizeImage(to: height, aspectRatio: .current)
-                    .withRenderingMode(.alwaysOriginal)
+            case .profile:
+                return Asset.gearFill.image.resizeImage(to: height, aspectRatio: .current)
+                    .withRenderingMode(.alwaysTemplate)
             }
         }
         

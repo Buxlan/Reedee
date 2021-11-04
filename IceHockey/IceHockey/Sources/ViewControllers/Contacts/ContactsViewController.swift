@@ -114,7 +114,7 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    private func configure(cell: UITableViewCell, item: SportEvent) {
+    private func configure(cell: UITableViewCell, item: SportNews) {
         cell.textLabel?.text = item.title
         cell.accessoryType = .disclosureIndicator
     }

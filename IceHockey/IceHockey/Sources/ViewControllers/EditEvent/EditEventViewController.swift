@@ -16,7 +16,7 @@ class EditEventViewController: UIViewController {
         case edit(InputDataType)
     }
     
-    typealias InputDataType = SportEvent
+    typealias InputDataType = SportNews
     
     private lazy var handler: EditEventHandler = {
         EditEventHandler(delegate: self)

@@ -111,19 +111,27 @@ struct CollectionViewCellConfigurator<CellType: ConfigurableCell,
     }
 }
 
+// MARK: - News cell configurator
+typealias NewsCellConfigurator = TableViewCellConfigurator<EventTableCell,
+                                                           NewsTableCellModel>
+
+typealias MatchResultCellConfigurator = TableViewCellConfigurator<MatchResultTableCell,
+                                                                  MatchResultTableCellModel>
+// MARK: - MatchResult cell configurator
+
 // MARK: - Event detail configurators
 typealias EventPhotoCellConfigurator = TableViewCellConfigurator<EventDetailPhotoTableCell,
                                                                  [ImageDataConfiguration]>
 typealias EventDetailPhotoCollectionCellConfigurator = CollectionViewCellConfigurator<EventDetailPhotoCollectionViewCell,
                                                                                       ImageDataConfiguration>
 typealias EventDetailUsefulButtonsCellConfigurator = TableViewCellConfigurator<EventDetailUsefulButtonsCell,
-                                                                               SportEvent>
+                                                                               SportNews>
 typealias EventDetailTitleCellConfigurator = TableViewCellConfigurator<EventDetailTitleCell,
-                                                                       SportEvent>
+                                                                       SportNews>
 typealias EventDetailDescriptionCellConfigurator = TableViewCellConfigurator<EventDetailDescriptionCell,
-                                                                             SportEvent>
+                                                                             SportNews>
 typealias EventDetailBoldTextCellConfigurator = TableViewCellConfigurator<EventDetailBoldViewCell,
-                                                                          SportEvent>
+                                                                          SportNews>
 typealias EventDetailCopyrightCellConfigurator = TableViewCellConfigurator<EventDetailCopyrightCell,
                                                                            SportTeam>
 
@@ -189,9 +197,9 @@ typealias ActionCollectionCellConfigurator = CollectionViewCellConfigurator<Acti
 // MARK: - Not using
 
 typealias ComingEventCellConfigurator = TableViewCellConfigurator<ComingEventTableCell,
-                                                                  SportEvent>
+                                                                  SportNews>
 typealias PhotoEventCollectionCellConfigurator = CollectionViewCellConfigurator<PhotoGalleryCollectionCell,
-                                                                                SportEvent>
+                                                                                SportNews>
 // MARK: - Headers
 
 typealias NewsTableViewHeaderConfigurator = TableViewCellConfigurator<EventsSectionHeaderView,

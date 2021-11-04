@@ -24,7 +24,7 @@ struct Coord: Codable {
     }
 }
 
-struct SportTeam: Codable, FirebaseObject {
+struct SportTeam: Codable, FirebaseObject {    
     
     // MARK: - Properties
     

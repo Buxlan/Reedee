@@ -10,7 +10,7 @@ import UIKit
 class ComingEventTableCell: UITableViewCell, ConfigurableCell {
     
     // MARK: - Properties
-    typealias DataType = SportEvent
+    typealias DataType = SportNews
     
     var isInterfaceConfigured = false
     var imageAspectRate: CGFloat = 1.77
@@ -129,7 +129,6 @@ class ComingEventTableCell: UITableViewCell, ConfigurableCell {
     }
     
     internal func configureConstraints() {
-        let collectionViewHeight = cellHeight
         let constraints: [NSLayoutConstraint] = [
             
             dataImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

@@ -11,7 +11,7 @@ import FirebaseDatabaseUI
 class EditEventViewModel: NSObject {
     
     // MARK: - Properties
-    var dataSource: SportEvent? {
+    var dataSource: SportNews? {
         didSet {
             if let data = dataSource {
                 let imageData = data.imageIDs.map { (imageUid) -> ImageDataConfiguration in

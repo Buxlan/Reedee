@@ -13,7 +13,7 @@ protocol ObjectFirebaseSaver {
     func save(completionHandler: @escaping () -> Void) throws
 }
 
-protocol SportEventFirebaseSaver: ObjectFirebaseSaver where DataType == SportEvent {
+protocol SportEventFirebaseSaver: ObjectFirebaseSaver where DataType == SportNews {
     
 }
 

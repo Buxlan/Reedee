@@ -11,7 +11,7 @@ import Foundation
 class PhotoGalleryTableCell: UITableViewCell, ConfigurableCell, CollectionViewDelegate {
     
     // MARK: - Properties
-    typealias DataType = SportEvent
+    typealias DataType = SportNews
     
     weak var delegate: UICollectionViewDelegate?
     weak var dataSource: UICollectionViewDataSource?

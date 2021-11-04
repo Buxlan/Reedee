@@ -12,7 +12,8 @@ protocol InputData {
     func setInputData(_ inputData: InputDataType)
 }
 
-protocol CellUpdatable: class {
+protocol CellUpdatable: AnyObject {
+    func configureCell(at indexPath: IndexPath) -> UITableViewCell
     func configureCell(at indexPath: IndexPath, event: SportEvent) -> UITableViewCell
     func configureCell(at indexPath: IndexPath, configurator: CellConfigurator) -> UITableViewCell
     func reloadData()
@@ -25,10 +26,13 @@ extension CellUpdatable {
     func configureCell(at indexPath: IndexPath, configurator: CellConfigurator) -> UITableViewCell {
         return UITableViewCell()
     }
+    func configureCell(at indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    } 
     func reloadData() {
     }
 }
 
-protocol ViewControllerDismissable: class {
+protocol ViewControllerDismissable: AnyObject {
     func dismiss(animated: Bool)
 }

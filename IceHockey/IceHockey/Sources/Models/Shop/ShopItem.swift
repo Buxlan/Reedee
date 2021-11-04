@@ -114,7 +114,7 @@ struct ShopItem: ShopItemProtocol {
     var colorable: Bool
     
     init(name: String = "Item 0",
-         description: String = "To save an array of Codable Person objects, do exactly the same thing. Array con‐ forms to Codable, so use PropertyListEncoder to encode the array into a Data object and call write(to:options:)",
+         description: String = "To save an",
          imageURL: URL? = nil,
          price: CGFloat = 0.0,
          size: CGFloat? = 0.0,

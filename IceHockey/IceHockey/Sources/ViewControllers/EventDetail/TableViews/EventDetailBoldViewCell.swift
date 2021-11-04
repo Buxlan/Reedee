@@ -64,7 +64,7 @@ class EventDetailBoldViewCell: UITableViewCell {
 // MARK: - ConfigurableCell extension
 extension EventDetailBoldViewCell: ConfigurableCell {
         
-    typealias DataType = SportEvent
+    typealias DataType = SportNews
     func configure(with data: DataType) {
         configureUI()
         boldTextLabel.text = data.boldText

@@ -8,20 +8,24 @@
 import Firebase
 import FirebaseDatabaseUI
 
+struct TableRow<DataType> {
+    var config: CellConfigurator
+    var data: DataType
+}
+
 class HomeViewModel {
     
     // MARK: - Properties
-    weak var delegate: CellUpdatable? {
-        didSet {
-            dataSource = FUITableViewDataSource(query: databaseQuery, populateCell: populateCell)
-        }
-    }
+    
     var dataSource: FUITableViewDataSource?
     
-    private lazy var populateCell: ((UITableView, IndexPath, DataSnapshot) -> UITableViewCell) = { (_, indexPath, snap) -> UITableViewCell in
-        guard let event = SportEvent(snapshot: snap),
-              let delegate = self.delegate else { return UITableViewCell() }
-        return delegate.configureCell(at: indexPath, event: event)
+    var items: [IndexPath: TableRow<SportEvent>] = [:]
+    
+    var populateCellRelay: ((UITableView, IndexPath, DataSnapshot) -> UITableViewCell)! {
+        didSet {
+            guard let populateCellRelay = populateCellRelay else { return }
+            dataSource = FUITableViewDataSource(query: databaseQuery, populateCell: populateCellRelay)
+        }
     }
     
     private var storageReference: StorageReference = {
@@ -49,11 +53,10 @@ class HomeViewModel {
     // MARK: - Hepler functions
     
     func item(at indexPath: IndexPath) -> SportEvent {
-        guard let snapshot = dataSource?.items[indexPath.row],
-              let event = SportEvent(snapshot: snapshot) else {
+        guard let event = items[indexPath] else {
             fatalError("Cant get item at index \(indexPath.row)")
         }
-        return event
+        return event.data
     }    
     
     func action(at indexPath: IndexPath) -> ActionCollectionCellConfigurator {

@@ -25,9 +25,9 @@ struct SportSquad: FirebaseObject, Codable {
     }
     
     init?(key: String, dict: NSDictionary) {
-        guard let displayName = dict["name"] as? String else { return nil }
-        guard let headCoach = dict["headCoach"] as? String else { return nil }
-        guard let players = dict["players"] as? [String] else { return nil }
+        guard let displayName = dict["name"] as? String,
+              let headCoach = dict["headCoach"] as? String,
+              let players = dict["players"] as? [String] else { return nil }
                 
         self.uid = key
         self.displayName = displayName

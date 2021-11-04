@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol MediaPickerDelegate: class {
+protocol MediaPickerDelegate: AnyObject {
     func openGallery()
     func makePhoto()
 }
@@ -53,6 +53,10 @@ extension EditEventHandler {
     
     func reloadData() {
         delegate?.reloadData()
+    }
+    
+    func configureCell(at indexPath: IndexPath) -> UITableViewCell {
+        delegate?.configureCell(at: indexPath) ?? UITableViewCell()
     }
     
     func configureCell(at indexPath: IndexPath, configurator: CellConfigurator) -> UITableViewCell {

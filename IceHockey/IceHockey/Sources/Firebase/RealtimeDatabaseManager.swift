@@ -30,8 +30,43 @@ extension RealtimeDatabaseManager {
     
     func getNewImageUID() -> String? {
         let key = root.child("images").childByAutoId().key
-        print("Got key: \(key)")
         return key
+    }
+    
+    func getEventIsLiked(eventID: String, userID: String, completionHandler: @escaping (Bool) -> Void) {
+        FirebaseManager.shared.databaseManager
+            .root.child("likes")
+            .child(eventID)
+            .child("users")
+            .getData { error, snapshot in
+                guard error == nil,
+                      !(snapshot.value is NSNull),
+                      let users = snapshot.value as? [String] else {
+                          completionHandler(false)
+                          return
+                      }
+                if users.firstIndex(of: userID) != nil {
+                    completionHandler(true)
+                } else {
+                    completionHandler(false)
+                }
+            }
+    }
+    
+    func getEventLikeCount(eventID: String, completionHandler: @escaping (Int) -> Void) {
+        FirebaseManager.shared.databaseManager
+            .root.child("likes")
+            .child(eventID)
+            .child("count")
+            .getData { error, snapshot in
+                guard error == nil,
+                      !(snapshot.value is NSNull),
+                      let count = snapshot.value as? Int else {
+                          completionHandler(0)
+                          return
+                      }
+                completionHandler(count)
+            }
     }
     
 }

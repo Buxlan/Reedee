@@ -63,7 +63,7 @@ class EventDetailTitleCell: UITableViewCell {
 // MARK: - ConfigurableCell extension
 extension EventDetailTitleCell: ConfigurableCell {
         
-    typealias DataType = SportEvent
+    typealias DataType = SportNews
     func configure(with data: DataType) {
         configureUI()
         titleLabel.text = data.title

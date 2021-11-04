@@ -25,4 +25,3 @@ class PhotoCollectionView: UICollectionView {
         self.invalidateIntrinsicContentSize()
     }
 }
-

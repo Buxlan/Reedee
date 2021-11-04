@@ -1,22 +1,18 @@
 //
-//  EventDetailViewController.swift
+//  MatchResultDetailViewController.swift
 //  IceHockey
 //
-//  Created by  Buxlan on 9/7/21.
+//  Created by  Buxlan on 11/4/21.
 //
 
 import UIKit
 
-class EventDetailViewController: UIViewController {
+class MatchResultDetailViewController: UIViewController {
     
     // MARK: - Properties
     
-    typealias InputDataType = SportNews
-    private lazy var viewModel: EventDetailViewModel = {
-        return EventDetailViewModel(delegate: self)
-    }()
-    var actionProxy: CellActionProxy = .init()
-    private var swipeDirection: UISwipeGestureRecognizer.Direction?
+    typealias InputDataType = MatchResult
+    private lazy var viewModel = MatchResultViewModel()
     
     private lazy var tableFooterView: EventDetailTableFooterView = {
         let frame = CGRect(x: 0, y: 0, width: 0, height: 150)
@@ -120,7 +116,7 @@ class EventDetailViewController: UIViewController {
         navigationItem.rightBarButtonItems = [itemReport, itemEdit]
     }
     
-    private func configureViewModel() {        
+    private func configureViewModel() {
     }
     
     private func configureRecognizers() {
@@ -130,26 +126,26 @@ class EventDetailViewController: UIViewController {
     }
 }
 
-extension EventDetailViewController: UITableViewDelegate {
+extension MatchResultDetailViewController: UITableViewDelegate {
        
 }
 
-extension EventDetailViewController: InputData {
+extension MatchResultDetailViewController: InputData {
     
-    func setInputData(_ inputData: SportNews) {
-        viewModel.dataSource = inputData
+    func setInputData(_ inputData: MatchResult) {
+        viewModel.inputData = inputData
     }
     
 }
 
-extension  EventDetailViewController {
+extension  MatchResultDetailViewController {
     @objc
     private func handleSwipes(_ sender: UISwipeGestureRecognizer) {
         dismiss(animated: true, completion: nil)
     }
 }
 
-extension EventDetailViewController: CellUpdatable {
+extension MatchResultDetailViewController: CellUpdatable {
     func configureCell(at indexPath: IndexPath, configurator: CellConfigurator) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: type(of: configurator).reuseIdentifier,
                                                  for: indexPath)
@@ -161,20 +157,20 @@ extension EventDetailViewController: CellUpdatable {
     }
 }
 
-extension EventDetailViewController {
+extension MatchResultDetailViewController {
     
     @objc func reportHandle() {
         
     }
     
     @objc func editHandle() {
-        guard let dataSource = viewModel.dataSource else {
-            return
-        }
-        let vc = EditEventViewController(editMode: .edit(dataSource))
-        vc.modalPresentationStyle = .pageSheet
-        vc.modalTransitionStyle = .crossDissolve
-        navigationController?.pushViewController(vc, animated: true)
+//        guard let dataSource = viewModel.inputData else {
+//            return
+//        }
+//        let vc = EditMatchResultViewController(editMode: .edit(dataSource))
+//        vc.modalPresentationStyle = .pageSheet
+//        vc.modalTransitionStyle = .crossDissolve
+//        navigationController?.pushViewController(vc, animated: true)
     }
     
 }

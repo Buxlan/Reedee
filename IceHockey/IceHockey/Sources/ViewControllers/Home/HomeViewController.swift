@@ -39,8 +39,8 @@ class HomeViewController: UIViewController {
         view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = false
         view.refreshControl = refreshControl
-        view.register(EventTableCell.self,
-                      forCellReuseIdentifier: EventTableCell.reuseIdentifier)
+        NewsCellConfigurator.registerCell(tableView: view)
+        MatchResultCellConfigurator.registerCell(tableView: view)
         ActionCellConfigurator.registerCell(tableView: view)
         return view
     }()
@@ -92,11 +92,7 @@ class HomeViewController: UIViewController {
             tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             tableView.centerYAnchor.constraint(equalTo: view.layoutMarginsGuide.centerYAnchor),
             tableView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            tableView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor)            
-//            addEventButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-//            addEventButton.widthAnchor.constraint(equalToConstant: 44),
-//            addEventButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -50),
-//            addEventButton.heightAnchor.constraint(equalToConstant: 44)
+            tableView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
     }
@@ -114,7 +110,25 @@ class HomeViewController: UIViewController {
     }
     
     private func configureViewModel() {
-        viewModel.delegate = self
+        viewModel.populateCellRelay = { (_, indexPath, snap) -> UITableViewCell in
+            guard let event = SportEventCreatorImpl().create(snapshot: snap) else {
+                return UITableViewCell()
+            }
+            var row: TableRow<SportEvent>
+            switch event.type {
+            case .event:
+                row = self.makeNewsTableRow(event)
+                self.viewModel.items[indexPath] = row
+            case .match:
+                row = self.makeMatchResultTableRow(event)
+                self.viewModel.items[indexPath] = row
+            default:
+                fatalError()
+            }
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: type(of: row.config).reuseIdentifier, for: indexPath)
+            row.config.configure(cell: cell)
+            return cell
+        }
         viewModel.dataSource?.bind(to: tableView)
     }
     
@@ -125,12 +139,28 @@ extension HomeViewController: UITableViewDelegate {
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let event = viewModel.item(at: indexPath)
-        let vc = EventDetailViewController()
-        vc.modalPresentationStyle = .pageSheet
-        vc.modalTransitionStyle = .crossDissolve
-        vc.setInputData(event)
-        navigationController?.pushViewController(vc, animated: true)
+        switch event.type {
+        case .event:
+            guard let event = event as? SportNews else { fatalError() }
+            let vc = EventDetailViewController()
+            vc.modalPresentationStyle = .pageSheet
+            vc.modalTransitionStyle = .crossDissolve
+            vc.setInputData(event)
+            navigationController?.pushViewController(vc, animated: true)
+        case .match:
+            tableView.deselectRow(at: indexPath, animated: true)
+            return
+//            guard let event = event as? MatchResult else { fatalError() }
+//            let vc = MatchResultDetailViewController()
+//            vc.modalPresentationStyle = .pageSheet
+//            vc.modalTransitionStyle = .crossDissolve
+//            vc.setInputData(event)
+//            navigationController?.pushViewController(vc, animated: true)
+        default:
+            fatalError()
+        }
         tableView.deselectRow(at: indexPath, animated: true)
+        
     }
 }
 
@@ -160,22 +190,40 @@ extension HomeViewController {
     }
     
     @objc private func refreshTable(_ sender: Any) {
+        viewModel.dataSource?.unbind()
+        viewModel = HomeViewModel()
+        configureViewModel()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.refreshControl.endRefreshing()
         }
     }
     
-}
-
-extension HomeViewController: CellUpdatable {
+    func shouldRefresh() {
+        
+    }
     
-    func configureCell(at indexPath: IndexPath, event: SportEvent) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: event.type.identifier,
-                                                 for: indexPath)
-        if let cell = cell as? ConfigurableEventCell {
-            cell.configure(with: event)
+    func createDataSource() {
+        
+    }
+    
+    func makeNewsTableRow(_ event: SportEvent) -> TableRow<SportEvent> {
+        guard let event = event as? SportNews else {
+            fatalError()
         }
-        return cell
+        let cellModel = NewsTableCellModel(data: event)
+        let configurator = NewsCellConfigurator(data: cellModel)
+        let row = TableRow(config: configurator, data: event as SportEvent)
+        return row
+    }
+    
+    func makeMatchResultTableRow(_ event: SportEvent) -> TableRow<SportEvent> {
+        guard let event = event as? MatchResult else {
+            fatalError()
+        }
+        let cellModel = MatchResultTableCellModel(data: event)
+        let configurator = MatchResultCellConfigurator(data: cellModel)
+        let row = TableRow(config: configurator, data: event as SportEvent)
+        return row
     }
     
 }

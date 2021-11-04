@@ -11,7 +11,7 @@ struct NewSportEventFirebaseSaver: SportEventFirebaseSaver {
     
     // MARK: - Properties
     
-    typealias DataType = SportEvent
+    typealias DataType = SportNews
     internal let object: DataType
     
     internal var eventsDatabaseReference: DatabaseReference {

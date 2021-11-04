@@ -62,7 +62,7 @@ class EventDetailDescriptionCell: UITableViewCell {
 // MARK: - ConfigurableCell extension
 extension EventDetailDescriptionCell: ConfigurableCell {
         
-    typealias DataType = SportEvent
+    typealias DataType = SportNews
     func configure(with data: DataType) {
         configureUI()
         descriptionLabel.text = data.text

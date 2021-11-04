@@ -147,7 +147,7 @@ extension EventDetailUsefulButtonsCell {
 // MARK: - ConfigurableCell extension
 extension EventDetailUsefulButtonsCell: ConfigurableCell {
         
-    typealias DataType = SportEvent
+    typealias DataType = SportNews
     func configure(with data: DataType) {
         configureUI()
         viewsCountLabel.text = "123"

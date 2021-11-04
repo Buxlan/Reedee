@@ -12,7 +12,7 @@ class EventDetailViewModel: NSObject {
     
     // MARK: - Properties
     
-    typealias InputDataType = SportEvent
+    typealias InputDataType = SportNews
     var dataSource: InputDataType? {
         didSet {
             if let data = dataSource {
