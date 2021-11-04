@@ -21,7 +21,6 @@ class EventTableCell: UITableViewCell {
         let cornerRadius: CGFloat = 32.0
         let view = UIImageView()
         view.accessibilityIdentifier = "dataImageView"
-//        view.image = Asset.camera.image.resizeImage(to: imageHeight, aspectRatio: .current, with: .clear)
         view.backgroundColor = Asset.other3.color
         view.contentMode = .scaleToFill
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +36,7 @@ class EventTableCell: UITableViewCell {
     
     private lazy var shadowView: ShadowCorneredView = {
         let view = ShadowCorneredView()
-        view.backgroundColor = Asset.other3.color
+        view.backgroundColor = .clear
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -50,8 +49,9 @@ class EventTableCell: UITableViewCell {
         return view
     }()
     
-    private lazy var dataLabel: UILabel = {
-        let view = UILabel()
+    private lazy var dataLabel: InsetLabel = {
+        let insets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        let view = InsetLabel(insets: insets)
         view.accessibilityIdentifier = "dataLabel (table cell)"
         view.backgroundColor = Asset.other3.color
         view.tintColor = Asset.textColor.color
@@ -63,8 +63,9 @@ class EventTableCell: UITableViewCell {
         return view
     }()
     
-    private lazy var dateLabel: UILabel = {
-        let view = UILabel()
+    private lazy var dateLabel: InsetLabel = {
+        let insets = UIEdgeInsets(top: 0, left: 16, bottom: 4, right: 16)
+        let view = InsetLabel(insets: insets)
         view.accessibilityIdentifier = "dateLabel (table cell)"
         view.backgroundColor = Asset.other3.color
         view.textColor = Asset.other0.color
@@ -110,14 +111,11 @@ class EventTableCell: UITableViewCell {
         if isInterfaceConfigured { return }
         contentView.backgroundColor = Asset.other3.color
         tintColor = Asset.other1.color
-//        contentView.addSubview(coloredView)
         contentView.addSubview(dataImageView)
         contentView.addSubview(typeLabel)
         contentView.addSubview(dataLabel)
         contentView.addSubview(shadowView)
         contentView.addSubview(dateLabel)
-        
-//        dataImageView.isHidden = (dataImageView.image == nil)
         
         configureConstraints()
         isInterfaceConfigured = true
@@ -130,27 +128,23 @@ class EventTableCell: UITableViewCell {
             dataImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             dataImageView.heightAnchor.constraint(equalTo: dataImageView.widthAnchor),
             
-            dataLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            dataLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             dataLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            dataLabel.topAnchor.constraint(equalTo: dataImageView.bottomAnchor, constant: 4),
-            dataLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 32),
+            dataLabel.topAnchor.constraint(equalTo: dataImageView.bottomAnchor, constant: 8),
             
             typeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-//            typeLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 160),
             typeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             typeLabel.heightAnchor.constraint(equalToConstant: 24),
             
-            dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             dateLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            dateLabel.topAnchor.constraint(equalTo: dataLabel.lastBaselineAnchor, constant: 0),
-            dateLabel.heightAnchor.constraint(equalToConstant: 32),
-            dateLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -12),
+            dateLabel.topAnchor.constraint(equalTo: dataLabel.bottomAnchor, constant: 4),
+            dateLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -16),
             
             shadowView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             shadowView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            shadowView.topAnchor.constraint(greaterThanOrEqualTo: dateLabel.topAnchor),
-            shadowView.heightAnchor.constraint(equalToConstant: 2),
-            shadowView.bottomAnchor.constraint(equalTo: dateLabel.bottomAnchor)
+            shadowView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor),
+            shadowView.heightAnchor.constraint(equalToConstant: 2)
         ]
         NSLayoutConstraint.activate(constraints)
     }

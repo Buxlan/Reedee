@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Firebase
 
 class MatchResultTableCell: UITableViewCell {
     
@@ -139,8 +138,9 @@ class MatchResultTableCell: UITableViewCell {
         return view
     }()
     
-    private lazy var titleLabel: UILabel = {
-        let view = UILabel()
+    private lazy var titleLabel: InsetLabel = {
+        let insets = UIEdgeInsets(top: 0, left: 16, bottom: 4, right: 16)
+        let view = InsetLabel(insets: insets)
         view.accessibilityIdentifier = "titleLabel"
         view.backgroundColor = Asset.other3.color
         view.tintColor = Asset.textColor.color
@@ -160,24 +160,33 @@ class MatchResultTableCell: UITableViewCell {
         view.accessibilityIdentifier = "likeButton"
         view.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         view.backgroundColor = contentView.backgroundColor
-        let image = Asset.favorite.image.withRenderingMode(.alwaysTemplate)
+        let image = Asset.heart.image.withRenderingMode(.alwaysTemplate)
             .resizeImage(to: 32, aspectRatio: .current, with: Asset.other0.color)
-        let selectedImage = Asset.fillFavorite.image.withRenderingMode(.alwaysTemplate)
-            .resizeImage(to: 32, aspectRatio: .current, with: Asset.other0.color)
-        view.tintColor = Asset.other0.color
+        let selectedImage = Asset.heartFill.image.withRenderingMode(.alwaysTemplate)
+            .resizeImage(to: 32, aspectRatio: .current, with: Asset.accent0.color)
+//        view.tintColor = Asset.accent0.color
+//        view.imageView?.tintColor = Asset.accent0.color
+        view.contentMode = .scaleAspectFit
+        view.imageView?.contentMode = .scaleAspectFit
         view.setTitleColor(Asset.textColor.color, for: .normal)
         view.setTitleColor(Asset.textColor.color, for: .selected)
-        view.imageView?.tintColor = Asset.other0.color
         
         view.setImage(image, for: .normal)
         view.setImage(selectedImage, for: .selected)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentEdgeInsets = .init(top: 8, left: 0, bottom: 8, right: 8)
+        view.contentEdgeInsets = .init(top: 8, left: 0, bottom: 8, right: 24)
         view.titleEdgeInsets = .init(top: 0, left: 8, bottom: 0, right: -8)
         
-        view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        view.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        view.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         
+        return view
+    }()
+    
+    private lazy var shadowView: ShadowCorneredView = {
+        let view = ShadowCorneredView()
+        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -211,9 +220,10 @@ class MatchResultTableCell: UITableViewCell {
         contentView.addSubview(scoreLabel)
         contentView.addSubview(homeTeamLabel)
         contentView.addSubview(awayTeamLabel)
+        contentView.addSubview(shadowView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(likeButton)
-        contentView.addSubview(typeLabel)
+        contentView.addSubview(typeLabel)        
         
         logoHomeTeamImageView.isHidden = true
         logoAwayTeamImageView.isHidden = true
@@ -266,15 +276,19 @@ class MatchResultTableCell: UITableViewCell {
             typeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             typeLabel.heightAnchor.constraint(equalToConstant: 24),
             
-            likeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            likeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             likeButton.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor),
-            likeButton.leadingAnchor.constraint(greaterThanOrEqualTo: titleLabel.trailingAnchor, constant: 16),
-//            likeButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 44),
+            likeButton.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
             likeButton.heightAnchor.constraint(equalToConstant: 44),
             
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.7),
-            titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -16)            
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: likeButton.leadingAnchor),
+            titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -16),
+            
+            shadowView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            shadowView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            shadowView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            shadowView.heightAnchor.constraint(equalToConstant: 2)
             
         ]
         NSLayoutConstraint.activate(constraints)
@@ -301,14 +315,12 @@ extension MatchResultTableCell: ConfigurableCell {
             DispatchQueue.main.async {
                 self.likeButton.setTitle("\(count)", for: .normal)
                 self.likeButton.setTitle("\(count)", for: .selected)
+                self.likeButton.sizeToFit()
+                self.likeButton.setNeedsLayout()
             }
         }
         
-//        guard let userID = Auth.auth().currentUser?.uid else {
-//            return
-//        }
-        let userID = "userID1"
-        FirebaseManager.shared.databaseManager.getEventIsLiked(eventID: data.eventUid, userID: userID) { (isLiked) in
+        FirebaseManager.shared.databaseManager.getEventIsLiked(eventID: data.eventUid) { (isLiked) in
             DispatchQueue.main.async {
                 self.likeButton.isSelected = isLiked
             }

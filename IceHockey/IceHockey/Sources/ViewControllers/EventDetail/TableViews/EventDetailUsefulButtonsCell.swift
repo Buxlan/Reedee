@@ -18,9 +18,9 @@ class EventDetailUsefulButtonsCell: UITableViewCell {
         view.accessibilityIdentifier = "likeButton"
         view.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         view.backgroundColor = Asset.other2.color
-        let image = Asset.favorite.image.withRenderingMode(.alwaysTemplate)
-        let selectedImage = Asset.fillFavorite.image.withRenderingMode(.alwaysTemplate)
-        view.tintColor = Asset.other0.color
+        let image = Asset.heart.image.withRenderingMode(.alwaysTemplate)
+        let selectedImage = Asset.heartFill.image.withRenderingMode(.alwaysTemplate)
+        view.tintColor = Asset.accent0.color
         
         view.setImage(image, for: .normal)
         view.setImage(selectedImage, for: .selected)

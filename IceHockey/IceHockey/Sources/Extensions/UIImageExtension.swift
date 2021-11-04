@@ -38,12 +38,13 @@ extension UIImage {
         let size = CGSize(width: width, height: height)        
         let rect = CGRect(origin: CGPoint(x: 0, y: 0),
                           size: size)
+                        
         let rend = UIGraphicsImageRenderer(size: size,
                                            format: self.imageRendererFormat)
         let resizedImage = rend.image { con in
             color.setFill()
-            con.cgContext.setFillColor(color.cgColor)
-            con.cgContext.setStrokeColor(Asset.accent1.color.cgColor)
+//            con.cgContext.setFillColor(color.cgColor)
+//            con.cgContext.setStrokeColor(Asset.accent1.color.cgColor)
             self.draw(in: rect)
         }
         return resizedImage

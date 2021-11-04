@@ -33,7 +33,11 @@ extension RealtimeDatabaseManager {
         return key
     }
     
-    func getEventIsLiked(eventID: String, userID: String, completionHandler: @escaping (Bool) -> Void) {
+    func getEventIsLiked(eventID: String, completionHandler: @escaping (Bool) -> Void) {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            completionHandler(false)
+            return
+        }
         FirebaseManager.shared.databaseManager
             .root.child("likes")
             .child(eventID)

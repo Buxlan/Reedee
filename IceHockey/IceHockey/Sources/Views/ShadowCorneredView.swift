@@ -25,9 +25,6 @@ class ShadowCorneredView: UIView {
         let rect = CGRect(origin: origin, size: size)
         let shadowPath = UIBezierPath(rect: rect)
         self.layer.shadowPath = shadowPath.cgPath
-//        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds,
-//                                             byRoundingCorners: .allCorners,
-//                                             cornerRadii: CGSize(width: 8, height: 8)).cgPath
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = UIScreen.main.scale
     }
