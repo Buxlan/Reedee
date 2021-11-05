@@ -24,7 +24,7 @@ struct TitleTableHeaderData: SimpleTableHeaderConfiguration {
     var title: String?
 }
 
-protocol TableViewCellHeaderConfiguration: SimpleTableHeaderConfiguration, Codable, Sizeable {
+protocol TableViewCellHeaderConfiguration: SimpleTableHeaderConfiguration, Codable {
     var leftImageName: String? { get set }
     var rightImageName: String? { get set }
     var title: String? { get set }

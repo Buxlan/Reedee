@@ -121,6 +121,8 @@
 		409C69DE271CDAA6005434A4 /* EventDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409C69DD271CDAA6005434A4 /* EventDetailViewModel.swift */; };
 		409C69E1271CDB0D005434A4 /* OtherProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409C69E0271CDB0D005434A4 /* OtherProtocols.swift */; };
 		409E685C26ED6937008C4C0B /* EventsSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409E685B26ED6937008C4C0B /* EventsSectionHeaderView.swift */; };
+		40A1368727358D33005C0007 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1368627358D33005C0007 /* ProfileViewController.swift */; };
+		40A1368927358D44005C0007 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1368827358D44005C0007 /* ProfileViewModel.swift */; };
 		40A4462726E4054E00129B89 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40A4462926E4054E00129B89 /* Localizable.strings */; };
 		40A4464826E409D900129B89 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4464626E409D800129B89 /* Strings.swift */; };
 		40A4464926E409D900129B89 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4464726E409D800129B89 /* Assets.swift */; };
@@ -284,6 +286,8 @@
 		409C69DD271CDAA6005434A4 /* EventDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewModel.swift; sourceTree = "<group>"; };
 		409C69E0271CDB0D005434A4 /* OtherProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProtocols.swift; sourceTree = "<group>"; };
 		409E685B26ED6937008C4C0B /* EventsSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSectionHeaderView.swift; sourceTree = "<group>"; };
+		40A1368627358D33005C0007 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		40A1368827358D44005C0007 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		40A4462826E4054E00129B89 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40A4462B26E405C300129B89 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40A4464626E409D800129B89 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
@@ -757,6 +761,7 @@
 		40940C0126E418B10098EF89 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				40A1368527358D25005C0007 /* Profile */,
 				40AE7D6A2734575B00052643 /* MatchResultDetail */,
 				4035DAB3273077BE00AAFDA8 /* OurSquads */,
 				401C9B17270D078B00F91DC6 /* ErrorDescription */,
@@ -790,6 +795,23 @@
 				408CD10526E539FD005AD6D4 /* ShopItem.swift */,
 			);
 			path = Shop;
+			sourceTree = "<group>";
+		};
+		40A1368527358D25005C0007 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				40A1368627358D33005C0007 /* ProfileViewController.swift */,
+				40A1368827358D44005C0007 /* ProfileViewModel.swift */,
+				40A1368A27358D4D005C0007 /* Table view */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		40A1368A27358D4D005C0007 /* Table view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Table view";
 			sourceTree = "<group>";
 		};
 		40A4462226E404C500129B89 /* Sources */ = {
@@ -1126,6 +1148,7 @@
 				400B8F46272B4E0B008A8AFE /* FirebaseObjectRemover.swift in Sources */,
 				409E685C26ED6937008C4C0B /* EventsSectionHeaderView.swift in Sources */,
 				40CDC4BF2718B69A00990C6A /* EventManager.swift in Sources */,
+				40A1368927358D44005C0007 /* ProfileViewModel.swift in Sources */,
 				40F52E5C2733D4AF005BD851 /* MatchResult.swift in Sources */,
 				40940BE126E40C380098EF89 /* OtherExtensions.swift in Sources */,
 				406CE6832723EBEB002FDDB6 /* EditEventPhotoCell + CollectionView.swift in Sources */,
@@ -1181,6 +1204,7 @@
 				40B947C226EE909100D9E8DA /* TableViewCellConfiguration.swift in Sources */,
 				409560C926F93F6D00BCA664 /* QuickActions.swift in Sources */,
 				406C306C26F8FD260040F0A7 /* PhotoGalleryTableCell.swift in Sources */,
+				40A1368727358D33005C0007 /* ProfileViewController.swift in Sources */,
 				40A6321B272DE74B0017F6FE /* UniViewModel.swift in Sources */,
 				4085A31E27201D6400CB560E /* EventDetailCopyrightCell.swift in Sources */,
 				4057FB5827326994002E2BBE /* OurSquadsTitleTextViewCell.swift in Sources */,

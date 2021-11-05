@@ -21,8 +21,9 @@ extension CellConfigurator {
     }
 }
 
-protocol Sizeable {
-    var size: CGSize { get }
+struct TableRow<DataType> {
+    var config: CellConfigurator
+    var data: DataType
 }
 
 struct TableViewCellConfigurator<CellType: ConfigurableCell,

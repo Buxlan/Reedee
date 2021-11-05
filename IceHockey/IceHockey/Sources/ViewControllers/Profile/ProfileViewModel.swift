@@ -1,14 +1,14 @@
 //
-//  HomeViewModel.swift
+//  ProfileViewModel.swift
 //  IceHockey
 //
-//  Created by  Buxlan on 9/6/21.
+//  Created by  Buxlan on 11/5/21.
 //
 
 import Firebase
 import FirebaseDatabaseUI
 
-class HomeViewModel {
+class ProfileViewModel {
     
     // MARK: - Properties
     
@@ -52,7 +52,7 @@ class HomeViewModel {
             fatalError("Cant get item at index \(indexPath.row)")
         }
         return event.data
-    }    
+    }
     
     func action(at indexPath: IndexPath) -> ActionCollectionCellConfigurator {
         actions[indexPath.item]
