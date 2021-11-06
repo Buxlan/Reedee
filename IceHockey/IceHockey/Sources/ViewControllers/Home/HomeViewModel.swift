@@ -14,7 +14,7 @@ class HomeViewModel {
     
     var dataSource: FUITableViewDataSource?
     
-    var items: [IndexPath: TableRow<SportEvent>] = [:]
+    var items: [IndexPath: OldTableRow<SportEvent>] = [:]
     
     var populateCellRelay: ((UITableView, IndexPath, DataSnapshot) -> UITableViewCell)! {
         didSet {

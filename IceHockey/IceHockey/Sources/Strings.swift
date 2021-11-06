@@ -96,6 +96,12 @@ internal enum L10n {
     internal static let inputTitle = L10n.tr("Localizable", "Events.inputTitle")
     /// Save
     internal static let save = L10n.tr("Localizable", "Events.Save")
+    /// News
+    internal static let selectNewEventTitle = L10n.tr("Localizable", "Events.selectNewEventTitle")
+    /// Match result
+    internal static let selectNewMatchResult = L10n.tr("Localizable", "Events.selectNewMatchResult")
+    /// Select type
+    internal static let selectTypeTitle = L10n.tr("Localizable", "Events.selectTypeTitle")
     /// Events
     internal static let tabBarItemTitle = L10n.tr("Localizable", "Events.tabBarItemTitle")
     /// Events
@@ -178,6 +184,8 @@ internal enum L10n {
   }
 
   internal enum Other {
+    /// Cancel
+    internal static let cancel = L10n.tr("Localizable", "Other.cancel")
     /// Done
     internal static let done = L10n.tr("Localizable", "Other.done")
   }
@@ -221,6 +229,8 @@ internal enum L10n {
     internal static let crashReposts = L10n.tr("Localizable", "Settings.crashReposts")
     /// Email
     internal static let emails = L10n.tr("Localizable", "Settings.emails")
+    /// Settings
+    internal static let navigationBarTitle = L10n.tr("Localizable", "Settings.navigationBarTitle")
     /// Notifications
     internal static let notifications = L10n.tr("Localizable", "Settings.notifications")
     internal enum SectionTitles {

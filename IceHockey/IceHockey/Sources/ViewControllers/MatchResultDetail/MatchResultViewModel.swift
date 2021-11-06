@@ -14,7 +14,7 @@ class MatchResultViewModel: NSObject {
     
     typealias InputDataType = MatchResult
     var inputData: InputDataType?
-    var dataSource: [TableRow<InputDataType>] = []
+    var dataSource: [OldTableRow<InputDataType>] = []
     
     // MARK: Lifecircle
     

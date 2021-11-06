@@ -29,5 +29,6 @@ class AuthManager {
             self.currentUser = ApplicationUser()
             Auth.auth().addStateDidChangeListener(self.authStateListener)
         }
-    } 
+    }
+    
 }

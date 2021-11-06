@@ -50,7 +50,7 @@ class TeamListViewModel {
     
     func deleteItem(at indexPath: IndexPath) {
         let item = self.item(at: indexPath)
-        item.delete()
+        try? item.delete()
     }
     
 }

@@ -66,6 +66,9 @@
 "News.tableViewNewsSectionTitle" = "Новости";
 "News.tableViewComingSectionTitle" = "Предстоящие мероприятия";
 /* Events */
+"Events.selectTypeTitle" = "Выберите тип";
+"Events.selectNewEventTitle" = "Новость";
+"Events.selectNewMatchResult" = "Результат матча";
 "Events.addEventTitle" = "Редактирование новости";
 "Events.editEventTitlePlaceholder" = "Заголовок";
 "Events.editEventTextPlaceholder" = "Текст";
@@ -123,3 +126,6 @@
 "Actions.action3" = "действие 3";
 /* Other */
 "Other.done" = "Готово";
+"Other.cancel" = "Отменить";
+/* Settings */
+"Settings.navigationBarTitle" = "Настройки";

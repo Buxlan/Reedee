@@ -66,6 +66,9 @@
 "News.tableViewNewsSectionTitle" = "News";
 "News.tableViewComingSectionTitle" = "Coming events";
 /* Events */
+"Events.selectTypeTitle" = "Select type";
+"Events.selectNewEventTitle" = "News";
+"Events.selectNewMatchResult" = "Match result";
 "Events.addEventTitle" = "Editing event";
 "Events.editEventTitlePlaceholder" = "Enter title";
 "Events.editEventTextPlaceholder" = "Enter text";
@@ -123,3 +126,6 @@
 "Actions.action3" = "action3";
 /* Other */
 "Other.done" = "Done";
+"Other.cancel" = "Cancel";
+/* Settings */
+"Settings.navigationBarTitle" = "Settings";

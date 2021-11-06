@@ -21,7 +21,7 @@ extension CellConfigurator {
     }
 }
 
-struct TableRow<DataType> {
+struct OldTableRow<DataType> {
     var config: CellConfigurator
     var data: DataType
 }

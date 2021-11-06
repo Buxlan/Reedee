@@ -92,7 +92,7 @@ class MainTabBarViewModel {
         vc = UINavigationController(rootViewController: ContactsViewController())
         items.append(vc)
         
-        vc = UINavigationController(rootViewController: TeamListViewController())
+        vc = UINavigationController(rootViewController: SettingsViewController())
         items.append(vc)
         
 //        vc = UINavigationController(rootViewController: ShopShowcaseViewController())

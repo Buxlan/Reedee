@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.swift
+//  SettingsViewController.swift
 //  IceHockey
 //
 //  Created by  Buxlan on 11/5/21.
@@ -8,16 +8,15 @@
 import UIKit
 import FirebaseDatabase
 
-class ProfileViewController: UIViewController {
+class SettingsViewController: UIViewController {
     
     // MARK: - Properties
-    var viewModel = ProfileViewModel()
+    var viewModel = TableViewBase()
     
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
         view.isUserInteractionEnabled = true
         view.delegate = self
-        view.dataSource = viewModel.dataSource
         view.backgroundColor = Asset.accent1.color
         view.allowsSelection = true
         view.allowsMultipleSelection = false
@@ -29,9 +28,7 @@ class ProfileViewController: UIViewController {
         view.tableHeaderView = tableHeaderView
         view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = false
-        NewsCellConfigurator.registerCell(tableView: view)
-        MatchResultCellConfigurator.registerCell(tableView: view)
-        ActionCellConfigurator.registerCell(tableView: view)
+        view.register(SettingTableCell.self, forCellReuseIdentifier: SettingViewConfigurator.reuseIdentifier)
         return view
     }()
     
@@ -60,10 +57,6 @@ class ProfileViewController: UIViewController {
         configureViewModel()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        viewModel.dataSource?.unbind()
-    }
-    
     // MARK: - Hepler functions
     
     private func configureUI() {
@@ -86,46 +79,29 @@ class ProfileViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        title = L10n.News.navigationBarTitle
+        title = L10n.Settings.navigationBarTitle
         navigationController?.setToolbarHidden(true, animated: false)
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     private func configureViewModel() {
-        viewModel.populateCellRelay = { (_, indexPath, snap) -> UITableViewCell in
-            guard let event = SportEventCreatorImpl().create(snapshot: snap) else {
-                return UITableViewCell()
-            }
-            var row: TableRow<SportEvent>
-            switch event.type {
-            case .event:
-                row = self.makeNewsTableRow(event)
-                self.viewModel.items[indexPath] = row
-            case .match:
-                row = self.makeMatchResultTableRow(event)
-                self.viewModel.items[indexPath] = row
-            default:
-                fatalError()
-            }
-            let cell = self.tableView.dequeueReusableCell(withIdentifier: type(of: row.config).reuseIdentifier, for: indexPath)
-            row.config.configure(cell: cell)
-            return cell
-        }
-        viewModel.dataSource?.bind(to: tableView)
+        viewModel.setupTable(tableView)
+        let dataSource = createDataSource()
+        viewModel.updateDataSource(dataSource)
     }
     
 }
 
-// MARK: - UITableViewDelegate, UITableViewDataSource
-extension ProfileViewController: UITableViewDelegate {
+// MARK: - UITableViewDelegate
+extension SettingsViewController: UITableViewDelegate {
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
-extension ProfileViewController {
+extension SettingsViewController {
     
     @objc private func addEventHandle() {
         let vc = EditEventViewController(editMode: .new)
@@ -134,27 +110,51 @@ extension ProfileViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func createDataSource() {
+    func createDataSource() -> TableDataSource {
+        var sections: [TableSection] = []
+        var section = TableSection()
+        let signUpRow = makeSignUpTableRow(),
+            addEventRow = makeAddEventTableRow()
+        section.addRows([signUpRow, addEventRow])
+        sections.append(section)
         
+        let dataSource = TableDataSource(sections: sections)
+        return dataSource
     }
     
-    func makeNewsTableRow(_ event: SportEvent) -> TableRow<SportEvent> {
-        guard let event = event as? SportNews else {
-            fatalError()
+    func makeAddEventTableRow() -> TableRow {
+        let setting = Setting.addEvent
+        let cellModel = SettingCellModel(title: setting.description,
+                                         hasDisclosure: setting.hasDisclosure)
+        let config = SettingViewConfigurator(data: cellModel)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
+        row.action = {
+            let alertController: UIAlertController = {
+                let controller = UIAlertController(title: "Add event", message: "Sorry, not implemented yet", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                controller.addAction(action)
+                return controller
+            }()
+            self.present(alertController, animated: true)
         }
-        let cellModel = NewsTableCellModel(data: event)
-        let configurator = NewsCellConfigurator(data: cellModel)
-        let row = TableRow(config: configurator, data: event as SportEvent)
         return row
     }
     
-    func makeMatchResultTableRow(_ event: SportEvent) -> TableRow<SportEvent> {
-        guard let event = event as? MatchResult else {
-            fatalError()
+    func makeSignUpTableRow() -> TableRow {
+        let setting = Setting.signUp
+        let cellModel = SettingCellModel(title: setting.description,
+                                         hasDisclosure: setting.hasDisclosure)
+        let config = SettingViewConfigurator(data: cellModel)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
+        row.action = {
+            let alertController: UIAlertController = {
+                let controller = UIAlertController(title: "Sign up", message: "Sorry, not implemented yet", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                controller.addAction(action)
+                return controller
+            }()
+            self.present(alertController, animated: true)
         }
-        let cellModel = MatchResultTableCellModel(data: event)
-        let configurator = MatchResultCellConfigurator(data: cellModel)
-        let row = TableRow(config: configurator, data: event as SportEvent)
         return row
     }
     
