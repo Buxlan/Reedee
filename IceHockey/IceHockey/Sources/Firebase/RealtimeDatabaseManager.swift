@@ -33,43 +33,23 @@ extension RealtimeDatabaseManager {
         return key
     }
     
-    func getEventIsLiked(eventID: String, completionHandler: @escaping (Bool) -> Void) {
-        guard let userID = Auth.auth().currentUser?.uid else {
-            completionHandler(false)
-            return
-        }
+    func getEventLikeInfo(eventID: String, completionHandler: @escaping (Int, Bool) -> Void) {
+        guard let userID = Auth.auth().currentUser?.uid else { return }
         FirebaseManager.shared.databaseManager
             .root.child("likes")
             .child(eventID)
-            .child("users")
             .getData { error, snapshot in
                 guard error == nil,
                       !(snapshot.value is NSNull),
-                      let users = snapshot.value as? [String] else {
-                          completionHandler(false)
-                          return
-                      }
-                if users.firstIndex(of: userID) != nil {
-                    completionHandler(true)
-                } else {
-                    completionHandler(false)
+                      let dict = snapshot.value as? [String: Any],
+                      let count = dict["count"] as? Int,
+                      let users = dict["users"] as? [String: Int] else {
+                    completionHandler(0, false)
+                    return
                 }
-            }
-    }
-    
-    func getEventLikeCount(eventID: String, completionHandler: @escaping (Int) -> Void) {
-        FirebaseManager.shared.databaseManager
-            .root.child("likes")
-            .child(eventID)
-            .child("count")
-            .getData { error, snapshot in
-                guard error == nil,
-                      !(snapshot.value is NSNull),
-                      let count = snapshot.value as? Int else {
-                          completionHandler(0)
-                          return
-                      }
-                completionHandler(count)
+                // entity exists
+                let userLikes = (users[userID] != nil)
+                completionHandler(count, userLikes)                
             }
     }
     

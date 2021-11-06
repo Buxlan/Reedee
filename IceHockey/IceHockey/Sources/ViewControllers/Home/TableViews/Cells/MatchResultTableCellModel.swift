@@ -34,6 +34,7 @@ struct MatchResultTableCellModel: TableCellModel {
     var typeTextColor: UIColor
     
     var type: String
+    var likesCount: Int = 0
     
     var likeAction: (Bool) -> Void = { _ in }
     var shareAction = {}

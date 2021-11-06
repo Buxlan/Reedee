@@ -38,3 +38,7 @@ type_name:
 #  error: 70
 #  - 50 # warning
 #  - 70 # error
+
+file_length:
+  warning: 500
+  error: 700

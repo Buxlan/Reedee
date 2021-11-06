@@ -22,6 +22,7 @@ struct NewsTableCellModel: TableCellModel {
     
     var typeBackgroundColor: UIColor
     var typeTextColor: UIColor
+    var likesCount: Int = 0
     
     var likeAction: (Bool) -> Void = { _ in }
     var shareAction = {}

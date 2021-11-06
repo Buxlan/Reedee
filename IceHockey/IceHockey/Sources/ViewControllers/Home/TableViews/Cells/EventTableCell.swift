@@ -247,10 +247,13 @@ extension EventTableCell: ConfigurableCell {
             }
         }
         
-        FirebaseManager.shared.databaseManager.getEventLikeCount(eventID: uid) { (count) in
+        FirebaseManager.shared.databaseManager.getEventLikeInfo(eventID: uid) { (count, userLikes) in
             DispatchQueue.main.async {
                 self.likeButton.setTitle("\(count)", for: .normal)
                 self.likeButton.setTitle("\(count)", for: .selected)
+                self.likeButton.isSelected = userLikes
+                self.likeButton.tintColor = self.getLikeButtonTintColor(isSelected: userLikes)
+                self.data?.likesCount = count                
             }
         }
         
@@ -264,6 +267,9 @@ extension EventTableCell {
         likeButton.isSelected.toggle()
         likeButton.tintColor = getLikeButtonTintColor(isSelected: likeButton.isSelected)
         data?.likeAction(likeButton.isSelected)
+        self.data?.likesCount += (likeButton.isSelected ? 1 : -1)
+        likeButton.setTitle("\(self.data?.likesCount ?? 0)", for: .normal)
+        likeButton.setTitle("\(self.data?.likesCount ?? 0)", for: .selected)
     }
     
     @objc

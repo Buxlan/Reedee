@@ -153,27 +153,50 @@ extension SportNews {
         guard let userID = Auth.auth().currentUser?.uid else {
             return
         }
-        FirebaseManager.shared.databaseManager
+        
+        // increase count
+        // insert user to those who liked
+        let objectRef = FirebaseManager.shared.databaseManager
             .root
             .child("likes")
-            .child(self.uid).getData { error, snapshot in
-                if let error = error {
-                    print("Error: \(error)")
-                }
-                if snapshot.value is NSNull {
-                    // need to create new entry
+            .child(self.uid)
+        
+        let countRef = objectRef.child("count")
+        countRef.getData { error, snapshot in
+            if let error = error {
+                print("Error: \(error)")
+                return
+            }
+            if snapshot.value is NSNull {
+                // need to create new entry in database
+                if state == true {
                     let dict = self.prepareLikesDict(userID: userID)
-                    FirebaseManager.shared.databaseManager
-                        .root
-                        .child("likes")
-                        .child(self.uid)
-                        .setValue(dict)
-                    return
-                }
-                guard let dict = snapshot.value as? [String: Any] else {
+                    objectRef.setValue(dict)
                     return
                 }
             }
+            guard let count = snapshot.value as? Int else {
+                return
+            }
+            if state == true {
+                countRef.setValue(count + 1)
+                let usersRef = objectRef.child("users").child(userID)
+                usersRef.setValue(1)
+            } else {
+                countRef.setValue(count - 1)
+                let usersRef = objectRef.child("users").child(userID)
+                usersRef.removeValue()
+            }
+            //                guard let dict = snapshot.value as? [String: Any] else {
+            //                    return
+            //                }
+            //                guard let count = dict["count"] as? Int,
+            //                      let users = dict["users"] as? [String: Int] else {
+            //                          return
+            //                      }
+        }
+        
+        
     }
     
 }

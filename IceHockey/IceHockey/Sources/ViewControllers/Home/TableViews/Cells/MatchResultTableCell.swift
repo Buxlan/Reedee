@@ -362,16 +362,13 @@ extension MatchResultTableCell: ConfigurableCell {
         shareButton.backgroundColor = data.backgroundColor
         bottomBackgroundView.backgroundColor = data.backgroundColor
         
-        FirebaseManager.shared.databaseManager.getEventLikeCount(eventID: data.uid) { (count) in
+        FirebaseManager.shared.databaseManager.getEventLikeInfo(eventID: data.uid) { (count, userLikes) in
             DispatchQueue.main.async {
                 self.likeButton.setTitle("\(count)", for: .normal)
                 self.likeButton.setTitle("\(count)", for: .selected)
-            }
-        }
-        
-        FirebaseManager.shared.databaseManager.getEventIsLiked(eventID: data.uid) { (isLiked) in
-            DispatchQueue.main.async {
-                self.likeButton.isSelected = isLiked
+                self.likeButton.isSelected = userLikes
+                self.likeButton.tintColor = self.getLikeButtonTintColor(isSelected: userLikes)
+                self.data?.likesCount = count
             }
         }
         
@@ -385,6 +382,9 @@ extension MatchResultTableCell {
         likeButton.isSelected.toggle()
         likeButton.tintColor = getLikeButtonTintColor(isSelected: likeButton.isSelected)
         data?.likeAction(likeButton.isSelected)
+        self.data?.likesCount += (likeButton.isSelected ? 1 : -1)
+        likeButton.setTitle("\(self.data?.likesCount ?? 0)", for: .normal)
+        likeButton.setTitle("\(self.data?.likesCount ?? 0)", for: .selected)
     }
     
     @objc
