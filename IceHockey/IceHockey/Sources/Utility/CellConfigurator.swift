@@ -201,9 +201,3 @@ typealias ComingEventCellConfigurator = TableViewCellConfigurator<ComingEventTab
                                                                   SportNews>
 typealias PhotoEventCollectionCellConfigurator = CollectionViewCellConfigurator<PhotoGalleryCollectionCell,
                                                                                 SportNews>
-// MARK: - Headers
-
-typealias NewsTableViewHeaderConfigurator = TableViewCellConfigurator<EventsSectionHeaderView,
-                                                                      NewsTableViewCellHeaderConfiguration>
-typealias ComingEventsHeaderConfigurator = TableViewCellConfigurator<ComingEventsSectionHeaderView,
-                                                                     ComingEventsTableCellHeaderConfiguration>

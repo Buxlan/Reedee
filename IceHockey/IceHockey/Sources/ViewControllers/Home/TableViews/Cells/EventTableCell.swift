@@ -12,6 +12,7 @@ class EventTableCell: UITableViewCell {
     
     // MARK: - Properties
     typealias DataType = NewsTableCellModel
+    var data: DataType?
     
     var isInterfaceConfigured = false
     var imageAspectRate: CGFloat = 1.77
@@ -41,20 +42,10 @@ class EventTableCell: UITableViewCell {
         return view
     }()
     
-    private lazy var bottomBackgroundView: UIView = {
-        let cornerRadius: CGFloat = 24.0
-        let view = UIView()
-        view.backgroundColor = Asset.accent0.color
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     private lazy var dataLabel: InsetLabel = {
         let insets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         let view = InsetLabel(insets: insets)
         view.accessibilityIdentifier = "dataLabel (table cell)"
-        view.backgroundColor = Asset.other3.color
-        view.tintColor = Asset.textColor.color
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setContentHuggingPriority(.defaultHigh, for: .vertical)
         view.numberOfLines = 5
@@ -67,7 +58,6 @@ class EventTableCell: UITableViewCell {
         let insets = UIEdgeInsets(top: 0, left: 16, bottom: 4, right: 16)
         let view = InsetLabel(insets: insets)
         view.accessibilityIdentifier = "dateLabel (table cell)"
-        view.backgroundColor = Asset.other3.color
         view.textColor = Asset.other0.color
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setContentHuggingPriority(.defaultLow, for: .vertical)
@@ -80,14 +70,68 @@ class EventTableCell: UITableViewCell {
         let insets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         let view = InsetLabel(insets: insets)
         view.accessibilityIdentifier = "typeLabel (table cell)"
-        view.backgroundColor = Asset.accent1.color
-        view.textColor = Asset.other3.color
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setContentHuggingPriority(.defaultLow, for: .vertical)
         view.textAlignment = .center
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
         view.font = .boldFont16
+        return view
+    }()
+    
+    private lazy var likeButton: UIButton = {
+        let view = UIButton()
+        view.accessibilityIdentifier = "likeButton"
+        view.addTarget(self, action: #selector(handleLikeAction), for: .touchUpInside)
+        view.backgroundColor = contentView.backgroundColor
+        let image = Asset.heart.image
+            .resizeImage(to: 32, aspectRatio: .current)
+            .withRenderingMode(.alwaysTemplate)
+        let selectedImage = Asset.heartFill.image
+            .resizeImage(to: 32, aspectRatio: .current)
+            .withRenderingMode(.alwaysTemplate)
+        view.tintColor = getLikeButtonTintColor(isSelected: false)
+        view.contentMode = .scaleAspectFit
+        view.imageView?.contentMode = .scaleAspectFit
+        view.setTitleColor(Asset.textColor.color, for: .normal)
+        view.setTitleColor(Asset.textColor.color, for: .selected)
+        
+        view.setImage(image, for: .normal)
+        view.setImage(selectedImage, for: .selected)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentEdgeInsets = .init(top: 8, left: 0, bottom: 8, right: 24)
+        view.titleEdgeInsets = .init(top: 0, left: 8, bottom: 0, right: -8)
+        
+        view.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        
+        return view
+    }()
+    
+    private lazy var shareButton: UIButton = {
+        let view = UIButton()
+        view.accessibilityIdentifier = "shareButton"
+        view.addTarget(self, action: #selector(handleShareAction), for: .touchUpInside)
+        view.backgroundColor = contentView.backgroundColor
+        let image = Asset.share.image
+            .resizeImage(to: 32, aspectRatio: .current)
+            .withRenderingMode(.alwaysTemplate)
+        view.tintColor = Asset.other0.color
+        view.contentMode = .scaleAspectFit
+        view.imageView?.contentMode = .scaleAspectFit
+        
+        view.setImage(image, for: .normal)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        
+        return view
+    }()
+    
+    private lazy var bottomBackgroundView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -112,10 +156,13 @@ class EventTableCell: UITableViewCell {
         contentView.backgroundColor = Asset.other3.color
         tintColor = Asset.other1.color
         contentView.addSubview(dataImageView)
-        contentView.addSubview(typeLabel)
         contentView.addSubview(dataLabel)
         contentView.addSubview(shadowView)
         contentView.addSubview(dateLabel)
+        contentView.addSubview(bottomBackgroundView)
+        contentView.addSubview(likeButton)
+        contentView.addSubview(shareButton)
+        contentView.addSubview(typeLabel)
         
         configureConstraints()
         isInterfaceConfigured = true
@@ -139,11 +186,26 @@ class EventTableCell: UITableViewCell {
             dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             dateLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             dateLabel.topAnchor.constraint(equalTo: dataLabel.bottomAnchor, constant: 4),
-            dateLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -16),
+            dateLabel.bottomAnchor.constraint(equalTo: likeButton.topAnchor, constant: -8),
+            
+            bottomBackgroundView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            bottomBackgroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            bottomBackgroundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            bottomBackgroundView.topAnchor.constraint(equalTo: likeButton.topAnchor),
+            bottomBackgroundView.bottomAnchor.constraint(equalTo: likeButton.bottomAnchor),
+            
+            likeButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            likeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            likeButton.heightAnchor.constraint(equalToConstant: 44),
+            
+            shareButton.topAnchor.constraint(equalTo: likeButton.topAnchor),
+            shareButton.leadingAnchor.constraint(equalTo: likeButton.trailingAnchor, constant: 16),
+            shareButton.trailingAnchor.constraint(lessThanOrEqualTo: contentView.centerXAnchor),
+            shareButton.heightAnchor.constraint(equalTo: likeButton.heightAnchor),
             
             shadowView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             shadowView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            shadowView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor),
+            shadowView.topAnchor.constraint(equalTo: bottomBackgroundView.bottomAnchor),
             shadowView.heightAnchor.constraint(equalToConstant: 2)
         ]
         NSLayoutConstraint.activate(constraints)
@@ -153,13 +215,23 @@ class EventTableCell: UITableViewCell {
 extension EventTableCell: ConfigurableCell {
     func configure(with data: DataType) {
         configureUI()
+        
+        self.data = data
 
         dataLabel.text = data.title
         dateLabel.text = data.date
         
+        contentView.backgroundColor = data.backgroundColor
+        dateLabel.backgroundColor = data.backgroundColor
+        dataLabel.textColor = data.textColor
+        
         typeLabel.backgroundColor = data.typeBackgroundColor
         typeLabel.textColor = data.typeTextColor
         typeLabel.text = data.type
+        
+        likeButton.backgroundColor = data.backgroundColor
+        shareButton.backgroundColor = data.backgroundColor
+        bottomBackgroundView.backgroundColor = data.backgroundColor
         
         let imageID = data.imageID
         let uid = data.uid
@@ -174,5 +246,34 @@ extension EventTableCell: ConfigurableCell {
                 }
             }
         }
+        
+        FirebaseManager.shared.databaseManager.getEventLikeCount(eventID: uid) { (count) in
+            DispatchQueue.main.async {
+                self.likeButton.setTitle("\(count)", for: .normal)
+                self.likeButton.setTitle("\(count)", for: .selected)
+            }
+        }
+        
     }
+}
+
+extension EventTableCell {
+    
+    @objc
+    private func handleLikeAction() {
+        likeButton.isSelected.toggle()
+        likeButton.tintColor = getLikeButtonTintColor(isSelected: likeButton.isSelected)
+        data?.likeAction(likeButton.isSelected)
+    }
+    
+    @objc
+    private func handleShareAction() {
+        self.shareButton.isSelected.toggle()
+        data?.shareAction()
+    }
+    
+    private func getLikeButtonTintColor(isSelected: Bool) -> UIColor {
+        return isSelected ? Asset.accent0.color : Asset.other0.color
+    }
+    
 }

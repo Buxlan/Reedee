@@ -17,8 +17,14 @@ struct NewsTableCellModel: TableCellModel {
     
     var date: String
     
+    var backgroundColor: UIColor = Asset.other3.color
+    var textColor: UIColor = Asset.textColor.color
+    
     var typeBackgroundColor: UIColor
     var typeTextColor: UIColor
+    
+    var likeAction: (Bool) -> Void = { _ in }
+    var shareAction = {}
     
     init(data: SportNews) {
         uid = data.uid

@@ -5,7 +5,7 @@
 //  Created by  Buxlan on 11/3/21.
 //
 
-import Foundation
+import UIKit
 
 protocol TableCellModel {
     
@@ -13,7 +13,7 @@ protocol TableCellModel {
 
 struct MatchResultTableCellModel: TableCellModel {
     
-    var eventUid: String
+    var uid: String
     var title: String
     var homeTeam: String
     var awayTeam: String
@@ -27,7 +27,16 @@ struct MatchResultTableCellModel: TableCellModel {
     var homeTeamLogoName: String? = "small"
     var awayTeamLogoName: String? = "small"
     
+    var backgroundColor: UIColor = Asset.other3.color
+    var textColor: UIColor = Asset.textColor.color
+    
+    var typeBackgroundColor: UIColor
+    var typeTextColor: UIColor
+    
     var type: String
+    
+    var likeAction: (Bool) -> Void = { _ in }
+    var shareAction = {}
     
     init(data: SportEvent) {
         guard let data = data as? MatchResult else { fatalError() }
@@ -46,6 +55,9 @@ struct MatchResultTableCellModel: TableCellModel {
         
         type = data.type.description
         title = data.title
-        eventUid = data.uid
+        uid = data.uid
+        
+        typeBackgroundColor = data.type.backgroundColor
+        typeTextColor = data.type.textColor
     }
 }

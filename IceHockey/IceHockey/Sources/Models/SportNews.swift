@@ -149,4 +149,31 @@ extension SportNews {
         imageIDs.remove(at: index)
     }
     
+    func setLike(_ state: Bool) {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            return
+        }
+        FirebaseManager.shared.databaseManager
+            .root
+            .child("likes")
+            .child(self.uid).getData { error, snapshot in
+                if let error = error {
+                    print("Error: \(error)")
+                }
+                if snapshot.value is NSNull {
+                    // need to create new entry
+                    let dict = self.prepareLikesDict(userID: userID)
+                    FirebaseManager.shared.databaseManager
+                        .root
+                        .child("likes")
+                        .child(self.uid)
+                        .setValue(dict)
+                    return
+                }
+                guard let dict = snapshot.value as? [String: Any] else {
+                    return
+                }
+            }
+    }
+    
 }

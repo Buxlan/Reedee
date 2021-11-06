@@ -47,32 +47,28 @@ struct MatchResult: SportEvent {
     
 }
 
-protocol SportEventCreator {
-    
-    func create(snapshot: DataSnapshot) -> SportEvent?
-    
-}
-
-struct SportEventCreatorImpl {
-    
-    func create(snapshot: DataSnapshot) -> SportEvent? {
-        let uid = snapshot.key
-        guard let dict = snapshot.value as? [String: Any] else { return nil }
-        guard let rawType = dict["type"] as? Int,
-              let type = SportEventType(rawValue: rawType) else { return nil }
-        
-        var object: SportEvent?
-        switch type {
-        case .event:
-            object = SportNews(key: uid, dict: dict)
-        case .match:
-            object = MatchResult(key: uid, dict: dict)
-        default:
-            object = nil
+extension MatchResult {
+    func setLike(_ state: Bool) {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            return
         }
-        
-        return object
-        
+        FirebaseManager.shared.databaseManager
+            .root
+            .child("likes")
+            .child(self.uid).getData { error, snapshot in
+                if let error = error {
+                    print("Error: \(error)")
+                }
+                if snapshot.value is NSNull {
+                    // need to create new entry
+                    let dict = self.prepareLikesDict(userID: userID)
+                    FirebaseManager.shared.databaseManager
+                        .root
+                        .child("likes")
+                        .child(self.uid)
+                        .setValue(dict)
+                }
+            }
     }
     
 }

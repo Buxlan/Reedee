@@ -242,7 +242,10 @@ extension HomeViewController {
         guard let event = event as? SportNews else {
             fatalError()
         }
-        let cellModel = NewsTableCellModel(data: event)
+        var cellModel = NewsTableCellModel(data: event)
+        cellModel.likeAction = { (state: Bool) in
+            event.setLike(state)
+        }
         let configurator = NewsCellConfigurator(data: cellModel)
         let row = OldTableRow(config: configurator, data: event as SportEvent)
         return row
@@ -252,7 +255,10 @@ extension HomeViewController {
         guard let event = event as? MatchResult else {
             fatalError()
         }
-        let cellModel = MatchResultTableCellModel(data: event)
+        var cellModel = MatchResultTableCellModel(data: event)
+        cellModel.likeAction = { (state: Bool) in
+            event.setLike(state)
+        }
         let configurator = MatchResultCellConfigurator(data: cellModel)
         let row = OldTableRow(config: configurator, data: event as SportEvent)
         return row
@@ -264,6 +270,7 @@ extension HomeViewController {
         guard let uid = Auth.auth().currentUser?.uid else {
             return
         }
+        print(uid)
         FirebaseManager.shared.databaseManager
             .root
             .child("moderators")

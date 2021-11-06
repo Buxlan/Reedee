@@ -88,6 +88,7 @@ internal enum Asset {
   internal static let plusSquare = ImageAsset(name: "plusSquare")
   internal static let questionMark = ImageAsset(name: "questionMark")
   internal static let share = ImageAsset(name: "share")
+  internal static let shareFill = ImageAsset(name: "shareFill")
   internal static let shoppingCart = ImageAsset(name: "shoppingCart")
   internal static let timetable = ImageAsset(name: "timetable")
   internal static let xmark = ImageAsset(name: "xmark")

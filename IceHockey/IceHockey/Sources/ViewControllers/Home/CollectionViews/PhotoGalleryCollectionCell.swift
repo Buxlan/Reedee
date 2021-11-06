@@ -162,7 +162,7 @@ class PhotoGalleryCollectionCell: UICollectionViewCell, ConfigurableCell {
             shadowView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             shadowView.topAnchor.constraint(equalTo: bottomBackgroundView.topAnchor),
             shadowView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            shadowView.heightAnchor.constraint(equalTo: bottomBackgroundView.heightAnchor),
+            shadowView.heightAnchor.constraint(equalTo: bottomBackgroundView.heightAnchor)
             
 //            actionEventButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 //            actionEventButton.centerYAnchor.constraint(equalTo: viewsCountImageView.centerYAnchor),
