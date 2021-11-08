@@ -16,8 +16,7 @@ class MatchResultDetailViewController: UIViewController {
         case new
         case edit(InputDataType)
     }
-    private var editingObject: InputDataType
-    
+    private var editingObject: InputDataType   
     var viewModel = TableViewBase()
     
     private lazy var tableView: UITableView = {

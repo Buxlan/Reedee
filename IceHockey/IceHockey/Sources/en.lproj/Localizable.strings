@@ -90,7 +90,7 @@
 "MatchResult.navigationBarTitle" = "Match";
 /* Contacts */
 "Contacts.tabBarItemTitle" = "About club";
-"Contacts.title" = "Our contacts";
+"Contacts.title" = "About club";
 /* Squads */
 "Squads.tabBarItemTitle" = "Squads";
 "Squads.listTitle" = "Squads";
@@ -131,6 +131,7 @@
 "Other.cancel" = "Cancel";
 "Other.edit" = "Edit";
 "Other.report" = "Report";
+"Other.delete" = "Delete";
 /* Settings */
 "Settings.navigationBarTitle" = "Settings";
 /* Match status */
@@ -144,3 +145,7 @@
 "EditEventLabel.titlePlaceholder" = "Type text here";
 "EditEventLabel.newMatchNavigationBarTitle" = "Create match";
 "EditEventLabel.existingMatchNavigationBarTitle" = "Change match";
+"EditEventLabel.selectEditTypeTitle" = "Select edit type";
+"EditEventLabel.editTypeTitle" = "Edit";
+"EditEventLabel.deleteTypeTitle" = "Delete";
+"EditEventLabel.wantDelete" = "Realy want to delete?";

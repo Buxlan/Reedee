@@ -21,10 +21,10 @@ struct SportSquad: FirebaseObject, Codable {
     init?(snapshot: DataSnapshot) {
         let uid = snapshot.key
         guard let dict = snapshot.value as? [String: Any] else { return nil }
-        self.init(key: uid, dict: dict as NSDictionary)
+        self.init(key: uid, dict: dict)
     }
     
-    init?(key: String, dict: NSDictionary) {
+    init?(key: String, dict: [String: Any]) {
         guard let displayName = dict["name"] as? String,
               let headCoach = dict["headCoach"] as? String,
               let players = dict["players"] as? [String] else { return nil }

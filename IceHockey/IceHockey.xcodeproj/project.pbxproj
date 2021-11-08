@@ -18,6 +18,8 @@
 		400B8F5D272B6499008A8AFE /* SportSquadFirebaseRemover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400B8F5C272B6499008A8AFE /* SportSquadFirebaseRemover.swift */; };
 		400EB96926F00BFD0026EFB1 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400EB96826F00BFD0026EFB1 /* InsetLabel.swift */; };
 		4011D891273998F800D092B9 /* OldMatchResultTableCell.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4011D890273998F800D092B9 /* OldMatchResultTableCell.swift.swift */; };
+		4011D8932739B91D00D092B9 /* SportNewsFirebaseRemover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4011D8922739B91D00D092B9 /* SportNewsFirebaseRemover.swift */; };
+		4011D8952739C83200D092B9 /* MatchResultFirebaseRemover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4011D8942739C83200D092B9 /* MatchResultFirebaseRemover.swift */; };
 		401C9B0E270D034700F91DC6 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C9B0D270D034700F91DC6 /* AuthManager.swift */; };
 		401C9B11270D04BF00F91DC6 /* ViewControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C9B10270D04BF00F91DC6 /* ViewControllerCoordinator.swift */; };
 		401C9B15270D056B00F91DC6 /* Coordinator protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C9B14270D056B00F91DC6 /* Coordinator protocols.swift */; };
@@ -191,6 +193,8 @@
 		400B8F5C272B6499008A8AFE /* SportSquadFirebaseRemover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportSquadFirebaseRemover.swift; sourceTree = "<group>"; };
 		400EB96826F00BFD0026EFB1 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
 		4011D890273998F800D092B9 /* OldMatchResultTableCell.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldMatchResultTableCell.swift.swift; sourceTree = "<group>"; };
+		4011D8922739B91D00D092B9 /* SportNewsFirebaseRemover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportNewsFirebaseRemover.swift; sourceTree = "<group>"; };
+		4011D8942739C83200D092B9 /* MatchResultFirebaseRemover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResultFirebaseRemover.swift; sourceTree = "<group>"; };
 		401C9B0D270D034700F91DC6 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		401C9B10270D04BF00F91DC6 /* ViewControllerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerCoordinator.swift; sourceTree = "<group>"; };
 		401C9B14270D056B00F91DC6 /* Coordinator protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinator protocols.swift"; sourceTree = "<group>"; };
@@ -426,6 +430,7 @@
 		401C9B26270D155F00F91DC6 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				406E7C0927232FFB00DAD711 /* RealtimeDatabaseManager.swift */,
 				40B82ED12738BA9F00BED0A1 /* Database removers */,
 				40B82ED02738BA8300BED0A1 /* Database savers */,
 				401C9B23270D155C00F91DC6 /* FirebaseManager.swift */,
@@ -453,10 +458,9 @@
 		4035DAB3273077BE00AAFDA8 /* OurSquads */ = {
 			isa = PBXGroup;
 			children = (
-				4057FB562732696B002E2BBE /* TableViews */,
 				4035DAB4273077BE00AAFDA8 /* OurSquadsViewController.swift */,
 				4035DAB5273077BE00AAFDA8 /* OurSquadsViewModel.swift */,
-				4035DAB827309A0A00AAFDA8 /* SquadHeaderView.swift */,
+				4057FB562732696B002E2BBE /* TableViews */,
 			);
 			path = OurSquads;
 			sourceTree = "<group>";
@@ -483,6 +487,7 @@
 		4057FB562732696B002E2BBE /* TableViews */ = {
 			isa = PBXGroup;
 			children = (
+				4035DAB827309A0A00AAFDA8 /* SquadHeaderView.swift */,
 				4057FB5727326994002E2BBE /* OurSquadsTitleTextViewCell.swift */,
 			);
 			path = TableViews;
@@ -890,8 +895,9 @@
 		40B82ED12738BA9F00BED0A1 /* Database removers */ = {
 			isa = PBXGroup;
 			children = (
-				406E7C0927232FFB00DAD711 /* RealtimeDatabaseManager.swift */,
 				400B8F45272B4E0B008A8AFE /* FirebaseObjectRemover.swift */,
+				4011D8922739B91D00D092B9 /* SportNewsFirebaseRemover.swift */,
+				4011D8942739C83200D092B9 /* MatchResultFirebaseRemover.swift */,
 				400B8F4A272B4EAC008A8AFE /* SportTeamFirebaseRemover.swift */,
 				400B8F5C272B6499008A8AFE /* SportSquadFirebaseRemover.swift */,
 			);
@@ -1202,6 +1208,7 @@
 				40A6321F272DF7160017F6FE /* SportTeamAnnotation.swift in Sources */,
 				4055FCDC26E816D900E5BB79 /* CellConfigurator.swift in Sources */,
 				40DEC8B42718D083008A59A8 /* SportEventType.swift in Sources */,
+				4011D8952739C83200D092B9 /* MatchResultFirebaseRemover.swift in Sources */,
 				40940BE326E40C380098EF89 /* UIVIewControllerExtension.swift in Sources */,
 				40E60BC32732F4FF00B31CB5 /* MatchResultTableCellModel.swift in Sources */,
 				406E7C0D2723302300DAD711 /* FirebaseStorageManager.swift in Sources */,
@@ -1286,6 +1293,7 @@
 				4065C95526E84E990084E5F2 /* EventTableCell.swift in Sources */,
 				40980AC02720C2490022A640 /* EditEventTitleCell.swift in Sources */,
 				40940BEE26E412F40098EF89 /* AuthSection.swift in Sources */,
+				4011D8932739B91D00D092B9 /* SportNewsFirebaseRemover.swift in Sources */,
 				401C9B21270D139800F91DC6 /* MainViewControllerCoordinator.swift in Sources */,
 				407A621B2737D5C400558998 /* MatchResultEditCellModel.swift in Sources */,
 				40E7204026E400FE00A64C60 /* SceneDelegate.swift in Sources */,

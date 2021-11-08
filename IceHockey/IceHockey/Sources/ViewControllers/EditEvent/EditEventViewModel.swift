@@ -11,24 +11,22 @@ import FirebaseDatabaseUI
 class EditEventViewModel: NSObject {
     
     // MARK: - Properties
-    var dataSource: SportNews? {
+    var dataSource: SportNews! {
         didSet {
-            if let data = dataSource {
-                let imageData = data.imageIDs.map { (imageUid) -> ImageDataConfiguration in
-                    let imageName = ImagesManager.getImageName(forKey: imageUid)
-                    return ImageDataConfiguration(name: imageName, imageID: imageUid, eventUID: data.uid)
-                }
-                tableItems = [
-                    EditEventTitleCellConfigurator(data: nil, handler: handler),
-                    EditEventInputDateCellConfigurator(data: data.date, handler: handler),
-                    EditEventTitleTextFieldCellConfigurator(data: data.title, handler: handler),
-                    EditEventAddPhotoCellConfigurator(data: imageData, handler: handler),
-                    EditEventTextCellConfigurator(data: data.text, handler: handler),
-                    EditEventBoldTextCellConfigurator(data: data.boldText, handler: handler),                    
-                    EditEventSaveCellConfigurator(data: nil, handler: handler)
-                ]
-                handler.reloadData()
+            let imageData = dataSource.imageIDs.map { (imageUid) -> ImageDataConfiguration in
+                let imageName = ImagesManager.getImageName(forKey: imageUid)
+                return ImageDataConfiguration(name: imageName, imageID: imageUid, eventUID: dataSource.uid)
             }
+            tableItems = [
+                EditEventTitleCellConfigurator(data: nil, handler: handler),
+                EditEventInputDateCellConfigurator(data: dataSource.date, handler: handler),
+                EditEventTitleTextFieldCellConfigurator(data: dataSource.title, handler: handler),
+                EditEventAddPhotoCellConfigurator(data: imageData, handler: handler),
+                EditEventTextCellConfigurator(data: dataSource.text, handler: handler),
+                EditEventBoldTextCellConfigurator(data: dataSource.boldText, handler: handler),
+                EditEventSaveCellConfigurator(data: nil, handler: handler)
+            ]
+            handler.reloadData()
         }
     }
     weak var delegate: ViewControllerDismissable?

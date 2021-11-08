@@ -47,4 +47,3 @@ class DoneKeyboardAccessoryView: UIView {
     // MARK: - Helper methods
     
 }
-

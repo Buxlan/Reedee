@@ -7,7 +7,13 @@
 
 import Foundation
 
+enum FirebaseRemoveError: Error {
+    case dataMismatch
+    case storageError
+    case databaseError
+}
+
 protocol FirebaseObjectRemover {
     var object: FirebaseObject { get }
-    func remove(completionHandler: @escaping () -> Void) throws
+    func remove() throws
 }

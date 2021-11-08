@@ -40,7 +40,7 @@ struct SportTeamFirebaseRemover: FirebaseObjectRemover {
     
     // MARK: - Helper methods
     
-    func remove(completionHandler: @escaping () -> Void) throws {
+    func remove() throws {
         guard let object = self.object as? DataType else {
             throw AppError.dataMismatch
         }
@@ -64,6 +64,5 @@ struct SportTeamFirebaseRemover: FirebaseObjectRemover {
             }
             imagesDatabaseReference.child(largeImageID)
         }
-        completionHandler()
     }    
 }

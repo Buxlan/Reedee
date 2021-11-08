@@ -29,16 +29,14 @@ struct FirebaseManager: FirebaseManagerInterface {
     
     func delete(_ object: FirebaseObject) throws {
         if let object = object as? SportTeam {
-            let remover = SportTeamFirebaseRemover(object: object)
-            try remover.remove {
-                print("!!!removed!!!")
-            }
+            try SportTeamFirebaseRemover(object: object).remove()
         } else if let object = object as? SportSquad {
-            let remover = SportSquadFirebaseRemover(object: object)
-            try remover.remove {
-                print("!!!removed!!!")
-            }
-        }
+            try SportSquadFirebaseRemover(object: object).remove()
+        } else if let object = object as? SportNews {
+            try SportNewsFirebaseRemover(object: object).remove()
+        } else if let object = object as? MatchResult {
+            try MatchResultFirebaseRemover(object: object).remove()
+       }
     }
     
 }

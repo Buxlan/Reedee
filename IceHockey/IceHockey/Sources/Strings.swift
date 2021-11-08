@@ -73,13 +73,17 @@ internal enum L10n {
   internal enum Contacts {
     /// About club
     internal static let tabBarItemTitle = L10n.tr("Localizable", "Contacts.tabBarItemTitle")
-    /// Our contacts
+    /// About club
     internal static let title = L10n.tr("Localizable", "Contacts.title")
   }
 
   internal enum EditEventLabel {
     /// Away team
     internal static let awayTeamPlaceholder = L10n.tr("Localizable", "EditEventLabel.awayTeamPlaceholder")
+    /// Delete
+    internal static let deleteTypeTitle = L10n.tr("Localizable", "EditEventLabel.deleteTypeTitle")
+    /// Edit
+    internal static let editTypeTitle = L10n.tr("Localizable", "EditEventLabel.editTypeTitle")
     /// Change match
     internal static let existingMatchNavigationBarTitle = L10n.tr("Localizable", "EditEventLabel.existingMatchNavigationBarTitle")
     /// Home team
@@ -88,8 +92,12 @@ internal enum L10n {
     internal static let newMatchNavigationBarTitle = L10n.tr("Localizable", "EditEventLabel.newMatchNavigationBarTitle")
     /// Score
     internal static let scorePlaceholder = L10n.tr("Localizable", "EditEventLabel.scorePlaceholder")
+    /// Select edit type
+    internal static let selectEditTypeTitle = L10n.tr("Localizable", "EditEventLabel.selectEditTypeTitle")
     /// Type text here
     internal static let titlePlaceholder = L10n.tr("Localizable", "EditEventLabel.titlePlaceholder")
+    /// Realy want to delete?
+    internal static let wantDelete = L10n.tr("Localizable", "EditEventLabel.wantDelete")
   }
 
   internal enum Events {
@@ -215,6 +223,8 @@ internal enum L10n {
   internal enum Other {
     /// Cancel
     internal static let cancel = L10n.tr("Localizable", "Other.cancel")
+    /// Delete
+    internal static let delete = L10n.tr("Localizable", "Other.delete")
     /// Done
     internal static let done = L10n.tr("Localizable", "Other.done")
     /// Edit

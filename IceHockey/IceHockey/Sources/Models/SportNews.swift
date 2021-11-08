@@ -67,9 +67,21 @@ struct SportNews: SportEvent, Hashable {
         self.order = order
     }
     
+    init?(snapshot: DataSnapshot) {
+        let uid = snapshot.key
+        guard let dict = snapshot.value as? [String: Any] else {
+            return nil
+        }
+        self.init(key: uid, dict: dict)
+    }
+    
 }
 
-extension SportNews {
+extension SportNews: FirebaseObject {    
+    
+    private static var databaseObjects: DatabaseReference {
+        FirebaseManager.shared.databaseManager.root.child("events")
+    }
     
     var isNew: Bool {
         return self.uid.isEmpty
@@ -81,7 +93,27 @@ extension SportNews {
         }
         return nil
     }
-        
+    
+    func delete() throws {
+        try FirebaseManager.shared.delete(self)
+    }
+    
+    static func getObject(by uid: String, completion handler: @escaping (Self?) -> Void) {
+        Self.databaseObjects
+            .child(uid)
+            .getData { error, snapshot in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                if snapshot.value is NSNull {
+                    fatalError("Current team is nil")
+                }
+                let team = Self(snapshot: snapshot)
+                handler(team)
+            }
+    }
+    
     func checkProperties() -> Bool {
         return true
     }

@@ -26,6 +26,26 @@ class EditEventViewController: UIViewController {
     }()
     private var keyboardManager = KeyboardAppearanceManager()
     
+    private lazy var alert: UIAlertController = {
+        let controller = UIAlertController(title: L10n.EditEventLabel.wantDelete,
+                                           message: nil,
+                                           preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: L10n.EditEventLabel.deleteTypeTitle, style: .destructive) { _ in
+            do {
+                try self.viewModel.dataSource?.delete()
+                self.navigationController?.popToRootViewController(animated: true)
+            } catch {
+                print(error)
+            }
+        }
+        let cancelAction = UIAlertAction(title: L10n.Other.cancel, style: .cancel) { _ in
+        }
+        controller.addAction(deleteAction)
+        controller.addAction(cancelAction)
+        
+        return controller
+    }()
+    
     private lazy var tableFooterView: EventDetailTableFooterView = {
         let frame = CGRect(x: 0, y: 0, width: 0, height: 150)
         let view = EventDetailTableFooterView(frame: frame)
@@ -126,6 +146,10 @@ class EditEventViewController: UIViewController {
     }
     
     private func configureBars() {
+        if !viewModel.dataSource.isNew {
+            let itemDelete = UIBarButtonItem(title: L10n.Other.delete, style: .plain, target: self, action: #selector(handleDelete))
+            navigationItem.rightBarButtonItem = itemDelete
+        }
     }
     
     private func configureViewModel() {
@@ -211,6 +235,14 @@ extension EditEventViewController: ViewControllerDismissable {
     
     func dismiss(animated: Bool) {
         navigationController?.popViewController(animated: animated)
+    }
+    
+}
+
+extension EditEventViewController {
+    
+    @objc private func handleDelete() {
+        present(alert, animated: true)
     }
     
 }

@@ -33,6 +33,26 @@ class MatchResultEditViewController: UIViewController {
     
     var viewModel = TableViewBase()
     
+    private lazy var alert: UIAlertController = {
+        let controller = UIAlertController(title: L10n.EditEventLabel.wantDelete,
+                                           message: nil,
+                                           preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: L10n.EditEventLabel.deleteTypeTitle, style: .destructive) { _ in
+            do {
+                try self.editingObject.delete()
+                self.navigationController?.popToRootViewController(animated: true)
+            } catch {
+                print(error)
+            }
+        }
+        let cancelAction = UIAlertAction(title: L10n.Other.cancel, style: .cancel) { _ in
+        }
+        controller.addAction(deleteAction)
+        controller.addAction(cancelAction)
+        
+        return controller
+    }()
+    
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
         view.isUserInteractionEnabled = true
@@ -44,23 +64,13 @@ class MatchResultEditViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.estimatedRowHeight = 300
         view.rowHeight = UITableView.automaticDimension
-        view.tableHeaderView = tableHeaderView
-        view.tableFooterView = tableFooterView
+        view.tableFooterView = UIView()
         view.showsVerticalScrollIndicator = false
         view.register(MatchResultEditCell.self, forCellReuseIdentifier: MatchResultEditViewConfigurator.reuseIdentifier)
         view.register(MatchResultEditSaveCell.self, forCellReuseIdentifier: SaveViewConfigurator.reuseIdentifier)
         return view
     }()
     
-    private lazy var tableHeaderView: UIView = {
-        let view = UIView()
-        return view
-    }()
-    
-    private lazy var tableFooterView: UIView = {
-        let view = UIView()
-        return view
-    }()
     private var keyboardManager = KeyboardAppearanceManager()
         
     // MARK: - Init
@@ -125,6 +135,10 @@ class MatchResultEditViewController: UIViewController {
         navigationController?.setToolbarHidden(true, animated: false)
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationBar.prefersLargeTitles = false
+        if !editingObject.isNew {
+            let itemDelete = UIBarButtonItem(title: L10n.Other.delete, style: .plain, target: self, action: #selector(handleDelete))
+            navigationItem.rightBarButtonItem = itemDelete
+        }
     }
     
     private func configureViewModel() {
@@ -199,6 +213,10 @@ extension MatchResultEditViewController {
         let row = TableRow(rowId: type(of: config).reuseIdentifier,
                            config: config)
         return row
+    }
+    
+    @objc private func handleDelete() {
+        present(alert, animated: true)
     }
     
 }

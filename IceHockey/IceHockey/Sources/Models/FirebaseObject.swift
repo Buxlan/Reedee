@@ -13,7 +13,7 @@ protocol FirebaseObject {
     
     var uid: String { get set }
     
-    init?(key: String, dict: NSDictionary)
+    init?(key: String, dict: [String: Any])
     
     func save() throws
     func delete() throws

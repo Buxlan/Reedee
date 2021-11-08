@@ -91,4 +91,3 @@ extension TableViewBase: UITableViewDelegate, UITableViewDataSource {
         dataSource.rowFromIndexPath(indexPath).willDisplay(cell)
     }
 }
-
