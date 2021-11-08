@@ -24,9 +24,6 @@ struct MatchResultEditCellModel: TableCellModel {
     var date: String
     var status: String
     
-    var homeTeamLogoName: String? = "small"
-    var awayTeamLogoName: String? = "small"
-    
     var backgroundColor: UIColor = Asset.other3.color
     var textColor: UIColor = Asset.textColor.color
     

@@ -86,6 +86,8 @@
 "Events.inputTitle" = "Введите заголовок";
 "Events.inputTextTitle" = "Введите текст";
 "Events.inputBoldTextTitle" = "Введите рекламный текст";
+// Match result
+"MatchResult.navigationBarTitle" = "Матч";
 /* Contacts */
 "Contacts.tabBarItemTitle" = "Контакты";
 "Contacts.title" = "Наши контакты";
@@ -127,6 +129,8 @@
 /* Other */
 "Other.done" = "Готово";
 "Other.cancel" = "Отменить";
+"Other.edit" = "Изм.";
+"Other.report" = "Пожал.";
 /* Settings */
 "Settings.navigationBarTitle" = "Настройки";
 /* Match status */
@@ -138,4 +142,5 @@
 "EditEventLabel.awayTeamPlaceholder" = "Гости";
 "EditEventLabel.scorePlaceholder" = "Счет";
 "EditEventLabel.titlePlaceholder" = "Текст для воодушевления";
-"EditEventLabel.matchNavigationBarTitle" = "Создать матч";
+"EditEventLabel.newMatchNavigationBarTitle" = "Создать матч";
+"EditEventLabel.existingMatchNavigationBarTitle" = "Изменить матч";

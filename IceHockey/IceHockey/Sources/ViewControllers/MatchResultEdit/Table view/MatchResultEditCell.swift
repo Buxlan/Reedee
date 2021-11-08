@@ -257,11 +257,11 @@ class MatchResultEditCell: UITableViewCell {
             
             homeTeamTextView.topAnchor.constraint(equalTo: typeLabel.bottomAnchor, constant: 0),
             homeTeamTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            homeTeamTextView.trailingAnchor.constraint(equalTo: centerStackView.leadingAnchor, constant: -16),
+            homeTeamTextView.trailingAnchor.constraint(equalTo: centerStackView.leadingAnchor),
             homeTeamTextView.bottomAnchor.constraint(equalTo: homeTeamScoreTextField.topAnchor),
                     
             awayTeamTextView.topAnchor.constraint(equalTo: typeLabel.bottomAnchor, constant: 0),
-            awayTeamTextView.leadingAnchor.constraint(equalTo: centerStackView.trailingAnchor, constant: 8),
+            awayTeamTextView.leadingAnchor.constraint(equalTo: centerStackView.trailingAnchor),
             awayTeamTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             awayTeamTextView.heightAnchor.constraint(equalTo: centerStackView.heightAnchor),
                        
@@ -271,19 +271,19 @@ class MatchResultEditCell: UITableViewCell {
             centerStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.25, constant: -16),
             
             scoreLabel.topAnchor.constraint(equalTo: homeTeamScoreTextField.topAnchor),
-            scoreLabel.leadingAnchor.constraint(equalTo: centerStackView.leadingAnchor, constant: 8),
-            scoreLabel.trailingAnchor.constraint(equalTo: centerStackView.trailingAnchor, constant: -16),
+            scoreLabel.leadingAnchor.constraint(equalTo: centerStackView.leadingAnchor),
+            scoreLabel.trailingAnchor.constraint(equalTo: centerStackView.trailingAnchor),
             scoreLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
             
             homeTeamScoreTextField.topAnchor.constraint(equalTo: centerStackView.bottomAnchor, constant: 32),
             homeTeamScoreTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            homeTeamScoreTextField.trailingAnchor.constraint(equalTo: centerStackView.leadingAnchor, constant: -16),
-            homeTeamScoreTextField.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
+            homeTeamScoreTextField.trailingAnchor.constraint(equalTo: centerStackView.leadingAnchor),
+            homeTeamScoreTextField.heightAnchor.constraint(equalTo: scoreLabel.heightAnchor),
             
             awayTeamScoreTextField.topAnchor.constraint(equalTo: homeTeamScoreTextField.topAnchor),
-            awayTeamScoreTextField.leadingAnchor.constraint(equalTo: centerStackView.trailingAnchor, constant: 8),
+            awayTeamScoreTextField.leadingAnchor.constraint(equalTo: centerStackView.trailingAnchor),
             awayTeamScoreTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            awayTeamScoreTextField.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
+            awayTeamScoreTextField.heightAnchor.constraint(equalTo: scoreLabel.heightAnchor),
             
             titleTextView.topAnchor.constraint(equalTo: homeTeamScoreTextField.bottomAnchor, constant: 8),
             titleTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),

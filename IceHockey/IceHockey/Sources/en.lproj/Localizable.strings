@@ -86,6 +86,8 @@
 "Events.inputTitle" = "Input title";
 "Events.inputTextTitle" = "Input text";
 "Events.inputBoldTextTitle" = "Input ad text";
+// Match result
+"MatchResult.navigationBarTitle" = "Match";
 /* Contacts */
 "Contacts.tabBarItemTitle" = "About club";
 "Contacts.title" = "Our contacts";
@@ -127,6 +129,8 @@
 /* Other */
 "Other.done" = "Done";
 "Other.cancel" = "Cancel";
+"Other.edit" = "Edit";
+"Other.report" = "Report";
 /* Settings */
 "Settings.navigationBarTitle" = "Settings";
 /* Match status */
@@ -138,4 +142,5 @@
 "EditEventLabel.awayTeamPlaceholder" = "Away team";
 "EditEventLabel.scorePlaceholder" = "Score";
 "EditEventLabel.titlePlaceholder" = "Type text here";
-"EditEventLabel.matchNavigationBarTitle" = "Create match";
+"EditEventLabel.newMatchNavigationBarTitle" = "Create match";
+"EditEventLabel.existingMatchNavigationBarTitle" = "Change match";

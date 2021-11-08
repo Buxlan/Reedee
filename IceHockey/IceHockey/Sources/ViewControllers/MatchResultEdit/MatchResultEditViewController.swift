@@ -12,9 +12,22 @@ class MatchResultEditViewController: UIViewController {
     
     // MARK: - Properties
     typealias InputDataType = MatchResult
-    enum EditMode {
+    enum EditMode: CustomStringConvertible, Equatable {
         case new
         case edit(InputDataType)
+        
+        var description: String {
+            switch self {
+            case .new:
+                return "new"
+            case .edit(_):
+                return "existing"
+            }
+        }
+        
+        static func == (lhs: MatchResultEditViewController.EditMode, rhs: MatchResultEditViewController.EditMode) -> Bool {
+            lhs.description == rhs.description
+        }
     }
     private var editingObject: InputDataType
     
@@ -23,7 +36,7 @@ class MatchResultEditViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
         view.isUserInteractionEnabled = true
-        view.backgroundColor = Asset.accent1.color
+        view.backgroundColor = Asset.other3.color
         view.allowsSelection = true
         view.allowsMultipleSelection = false
         view.allowsSelectionDuringEditing = false
@@ -60,6 +73,8 @@ class MatchResultEditViewController: UIViewController {
             editingObject = data
         }
         super.init(nibName: nil, bundle: nil)
+        title = (editMode == .new) ? L10n.EditEventLabel.newMatchNavigationBarTitle : L10n.EditEventLabel.existingMatchNavigationBarTitle
+        
     }
     
     required init?(coder: NSCoder) {
@@ -107,7 +122,6 @@ class MatchResultEditViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        title = L10n.EditEventLabel.matchNavigationBarTitle
         navigationController?.setToolbarHidden(true, animated: false)
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -179,7 +193,7 @@ extension MatchResultEditViewController {
             } catch {
                 print("Save error: \(error)")
             }
-            self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popToRootViewController(animated: true)
         }
         let config = SaveViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier,

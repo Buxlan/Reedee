@@ -60,7 +60,7 @@ class MatchResultEditSaveCell: UITableViewCell {
     
     internal func configureConstraints() {
         let saveHeightConstraint = saveButton.heightAnchor.constraint(greaterThanOrEqualToConstant: 44)
-        saveHeightConstraint.priority = .defaultLow
+        saveHeightConstraint.priority = .defaultHigh
         let constraints: [NSLayoutConstraint] = [
             saveButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             saveButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),

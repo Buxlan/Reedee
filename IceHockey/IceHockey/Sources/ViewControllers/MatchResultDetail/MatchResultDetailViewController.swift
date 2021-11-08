@@ -6,13 +6,36 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class MatchResultDetailViewController: UIViewController {
     
     // MARK: - Properties
-    
     typealias InputDataType = MatchResult
-    private lazy var viewModel = MatchResultDetailViewModel()
+    enum EditMode {
+        case new
+        case edit(InputDataType)
+    }
+    private var editingObject: InputDataType
+    
+    var viewModel = TableViewBase()
+    
+    private lazy var tableView: UITableView = {
+        let view = UITableView(frame: .zero, style: .plain)
+        view.isUserInteractionEnabled = true
+        view.backgroundColor = Asset.other3.color
+        view.allowsSelection = true
+        view.allowsMultipleSelection = false
+        view.allowsSelectionDuringEditing = false
+        view.allowsMultipleSelectionDuringEditing = false
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.estimatedRowHeight = 300
+        view.rowHeight = UITableView.automaticDimension
+        view.tableFooterView = tableFooterView
+        view.showsVerticalScrollIndicator = false
+        view.register(MatchResultTableCell.self, forCellReuseIdentifier: MatchResultViewConfigurator.reuseIdentifier)
+        return view
+    }()
     
     private lazy var tableFooterView: EventDetailTableFooterView = {
         let frame = CGRect(x: 0, y: 0, width: 0, height: 150)
@@ -21,156 +44,131 @@ class MatchResultDetailViewController: UIViewController {
         return view
     }()
     
-    private lazy var tableView: UITableView = {
-        let view = UITableView(frame: .zero, style: .plain)
-        view.isUserInteractionEnabled = true
-        view.delegate = self
-        view.dataSource = viewModel
-        view.backgroundColor = Asset.other2.color
-        view.allowsSelection = true
-        view.allowsMultipleSelection = false
-        view.allowsSelectionDuringEditing = false
-        view.allowsMultipleSelectionDuringEditing = false
-        view.translatesAutoresizingMaskIntoConstraints = false
-//        view.rowHeight = UITableView.automaticDimension
-        view.estimatedRowHeight = 300
-        view.rowHeight = UITableView.automaticDimension
-//        view.estimatedRowHeight = 60
-        view.register(EventDetailPhotoTableCell.self,
-                      forCellReuseIdentifier: EventDetailPhotoTableCell.reuseIdentifier)
-        view.register(EventDetailUsefulButtonsCell.self,
-                      forCellReuseIdentifier: EventDetailUsefulButtonsCell.reuseIdentifier)
-        view.register(EventDetailDescriptionCell.self,
-                      forCellReuseIdentifier: EventDetailDescriptionCell.reuseIdentifier)
-        view.register(EventDetailBoldViewCell.self,
-                      forCellReuseIdentifier: EventDetailBoldViewCell.reuseIdentifier)
-        view.register(EventDetailTitleCell.self,
-                      forCellReuseIdentifier: EventDetailTitleCell.reuseIdentifier)
-        view.register(EventDetailCopyrightCell.self,
-                      forCellReuseIdentifier: EventDetailCopyrightCell.reuseIdentifier)
-                        
-//        view.tableHeaderView = titleView
-        view.tableFooterView = tableFooterView
-        view.showsVerticalScrollIndicator = false
+    private var keyboardManager = KeyboardAppearanceManager()
         
-        return view
-    }()
-            
     // MARK: - Init
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    init() {
+    
+    init(editMode: EditMode) {
+        switch editMode {
+        case .new:
+            editingObject = InputDataType()
+        case .edit(let data):
+            editingObject = data
+        }
         super.init(nibName: nil, bundle: nil)
-        configureTabBarItem()
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        configureTabBarItem()
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
+        view.backgroundColor = Asset.accent1.color
         super.viewDidLoad()
         configureUI()
-        configureRecognizers()
-//        setupActionHandlers()
+        configureConstraints()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        keyboardManager.register(scrollView: tableView)
         configureBars()
         configureViewModel()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        let image = Asset.home.image.resizeImage(to: 24,
-                                                 aspectRatio: .current,
-                                                 with: view.tintColor)
-        tabBarItem.image = image
+        keyboardManager.unregister()
+        super.viewWillDisappear(animated)
     }
     
     // MARK: - Hepler functions
     
     private func configureUI() {
         view.addSubview(tableView)
-        configureConstraints()
     }
     
     private func configureConstraints() {
         let constraints: [NSLayoutConstraint] = [
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            tableView.centerYAnchor.constraint(equalTo: view.layoutMarginsGuide.centerYAnchor),
             tableView.widthAnchor.constraint(equalTo: view.widthAnchor),
             tableView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
     }
     
-    private func configureTabBarItem() {
+    private func configureBars() {
+        tabBarController?.tabBar.isHidden = false
+        configureNavigationBar()
     }
     
-    private func configureBars() {
-        let itemReport = UIBarButtonItem(title: "Report", style: .plain, target: self, action: #selector(reportHandle))
-        let itemEdit = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editHandle))
+    private func configureNavigationBar() {
+        title = L10n.MatchResult.navigationBarTitle
+        navigationController?.setToolbarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.navigationBar.prefersLargeTitles = false
+        
+        let itemReport = UIBarButtonItem(title: L10n.Other.report, style: .plain, target: self, action: #selector(handleReport))
+        let itemEdit = UIBarButtonItem(title: L10n.Other.edit, style: .plain, target: self, action: #selector(handleEdit))
         navigationItem.rightBarButtonItems = [itemReport, itemEdit]
     }
     
     private func configureViewModel() {
+        viewModel.setupTable(tableView)
+        let dataSource = createDataSource()
+        viewModel.updateDataSource(dataSource)
     }
     
-    private func configureRecognizers() {
-        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
-        rightSwipe.direction = .right
-        self.view.addGestureRecognizer(rightSwipe)
-    }
-}
-
-extension MatchResultDetailViewController: UITableViewDelegate {
-       
-}
-
-extension MatchResultDetailViewController: InputData {
-    
-    func setInputData(_ inputData: MatchResult) {
-        viewModel.inputData = inputData
-    }
-    
-}
-
-extension  MatchResultDetailViewController {
-    @objc
-    private func handleSwipes(_ sender: UISwipeGestureRecognizer) {
-        dismiss(animated: true, completion: nil)
-    }
-}
-
-extension MatchResultDetailViewController: CellUpdatable {
-    func configureCell(at indexPath: IndexPath, configurator: CellConfigurator) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: type(of: configurator).reuseIdentifier,
-                                                 for: indexPath)
-        configurator.configure(cell: cell)
-        return cell
-    }
-    func reloadData() {
-        tableView.reloadData()
-    }
 }
 
 extension MatchResultDetailViewController {
     
-    @objc func reportHandle() {
+    func createDataSource() -> TableDataSource {
+        var sections: [TableSection] = []
+        var section = TableSection()
+        let matchResultRow = makeMatchResultTableRow()
+        section.addRows([matchResultRow])
+        sections.append(section)
+        
+        let dataSource = TableDataSource(sections: sections)
+        return dataSource
+    }
+    
+    func makeMatchResultTableRow() -> TableRow {
+        var cellModel = MatchResultTableCellModel(data: editingObject)
+        cellModel.likeAction = { (state: Bool) in
+            self.editingObject.setLike(state)
+        }
+        let config = MatchResultViewConfigurator(data: cellModel)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config)
+        return row
+    }
+    
+    func makeSaveTableRow() -> TableRow {
+        var cellModel = SaveCellModel()
+        cellModel.saveAction = {
+            do {
+                try self.editingObject.save()
+            } catch {
+                print("Save error: \(error)")
+            }
+            self.navigationController?.popViewController(animated: true)
+        }
+        let config = SaveViewConfigurator(data: cellModel)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier,
+                           config: config)
+        return row
+    }
+    
+    @objc private func handleReport() {
         
     }
     
-    @objc func editHandle() {
-//        guard let dataSource = viewModel.inputData else {
-//            return
-//        }
-//        let vc = EditMatchResultViewController(editMode: .edit(dataSource))
-//        vc.modalPresentationStyle = .pageSheet
-//        vc.modalTransitionStyle = .crossDissolve
-//        navigationController?.pushViewController(vc, animated: true)
+    @objc private func handleEdit() {
+        let vc = MatchResultEditViewController(editMode: .edit(self.editingObject))
+        vc.modalPresentationStyle = .pageSheet
+        vc.modalTransitionStyle = .crossDissolve
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

@@ -16,15 +16,13 @@ struct MatchResultTableCellModel: TableCellModel {
     var title: String
     var homeTeam: String
     var awayTeam: String
-    var score: String
-    var matchName: String
+    
+    var homeTeamScore: Int = 0
+    var awayTeamScore: Int = 0
     
     var stadium: String
     var date: String
     var status: String
-    
-    var homeTeamLogoName: String? = "small"
-    var awayTeamLogoName: String? = "small"
     
     var backgroundColor: UIColor = Asset.other3.color
     var textColor: UIColor = Asset.textColor.color
@@ -44,8 +42,8 @@ struct MatchResultTableCellModel: TableCellModel {
         stadium = data.stadium
         status = data.status
         
-        score = "\(data.homeTeamScore) : \(data.awayTeamScore)"
-        matchName = "\(data.homeTeam) vs \(data.awayTeam)"
+        homeTeamScore = data.homeTeamScore
+        awayTeamScore = data.awayTeamScore
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium

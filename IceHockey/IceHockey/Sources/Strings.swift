@@ -80,10 +80,12 @@ internal enum L10n {
   internal enum EditEventLabel {
     /// Away team
     internal static let awayTeamPlaceholder = L10n.tr("Localizable", "EditEventLabel.awayTeamPlaceholder")
+    /// Change match
+    internal static let existingMatchNavigationBarTitle = L10n.tr("Localizable", "EditEventLabel.existingMatchNavigationBarTitle")
     /// Home team
     internal static let homeTeamPlaceholder = L10n.tr("Localizable", "EditEventLabel.homeTeamPlaceholder")
     /// Create match
-    internal static let matchNavigationBarTitle = L10n.tr("Localizable", "EditEventLabel.matchNavigationBarTitle")
+    internal static let newMatchNavigationBarTitle = L10n.tr("Localizable", "EditEventLabel.newMatchNavigationBarTitle")
     /// Score
     internal static let scorePlaceholder = L10n.tr("Localizable", "EditEventLabel.scorePlaceholder")
     /// Type text here
@@ -153,6 +155,11 @@ internal enum L10n {
     internal static let positionStrikerPlural = L10n.tr("Localizable", "HockeyPlayer.positionStrikerPlural")
   }
 
+  internal enum MatchResult {
+    /// Match
+    internal static let navigationBarTitle = L10n.tr("Localizable", "MatchResult.navigationBarTitle")
+  }
+
   internal enum MatchStatus {
     /// Finished
     internal static let finishedTitle = L10n.tr("Localizable", "MatchStatus.finishedTitle")
@@ -210,6 +217,10 @@ internal enum L10n {
     internal static let cancel = L10n.tr("Localizable", "Other.cancel")
     /// Done
     internal static let done = L10n.tr("Localizable", "Other.done")
+    /// Edit
+    internal static let edit = L10n.tr("Localizable", "Other.edit")
+    /// Report
+    internal static let report = L10n.tr("Localizable", "Other.report")
   }
 
   internal enum PlacesList {

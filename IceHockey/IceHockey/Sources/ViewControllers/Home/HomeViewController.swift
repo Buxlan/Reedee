@@ -240,10 +240,9 @@ extension HomeViewController {
         let config = MatchResultViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config)
         row.action = {
-            let vc = MatchResultDetailViewController()
+            let vc = MatchResultDetailViewController(editMode: .edit(event))
             vc.modalPresentationStyle = .pageSheet
             vc.modalTransitionStyle = .crossDissolve
-            vc.setInputData(event)
             self.navigationController?.pushViewController(vc, animated: true)
         }
         return row
