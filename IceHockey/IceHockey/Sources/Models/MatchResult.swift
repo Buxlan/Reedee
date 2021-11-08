@@ -7,6 +7,23 @@
 
 import Firebase
 
+enum MatchStatus: Int, CustomStringConvertible {
+    case planned
+    case inProgress
+    case finished
+    
+    var description: String {
+        switch self {
+        case .planned:
+            return L10n.MatchStatus.plannedTitle
+        case .inProgress:
+            return L10n.MatchStatus.inProgressTitle
+        case .finished:
+            return L10n.MatchStatus.finishedTitle
+        }
+    }
+}
+
 struct MatchResult: SportEvent {
     
     var uid: String
@@ -21,7 +38,26 @@ struct MatchResult: SportEvent {
     var date: Date
     var title: String
     var status: String {
-        return "Finished"
+        return MatchStatus.finished.description
+    }
+    
+    init(uid: String = "",
+         title: String = "",
+         homeTeam: String = "",
+         awayTeam: String = "",
+         homeTeamScore: Int = 0,
+         awayTeamScore: Int = 0,
+         date: Date = Date(),
+         stadium: String = "") {
+        self.uid = uid
+        self.homeTeam = homeTeam
+        self.awayTeam = awayTeam
+        self.homeTeamScore = homeTeamScore
+        self.awayTeamScore = awayTeamScore
+        self.date = date
+        self.stadium = ""
+        self.type = .match
+        self.title = title
     }
     
     init?(key: String, dict: [String: Any]) {
@@ -43,32 +79,6 @@ struct MatchResult: SportEvent {
         self.stadium = dict["stadium"] as? String ?? ""
         self.type = type
         self.title = title
-    }
-    
-}
-
-extension MatchResult {
-    func setLike(_ state: Bool) {
-        guard let userID = Auth.auth().currentUser?.uid else {
-            return
-        }
-        FirebaseManager.shared.databaseManager
-            .root
-            .child("likes")
-            .child(self.uid).getData { error, snapshot in
-                if let error = error {
-                    print("Error: \(error)")
-                }
-                if snapshot.value is NSNull {
-                    // need to create new entry
-                    let dict = self.prepareLikesDict(userID: userID)
-                    FirebaseManager.shared.databaseManager
-                        .root
-                        .child("likes")
-                        .child(self.uid)
-                        .setValue(dict)
-                }
-            }
     }
     
 }

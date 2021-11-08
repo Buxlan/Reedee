@@ -77,6 +77,17 @@ internal enum L10n {
     internal static let title = L10n.tr("Localizable", "Contacts.title")
   }
 
+  internal enum EditEventLabel {
+    /// Away team
+    internal static let awayTeamPlaceholder = L10n.tr("Localizable", "EditEventLabel.awayTeamPlaceholder")
+    /// Home team
+    internal static let homeTeamPlaceholder = L10n.tr("Localizable", "EditEventLabel.homeTeamPlaceholder")
+    /// Score
+    internal static let scorePlaceholder = L10n.tr("Localizable", "EditEventLabel.scorePlaceholder")
+    /// Type text here
+    internal static let titlePlaceholder = L10n.tr("Localizable", "EditEventLabel.titlePlaceholder")
+  }
+
   internal enum Events {
     /// Editing event
     internal static let addEventTitle = L10n.tr("Localizable", "Events.addEventTitle")
@@ -138,6 +149,15 @@ internal enum L10n {
     internal static let positionStriker = L10n.tr("Localizable", "HockeyPlayer.positionStriker")
     /// Forwarders
     internal static let positionStrikerPlural = L10n.tr("Localizable", "HockeyPlayer.positionStrikerPlural")
+  }
+
+  internal enum MatchStatus {
+    /// Finished
+    internal static let finishedTitle = L10n.tr("Localizable", "MatchStatus.finishedTitle")
+    /// In progress
+    internal static let inProgressTitle = L10n.tr("Localizable", "MatchStatus.inProgressTitle")
+    /// Planned
+    internal static let plannedTitle = L10n.tr("Localizable", "MatchStatus.plannedTitle")
   }
 
   internal enum NearestPlaces {

@@ -10,13 +10,11 @@ import UIKit
 class EditEventViewController: UIViewController {
     
     // MARK: - Properties
-    
+    typealias InputDataType = SportNews
     enum EditMode {
         case new
         case edit(InputDataType)
     }
-    
-    typealias InputDataType = SportNews
     
     private lazy var handler: EditEventHandler = {
         EditEventHandler(delegate: self)
@@ -81,8 +79,7 @@ class EditEventViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        configureTabBarItem()
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {

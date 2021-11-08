@@ -42,6 +42,7 @@ internal enum Asset {
   internal static let other2 = ColorAsset(name: "other2")
   internal static let other3 = ColorAsset(name: "other3")
   internal static let textColor = ColorAsset(name: "textColor")
+  internal static let wrongValue = ColorAsset(name: "wrongValue")
   internal static let firebaseIcon = ImageAsset(name: "firebaseIcon")
   internal static let firebaseLogo = ImageAsset(name: "firebaseLogo")
   internal static let conference = ImageAsset(name: "Conference")

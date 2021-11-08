@@ -8,13 +8,13 @@
 import Firebase
 import FirebaseDatabaseUI
 
-class HomeViewModel {
+class HomeViewModel: NSObject {
     
     // MARK: - Properties
     
     var dataSource: FUITableViewDataSource?
     
-    var items: [IndexPath: OldTableRow<SportEvent>] = [:]
+    var items: [IndexPath: TableRow] = [:]
     
     var populateCellRelay: ((UITableView, IndexPath, DataSnapshot) -> UITableViewCell)! {
         didSet {
@@ -45,17 +45,25 @@ class HomeViewModel {
     
     // MARK: Lifecircle
             
-    // MARK: - Hepler functions
-    
-    func item(at indexPath: IndexPath) -> SportEvent {
-        guard let event = items[indexPath] else {
-            fatalError("Cant get item at index \(indexPath.row)")
-        }
-        return event.data
-    }    
+    // MARK: - Hepler functions     
     
     func action(at indexPath: IndexPath) -> ActionCollectionCellConfigurator {
         actions[indexPath.item]
+    }
+    
+    func setupTable(_ tableView: UITableView) {
+        tableView.delegate = self
+        dataSource?.bind(to: tableView)
+    }
+    
+}
+
+extension HomeViewModel: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let row = self.items[indexPath]
+        row?.action()
     }
     
 }

@@ -129,3 +129,12 @@
 "Other.cancel" = "Cancel";
 /* Settings */
 "Settings.navigationBarTitle" = "Settings";
+/* Match status */
+"MatchStatus.plannedTitle" = "Planned";
+"MatchStatus.inProgressTitle" = "In progress";
+"MatchStatus.finishedTitle" = "Finished";
+/* Edit event labels */
+"EditEventLabel.homeTeamPlaceholder" = "Home team";
+"EditEventLabel.awayTeamPlaceholder" = "Away team";
+"EditEventLabel.scorePlaceholder" = "Score";
+"EditEventLabel.titlePlaceholder" = "Type text here";

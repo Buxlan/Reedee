@@ -319,7 +319,7 @@ class MatchResultTableCell: UITableViewCell {
     }
 }
 
-extension MatchResultTableCell: ConfigurableCell {
+extension MatchResultTableCell: ConfigurableCollectionContent {
     
     func configure(with data: DataType) {
         configureUI()
@@ -377,8 +377,7 @@ extension MatchResultTableCell: ConfigurableCell {
 }
 
 extension MatchResultTableCell {
-    @objc
-    private func handleLikeAction() {
+    @objc private func handleLikeAction() {
         likeButton.isSelected.toggle()
         likeButton.tintColor = getLikeButtonTintColor(isSelected: likeButton.isSelected)
         data?.likeAction(likeButton.isSelected)
@@ -387,8 +386,7 @@ extension MatchResultTableCell {
         likeButton.setTitle("\(self.data?.likesCount ?? 0)", for: .selected)
     }
     
-    @objc
-    private func handleShareAction() {
+    @objc private func handleShareAction() {
         self.shareButton.isSelected.toggle()
         data?.shareAction()
     }

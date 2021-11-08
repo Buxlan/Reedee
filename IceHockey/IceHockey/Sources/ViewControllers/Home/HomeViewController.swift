@@ -26,7 +26,10 @@ class HomeViewController: UIViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
         let matchResultAction = UIAlertAction(title: L10n.Events.selectNewMatchResult, style: .default) { _ in
-            
+            let vc = MatchResultEditViewController(editMode: .new)
+            vc.modalPresentationStyle = .pageSheet
+            vc.modalTransitionStyle = .crossDissolve
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         let cancelAction = UIAlertAction(title: L10n.Other.cancel, style: .cancel) { _ in
         }
@@ -59,8 +62,6 @@ class HomeViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
         view.isUserInteractionEnabled = true
-        view.delegate = self
-        view.dataSource = viewModel.dataSource
         view.backgroundColor = Asset.accent1.color
         view.allowsSelection = true
         view.allowsMultipleSelection = false
@@ -73,8 +74,8 @@ class HomeViewController: UIViewController {
         view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = false
         view.refreshControl = refreshControl
-        NewsCellConfigurator.registerCell(tableView: view)
-        MatchResultCellConfigurator.registerCell(tableView: view)
+        view.register(EventTableCell.self, forCellReuseIdentifier: NewsViewConfigurator.reuseIdentifier)
+        view.register(MatchResultTableCell.self, forCellReuseIdentifier: MatchResultViewConfigurator.reuseIdentifier)
         ActionCellConfigurator.registerCell(tableView: view)
         return view
     }()
@@ -154,7 +155,7 @@ class HomeViewController: UIViewController {
             guard let event = SportEventCreatorImpl().create(snapshot: snap) else {
                 return UITableViewCell()
             }
-            var row: OldTableRow<SportEvent>
+            var row: TableRow
             switch event.type {
             case .event:
                 row = self.makeNewsTableRow(event)
@@ -165,43 +166,13 @@ class HomeViewController: UIViewController {
             default:
                 fatalError()
             }
-            let cell = self.tableView.dequeueReusableCell(withIdentifier: type(of: row.config).reuseIdentifier, for: indexPath)
-            row.config.configure(cell: cell)
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: row.rowId, for: indexPath)
+            row.config.configure(view: cell)
             return cell
         }
-        viewModel.dataSource?.bind(to: tableView)
+        viewModel.setupTable(tableView)        
     }
     
-}
-
-// MARK: - UITableViewDelegate, UITableViewDataSource
-extension HomeViewController: UITableViewDelegate {
-        
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let event = viewModel.item(at: indexPath)
-        switch event.type {
-        case .event:
-            guard let event = event as? SportNews else { fatalError() }
-            let vc = EventDetailViewController()
-            vc.modalPresentationStyle = .pageSheet
-            vc.modalTransitionStyle = .crossDissolve
-            vc.setInputData(event)
-            navigationController?.pushViewController(vc, animated: true)
-        case .match:
-            tableView.deselectRow(at: indexPath, animated: true)
-            return
-//            guard let event = event as? MatchResult else { fatalError() }
-//            let vc = MatchResultDetailViewController()
-//            vc.modalPresentationStyle = .pageSheet
-//            vc.modalTransitionStyle = .crossDissolve
-//            vc.setInputData(event)
-//            navigationController?.pushViewController(vc, animated: true)
-        default:
-            fatalError()
-        }
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-    }
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -238,7 +209,7 @@ extension HomeViewController {
         }
     }
     
-    func makeNewsTableRow(_ event: SportEvent) -> OldTableRow<SportEvent> {
+    func makeNewsTableRow(_ event: SportEvent) -> TableRow {
         guard let event = event as? SportNews else {
             fatalError()
         }
@@ -246,12 +217,19 @@ extension HomeViewController {
         cellModel.likeAction = { (state: Bool) in
             event.setLike(state)
         }
-        let configurator = NewsCellConfigurator(data: cellModel)
-        let row = OldTableRow(config: configurator, data: event as SportEvent)
+        let config = NewsViewConfigurator(data: cellModel)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config)
+        row.action = {
+            let vc = EventDetailViewController()
+            vc.modalPresentationStyle = .pageSheet
+            vc.modalTransitionStyle = .crossDissolve
+            vc.setInputData(event)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         return row
     }
     
-    func makeMatchResultTableRow(_ event: SportEvent) -> OldTableRow<SportEvent> {
+    func makeMatchResultTableRow(_ event: SportEvent) -> TableRow {
         guard let event = event as? MatchResult else {
             fatalError()
         }
@@ -259,8 +237,15 @@ extension HomeViewController {
         cellModel.likeAction = { (state: Bool) in
             event.setLike(state)
         }
-        let configurator = MatchResultCellConfigurator(data: cellModel)
-        let row = OldTableRow(config: configurator, data: event as SportEvent)
+        let config = MatchResultViewConfigurator(data: cellModel)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config)
+        row.action = {
+            let vc = MatchResultDetailViewController()
+            vc.modalPresentationStyle = .pageSheet
+            vc.modalTransitionStyle = .crossDissolve
+            vc.setInputData(event)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         return row
     }
     

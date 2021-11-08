@@ -1,23 +1,24 @@
 //
-//  MatchResultTableCellModel.swift
+//  MatchResultEditCellModel.swift
 //  IceHockey
 //
-//  Created by  Buxlan on 11/3/21.
+//  Created by  Buxlan on 11/7/21.
 //
 
 import UIKit
 
-protocol TableCellModel {
-}
-
-struct MatchResultTableCellModel: TableCellModel {
+struct MatchResultEditCellModel: TableCellModel {
+    
+    // MARK: - Properties
     
     var uid: String
     var title: String
     var homeTeam: String
     var awayTeam: String
-    var score: String
     var matchName: String
+    
+    var homeTeamScore: Int = 0
+    var awayTeamScore: Int = 0
     
     var stadium: String
     var date: String
@@ -35,8 +36,17 @@ struct MatchResultTableCellModel: TableCellModel {
     var type: String
     var likesCount: Int = 0
     
-    var likeAction: (Bool) -> Void = { _ in }
-    var shareAction = {}
+    // MARK: - Actions
+    
+    var setTitleAction: (String) -> Void = { _ in }
+    var setHomeTeamAction: (String) -> Void = { _ in }
+    var setAwayTeamAction: (String) -> Void = { _ in }
+    var setHomeTeamScoreAction: (Int) -> Void = { _ in }
+    var setAwayTeamScoreAction: (Int) -> Void = { _ in }
+    var setStadiumAction: (String) -> Void = { _ in }
+    var setDateAction: (Date) -> Void = { _ in }    
+    
+    // MARK: - Lifecircle
     
     init(data: MatchResult) {
         homeTeam = data.homeTeam
@@ -44,7 +54,9 @@ struct MatchResultTableCellModel: TableCellModel {
         stadium = data.stadium
         status = data.status
         
-        score = "\(data.homeTeamScore) : \(data.awayTeamScore)"
+        homeTeamScore = data.homeTeamScore
+        awayTeamScore = data.awayTeamScore
+        
         matchName = "\(data.homeTeam) vs \(data.awayTeam)"
         
         let dateFormatter = DateFormatter()

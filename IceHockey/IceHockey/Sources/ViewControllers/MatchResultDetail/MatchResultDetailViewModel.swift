@@ -1,5 +1,5 @@
 //
-//  MatchResultViewModel.swift
+//  MatchResultDetailViewModel.swift
 //  IceHockey
 //
 //  Created by  Buxlan on 11/4/21.
@@ -8,7 +8,7 @@
 import Firebase
 import FirebaseDatabaseUI
 
-class MatchResultViewModel: NSObject {
+class MatchResultDetailViewModel: NSObject {
     
     // MARK: - Properties
     
@@ -16,13 +16,12 @@ class MatchResultViewModel: NSObject {
     var inputData: InputDataType?
     var dataSource: [OldTableRow<InputDataType>] = []
     
-    // MARK: Lifecircle
-    
+    // MARK: Lifecircle    
         
     // MARK: - Hepler functions
 }
 
-extension MatchResultViewModel: UITableViewDataSource {
+extension MatchResultDetailViewModel: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         0

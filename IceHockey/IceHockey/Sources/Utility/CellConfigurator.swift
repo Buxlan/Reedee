@@ -112,12 +112,6 @@ struct CollectionViewCellConfigurator<CellType: ConfigurableCell,
     }
 }
 
-// MARK: - News cell configurator
-typealias NewsCellConfigurator = TableViewCellConfigurator<EventTableCell,
-                                                           NewsTableCellModel>
-
-typealias MatchResultCellConfigurator = TableViewCellConfigurator<MatchResultTableCell,
-                                                                  MatchResultTableCellModel>
 // MARK: - MatchResult cell configurator
 
 // MARK: - Event detail configurators

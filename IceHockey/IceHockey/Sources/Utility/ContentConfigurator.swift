@@ -40,3 +40,13 @@ where ContentType.DataType == DataType, ContentType: UIView {
 
 typealias SettingViewConfigurator = CollectionViewConfigurator<SettingTableCell,
                                                                SettingCellModel>
+
+typealias MatchResultEditViewConfigurator = CollectionViewConfigurator<MatchResultEditCell,
+                                                                       MatchResultEditCellModel>
+
+typealias MatchResultViewConfigurator = CollectionViewConfigurator<MatchResultTableCell,
+                                                                   MatchResultTableCellModel>
+
+// MARK: - News cell configurator
+typealias NewsViewConfigurator = CollectionViewConfigurator<EventTableCell,
+                                                            NewsTableCellModel>

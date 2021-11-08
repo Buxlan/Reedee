@@ -12,7 +12,7 @@ class MatchResultDetailViewController: UIViewController {
     // MARK: - Properties
     
     typealias InputDataType = MatchResult
-    private lazy var viewModel = MatchResultViewModel()
+    private lazy var viewModel = MatchResultDetailViewModel()
     
     private lazy var tableFooterView: EventDetailTableFooterView = {
         let frame = CGRect(x: 0, y: 0, width: 0, height: 150)

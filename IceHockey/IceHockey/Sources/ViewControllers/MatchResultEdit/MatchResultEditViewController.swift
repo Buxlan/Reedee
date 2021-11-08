@@ -1,16 +1,23 @@
 //
-//  SettingsViewController.swift
+//  MatchResultEditViewController.swift
 //  IceHockey
 //
-//  Created by  Buxlan on 11/5/21.
+//  Created by  Buxlan on 11/7/21.
 //
 
 import UIKit
 import FirebaseDatabase
 
-class SettingsViewController: UIViewController {
+class MatchResultEditViewController: UIViewController {
     
     // MARK: - Properties
+    typealias InputDataType = MatchResult
+    enum EditMode {
+        case new
+        case edit(InputDataType)
+    }
+    private var editingObject: InputDataType
+    
     var viewModel = TableViewBase()
     
     private lazy var tableView: UITableView = {
@@ -27,7 +34,8 @@ class SettingsViewController: UIViewController {
         view.tableHeaderView = tableHeaderView
         view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = false
-        view.register(SettingTableCell.self, forCellReuseIdentifier: SettingViewConfigurator.reuseIdentifier)
+        view.register(MatchResultEditCell.self, forCellReuseIdentifier: MatchResultEditViewConfigurator.reuseIdentifier)
+        view.register(MatchResultTableCell.self, forCellReuseIdentifier: MatchResultViewConfigurator.reuseIdentifier)
         return view
     }()
     
@@ -42,6 +50,20 @@ class SettingsViewController: UIViewController {
     }()
         
     // MARK: - Init
+    
+    init(editMode: EditMode) {
+        switch editMode {
+        case .new:
+            editingObject = InputDataType()
+        case .edit(let data):
+            editingObject = data
+        }
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         view.backgroundColor = Asset.accent1.color
@@ -92,7 +114,7 @@ class SettingsViewController: UIViewController {
     
 }
 
-extension SettingsViewController {
+extension MatchResultEditViewController {
     
     @objc private func addEventHandle() {
         let vc = EditEventViewController(editMode: .new)
@@ -104,48 +126,48 @@ extension SettingsViewController {
     func createDataSource() -> TableDataSource {
         var sections: [TableSection] = []
         var section = TableSection()
-        let signUpRow = makeSignUpTableRow(),
-            addEventRow = makeAddEventTableRow()
-        section.addRows([signUpRow, addEventRow])
+        let eventEditRow = makeEventEditTableRow()
+        section.addRows([eventEditRow])
         sections.append(section)
         
         let dataSource = TableDataSource(sections: sections)
         return dataSource
     }
     
-    func makeAddEventTableRow() -> TableRow {
-        let setting = Setting.addEvent
-        let cellModel = SettingCellModel(title: setting.description,
-                                         hasDisclosure: setting.hasDisclosure)
-        let config = SettingViewConfigurator(data: cellModel)
-        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
-        row.action = {
-            let alertController: UIAlertController = {
-                let controller = UIAlertController(title: "Add event", message: "Sorry, not implemented yet", preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .default)
-                controller.addAction(action)
-                return controller
-            }()
-            self.present(alertController, animated: true)
+    func makeEventEditTableRow() -> TableRow {
+        var cellModel = MatchResultEditCellModel(data: editingObject)
+        cellModel.setTitleAction = { (text: String) in
+            self.editingObject.title = text
         }
+        cellModel.setHomeTeamAction = { (text: String) in
+            self.editingObject.homeTeam = text
+        }
+        cellModel.setAwayTeamAction = { (text: String) in
+            self.editingObject.awayTeam = text
+        }
+        cellModel.setHomeTeamScoreAction = { (score: Int) in
+            self.editingObject.homeTeamScore = score
+        }
+        cellModel.setAwayTeamScoreAction = { (score: Int) in
+            self.editingObject.awayTeamScore = score
+        }
+        cellModel.setStadiumAction = { (text: String) in
+            self.editingObject.stadium = text
+        }
+        cellModel.setDateAction = { (date: Date) in
+            self.editingObject.date = date
+        }
+        let config = MatchResultEditViewConfigurator(data: cellModel)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier,
+                           config: config, height: UITableView.automaticDimension)
         return row
     }
     
-    func makeSignUpTableRow() -> TableRow {
-        let setting = Setting.signUp
-        let cellModel = SettingCellModel(title: setting.description,
-                                         hasDisclosure: setting.hasDisclosure)
-        let config = SettingViewConfigurator(data: cellModel)
-        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
-        row.action = {
-            let alertController: UIAlertController = {
-                let controller = UIAlertController(title: "Sign up", message: "Sorry, not implemented yet", preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .default)
-                controller.addAction(action)
-                return controller
-            }()
-            self.present(alertController, animated: true)
-        }
+    func makePreviewTableRow() -> TableRow {
+        let cellModel = MatchResultTableCellModel(data: editingObject)
+        let config = MatchResultViewConfigurator(data: cellModel)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier,
+                           config: config)
         return row
     }
     

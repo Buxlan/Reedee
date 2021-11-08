@@ -212,7 +212,7 @@ class EventTableCell: UITableViewCell {
     }
 }
 
-extension EventTableCell: ConfigurableCell {
+extension EventTableCell: ConfigurableCollectionContent {
     func configure(with data: DataType) {
         configureUI()
         
