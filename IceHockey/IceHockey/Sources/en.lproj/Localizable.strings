@@ -138,3 +138,4 @@
 "EditEventLabel.awayTeamPlaceholder" = "Away team";
 "EditEventLabel.scorePlaceholder" = "Score";
 "EditEventLabel.titlePlaceholder" = "Type text here";
+"EditEventLabel.matchNavigationBarTitle" = "Create match";

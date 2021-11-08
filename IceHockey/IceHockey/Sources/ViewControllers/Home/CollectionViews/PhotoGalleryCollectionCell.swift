@@ -178,8 +178,7 @@ class PhotoGalleryCollectionCell: UICollectionViewCell, ConfigurableCell {
         configureInterface()
 //        dataImageView.image = data.image
         dataLabel.text = data.title
-        viewsCountLabel.text = "\(data.viewsCount ?? 0)"
-        actionEventButton.setTitle(data.actionTitle ?? L10n.Events.defaultActionTitle, for: .normal)
+        actionEventButton.setTitle(L10n.Events.defaultActionTitle, for: .normal)
 //        setNeedsLayout()
     }
 }

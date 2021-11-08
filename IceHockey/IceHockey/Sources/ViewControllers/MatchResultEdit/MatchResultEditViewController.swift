@@ -35,7 +35,7 @@ class MatchResultEditViewController: UIViewController {
         view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = false
         view.register(MatchResultEditCell.self, forCellReuseIdentifier: MatchResultEditViewConfigurator.reuseIdentifier)
-        view.register(MatchResultTableCell.self, forCellReuseIdentifier: MatchResultViewConfigurator.reuseIdentifier)
+        view.register(MatchResultEditSaveCell.self, forCellReuseIdentifier: SaveViewConfigurator.reuseIdentifier)
         return view
     }()
     
@@ -48,6 +48,7 @@ class MatchResultEditViewController: UIViewController {
         let view = UIView()
         return view
     }()
+    private var keyboardManager = KeyboardAppearanceManager()
         
     // MARK: - Init
     
@@ -74,8 +75,14 @@ class MatchResultEditViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        keyboardManager.register(scrollView: tableView)
         configureBars()
         configureViewModel()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        keyboardManager.unregister()
+        super.viewWillDisappear(animated)
     }
     
     // MARK: - Hepler functions
@@ -100,7 +107,7 @@ class MatchResultEditViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        title = L10n.Settings.navigationBarTitle
+        title = L10n.EditEventLabel.matchNavigationBarTitle
         navigationController?.setToolbarHidden(true, animated: false)
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -126,8 +133,9 @@ extension MatchResultEditViewController {
     func createDataSource() -> TableDataSource {
         var sections: [TableSection] = []
         var section = TableSection()
-        let eventEditRow = makeEventEditTableRow()
-        section.addRows([eventEditRow])
+        let eventEditRow = makeEventEditTableRow(),
+            saveRow = makeSaveTableRow()
+        section.addRows([eventEditRow, saveRow])
         sections.append(section)
         
         let dataSource = TableDataSource(sections: sections)
@@ -161,11 +169,19 @@ extension MatchResultEditViewController {
         let row = TableRow(rowId: type(of: config).reuseIdentifier,
                            config: config, height: UITableView.automaticDimension)
         return row
-    }
+    }    
     
-    func makePreviewTableRow() -> TableRow {
-        let cellModel = MatchResultTableCellModel(data: editingObject)
-        let config = MatchResultViewConfigurator(data: cellModel)
+    func makeSaveTableRow() -> TableRow {
+        var cellModel = SaveCellModel()
+        cellModel.saveAction = {
+            do {
+                try self.editingObject.save()
+            } catch {
+                print("Save error: \(error)")
+            }
+            self.navigationController?.popViewController(animated: true)
+        }
+        let config = SaveViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier,
                            config: config)
         return row

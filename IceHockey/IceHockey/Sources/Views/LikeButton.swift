@@ -18,7 +18,7 @@ class LikeButton: UIButton {
         let selectedImage = Asset.heartFill.image
             .resizeImage(to: 32, aspectRatio: .current)
             .withRenderingMode(.alwaysTemplate)
-        self.tintColor = Asset.accent1.color
+        self.tintColor = Asset.accent0.color
         self.isSelected = true
         self.contentMode = .scaleAspectFit
         self.imageView?.contentMode = .scaleAspectFit

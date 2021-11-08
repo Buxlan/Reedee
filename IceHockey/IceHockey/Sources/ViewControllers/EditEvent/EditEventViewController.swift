@@ -101,6 +101,7 @@ class EditEventViewController: UIViewController {
                                                  with: view.tintColor)
         tabBarItem.image = image
         keyboardManager.unregister()
+        super.viewWillDisappear(animated)
     }
     
     // MARK: - Hepler functions

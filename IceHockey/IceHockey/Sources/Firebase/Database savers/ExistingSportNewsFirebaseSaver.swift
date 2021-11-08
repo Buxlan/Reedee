@@ -1,5 +1,5 @@
 //
-//  ExistingSportEventFirebaseSaver.swift
+//  ExistingSportNewsFirebaseSaver.swift
 //  IceHockey
 //
 //  Created by  Buxlan on 10/27/21.
@@ -7,10 +7,10 @@
 
 import Firebase
 
-struct ExistingSportEventFirebaseSaver: SportEventFirebaseSaver {
+struct ExistingSportNewsFirebaseSaver: SportEventFirebaseSaver {
     
     // MARK: - Properties
-    typealias DataType = SportNews
+    typealias DataType = SportEvent
     internal let object: DataType
     
     internal var eventsDatabaseReference: DatabaseReference {
@@ -57,6 +57,10 @@ struct ExistingSportEventFirebaseSaver: SportEventFirebaseSaver {
     // MARK: - Helper functions
     
     func save(completionHandler: @escaping () -> Void) throws {
+        
+        guard let object = self.object as? SportNews else {
+            throw SportEventSaveError.wrongInput
+        }
         
         var dataDict = object.prepareDataForSaving()
         dataDict["order"] = orderValue

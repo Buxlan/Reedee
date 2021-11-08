@@ -138,3 +138,4 @@
 "EditEventLabel.awayTeamPlaceholder" = "Гости";
 "EditEventLabel.scorePlaceholder" = "Счет";
 "EditEventLabel.titlePlaceholder" = "Текст для воодушевления";
+"EditEventLabel.matchNavigationBarTitle" = "Создать матч";

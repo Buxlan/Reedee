@@ -289,7 +289,7 @@ class MatchResultEditCell: UITableViewCell {
             titleTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             titleTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             titleTextView.bottomAnchor.constraint(lessThanOrEqualTo: likeButton.topAnchor, constant: -8),
-            titleTextView.heightAnchor.constraint(equalToConstant: 100),
+            titleTextView.heightAnchor.constraint(equalToConstant: 80),
             
             bottomBackgroundView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             bottomBackgroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

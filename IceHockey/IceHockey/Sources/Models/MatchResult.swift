@@ -37,6 +37,7 @@ struct MatchResult: SportEvent {
     var stadium: String
     var date: Date
     var title: String
+    var order: Int
     var status: String {
         return MatchStatus.finished.description
     }
@@ -48,7 +49,8 @@ struct MatchResult: SportEvent {
          homeTeamScore: Int = 0,
          awayTeamScore: Int = 0,
          date: Date = Date(),
-         stadium: String = "") {
+         stadium: String = "",
+         order: Int = 0) {
         self.uid = uid
         self.homeTeam = homeTeam
         self.awayTeam = awayTeam
@@ -58,6 +60,7 @@ struct MatchResult: SportEvent {
         self.stadium = ""
         self.type = .match
         self.title = title
+        self.order = order
     }
     
     init?(key: String, dict: [String: Any]) {
@@ -68,7 +71,8 @@ struct MatchResult: SportEvent {
               let awayTeamScore = dict["awayTeamScore"] as? Int,
               let rawType = dict["type"] as? Int,
               let type = SportEventType(rawValue: rawType),
-              let dateInterval = dict["date"] as? Int else { return nil }
+              let dateInterval = dict["date"] as? Int,
+              let order = dict["order"] as? Int else { return nil }
                 
         self.uid = key
         self.homeTeam = homeTeam
@@ -79,6 +83,53 @@ struct MatchResult: SportEvent {
         self.stadium = dict["stadium"] as? String ?? ""
         self.type = type
         self.title = title
+        self.order = order
+    }
+    
+}
+
+extension MatchResult {
+    
+    var isNew: Bool {
+        return self.uid.isEmpty
+    }
+    
+    func checkProperties() -> Bool {
+        return true
+    }
+    
+    func save() throws {
+        
+        if !checkProperties() {
+            print("Error. Properties are wrong")
+        }
+        
+        if isNew {
+            try ExistingMatchResultFirebaseSaver(object: self).save {
+                print("!!!existing ok!!!")
+            }
+        } else {
+            try NewMatchResultFirebaseSaver(object: self).save {
+                print("!!!new ok!!!")
+            }
+        }
+    }
+    
+    func prepareDataForSaving() -> [String: Any] {
+        let interval = self.date.timeIntervalSince1970
+        let dict: [String: Any] = [
+            "uid": self.uid,
+            "title": self.title,
+            "homeTeam": self.homeTeam,
+            "awayTeam": self.awayTeam,
+            "homeTeamScore": self.homeTeamScore,
+            "awayTeamScore": self.awayTeamScore,
+            "stadium": self.stadium,
+            "type": self.type.rawValue,
+            "date": Int(interval),
+            "order": Int(order)
+        ]
+        return dict
     }
     
 }

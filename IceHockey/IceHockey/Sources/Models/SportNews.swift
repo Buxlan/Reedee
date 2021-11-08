@@ -14,8 +14,6 @@ struct SportNews: SportEvent, Hashable {
     var title: String
     var text: String
     var boldText: String
-    var actionTitle: String?
-    var viewsCount: Int?
     var type: SportEventType
     var date: Date
     var imageIDs: [String] = []
@@ -26,15 +24,12 @@ struct SportNews: SportEvent, Hashable {
          text: String,
          boldText: String,
          imageIDs: [String],
-         actionTitle: String? = nil,
          date: Date,
-         type: SportEventType = .match,
+         type: SportEventType = .event,
          order: Int) {
         self.uid = uid
         self.title = title
         self.text = text
-        self.viewsCount = Int.random(in: 1...10000)
-        self.actionTitle = actionTitle
         self.date = date
         self.type = type
         self.boldText = boldText
@@ -46,9 +41,6 @@ struct SportNews: SportEvent, Hashable {
         self.uid = ""
         self.title = .empty
         self.text = .empty
-        self.actionTitle = nil
-        self.viewsCount = 123
-        self.viewsCount = Int.random(in: 1...10000)
         self.date = Date()
         self.type = .event
         self.boldText = ""
@@ -101,11 +93,11 @@ extension SportNews {
         }
         
         if isNew {
-            try ExistingSportEventFirebaseSaver(object: self).save {
+            try ExistingSportNewsFirebaseSaver(object: self).save {
                 print("!!!existing ok!!!")
             }
         } else {
-            try NewSportEventFirebaseSaver(object: self).save {
+            try NewSportNewsFirebaseSaver(object: self).save {
                 print("!!!new ok!!!")
             }
         }
@@ -118,8 +110,6 @@ extension SportNews {
             "title": self.title,
             "text": self.text,
             "boldText": self.boldText,
-            "actionTitle": self.actionTitle ?? "",
-            "viewsCount": self.viewsCount ?? 0,
             "type": self.type.rawValue,
             "date": Int(interval),
             "images": self.imageIDs,

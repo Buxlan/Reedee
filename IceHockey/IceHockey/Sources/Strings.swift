@@ -82,6 +82,8 @@ internal enum L10n {
     internal static let awayTeamPlaceholder = L10n.tr("Localizable", "EditEventLabel.awayTeamPlaceholder")
     /// Home team
     internal static let homeTeamPlaceholder = L10n.tr("Localizable", "EditEventLabel.homeTeamPlaceholder")
+    /// Create match
+    internal static let matchNavigationBarTitle = L10n.tr("Localizable", "EditEventLabel.matchNavigationBarTitle")
     /// Score
     internal static let scorePlaceholder = L10n.tr("Localizable", "EditEventLabel.scorePlaceholder")
     /// Type text here
