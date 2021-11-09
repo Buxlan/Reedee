@@ -6,13 +6,8 @@
 //
 
 import Firebase
-
-struct TrainingSchedule {
     
-    
-
-
-enum DayOfWeek: Int, CustomStringConvertible, RawRepresentable {
+enum DayOfWeek: String, CustomStringConvertible, Codable {
     case sunday
     case monday
     case tuesday
@@ -20,84 +15,122 @@ enum DayOfWeek: Int, CustomStringConvertible, RawRepresentable {
     case thursday
     case friday
     case saturday
+    case unknown
     
     var description: String {
         switch self {
-        case .planned:
-            return L10n.MatchStatus.plannedTitle
-        case .inProgress:
-            return L10n.MatchStatus.inProgressTitle
-        case .finished:
-            return L10n.MatchStatus.finishedTitle
+        case .sunday:
+            return L10n.Day.sunday
+        case .monday:
+            return L10n.Day.monday
+        case .tuesday:
+            return L10n.Day.tuesday
+        case .wednesday:
+            return L10n.Day.wednesday
+        case .thursday:
+            return L10n.Day.thursday
+        case .friday:
+            return L10n.Day.friday
+        case .saturday:
+            return L10n.Day.saturday
+        case .unknown:
+            return L10n.Day.unknown
+        }
+    }
+    
+    init(rawValue: String) {
+        switch rawValue {
+        case "sunday":
+            self = .sunday
+        case "monday":
+            self = .monday
+        case "tuesday":
+            self = .tuesday
+        case "wednesday":
+            self = .wednesday
+        case "thursday":
+            self = .thursday
+        case "friday":
+            self = .friday
+        case "saturday":
+            self = .saturday
+        default:
+            self = .unknown
         }
     }
 }
 
-struct TrainingSchedule: Codable, FirebaseObject {
+enum TrainingType: String, Codable, CustomStringConvertible {
+    case ice
+    case gym
+    case unknown
     
-    var uid: String
-    
-    var author: String
-    var type: SportEventType
-    var homeTeam: String
-    var awayTeam: String
-    var homeTeamScore: Int
-    var awayTeamScore: Int
-    
-    var stadium: String
-    var date: Date
-    var title: String
-    var order: Int
-    var status: String {
-        return MatchStatus.finished.description
+    var description: String {
+        switch self {
+        case .ice:
+            return L10n.TrainingType.ice
+        case .gym:
+            return L10n.TrainingType.gym
+        case .unknown:
+            return L10n.TrainingType.unknown
+        }
     }
     
+    init(rawValue: String) {
+        switch rawValue {
+        case "ice":
+            self = .ice
+        case "gym":
+            self = .gym
+        default:
+            self = .unknown
+        }
+    }
+}
+
+struct TrainingTime: Codable {
+    var type: TrainingType
+    var time: String
+}
+
+struct DailyTraining: Codable {
+    var day: DayOfWeek
+    var time: [TrainingTime]
+    
+    init?(day: String, data: Any) {
+        guard let dict = data as? [String: Any] else { return nil }
+        // key is training type, value is time
+        var exercises: [TrainingTime] = []
+        dict.forEach { (key, value) in
+            guard let value = value as? String else { return }
+            let time = TrainingTime(type: TrainingType(rawValue: key), time: value)
+            exercises.append(time)
+        }
+        self.day = DayOfWeek(rawValue: day)
+        self.time = exercises
+    }
+}
+
+struct TrainingSchedule: Codable {
+    
+    var uid: String
+    var trainings: [DailyTraining]
+    
     init(uid: String = "",
-         title: String = "",
-         homeTeam: String = "",
-         awayTeam: String = "",
-         homeTeamScore: Int = 0,
-         awayTeamScore: Int = 0,
-         date: Date = Date(),
-         stadium: String = "",
-         order: Int = 0,
-         author: String = "") {
+         trainings: [DailyTraining] = []) {
         self.uid = uid
-        self.homeTeam = homeTeam
-        self.awayTeam = awayTeam
-        self.homeTeamScore = homeTeamScore
-        self.awayTeamScore = awayTeamScore
-        self.date = date
-        self.stadium = ""
-        self.type = .match
-        self.title = title
-        self.order = order
-        self.author = author
+        self.trainings = trainings
     }
     
     init?(key: String, dict: [String: Any]) {
-        guard let title = dict["title"] as? String,
-              let author = dict["author"] as? String,
-              let homeTeam = dict["homeTeam"] as? String,
-              let awayTeam = dict["awayTeam"] as? String,
-              let homeTeamScore = dict["homeTeamScore"] as? Int,
-              let awayTeamScore = dict["awayTeamScore"] as? Int,
-              let rawType = dict["type"] as? Int,
-              let type = SportEventType(rawValue: rawType),
-              let dateInterval = dict["date"] as? Int,
-              let order = dict["order"] as? Int else { return nil }
-                
+        var trainings: [DailyTraining] = []
+        dict.forEach { (key, value) in
+            if let dailyTraining = DailyTraining(day: key, data: value) {
+                trainings.append(dailyTraining)
+            }
+        }
         self.uid = key
-        self.author = author
-        self.homeTeam = homeTeam
-        self.awayTeam = awayTeam
-        self.homeTeamScore = homeTeamScore
-        self.awayTeamScore = awayTeamScore
-        self.date = Date(timeIntervalSince1970: TimeInterval(dateInterval))
-        self.stadium = dict["stadium"] as? String ?? ""
-        self.type = type
-        self.title = title
-        self.order = order
+        self.trainings = trainings
     }
     
     init?(snapshot: DataSnapshot) {
@@ -110,13 +143,14 @@ struct TrainingSchedule: Codable, FirebaseObject {
     
 }
 
-extension MatchResult: FirebaseObject {
+extension TrainingSchedule: FirebaseObject {
     
     private static var databaseObjects: DatabaseReference {
         FirebaseManager.shared.databaseManager.root.child("events")
     }
     
-    static func getObject(by uid: String, completionHandler handler: @escaping (MatchResult?) -> Void) {
+    static func getObject(by uid: String,
+                          completionHandler handler: @escaping (Self?) -> Void) {
         Self.databaseObjects
             .child(uid)
             .getData { error, snapshot in
@@ -127,8 +161,8 @@ extension MatchResult: FirebaseObject {
                 if snapshot.value is NSNull {
                     fatalError("Current team is nil")
                 }
-                let team = Self(snapshot: snapshot)
-                handler(team)
+                let object = Self(snapshot: snapshot)
+                handler(object)
             }
     }
     
@@ -151,29 +185,18 @@ extension MatchResult: FirebaseObject {
         }
         
         if isNew {
-            try ExistingMatchResultFirebaseSaver(object: self).save()
+            try ExistingTrainingScheduleFirebaseSaver(object: self).save()
         } else {
-            try NewMatchResultFirebaseSaver(object: self).save()
+            try NewTrainingScheduleFirebaseSaver(object: self).save()
         }
     }
     
     func prepareDataForSaving() -> [String: Any] {
-        let interval = self.date.timeIntervalSince1970
         let dict: [String: Any] = [
             "uid": self.uid,
-            "author": self.author,
-            "title": self.title,
-            "homeTeam": self.homeTeam,
-            "awayTeam": self.awayTeam,
-            "homeTeamScore": self.homeTeamScore,
-            "awayTeamScore": self.awayTeamScore,
-            "stadium": self.stadium,
-            "type": self.type.rawValue,
-            "date": Int(interval),
-            "order": Int(order)
+            "trainings": self.trainings
         ]
         return dict
     }
     
 }
-

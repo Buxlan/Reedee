@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum SportEventType: Int {
+enum SportEventType: Int, Codable {
     case event
     case match
     case ad    

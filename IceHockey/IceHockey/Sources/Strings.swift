@@ -77,6 +77,25 @@ internal enum L10n {
     internal static let title = L10n.tr("Localizable", "Contacts.title")
   }
 
+  internal enum Day {
+    /// Friday
+    internal static let friday = L10n.tr("Localizable", "Day.friday")
+    /// Monday
+    internal static let monday = L10n.tr("Localizable", "Day.monday")
+    /// Saturday
+    internal static let saturday = L10n.tr("Localizable", "Day.saturday")
+    /// Sunday
+    internal static let sunday = L10n.tr("Localizable", "Day.sunday")
+    /// Thursday
+    internal static let thursday = L10n.tr("Localizable", "Day.thursday")
+    /// Tuesday
+    internal static let tuesday = L10n.tr("Localizable", "Day.tuesday")
+    /// Unknown
+    internal static let unknown = L10n.tr("Localizable", "Day.unknown")
+    /// Wednesday
+    internal static let wednesday = L10n.tr("Localizable", "Day.wednesday")
+  }
+
   internal enum EditEventLabel {
     /// Away team
     internal static let awayTeamPlaceholder = L10n.tr("Localizable", "EditEventLabel.awayTeamPlaceholder")
@@ -335,6 +354,15 @@ internal enum L10n {
     internal static let onTheMapTitle = L10n.tr("Localizable", "Team.onTheMapTitle")
     /// Phone: 
     internal static let phoneTitle = L10n.tr("Localizable", "Team.phoneTitle")
+  }
+
+  internal enum TrainingType {
+    /// Gym
+    internal static let gym = L10n.tr("Localizable", "TrainingType.gym")
+    /// Ice
+    internal static let ice = L10n.tr("Localizable", "TrainingType.ice")
+    /// Unknown
+    internal static let unknown = L10n.tr("Localizable", "TrainingType.unknown")
   }
 
   internal enum User {

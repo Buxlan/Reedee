@@ -149,3 +149,16 @@
 "EditEventLabel.selectEditTypeTitle" = "Что хотите сделать?";
 "EditEventLabel.editTypeTitle" = "Изменить";
 "EditEventLabel.deleteTypeTitle" = "Удалить";
+// Days
+"Day.sunday" = "Воскресенье";
+"Day.monday" = "Понедельник";
+"Day.tuesday" = "Вторник";
+"Day.wednesday" = "Среда";
+"Day.thursday" = "Четверг";
+"Day.friday" = "Пятница";
+"Day.saturday" = "Суббота";
+"Day.unknown" = "Неизв. день";
+// TrainingType
+"TrainingType.ice" = "Лёд";
+"TrainingType.gym" = "Зал";
+"TrainingType.unknown" = "Неизв. тип";

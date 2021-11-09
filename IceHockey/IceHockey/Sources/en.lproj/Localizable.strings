@@ -149,3 +149,16 @@
 "EditEventLabel.editTypeTitle" = "Edit";
 "EditEventLabel.deleteTypeTitle" = "Delete";
 "EditEventLabel.wantDelete" = "Realy want to delete?";
+// Days
+"Day.sunday" = "Sunday";
+"Day.monday" = "Monday";
+"Day.tuesday" = "Tuesday";
+"Day.wednesday" = "Wednesday";
+"Day.thursday" = "Thursday";
+"Day.friday" = "Friday";
+"Day.saturday" = "Saturday";
+"Day.unknown" = "Unknown";
+// TrainingType
+"TrainingType.ice" = "Ice";
+"TrainingType.gym" = "Gym";
+"TrainingType.unknown" = "Unknown";
