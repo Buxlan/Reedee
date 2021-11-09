@@ -10,7 +10,7 @@ import Firebase
 protocol ObjectFirebaseSaver {
     associatedtype DataType
     var object: DataType { get }
-    func save(completionHandler: @escaping () -> Void) throws
+    func save() throws
 }
 
 protocol SportEventFirebaseSaver: ObjectFirebaseSaver where DataType == SportEvent {
@@ -18,5 +18,9 @@ protocol SportEventFirebaseSaver: ObjectFirebaseSaver where DataType == SportEve
 }
 
 protocol SportTeamFirebaseSaver: ObjectFirebaseSaver where DataType == SportTeam {
+    
+}
+
+protocol SportUserFirebaseSaver: ObjectFirebaseSaver where DataType == SportUser {
     
 }

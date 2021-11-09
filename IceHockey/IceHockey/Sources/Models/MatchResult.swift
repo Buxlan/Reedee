@@ -28,6 +28,7 @@ struct MatchResult: SportEvent {
     
     var uid: String
     
+    var author: String
     var type: SportEventType
     var homeTeam: String
     var awayTeam: String
@@ -50,7 +51,8 @@ struct MatchResult: SportEvent {
          awayTeamScore: Int = 0,
          date: Date = Date(),
          stadium: String = "",
-         order: Int = 0) {
+         order: Int = 0,
+         author: String) {
         self.uid = uid
         self.homeTeam = homeTeam
         self.awayTeam = awayTeam
@@ -61,10 +63,12 @@ struct MatchResult: SportEvent {
         self.type = .match
         self.title = title
         self.order = order
+        self.author = author
     }
     
     init?(key: String, dict: [String: Any]) {
         guard let title = dict["title"] as? String,
+              let author = dict["author"] as? String,
               let homeTeam = dict["homeTeam"] as? String,
               let awayTeam = dict["awayTeam"] as? String,
               let homeTeamScore = dict["homeTeamScore"] as? Int,
@@ -75,6 +79,7 @@ struct MatchResult: SportEvent {
               let order = dict["order"] as? Int else { return nil }
                 
         self.uid = key
+        self.author = author
         self.homeTeam = homeTeam
         self.awayTeam = awayTeam
         self.homeTeamScore = homeTeamScore
@@ -102,7 +107,7 @@ extension MatchResult: FirebaseObject {
         FirebaseManager.shared.databaseManager.root.child("events")
     }
     
-    static func getObject(by uid: String, completion handler: @escaping (MatchResult?) -> Void) {
+    static func getObject(by uid: String, completionHandler handler: @escaping (MatchResult?) -> Void) {
         Self.databaseObjects
             .child(uid)
             .getData { error, snapshot in
@@ -137,13 +142,9 @@ extension MatchResult: FirebaseObject {
         }
         
         if isNew {
-            try ExistingMatchResultFirebaseSaver(object: self).save {
-                print("!!!existing ok!!!")
-            }
+            try ExistingMatchResultFirebaseSaver(object: self).save()
         } else {
-            try NewMatchResultFirebaseSaver(object: self).save {
-                print("!!!new ok!!!")
-            }
+            try NewMatchResultFirebaseSaver(object: self).save()
         }
     }
     
@@ -151,6 +152,7 @@ extension MatchResult: FirebaseObject {
         let interval = self.date.timeIntervalSince1970
         let dict: [String: Any] = [
             "uid": self.uid,
+            "author": self.author,
             "title": self.title,
             "homeTeam": self.homeTeam,
             "awayTeam": self.awayTeam,

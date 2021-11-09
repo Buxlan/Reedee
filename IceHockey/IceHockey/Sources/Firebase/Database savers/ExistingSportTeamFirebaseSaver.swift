@@ -70,7 +70,7 @@ struct ExistingSportTeamFirebaseSaver: SportTeamFirebaseSaver {
         }
     }
     
-    func save(completionHandler: @escaping () -> Void) throws {
+    func save() throws {
         
         let dataDict = object.prepareDataForSaving()
         
@@ -89,11 +89,9 @@ struct ExistingSportTeamFirebaseSaver: SportTeamFirebaseSaver {
         }
         objectsDatabaseReference.setValue(dataDict) { (error, ref) in
             if let error = error {
-                completionHandler()
                 print(error)
                 return
-            }
-            completionHandler()            
+            }         
         }
     }
 }

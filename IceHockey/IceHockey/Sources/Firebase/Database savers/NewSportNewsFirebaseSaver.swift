@@ -57,7 +57,7 @@ struct NewSportNewsFirebaseSaver: SportEventFirebaseSaver {
     
     // MARK: - Helper functions
     
-    func save(completionHandler: @escaping () -> Void) throws {
+    func save() throws {
         
         guard let object = self.object as? SportNews else {
             throw SportEventSaveError.wrongInput
@@ -69,11 +69,9 @@ struct NewSportNewsFirebaseSaver: SportEventFirebaseSaver {
         eventReference.setValue(dataDict) { (error, ref) in
             if let error = error {
                 print(error)
-                completionHandler()
                 return
             }
             guard let eventId = ref.key else {
-                completionHandler()
                 return
             }
             let imagesManager = ImagesManager.shared
@@ -88,7 +86,6 @@ struct NewSportNewsFirebaseSaver: SportEventFirebaseSaver {
                     imagesManager.appendUploadTask(task)
                 }
             }
-            completionHandler()
         }
     }
 }

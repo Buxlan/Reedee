@@ -11,6 +11,7 @@ enum FirebaseRemoveError: Error {
     case dataMismatch
     case storageError
     case databaseError
+    case notImplemented
 }
 
 protocol FirebaseObjectRemover {

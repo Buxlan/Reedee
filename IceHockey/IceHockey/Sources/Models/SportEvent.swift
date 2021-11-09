@@ -27,6 +27,7 @@ protocol SportEvent {
     var uid: String { get set }
     var type: SportEventType { get set }
     var date: Date { get set }
+    var author: String { get set }
     var isNew: Bool { get }
     var order: Int { get set }
     

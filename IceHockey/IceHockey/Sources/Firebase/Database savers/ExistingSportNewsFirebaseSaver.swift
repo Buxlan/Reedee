@@ -56,7 +56,7 @@ struct ExistingSportNewsFirebaseSaver: SportEventFirebaseSaver {
     
     // MARK: - Helper functions
     
-    func save(completionHandler: @escaping () -> Void) throws {
+    func save() throws {
         
         guard let object = self.object as? SportNews else {
             throw SportEventSaveError.wrongInput
@@ -68,7 +68,6 @@ struct ExistingSportNewsFirebaseSaver: SportEventFirebaseSaver {
         eventReference.child("images").getData { (error, snapshot) in
             if let error = error {
                 print(error)
-                completionHandler()
                 return
             }
             let oldImageIDs = snapshot.value as? [String] ?? []
@@ -82,7 +81,6 @@ struct ExistingSportNewsFirebaseSaver: SportEventFirebaseSaver {
                 let imageStorageRef = imagesStorageReference.child(object.uid).child(imageName)
                 imageStorageRef.delete { (error) in
                     if let error = error {
-                        completionHandler()
                         print("An error occupied while deleting an image: \(error)")
                     }
                 }
@@ -98,12 +96,10 @@ struct ExistingSportNewsFirebaseSaver: SportEventFirebaseSaver {
             
             eventReference.setValue(dataDict) { (error, ref) in
                 if let error = error {
-                    completionHandler()
                     print(error)
                     return
                 }
                 guard let eventId = ref.key else {
-                    completionHandler()
                     return
                 }
                 let imagesManager = ImagesManager.shared
@@ -119,7 +115,6 @@ struct ExistingSportNewsFirebaseSaver: SportEventFirebaseSaver {
                     }
                 }
             }
-            completionHandler()
         }
     }
 }

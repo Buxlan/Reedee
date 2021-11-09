@@ -16,7 +16,32 @@ class EventTableCell: UITableViewCell {
     
     var isInterfaceConfigured = false
     var imageAspectRate: CGFloat = 1.77
-    let imageHeight: CGFloat = 160
+    let imageHeight: CGFloat = 160.0
+    let userImageHeight: CGFloat = 50.0
+    
+    private lazy var userImageView: UIImageView = {
+        let cornerRadius: CGFloat = 25.0
+        let view = UIImageView()
+        view.accessibilityIdentifier = "userImageView"
+        view.backgroundColor = Asset.accent1.color
+        view.contentMode = .scaleToFill
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        view.layer.cornerRadius = cornerRadius
+        return view
+    }()
+    
+    private lazy var usernameLabel: UILabel = {
+        let view = UILabel()
+        view.accessibilityIdentifier = "usernameLabel"
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        view.numberOfLines = 1
+        view.textAlignment = .left
+        view.font = .regularFont16
+        view.text = "Milena"
+        return view
+    }()
     
     private lazy var dataImageView: UIImageView = {
         let cornerRadius: CGFloat = 32.0
@@ -155,6 +180,8 @@ class EventTableCell: UITableViewCell {
         if isInterfaceConfigured { return }
         contentView.backgroundColor = Asset.other3.color
         tintColor = Asset.other1.color
+        contentView.addSubview(userImageView)
+        contentView.addSubview(usernameLabel)
         contentView.addSubview(dataImageView)
         contentView.addSubview(dataLabel)
         contentView.addSubview(shadowView)
@@ -170,9 +197,19 @@ class EventTableCell: UITableViewCell {
     
     internal func configureConstraints() {
         let constraints: [NSLayoutConstraint] = [
+            userImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            userImageView.widthAnchor.constraint(equalToConstant: userImageHeight),
+            userImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
+            userImageView.heightAnchor.constraint(equalToConstant: userImageHeight),
+            
+            usernameLabel.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 8),
+            usernameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            usernameLabel.topAnchor.constraint(equalTo: userImageView.topAnchor),
+            usernameLabel.bottomAnchor.constraint(equalTo: userImageView.bottomAnchor),
+            
             dataImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             dataImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            dataImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            dataImageView.topAnchor.constraint(equalTo: userImageView.bottomAnchor, constant: 4),
             dataImageView.heightAnchor.constraint(equalTo: dataImageView.widthAnchor),
             
             dataLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -180,7 +217,7 @@ class EventTableCell: UITableViewCell {
             dataLabel.topAnchor.constraint(equalTo: dataImageView.bottomAnchor, constant: 8),
             
             typeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            typeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            typeLabel.topAnchor.constraint(equalTo: dataImageView.topAnchor, constant: 16),
             typeLabel.heightAnchor.constraint(equalToConstant: 24),
             
             dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

@@ -1,20 +1,20 @@
 //
-//  ExistingMatchResultFirebaseSaver.swift
+//  ExistingSportUserFirebaseSaver.swift
 //  IceHockey
 //
-//  Created by  Buxlan on 11/8/21.
+//  Created by  Buxlan on 11/9/21.
 //
 
 import Firebase
 
-struct ExistingMatchResultFirebaseSaver: SportEventFirebaseSaver {
+struct ExistingSportUserFirebaseSaver: SportUserFirebaseSaver {
     
     // MARK: - Properties
-    typealias DataType = SportEvent
+    typealias DataType = SportUser
     internal let object: DataType
     
     internal var eventsDatabaseReference: DatabaseReference {
-        FirebaseManager.shared.databaseManager.root.child("events")
+        FirebaseManager.shared.databaseManager.root.child("users")
     }
     
     internal var imagesDatabaseReference: DatabaseReference {
@@ -22,7 +22,7 @@ struct ExistingMatchResultFirebaseSaver: SportEventFirebaseSaver {
     }
     
     internal var imagesStorageReference: StorageReference {
-        let ref = FirebaseManager.shared.storageManager.root.child("events")
+        let ref = FirebaseManager.shared.storageManager.root.child("users")
         return ref
     }
     
@@ -36,18 +36,6 @@ struct ExistingMatchResultFirebaseSaver: SportEventFirebaseSaver {
         return ref
     }
     
-    private var orderValue: Int {
-        // for order purposes
-        var dateComponent = DateComponents()
-        dateComponent.calendar = Calendar.current
-        dateComponent.year = 2024
-        guard let templateDate = dateComponent.date else {
-            fatalError()
-        }
-        let order = Int(templateDate.timeIntervalSince(object.date))
-        return order
-    }
-    
     // MARK: - Lifecircle
     
     init(object: DataType) {
@@ -57,17 +45,27 @@ struct ExistingMatchResultFirebaseSaver: SportEventFirebaseSaver {
     // MARK: - Helper functions
     
     func save() throws {
-        guard let object = self.object as? MatchResult else {
-            throw SportEventSaveError.wrongInput
-        }
-        var dataDict = object.prepareDataForSaving()
-        dataDict["order"] = orderValue
+        let dataDict = object.prepareDataForSaving()
         
         eventReference.setValue(dataDict) { error, ref in
             if let error = error {
                 print("Saving error: \(error)")
                 return
+            }
+            
+            guard let objectId = ref.key else {
+                return
             }            
+            let imagesManager = ImagesManager.shared
+            let imageName = ImagesManager.getImageName(forKey: object.imageID)
+            let imageRef = imagesDatabaseReference.child(object.imageID)
+            imageRef.setValue(imageName)
+            let ref = imagesStorageReference.child(objectId).child(imageName)
+            if let image = ImagesManager.shared.getCachedImage(forName: imageName),
+               let data = image.pngData() {
+                let task = ref.putData(data)
+                imagesManager.appendUploadTask(task)
+            }
         }
     }
 }

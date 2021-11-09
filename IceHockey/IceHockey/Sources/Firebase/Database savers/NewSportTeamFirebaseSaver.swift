@@ -45,18 +45,16 @@ struct NewSportTeamFirebaseSaver: SportTeamFirebaseSaver {
     
     // MARK: - Helper functions
     
-    func save(completionHandler: @escaping () -> Void) throws {
+    func save() throws {
         
         let dataDict = object.prepareDataForSaving()
         
         eventReference.setValue(dataDict) { (error, ref) in
             if let error = error {
                 print(error)
-                completionHandler()
                 return
             }
             guard let objectId = ref.key else {
-                completionHandler()
                 return
             }
             let imagesManager = ImagesManager.shared
@@ -72,7 +70,6 @@ struct NewSportTeamFirebaseSaver: SportTeamFirebaseSaver {
                     imagesManager.appendUploadTask(task)
                 }
             }
-            completionHandler()
         }
     }
 }

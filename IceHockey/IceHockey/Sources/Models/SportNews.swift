@@ -11,6 +11,7 @@ import Firebase
 struct SportNews: SportEvent, Hashable {
     
     var uid: String
+    var author: String
     var title: String
     var text: String
     var boldText: String
@@ -20,6 +21,7 @@ struct SportNews: SportEvent, Hashable {
     var order: Int
     
     init(uid: String,
+         author: String,
          title: String,
          text: String,
          boldText: String,
@@ -28,6 +30,7 @@ struct SportNews: SportEvent, Hashable {
          type: SportEventType = .event,
          order: Int) {
         self.uid = uid
+        self.author = author
         self.title = title
         self.text = text
         self.date = date
@@ -46,10 +49,12 @@ struct SportNews: SportEvent, Hashable {
         self.boldText = ""
         self.imageIDs = []
         self.order = 0
+        self.author = Auth.auth().currentUser?.uid ?? ""
     }    
     
     init?(key: String, dict: [String: Any]) {
         guard let text = dict["text"] as? String,
+              let author = dict["author"] as? String,
               let boldText = dict["boldText"] as? String,
               let title = dict["title"] as? String,
               let rawType = dict["type"] as? Int,
@@ -58,6 +63,7 @@ struct SportNews: SportEvent, Hashable {
               let order = dict["order"] as? Int else { return nil }
                 
         self.uid = key
+        self.author = author
         self.text = text
         self.title = title
         self.date = Date(timeIntervalSince1970: TimeInterval(dateInterval))
@@ -98,7 +104,7 @@ extension SportNews: FirebaseObject {
         try FirebaseManager.shared.delete(self)
     }
     
-    static func getObject(by uid: String, completion handler: @escaping (Self?) -> Void) {
+    static func getObject(by uid: String, completionHandler handler: @escaping (Self?) -> Void) {
         Self.databaseObjects
             .child(uid)
             .getData { error, snapshot in
@@ -125,13 +131,9 @@ extension SportNews: FirebaseObject {
         }
         
         if isNew {
-            try ExistingSportNewsFirebaseSaver(object: self).save {
-                print("!!!existing ok!!!")
-            }
+            try ExistingSportNewsFirebaseSaver(object: self).save()
         } else {
-            try NewSportNewsFirebaseSaver(object: self).save {
-                print("!!!new ok!!!")
-            }
+            try NewSportNewsFirebaseSaver(object: self).save()
         }
     }
     
@@ -139,6 +141,7 @@ extension SportNews: FirebaseObject {
         let interval = self.date.timeIntervalSince1970
         let dict: [String: Any] = [
             "uid": self.uid,
+            "author": self.author,
             "title": self.title,
             "text": self.text,
             "boldText": self.boldText,

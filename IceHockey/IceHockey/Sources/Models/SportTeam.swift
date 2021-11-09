@@ -167,13 +167,9 @@ struct SportTeam: Codable, FirebaseObject {
         }
         
         if isNew {
-            try ExistingSportTeamFirebaseSaver(object: self).save {
-                print("!!!existing ok!!!")
-            }
+            try ExistingSportTeamFirebaseSaver(object: self).save()
         } else {
-            try NewSportTeamFirebaseSaver(object: self).save {
-                print("!!!new ok!!!")
-            }
+            try NewSportTeamFirebaseSaver(object: self).save()
         }
     }
     
@@ -181,7 +177,7 @@ struct SportTeam: Codable, FirebaseObject {
         try FirebaseManager.shared.delete(self)        
     }
     
-    static func getObject(by uid: String, completion handler: @escaping (Self?) -> Void) {
+    static func getObject(by uid: String, completionHandler handler: @escaping (Self?) -> Void) {
         Self.databaseObjects
             .child(uid)
             .getData { error, snapshot in
