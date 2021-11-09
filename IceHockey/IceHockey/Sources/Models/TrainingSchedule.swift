@@ -1,16 +1,25 @@
 //
-//  MatchResult.swift
+//  TrainingSchedule.swift
 //  IceHockey
 //
-//  Created by  Buxlan on 11/4/21.
+//  Created by  Buxlan on 11/10/21.
 //
 
 import Firebase
 
-enum MatchStatus: Int, CustomStringConvertible {
-    case planned
-    case inProgress
-    case finished
+struct TrainingSchedule {
+    
+    
+
+
+enum DayOfWeek: Int, CustomStringConvertible, RawRepresentable {
+    case sunday
+    case monday
+    case tuesday
+    case wednesday
+    case thursday
+    case friday
+    case saturday
     
     var description: String {
         switch self {
@@ -24,7 +33,7 @@ enum MatchStatus: Int, CustomStringConvertible {
     }
 }
 
-struct MatchResult: SportEvent {
+struct TrainingSchedule: Codable, FirebaseObject {
     
     var uid: String
     
@@ -167,3 +176,4 @@ extension MatchResult: FirebaseObject {
     }
     
 }
+

@@ -27,13 +27,15 @@ class ImagesManager {
 // MARK: Helper methods
 extension ImagesManager {
     
-    func getImage(withName imageName: String, eventUID: String, completion handler: @escaping (UIImage?) -> Void) {
+    func getImage(withName imageName: String,
+                  path: String,
+                  completion handler: @escaping (UIImage?) -> Void) {
         let nskey = imageName as NSString
         if let image = cache.object(forKey: nskey) {
             handler(image)
             return
         }
-        downloadImage(withName: imageName, eventUID: eventUID, completion: handler)
+        downloadImage(withName: imageName, path: path, completion: handler)
     }
     
     func getCachedImage(forName imageName: String) -> UIImage? {
@@ -51,8 +53,8 @@ extension ImagesManager {
         cache.removeObject(forKey: nskey)
     }
 
-    private func downloadImage(withName imageName: String, eventUID: String, completion handler: @escaping (UIImage?) -> Void) {
-        let ref = getImageStorageReference(imageName: imageName, eventUID: eventUID)
+    private func downloadImage(withName imageName: String, path: String, completion handler: @escaping (UIImage?) -> Void) {
+        let ref = getImageStorageReference(imageName: imageName, path: path)
         let maxSize: Int64 = 1 * 1024 * 1024
         ref.getData(maxSize: maxSize) { (data, error) in
             if let error = error {
@@ -70,10 +72,9 @@ extension ImagesManager {
         }
     }
     
-    private func getImageStorageReference(imageName: String, eventUID: String) -> StorageReference {
+    private func getImageStorageReference(imageName: String, path: String) -> StorageReference {
         let ref = FirebaseManager.shared.storageManager.root
-            .child("events")
-            .child(eventUID)
+            .child(path)
             .child(imageName)
         return ref
     }

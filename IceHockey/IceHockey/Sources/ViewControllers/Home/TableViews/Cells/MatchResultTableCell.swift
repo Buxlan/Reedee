@@ -12,8 +12,30 @@ class MatchResultTableCell: UITableViewCell {
     // MARK: - Properties
     typealias DataType = MatchResultTableCellModel
     var data: DataType?
+    let userImageHeight: CGFloat = 40.0
     
     var isInterfaceConfigured = false
+    
+    private lazy var userImageView: UIImageView = {
+        let cornerRadius: CGFloat = 20.0
+        let view = UIImageView()
+        view.accessibilityIdentifier = "userImageView"
+        view.contentMode = .scaleToFill
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        view.layer.cornerRadius = cornerRadius
+        return view
+    }()
+    
+    private lazy var usernameLabel: UILabel = {
+        let view = UILabel()
+        view.accessibilityIdentifier = "usernameLabel"
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.numberOfLines = 1
+        view.textAlignment = .left
+        view.font = .regularFont16
+        return view
+    }()
     
     private lazy var centerStackView: UIStackView = {
         let view = UIStackView()
@@ -32,7 +54,7 @@ class MatchResultTableCell: UITableViewCell {
         let view = InsetLabel(insets: insets)
         view.accessibilityIdentifier = "typeLabel"
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.setContentHuggingPriority(.defaultLow, for: .vertical)
+        view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         view.textAlignment = .center
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
@@ -43,7 +65,6 @@ class MatchResultTableCell: UITableViewCell {
     private lazy var dateLabel: UILabel = {
         let view = UILabel()
         view.accessibilityIdentifier = "dateLabel"
-        view.textColor = Asset.other0.color
         view.textAlignment = .center
         view.numberOfLines = 1
         view.font = .regularFont12
@@ -53,8 +74,6 @@ class MatchResultTableCell: UITableViewCell {
     private lazy var stadiumLabel: UILabel = {
         let view = UILabel()
         view.accessibilityIdentifier = "stadiumLabel"
-        view.textColor = Asset.other0.color
-        view.setContentHuggingPriority(.defaultLow, for: .vertical)
         view.textAlignment = .center
         view.numberOfLines = 2
         view.font = .regularFont12
@@ -64,8 +83,6 @@ class MatchResultTableCell: UITableViewCell {
     private lazy var statusLabel: UILabel = {
         let view = UILabel()
         view.accessibilityIdentifier = "dateLabel"
-        view.textColor = Asset.other0.color
-        view.setContentHuggingPriority(.defaultLow, for: .vertical)
         view.textAlignment = .center
         view.numberOfLines = 1
         view.font = .regularFont12
@@ -76,7 +93,6 @@ class MatchResultTableCell: UITableViewCell {
         let view = UILabel()
         view.accessibilityIdentifier = "homeTeamLabel"
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.setContentHuggingPriority(.defaultHigh, for: .vertical)
         view.numberOfLines = 3
         view.textAlignment = .center
         view.font = .regularFont16
@@ -87,7 +103,6 @@ class MatchResultTableCell: UITableViewCell {
         let view = UILabel()
         view.accessibilityIdentifier = "awayTeamLabel"
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.setContentHuggingPriority(.defaultHigh, for: .vertical)
         view.numberOfLines = 3
         view.textAlignment = .center
         view.font = .regularFont16
@@ -98,7 +113,6 @@ class MatchResultTableCell: UITableViewCell {
         let view = UILabel()
         view.accessibilityIdentifier = "homeTeamScoreLabel"
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.setContentHuggingPriority(.defaultHigh, for: .vertical)
         view.numberOfLines = 3
         view.textAlignment = .center
         view.font = .regularFont50
@@ -109,7 +123,6 @@ class MatchResultTableCell: UITableViewCell {
         let view = UILabel()
         view.accessibilityIdentifier = "awayTeamScoreLabel"
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.setContentHuggingPriority(.defaultHigh, for: .vertical)
         view.numberOfLines = 3
         view.textAlignment = .center
         view.font = .regularFont50
@@ -119,9 +132,7 @@ class MatchResultTableCell: UITableViewCell {
     private lazy var scoreLabel: UILabel = {
         let view = UILabel()
         view.accessibilityIdentifier = "scoreLabel"
-        view.textColor = Asset.other0.color
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.setContentHuggingPriority(.defaultLow, for: .vertical)
         view.textAlignment = .center
         view.numberOfLines = 1
         view.font = .regularFont50
@@ -134,30 +145,26 @@ class MatchResultTableCell: UITableViewCell {
         let view = InsetLabel(insets: insets)
         view.accessibilityIdentifier = "titleLabel"
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.setContentHuggingPriority(.defaultHigh, for: .vertical)
         view.numberOfLines = 5
         view.textAlignment = .left
         view.font = .regularFont14
-        view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        view.setContentHuggingPriority(.defaultLow, for: .horizontal)
         return view
     }()
     
-    private lazy var likeButton: UIButton = {
+    private lazy var likeButton: LikeButton = {
         let view = LikeButton()
         view.accessibilityIdentifier = "likeButton"
-        view.backgroundColor = contentView.backgroundColor
-        view.setTitle("0", for: .selected)
-        view.isUserInteractionEnabled = false
+        view.setTitle("0", for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.addTarget(self, action: #selector(handleLikeAction), for: .touchUpInside)
         return view
     }()
     
     private lazy var shareButton: ShareButton = {
         let view = ShareButton()
-        view.backgroundColor = contentView.backgroundColor
-        view.isUserInteractionEnabled = false
+        view.tintColor = Asset.other0.color
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.addTarget(self, action: #selector(handleShareAction), for: .touchUpInside)
         return view
     }()
     
@@ -174,11 +181,8 @@ class MatchResultTableCell: UITableViewCell {
         return view
     }()
     
-    private var keyboardAccessoryView: DoneKeyboardAccessoryView = {
-        let width = UIScreen.main.bounds.width
-        let frame = CGRect(x: 0, y: 0, width: width, height: 44)
-        let view = DoneKeyboardAccessoryView(frame: frame)
-        return view
+    private lazy var noImage: UIImage = {
+        Asset.noImage256.image.resizeImage(to: userImageHeight, aspectRatio: .current, with: .clear)
     }()
     
     // MARK: - Lifecircle
@@ -201,6 +205,8 @@ class MatchResultTableCell: UITableViewCell {
         if isInterfaceConfigured { return }
         contentView.backgroundColor = Asset.other3.color
         tintColor = Asset.other1.color
+        contentView.addSubview(userImageView)
+        contentView.addSubview(usernameLabel)
         contentView.addSubview(centerStackView)
         contentView.addSubview(scoreLabel)
         contentView.addSubview(homeTeamLabel)
@@ -213,7 +219,6 @@ class MatchResultTableCell: UITableViewCell {
         contentView.addSubview(likeButton)
         contentView.addSubview(shareButton)
         contentView.addSubview(typeLabel)
-        keyboardAccessoryView.doneButton.addTarget(self, action: #selector(handleDoneButton), for: .touchUpInside)
         
         configureConstraints()
         isInterfaceConfigured = true
@@ -222,23 +227,32 @@ class MatchResultTableCell: UITableViewCell {
     internal func configureConstraints() {
         let constraints: [NSLayoutConstraint] = [
             
-            typeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            typeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            typeLabel.heightAnchor.constraint(equalToConstant: 24),
-            typeLabel.widthAnchor.constraint(equalToConstant: 100),
+            userImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            userImageView.widthAnchor.constraint(equalToConstant: userImageHeight),
+            userImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            userImageView.heightAnchor.constraint(equalToConstant: userImageHeight),
             
-            homeTeamLabel.topAnchor.constraint(equalTo: typeLabel.bottomAnchor, constant: 0),
+            usernameLabel.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 8),
+            usernameLabel.trailingAnchor.constraint(equalTo: typeLabel.leadingAnchor, constant: -8),
+            usernameLabel.topAnchor.constraint(equalTo: userImageView.topAnchor),
+            usernameLabel.bottomAnchor.constraint(equalTo: userImageView.bottomAnchor),
+            
+            typeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            typeLabel.topAnchor.constraint(equalTo: userImageView.topAnchor, constant: 4),
+            typeLabel.heightAnchor.constraint(equalTo: userImageView.heightAnchor, constant: -8),
+            
+            homeTeamLabel.topAnchor.constraint(equalTo: userImageView.bottomAnchor, constant: 4),
             homeTeamLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             homeTeamLabel.trailingAnchor.constraint(equalTo: centerStackView.leadingAnchor),
             homeTeamLabel.bottomAnchor.constraint(equalTo: homeTeamScoreLabel.topAnchor),
                     
-            awayTeamLabel.topAnchor.constraint(equalTo: typeLabel.bottomAnchor, constant: 0),
+            awayTeamLabel.topAnchor.constraint(equalTo: homeTeamLabel.topAnchor),
             awayTeamLabel.leadingAnchor.constraint(equalTo: centerStackView.trailingAnchor),
             awayTeamLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            awayTeamLabel.heightAnchor.constraint(equalTo: centerStackView.heightAnchor),
+            awayTeamLabel.bottomAnchor.constraint(equalTo: homeTeamScoreLabel.topAnchor),
                        
             centerStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            centerStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            centerStackView.topAnchor.constraint(equalTo: userImageView.bottomAnchor),
             centerStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.25),
             centerStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.25, constant: -16),
             
@@ -261,16 +275,15 @@ class MatchResultTableCell: UITableViewCell {
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: likeButton.topAnchor, constant: -8),
-            titleLabel.heightAnchor.constraint(equalToConstant: 80),
+            titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 40),
             
             bottomBackgroundView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            bottomBackgroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            bottomBackgroundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            bottomBackgroundView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             bottomBackgroundView.topAnchor.constraint(equalTo: likeButton.topAnchor),
             bottomBackgroundView.bottomAnchor.constraint(equalTo: likeButton.bottomAnchor),
             
             likeButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            likeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            likeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32),
             likeButton.heightAnchor.constraint(equalToConstant: 44),
             
             shareButton.topAnchor.constraint(equalTo: likeButton.topAnchor),
@@ -310,6 +323,10 @@ extension MatchResultTableCell: ConfigurableCollectionContent {
         typeLabel.text = data.type
         titleLabel.text = data.title
         
+        usernameLabel.backgroundColor = data.backgroundColor
+        userImageView.backgroundColor = data.backgroundColor
+        usernameLabel.textColor = data.textColor
+        
         contentView.backgroundColor = data.backgroundColor
         titleLabel.textColor = data.textColor
         
@@ -325,11 +342,41 @@ extension MatchResultTableCell: ConfigurableCollectionContent {
         typeLabel.textColor = data.typeTextColor
         typeLabel.text = data.type
         
+        likeButton.titleLabel?.textColor = data.textColor
         likeButton.backgroundColor = data.backgroundColor
         shareButton.backgroundColor = data.backgroundColor
         bottomBackgroundView.backgroundColor = data.backgroundColor
         
         setInputViewBackgroundColor()
+        
+        if !data.author.isEmpty {
+            SportUser.getObject(by: data.author) { (user) in
+                guard let user = user else {
+                    return
+                }
+                self.usernameLabel.text = user.displayName
+                let imageName = ImagesManager.getImageName(forKey: user.imageID)
+                let path = "users"
+                ImagesManager.shared.getImage(withName: imageName, path: path) { [weak self] (image) in
+                    guard let self = self else { return }
+                    if let image = image {
+                        self.userImageView.image = image
+                    } else {
+                        self.userImageView.image = self.noImage
+                    }
+                }
+            }            
+        }
+        
+        FirebaseManager.shared.databaseManager.getEventLikeInfo(eventID: data.uid) { (count, userLikes) in
+            DispatchQueue.main.async {
+                self.likeButton.isSelected = userLikes
+                self.data?.likesCount = count
+                let model = LikeButtonModelImpl(textColor: data.textColor,
+                                                count: count)
+                self.likeButton.configure(with: model)
+            }
+        }
         
     }
     
@@ -360,13 +407,24 @@ extension MatchResultTableCell {
         return true
     }
     
-    @objc private func handleDoneButton() {
-        contentView.subviews.forEach { (view) in
-            if view.isFirstResponder {
-                view.resignFirstResponder()
-                return
-            }
-        }
+    @objc private func handleLikeAction() {
+        guard let data = self.data else { return }
+        likeButton.isSelected.toggle()
+        data.likeAction(likeButton.isSelected)
+        let count = data.likesCount + (likeButton.isSelected ? 1 : -1)
+        self.data?.likesCount = count
+        let model = LikeButtonModelImpl(textColor: data.textColor,
+                                        count: count)
+        likeButton.configure(with: model)
+    }
+    
+    @objc private func handleShareAction() {
+        self.shareButton.isSelected.toggle()
+        data?.shareAction()
+    }
+    
+    private func getLikeButtonTintColor(isSelected: Bool) -> UIColor {
+        return isSelected ? Asset.accent0.color : Asset.other0.color
     }
     
 }

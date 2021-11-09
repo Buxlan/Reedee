@@ -41,7 +41,7 @@ extension SportEventType {
         case .ad:
             return "ad"
         case .event:
-            return EventTableCell.reuseIdentifier
+            return NewsTableCell.reuseIdentifier
         case .other:
             return "other"
         case .photo:

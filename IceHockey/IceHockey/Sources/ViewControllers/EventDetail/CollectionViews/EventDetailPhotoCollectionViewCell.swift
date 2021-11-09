@@ -113,7 +113,8 @@ class EventDetailPhotoCollectionViewCell: UICollectionViewCell, ConfigurableCell
     func configure(with data: DataType) {
         configureInterface()
         if dataImageView.image == nil {
-            ImagesManager.shared.getImage(withName: data.name, eventUID: data.eventUID) { (image) in
+            let path = "events/\(data.eventUID)"
+            ImagesManager.shared.getImage(withName: data.name, path: path) { (image) in
                 self.dataImageView.image = image
             }
         }

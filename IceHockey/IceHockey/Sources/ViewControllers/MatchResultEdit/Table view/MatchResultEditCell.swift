@@ -12,6 +12,7 @@ class MatchResultEditCell: UITableViewCell {
     // MARK: - Properties
     typealias DataType = MatchResultEditCellModel
     var data: DataType?
+    let userImageHeight: CGFloat = 40.0
     
     var isInterfaceConfigured = false
     var heightAspectRate: CGFloat = 0.7
@@ -22,6 +23,29 @@ class MatchResultEditCell: UITableViewCell {
     }()
     private lazy var noImage: UIImage = {
         Asset.noImage256.image.resizeImage(to: avatarHeight, aspectRatio: .current, with: .clear)
+    }()
+    
+    private lazy var userImageView: UIImageView = {
+        let cornerRadius: CGFloat = 20.0
+        let view = UIImageView()
+        view.accessibilityIdentifier = "userImageView"
+        view.contentMode = .scaleToFill
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        view.layer.cornerRadius = cornerRadius
+        view.image = noImage
+        return view
+    }()
+    
+    private lazy var usernameLabel: UILabel = {
+        let view = UILabel()
+        view.accessibilityIdentifier = "usernameLabel"
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.numberOfLines = 1
+        view.textAlignment = .left
+        view.font = .regularFont16
+        view.text = "Author"
+        return view
     }()
     
     private lazy var centerStackView: UIStackView = {
@@ -86,7 +110,6 @@ class MatchResultEditCell: UITableViewCell {
         view.textAlignment = .center
         view.translatesAutoresizingMaskIntoConstraints = false
         view.font = .boldFont16
-        view.autocorrectionType = .no
         view.keyboardAppearance = .dark
         view.keyboardType = .default
         view.isScrollEnabled = false
@@ -102,7 +125,6 @@ class MatchResultEditCell: UITableViewCell {
         view.textAlignment = .center
         view.translatesAutoresizingMaskIntoConstraints = false
         view.font = .boldFont16
-        view.autocorrectionType = .no
         view.keyboardAppearance = .dark
         view.keyboardType = .default
         view.isScrollEnabled = false
@@ -122,7 +144,6 @@ class MatchResultEditCell: UITableViewCell {
         view.keyboardAppearance = .dark
         view.keyboardType = .numberPad
         view.font = .regularFont50
-        view.autocorrectionType = .no
         view.delegate = self
         view.placeholder = "0"
         return view
@@ -135,7 +156,6 @@ class MatchResultEditCell: UITableViewCell {
         view.textAlignment = .center
         view.translatesAutoresizingMaskIntoConstraints = false
         view.font = .regularFont50
-        view.autocorrectionType = .no
         view.delegate = self
         view.keyboardAppearance = .dark
         view.keyboardType = .numberPad
@@ -161,7 +181,6 @@ class MatchResultEditCell: UITableViewCell {
         view.textAlignment = .left
         view.translatesAutoresizingMaskIntoConstraints = false
         view.font = .regularFont14
-        view.autocorrectionType = .no
         view.keyboardAppearance = .dark
         view.keyboardType = .default
         view.delegate = self
@@ -229,6 +248,8 @@ class MatchResultEditCell: UITableViewCell {
         if isInterfaceConfigured { return }
         contentView.backgroundColor = Asset.other3.color
         tintColor = Asset.other1.color
+        contentView.addSubview(userImageView)
+        contentView.addSubview(usernameLabel)
         contentView.addSubview(centerStackView)
         contentView.addSubview(scoreLabel)
         contentView.addSubview(homeTeamTextView)
@@ -250,23 +271,32 @@ class MatchResultEditCell: UITableViewCell {
     internal func configureConstraints() {
         let constraints: [NSLayoutConstraint] = [
             
-            typeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            typeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            typeLabel.heightAnchor.constraint(equalToConstant: 24),
-            typeLabel.widthAnchor.constraint(equalToConstant: 100),
+            userImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            userImageView.widthAnchor.constraint(equalToConstant: userImageHeight),
+            userImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            userImageView.heightAnchor.constraint(equalToConstant: userImageHeight),
             
-            homeTeamTextView.topAnchor.constraint(equalTo: typeLabel.bottomAnchor, constant: 0),
+            usernameLabel.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 8),
+            usernameLabel.trailingAnchor.constraint(equalTo: typeLabel.leadingAnchor, constant: -8),
+            usernameLabel.topAnchor.constraint(equalTo: userImageView.topAnchor),
+            usernameLabel.bottomAnchor.constraint(equalTo: userImageView.bottomAnchor),
+            
+            typeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            typeLabel.topAnchor.constraint(equalTo: userImageView.topAnchor, constant: 4),
+            typeLabel.heightAnchor.constraint(equalTo: userImageView.heightAnchor, constant: -8),
+            
+            homeTeamTextView.topAnchor.constraint(equalTo: userImageView.bottomAnchor, constant: 4),
             homeTeamTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             homeTeamTextView.trailingAnchor.constraint(equalTo: centerStackView.leadingAnchor),
             homeTeamTextView.bottomAnchor.constraint(equalTo: homeTeamScoreTextField.topAnchor),
                     
-            awayTeamTextView.topAnchor.constraint(equalTo: typeLabel.bottomAnchor, constant: 0),
+            awayTeamTextView.topAnchor.constraint(equalTo: homeTeamTextView.topAnchor),
             awayTeamTextView.leadingAnchor.constraint(equalTo: centerStackView.trailingAnchor),
             awayTeamTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            awayTeamTextView.heightAnchor.constraint(equalTo: centerStackView.heightAnchor),
+            awayTeamTextView.bottomAnchor.constraint(equalTo: homeTeamScoreTextField.topAnchor),
                        
             centerStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            centerStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            centerStackView.topAnchor.constraint(equalTo: userImageView.bottomAnchor),
             centerStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.25),
             centerStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.25, constant: -16),
             
@@ -289,16 +319,15 @@ class MatchResultEditCell: UITableViewCell {
             titleTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             titleTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             titleTextView.bottomAnchor.constraint(lessThanOrEqualTo: likeButton.topAnchor, constant: -8),
-            titleTextView.heightAnchor.constraint(equalToConstant: 80),
+            titleTextView.heightAnchor.constraint(greaterThanOrEqualToConstant: 40),
             
             bottomBackgroundView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            bottomBackgroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            bottomBackgroundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            bottomBackgroundView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             bottomBackgroundView.topAnchor.constraint(equalTo: likeButton.topAnchor),
             bottomBackgroundView.bottomAnchor.constraint(equalTo: likeButton.bottomAnchor),
             
             likeButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            likeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            likeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32),
             likeButton.heightAnchor.constraint(equalToConstant: 44),
             
             shareButton.topAnchor.constraint(equalTo: likeButton.topAnchor),
@@ -337,6 +366,10 @@ extension MatchResultEditCell: ConfigurableCollectionContent {
         
         typeLabel.text = data.type
         titleTextView.text = data.title
+        
+        usernameLabel.backgroundColor = data.backgroundColor
+        userImageView.backgroundColor = data.backgroundColor
+        usernameLabel.textColor = data.textColor
         
         contentView.backgroundColor = data.backgroundColor
         titleTextView.textColor = data.textColor

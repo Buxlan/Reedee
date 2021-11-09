@@ -13,6 +13,7 @@ protocol TableCellModel {
 struct MatchResultTableCellModel: TableCellModel {
     
     var uid: String
+    var author: String
     var title: String
     var homeTeam: String
     var awayTeam: String
@@ -41,6 +42,7 @@ struct MatchResultTableCellModel: TableCellModel {
         awayTeam = data.awayTeam
         stadium = data.stadium
         status = data.status
+        author = data.author
         
         homeTeamScore = data.homeTeamScore
         awayTeamScore = data.awayTeamScore

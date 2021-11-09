@@ -1,5 +1,5 @@
 //
-//  GrowingTextView.swift.swift
+//  TextViewWithPlaceholder.swift.swift
 //  IceHockey
 //
 //  Created by  Buxlan on 11/8/21.

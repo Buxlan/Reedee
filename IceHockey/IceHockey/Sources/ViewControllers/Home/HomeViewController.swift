@@ -74,7 +74,7 @@ class HomeViewController: UIViewController {
         view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = false
         view.refreshControl = refreshControl
-        view.register(EventTableCell.self, forCellReuseIdentifier: NewsViewConfigurator.reuseIdentifier)
+        view.register(NewsTableCell.self, forCellReuseIdentifier: NewsViewConfigurator.reuseIdentifier)
         view.register(MatchResultTableCell.self, forCellReuseIdentifier: MatchResultViewConfigurator.reuseIdentifier)
         ActionCellConfigurator.registerCell(tableView: view)
         return view
@@ -129,9 +129,9 @@ class HomeViewController: UIViewController {
             tableView.centerYAnchor.constraint(equalTo: view.layoutMarginsGuide.centerYAnchor),
             tableView.widthAnchor.constraint(equalTo: view.widthAnchor),
             tableView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor),
-            appendEventButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            appendEventButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             appendEventButton.widthAnchor.constraint(equalToConstant: 44),
-            appendEventButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -50),
+            appendEventButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -32),
             appendEventButton.heightAnchor.constraint(equalToConstant: 44)
         ]
         NSLayoutConstraint.activate(constraints)

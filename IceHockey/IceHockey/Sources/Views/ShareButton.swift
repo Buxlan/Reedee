@@ -15,13 +15,13 @@ class ShareButton: UIButton {
         let image = Asset.share.image
             .resizeImage(to: 32, aspectRatio: .current)
             .withRenderingMode(.alwaysTemplate)
-        self.tintColor = Asset.other0.color
         self.contentMode = .scaleAspectFit
         self.imageView?.contentMode = .scaleAspectFit
         self.setImage(image, for: .normal)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         self.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        self.contentEdgeInsets = .init(top: 8, left: 0, bottom: 8, right: 0)
     }
     
     required init?(coder: NSCoder) {

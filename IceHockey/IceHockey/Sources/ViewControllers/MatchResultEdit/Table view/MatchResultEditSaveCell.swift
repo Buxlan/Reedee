@@ -78,6 +78,8 @@ extension MatchResultEditSaveCell: ConfigurableCollectionContent {
     func configure(with data: DataType) {
         configureUI()
         self.data = data
+        saveButton.backgroundColor = Asset.accent0.color
+        saveButton.setTitleColor(Asset.other3.color, for: .normal)
     }
     
 }
