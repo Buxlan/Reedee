@@ -59,26 +59,52 @@ class EventDetailViewController: UIViewController {
         
         return view
     }()
+    
+    private lazy var alert: UIAlertController = {
+        let controller = UIAlertController(title: L10n.Other.selectAction,
+                                           message: nil,
+                                           preferredStyle: .actionSheet)
+        let editAction = UIAlertAction(title: L10n.Other.edit, style: .destructive) { _ in
+            guard let dataSource = self.viewModel.dataSource else {
+                return
+            }
+            let vc = EditEventViewController(editMode: .edit(dataSource))
+            vc.modalPresentationStyle = .pageSheet
+            vc.modalTransitionStyle = .crossDissolve
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        let reportAction = UIAlertAction(title: L10n.Other.report, style: .destructive) { _ in
+            // report
+        }
+        let cancelAction = UIAlertAction(title: L10n.Other.cancel, style: .cancel) { _ in
+        }
+        controller.addAction(editAction)
+        controller.addAction(reportAction)
+        controller.addAction(cancelAction)
+        
+        return controller
+    }()
+    
+    private lazy var menuImage: UIImage = {
+        let imageHeight: CGFloat = 32.0
+        return Asset.menu.image.resizeImage(to: imageHeight, aspectRatio: .current)
+        
+    }()
             
     // MARK: - Init
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
     init() {
         super.init(nibName: nil, bundle: nil)
         configureTabBarItem()
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        configureTabBarItem()
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         configureRecognizers()
-//        setupActionHandlers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,6 +123,7 @@ class EventDetailViewController: UIViewController {
     // MARK: - Hepler functions
     
     private func configureUI() {
+        view.backgroundColor = Asset.accent1.color
         view.addSubview(tableView)
         configureConstraints()
     }
@@ -115,9 +142,8 @@ class EventDetailViewController: UIViewController {
     }
     
     private func configureBars() {
-        let itemReport = UIBarButtonItem(title: "Report", style: .plain, target: self, action: #selector(reportHandle))
-        let itemEdit = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editHandle))
-        navigationItem.rightBarButtonItems = [itemReport, itemEdit]
+        let menuItem = UIBarButtonItem(image: menuImage, style: .plain, target: self, action: #selector(handleMenu))
+        navigationItem.rightBarButtonItem = menuItem
     }
     
     private func configureViewModel() {        
@@ -163,18 +189,8 @@ extension EventDetailViewController: CellUpdatable {
 
 extension EventDetailViewController {
     
-    @objc func reportHandle() {
-        
-    }
-    
-    @objc func editHandle() {
-        guard let dataSource = viewModel.dataSource else {
-            return
-        }
-        let vc = EditEventViewController(editMode: .edit(dataSource))
-        vc.modalPresentationStyle = .pageSheet
-        vc.modalTransitionStyle = .crossDissolve
-        navigationController?.pushViewController(vc, animated: true)
+    @objc private func handleMenu() {
+        present(alert, animated: true)
     }
     
 }

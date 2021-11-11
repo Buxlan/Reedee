@@ -19,7 +19,7 @@ class EventDetailBoldViewCell: UITableViewCell {
         view.lineBreakMode = .byWordWrapping
         view.textAlignment = .center
         view.isUserInteractionEnabled = true
-        view.font = .boldFont16
+        view.font = .boldFont14
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

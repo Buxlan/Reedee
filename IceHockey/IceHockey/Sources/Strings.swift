@@ -242,6 +242,8 @@ internal enum L10n {
   }
 
   internal enum Other {
+    /// Report a bug
+    internal static let bugReport = L10n.tr("Localizable", "Other.bugReport")
     /// Cancel
     internal static let cancel = L10n.tr("Localizable", "Other.cancel")
     /// Delete
@@ -252,6 +254,8 @@ internal enum L10n {
     internal static let edit = L10n.tr("Localizable", "Other.edit")
     /// Report
     internal static let report = L10n.tr("Localizable", "Other.report")
+    /// Select action
+    internal static let selectAction = L10n.tr("Localizable", "Other.selectAction")
   }
 
   internal enum PlacesList {

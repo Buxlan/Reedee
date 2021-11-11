@@ -26,18 +26,11 @@ class TrainingScheduleViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = true
-        
-//        view.insetsContentViewsToSafeArea = false
-//        view.insetsLayoutMarginsFromSafeArea = false
-//        view.layoutMargins = .zero
-//        view.contentInset = .zero
-        view.sectionFooterHeight = 0.0
-        view.sectionHeaderHeight = 60.0
-        view.estimatedSectionHeaderHeight = 60.0
-        view.estimatedSectionFooterHeight = 60.0
-        
         view.register(TrainingCell.self, forCellReuseIdentifier: TrainingViewConfigurator.reuseIdentifier)
         view.register(SquadHeaderView.self, forHeaderFooterViewReuseIdentifier: SquadViewConfigurator.reuseIdentifier)
+        if #available(iOS 15.0, *) {
+            view.sectionHeaderTopPadding = 0
+        }
         return view
     }()
     
@@ -47,11 +40,35 @@ class TrainingScheduleViewController: UIViewController {
         view.configure(with: SportTeam.current)
         return view
     }()
+    
+    private lazy var alert: UIAlertController = {
+        let controller = UIAlertController(title: L10n.Other.selectAction,
+                                           message: nil,
+                                           preferredStyle: .actionSheet)
+        let editAction = UIAlertAction(title: L10n.Other.edit, style: .destructive) { _ in
+            // edit
+        }
+        let reportAction = UIAlertAction(title: L10n.Other.bugReport, style: .destructive) { _ in
+            // bug report
+        }
+        let cancelAction = UIAlertAction(title: L10n.Other.cancel, style: .cancel) { _ in
+        }
+        controller.addAction(editAction)
+        controller.addAction(reportAction)
+        controller.addAction(cancelAction)
         
-    // MARK: - Init
+        return controller
+    }()
+    
+    private lazy var menuImage: UIImage = {
+        let imageHeight: CGFloat = 32.0
+        return Asset.menu.image.resizeImage(to: imageHeight, aspectRatio: .current)
+        
+    }()
+        
+    // MARK: - Lifecircle
     
     override func viewDidLoad() {
-        view.backgroundColor = Asset.accent1.color
         super.viewDidLoad()
         configureUI()
         configureConstraints()
@@ -66,6 +83,7 @@ class TrainingScheduleViewController: UIViewController {
     // MARK: - Hepler functions
     
     private func configureUI() {
+        view.backgroundColor = Asset.accent1.color
         view.addSubview(tableView)
     }
     
@@ -90,9 +108,8 @@ class TrainingScheduleViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationBar.prefersLargeTitles = false
         
-        let itemReport = UIBarButtonItem(title: L10n.Other.report, style: .plain, target: self, action: #selector(handleReport))
-        let itemEdit = UIBarButtonItem(title: L10n.Other.edit, style: .plain, target: self, action: #selector(handleEdit))
-        navigationItem.rightBarButtonItems = [itemReport, itemEdit]
+        let menuItem = UIBarButtonItem(image: menuImage, style: .plain, target: self, action: #selector(handleMenu))
+        navigationItem.rightBarButtonItem = menuItem
     }
     
     private func configureViewModel() {
@@ -137,12 +154,8 @@ extension TrainingScheduleViewController {
         return row
     }
     
-    @objc private func handleReport() {
-        
-    }
-    
-    @objc private func handleEdit() {
-        
-    }
+    @objc private func handleMenu() {
+        present(alert, animated: true)
+    }    
     
 }

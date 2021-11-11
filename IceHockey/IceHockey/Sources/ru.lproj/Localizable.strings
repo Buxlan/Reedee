@@ -131,10 +131,11 @@
 /* Other */
 "Other.done" = "Готово";
 "Other.cancel" = "Отменить";
-"Other.edit" = "Изм.";
-"Other.report" = "Жалоба";
+"Other.edit" = "Изменить";
+"Other.report" = "Пожаловаться";
+"Other.bugReport" = "Сообщить об ошибке";
 "Other.delete" = "Удалить";
-"EditEventLabel.wantDelete" = "Уверены?";
+"Other.selectAction" = "Select action";
 /* Settings */
 "Settings.navigationBarTitle" = "Настройки";
 /* Match status */
@@ -151,6 +152,7 @@
 "EditEventLabel.selectEditTypeTitle" = "Что хотите сделать?";
 "EditEventLabel.editTypeTitle" = "Изменить";
 "EditEventLabel.deleteTypeTitle" = "Удалить";
+"EditEventLabel.wantDelete" = "Уверены?";
 // Days
 "Day.sunday" = "Воскресенье";
 "Day.monday" = "Понедельник";

@@ -50,32 +50,15 @@ struct SportSquad: FirebaseObject, Codable {
     }
     
     init?(key: String, dict: [String: Any]) {
-        guard !dict.isEmpty else {
-            return nil
-        }
-        var displayName: String?,
-            headCoach: String?
-        
-        if let tempDisplayName = dict["name"] as? String,
-           let tempHeadCoach = dict["headCoach"] as? String {
-            displayName = tempDisplayName
-            headCoach = tempHeadCoach
-        } else {
-            for (newKey, newValue) in dict {
-                if key == newKey,
-                   let dict = newValue as? [String: Any] {
-                    self.init(key: key, dict: dict)
-                }
-            }
-        }
-        
-        if let displayName = displayName,
-            let headCoach = headCoach {
-            self.init(uid: key, displayName: displayName, headCoach: headCoach)
-        } else {
+        guard !dict.isEmpty,
+              let displayName = dict["name"] as? String,
+              let headCoach = dict["headCoach"] as? String else {
             return nil
         }
         
+        self.uid = key
+        self.headCoach = headCoach
+        self.displayName = displayName        
     }
     
     // MARK: - Helper methods

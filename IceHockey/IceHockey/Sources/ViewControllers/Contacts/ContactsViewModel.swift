@@ -46,9 +46,9 @@ class ContactsViewModel: NSObject {
             // prepare section 1
             let ids = filter.squadIDs
             // get objects
-            objectsDatabaseReference.observe(.value) { snapshot in
-                if snapshot.value == nil {
-                    return
+            objectsDatabaseReference.getData { (error, snapshot) in
+                if let error = error {
+                    print("Get data error: \(error)")
                 }
                 guard let result = snapshot.value as? [String: Any] else {
                     return

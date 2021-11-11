@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol EventCollectionViewLayoutDelegate: class {
+protocol EventCollectionViewLayoutDelegate: AnyObject {
     func collectionView(_ collectionView: UICollectionView, getSizeAtIndexPath indexPath: IndexPath) -> CGSize
 }
 

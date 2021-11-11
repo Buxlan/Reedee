@@ -133,7 +133,9 @@
 "Other.cancel" = "Cancel";
 "Other.edit" = "Edit";
 "Other.report" = "Report";
+"Other.bugReport" = "Report a bug";
 "Other.delete" = "Delete";
+"Other.selectAction" = "Select action";
 /* Settings */
 "Settings.navigationBarTitle" = "Settings";
 /* Match status */

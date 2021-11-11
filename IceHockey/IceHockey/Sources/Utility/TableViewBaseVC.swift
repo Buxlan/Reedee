@@ -71,7 +71,7 @@ extension TableViewBase: UITableViewDelegate, UITableViewDataSource {
               let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerViewId) else {
             return nil
         }
-        
+
         section.config(header: headerView)
         return headerView
     }
@@ -82,7 +82,7 @@ extension TableViewBase: UITableViewDelegate, UITableViewDataSource {
               let footerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: footerViewId) else {
             return nil
         }
-        
+
         section.config(footer: footerView)
         return footerView
     }

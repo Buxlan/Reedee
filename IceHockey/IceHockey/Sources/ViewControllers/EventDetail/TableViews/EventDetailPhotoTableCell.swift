@@ -34,17 +34,6 @@ class EventDetailPhotoTableCell: UITableViewCell, CollectionViewDelegate {
         
         view.delegate = self
         view.dataSource = self
-
-//        view.layer.shadowRadius = 10.0
-//        view.layer.shadowColor = UIColor.black.cgColor
-//        view.layer.shadowOffset = CGSize()
-//        view.layer.shadowOpacity = 0.8
-//        view.layer.shouldRasterize = true
-//        view.layer.rasterizationScale = UIScreen.main.scale
-        
-//        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(collectionViewLongPressHandle))
-//        gesture.minimumPressDuration = 1.0
-//        view.addGestureRecognizer(gesture)
         
         return view
     }()
@@ -98,36 +87,7 @@ class EventDetailPhotoTableCell: UITableViewCell, CollectionViewDelegate {
             pageControl.heightAnchor.constraint(equalToConstant: 16)
         ]
         NSLayoutConstraint.activate(constraints)
-    }
-    
-//    func startTimer() {
-//        timer?.invalidate()
-//        timer = Timer.scheduledTimer(withTimeInterval: 8.0, repeats: true) { [weak self] (_) in
-//            guard let self = self else {
-//                return
-//            }
-//            let pageWidth = self.collectionView.frame.size.width
-//            let currentPage = Int(self.collectionView.contentOffset.x / pageWidth)
-//
-//            var newItemIndex = currentPage + 1
-//            let numberOfPages = self.collectionView.numberOfItems(inSection: 0)
-//            if newItemIndex == numberOfPages {
-//                newItemIndex = 0
-//            }
-//            let indexPath = IndexPath(item: newItemIndex, section: 0)
-//            self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-//        }
-//    }
-//
-//    @objc
-//    private func collectionViewLongPressHandle(_ gestureRecognizer: UILongPressGestureRecognizer) {
-//        if gestureRecognizer.state == .began {
-//            timer?.invalidate()
-//            timer = nil
-//        } else if gestureRecognizer.state == .ended || gestureRecognizer.state == .cancelled {
-//            startTimer()
-//        }
-//    }
+    } 
     
 }
 

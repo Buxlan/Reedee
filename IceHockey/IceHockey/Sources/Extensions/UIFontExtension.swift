@@ -25,13 +25,13 @@ extension UIFont {
     static let regularFont34: UIFont = FontFamily.Roboto.regular.font(size: 34)
     static let regularFont50: UIFont = FontFamily.Roboto.regular.font(size: 50)
     
-    static let boldFont8: UIFont = .boldSystemFont(ofSize: 8)
-    static let boldFont10: UIFont = .boldSystemFont(ofSize: 10)
-    static let boldFont12: UIFont = .boldSystemFont(ofSize: 12)
-    static let boldFont14: UIFont = .boldSystemFont(ofSize: 14)
-    static let boldFont16: UIFont = .boldSystemFont(ofSize: 16)
-    static let boldFont18: UIFont = .boldSystemFont(ofSize: 18)
-    static let boldFont20: UIFont = .boldSystemFont(ofSize: 20)
-    static let boldFont22: UIFont = .boldSystemFont(ofSize: 22)
+    static let boldFont8: UIFont = FontFamily.Roboto.bold.font(size: 8)
+    static let boldFont10: UIFont = FontFamily.Roboto.bold.font(size: 10)
+    static let boldFont12: UIFont = FontFamily.Roboto.bold.font(size: 12)
+    static let boldFont14: UIFont = FontFamily.Roboto.bold.font(size: 14)
+    static let boldFont16: UIFont = FontFamily.Roboto.bold.font(size: 16)
+    static let boldFont18: UIFont = FontFamily.Roboto.bold.font(size: 18)
+    static let boldFont20: UIFont = FontFamily.Roboto.bold.font(size: 20)
+    static let boldFont22: UIFont = FontFamily.Roboto.bold.font(size: 22)
         
 }
