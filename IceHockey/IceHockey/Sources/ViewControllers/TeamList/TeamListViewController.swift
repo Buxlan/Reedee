@@ -19,7 +19,7 @@ class TeamListViewController: UIViewController {
         view.accessibilityIdentifier = "appendNewObjectButton"
         view.backgroundColor = Asset.accent1.color
         view.tintColor = Asset.other3.color
-        view.addTarget(self, action: #selector(handleAppendNewObject), for: .touchUpInside)
+        view.addTarget(self, action: #selector(handleCallUs), for: .touchUpInside)
         let image = Asset.plus.image.withRenderingMode(.alwaysTemplate)
         view.setImage(image, for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -28,9 +28,9 @@ class TeamListViewController: UIViewController {
         return view
     }()
     
-    private lazy var tableFooterView: EventDetailTableFooterView = {
+    private lazy var tableFooterView: EventDetailFooterView = {
         let frame = CGRect(x: 0, y: 0, width: 0, height: 150)
-        let view = EventDetailTableFooterView(frame: frame)
+        let view = EventDetailFooterView(frame: frame)
         view.configure(with: SportTeam.current)
         return view
     }()
@@ -182,7 +182,7 @@ extension TeamListViewController {
         }
     }
     
-    @objc private func handleAppendNewObject() {
+    @objc private func handleCallUs() {
         
     }
     

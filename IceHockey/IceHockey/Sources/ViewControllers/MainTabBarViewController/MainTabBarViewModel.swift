@@ -34,7 +34,7 @@ class MainTabBarViewModel {
             case .home:
                 return L10n.Squads.tabBarItemTitle
             case .ourSquads:
-                return L10n.Squads.listTitle
+                return L10n.Squads.trainingTitle
             case .ourContacts:
                 return L10n.Contacts.title
             case .profile:
@@ -86,7 +86,7 @@ class MainTabBarViewModel {
         vc = UINavigationController(rootViewController: HomeViewController())
         items.append(vc)        
                 
-        vc = UINavigationController(rootViewController: OurSquadsViewController())
+        vc = UINavigationController(rootViewController: TrainingScheduleViewController())
         items.append(vc)
         
         vc = UINavigationController(rootViewController: ContactsViewController())

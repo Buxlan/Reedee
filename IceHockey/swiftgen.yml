@@ -9,3 +9,10 @@ strings:
   outputs:
     - templateName: structured-swift5
       output: IceHockey/Sources/Strings.swift
+## Fonts
+fonts:
+  inputs:
+    - IceHockey/fonts
+  outputs:
+    templateName: swift5
+    output: IceHockey/Sources/Fonts.swift

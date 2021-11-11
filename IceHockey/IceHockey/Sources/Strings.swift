@@ -75,6 +75,8 @@ internal enum L10n {
     internal static let tabBarItemTitle = L10n.tr("Localizable", "Contacts.tabBarItemTitle")
     /// About club
     internal static let title = L10n.tr("Localizable", "Contacts.title")
+    /// Call us now
+    internal static let toCallUsTitle = L10n.tr("Localizable", "Contacts.toCallUsTitle")
   }
 
   internal enum Day {
@@ -328,6 +330,8 @@ internal enum L10n {
     internal static let squadsCountTitle = L10n.tr("Localizable", "Squads.squadsCountTitle")
     /// Squads
     internal static let tabBarItemTitle = L10n.tr("Localizable", "Squads.tabBarItemTitle")
+    /// Trainings
+    internal static let trainingTitle = L10n.tr("Localizable", "Squads.trainingTitle")
   }
 
   internal enum Staff {

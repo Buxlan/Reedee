@@ -70,6 +70,10 @@
 	<string>Please allow Application to have an access to your location</string>
 	<key>teamID</key>
 	<string>nevskiy</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Roboto-Regular.ttf</string>
+	</array>
 	<key>databaseURL</key>
 	<string>https://icehockey-40e64-default-rtdb.europe-west1.firebasedatabase.app</string>
 </dict>

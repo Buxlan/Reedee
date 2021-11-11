@@ -6,6 +6,7 @@
 //
 
 import Firebase
+import UIKit
     
 enum DayOfWeek: String, CustomStringConvertible, Codable {
     case sunday
@@ -98,16 +99,22 @@ struct DailyTraining: Codable {
     var time: [TrainingTime]
     
     init?(day: String, data: Any) {
-        guard let dict = data as? [String: Any] else { return nil }
-        // key is training type, value is time
-        var exercises: [TrainingTime] = []
-        dict.forEach { (key, value) in
-            guard let value = value as? String else { return }
-            let time = TrainingTime(type: TrainingType(rawValue: key), time: value)
-            exercises.append(time)
+        guard let array = data as? NSArray else {
+            return nil
         }
+        var trainingTimes: [TrainingTime] = []
+        for element in array {
+            guard let dict = element as? [String: String] else {
+                return nil
+            }
+            for (type, time) in dict {
+                let trainingTime = TrainingTime(type: TrainingType(rawValue: type), time: time)
+                trainingTimes.append(trainingTime)
+            }
+        }
+        
         self.day = DayOfWeek(rawValue: day)
-        self.time = exercises
+        self.time = trainingTimes
     }
 }
 
@@ -133,12 +140,36 @@ struct TrainingSchedule: Codable {
         self.trainings = trainings
     }
     
+    init?(key: String, array: NSArray) {
+        var trainings: [DailyTraining] = []
+        for element in array {
+            guard let dict = element as? [String: NSArray] else {
+                return nil
+            }
+            for (day, array) in dict {
+                if let dailyTraining = DailyTraining(day: day, data: array) {
+                    trainings.append(dailyTraining)
+                }
+            }
+        }
+        self.uid = key
+        self.trainings = trainings
+    }
+    
     init?(snapshot: DataSnapshot) {
-        let uid = snapshot.key
-        guard let dict = snapshot.value as? [String: Any] else {
+        if snapshot.value is NSNull {
             return nil
         }
-        self.init(key: uid, dict: dict)
+        let uid = snapshot.key
+        let value = snapshot.value
+        switch value {
+        case let value as NSArray:
+            self.init(key: uid, array: value)
+        case let value as [String: Any]:
+            self.init(key: uid, dict: value)
+        default:
+            return nil
+        }
     }
     
 }
@@ -146,7 +177,7 @@ struct TrainingSchedule: Codable {
 extension TrainingSchedule: FirebaseObject {
     
     private static var databaseObjects: DatabaseReference {
-        FirebaseManager.shared.databaseManager.root.child("events")
+        FirebaseManager.shared.databaseManager.root.child("trainingSchedule")
     }
     
     static func getObject(by uid: String,
@@ -159,7 +190,9 @@ extension TrainingSchedule: FirebaseObject {
                     return
                 }
                 if snapshot.value is NSNull {
-                    fatalError("Current team is nil")
+                    print("Query result is nil")
+                    handler(nil)
+                    return
                 }
                 let object = Self(snapshot: snapshot)
                 handler(object)

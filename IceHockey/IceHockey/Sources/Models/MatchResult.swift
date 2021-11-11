@@ -107,6 +107,10 @@ extension MatchResult: FirebaseObject {
         FirebaseManager.shared.databaseManager.root.child("events")
     }
     
+    var isNew: Bool {
+        return self.uid.isEmpty
+    }
+    
     static func getObject(by uid: String, completionHandler handler: @escaping (MatchResult?) -> Void) {
         Self.databaseObjects
             .child(uid)
@@ -126,11 +130,7 @@ extension MatchResult: FirebaseObject {
     func delete() throws {
         try FirebaseManager.shared.delete(self)
     }
-        
-    var isNew: Bool {
-        return self.uid.isEmpty
-    }
-    
+            
     func checkProperties() -> Bool {
         return true
     }

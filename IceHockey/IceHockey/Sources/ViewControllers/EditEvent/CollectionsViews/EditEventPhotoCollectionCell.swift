@@ -98,7 +98,6 @@ extension EditEventPhotoCollectionCell: ConfigurableActionCell {
         configureInterface()
         self.handler = handler
         self.data = data
-        print("Configuring image cell with name \(data)")
         if dataImageView.image == nil {
             let path = "events/\(data.eventUID)"
             ImagesManager.shared.getImage(withName: data.name, path: path) { (image) in

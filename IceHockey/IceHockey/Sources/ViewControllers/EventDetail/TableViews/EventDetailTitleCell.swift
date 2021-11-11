@@ -17,8 +17,8 @@ class EventDetailTitleCell: UITableViewCell {
         let view = UILabel()
         view.numberOfLines = 4
         view.lineBreakMode = .byWordWrapping
-        view.textAlignment = .center
-        view.font = .boldFont16
+        view.textAlignment = .left
+        view.font = .regularFont16
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

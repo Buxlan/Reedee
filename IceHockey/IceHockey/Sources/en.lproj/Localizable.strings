@@ -91,12 +91,14 @@
 /* Contacts */
 "Contacts.tabBarItemTitle" = "About club";
 "Contacts.title" = "About club";
+"Contacts.toCallUsTitle" = "Call us now";
 /* Squads */
 "Squads.tabBarItemTitle" = "Squads";
 "Squads.listTitle" = "Squads";
 "Squads.squadsCountTitle" = "Count of squads: ";
 "Squads.coachTitle" = "Coach: ";
 "Squads.sectionTitle" = "Squads: ";
+"Squads.trainingTitle" = "Trainings";
 /* Teams */
 "Team.listTitle" = "Teams";
 "Team.onTheMapTitle" = "on the map";

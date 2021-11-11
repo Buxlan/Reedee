@@ -71,6 +71,8 @@ class NewsTableCell: UITableViewCell {
         view.numberOfLines = 5
         view.textAlignment = .left
         view.font = .regularFont14
+        view.setContentHuggingPriority(.defaultLow, for: .vertical)
+        view.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         return view
     }()
     
@@ -79,7 +81,8 @@ class NewsTableCell: UITableViewCell {
         let view = InsetLabel(insets: insets)
         view.accessibilityIdentifier = "dateLabel (table cell)"
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.setContentHuggingPriority(.defaultLow, for: .vertical)
+        view.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         view.textAlignment = .left
         view.font = .regularFont14
         return view
@@ -164,7 +167,7 @@ class NewsTableCell: UITableViewCell {
             userImageView.heightAnchor.constraint(equalToConstant: userImageHeight),
             
             usernameLabel.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 8),
-            usernameLabel.trailingAnchor.constraint(equalTo: typeLabel.leadingAnchor, constant: -8),
+            usernameLabel.trailingAnchor.constraint(lessThanOrEqualTo: typeLabel.leadingAnchor, constant: -8),
             usernameLabel.topAnchor.constraint(equalTo: userImageView.topAnchor),
             usernameLabel.bottomAnchor.constraint(equalTo: userImageView.bottomAnchor),
             
@@ -180,6 +183,7 @@ class NewsTableCell: UITableViewCell {
             dataLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             dataLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             dataLabel.topAnchor.constraint(equalTo: dataImageView.bottomAnchor, constant: 8),
+//            dataLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 20),
             
             dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             dateLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
@@ -221,7 +225,9 @@ extension NewsTableCell: ConfigurableCollectionContent {
         
         contentView.backgroundColor = data.backgroundColor
         dateLabel.backgroundColor = data.backgroundColor
+        dataLabel.backgroundColor = data.backgroundColor
         dataLabel.textColor = data.textColor
+        dateLabel.textColor = Asset.other0.color
         
         typeLabel.backgroundColor = data.typeBackgroundColor
         typeLabel.textColor = data.typeTextColor

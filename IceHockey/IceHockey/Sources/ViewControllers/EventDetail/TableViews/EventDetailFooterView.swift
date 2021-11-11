@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EventDetailTableFooterView: UIView {
+class EventDetailFooterView: UIView {
     
     // MARK: - Properties    
     
@@ -38,7 +38,8 @@ class EventDetailTableFooterView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.font = .regularFont16
         view.textColor = Asset.other0.color
-        view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        view.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        view.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         return view
     }()
     
@@ -70,8 +71,8 @@ class EventDetailTableFooterView: UIView {
     }
     
     internal func configureConstraints() {
-        let titleLabelTrailingConstraint = titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
-        titleLabelTrailingConstraint.priority = .defaultLow
+        let titleLabelTrailingConstraint = titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+        titleLabelTrailingConstraint.priority = .defaultHigh
         let constraints: [NSLayoutConstraint] = [
             contentView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             contentView.widthAnchor.constraint(equalTo: self.widthAnchor),
@@ -98,7 +99,7 @@ class EventDetailTableFooterView: UIView {
     
 }
 
-extension EventDetailTableFooterView: ConfigurableCell {
+extension EventDetailFooterView: ConfigurableCell {
     typealias DataType = SportTeam
     func configure(with data: DataType) {
         configureUI()

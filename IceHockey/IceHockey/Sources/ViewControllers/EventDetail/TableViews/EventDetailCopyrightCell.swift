@@ -21,6 +21,8 @@ class EventDetailCopyrightCell: UITableViewCell {
         view.contentMode = .scaleAspectFit
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
+        view.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         return view
     }()
     
@@ -72,9 +74,11 @@ class EventDetailCopyrightCell: UITableViewCell {
     }
     
     internal func configureConstraints() {
+        let logoImageViewWidthConstraint = logoImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3)
+        logoImageViewWidthConstraint.priority = .defaultLow
         let constraints: [NSLayoutConstraint] = [
             logoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            logoImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3),
+            logoImageViewWidthConstraint,
             logoImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor),
             logoImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),

@@ -18,9 +18,9 @@ class EventDetailViewController: UIViewController {
     var actionProxy: CellActionProxy = .init()
     private var swipeDirection: UISwipeGestureRecognizer.Direction?
     
-    private lazy var tableFooterView: EventDetailTableFooterView = {
+    private lazy var tableFooterView: EventDetailFooterView = {
         let frame = CGRect(x: 0, y: 0, width: 0, height: 150)
-        let view = EventDetailTableFooterView(frame: frame)
+        let view = EventDetailFooterView(frame: frame)
         view.configure(with: SportTeam.current)
         return view
     }()

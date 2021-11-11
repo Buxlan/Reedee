@@ -91,6 +91,7 @@
 /* Contacts */
 "Contacts.tabBarItemTitle" = "Контакты";
 "Contacts.title" = "О клубе";
+"Contacts.toCallUsTitle" = "Позвонить";
 /* Teams */
 "Team.listTitle" = "Команды";
 "Team.onTheMapTitle" = "на карте";
@@ -104,6 +105,7 @@
 "Squads.squadsCountTitle" = "Команды: ";
 "Squads.coachTitle" = "Тренер: ";
 "Squads.sectionTitle" = "Наши команды: ";
+"Squads.trainingTitle" = "Тренировки";
 /* Shop */
 "Shop.tabBarItemTitle" = "Магазин";
 "Shop.title" = "Магазин";

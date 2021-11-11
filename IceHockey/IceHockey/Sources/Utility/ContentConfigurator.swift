@@ -53,3 +53,9 @@ typealias SaveViewConfigurator = CollectionViewConfigurator<MatchResultEditSaveC
 // MARK: - News cell configurator
 typealias NewsViewConfigurator = CollectionViewConfigurator<NewsTableCell,
                                                             NewsTableCellModel>
+
+typealias SquadViewConfigurator = CollectionViewConfigurator<SquadHeaderView,
+                                                             SquadHeaderCellModel>
+
+typealias TrainingViewConfigurator = CollectionViewConfigurator<TrainingCell,
+                                                                TrainingCellModel>
