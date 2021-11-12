@@ -27,10 +27,8 @@ struct MatchResultEditCellModel: TableCellModel {
     var backgroundColor: UIColor = Asset.other3.color
     var textColor: UIColor = Asset.textColor.color
     
-    var typeBackgroundColor: UIColor
-    var typeTextColor: UIColor
+    var type: SportEventType
     
-    var type: String
     var likesCount: Int = 0
     
     // MARK: - Actions
@@ -61,11 +59,9 @@ struct MatchResultEditCellModel: TableCellModel {
         dateFormatter.timeStyle = .none
         date = dateFormatter.string(from: data.date)
         
-        type = data.type.description
+        type = data.type
         title = data.title
         uid = data.uid
         
-        typeBackgroundColor = data.type.backgroundColor
-        typeTextColor = data.type.textColor
     }
 }

@@ -27,7 +27,7 @@ class TrainingScheduleViewController: UIViewController {
         view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = true
         view.register(TrainingCell.self, forCellReuseIdentifier: TrainingViewConfigurator.reuseIdentifier)
-        view.register(SquadHeaderView.self, forHeaderFooterViewReuseIdentifier: SquadViewConfigurator.reuseIdentifier)
+        view.register(SquadHeaderView.self, forHeaderFooterViewReuseIdentifier: SquadHeaderViewConfigurator.reuseIdentifier)
         if #available(iOS 15.0, *) {
             view.sectionHeaderTopPadding = 0
         }
@@ -131,7 +131,7 @@ extension TrainingScheduleViewController {
         var sections: [TableSection] = []
         viewModel.sections.forEach { sectionData in
             let cellModel = SquadHeaderCellModel(uid: sectionData.squad.uid, title: sectionData.squad.displayName)
-            let config = SquadViewConfigurator(data: cellModel)
+            let config = SquadHeaderViewConfigurator(data: cellModel)
             var section = TableSection()
             section.headerConfig = config
             section.headerHeight = 60.0

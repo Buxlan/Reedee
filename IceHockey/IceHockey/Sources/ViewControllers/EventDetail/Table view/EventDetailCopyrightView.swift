@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EventDetailCopyrightCell: UITableViewCell {
+class EventDetailCopyrightView: UITableViewCell {
     
     // MARK: - Properties
         
@@ -22,7 +22,20 @@ class EventDetailCopyrightCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
         view.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        view.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        let image = Asset.logo.image.resizeImage(to: 140, aspectRatio: .current)
+        view.image = image
+        return view
+    }()
+    
+    private lazy var stackView: UIStackView = {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.axis = .vertical
+        view.distribution = .fillProportionally
+        view.spacing = 2
+        view.addArrangedSubview(titleLabel)
+        view.addArrangedSubview(copyrightLabel)
         return view
     }()
     
@@ -67,8 +80,7 @@ class EventDetailCopyrightCell: UITableViewCell {
         contentView.backgroundColor = Asset.other3.color
         tintColor = Asset.other1.color
         contentView.addSubview(logoImageView)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(copyrightLabel)
+        contentView.addSubview(stackView)
         configureConstraints()
         isInterfaceConfigured = true
     }
@@ -83,27 +95,42 @@ class EventDetailCopyrightCell: UITableViewCell {
             logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor),
             logoImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             
-            titleLabel.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: 8),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            titleLabel.bottomAnchor.constraint(equalTo: copyrightLabel.topAnchor, constant: -8),
-//            titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8)
-            
-            copyrightLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            copyrightLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
-            copyrightLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+            stackView.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: 8),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ]
         NSLayoutConstraint.activate(constraints)
     }
     
 }
 
-extension EventDetailCopyrightCell: ConfigurableCell {
-    typealias DataType = SportTeam
+extension EventDetailCopyrightView: ConfigurableCollectionContent {
+    
+    typealias DataType = EventDetailCopyrightCellModel
     func configure(with data: DataType) {
         configureUI()
-        titleLabel.text = data.displayName
-        copyrightLabel.text = data.copyright
-        logoImageView.image = Asset.logo.image
+        
+        titleLabel.textColor = data.textColor
+        titleLabel.backgroundColor = data.backgroundColor        
+        
+        copyrightLabel.textColor = data.textColor
+        copyrightLabel.backgroundColor = data.backgroundColor
+        
+        contentView.backgroundColor = data.backgroundColor
+        
+        guard !data.teamID.isEmpty else {
+            return
+        }
+        let handler: (SportTeam?) -> Void = { (team) in
+            guard let team = team else {
+                return
+            }
+            self.titleLabel.text = team.displayName
+            self.copyrightLabel.text = team.copyright
+        }
+        FirebaseObjectLoader<SportTeam>().load(uid: data.teamID, completionHandler: handler)
+        
     }
+    
 }

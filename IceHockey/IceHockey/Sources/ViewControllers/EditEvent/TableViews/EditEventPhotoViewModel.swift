@@ -18,7 +18,7 @@ struct EditEventPhotoViewModel {
     
     // MARK: - Helper functions
     
-    mutating func setImageData(data: [ImageDataConfiguration]) {
+    mutating func setImageData(data: [EventDetailPhotoCellModel]) {
         guard let handler = handler else {
             return
         }

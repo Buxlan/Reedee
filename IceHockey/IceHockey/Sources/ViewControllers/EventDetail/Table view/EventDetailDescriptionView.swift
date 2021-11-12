@@ -1,25 +1,25 @@
 //
-//  EventDetailTitleTableViewCell.swift
+//  EventDetailDescriptionTableViewCell.swift
 //  IceHockey
 //
-//  Created by  Buxlan on 10/20/21.
+//  Created by  Buxlan on 10/19/21.
 //
 
 import UIKit
 
-class EventDetailTitleCell: UITableViewCell {
+class EventDetailDescriptionView: UITableViewCell {
     
     // MARK: - Properties
     
     var isInterfaceConfigured: Bool = false
     
-    private lazy var titleLabel: UILabel = {
+    private lazy var descriptionLabel: UILabel = {
         let view = UILabel()
-        view.numberOfLines = 4
+        view.numberOfLines = 0
         view.lineBreakMode = .byWordWrapping
         view.textAlignment = .left
-        view.font = .regularFont16
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.font = .regularFont14
         return view
     }()
     
@@ -43,17 +43,17 @@ class EventDetailTitleCell: UITableViewCell {
         if isInterfaceConfigured { return }
         contentView.backgroundColor = Asset.other3.color
         tintColor = Asset.other1.color
-        contentView.addSubview(titleLabel)
+        contentView.addSubview(descriptionLabel)
         configureConstraints()
         isInterfaceConfigured = true
     }
     
     internal func configureConstraints() {
         let constraints: [NSLayoutConstraint] = [
-            titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -16),
-            titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8)
+            descriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            descriptionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            descriptionLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -16),
+            descriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8)
         ]
         NSLayoutConstraint.activate(constraints)
     }
@@ -61,12 +61,15 @@ class EventDetailTitleCell: UITableViewCell {
 }
 
 // MARK: - ConfigurableCell extension
-extension EventDetailTitleCell: ConfigurableCell {
+extension EventDetailDescriptionView: ConfigurableCollectionContent {
         
-    typealias DataType = SportNews
+    typealias DataType = EventDetailDescriptionCellModel
     func configure(with data: DataType) {
         configureUI()
-        titleLabel.text = data.title
+        descriptionLabel.text = data.title
+        descriptionLabel.textColor = data.textColor
+        contentView.backgroundColor = data.backgroundColor
+        descriptionLabel.backgroundColor = data.backgroundColor
     }
     
 }

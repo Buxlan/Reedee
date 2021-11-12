@@ -86,6 +86,8 @@
 "Events.inputTitle" = "Input title";
 "Events.inputTextTitle" = "Input text";
 "Events.inputBoldTextTitle" = "Input ad text";
+// Event detail
+"EventDetail.title" = "Event";
 // Match result
 "MatchResult.navigationBarTitle" = "Match";
 /* Contacts */

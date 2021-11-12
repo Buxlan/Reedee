@@ -48,12 +48,29 @@ extension RealtimeDatabaseManager {
                       let dict = snapshot.value as? [String: Any],
                       let count = dict["count"] as? Int,
                       let users = dict["users"] as? [String: Int] else {
-                    completionHandler(0, false)
-                    return
-                }
+                          completionHandler(0, false)
+                          return
+                      }
                 // entity exists
                 let userLikes = (users[userID] != nil)
-                completionHandler(count, userLikes)                
+                completionHandler(count, userLikes)
+            }
+    }
+    
+    func getEventViewsInfo(eventID: String, completionHandler: @escaping (Int) -> Void) {        
+        self.root
+            .child("views")
+            .child(eventID)
+            .getData { error, snapshot in
+                guard error == nil,
+                      !(snapshot.value is NSNull),
+                      let dict = snapshot.value as? [String: Any],
+                      let count = dict["count"] as? Int else {
+                          completionHandler(0)
+                          return
+                      }
+                // entity exists
+                completionHandler(count)
             }
     }
     

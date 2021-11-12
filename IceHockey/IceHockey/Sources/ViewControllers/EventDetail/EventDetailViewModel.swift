@@ -6,53 +6,26 @@
 //
 
 import Firebase
-import FirebaseDatabaseUI
 
 class EventDetailViewModel: NSObject {
     
     // MARK: - Properties
-    
-    typealias InputDataType = SportNews
-    var dataSource: InputDataType? {
-        didSet {
-            if let data = dataSource {
-                let config = data.imageIDs.map { (imageUid) -> ImageDataConfiguration in
-                    let imageName = ImagesManager.getImageName(forKey: imageUid)
-                    return ImageDataConfiguration(name: imageName, imageID: imageUid, eventUID: data.uid)
-                }
-                tableItems = [EventPhotoCellConfigurator(data: config),
-                              EventDetailUsefulButtonsCellConfigurator(data: data),
-                              EventDetailTitleCellConfigurator(data: data),
-                              EventDetailDescriptionCellConfigurator(data: data),
-                              EventDetailBoldTextCellConfigurator(data: data),
-                              EventDetailCopyrightCellConfigurator(data: SportTeam.current)
-                ]
-                delegate?.reloadData()
-            }
-        }
+    struct SectionData {
+        let squad: SportSquad
+        let schedule: TrainingSchedule
     }
-    private weak var delegate: CellUpdatable?
-    private var tableItems: [CellConfigurator] = []
+    
+    var sections: [SectionData] = []
+    private var loadings: [String] = []
+    
+    var shouldRefreshRelay = {}
+    
+    var objectsDatabaseReference: DatabaseReference {
+        FirebaseManager.shared.databaseManager.root.child("squads")
+    }
     
     // MARK: Lifecircle
-    
-    init(delegate: CellUpdatable) {
-        super.init()
-        self.delegate = delegate
-    }    
         
-    // MARK: - Hepler functions
-}
-
-extension EventDetailViewModel: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableItems.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let configurator = tableItems[indexPath.row]
-        return delegate?.configureCell(at: indexPath, configurator: configurator) ?? UITableViewCell()
-    }
+    // MARK: - Hepler functions    
     
 }

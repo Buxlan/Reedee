@@ -6,17 +6,39 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class EventDetailViewController: UIViewController {
     
     // MARK: - Properties
+    var viewModel: EventDetailViewModel = EventDetailViewModel()
+    var event: SportNews
+    private var tableBase = TableViewBase()
     
-    typealias InputDataType = SportNews
-    private lazy var viewModel: EventDetailViewModel = {
-        return EventDetailViewModel(delegate: self)
+    private lazy var tableView: UITableView = {
+        let view = UITableView(frame: .zero, style: .plain)
+        view.isUserInteractionEnabled = true
+        view.backgroundColor = Asset.other3.color
+        view.allowsSelection = true
+        view.allowsMultipleSelection = false
+        view.allowsSelectionDuringEditing = false
+        view.allowsMultipleSelectionDuringEditing = false
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.tableFooterView = tableFooterView
+        view.showsVerticalScrollIndicator = true
+        view.register(EventDetailUserView.self, forCellReuseIdentifier: EventDetailUserViewConfigurator.reuseIdentifier)
+        view.register(EventDetailPhotoView.self, forCellReuseIdentifier: EventDetailPhotoViewConfigurator.reuseIdentifier)
+        view.register(EventDetailUsefulButtonsView.self, forCellReuseIdentifier: EventDetailUsefulButtonsViewConfigurator.reuseIdentifier)
+        view.register(EventDetailTitleView.self, forCellReuseIdentifier: EventDetailTitleViewConfigurator.reuseIdentifier)
+        view.register(EventDetailDescriptionView.self, forCellReuseIdentifier: EventDetailDescriptionViewConfigurator.reuseIdentifier)
+        view.register(EventDetailBoldTextView.self, forCellReuseIdentifier: EventDetailBoldTextViewConfigurator.reuseIdentifier)
+        view.register(EventDetailCopyrightView.self, forCellReuseIdentifier: EventDetailCopyrightViewConfigurator.reuseIdentifier)
+        view.register(EventDetailHeaderView.self, forHeaderFooterViewReuseIdentifier: EventDetailHeaderViewConfigurator.reuseIdentifier)
+        if #available(iOS 15.0, *) {
+            view.sectionHeaderTopPadding = 0
+        }
+        return view
     }()
-    var actionProxy: CellActionProxy = .init()
-    private var swipeDirection: UISwipeGestureRecognizer.Direction?
     
     private lazy var tableFooterView: EventDetailFooterView = {
         let frame = CGRect(x: 0, y: 0, width: 0, height: 150)
@@ -25,56 +47,18 @@ class EventDetailViewController: UIViewController {
         return view
     }()
     
-    private lazy var tableView: UITableView = {
-        let view = UITableView(frame: .zero, style: .plain)
-        view.isUserInteractionEnabled = true
-        view.delegate = self
-        view.dataSource = viewModel
-        view.backgroundColor = Asset.other2.color
-        view.allowsSelection = true
-        view.allowsMultipleSelection = false
-        view.allowsSelectionDuringEditing = false
-        view.allowsMultipleSelectionDuringEditing = false
-        view.translatesAutoresizingMaskIntoConstraints = false
-//        view.rowHeight = UITableView.automaticDimension
-        view.estimatedRowHeight = 300
-        view.rowHeight = UITableView.automaticDimension
-//        view.estimatedRowHeight = 60
-        view.register(EventDetailPhotoTableCell.self,
-                      forCellReuseIdentifier: EventDetailPhotoTableCell.reuseIdentifier)
-        view.register(EventDetailUsefulButtonsCell.self,
-                      forCellReuseIdentifier: EventDetailUsefulButtonsCell.reuseIdentifier)
-        view.register(EventDetailDescriptionCell.self,
-                      forCellReuseIdentifier: EventDetailDescriptionCell.reuseIdentifier)
-        view.register(EventDetailBoldViewCell.self,
-                      forCellReuseIdentifier: EventDetailBoldViewCell.reuseIdentifier)
-        view.register(EventDetailTitleCell.self,
-                      forCellReuseIdentifier: EventDetailTitleCell.reuseIdentifier)
-        view.register(EventDetailCopyrightCell.self,
-                      forCellReuseIdentifier: EventDetailCopyrightCell.reuseIdentifier)
-                        
-//        view.tableHeaderView = titleView
-        view.tableFooterView = tableFooterView
-        view.showsVerticalScrollIndicator = false
-        
-        return view
-    }()
-    
     private lazy var alert: UIAlertController = {
         let controller = UIAlertController(title: L10n.Other.selectAction,
                                            message: nil,
                                            preferredStyle: .actionSheet)
-        let editAction = UIAlertAction(title: L10n.Other.edit, style: .destructive) { _ in
-            guard let dataSource = self.viewModel.dataSource else {
-                return
-            }
-            let vc = EditEventViewController(editMode: .edit(dataSource))
-            vc.modalPresentationStyle = .pageSheet
+        let editAction = UIAlertAction(title: L10n.Other.edit, style: .default) { _ in
+            // edit
+            let vc = EditEventViewController(editMode: .edit(self.event))
             vc.modalTransitionStyle = .crossDissolve
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        let reportAction = UIAlertAction(title: L10n.Other.report, style: .destructive) { _ in
-            // report
+        let reportAction = UIAlertAction(title: L10n.Other.bugReport, style: .destructive) { _ in
+            // bug report
         }
         let cancelAction = UIAlertAction(title: L10n.Other.cancel, style: .cancel) { _ in
         }
@@ -90,11 +74,12 @@ class EventDetailViewController: UIViewController {
         return Asset.menu.image.resizeImage(to: imageHeight, aspectRatio: .current)
         
     }()
-            
-    // MARK: - Init
-    init() {
+        
+    // MARK: - Lifecircle
+    
+    init(_ event: SportNews) {
+        self.event = event
         super.init(nibName: nil, bundle: nil)
-        configureTabBarItem()
     }
     
     required init?(coder: NSCoder) {
@@ -104,7 +89,7 @@ class EventDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        configureRecognizers()
+        configureConstraints()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -113,81 +98,136 @@ class EventDetailViewController: UIViewController {
         configureViewModel()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        let image = Asset.home.image.resizeImage(to: 24,
-                                                 aspectRatio: .current,
-                                                 with: view.tintColor)
-        tabBarItem.image = image
-    }
-    
     // MARK: - Hepler functions
     
     private func configureUI() {
         view.backgroundColor = Asset.accent1.color
         view.addSubview(tableView)
-        configureConstraints()
     }
     
     private func configureConstraints() {
         let constraints: [NSLayoutConstraint] = [
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            tableView.centerYAnchor.constraint(equalTo: view.layoutMarginsGuide.centerYAnchor),
             tableView.widthAnchor.constraint(equalTo: view.widthAnchor),
             tableView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
     }
     
-    private func configureTabBarItem() {
+    private func configureBars() {
+        tabBarController?.tabBar.isHidden = false
+        configureNavigationBar()
     }
     
-    private func configureBars() {
+    private func configureNavigationBar() {
+        title = L10n.EventDetail.title
+        navigationController?.setToolbarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.navigationBar.prefersLargeTitles = false
+        
         let menuItem = UIBarButtonItem(image: menuImage, style: .plain, target: self, action: #selector(handleMenu))
         navigationItem.rightBarButtonItem = menuItem
     }
     
-    private func configureViewModel() {        
+    private func configureViewModel() {
+        let dataSource = self.createDataSource()
+        tableBase.updateDataSource(dataSource)
+        tableBase.setupTable(tableView)
+        viewModel.shouldRefreshRelay = {
+            let dataSource = self.createDataSource()
+            self.tableBase.updateDataSource(dataSource)
+            self.tableView.reloadData()
+        }
     }
     
-    private func configureRecognizers() {
-        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
-        rightSwipe.direction = .right
-        self.view.addGestureRecognizer(rightSwipe)
-    }
-}
-
-extension EventDetailViewController: UITableViewDelegate {
-       
-}
-
-extension EventDetailViewController: InputData {
-    
-    func setInputData(_ inputData: SportNews) {
-        viewModel.dataSource = inputData
-    }
-    
-}
-
-extension  EventDetailViewController {
-    @objc
-    private func handleSwipes(_ sender: UISwipeGestureRecognizer) {
-        dismiss(animated: true, completion: nil)
-    }
-}
-
-extension EventDetailViewController: CellUpdatable {
-    func configureCell(at indexPath: IndexPath, configurator: CellConfigurator) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: type(of: configurator).reuseIdentifier,
-                                                 for: indexPath)
-        configurator.configure(cell: cell)
-        return cell
-    }
-    func reloadData() {
-        tableView.reloadData()
-    }
 }
 
 extension EventDetailViewController {
+    
+    func createDataSource() -> TableDataSource {
+        
+        var sections: [TableSection] = []
+        
+//        let cellModel = EventDetailHeaderCellModel(title: event.title)
+//        let config = EventDetailHeaderViewConfigurator(data: cellModel)
+        var section = TableSection()
+//        section.headerConfig = config
+//        section.headerHeight = 60.0
+//        section.headerViewId = type(of: config).reuseIdentifier
+        
+        let userRow = makeUserTableRow(),
+            photoRow = makePhotoTableRow(),
+            usefulButtonsRow = makeUsefulButtonsTableRow(),
+            titleRow = makeTitleTableRow(),
+            descriptionRow = makeDescriptionTableRow(),
+            boldTextRow = makeBoldTextTableRow(),
+            copyrightRow = makeCopyrightTableRow()
+        
+        section.addRows([userRow, photoRow, usefulButtonsRow,
+                         titleRow, descriptionRow, boldTextRow,
+                         copyrightRow])
+        sections.append(section)
+        let dataSource = TableDataSource(sections: sections)
+        return dataSource
+    }
+    
+    func makeUserTableRow() -> TableRow {
+        let cellModel = EventDetailUserCellModel(event)
+        let config = EventDetailUserViewConfigurator(data: cellModel)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
+        row.height = 48.0
+        return row
+    }
+    
+    func makePhotoTableRow() -> TableRow {
+        let cellModels = event.imageIDs.map { imageID -> EventDetailPhotoCellModel in
+            EventDetailPhotoCellModel(imageID: imageID, eventUID: self.event.uid)
+        }
+        let config = EventDetailPhotoViewConfigurator(data: cellModels)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
+        return row
+    }
+    
+    func makeUsefulButtonsTableRow() -> TableRow {
+        var cellModel = EventDetailUsefulButtonsCellModel(event)
+        cellModel.likeAction = { (state: Bool) in
+            self.event.setLike(state)
+        }
+        let config = EventDetailUsefulButtonsViewConfigurator(data: cellModel)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
+        row.height = 48.0
+        return row
+    }
+    
+    func makeTitleTableRow() -> TableRow {
+        let cellModel = EventDetailTitleCellModel(title: event.title)
+        let config = EventDetailTitleViewConfigurator(data: cellModel)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
+        return row
+    }
+    
+    func makeDescriptionTableRow() -> TableRow {
+        let cellModel = EventDetailDescriptionCellModel(title: event.text)
+        let config = EventDetailDescriptionViewConfigurator(data: cellModel)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
+        return row
+    }
+    
+    func makeBoldTextTableRow() -> TableRow {
+        let cellModel = EventDetailBoldTextCellModel(title: event.boldText)
+        let config = EventDetailBoldTextViewConfigurator(data: cellModel)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
+        return row
+    }
+    
+    func makeCopyrightTableRow() -> TableRow {
+        let teamID = Bundle.main.object(forInfoDictionaryKey: "teamID") as? String ?? ""
+        let cellModel = EventDetailCopyrightCellModel(teamID: teamID)
+        let config = EventDetailCopyrightViewConfigurator(data: cellModel)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
+        return row
+    }
     
     @objc private func handleMenu() {
         present(alert, animated: true)

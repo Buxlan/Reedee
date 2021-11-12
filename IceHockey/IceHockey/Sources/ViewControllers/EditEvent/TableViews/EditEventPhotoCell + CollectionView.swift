@@ -11,7 +11,7 @@ class EditEventPhotoCell: UITableViewCell, CollectionViewDelegate {
     
     // MARK: - Properties
     
-    typealias DataType = [ImageDataConfiguration]
+    typealias DataType = [EventDetailPhotoCellModel]
     typealias HandlerType = EditEventHandler
     var isInterfaceConfigured = false
     weak var delegate: UICollectionViewDelegate?

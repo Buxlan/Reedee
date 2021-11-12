@@ -7,11 +7,11 @@
 
 import UIKit
 
-class EventDetailPhotoTableCell: UITableViewCell, CollectionViewDelegate {
+class EventDetailPhotoView: UITableViewCell, CollectionViewDelegate {
     
     // MARK: - Properties
     
-    typealias DataType = [ImageDataConfiguration]
+    typealias DataType = [EventDetailPhotoCellModel]
     var isInterfaceConfigured = false
     var imageAspectRate: CGFloat = 1
 //    var timer: Timer?
@@ -87,33 +87,32 @@ class EventDetailPhotoTableCell: UITableViewCell, CollectionViewDelegate {
             pageControl.heightAnchor.constraint(equalToConstant: 16)
         ]
         NSLayoutConstraint.activate(constraints)
-    } 
+    }
     
 }
 
-extension EventDetailPhotoTableCell: ConfigurableCell {
+extension EventDetailPhotoView: ConfigurableCollectionContent {
     
     func configure(with data: DataType) {
         configureUI()
-        viewModel.setImageData(data: data)
+        viewModel.setImageData(data)
         pageControl.numberOfPages = data.count
         collectionView.reloadData()
-//        startTimer()
     }
     
 }
 
-extension EventDetailPhotoTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
+extension EventDetailPhotoView: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.itemsCount
+        return viewModel.rows.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = viewModel.item(at: indexPath)
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type(of: item).reuseIdentifier,
+        let row = viewModel.item(at: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: row.rowId,
                                                       for: indexPath)
-        item.configure(cell: cell)
+        row.config.configure(view: cell)
         return cell
     }
     
@@ -136,7 +135,7 @@ extension EventDetailPhotoTableCell: UICollectionViewDelegate, UICollectionViewD
     }
 }
 
-extension EventDetailPhotoTableCell: EventCollectionViewLayoutDelegate {
+extension EventDetailPhotoView: EventCollectionViewLayoutDelegate {
     
     func collectionView(_ collectionView: UICollectionView, getSizeAtIndexPath indexPath: IndexPath) -> CGSize {
         let width = UIScreen.main.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right)

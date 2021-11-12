@@ -86,6 +86,8 @@
 "Events.inputTitle" = "Введите заголовок";
 "Events.inputTextTitle" = "Введите текст";
 "Events.inputBoldTextTitle" = "Введите рекламный текст";
+// Event detail
+"EventDetail.title" = "Новость";
 // Match result
 "MatchResult.navigationBarTitle" = "Матч";
 /* Contacts */

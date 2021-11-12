@@ -9,11 +9,11 @@ import UIKit
 import Firebase
 import SDWebImage
 
-class EventDetailPhotoCollectionViewCell: UICollectionViewCell, ConfigurableCell {
+class EventDetailPhotoCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    typealias DataType = ImageDataConfiguration
+    typealias DataType = EventDetailPhotoCellModel
     
     internal var isInterfaceConfigured: Bool = false
     let imageAspectRate: CGFloat = 1
@@ -108,15 +108,20 @@ class EventDetailPhotoCollectionViewCell: UICollectionViewCell, ConfigurableCell
         ]
         NSLayoutConstraint.activate(constraints)
     }
+}
+
+extension EventDetailPhotoCollectionViewCell: ConfigurableCollectionContent {
     
     // MARK: - Helper functions
     func configure(with data: DataType) {
         configureInterface()
         if dataImageView.image == nil {
-            let path = "events/\(data.eventUID)"
-            ImagesManager.shared.getImage(withName: data.name, path: path) { (image) in
+            let path = "events/\(data.eventID)"
+            let imageName = ImagesManager.getImageName(forKey: data.imageID)
+            ImagesManager.shared.getImage(withName: imageName, path: path) { (image) in
                 self.dataImageView.image = image
             }
         }
     }
+    
 }

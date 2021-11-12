@@ -115,20 +115,20 @@ struct CollectionViewCellConfigurator<CellType: ConfigurableCell,
 // MARK: - MatchResult cell configurator
 
 // MARK: - Event detail configurators
-typealias EventPhotoCellConfigurator = TableViewCellConfigurator<EventDetailPhotoTableCell,
-                                                                 [ImageDataConfiguration]>
-typealias EventDetailPhotoCollectionCellConfigurator = CollectionViewCellConfigurator<EventDetailPhotoCollectionViewCell,
-                                                                                      ImageDataConfiguration>
-typealias EventDetailUsefulButtonsCellConfigurator = TableViewCellConfigurator<EventDetailUsefulButtonsCell,
-                                                                               SportNews>
-typealias EventDetailTitleCellConfigurator = TableViewCellConfigurator<EventDetailTitleCell,
-                                                                       SportNews>
-typealias EventDetailDescriptionCellConfigurator = TableViewCellConfigurator<EventDetailDescriptionCell,
-                                                                             SportNews>
-typealias EventDetailBoldTextCellConfigurator = TableViewCellConfigurator<EventDetailBoldViewCell,
-                                                                          SportNews>
-typealias EventDetailCopyrightCellConfigurator = TableViewCellConfigurator<EventDetailCopyrightCell,
-                                                                           SportTeam>
+//typealias EventPhotoCellConfigurator = TableViewCellConfigurator<EventDetailPhotoCell,
+//                                                                 [EventDetailPhotoCellModel]>
+//typealias EventDetailPhotoCollectionCellConfigurator = CollectionViewCellConfigurator<EventDetailPhotoCollectionViewCell,
+//                                                                                      EventDetailPhotoCellModel>
+//typealias EventDetailUsefulButtonsCellConfigurator = TableViewCellConfigurator<EventDetailUsefulButtonsCell,
+//                                                                               SportNews>
+//typealias EventDetailTitleCellConfigurator = TableViewCellConfigurator<EventDetailTitleCell,
+//                                                                       SportNews>
+//typealias EventDetailDescriptionCellConfigurator = TableViewCellConfigurator<EventDetailDescriptionCell,
+//                                                                             SportNews>
+//typealias EventDetailBoldTextCellConfigurator = TableViewCellConfigurator<EventDetailBoldViewCell,
+//                                                                          SportNews>
+//typealias EventDetailCopyrightCellConfigurator = TableViewCellConfigurator<EventDetailCopyrightCell,
+//                                                                           SportTeam>
 
 // MARK: - Edit event configurators
 typealias EditEventTitleCellConfigurator = ActionableTableViewCellConfigurator<EditEventTitleCell,
@@ -144,7 +144,7 @@ typealias EditEventBoldTextCellConfigurator = ActionableTableViewCellConfigurato
                                                                                   String?,
                                                                                   EditEventHandler>
 typealias EditEventAddPhotoCellConfigurator = ActionableTableViewCellConfigurator<EditEventPhotoCell,
-                                                                                  [ImageDataConfiguration],
+                                                                                  [EventDetailPhotoCellModel],
                                                                                   EditEventHandler>
 typealias EditEventSaveCellConfigurator = ActionableTableViewCellConfigurator<EditEventSaveCell,
                                                                               String?,
@@ -158,7 +158,7 @@ typealias EditEventAddPhotoCollectionCellConfigurator = ActionableCollectionView
                                                                                         EditEventHandler>
 
 typealias EditEventPhotoCollectionCellConfigurator = ActionableCollectionViewCellConfigurator<EditEventPhotoCollectionCell,
-                                                                                              ImageDataConfiguration,
+                                                                                              EventDetailPhotoCellModel,
                                                                                               EditEventHandler>
 // MARK: Teams
 

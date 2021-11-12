@@ -220,10 +220,9 @@ extension HomeViewController {
         let config = NewsViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config)
         row.action = {
-            let vc = EventDetailViewController()
+            let vc = EventDetailViewController(event)
             vc.modalPresentationStyle = .pageSheet
-            vc.modalTransitionStyle = .crossDissolve
-            vc.setInputData(event)
+            vc.modalTransitionStyle = .crossDissolve            
             self.navigationController?.pushViewController(vc, animated: true)
         }
         return row

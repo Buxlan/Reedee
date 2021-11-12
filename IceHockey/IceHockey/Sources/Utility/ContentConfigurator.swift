@@ -54,8 +54,30 @@ typealias SaveViewConfigurator = CollectionViewConfigurator<MatchResultEditSaveC
 typealias NewsViewConfigurator = CollectionViewConfigurator<NewsTableCell,
                                                             NewsTableCellModel>
 
-typealias SquadViewConfigurator = CollectionViewConfigurator<SquadHeaderView,
+typealias SquadHeaderViewConfigurator = CollectionViewConfigurator<SquadHeaderView,
                                                              SquadHeaderCellModel>
 
 typealias TrainingViewConfigurator = CollectionViewConfigurator<TrainingCell,
                                                                 TrainingCellModel>
+
+// MARK: - Event detail configurators
+typealias EventDetailHeaderViewConfigurator = CollectionViewConfigurator<EventDetailHeaderView,
+                                                                         EventDetailHeaderCellModel>
+
+typealias EventDetailUserViewConfigurator = CollectionViewConfigurator<EventDetailUserView,
+                                                                       EventDetailUserCellModel>
+
+typealias EventDetailPhotoViewConfigurator = CollectionViewConfigurator<EventDetailPhotoView,
+                                                                        [EventDetailPhotoCellModel]>
+typealias EventDetailPhotoCollectionCellConfigurator = CollectionViewConfigurator<EventDetailPhotoCollectionViewCell,
+                                                                                      EventDetailPhotoCellModel>
+typealias EventDetailUsefulButtonsViewConfigurator = CollectionViewConfigurator<EventDetailUsefulButtonsView,
+                                                                                EventDetailUsefulButtonsCellModel>
+typealias EventDetailTitleViewConfigurator = CollectionViewConfigurator<EventDetailTitleView,
+                                                                        EventDetailTitleCellModel>
+typealias EventDetailDescriptionViewConfigurator = CollectionViewConfigurator<EventDetailDescriptionView,
+                                                                              EventDetailDescriptionCellModel>
+typealias EventDetailBoldTextViewConfigurator = CollectionViewConfigurator<EventDetailBoldTextView,
+                                                                           EventDetailBoldTextCellModel>
+typealias EventDetailCopyrightViewConfigurator = CollectionViewConfigurator<EventDetailCopyrightView,
+                                                                            EventDetailCopyrightCellModel>

@@ -121,6 +121,11 @@ internal enum L10n {
     internal static let wantDelete = L10n.tr("Localizable", "EditEventLabel.wantDelete")
   }
 
+  internal enum EventDetail {
+    /// Event
+    internal static let title = L10n.tr("Localizable", "EventDetail.title")
+  }
+
   internal enum Events {
     /// Editing event
     internal static let addEventTitle = L10n.tr("Localizable", "Events.addEventTitle")

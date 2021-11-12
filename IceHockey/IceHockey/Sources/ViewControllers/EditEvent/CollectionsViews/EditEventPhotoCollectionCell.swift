@@ -11,7 +11,7 @@ class EditEventPhotoCollectionCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    typealias DataType = ImageDataConfiguration
+    typealias DataType = EventDetailPhotoCellModel
     typealias HandlerType = EditEventHandler
     
     private var handler: HandlerType?
@@ -99,8 +99,9 @@ extension EditEventPhotoCollectionCell: ConfigurableActionCell {
         self.handler = handler
         self.data = data
         if dataImageView.image == nil {
-            let path = "events/\(data.eventUID)"
-            ImagesManager.shared.getImage(withName: data.name, path: path) { (image) in
+            let path = "events/\(data.eventID)"
+            let imageName = ImagesManager.getImageName(forKey: data.imageID)
+            ImagesManager.shared.getImage(withName: imageName, path: path) { (image) in
                 self.dataImageView.image = image
             }
         }
@@ -112,7 +113,7 @@ extension EditEventPhotoCollectionCell {
     
     @objc private func deleteHandle() {
         if let data = data {
-            handler?.removeImage(withID: data.id)
+            handler?.removeImage(withID: data.imageID)
         }
     }
     

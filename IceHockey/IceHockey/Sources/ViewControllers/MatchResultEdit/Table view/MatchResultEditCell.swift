@@ -364,7 +364,6 @@ extension MatchResultEditCell: ConfigurableCollectionContent {
         homeTeamTextView.text = data.homeTeam
         awayTeamTextView.text = data.awayTeam
         
-        typeLabel.text = data.type
         titleTextView.text = data.title
         
         usernameLabel.backgroundColor = data.backgroundColor
@@ -382,9 +381,9 @@ extension MatchResultEditCell: ConfigurableCollectionContent {
         homeTeamTextView.textColor = data.textColor
         awayTeamTextView.textColor = data.textColor
         
-        typeLabel.backgroundColor = data.typeBackgroundColor
-        typeLabel.textColor = data.typeTextColor
-        typeLabel.text = data.type
+        typeLabel.backgroundColor = data.type.backgroundColor
+        typeLabel.textColor = data.type.textColor
+        typeLabel.text = data.type.description
         
         likeButton.backgroundColor = data.backgroundColor
         shareButton.backgroundColor = data.backgroundColor

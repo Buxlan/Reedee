@@ -13,9 +13,8 @@ class EditEventViewModel: NSObject {
     // MARK: - Properties
     var dataSource: SportNews! {
         didSet {
-            let imageData = dataSource.imageIDs.map { (imageUid) -> ImageDataConfiguration in
-                let imageName = ImagesManager.getImageName(forKey: imageUid)
-                return ImageDataConfiguration(name: imageName, imageID: imageUid, eventUID: dataSource.uid)
+            let imageData = dataSource.imageIDs.map { (imageUid) -> EventDetailPhotoCellModel in
+                return EventDetailPhotoCellModel(imageID: imageUid, eventUID: dataSource.uid)
             }
             tableItems = [
                 EditEventTitleCellConfigurator(data: nil, handler: handler),
