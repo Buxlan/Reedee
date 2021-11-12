@@ -11,8 +11,6 @@ class EditEventInputBoldTextCell: UITableViewCell {
     
     // MARK: - Properties
     typealias DataType = String?
-    typealias HandlerType = EditEventHandler
-    private var handler: HandlerType?
     
     var isInterfaceConfigured: Bool = false
     
@@ -91,12 +89,11 @@ class EditEventInputBoldTextCell: UITableViewCell {
     
 }
 
-extension EditEventInputBoldTextCell: ConfigurableActionCell {
+extension EditEventInputBoldTextCell: ConfigurableCollectionContent {
     
-    func configure(with data: DataType = nil, handler: HandlerType) {
+    func configure(with data: DataType = nil) {
         configureUI()
         eventTextField.text = data
-        self.handler = handler
     }
     
 }
@@ -104,7 +101,7 @@ extension EditEventInputBoldTextCell: ConfigurableActionCell {
 extension EditEventInputBoldTextCell: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        handler?.setBoldText(textView.text)
+//        handler?.setBoldText(textView.text)
     }
     
 }
@@ -113,12 +110,12 @@ extension EditEventInputBoldTextCell {
     
     @objc
     private func cameraButtonHandle(_ sender: UIButton) {
-        handler?.makePhoto()
+//        handler?.makePhoto()
     }
     
     @objc
     private func galleryButtonHandle(_ sender: UIButton) {
-        handler?.openGallery()
+//        handler?.openGallery()
     }
     
     @objc

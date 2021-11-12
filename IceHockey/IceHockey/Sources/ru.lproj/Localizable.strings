@@ -93,7 +93,7 @@
 /* Contacts */
 "Contacts.tabBarItemTitle" = "Контакты";
 "Contacts.title" = "О клубе";
-"Contacts.toCallUsTitle" = "Позвонить";
+"Contacts.toCallUsTitle" = "Позвонить нам";
 /* Teams */
 "Team.listTitle" = "Команды";
 "Team.onTheMapTitle" = "на карте";
@@ -137,7 +137,7 @@
 "Other.report" = "Пожаловаться";
 "Other.bugReport" = "Сообщить об ошибке";
 "Other.delete" = "Удалить";
-"Other.selectAction" = "Select action";
+"Other.selectAction" = "Выберите действие";
 /* Settings */
 "Settings.navigationBarTitle" = "Настройки";
 /* Match status */
@@ -151,7 +151,7 @@
 "EditEventLabel.titlePlaceholder" = "Текст для воодушевления";
 "EditEventLabel.newMatchNavigationBarTitle" = "Создать матч";
 "EditEventLabel.existingMatchNavigationBarTitle" = "Изменить матч";
-"EditEventLabel.selectEditTypeTitle" = "Что хотите сделать?";
+"EditEventLabel.selectEditTypeTitle" = "Выберите действие";
 "EditEventLabel.editTypeTitle" = "Изменить";
 "EditEventLabel.deleteTypeTitle" = "Удалить";
 "EditEventLabel.wantDelete" = "Уверены?";

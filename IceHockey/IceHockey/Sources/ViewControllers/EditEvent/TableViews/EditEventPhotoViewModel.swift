@@ -23,9 +23,9 @@ struct EditEventPhotoViewModel {
             return
         }
         dataSource = data.map { (config) -> CellConfigurator in
-            EditEventPhotoCollectionCellConfigurator(data: config, handler: handler)
+            EditEventPhotoCollectionCellConfigurator(data: config)
         }
-        let addImageItem = EditEventAddPhotoCollectionCellConfigurator(data: nil, handler: handler)
+        let addImageItem = EditEventAddPhotoCollectionCellConfigurator(data: nil)
         dataSource.append(addImageItem)
     }
     

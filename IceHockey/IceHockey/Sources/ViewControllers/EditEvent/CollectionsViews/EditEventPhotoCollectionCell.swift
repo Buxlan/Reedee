@@ -12,9 +12,6 @@ class EditEventPhotoCollectionCell: UICollectionViewCell {
     // MARK: - Properties
     
     typealias DataType = EventDetailPhotoCellModel
-    typealias HandlerType = EditEventHandler
-    
-    private var handler: HandlerType?
     private var data: DataType?
     
     internal var isInterfaceConfigured: Bool = false
@@ -54,7 +51,6 @@ class EditEventPhotoCollectionCell: UICollectionViewCell {
     override func prepareForReuse() {
         dataImageView.image = nil
         isInterfaceConfigured = false
-        handler = nil
         data = nil
     }
         
@@ -92,11 +88,10 @@ class EditEventPhotoCollectionCell: UICollectionViewCell {
     
 }
 
-extension EditEventPhotoCollectionCell: ConfigurableActionCell {
+extension EditEventPhotoCollectionCell: ConfigurableCollectionContent {
     
-    func configure(with data: DataType, handler: HandlerType) {
+    func configure(with data: DataType) {
         configureInterface()
-        self.handler = handler
         self.data = data
         if dataImageView.image == nil {
             let path = "events/\(data.eventID)"
@@ -113,7 +108,7 @@ extension EditEventPhotoCollectionCell {
     
     @objc private func deleteHandle() {
         if let data = data {
-            handler?.removeImage(withID: data.imageID)
+//            handler?.removeImage(withID: data.imageID)
         }
     }
     

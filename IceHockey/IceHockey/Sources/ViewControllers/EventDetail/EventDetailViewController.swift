@@ -161,12 +161,10 @@ extension EventDetailViewController {
             usefulButtonsRow = makeUsefulButtonsTableRow(),
             titleRow = makeTitleTableRow(),
             descriptionRow = makeDescriptionTableRow(),
-            boldTextRow = makeBoldTextTableRow(),
-            copyrightRow = makeCopyrightTableRow()
+            boldTextRow = makeBoldTextTableRow()
         
         section.addRows([userRow, photoRow, usefulButtonsRow,
-                         titleRow, descriptionRow, boldTextRow,
-                         copyrightRow])
+                         titleRow, descriptionRow, boldTextRow])
         sections.append(section)
         let dataSource = TableDataSource(sections: sections)
         return dataSource

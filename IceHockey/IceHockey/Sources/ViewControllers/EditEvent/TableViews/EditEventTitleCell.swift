@@ -71,8 +71,8 @@ class EditEventTitleCell: UITableViewCell {
     
 }
 
-extension EditEventTitleCell: ConfigurableActionCell {
-    func configure(with data: DataType = nil, handler: HandlerType) {
+extension EditEventTitleCell: ConfigurableCollectionContent {
+    func configure(with data: DataType = nil) {
         configureUI()
     }
 }

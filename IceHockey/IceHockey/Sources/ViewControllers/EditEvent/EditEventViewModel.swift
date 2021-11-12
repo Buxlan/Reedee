@@ -17,20 +17,20 @@ class EditEventViewModel: NSObject {
                 return EventDetailPhotoCellModel(imageID: imageUid, eventUID: dataSource.uid)
             }
             tableItems = [
-                EditEventTitleCellConfigurator(data: nil, handler: handler),
-                EditEventInputDateCellConfigurator(data: dataSource.date, handler: handler),
-                EditEventTitleTextFieldCellConfigurator(data: dataSource.title, handler: handler),
-                EditEventAddPhotoCellConfigurator(data: imageData, handler: handler),
-                EditEventTextCellConfigurator(data: dataSource.text, handler: handler),
-                EditEventBoldTextCellConfigurator(data: dataSource.boldText, handler: handler),
-                EditEventSaveCellConfigurator(data: nil, handler: handler)
+                EditEventTitleViewConfigurator(data: nil),
+                EditEventInputDateViewConfigurator(data: dataSource.date),
+                EditEventTitleTextFieldViewConfigurator(data: dataSource.title),
+                EditEventAddPhotoViewConfigurator(data: imageData),
+                EditEventTextViewConfigurator(data: dataSource.text),
+                EditEventBoldTextViewConfigurator(data: dataSource.boldText),
+                EditEventSaveViewConfigurator(data: nil)
             ]
             handler.reloadData()
         }
     }
     weak var delegate: ViewControllerDismissable?
     private var handler: EditEventHandler
-    private var tableItems: [CellConfigurator] = []
+    private var tableItems: [TableRow] = []
     private var images: [UIImage] = []
     
     // MARK: Lifecircle

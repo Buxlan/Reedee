@@ -68,6 +68,10 @@ class MatchResultEditViewController: UIViewController {
         view.showsVerticalScrollIndicator = false
         view.register(MatchResultEditCell.self, forCellReuseIdentifier: MatchResultEditViewConfigurator.reuseIdentifier)
         view.register(MatchResultEditSaveCell.self, forCellReuseIdentifier: SaveViewConfigurator.reuseIdentifier)
+        if #available(iOS 15.0, *) {
+            view.sectionHeaderTopPadding = 0
+        }
+        view.separatorStyle = .none
         return view
     }()
     

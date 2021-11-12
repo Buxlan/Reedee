@@ -11,8 +11,6 @@ class EditEventInputDateCell: UITableViewCell {
     
     // MARK: - Properties
     typealias DataType = Date?
-    typealias HandlerType = EditEventHandler
-    private var handler: HandlerType?
     
     var isInterfaceConfigured: Bool = false
     
@@ -99,16 +97,15 @@ class EditEventInputDateCell: UITableViewCell {
     
 }
 
-extension EditEventInputDateCell: ConfigurableActionCell {
+extension EditEventInputDateCell: ConfigurableCollectionContent {
     
-    func configure(with data: DataType = nil, handler: HandlerType) {
+    func configure(with data: DataType = nil) {
         configureUI()
-        self.handler = handler
     }
     
     @objc
     private func dateChanged(_ sender: UIDatePicker) {
-        handler?.setDate(sender.date)
+//        handler?.setDate(sender.date)
     }
     
 }

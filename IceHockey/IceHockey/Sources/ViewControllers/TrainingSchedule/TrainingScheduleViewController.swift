@@ -14,6 +14,7 @@ class TrainingScheduleViewController: UIViewController {
     typealias InputDataType = SportTeam
     var viewModel: TrainingScheduleViewModel = TrainingScheduleViewModel()
     private var tableBase = TableViewBase()
+    var team = SportTeam.current
     
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
@@ -37,7 +38,7 @@ class TrainingScheduleViewController: UIViewController {
     private lazy var tableFooterView: EventDetailFooterView = {
         let frame = CGRect(x: 0, y: 0, width: 0, height: 150)
         let view = EventDetailFooterView(frame: frame)
-        view.configure(with: SportTeam.current)
+        view.configure(with: team)
         return view
     }()
     
@@ -45,11 +46,11 @@ class TrainingScheduleViewController: UIViewController {
         let controller = UIAlertController(title: L10n.Other.selectAction,
                                            message: nil,
                                            preferredStyle: .actionSheet)
-        let editAction = UIAlertAction(title: L10n.Other.edit, style: .destructive) { _ in
-            // edit
+        let editAction = UIAlertAction(title: L10n.Other.edit, style: .default) { _ in
+            self.editEvent()
         }
         let reportAction = UIAlertAction(title: L10n.Other.bugReport, style: .destructive) { _ in
-            // bug report
+            self.report()
         }
         let cancelAction = UIAlertAction(title: L10n.Other.cancel, style: .cancel) { _ in
         }
@@ -156,6 +157,16 @@ extension TrainingScheduleViewController {
     
     @objc private func handleMenu() {
         present(alert, animated: true)
-    }    
+    }
+    
+    @objc private func report() {
+        
+    }
+    
+    @objc private func editEvent() {
+//        let vc = MatchResultEditViewController(editMode: .edit(self.editingObject))
+//        vc.modalTransitionStyle = .crossDissolve
+//        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
 }

@@ -128,38 +128,8 @@ struct CollectionViewCellConfigurator<CellType: ConfigurableCell,
 //typealias EventDetailBoldTextCellConfigurator = TableViewCellConfigurator<EventDetailBoldViewCell,
 //                                                                          SportNews>
 //typealias EventDetailCopyrightCellConfigurator = TableViewCellConfigurator<EventDetailCopyrightCell,
-//                                                                           SportTeam>
+//   
 
-// MARK: - Edit event configurators
-typealias EditEventTitleCellConfigurator = ActionableTableViewCellConfigurator<EditEventTitleCell,
-                                                                               String?,
-                                                                               EditEventHandler>
-typealias EditEventTitleTextFieldCellConfigurator = ActionableTableViewCellConfigurator<EditEventInputTitleCell,
-                                                                                        String?,
-                                                                                        EditEventHandler>
-typealias EditEventTextCellConfigurator = ActionableTableViewCellConfigurator<EditEventInputTextCell,
-                                                                              String?,
-                                                                              EditEventHandler>
-typealias EditEventBoldTextCellConfigurator = ActionableTableViewCellConfigurator<EditEventInputBoldTextCell,
-                                                                                  String?,
-                                                                                  EditEventHandler>
-typealias EditEventAddPhotoCellConfigurator = ActionableTableViewCellConfigurator<EditEventPhotoCell,
-                                                                                  [EventDetailPhotoCellModel],
-                                                                                  EditEventHandler>
-typealias EditEventSaveCellConfigurator = ActionableTableViewCellConfigurator<EditEventSaveCell,
-                                                                              String?,
-                                                                              EditEventHandler>
-typealias EditEventInputDateCellConfigurator = ActionableTableViewCellConfigurator<EditEventInputDateCell,
-                                                                                   Date?,
-                                                                                   EditEventHandler>
-
-typealias EditEventAddPhotoCollectionCellConfigurator = ActionableCollectionViewCellConfigurator<EditEventAddPhotoCollectionCell,
-                                                                                        UIImage?,
-                                                                                        EditEventHandler>
-
-typealias EditEventPhotoCollectionCellConfigurator = ActionableCollectionViewCellConfigurator<EditEventPhotoCollectionCell,
-                                                                                              EventDetailPhotoCellModel,
-                                                                                              EditEventHandler>
 // MARK: Teams
 
 typealias TeamCellConfigurator = TableViewCellConfigurator<TeamTableCell,

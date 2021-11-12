@@ -33,6 +33,10 @@ class MatchResultDetailViewController: UIViewController {
         view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = false
         view.register(MatchResultTableCell.self, forCellReuseIdentifier: MatchResultViewConfigurator.reuseIdentifier)
+        view.separatorStyle = .none
+        if #available(iOS 15.0, *) {
+            view.sectionHeaderTopPadding = 0
+        }
         return view
     }()
     
@@ -41,6 +45,31 @@ class MatchResultDetailViewController: UIViewController {
         let view = EventDetailFooterView(frame: frame)
         view.configure(with: SportTeam.current)
         return view
+    }()
+    
+    private lazy var menuImage: UIImage = {
+        let imageHeight: CGFloat = 32.0
+        return Asset.menu.image.resizeImage(to: imageHeight, aspectRatio: .current)
+        
+    }()
+    
+    private lazy var alert: UIAlertController = {
+        let controller = UIAlertController(title: L10n.Other.selectAction,
+                                           message: nil,
+                                           preferredStyle: .actionSheet)
+        let editAction = UIAlertAction(title: L10n.Other.edit, style: .default) { _ in
+            self.editEvent()
+        }
+        let reportAction = UIAlertAction(title: L10n.Other.bugReport, style: .destructive) { _ in
+            self.report()
+        }
+        let cancelAction = UIAlertAction(title: L10n.Other.cancel, style: .cancel) { _ in
+        }
+        controller.addAction(editAction)
+        controller.addAction(reportAction)
+        controller.addAction(cancelAction)
+        
+        return controller
     }()
     
     private var keyboardManager = KeyboardAppearanceManager()
@@ -107,9 +136,8 @@ class MatchResultDetailViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationBar.prefersLargeTitles = false
         
-        let itemReport = UIBarButtonItem(title: L10n.Other.report, style: .plain, target: self, action: #selector(handleReport))
-        let itemEdit = UIBarButtonItem(title: L10n.Other.edit, style: .plain, target: self, action: #selector(handleEdit))
-        navigationItem.rightBarButtonItems = [itemReport, itemEdit]
+        let menuItem = UIBarButtonItem(image: menuImage, style: .plain, target: self, action: #selector(handleMenu))
+        navigationItem.rightBarButtonItem = menuItem
     }
     
     private func configureViewModel() {
@@ -159,11 +187,15 @@ extension MatchResultDetailViewController {
         return row
     }
     
-    @objc private func handleReport() {
+    @objc private func handleMenu() {
+        present(alert, animated: true)
+    }
+    
+    @objc private func report() {
         
     }
     
-    @objc private func handleEdit() {
+    @objc private func editEvent() {
         let vc = MatchResultEditViewController(editMode: .edit(self.editingObject))
         vc.modalPresentationStyle = .pageSheet
         vc.modalTransitionStyle = .crossDissolve

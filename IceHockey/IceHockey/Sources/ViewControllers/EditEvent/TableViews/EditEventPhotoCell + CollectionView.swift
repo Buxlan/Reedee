@@ -12,7 +12,6 @@ class EditEventPhotoCell: UITableViewCell, CollectionViewDelegate {
     // MARK: - Properties
     
     typealias DataType = [EventDetailPhotoCellModel]
-    typealias HandlerType = EditEventHandler
     var isInterfaceConfigured = false
     weak var delegate: UICollectionViewDelegate?
     private var viewModel = EditEventPhotoViewModel()
@@ -29,12 +28,11 @@ class EditEventPhotoCell: UITableViewCell, CollectionViewDelegate {
         view.allowsMultipleSelection = false
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isPagingEnabled = false
-        
-        EditEventPhotoCollectionCellConfigurator.registerCell(collectionView: view)
-        EditEventAddPhotoCollectionCellConfigurator.registerCell(collectionView: view)
-        
         view.delegate = self
         view.dataSource = self
+        
+        view.register(EditEventPhotoCollectionCell.self, forCellWithReuseIdentifier: EditEventPhotoCollectionCellConfigurator.reuseIdentifier)
+        view.register(EditEventAddPhotoCollectionCell.self, forCellWithReuseIdentifier: EditEventAddPhotoCollectionCellConfigurator.reuseIdentifier)
         
         return view
     }()
@@ -78,11 +76,10 @@ class EditEventPhotoCell: UITableViewCell, CollectionViewDelegate {
     
 }
 
-extension EditEventPhotoCell: ConfigurableActionCell {
+extension EditEventPhotoCell: ConfigurableCollectionContent {
     
-    func configure(with data: DataType, handler: HandlerType) {
+    func configure(with data: DataType) {
         configureUI()
-        viewModel.handler = handler
         viewModel.setImageData(data: data)
         collectionView.reloadData()
     }

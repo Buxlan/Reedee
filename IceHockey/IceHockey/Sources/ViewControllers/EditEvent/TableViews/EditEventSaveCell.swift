@@ -11,8 +11,6 @@ class EditEventSaveCell: UITableViewCell {
     
     // MARK: - Properties
     typealias DataType = String?
-    typealias HandlerType = EditEventHandler
-    private var handler: HandlerType?
     
     var isInterfaceConfigured: Bool = false
         
@@ -74,16 +72,15 @@ class EditEventSaveCell: UITableViewCell {
     
 }
 
-extension EditEventSaveCell: ConfigurableActionCell {
+extension EditEventSaveCell: ConfigurableCollectionContent {
     
-    func configure(with data: DataType = nil, handler: HandlerType) {
+    func configure(with data: DataType = nil) {
         configureUI()
-        self.handler = handler
     }
     
     @objc
     private func buttonHandle(_ sender: UIButton) {
-        handler?.save()
+//        handler?.save()
     }
     
 }

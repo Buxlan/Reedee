@@ -81,3 +81,25 @@ typealias EventDetailBoldTextViewConfigurator = CollectionViewConfigurator<Event
                                                                            EventDetailBoldTextCellModel>
 typealias EventDetailCopyrightViewConfigurator = CollectionViewConfigurator<EventDetailCopyrightView,
                                                                             EventDetailCopyrightCellModel>
+
+// MARK: - Edit event configurators
+typealias EditEventTitleViewConfigurator = CollectionViewConfigurator<EditEventTitleCell,
+                                                                      String?>
+typealias EditEventTitleTextFieldViewConfigurator = CollectionViewConfigurator<EditEventInputTitleCell,
+                                                                               String?>
+typealias EditEventTextViewConfigurator = CollectionViewConfigurator<EditEventInputTextCell,
+                                                                     String?>
+typealias EditEventBoldTextViewConfigurator = CollectionViewConfigurator<EditEventInputBoldTextCell,
+                                                                         String?>
+typealias EditEventAddPhotoViewConfigurator = CollectionViewConfigurator<EditEventPhotoCell,
+                                                                         [EventDetailPhotoCellModel]>
+typealias EditEventSaveViewConfigurator = CollectionViewConfigurator<EditEventSaveCell,
+                                                                     String?>
+typealias EditEventInputDateViewConfigurator = CollectionViewConfigurator<EditEventInputDateCell,
+                                                                          Date?>
+
+typealias EditEventAddPhotoCollectionCellConfigurator = CollectionViewConfigurator<EditEventAddPhotoCollectionCell,
+                                                                                   UIImage?>
+
+typealias EditEventPhotoCollectionCellConfigurator = CollectionViewConfigurator<EditEventPhotoCollectionCell,
+                                                                                EventDetailPhotoCellModel>

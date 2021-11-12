@@ -68,18 +68,17 @@ class EditEventViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.estimatedRowHeight = 300
         view.rowHeight = UITableView.automaticDimension
-        
-        EditEventTitleCellConfigurator.registerCell(tableView: view)
-        EditEventTitleTextFieldCellConfigurator.registerCell(tableView: view)
-        EditEventTextCellConfigurator.registerCell(tableView: view)
-        EditEventBoldTextCellConfigurator.registerCell(tableView: view)
-        EditEventSaveCellConfigurator.registerCell(tableView: view)
-        EditEventAddPhotoCellConfigurator.registerCell(tableView: view)
-        EditEventInputDateCellConfigurator.registerCell(tableView: view)
-
         view.tableFooterView = UIView()
         view.showsVerticalScrollIndicator = false
         
+        view.register(EditEventTitleCell.self, forCellReuseIdentifier: EditEventTitleViewConfigurator.reuseIdentifier)
+        view.register(EditEventInputTitleCell.self, forCellReuseIdentifier: EditEventTitleTextFieldViewConfigurator.reuseIdentifier)
+        view.register(EditEventInputTextCell.self, forCellReuseIdentifier: EditEventTextViewConfigurator.reuseIdentifier)
+        view.register(EditEventInputBoldTextCell.self, forCellReuseIdentifier: EditEventBoldTextViewConfigurator.reuseIdentifier)
+        view.register(EditEventSaveCell.self, forCellReuseIdentifier: EditEventSaveViewConfigurator.reuseIdentifier)
+        view.register(EditEventPhotoCell.self, forCellReuseIdentifier: EditEventAddPhotoViewConfigurator.reuseIdentifier)
+        view.register(EditEventInputDateCell.self, forCellReuseIdentifier: EditEventInputDateViewConfigurator.reuseIdentifier)
+                
         return view
     }()
             

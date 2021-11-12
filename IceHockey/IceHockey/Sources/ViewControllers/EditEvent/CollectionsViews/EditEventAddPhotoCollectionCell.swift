@@ -7,11 +7,9 @@
 
 import UIKit
 
-class EditEventAddPhotoCollectionCell: UICollectionViewCell, ConfigurableActionCell {
+class EditEventAddPhotoCollectionCell: UICollectionViewCell {
     // MARK: - Properties
     typealias DataType = UIImage?
-    typealias HandlerType = EditEventHandler
-    private var handler: HandlerType?
     
     internal var isInterfaceConfigured: Bool = false
     let imageAspectRate: CGFloat = 1
@@ -54,10 +52,13 @@ class EditEventAddPhotoCollectionCell: UICollectionViewCell, ConfigurableActionC
     }
     
     // MARK: - Helper functions
+        
+}
+
+extension EditEventAddPhotoCollectionCell: ConfigurableCollectionContent {
     
-    func configure(with data: DataType, handler: HandlerType) {
+    func configure(with data: DataType) {
         configureUI()
-        self.handler = handler
     }
     
 }
@@ -65,7 +66,7 @@ class EditEventAddPhotoCollectionCell: UICollectionViewCell, ConfigurableActionC
 extension EditEventAddPhotoCollectionCell {
     
     @objc func actionHandle(_ sender: UIButton) {
-        handler?.openGallery()
+//        handler?.openGallery()
     }
     
 }
