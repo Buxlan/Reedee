@@ -84,19 +84,19 @@ typealias EventDetailCopyrightViewConfigurator = CollectionViewConfigurator<Even
 
 // MARK: - Edit event configurators
 typealias EditEventTitleViewConfigurator = CollectionViewConfigurator<EditEventTitleCell,
-                                                                      String?>
+                                                                      EventDetailTitleCellModel>
 typealias EditEventTitleTextFieldViewConfigurator = CollectionViewConfigurator<EditEventInputTitleCell,
-                                                                               String?>
+                                                                               EventDetailTitleCellModel>
 typealias EditEventTextViewConfigurator = CollectionViewConfigurator<EditEventInputTextCell,
-                                                                     String?>
+                                                                     EventDetailDescriptionCellModel>
 typealias EditEventBoldTextViewConfigurator = CollectionViewConfigurator<EditEventInputBoldTextCell,
-                                                                         String?>
+                                                                         EventDetailBoldTextCellModel>
 typealias EditEventAddPhotoViewConfigurator = CollectionViewConfigurator<EditEventPhotoCell,
                                                                          [EventDetailPhotoCellModel]>
 typealias EditEventSaveViewConfigurator = CollectionViewConfigurator<EditEventSaveCell,
-                                                                     String?>
+                                                                     SaveCellModel>
 typealias EditEventInputDateViewConfigurator = CollectionViewConfigurator<EditEventInputDateCell,
-                                                                          Date?>
+                                                                          DateCellModel>
 
 typealias EditEventAddPhotoCollectionCellConfigurator = CollectionViewConfigurator<EditEventAddPhotoCollectionCell,
                                                                                    UIImage?>

@@ -138,6 +138,7 @@
 "Other.bugReport" = "Сообщить об ошибке";
 "Other.delete" = "Удалить";
 "Other.selectAction" = "Выберите действие";
+"Other.save" = "Save";
 /* Settings */
 "Settings.navigationBarTitle" = "Настройки";
 /* Match status */

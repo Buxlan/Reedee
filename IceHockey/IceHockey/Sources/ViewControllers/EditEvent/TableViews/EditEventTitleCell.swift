@@ -11,9 +11,8 @@ class EditEventTitleCell: UITableViewCell {
     
     // MARK: - Properties
     
-    typealias DataType = String?
-    typealias HandlerType = EditEventHandler
-    var handler: HandlerType?
+    typealias DataType = EventDetailTitleCellModel
+    var data: DataType?
     
     var isInterfaceConfigured: Bool = false
         
@@ -72,7 +71,8 @@ class EditEventTitleCell: UITableViewCell {
 }
 
 extension EditEventTitleCell: ConfigurableCollectionContent {
-    func configure(with data: DataType = nil) {
+    func configure(with data: DataType) {
+        self.data = data
         configureUI()
     }
 }

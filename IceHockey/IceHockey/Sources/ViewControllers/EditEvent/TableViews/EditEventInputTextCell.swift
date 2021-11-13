@@ -10,7 +10,8 @@ import UIKit
 class EditEventInputTextCell: UITableViewCell {
     
     // MARK: - Properties
-    typealias DataType = String?
+    typealias DataType = EventDetailDescriptionCellModel
+    var data: DataType?
     
     var isInterfaceConfigured: Bool = false
     
@@ -93,9 +94,10 @@ class EditEventInputTextCell: UITableViewCell {
 
 extension EditEventInputTextCell: ConfigurableCollectionContent {
     
-    func configure(with data: DataType = nil) {
+    func configure(with data: DataType) {
+        self.data = data
         configureUI()
-        eventTextField.text = data
+        eventTextField.text = data.title
     }
     
 }

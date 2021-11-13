@@ -11,7 +11,8 @@ class EditEventInputTitleCell: UITableViewCell {
     
     // MARK: - Properties
     
-    typealias DataType = String?
+    typealias DataType = EventDetailTitleCellModel
+    var data: DataType?
     
     var isInterfaceConfigured: Bool = false
     
@@ -94,8 +95,9 @@ class EditEventInputTitleCell: UITableViewCell {
 extension EditEventInputTitleCell: ConfigurableCollectionContent {
     
     func configure(with data: DataType) {
+        self.data = data
         configureUI()
-        titleTextField.text = data
+        titleTextField.text = data.title
     }
     
 }

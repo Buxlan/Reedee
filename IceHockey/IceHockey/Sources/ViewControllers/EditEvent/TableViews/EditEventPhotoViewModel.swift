@@ -12,28 +12,23 @@ struct EditEventPhotoViewModel {
     // MARK: - Properties
     var handler: EditEventHandler?
     
-    private var dataSource: [CellConfigurator] = []
+    private var dataSource: [ContentConfigurator] = []
     
     // MARK: - Lifecircle
     
     // MARK: - Helper functions
     
     mutating func setImageData(data: [EventDetailPhotoCellModel]) {
-        guard let handler = handler else {
-            return
-        }
-        dataSource = data.map { (config) -> CellConfigurator in
+        dataSource = data.map { (config) -> ContentConfigurator in
             EditEventPhotoCollectionCellConfigurator(data: config)
         }
         let addImageItem = EditEventAddPhotoCollectionCellConfigurator(data: nil)
         dataSource.append(addImageItem)
     }
     
-    func item(at indexPath: IndexPath) -> CellConfigurator {
-        guard indexPath.row >= 0,
-              indexPath.row < dataSource.count else {
-            fatalError("Wrong index path")
-        }
+    func item(at indexPath: IndexPath) -> ContentConfigurator {
+        assert(indexPath.row >= 0 &&
+              indexPath.row < dataSource.count)
         return dataSource[indexPath.row]
     }
     

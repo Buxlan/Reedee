@@ -10,36 +10,25 @@ import UIKit
 class EditEventSaveCell: UITableViewCell {
     
     // MARK: - Properties
-    typealias DataType = String?
+    typealias DataType = SaveCellModel
+    var data: DataType?
     
     var isInterfaceConfigured: Bool = false
         
     private lazy var saveButton: UIButton = {
         let view = UIButton()
         view.accessibilityIdentifier = "saveButton"
-        view.backgroundColor = Asset.other3.color
-        view.setTitleColor(Asset.textColor.color, for: .normal)
-        view.tintColor = Asset.textColor.color
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 16
         view.clipsToBounds = true
         view.contentEdgeInsets = .init(top: 4, left: 8, bottom: 4, right: 8)
-        view.setTitle(L10n.Events.save, for: .normal)
 //        view.setContentHuggingPriority(.defaultHigh, for: .vertical)
         view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         view.contentEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
         return view
     }()
 
-    // MARK: - Lifecircle
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    // MARK: - Lifecircle    
     
     override func prepareForReuse() {
         isInterfaceConfigured = false
@@ -74,8 +63,12 @@ class EditEventSaveCell: UITableViewCell {
 
 extension EditEventSaveCell: ConfigurableCollectionContent {
     
-    func configure(with data: DataType = nil) {
+    func configure(with data: DataType) {
+        self.data = data
         configureUI()
+        saveButton.setTitleColor(data.textColor, for: .normal)
+        saveButton.setTitle(data.title, for: .normal)
+        saveButton.backgroundColor = data.backgroundColor
     }
     
     @objc

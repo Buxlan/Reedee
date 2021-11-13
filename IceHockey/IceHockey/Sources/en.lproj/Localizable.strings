@@ -138,6 +138,7 @@
 "Other.bugReport" = "Report a bug";
 "Other.delete" = "Delete";
 "Other.selectAction" = "Select action";
+"Other.save" = "Save";
 /* Settings */
 "Settings.navigationBarTitle" = "Settings";
 /* Match status */

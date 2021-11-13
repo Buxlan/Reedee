@@ -87,6 +87,6 @@ extension MatchResultEditSaveCell: ConfigurableCollectionContent {
 extension MatchResultEditSaveCell {
     
     @objc private func handleSave(_ sender: UIButton) {
-        data?.saveAction()
+        data?.action()
     }
 }

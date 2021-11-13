@@ -259,6 +259,8 @@ internal enum L10n {
     internal static let edit = L10n.tr("Localizable", "Other.edit")
     /// Report
     internal static let report = L10n.tr("Localizable", "Other.report")
+    /// Save
+    internal static let save = L10n.tr("Localizable", "Other.save")
     /// Select action
     internal static let selectAction = L10n.tr("Localizable", "Other.selectAction")
   }

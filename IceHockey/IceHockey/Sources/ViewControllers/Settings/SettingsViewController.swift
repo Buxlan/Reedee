@@ -94,13 +94,6 @@ class SettingsViewController: UIViewController {
 
 extension SettingsViewController {
     
-    @objc private func addEventHandle() {
-        let vc = EditEventViewController(editMode: .new)
-        vc.modalPresentationStyle = .pageSheet
-        vc.modalTransitionStyle = .crossDissolve
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
     func createDataSource() -> TableDataSource {
         var sections: [TableSection] = []
         var section = TableSection()

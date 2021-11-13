@@ -173,7 +173,7 @@ extension MatchResultDetailViewController {
     
     func makeSaveTableRow() -> TableRow {
         var cellModel = SaveCellModel()
-        cellModel.saveAction = {
+        cellModel.action = {
             do {
                 try self.editingObject.save()
             } catch {

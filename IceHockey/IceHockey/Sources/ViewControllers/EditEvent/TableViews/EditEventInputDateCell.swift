@@ -10,7 +10,8 @@ import UIKit
 class EditEventInputDateCell: UITableViewCell {
     
     // MARK: - Properties
-    typealias DataType = Date?
+    typealias DataType = DateCellModel
+    var data: DataType?
     
     var isInterfaceConfigured: Bool = false
     
@@ -99,7 +100,8 @@ class EditEventInputDateCell: UITableViewCell {
 
 extension EditEventInputDateCell: ConfigurableCollectionContent {
     
-    func configure(with data: DataType = nil) {
+    func configure(with data: DataType) {
+        self.data = data
         configureUI()
     }
     
