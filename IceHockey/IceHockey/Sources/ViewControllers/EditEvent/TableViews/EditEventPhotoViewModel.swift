@@ -6,34 +6,13 @@
 //
 
 import Foundation
+import UIKit
 
-struct EditEventPhotoViewModel {
+struct EditEventPhotoCellModel {
+     
+    weak var collectionBase: CollectionViewBase?
     
-    // MARK: - Properties
-    var handler: EditEventHandler?
-    
-    private var dataSource: [ContentConfigurator] = []
-    
-    // MARK: - Lifecircle
-    
-    // MARK: - Helper functions
-    
-    mutating func setImageData(data: [EventDetailPhotoCellModel]) {
-        dataSource = data.map { (config) -> ContentConfigurator in
-            EditEventPhotoCollectionCellConfigurator(data: config)
-        }
-        let addImageItem = EditEventAddPhotoCollectionCellConfigurator(data: nil)
-        dataSource.append(addImageItem)
-    }
-    
-    func item(at indexPath: IndexPath) -> ContentConfigurator {
-        assert(indexPath.row >= 0 &&
-              indexPath.row < dataSource.count)
-        return dataSource[indexPath.row]
-    }
-    
-    var itemsCount: Int {
-        dataSource.count
-    }
+    var backgroundColor = Asset.other3.color
+    var tintColor = Asset.other0.color
     
 }

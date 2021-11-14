@@ -67,7 +67,7 @@ class MatchResultEditViewController: UIViewController {
         view.tableFooterView = UIView()
         view.showsVerticalScrollIndicator = false
         view.register(MatchResultEditCell.self, forCellReuseIdentifier: MatchResultEditViewConfigurator.reuseIdentifier)
-        view.register(MatchResultEditSaveCell.self, forCellReuseIdentifier: SaveViewConfigurator.reuseIdentifier)
+        view.register(SaveTableCell.self, forCellReuseIdentifier: SaveViewConfigurator.reuseIdentifier)
         if #available(iOS 15.0, *) {
             view.sectionHeaderTopPadding = 0
         }

@@ -9,7 +9,8 @@ import UIKit
 
 class EditEventAddPhotoCollectionCell: UICollectionViewCell {
     // MARK: - Properties
-    typealias DataType = UIImage?
+    typealias DataType = PhotoCellModel
+    var data: DataType?
     
     internal var isInterfaceConfigured: Bool = false
     let imageAspectRate: CGFloat = 1
@@ -17,7 +18,7 @@ class EditEventAddPhotoCollectionCell: UICollectionViewCell {
     
     private lazy var actionButton: UIButton = {
         let view = UIButton()
-        view.accessibilityIdentifier = "actionButton (collection cell)"
+        view.accessibilityIdentifier = "actionButton"
         view.backgroundColor = Asset.other1.color
         view.tintColor = Asset.textColor.color
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -58,6 +59,7 @@ class EditEventAddPhotoCollectionCell: UICollectionViewCell {
 extension EditEventAddPhotoCollectionCell: ConfigurableCollectionContent {
     
     func configure(with data: DataType) {
+        self.data = data
         configureUI()
     }
     
@@ -66,7 +68,7 @@ extension EditEventAddPhotoCollectionCell: ConfigurableCollectionContent {
 extension EditEventAddPhotoCollectionCell {
     
     @objc func actionHandle(_ sender: UIButton) {
-//        handler?.openGallery()
+        data?.deleteAction()
     }
     
 }

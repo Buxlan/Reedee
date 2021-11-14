@@ -355,9 +355,8 @@ extension MatchResultTableCell: ConfigurableCollectionContent {
                     return
                 }
                 self.usernameLabel.text = user.displayName
-                let imageName = ImagesManager.getImageName(forKey: user.imageID)
                 let path = "users"
-                ImagesManager.shared.getImage(withName: imageName, path: path) { [weak self] (image) in
+                ImagesManager.shared.getImage(withID: user.imageID, path: path) { [weak self] (image) in
                     guard let self = self else { return }
                     if let image = image {
                         self.userImageView.image = image

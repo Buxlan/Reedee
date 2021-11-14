@@ -58,6 +58,7 @@ internal enum Asset {
   internal static let buildingColumns = ImageAsset(name: "buildingColumns")
   internal static let buildingColumnsFill = ImageAsset(name: "buildingColumnsFill")
   internal static let camera = ImageAsset(name: "camera")
+  internal static let cameraViewfinder = ImageAsset(name: "cameraViewfinder")
   internal static let chevronRight = ImageAsset(name: "chevronRight")
   internal static let contacts = ImageAsset(name: "contacts")
   internal static let emailAuth = ImageAsset(name: "emailAuth")

@@ -7,14 +7,13 @@
 
 import UIKit
 
-class EditEventPhotoCell: UITableViewCell, CollectionViewDelegate {
+class EditEventPhotoCell: UITableViewCell {
     
     // MARK: - Properties
     
-    typealias DataType = [EventDetailPhotoCellModel]
+    typealias DataType = EditEventPhotoCellModel
+    var data: DataType?
     var isInterfaceConfigured = false
-    weak var delegate: UICollectionViewDelegate?
-    private var viewModel = EditEventPhotoViewModel()
     let cellHeight: CGFloat = 120
     
     private lazy var collectionView: PhotoCollectionView = {
@@ -24,13 +23,10 @@ class EditEventPhotoCell: UITableViewCell, CollectionViewDelegate {
         view.accessibilityIdentifier = "collectionView (inside table cell)"
         view.backgroundColor = Asset.other1.color
         view.isUserInteractionEnabled = true
-        view.allowsSelection = false
+        view.allowsSelection = true
         view.allowsMultipleSelection = false
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isPagingEnabled = false
-        view.delegate = self
-        view.dataSource = self
-        
         view.register(EditEventPhotoCollectionCell.self, forCellWithReuseIdentifier: EditEventPhotoCollectionCellConfigurator.reuseIdentifier)
         view.register(EditEventAddPhotoCollectionCell.self, forCellWithReuseIdentifier: EditEventAddPhotoCollectionCellConfigurator.reuseIdentifier)
         
@@ -49,6 +45,7 @@ class EditEventPhotoCell: UITableViewCell, CollectionViewDelegate {
     
     override func prepareForReuse() {
         isInterfaceConfigured = false
+        data = nil
     }
     
     // MARK: - Helper functions
@@ -79,30 +76,14 @@ class EditEventPhotoCell: UITableViewCell, CollectionViewDelegate {
 extension EditEventPhotoCell: ConfigurableCollectionContent {
     
     func configure(with data: DataType) {
+        self.data = data
         configureUI()
-        viewModel.setImageData(data: data)
+        data.collectionBase?.setupCollection(collectionView)
         collectionView.reloadData()
+        
+        collectionView.backgroundColor = data.backgroundColor
+        collectionView.tintColor = data.tintColor
     }
-    
-}
-
-extension EditEventPhotoCell: UICollectionViewDelegate, UICollectionViewDataSource {
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.itemsCount
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = viewModel.item(at: indexPath)
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type(of: item).reuseIdentifier,
-                                                      for: indexPath)
-        item.configure(cell: cell)
-        return cell
-    }
-    
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        print("touched")
-//    }
     
 }
 

@@ -117,8 +117,7 @@ extension EventDetailPhotoCollectionViewCell: ConfigurableCollectionContent {
         configureInterface()
         if dataImageView.image == nil {
             let path = "events/\(data.eventID)"
-            let imageName = ImagesManager.getImageName(forKey: data.imageID)
-            ImagesManager.shared.getImage(withName: imageName, path: path) { (image) in
+            ImagesManager.shared.getImage(withID: data.imageID, path: path) { (image) in
                 self.dataImageView.image = image
             }
         }

@@ -77,7 +77,7 @@ struct ExistingSportNewsFirebaseSaver: SportEventFirebaseSaver {
                     continue
                 }
                 // need to remove image from storage
-                let imageName = ImagesManager.getImageName(forKey: imageId)
+                let imageName = ImagesManager.shared.getImageName(withID: imageId)
                 let imageStorageRef = imagesStorageReference.child(object.uid).child(imageName)
                 imageStorageRef.delete { (error) in
                     if let error = error {
@@ -104,11 +104,11 @@ struct ExistingSportNewsFirebaseSaver: SportEventFirebaseSaver {
                 }
                 let imagesManager = ImagesManager.shared
                 for imageId in newImageIds {
-                    let imageName = ImagesManager.getImageName(forKey: imageId)
+                    let imageName = ImagesManager.shared.getImageName(withID: imageId)
                     let imageRef = imagesDatabaseReference.child(imageId)
                     imageRef.setValue(imageName)
                     let ref = imagesStorageReference.child(eventId).child(imageName)
-                    if let image = ImagesManager.shared.getCachedImage(forName: imageName),
+                    if let image = ImagesManager.shared.getCachedImage(withName: imageName),
                        let data = image.pngData() {
                         let task = ref.putData(data)
                         imagesManager.appendUploadTask(task)

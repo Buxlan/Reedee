@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MatchResultEditSaveCell: UITableViewCell {
+class SaveTableCell: UITableViewCell {
     
     // MARK: - Properties
     typealias DataType = SaveCellModel
@@ -73,7 +73,7 @@ class MatchResultEditSaveCell: UITableViewCell {
     
 }
 
-extension MatchResultEditSaveCell: ConfigurableCollectionContent {
+extension SaveTableCell: ConfigurableCollectionContent {
     
     func configure(with data: DataType) {
         configureUI()
@@ -84,7 +84,7 @@ extension MatchResultEditSaveCell: ConfigurableCollectionContent {
     
 }
 
-extension MatchResultEditSaveCell {
+extension SaveTableCell {
     
     @objc private func handleSave(_ sender: UIButton) {
         data?.action()

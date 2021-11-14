@@ -17,7 +17,10 @@ class EditEventViewController: UIViewController {
         case edit(InputDataType)
     }
     var event: InputDataType
+    private var viewModel = EditEventViewModel()
     private var tableBase = TableViewBase()
+    private var collectionBase = CollectionViewBase()
+    private lazy var imagePicker = ImagePickerManagerChoosableMode()
     
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
@@ -30,12 +33,13 @@ class EditEventViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = true
+        view.register(EventDetailUserView.self, forCellReuseIdentifier: EventDetailUserViewConfigurator.reuseIdentifier)
         view.register(EditEventTitleCell.self, forCellReuseIdentifier: EditEventTitleViewConfigurator.reuseIdentifier)
         view.register(EditEventInputDateCell.self, forCellReuseIdentifier: EditEventInputDateViewConfigurator.reuseIdentifier)
         view.register(EditEventInputTitleCell.self, forCellReuseIdentifier: EditEventTitleTextFieldViewConfigurator.reuseIdentifier)
         view.register(EditEventInputTextCell.self, forCellReuseIdentifier: EditEventTextViewConfigurator.reuseIdentifier)
         view.register(EditEventInputBoldTextCell.self, forCellReuseIdentifier: EditEventBoldTextViewConfigurator.reuseIdentifier)
-        view.register(EditEventSaveCell.self, forCellReuseIdentifier: EditEventSaveViewConfigurator.reuseIdentifier)
+        view.register(SaveTableCell.self, forCellReuseIdentifier: SaveViewConfigurator.reuseIdentifier)
         view.register(EditEventPhotoCell.self, forCellReuseIdentifier: EditEventAddPhotoViewConfigurator.reuseIdentifier)
         if #available(iOS 15.0, *) {
             view.sectionHeaderTopPadding = 0
@@ -132,9 +136,15 @@ class EditEventViewController: UIViewController {
     }
     
     private func configureViewModel() {
+        self.viewModel.loadImagesIfNeeded(event: event)
         let dataSource = self.createDataSource()
         tableBase.updateDataSource(dataSource)
         tableBase.setupTable(tableView)
+        viewModel.shouldReloadRelay = {
+            let dataSource = self.createDataSource()
+            self.tableBase.updateDataSource(dataSource)
+            self.tableView.reloadData()
+        }
     }
     
 }
@@ -151,10 +161,12 @@ extension EditEventViewController {
             dateRow = makeDateTableRow(),
             titleRow = makeTitleTableRow(),
             descriptionRow = makeDescriptionTableRow(),
-            boldTextRow = makeBoldTextTableRow()
+            boldTextRow = makeBoldTextTableRow(),
+            saveCell = makeSaveTableRow()
         
         section.addRows([userRow, photoRow, dateRow,
-                         titleRow, descriptionRow, boldTextRow])
+                         titleRow, descriptionRow, boldTextRow,
+                         saveCell])
         sections.append(section)
         let dataSource = TableDataSource(sections: sections)
         return dataSource
@@ -169,11 +181,43 @@ extension EditEventViewController {
     }
     
     func makePhotoTableRow() -> TableRow {
-        let cellModels = event.imageIDs.map { imageID -> EventDetailPhotoCellModel in
-            EventDetailPhotoCellModel(imageID: imageID, eventUID: self.event.uid)
-        }
-        let config = EditEventAddPhotoViewConfigurator(data: cellModels)
+        var cellModel = EditEventPhotoCellModel(collectionBase: collectionBase)
+        cellModel.collectionBase = collectionBase
+        let collectionDataSource = makeCollectionViewDataSource()
+        collectionBase.updateDataSource(collectionDataSource)
+        let config = EditEventAddPhotoViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
+        return row
+    }
+    
+    func makeCollectionViewDataSource() -> CollectionDataSource {
+        let size = CGSize(width: 120, height: 120)
+        let collectionRows = viewModel.images.map { image -> CollectionRow in
+            makePhotoCollectionRow(image: image, size: size)
+        }
+        let addPhotoCellModel = PhotoCellModel()
+        let config = EditEventPhotoCollectionCellConfigurator(data: addPhotoCellModel)
+        let row = CollectionRow(rowId: type(of: config).reuseIdentifier, config: config, size: size)
+        row.action = {
+            self.imagePicker.pickImage(self) { image in
+                self.viewModel.appendImage(image)
+            }
+        }
+        var dataSource = CollectionDataSource()
+        var section = CollectionSection()
+        section.addRows(collectionRows)
+        section.addRow(row)
+        dataSource.addSection(section)
+        return dataSource
+    }
+    
+    func makePhotoCollectionRow(image: UIImage, size: CGSize) -> CollectionRow {
+        var cellModel = PhotoCellModel(image: image)
+        cellModel.deleteAction = {
+            self.viewModel.removeImage(image)
+        }
+        let config = EditEventPhotoCollectionCellConfigurator(data: cellModel)
+        let row = CollectionRow(rowId: type(of: config).reuseIdentifier, config: config, size: size)
         return row
     }
     
@@ -206,8 +250,16 @@ extension EditEventViewController {
     }
     
     func makeSaveTableRow() -> TableRow {
-        let cellModel = SaveCellModel(L10n.Other.save)
-        let config = EditEventSaveViewConfigurator(data: cellModel)
+        var cellModel = SaveCellModel(L10n.Other.save)
+        cellModel.action = {
+            do {
+                try self.event.save()
+            } catch {
+                print("Save error: \(error)")
+            }
+            self.navigationController?.popViewController(animated: true)
+        }
+        let config = SaveViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         return row
     }

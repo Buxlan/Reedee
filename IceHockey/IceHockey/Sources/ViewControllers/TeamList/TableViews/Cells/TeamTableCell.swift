@@ -68,9 +68,8 @@ extension TeamTableCell: ConfigurableCell {
         if imageID.isEmpty {
             self.imageView?.image = noImage
         } else {
-            let imageName = ImagesManager.getImageName(forKey: imageID)
             let path = "events/\(data.uid)"
-            ImagesManager.shared.getImage(withName: imageName, path: path) { [weak self] (image) in
+            ImagesManager.shared.getImage(withID: imageID, path: path) { [weak self] (image) in
                 guard let self = self else { return }
                 if let image = image {
                     self.imageView?.image = image

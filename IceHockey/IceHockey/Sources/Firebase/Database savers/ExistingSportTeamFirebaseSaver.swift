@@ -49,7 +49,7 @@ struct ExistingSportTeamFirebaseSaver: SportTeamFirebaseSaver {
         if !oldImageID.isEmpty
             && oldImageID != newImageID {
             // need to remove image from server
-            let imageName = ImagesManager.getImageName(forKey: oldImageID)
+            let imageName = ImagesManager.shared.getImageName(withID: oldImageID)
             let imageStorageRef = imagesStorageReference.child(object.uid).child(imageName)
             imageStorageRef.delete { (error) in
                 if let error = error {
@@ -58,11 +58,11 @@ struct ExistingSportTeamFirebaseSaver: SportTeamFirebaseSaver {
             }
         } else if oldImageID != newImageID {
             // need to append image
-            let imageName = ImagesManager.getImageName(forKey: newImageID)
+            let imageName = ImagesManager.shared.getImageName(withID: newImageID)
             let imageRef = imagesDatabaseReference.child(newImageID)
             imageRef.setValue(imageName)
             let imageStorageRef = imagesStorageReference.child(newImageID).child(imageName)
-            if let image = ImagesManager.shared.getCachedImage(forName: imageName),
+            if let image = ImagesManager.shared.getCachedImage(withName: imageName),
                let data = image.pngData() {
                 let task = imageStorageRef.putData(data)
                 imagesManager.appendUploadTask(task)

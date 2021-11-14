@@ -95,7 +95,7 @@ extension SportNews: FirebaseObject {
     
     var mainImageID: String? {
         if imageIDs.count > 0 {
-            return ImagesManager.getImageName(forKey: imageIDs[0])
+            return imageIDs[0]
         }
         return nil
     }
@@ -159,17 +159,17 @@ extension SportNews {
     
     mutating func appendImage(_ image: UIImage) {
         if let key = FirebaseManager.shared.databaseManager.getNewImageUID() {
-            let imageName = ImagesManager.getImageName(forKey: key)
+            let imageName = ImagesManager.shared.getImageName(withID: key)
             ImagesManager.shared.appendToCache(image, for: imageName)
             imageIDs.append(key)
         }
     }
     
-    mutating func removeImage(withName imageID: String) {
+    mutating func removeImage(withID imageID: String) {
         guard let index = imageIDs.firstIndex(of: imageID) else {
             return
         }
-        let imageName = ImagesManager.getImageName(forKey: imageID)
+        let imageName = ImagesManager.shared.getImageName(withID: imageID)
         ImagesManager.shared.removeFromCache(imageForKey: imageName)
         imageIDs.remove(at: index)
     }

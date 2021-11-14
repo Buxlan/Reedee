@@ -27,18 +27,19 @@ class ImagesManager {
 // MARK: Helper methods
 extension ImagesManager {
     
-    func getImage(withName imageName: String,
+    func getImage(withID imageID: String,
                   path: String,
                   completion handler: @escaping (UIImage?) -> Void) {
+        let imageName = self.getImageName(withID: imageID)
         let nskey = imageName as NSString
-        if let image = cache.object(forKey: nskey) {
+        if let image = self.cache.object(forKey: nskey) {
             handler(image)
             return
         }
-        downloadImage(withName: imageName, path: path, completion: handler)
+        self.downloadImage(withName: imageName, path: path, completionHandler: handler)        
     }
     
-    func getCachedImage(forName imageName: String) -> UIImage? {
+    func getCachedImage(withName imageName: String) -> UIImage? {
         let nskey = imageName as NSString
         return cache.object(forKey: nskey)
     }
@@ -53,22 +54,22 @@ extension ImagesManager {
         cache.removeObject(forKey: nskey)
     }
 
-    private func downloadImage(withName imageName: String, path: String, completion handler: @escaping (UIImage?) -> Void) {
+    private func downloadImage(withName imageName: String, path: String, completionHandler: @escaping (UIImage?) -> Void) {
         let ref = getImageStorageReference(imageName: imageName, path: path)
         let maxSize: Int64 = 1 * 1024 * 1024
         ref.getData(maxSize: maxSize) { (data, error) in
             if let error = error {
                 print("Download error: \(error)")
-                handler(nil)
+                completionHandler(nil)
                 return
             }
             if let data = data,
                let image = UIImage(data: data) {
                 self.cache.setObject(image, forKey: imageName as NSString)
-                handler(image)
+                completionHandler(image)
                 return
             }
-            handler(nil)
+            completionHandler(nil)
         }
     }
     
@@ -97,8 +98,8 @@ extension ImagesManager {
         task.resume()
     }
     
-    static func getImageName(forKey key: String) -> String {
-        return key + ".png"
+    func getImageName(withID imageID: String) -> String {
+        return imageID + ".png"
     }
     
 }

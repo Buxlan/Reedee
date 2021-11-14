@@ -109,7 +109,7 @@ extension SportUser {
     
     mutating func appendImage(_ image: UIImage) {
         if let key = FirebaseManager.shared.databaseManager.getNewImageUID() {
-            let imageName = ImagesManager.getImageName(forKey: key)
+            let imageName = ImagesManager.shared.getImageName(withID: key)
             ImagesManager.shared.appendToCache(image, for: imageName)
             self.imageID = key
         }
@@ -119,7 +119,7 @@ extension SportUser {
         guard self.imageID == imageID else {
             return
         }
-        let imageName = ImagesManager.getImageName(forKey: imageID)
+        let imageName = ImagesManager.shared.getImageName(withID: imageID)
         ImagesManager.shared.removeFromCache(imageForKey: imageName)
         self.imageID = ""
     }

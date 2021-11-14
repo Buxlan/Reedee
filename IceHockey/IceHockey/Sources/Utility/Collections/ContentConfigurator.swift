@@ -47,7 +47,7 @@ typealias MatchResultEditViewConfigurator = CollectionViewConfigurator<MatchResu
 typealias MatchResultViewConfigurator = CollectionViewConfigurator<MatchResultTableCell,
                                                                    MatchResultTableCellModel>
 
-typealias SaveViewConfigurator = CollectionViewConfigurator<MatchResultEditSaveCell,
+typealias SaveViewConfigurator = CollectionViewConfigurator<SaveTableCell,
                                                             SaveCellModel>
 
 // MARK: - News cell configurator
@@ -92,14 +92,12 @@ typealias EditEventTextViewConfigurator = CollectionViewConfigurator<EditEventIn
 typealias EditEventBoldTextViewConfigurator = CollectionViewConfigurator<EditEventInputBoldTextCell,
                                                                          EventDetailBoldTextCellModel>
 typealias EditEventAddPhotoViewConfigurator = CollectionViewConfigurator<EditEventPhotoCell,
-                                                                         [EventDetailPhotoCellModel]>
-typealias EditEventSaveViewConfigurator = CollectionViewConfigurator<EditEventSaveCell,
-                                                                     SaveCellModel>
+                                                                         EditEventPhotoCellModel>
 typealias EditEventInputDateViewConfigurator = CollectionViewConfigurator<EditEventInputDateCell,
                                                                           DateCellModel>
 
 typealias EditEventAddPhotoCollectionCellConfigurator = CollectionViewConfigurator<EditEventAddPhotoCollectionCell,
-                                                                                   UIImage?>
+                                                                                   PhotoCellModel>
 
 typealias EditEventPhotoCollectionCellConfigurator = CollectionViewConfigurator<EditEventPhotoCollectionCell,
-                                                                                EventDetailPhotoCellModel>
+                                                                                PhotoCellModel>

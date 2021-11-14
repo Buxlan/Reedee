@@ -76,11 +76,11 @@ struct NewSportNewsFirebaseSaver: SportEventFirebaseSaver {
             }
             let imagesManager = ImagesManager.shared
             for imageId in object.imageIDs {
-                let imageName = ImagesManager.getImageName(forKey: imageId)
+                let imageName = ImagesManager.shared.getImageName(withID: imageId)
                 let imageRef = imagesDatabaseReference.child(imageId)
                 imageRef.setValue(imageName)
                 let ref = imagesStorageReference.child(eventId).child(imageName)
-                if let image = ImagesManager.shared.getCachedImage(forName: imageName),
+                if let image = ImagesManager.shared.getCachedImage(withName: imageName),
                    let data = image.pngData() {
                     let task = ref.putData(data)
                     imagesManager.appendUploadTask(task)

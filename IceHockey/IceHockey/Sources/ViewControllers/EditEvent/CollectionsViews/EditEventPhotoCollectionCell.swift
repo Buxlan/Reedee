@@ -11,22 +11,28 @@ class EditEventPhotoCollectionCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    typealias DataType = EventDetailPhotoCellModel
+    typealias DataType = PhotoCellModel
     private var data: DataType?
     
     internal var isInterfaceConfigured: Bool = false
     let imageAspectRate: CGFloat = 1.77
     let imageHeight: CGFloat = 160
-    let actionButtonHeight: CGFloat = 32
+    let actionButtonHeight: CGFloat = 24
         
     private lazy var dataImageView: UIImageView = {
         let cornerRadius: CGFloat = 32.0
         let view = UIImageView()
         view.accessibilityIdentifier = "dataImageView"
         view.backgroundColor = Asset.other3.color
-        view.contentMode = .scaleAspectFill
+        view.tintColor = Asset.other0.color
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
+    }()
+    
+    private lazy var cameraImage: UIImage = {
+        return Asset.cameraViewfinder.image
+            .resizeImage(to: 80, aspectRatio: .current)
+            .withRenderingMode(.alwaysTemplate)
     }()
     
     private lazy var actionButton: UIButton = {
@@ -34,12 +40,12 @@ class EditEventPhotoCollectionCell: UICollectionViewCell {
         view.accessibilityIdentifier = "actionButton (collection cell)"
         view.backgroundColor = Asset.other3.color
         view.setTitleColor(Asset.textColor.color, for: .normal)
-        view.tintColor = Asset.textColor.color
+        view.tintColor = Asset.other0.color
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = actionButtonHeight / 2
         view.layer.borderColor = Asset.other0.color.cgColor
         view.layer.borderWidth = 0.5
-        let image = Asset.xmark.image
+        let image = Asset.xmark.image.withRenderingMode(.alwaysTemplate)
         view.setImage(image, for: .normal)
         view.imageView?.contentMode = .scaleAspectFit
         view.clipsToBounds = true
@@ -93,12 +99,14 @@ extension EditEventPhotoCollectionCell: ConfigurableCollectionContent {
     func configure(with data: DataType) {
         configureInterface()
         self.data = data
-        if dataImageView.image == nil {
-            let path = "events/\(data.eventID)"
-            let imageName = ImagesManager.getImageName(forKey: data.imageID)
-            ImagesManager.shared.getImage(withName: imageName, path: path) { (image) in
-                self.dataImageView.image = image
-            }
+        if let image = data.image {
+            actionButton.isHidden = false
+            self.dataImageView.image = image
+            self.dataImageView.contentMode = .scaleAspectFill
+        } else {
+            actionButton.isHidden = true
+            self.dataImageView.image = cameraImage
+            self.dataImageView.contentMode = .center
         }
     }
     
@@ -107,9 +115,7 @@ extension EditEventPhotoCollectionCell: ConfigurableCollectionContent {
 extension EditEventPhotoCollectionCell {
     
     @objc private func deleteHandle() {
-        if let data = data {
-//            handler?.removeImage(withID: data.imageID)
-        }
+        data?.deleteAction()
     }
     
 }
