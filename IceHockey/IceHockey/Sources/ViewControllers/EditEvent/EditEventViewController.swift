@@ -16,8 +16,7 @@ class EditEventViewController: UIViewController {
         case new
         case edit(InputDataType)
     }
-    var event: InputDataType
-    private var viewModel = EditEventViewModel()
+    private var viewModel: EditEventViewModel
     private var tableBase = TableViewBase()
     private var collectionBase = CollectionViewBase()
     private lazy var imagePicker = ImagePickerManagerChoosableMode()
@@ -80,9 +79,9 @@ class EditEventViewController: UIViewController {
     init(editMode: EditMode) {
         switch editMode {
         case .new:
-            event = InputDataType()
+            viewModel = EditEventViewModel(event: SportNews())
         case .edit(let data):
-            event = data
+            viewModel = EditEventViewModel(event: data)
         }
         super.init(nibName: nil, bundle: nil)
     }
@@ -136,7 +135,7 @@ class EditEventViewController: UIViewController {
     }
     
     private func configureViewModel() {
-        self.viewModel.loadImagesIfNeeded(event: event)
+        self.viewModel.loadImagesIfNeeded(event: viewModel.event)
         let dataSource = self.createDataSource()
         tableBase.updateDataSource(dataSource)
         tableBase.setupTable(tableView)
@@ -173,7 +172,7 @@ extension EditEventViewController {
     }
     
     func makeUserTableRow() -> TableRow {
-        let cellModel = EventDetailUserCellModel(event)
+        let cellModel = EventDetailUserCellModel(viewModel.event)
         let config = EventDetailUserViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         row.height = 48.0
@@ -192,8 +191,8 @@ extension EditEventViewController {
     
     func makeCollectionViewDataSource() -> CollectionDataSource {
         let size = CGSize(width: 120, height: 120)
-        let collectionRows = viewModel.images.map { image -> CollectionRow in
-            makePhotoCollectionRow(image: image, size: size)
+        let collectionRows = viewModel.unremovedImageList.map { imageData -> CollectionRow in
+            makePhotoCollectionRow(imageData: imageData, size: size)
         }
         let addPhotoCellModel = PhotoCellModel()
         let config = EditEventPhotoCollectionCellConfigurator(data: addPhotoCellModel)
@@ -211,7 +210,8 @@ extension EditEventViewController {
         return dataSource
     }
     
-    func makePhotoCollectionRow(image: UIImage, size: CGSize) -> CollectionRow {
+    func makePhotoCollectionRow(imageData: ImageData, size: CGSize) -> CollectionRow {
+        let image = imageData.image
         var cellModel = PhotoCellModel(image: image)
         cellModel.deleteAction = {
             self.viewModel.removeImage(image)
@@ -222,28 +222,28 @@ extension EditEventViewController {
     }
     
     func makeTitleTableRow() -> TableRow {
-        let cellModel = EventDetailTitleCellModel(title: event.title)
+        let cellModel = EventDetailTitleCellModel(title: viewModel.event.title)
         let config = EditEventTitleViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         return row
     }
     
     func makeDateTableRow() -> TableRow {
-        let cellModel = DateCellModel(event.date)
+        let cellModel = DateCellModel(viewModel.event.date)
         let config = EditEventInputDateViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         return row
     }
     
     func makeDescriptionTableRow() -> TableRow {
-        let cellModel = EventDetailDescriptionCellModel(title: event.text)
+        let cellModel = EventDetailDescriptionCellModel(title: viewModel.event.text)
         let config = EditEventTextViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         return row
     }
     
     func makeBoldTextTableRow() -> TableRow {
-        let cellModel = EventDetailBoldTextCellModel(title: event.boldText)
+        let cellModel = EventDetailBoldTextCellModel(title: viewModel.event.boldText)
         let config = EditEventBoldTextViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         return row
@@ -253,7 +253,7 @@ extension EditEventViewController {
         var cellModel = SaveCellModel(L10n.Other.save)
         cellModel.action = {
             do {
-                try self.event.save()
+                try self.viewModel.save()
             } catch {
                 print("Save error: \(error)")
             }
