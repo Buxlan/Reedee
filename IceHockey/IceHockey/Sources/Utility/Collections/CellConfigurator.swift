@@ -162,6 +162,6 @@ typealias ActionCollectionCellConfigurator = CollectionViewCellConfigurator<Acti
 // MARK: - Not using
 
 typealias ComingEventCellConfigurator = TableViewCellConfigurator<ComingEventTableCell,
-                                                                  SportNewsDatabaseFlowImpl>
+                                                                  SportNews>
 typealias PhotoEventCollectionCellConfigurator = CollectionViewCellConfigurator<PhotoGalleryCollectionCell,
-                                                                                SportNewsDatabaseFlowImpl>
+                                                                                SportNews>

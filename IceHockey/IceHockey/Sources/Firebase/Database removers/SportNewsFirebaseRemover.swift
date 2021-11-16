@@ -11,7 +11,7 @@ struct SportNewsFirebaseRemover: FirebaseObjectRemover {
     
     // MARK: - Properties
     
-    typealias DataType = SportNewsDatabaseFlowImpl
+    typealias DataType = SportNews
     var object: FirebaseObject
     
     internal var objectsRootDatabaseReference: DatabaseReference {

@@ -10,7 +10,7 @@ import UIKit
 class ComingEventTableCell: UITableViewCell, ConfigurableCell {
     
     // MARK: - Properties
-    typealias DataType = SportNewsDatabaseFlowImpl
+    typealias DataType = SportNews
     
     var isInterfaceConfigured = false
     var imageAspectRate: CGFloat = 1.77

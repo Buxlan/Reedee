@@ -32,16 +32,21 @@ protocol SportEvent {
     var order: Int { get set }
     
     // MARK: - Lifecircle
-    init?(key: String, dict: [String: Any])
+//    init?(key: String, dict: [String: Any])
     
     // MARK: - Helper methods
-    func setLike(_ state: Bool)
-    func prepareLikesDict(userID: String) -> [String: Any]
+//    func setLike(_ state: Bool)
+//    func prepareLikesDict(userID: String) -> [String: Any]
 //    func save() throws
 //    func prepareDataForSaving() -> [String: Any]
 }
 
 extension SportEvent {
+    
+    var isNew: Bool {
+        return uid.isEmpty
+    }
+    
     func prepareLikesDict(userID: String) -> [String: Any] {        
         let usersDict: [String: Int] = [
             userID: 1

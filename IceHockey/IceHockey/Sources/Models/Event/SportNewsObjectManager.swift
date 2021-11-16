@@ -9,7 +9,7 @@ import Firebase
 
 struct SportNewsObjectManager {
     
-    typealias DataType = SportNewsDatabaseFlowImpl
+    typealias DataType = SportNews
     
     private static var databaseObjects: DatabaseReference {
         FirebaseManager.shared.databaseManager.root.child("events")
@@ -37,7 +37,7 @@ struct SportNewsObjectManager {
         guard let dict = snapshot.value as? [String: Any] else {
             return nil
         }
-        let object = SportNewsDatabaseFlowImpl(key: uid, dict: dict)
+        let object = SportNews(key: uid, dict: dict)
         return object
     }
     

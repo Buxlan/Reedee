@@ -54,7 +54,7 @@ class EditEventViewModel {
     private var imageList: [ImageData] = []      
     private var loadingHandlers: [String: (UIImage?) -> Void] = [:]
     
-    init(event: SportNewsDatabaseFlow) {
+    init(event: SportNews) {
         self.event = SportNewsUserInterfaceFlow(fields: event, imageData: imageList)
     }
 }
@@ -77,7 +77,7 @@ extension EditEventViewModel {
         }
     }
     
-    func loadImagesIfNeeded(event: SportNewsDatabaseFlowImpl) {
+    func loadImagesIfNeeded(event: SportNews) {
         if imageList.count > 0 {
             return
         }
@@ -120,7 +120,7 @@ extension EditEventViewModel {
         event.save()
     }
     
-    func makeEventForSaving() -> SportNewsDatabaseFlowImpl {
+    func makeEventForSaving() -> SportNews {
         return event
     }
     

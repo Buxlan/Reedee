@@ -11,7 +11,7 @@ struct SportNewsFirebaseSaver {
     
     // MARK: - Properties
     
-    typealias DataType = SportNewsDatabaseFlowImpl
+    typealias DataType = SportNews
     internal var object: DataType
     
     internal var eventsDatabaseReference: DatabaseReference {
@@ -110,7 +110,7 @@ struct SportNewsFirebaseSaver {
     
     func saveExisting() throws {
         
-        guard let object = self.object as? SportNewsDatabaseFlowImpl else {
+        guard let object = self.object as? SportNews else {
             throw SportEventSaveError.wrongInput
         }
         

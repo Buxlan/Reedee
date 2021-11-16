@@ -12,7 +12,7 @@ class EventDetailViewController: UIViewController {
     
     // MARK: - Properties
     var viewModel: EventDetailViewModel = EventDetailViewModel()
-    var event: SportNewsDatabaseFlowImpl
+    var event: SportNews
     private var tableBase = TableViewBase()
     
     private lazy var tableView: UITableView = {
@@ -77,7 +77,7 @@ class EventDetailViewController: UIViewController {
         
     // MARK: - Lifecircle
     
-    init(_ event: SportNewsDatabaseFlowImpl) {
+    init(_ event: SportNews) {
         self.event = event
         super.init(nibName: nil, bundle: nil)
     }
