@@ -15,7 +15,9 @@ protocol SportEventCreator {
 
 struct SportEventCreatorImpl {
     
-    func create(snapshot: DataSnapshot) -> SportEvent? {
+    func create(snapshot: DataSnapshot,
+                with completionHandler: @escaping (SportEvent?) -> Void)
+    -> SportEvent? {
         
         let uid = snapshot.key
         guard let dict = snapshot.value as? [String: Any] else { return nil }
@@ -24,9 +26,12 @@ struct SportEventCreatorImpl {
         
         switch type {
         case .event:
-            let builder = SportNewsBuilder()
+            let builder = SportNewsBuilder(key: uid, dict: dict)
+            builder.build(completionHandler: completionHandler)
+            object = builder.getResult()
         case .match:
             object = MatchResult(key: uid, dict: dict)
+            completionHandler(nil)
         default:
             object = nil
         }
@@ -43,15 +48,17 @@ struct SportEventCreatorImpl {
     
 }
 
-struct SportNewsBuilder {
+class SportNewsBuilder {
     
     // MARK: - Properties
     
-    let key: String
-    let dict: [String: Any]
+    private let key: String
+    private let dict: [String: Any]
     
     private var databasePart: SportNewsDatabaseFlowData?
     private var storagePart: SportNewsStorageFlowData?
+    
+    private var completionHandler: (SportEvent?) -> Void = { _ in }
     
     // MARK: - Lifecircle
     
@@ -62,20 +69,29 @@ struct SportNewsBuilder {
     
     // MARK: - Helper Methods
     
-    mutating func build(key: String, dict: [String: Any]) {
-        buildDatabasePart(key: key, dict: dict)
+    func build(completionHandler: @escaping (SportEvent?) -> Void) {
+        self.completionHandler = completionHandler
+        buildDatabasePart()
         buildStoragePart()
     }
     
-    private mutating func buildDatabasePart(key: String, dict: [String: Any]) {
+    private func buildDatabasePart() {
         databasePart = SportNewsDatabaseFlowDataImpl(key: key, dict: dict)
     }
     
-    private mutating func buildStoragePart() {
-        storagePart = SportNewsStorageFlowDataImpl()
+    private func buildStoragePart() {
+        guard let databasePart = databasePart,
+              !databasePart.uid.isEmpty else {
+                  return
+              }
+        storagePart = SportNewsStorageFlowDataImpl(eventID: databasePart.uid, imageIDs: databasePart.imageIDs)
+        let handler = {
+            self.completionHandler(self.getResult())
+        }
+        storagePart?.load(with: handler)
     }
     
-    func getResult() -> SportEvent? {
+    func getResult() -> SportNews? {
         guard let databasePart = databasePart,
               let storagePart = storagePart else {
                   return nil

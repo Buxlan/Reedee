@@ -11,23 +11,22 @@ import FirebaseDatabaseUI
 class HomeViewModel: NSObject {
     
     // MARK: - Properties
+    struct SectionData {
+        var title: String = ""
+        var events: [SportEvent] = []
+    }
+    var sections: [SectionData] = []    
     
-    var dataSource: FUITableViewDataSource?
-    
+    var dataSource: [TableRow] = []
     var items: [IndexPath: TableRow] = [:]
     
-    var populateCellRelay: ((UITableView, IndexPath, DataSnapshot) -> UITableViewCell)! {
-        didSet {
-            guard let populateCellRelay = populateCellRelay else { return }
-            dataSource = FUITableViewDataSource(query: databaseQuery, populateCell: populateCellRelay)
-        }
-    }
+    var shouldRefreshRelay = {}
+    var shouldRefreshAtIndexPathRelay: (IndexPath) -> Void = { _ in }
     
-    private var storageReference: StorageReference = {
-        FirebaseManager.shared.storageManager.root.child("events")
-    }()
     var databaseQuery: DatabaseQuery {
-        FirebaseManager.shared.databaseManager.root.child("events").queryOrdered(byChild: "order")
+        FirebaseManager.shared.databaseManager.root.child("events")
+            .queryOrdered(byChild: "order")
+            .queryLimited(toFirst: 10)
     }
     
     private lazy var actions: [ActionCollectionCellConfigurator] = {
@@ -51,9 +50,36 @@ class HomeViewModel: NSObject {
         actions[indexPath.item]
     }
     
-    func setupTable(_ tableView: UITableView) {
-        tableView.delegate = self
-        dataSource?.bind(to: tableView)
+    func update() {
+        var section = SectionData()
+        databaseQuery.getData { error, snapshot in
+            if let error = error {
+                preconditionFailure()
+            }
+            
+            for child in snapshot.children {
+                guard let child = child as? DataSnapshot else {
+                    continue
+                }
+                let completionHandler: (SportEvent?) -> Void = { event in
+                    guard let event = event else {
+                        return
+                    }
+                    if let index = section.events.firstIndex(where: { $0.uid == event.uid }) {
+                        section.events[index] = event
+                        self.sections = [section]
+                        self.shouldRefreshRelay()
+                    }
+                }
+                let creator = SportEventCreatorImpl()
+                let event = creator.create(snapshot: child, with: completionHandler)
+                if let event = event {
+                    section.events.append(event)
+                }
+            }
+            self.sections.append(section)
+            self.shouldRefreshRelay()
+        }
     }
     
 }

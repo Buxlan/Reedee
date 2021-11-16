@@ -11,6 +11,7 @@ import Firebase
 class HomeViewController: UIViewController {
     
     // MARK: - Properties
+    var tableBase = TableViewBase()
     var viewModel = HomeViewModel()
     var team = SportTeam.current
     
@@ -111,10 +112,6 @@ class HomeViewController: UIViewController {
         configureViewModel()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        viewModel.dataSource?.unbind()
-    }
-    
     // MARK: - Hepler functions
     
     private func configureUI() {
@@ -150,28 +147,44 @@ class HomeViewController: UIViewController {
     }
     
     private func configureViewModel() {
+        tableBase.setupTable(tableView)
         configureModeratorFunctions()
-        viewModel.populateCellRelay = { (_, indexPath, snap) -> UITableViewCell in
-            guard let event = SportEventCreatorImpl().create(snapshot: snap) else {
-                return UITableViewCell()
-            }
-            var row: TableRow
-            switch event.type {
-            case .event:
-                row = self.makeNewsTableRow(event)
-                self.viewModel.items[indexPath] = row
-            case .match:
-                row = self.makeMatchResultTableRow(event)
-                self.viewModel.items[indexPath] = row
-            default:
-                fatalError()
-            }
-            let cell = self.tableView.dequeueReusableCell(withIdentifier: row.rowId, for: indexPath)
-            row.config.configure(view: cell)
-            return cell
+        viewModel.shouldRefreshRelay = {
+            let dataSource = self.createDataSource()
+            self.tableBase.updateDataSource(dataSource)
+            self.tableView.reloadData()
         }
-        viewModel.setupTable(tableView)        
+        viewModel.update()
     }
+        
+//        viewModel.populateCellRelay = { (_, indexPath, snap) -> UITableViewCell in
+//            let creator = SportEventCreatorImpl()
+//            let handler: (SportNews?) -> Void = { event in
+//                guard let event = event else {
+//                    return
+//                }
+//
+//            }
+//            guard let event = creator.create(snapshot: snap, with: handler) else {
+//                return UITableViewCell()
+//            }
+//            var row: TableRow
+//            switch event.type {
+//            case .event:
+//                row = self.makeNewsTableRow(event)
+//                self.viewModel.items[indexPath] = row
+//            case .match:
+//                row = self.makeMatchResultTableRow(event)
+//                self.viewModel.items[indexPath] = row
+//            default:
+//                fatalError()
+//            }
+//            let cell = self.tableView.dequeueReusableCell(withIdentifier: row.rowId, for: indexPath)
+//            row.config.configure(view: cell)
+//            return cell
+//        }
+//        viewModel.setupTable(tableView)
+//    }
     
 }
 
@@ -201,12 +214,31 @@ extension HomeViewController {
     }
     
     @objc private func refreshTable(_ sender: Any) {
-        viewModel.dataSource?.unbind()
-        viewModel = HomeViewModel()
-        configureViewModel()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            self.refreshControl.endRefreshing()
+        
+    }
+    
+    func createDataSource() -> TableDataSource {        
+        var sections: [TableSection] = []
+        viewModel.sections.forEach { sectionData in
+            var section = TableSection()
+            let rows = sectionData.events.map { event -> TableRow in
+                var row = TableRow(rowId: "")
+                switch event.type {
+                case .event:
+                    row = self.makeNewsTableRow(event)
+                case .match:
+                    row = self.makeMatchResultTableRow(event)
+                default:
+                    assertionFailure()
+                }
+                return row
+            }
+            section.addRows(rows)
+            sections.append(section)
         }
+        
+        let dataSource = TableDataSource(sections: sections)
+        return dataSource
     }
     
     func makeNewsTableRow(_ event: SportEvent) -> TableRow {

@@ -259,18 +259,7 @@ extension NewsTableCell: ConfigurableCollectionContent {
             
         }
         
-        let imageID = data.imageID
-        let path = "events/\(data.uid)"
-        if !imageID.isEmpty {
-            ImagesManager.shared.getImage(withID: imageID, path: path) { [weak self] (image) in
-                guard let self = self else { return }
-                if let image = image {
-                    self.dataImageView.image = image
-                } else {
-                    self.dataImageView.image = self.noImage
-                }
-            }
-        }
+        dataImageView.image = data.image
         
         FirebaseManager.shared.databaseManager.getEventLikeInfo(eventID: data.uid) { (count, userLikes) in
             DispatchQueue.main.async {

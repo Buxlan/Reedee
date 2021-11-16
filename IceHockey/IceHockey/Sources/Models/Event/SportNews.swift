@@ -87,19 +87,70 @@ struct SportNewsDatabaseFlowDataImpl: SportNewsDatabaseFlowData {
 }
 
 protocol SportNewsStorageFlowData {
-    var images: [ImageData] { get set }
-    init(imageIDs: [String])
+    var eventID: String { get set }
+    var images: [String: ImageData] { get set }
+    init(eventID: String, imageIDs: [String])
+    func load(with completionHandler: @escaping () -> Void)
 }
 
-struct SportNewsStorageFlowDataImpl: SportNewsStorageFlowData {
-    var images: [ImageData]
-    init(imageIDs: [String]) {
-        images = []
+class SportNewsStorageFlowDataImpl: SportNewsStorageFlowData {
+    
+    // MARK: - Properties
+    
+    var eventID: String
+    var images: [String: ImageData]
+    private var imageIDs: [String]
+    private var handlers: [String: (UIImage?) -> Void] = [:]
+    
+    private var path: String {
+        return "events/\(eventID)"
+    }
+    
+    // MARK: - Lifecircle
+    
+    init() {
+        images = [:]
+        imageIDs = []
+        eventID = ""
+    }
+    
+    required init(eventID: String, imageIDs: [String]) {
+        images = [:]
+        self.imageIDs = imageIDs
+        self.eventID = eventID
+    }
+    
+    // MARK: - Helper methods
+    
+    func load(with completionHandler: @escaping () -> Void) {
+        handlers.removeAll()
         imageIDs.forEach { imageID in
-            // load image
-            let image = UIImage()
-            let imageData = ImageData(imageID: imageID, image: image)
-            images.append(imageData)
+            if imageID.isEmpty {
+                return
+            }
+            images[imageID] = ImageData()
+            let handler: (UIImage?) -> Void = { (image) in
+                guard let image = image else {
+                    return
+                }
+                let imageData = ImageData(imageID: imageID, image: image)
+                self.images[imageID] = imageData
+                if let index = self.handlers.index(forKey: imageID) {
+                    self.handlers.remove(at: index)
+                }
+                if self.handlers.count == 0 {
+                    completionHandler()
+                }
+            }
+            handlers[imageID] = handler
+        }
+        imageIDs.forEach { imageID in
+            if imageID.isEmpty {
+                return
+            }
+            if let handler = handlers[imageID] {
+                ImagesManager.shared.getImage(withID: imageID, path: path, completion: handler)
+            }
         }
     }
 }
@@ -187,12 +238,17 @@ struct SportNews: SportNewsDatabaseFlowData {
         }
     }
     
-    var images: [ImageData] {
+    var images: [String: ImageData] {
         return storageFlowObject.images
     }
     
-    private var databaseFlowObject: SportNewsDatabaseFlowData
-    private var storageFlowObject: SportNewsStorageFlowData
+    var databaseFlowObject: SportNewsDatabaseFlowData
+    var storageFlowObject: SportNewsStorageFlowData
+    
+    init() {
+        self.databaseFlowObject = SportNewsDatabaseFlowDataImpl()
+        self.storageFlowObject = SportNewsStorageFlowDataImpl()
+    }
     
     init(databaseFlowObject: SportNewsDatabaseFlowData, storageFlowObject: SportNewsStorageFlowData) {
         self.databaseFlowObject = databaseFlowObject
@@ -209,27 +265,27 @@ extension SportNews {
     
     var mainImage: UIImage? {
         let images = storageFlowObject.images
-        if images.count > 0 {
-            return images[0].image
+        if let (_, value) = images.first {            
+            return value.image
         }
         return nil
     }
         
-    mutating func appendImage(_ image: UIImage) {
-        let imageData = ImageData(image: image)
-        storageFlowObject.images.append(imageData)
-    }
+//    mutating func appendImage(_ image: UIImage) {
+//        let imageData = ImageData(image: image)
+//        storageFlowObject.images.append(imageData)
+//    }
+//
+//    mutating func removeImage(withID imageID: String) {
+//        let index = storageFlowObject.images.firstIndex {
+//            $0.imageID == imageID
+//        }
+//        if let index = index {
+//            storageFlowObject.images.remove(at: index)
+//        }
+//    }
     
-    mutating func removeImage(withID imageID: String) {
-        let index = storageFlowObject.images.firstIndex {
-            $0.imageID == imageID
-        }
-        if let index = index {
-            storageFlowObject.images.remove(at: index)
-        }
-    }
-    
-    mutating func updateImages(images: [ImageData]) {
+    mutating func updateImages(images: [String: ImageData]) {
         storageFlowObject.images = images
     }
     

@@ -37,12 +37,16 @@ struct SportNewsObjectManager {
         guard let dict = snapshot.value as? [String: Any] else {
             return nil
         }
-        let object = SportNews(key: uid, dict: dict)
+        var builder = SportNewsBuilder(key: uid, dict: dict)
+        builder.build { _ in
+            print("rereeeerer")
+        }
+        let object = builder.getResult()
         return object
     }
     
     func delete() throws {
-        try FirebaseManager.shared.delete(object)
+//        try FirebaseManager.shared.delete(object)
     }
     
     func checkProperties() -> Bool {

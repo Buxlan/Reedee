@@ -12,7 +12,7 @@ struct NewsTableCellModel: TableCellModel {
     var uid: String
     var title: String
     var description: String
-    var imageID: String
+    var image: UIImage?
     var type: String
     var author: String
     
@@ -32,7 +32,7 @@ struct NewsTableCellModel: TableCellModel {
         uid = data.uid
         title = data.title
         description = data.text
-        imageID = data.mainImageID ?? ""
+        image = data.mainImage
         type = data.type.description
         author = data.author
         

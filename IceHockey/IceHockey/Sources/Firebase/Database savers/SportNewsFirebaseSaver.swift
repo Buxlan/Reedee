@@ -110,64 +110,64 @@ struct SportNewsFirebaseSaver {
     
     func saveExisting() throws {
         
-        guard let object = self.object as? SportNews else {
-            throw SportEventSaveError.wrongInput
-        }
-        
-        var dataDict = object.prepareDataForSaving()
-        dataDict["order"] = orderValue
-        
-        eventReference.child("images").getData { (error, snapshot) in
-            if let error = error {
-                print(error)
-                return
-            }
-            let oldImageIDs = snapshot.value as? [String] ?? []
-            
-            for imageId in oldImageIDs {
-                if object.imageIDs.firstIndex(of: imageId) != nil {
-                    continue
-                }
-                // need to remove image from storage
-                let imageName = ImagesManager.shared.getImageName(withID: imageId)
-                let imageStorageRef = imagesStorageReference.child(object.uid).child(imageName)
-                imageStorageRef.delete { (error) in
-                    if let error = error {
-                        print("An error occupied while deleting an image: \(error)")
-                    }
-                }
-            }
-            
-            var newImageIds: [String] = []
-            for imageId in object.imageIDs {
-                if oldImageIDs.firstIndex(of: imageId) != nil {
-                    continue
-                }
-                newImageIds.append(imageId)
-            }
-            
-            eventReference.setValue(dataDict) { (error, ref) in
-                if let error = error {
-                    print(error)
-                    return
-                }
-                guard let eventId = ref.key else {
-                    return
-                }
-                let imagesManager = ImagesManager.shared
-                for imageId in newImageIds {
-                    let imageName = ImagesManager.shared.getImageName(withID: imageId)
-                    let imageRef = imagesDatabaseReference.child(imageId)
-                    imageRef.setValue(imageName)
-                    let ref = imagesStorageReference.child(eventId).child(imageName)
-                    if let image = ImagesManager.shared.getCachedImage(withName: imageName),
-                       let data = image.pngData() {
-                        let task = ref.putData(data)
-                        imagesManager.appendUploadTask(task)
-                    }
-                }
-            }
-        }
+//        guard let object = self.object as? SportNews else {
+//            throw SportEventSaveError.wrongInput
+//        }
+//
+//        var dataDict = object.prepareDataForSaving()
+//        dataDict["order"] = orderValue
+//
+//        eventReference.child("images").getData { (error, snapshot) in
+//            if let error = error {
+//                print(error)
+//                return
+//            }
+//            let oldImageIDs = snapshot.value as? [String] ?? []
+//
+//            for imageId in oldImageIDs {
+//                if object.imageIDs.firstIndex(of: imageId) != nil {
+//                    continue
+//                }
+//                // need to remove image from storage
+//                let imageName = ImagesManager.shared.getImageName(withID: imageId)
+//                let imageStorageRef = imagesStorageReference.child(object.uid).child(imageName)
+//                imageStorageRef.delete { (error) in
+//                    if let error = error {
+//                        print("An error occupied while deleting an image: \(error)")
+//                    }
+//                }
+//            }
+//
+//            var newImageIds: [String] = []
+//            for imageId in object.imageIDs {
+//                if oldImageIDs.firstIndex(of: imageId) != nil {
+//                    continue
+//                }
+//                newImageIds.append(imageId)
+//            }
+//
+//            eventReference.setValue(dataDict) { (error, ref) in
+//                if let error = error {
+//                    print(error)
+//                    return
+//                }
+//                guard let eventId = ref.key else {
+//                    return
+//                }
+//                let imagesManager = ImagesManager.shared
+//                for imageId in newImageIds {
+//                    let imageName = ImagesManager.shared.getImageName(withID: imageId)
+//                    let imageRef = imagesDatabaseReference.child(imageId)
+//                    imageRef.setValue(imageName)
+//                    let ref = imagesStorageReference.child(eventId).child(imageName)
+//                    if let image = ImagesManager.shared.getCachedImage(withName: imageName),
+//                       let data = image.pngData() {
+//                        let task = ref.putData(data)
+//                        imagesManager.appendUploadTask(task)
+//                    }
+//                }
+//            }
+//        }
     }
     
 }

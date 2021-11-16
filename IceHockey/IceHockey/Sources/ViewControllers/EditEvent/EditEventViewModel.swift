@@ -9,7 +9,7 @@ import UIKit
 
 struct ImageData: Hashable {
     var imageID: String?
-    var image: UIImage
+    var image: UIImage = UIImage()
     var isNew: Bool = false
     var isRemoved: Bool = false
 }
@@ -42,7 +42,7 @@ class EditEventViewModel {
     
     // MARK: - Propetries
     
-    var event: SportNewsUserInterfaceFlow
+    var event: SportNews
     var shouldReloadRelay = {}
     var collectionViewDataSource = CollectionDataSource()
     
@@ -55,7 +55,7 @@ class EditEventViewModel {
     private var loadingHandlers: [String: (UIImage?) -> Void] = [:]
     
     init(event: SportNews) {
-        self.event = SportNewsUserInterfaceFlow(fields: event, imageData: imageList)
+        self.event = event
     }
 }
 
@@ -117,7 +117,7 @@ extension EditEventViewModel {
     }
     
     func save() throws {
-        event.save()
+//        event.save()
     }
     
     func makeEventForSaving() -> SportNews {

@@ -122,14 +122,14 @@ extension EventDetailCopyrightView: ConfigurableCollectionContent {
         guard !data.teamID.isEmpty else {
             return
         }
-        let handler: (SportTeam?) -> Void = { (team) in
-            guard let team = team else {
-                return
-            }
-            self.titleLabel.text = team.displayName
-            self.copyrightLabel.text = team.copyright
-        }
-        FirebaseObjectLoader<SportTeam>().load(uid: data.teamID, completionHandler: handler)
+//        let handler: (SportTeam?) -> Void = { (team) in
+//            guard let team = team else {
+//                return
+//            }
+//            self.titleLabel.text = team.displayName
+//            self.copyrightLabel.text = team.copyright
+//        }
+//        FirebaseObjectLoader<SportTeam>().load(uid: data.teamID, completionHandler: handler)
         
     }
     
