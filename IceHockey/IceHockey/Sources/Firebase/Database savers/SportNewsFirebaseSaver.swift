@@ -1,5 +1,5 @@
 //
-//  ExistingSportNewsFirebaseSaver.swift
+//  NewSportNewsFirebaseSaver.swift
 //  IceHockey
 //
 //  Created by  Buxlan on 10/27/21.
@@ -7,11 +7,12 @@
 
 import Firebase
 
-struct ExistingSportNewsFirebaseSaver: SportEventFirebaseSaver {
+struct SportNewsFirebaseSaver {
     
     // MARK: - Properties
-    typealias DataType = SportEvent
-    internal let object: DataType
+    
+    typealias DataType = SportNewsDatabaseFlowImpl
+    internal var object: DataType
     
     internal var eventsDatabaseReference: DatabaseReference {
         FirebaseManager.shared.databaseManager.root.child("events")
@@ -57,8 +58,59 @@ struct ExistingSportNewsFirebaseSaver: SportEventFirebaseSaver {
     // MARK: - Helper functions
     
     func save() throws {
+        if object.isNew {
+            try saveExisting()
+        } else {
+            try saveNew()
+        }
+    }
+    
+    func prepareDataForSaving(for object: DataType) -> [String: Any] {
+        let interval = object.date.timeIntervalSince1970
+        let dict: [String: Any] = [
+            "uid": object.uid,
+            "author": object.author,
+            "title": object.title,
+            "text": object.text,
+            "boldText": object.boldText,
+            "type": object.type.rawValue,
+            "date": Int(interval),
+            "images": object.imageIDs,
+            "order": orderValue
+        ]
+        return dict
+    }
+    
+    func saveNew() throws {
         
-        guard let object = self.object as? SportNews else {
+        var dataDict = prepareDataForSaving(for: object)
+        
+        eventReference.setValue(dataDict) { (error, ref) in
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let eventId = ref.key else {
+                return
+            }
+            let imagesManager = ImagesManager.shared
+            for imageId in object.imageIDs {
+                let imageName = ImagesManager.shared.getImageName(withID: imageId)
+                let imageRef = imagesDatabaseReference.child(imageId)
+                imageRef.setValue(imageName)
+                let ref = imagesStorageReference.child(eventId).child(imageName)
+                if let image = ImagesManager.shared.getCachedImage(withName: imageName),
+                   let data = image.pngData() {
+                    let task = ref.putData(data)
+                    imagesManager.appendUploadTask(task)
+                }
+            }
+        }
+    }
+    
+    func saveExisting() throws {
+        
+        guard let object = self.object as? SportNewsDatabaseFlowImpl else {
             throw SportEventSaveError.wrongInput
         }
         
@@ -117,4 +169,5 @@ struct ExistingSportNewsFirebaseSaver: SportEventFirebaseSaver {
             }
         }
     }
+    
 }

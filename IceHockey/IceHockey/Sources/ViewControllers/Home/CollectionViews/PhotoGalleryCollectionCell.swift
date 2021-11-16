@@ -9,7 +9,7 @@ import UIKit
 
 class PhotoGalleryCollectionCell: UICollectionViewCell, ConfigurableCell {
     // MARK: - Properties
-    typealias DataType = SportNews
+    typealias DataType = SportNewsDatabaseFlowImpl
     
     internal var isInterfaceConfigured: Bool = false
     let imageAspectRate: CGFloat = 1.77

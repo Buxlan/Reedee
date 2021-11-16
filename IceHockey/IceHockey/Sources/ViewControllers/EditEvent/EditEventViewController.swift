@@ -11,7 +11,7 @@ import FirebaseDatabase
 class EditEventViewController: UIViewController {
     
     // MARK: - Properties
-    typealias InputDataType = SportNews
+    typealias InputDataType = SportNewsDatabaseFlowImpl
     enum EditMode {
         case new
         case edit(InputDataType)
@@ -79,7 +79,7 @@ class EditEventViewController: UIViewController {
     init(editMode: EditMode) {
         switch editMode {
         case .new:
-            viewModel = EditEventViewModel(event: SportNews())
+            viewModel = EditEventViewModel(event: SportNewsDatabaseFlowImpl())
         case .edit(let data):
             viewModel = EditEventViewModel(event: data)
         }

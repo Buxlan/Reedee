@@ -29,7 +29,7 @@
 		401C9B1C270D080F00F91DC6 /* ErrorDescriptionViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 401C9B1B270D080F00F91DC6 /* ErrorDescriptionViewController.storyboard */; };
 		401C9B21270D139800F91DC6 /* MainViewControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C9B20270D139800F91DC6 /* MainViewControllerCoordinator.swift */; };
 		401C9B24270D155C00F91DC6 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C9B23270D155C00F91DC6 /* FirebaseManager.swift */; };
-		402EDA6326E42A2A004A2992 /* SportNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EDA6226E42A2A004A2992 /* SportNews.swift */; };
+		402EDA6326E42A2A004A2992 /* SportNewsDatabaseFlowImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EDA6226E42A2A004A2992 /* SportNewsDatabaseFlowImpl.swift */; };
 		402EDA6926E43060004A2992 /* SportSquad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EDA6826E43060004A2992 /* SportSquad.swift */; };
 		4032D70327234E9100151A4D /* KeyboardAppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4032D70227234E9100151A4D /* KeyboardAppearanceManager.swift */; };
 		4032D7062723536D00151A4D /* EditEventSaveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4032D7052723536D00151A4D /* EditEventSaveCell.swift */; };
@@ -44,8 +44,7 @@
 		4055FCDC26E816D900E5BB79 /* CellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4055FCDB26E816D900E5BB79 /* CellConfigurator.swift */; };
 		4056F2322729D61B00DD75CA /* SportEventFirebaseSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4056F2312729D61B00DD75CA /* SportEventFirebaseSaver.swift */; };
 		4057FB5827326994002E2BBE /* OurSquadsTitleTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4057FB5727326994002E2BBE /* OurSquadsTitleTextViewCell.swift */; };
-		4060FBEE2729E28C00349C00 /* NewSportNewsFirebaseSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4060FBED2729E28C00349C00 /* NewSportNewsFirebaseSaver.swift */; };
-		4060FBF12729E2C600349C00 /* ExistingSportNewsFirebaseSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4060FBF02729E2C600349C00 /* ExistingSportNewsFirebaseSaver.swift */; };
+		4060FBEE2729E28C00349C00 /* SportNewsFirebaseSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4060FBED2729E28C00349C00 /* SportNewsFirebaseSaver.swift */; };
 		4063EAE9271EE2A100B6B8C7 /* EventDetailPhotoCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4063EAE8271EE2A100B6B8C7 /* EventDetailPhotoCollectionViewLayout.swift */; };
 		4063EAED271EE7E700B6B8C7 /* EventDetailUsefulButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4063EAEC271EE7E700B6B8C7 /* EventDetailUsefulButtonsView.swift */; };
 		4065C95226E84E410084E5F2 /* ComingEventTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065C95126E84E410084E5F2 /* ComingEventTableCell.swift */; };
@@ -232,7 +231,7 @@
 		401C9B1B270D080F00F91DC6 /* ErrorDescriptionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ErrorDescriptionViewController.storyboard; sourceTree = "<group>"; };
 		401C9B20270D139800F91DC6 /* MainViewControllerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerCoordinator.swift; sourceTree = "<group>"; };
 		401C9B23270D155C00F91DC6 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
-		402EDA6226E42A2A004A2992 /* SportNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportNews.swift; sourceTree = "<group>"; };
+		402EDA6226E42A2A004A2992 /* SportNewsDatabaseFlowImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportNewsDatabaseFlowImpl.swift; sourceTree = "<group>"; };
 		402EDA6826E43060004A2992 /* SportSquad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportSquad.swift; sourceTree = "<group>"; };
 		4032D70227234E9100151A4D /* KeyboardAppearanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAppearanceManager.swift; sourceTree = "<group>"; };
 		4032D7052723536D00151A4D /* EditEventSaveCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventSaveCell.swift; sourceTree = "<group>"; };
@@ -247,8 +246,7 @@
 		4055FCDB26E816D900E5BB79 /* CellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellConfigurator.swift; sourceTree = "<group>"; };
 		4056F2312729D61B00DD75CA /* SportEventFirebaseSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportEventFirebaseSaver.swift; sourceTree = "<group>"; };
 		4057FB5727326994002E2BBE /* OurSquadsTitleTextViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurSquadsTitleTextViewCell.swift; sourceTree = "<group>"; };
-		4060FBED2729E28C00349C00 /* NewSportNewsFirebaseSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSportNewsFirebaseSaver.swift; sourceTree = "<group>"; };
-		4060FBF02729E2C600349C00 /* ExistingSportNewsFirebaseSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingSportNewsFirebaseSaver.swift; sourceTree = "<group>"; };
+		4060FBED2729E28C00349C00 /* SportNewsFirebaseSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportNewsFirebaseSaver.swift; sourceTree = "<group>"; };
 		4063EAE8271EE2A100B6B8C7 /* EventDetailPhotoCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailPhotoCollectionViewLayout.swift; sourceTree = "<group>"; };
 		4063EAEC271EE7E700B6B8C7 /* EventDetailUsefulButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailUsefulButtonsView.swift; sourceTree = "<group>"; };
 		4065C95126E84E410084E5F2 /* ComingEventTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingEventTableCell.swift; sourceTree = "<group>"; };
@@ -811,7 +809,6 @@
 				40CDC4BE2718B69A00990C6A /* EventManager.swift */,
 				402EDA6826E43060004A2992 /* SportSquad.swift */,
 				40FF308E27341BA000A9E375 /* SportEvent.swift */,
-				402EDA6226E42A2A004A2992 /* SportNews.swift */,
 				40F52E5B2733D4AF005BD851 /* MatchResult.swift */,
 				40DEC8B32718D083008A59A8 /* SportEventType.swift */,
 				40B947C126EE909100D9E8DA /* TableViewCellConfiguration.swift */,
@@ -968,6 +965,7 @@
 			children = (
 				40AE442527411F5A00BD6506 /* SportNewsListManager.swift */,
 				40AE442727411F7100BD6506 /* SportNewsObjectManager.swift */,
+				402EDA6226E42A2A004A2992 /* SportNewsDatabaseFlowImpl.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -989,8 +987,7 @@
 				40B82ED42738BCFB00BED0A1 /* NewMatchResultFirebaseSaver.swift */,
 				40781506272CA3D3006D3AD2 /* ExistingSportTeamFirebaseSaver.swift */,
 				40781508272CA408006D3AD2 /* NewSportTeamFirebaseSaver.swift */,
-				4060FBF02729E2C600349C00 /* ExistingSportNewsFirebaseSaver.swift */,
-				4060FBED2729E28C00349C00 /* NewSportNewsFirebaseSaver.swift */,
+				4060FBED2729E28C00349C00 /* SportNewsFirebaseSaver.swift */,
 				4056F2312729D61B00DD75CA /* SportEventFirebaseSaver.swift */,
 				40772C09273B3DC9006CD549 /* ExistingTrainingScheduleFirebaseSaver.swift */,
 				40772C0B273B3E98006CD549 /* NewTrainingScheduleFirebaseSaver.swift */,
@@ -1342,11 +1339,10 @@
 				400B8F56272B5DAE008A8AFE /* TeamDetailViewModel.swift in Sources */,
 				409DD42D2735D43500055FBD /* TableDataSource.swift in Sources */,
 				4098C04526E5756800F0BBE6 /* SportPlayer.swift in Sources */,
-				4060FBF12729E2C600349C00 /* ExistingSportNewsFirebaseSaver.swift in Sources */,
 				40940BEF26E412F40098EF89 /* AuthProvider.swift in Sources */,
 				400EB96926F00BFD0026EFB1 /* InsetLabel.swift in Sources */,
 				40B947C526EEBD5E00D9E8DA /* ConfigurableCell.swift in Sources */,
-				402EDA6326E42A2A004A2992 /* SportNews.swift in Sources */,
+				402EDA6326E42A2A004A2992 /* SportNewsDatabaseFlowImpl.swift in Sources */,
 				40C106BF26E41E4800B619A1 /* Utils.swift in Sources */,
 				40A6321F272DF7160017F6FE /* SportTeamAnnotation.swift in Sources */,
 				4055FCDC26E816D900E5BB79 /* CellConfigurator.swift in Sources */,
@@ -1414,7 +1410,7 @@
 				40940BE226E40C380098EF89 /* UIImageExtension.swift in Sources */,
 				40B82EC92738A42B00BED0A1 /* TextViewWithPlaceholder.swift in Sources */,
 				40E949BF26ED59A600962590 /* CircularView.swift in Sources */,
-				4060FBEE2729E28C00349C00 /* NewSportNewsFirebaseSaver.swift in Sources */,
+				4060FBEE2729E28C00349C00 /* SportNewsFirebaseSaver.swift in Sources */,
 				40781510272CB1C6006D3AD2 /* SquadDetailViewController.swift in Sources */,
 				406CE6862723ECB2002FDDB6 /* EditEventPhotoCollectionCell.swift in Sources */,
 				406D49E8271E3806000A9666 /* EventDetailPhotoCollectionViewCell.swift in Sources */,

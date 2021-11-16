@@ -32,7 +32,7 @@ struct FirebaseManager: FirebaseManagerInterface {
             try SportTeamFirebaseRemover(object: object).remove()
         } else if let object = object as? SportSquad {
             try SportSquadFirebaseRemover(object: object).remove()
-        } else if let object = object as? SportNews {
+        } else if let object = object as? SportNewsDatabaseFlowImpl {
             try SportNewsFirebaseRemover(object: object).remove()
         } else if let object = object as? MatchResult {
             try MatchResultFirebaseRemover(object: object).remove()

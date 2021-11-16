@@ -9,13 +9,13 @@ import Foundation
 
 protocol FirebaseObject {
     
-    static func getObject(by uid: String, completionHandler handler: @escaping (Self?) -> Void)
+//    static func getObject(by uid: String, completionHandler handler: @escaping (Self?) -> Void)
     
     var uid: String { get set }
     
     init?(key: String, dict: [String: Any])
     
-    func save() throws
-    func delete() throws
+//    func save() throws
+//    func delete() throws
     
 }

@@ -42,7 +42,7 @@ class EditEventViewModel {
     
     // MARK: - Propetries
     
-    var event: SportNews
+    var event: SportNewsUserInterfaceFlow
     var shouldReloadRelay = {}
     var collectionViewDataSource = CollectionDataSource()
     
@@ -54,8 +54,8 @@ class EditEventViewModel {
     private var imageList: [ImageData] = []      
     private var loadingHandlers: [String: (UIImage?) -> Void] = [:]
     
-    init(event: SportNews) {
-        self.event = event
+    init(event: SportNewsDatabaseFlow) {
+        self.event = SportNewsUserInterfaceFlow(fields: event, imageData: imageList)
     }
 }
 
@@ -77,7 +77,7 @@ extension EditEventViewModel {
         }
     }
     
-    func loadImagesIfNeeded(event: SportNews) {
+    func loadImagesIfNeeded(event: SportNewsDatabaseFlowImpl) {
         if imageList.count > 0 {
             return
         }
@@ -117,11 +117,10 @@ extension EditEventViewModel {
     }
     
     func save() throws {
-        let data = makeEventForSaving()
-        try data.save()
+        event.save()
     }
     
-    func makeEventForSaving() -> SportNews {
+    func makeEventForSaving() -> SportNewsDatabaseFlowImpl {
         return event
     }
     

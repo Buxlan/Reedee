@@ -6,9 +6,26 @@
 //
 
 import UIKit
-import Firebase
 
-struct SportNews: SportEvent, Hashable {
+protocol SportNewsDatabaseFlow: SportEvent {
+    
+    var uid: String { get set }
+    var author: String { get set }
+    var title: String { get set }
+    var text: String { get set }
+    var boldText: String { get set }
+    var type: SportEventType { get set }
+    var date: Date { get set }
+    var imageIDs: [String] { get set }
+    var order: Int { get set }
+    
+    init()
+    
+    func save(completionHandler: @escaping (Error?) -> Void)
+    
+}
+
+struct SportNewsDatabaseFlowImpl {
     
     var uid: String
     var author: String
@@ -49,7 +66,7 @@ struct SportNews: SportEvent, Hashable {
         self.boldText = ""
         self.imageIDs = []
         self.order = 0
-        self.author = Auth.auth().currentUser?.uid ?? ""
+        self.author = ""
     }    
     
     init?(key: String, dict: [String: Any]) {
@@ -73,22 +90,14 @@ struct SportNews: SportEvent, Hashable {
         self.order = order
     }
     
-    init?(snapshot: DataSnapshot) {
-        let uid = snapshot.key
-        guard let dict = snapshot.value as? [String: Any] else {
-            return nil
-        }
-        self.init(key: uid, dict: dict)
+    func save(completionHandler: @escaping (Error?) -> Void) {
+        
     }
     
 }
 
-extension SportNews: FirebaseObject {    
-    
-    private static var databaseObjects: DatabaseReference {
-        FirebaseManager.shared.databaseManager.root.child("events")
-    }
-    
+extension SportNewsDatabaseFlowImpl: FirebaseObject {    
+        
     var isNew: Bool {
         return self.uid.isEmpty
     }
@@ -98,64 +107,13 @@ extension SportNews: FirebaseObject {
             return imageIDs[0]
         }
         return nil
-    }
-    
-    func delete() throws {
-        try FirebaseManager.shared.delete(self)
-    }
-    
-    static func getObject(by uid: String, completionHandler handler: @escaping (Self?) -> Void) {
-        Self.databaseObjects
-            .child(uid)
-            .getData { error, snapshot in
-                if let error = error {
-                    print(error)
-                    return
-                }
-                if snapshot.value is NSNull {
-                    fatalError("Current team is nil")
-                }
-                let team = Self(snapshot: snapshot)
-                handler(team)
-            }
-    }
-    
-    func checkProperties() -> Bool {
-        return true
-    }
-    
-    func save() throws {
-        
-        if !checkProperties() {
-            print("Error. Properties are wrong")
-        }
-        
-        if isNew {
-            try ExistingSportNewsFirebaseSaver(object: self).save()
-        } else {
-            try NewSportNewsFirebaseSaver(object: self).save()
-        }
-    }
-    
-    func prepareDataForSaving() -> [String: Any] {
-        let interval = self.date.timeIntervalSince1970
-        let dict: [String: Any] = [
-            "uid": self.uid,
-            "author": self.author,
-            "title": self.title,
-            "text": self.text,
-            "boldText": self.boldText,
-            "type": self.type.rawValue,
-            "date": Int(interval),
-            "images": self.imageIDs,
-            "order": Int(order)
-        ]
-        return dict
-    }
+    }   
     
 }
 
-extension SportNews {
+extension SportNewsDatabaseFlowImpl {
+    
+    
     
     mutating func appendImage(_ image: UIImage) {
         if let key = FirebaseManager.shared.databaseManager.getNewImageUID() {
@@ -172,6 +130,25 @@ extension SportNews {
         let imageName = ImagesManager.shared.getImageName(withID: imageID)
         ImagesManager.shared.removeFromCache(imageForKey: imageName)
         imageIDs.remove(at: index)
+    }
+    
+}
+
+struct SportNewsUserInterfaceFlow {
+    var databaseObject: SportNewsDatabaseFlow
+    var imageData: [ImageData]
+    
+    init(databaseObject: SportNewsDatabaseFlow, imageData: [ImageData]) {
+        self.databaseObject = databaseObject
+        self.imageData = imageData
+    }
+    
+    func save() {
+        databaseObject.save { error in
+            if let error = error {
+                print("Database save error: \(error)")
+            }
+        }
     }
     
 }

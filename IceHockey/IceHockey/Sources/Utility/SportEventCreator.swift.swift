@@ -24,7 +24,7 @@ struct SportEventCreatorImpl {
         var object: SportEvent?
         switch type {
         case .event:
-            object = SportNews(key: uid, dict: dict)
+            object = SportNewsDatabaseFlowImpl(key: uid, dict: dict)
         case .match:
             object = MatchResult(key: uid, dict: dict)
         default:

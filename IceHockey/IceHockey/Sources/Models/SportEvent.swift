@@ -37,8 +37,8 @@ protocol SportEvent {
     // MARK: - Helper methods
     func setLike(_ state: Bool)
     func prepareLikesDict(userID: String) -> [String: Any]
-    func save() throws
-    func prepareDataForSaving() -> [String: Any]
+//    func save() throws
+//    func prepareDataForSaving() -> [String: Any]
 }
 
 extension SportEvent {

@@ -210,7 +210,7 @@ extension HomeViewController {
     }
     
     func makeNewsTableRow(_ event: SportEvent) -> TableRow {
-        guard let event = event as? SportNews else {
+        guard let event = event as? SportNewsDatabaseFlowImpl else {
             fatalError()
         }
         var cellModel = NewsTableCellModel(data: event)

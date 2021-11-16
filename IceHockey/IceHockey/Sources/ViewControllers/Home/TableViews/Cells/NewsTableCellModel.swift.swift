@@ -28,7 +28,7 @@ struct NewsTableCellModel: TableCellModel {
     var likeAction: (Bool) -> Void = { _ in }
     var shareAction = {}
     
-    init(data: SportNews) {
+    init(data: SportNewsDatabaseFlowImpl) {
         uid = data.uid
         title = data.title
         description = data.text
