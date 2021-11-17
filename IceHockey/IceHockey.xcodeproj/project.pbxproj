@@ -32,6 +32,7 @@
 		402EDA6926E43060004A2992 /* SportSquad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EDA6826E43060004A2992 /* SportSquad.swift */; };
 		4032D70327234E9100151A4D /* KeyboardAppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4032D70227234E9100151A4D /* KeyboardAppearanceManager.swift */; };
 		4032D7062723536D00151A4D /* EditEventSaveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4032D7052723536D00151A4D /* EditEventSaveCell.swift */; };
+		4033A617274584D100CD3AD3 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4033A616274584D100CD3AD3 /* UserRole.swift */; };
 		4035DAB127306BC800AAFDA8 /* SimpleSectionTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4035DAB027306BC800AAFDA8 /* SimpleSectionTableHeaderView.swift */; };
 		4035DAB6273077BE00AAFDA8 /* TrainingScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4035DAB4273077BE00AAFDA8 /* TrainingScheduleViewController.swift */; };
 		4035DAB7273077BE00AAFDA8 /* TrainingScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4035DAB5273077BE00AAFDA8 /* TrainingScheduleViewModel.swift */; };
@@ -235,6 +236,7 @@
 		402EDA6826E43060004A2992 /* SportSquad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportSquad.swift; sourceTree = "<group>"; };
 		4032D70227234E9100151A4D /* KeyboardAppearanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAppearanceManager.swift; sourceTree = "<group>"; };
 		4032D7052723536D00151A4D /* EditEventSaveCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventSaveCell.swift; sourceTree = "<group>"; };
+		4033A616274584D100CD3AD3 /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
 		4035DAB027306BC800AAFDA8 /* SimpleSectionTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSectionTableHeaderView.swift; sourceTree = "<group>"; };
 		4035DAB4273077BE00AAFDA8 /* TrainingScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingScheduleViewController.swift; sourceTree = "<group>"; };
 		4035DAB5273077BE00AAFDA8 /* TrainingScheduleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingScheduleViewModel.swift; sourceTree = "<group>"; };
@@ -985,6 +987,7 @@
 				40B208CF2744F87F009B769C /* SportUser.swift */,
 				40B208D1274506AA009B769C /* SportUserDatabaseFlowData.swift */,
 				40B208D3274507EA009B769C /* SportUserStorageFlowData.swift */,
+				4033A616274584D100CD3AD3 /* UserRole.swift */,
 			);
 			path = SportUser;
 			sourceTree = "<group>";
@@ -1360,6 +1363,7 @@
 				4011D8952739C83200D092B9 /* MatchResultFirebaseRemover.swift in Sources */,
 				40940BE326E40C380098EF89 /* UIVIewControllerExtension.swift in Sources */,
 				40E60BC32732F4FF00B31CB5 /* MatchResultTableCellModel.swift in Sources */,
+				4033A617274584D100CD3AD3 /* UserRole.swift in Sources */,
 				406E7C0D2723302300DAD711 /* FirebaseStorageManager.swift in Sources */,
 				40940C0526E418E50098EF89 /* MainTabBarViewModel.swift in Sources */,
 				400E532F273A73E100B407E0 /* NewSportUserFirebaseSaver.swift in Sources */,

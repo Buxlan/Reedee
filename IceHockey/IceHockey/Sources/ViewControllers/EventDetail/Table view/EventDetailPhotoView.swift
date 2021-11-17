@@ -119,16 +119,7 @@ extension EventDetailPhotoView: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("touched")
     }
-    
-//    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-//        timer?.invalidate()
-//        timer = nil
-//    }
-//
-//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        startTimer()
-//    }
-//
+ 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let page = round(scrollView.contentOffset.x / scrollView.frame.width)
         pageControl.currentPage = Int(page)

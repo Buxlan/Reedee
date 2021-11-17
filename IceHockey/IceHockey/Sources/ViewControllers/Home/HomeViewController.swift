@@ -282,22 +282,10 @@ extension HomeViewController {
     func configureModeratorFunctions() {
         
         appendEventButton.isHidden = true
-        guard let uid = Auth.auth().currentUser?.uid else {
-            return
+        let user = Auth.auth().currentUser
+        UserRoleManager().getRole(for: user) { role in
+            self.appendEventButton.isHidden = (role == .readOnly)
         }
-        print(uid)
-        FirebaseManager.shared.databaseManager
-            .root
-            .child("moderators")
-            .child(uid).getData { error, snapshot in
-                guard error == nil,
-                      !(snapshot.value is NSNull),
-                      let value = snapshot.value as? Bool,
-                      value == true else {
-                          return
-                      }
-                self.appendEventButton.isHidden = false
-            }
         
     }
     
