@@ -36,7 +36,10 @@ struct NewsTableCellModel: TableCellModel {
         description = data.text
         image = data.mainImage
         type = data.type.description
-        author = data.author
+        author = data.user.displayName
+        
+        image = data.mainImage
+        authorImage = data.user.image
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium

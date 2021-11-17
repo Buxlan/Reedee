@@ -10,8 +10,18 @@ import UIKit
 protocol SportNewsStorageFlowData {
     var eventID: String { get set }
     var images: [ImageData] { get set }
-    init(eventID: String, imageIDs: [String])
     func load(with completionHandler: @escaping () -> Void)
+}
+
+struct DefaultSportNewsStorageFlowData: SportNewsStorageFlowData {
+    var eventID: String
+    var images: [ImageData]
+    init() {
+        images = []
+        eventID = ""
+    }
+    func load(with completionHandler: @escaping () -> Void) {
+    }
 }
 
 class SportNewsStorageFlowDataImpl: SportNewsStorageFlowData {

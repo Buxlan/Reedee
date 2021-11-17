@@ -797,7 +797,7 @@
 		40940BE626E40C4F0098EF89 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				40B208CE2744F870009B769C /* UserModerator */,
+				40B208CE2744F870009B769C /* SportUser */,
 				40AE442427411F1F00BD6506 /* Event */,
 				400A2AC726E59AB700F13BCF /* TeamStaff */,
 				4098C05826E576A100F0BBE6 /* Shop */,
@@ -979,14 +979,14 @@
 			path = MatchResultDetail;
 			sourceTree = "<group>";
 		};
-		40B208CE2744F870009B769C /* UserModerator */ = {
+		40B208CE2744F870009B769C /* SportUser */ = {
 			isa = PBXGroup;
 			children = (
 				40B208CF2744F87F009B769C /* SportUser.swift */,
 				40B208D1274506AA009B769C /* SportUserDatabaseFlowData.swift */,
 				40B208D3274507EA009B769C /* SportUserStorageFlowData.swift */,
 			);
-			path = UserModerator;
+			path = SportUser;
 			sourceTree = "<group>";
 		};
 		40B82ED02738BA8300BED0A1 /* Database savers */ = {

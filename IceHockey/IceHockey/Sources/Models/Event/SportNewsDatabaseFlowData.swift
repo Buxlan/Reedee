@@ -19,6 +19,30 @@ protocol SportNewsDatabaseFlowData: SportEvent {
     var order: Int { get set }
 }
 
+struct DefaultSportNewsDatabaseFlowData: SportNewsDatabaseFlowData {
+    var uid: String
+    var author: String
+    var title: String
+    var text: String
+    var boldText: String
+    var type: SportEventType
+    var date: Date
+    var imageIDs: [String]
+    var order: Int
+    
+    init() {
+        self.uid = ""
+        self.title = .empty
+        self.text = .empty
+        self.date = Date()
+        self.type = .event
+        self.boldText = ""
+        self.imageIDs = []
+        self.order = 0
+        self.author = ""
+    }
+}
+
 struct SportNewsDatabaseFlowDataImpl: SportNewsDatabaseFlowData {
     var uid: String
     var author: String

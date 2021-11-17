@@ -57,8 +57,8 @@ class SportNewsBuilder {
     private let key: String
     private let dict: [String: Any]
     
-    private var databasePart: SportNewsDatabaseFlowData?
-    private var storagePart: SportNewsStorageFlowData?
+    private var databasePart: SportNewsDatabaseFlowData
+    private var storagePart: SportNewsStorageFlowData
     private var author: SportUser
     
     private var completionHandler: (SportEvent?) -> Void = { _ in }
@@ -68,52 +68,56 @@ class SportNewsBuilder {
     init(key: String, dict: [String: Any]) {
         self.key = key
         self.dict = dict
+        databasePart = DefaultSportNewsDatabaseFlowData()
+        storagePart = DefaultSportNewsStorageFlowData()
+        author = SportUser()
     }
     
     // MARK: - Helper Methods
     
     func build(completionHandler: @escaping (SportEvent?) -> Void) {
         self.completionHandler = completionHandler
-        buildDatabasePart()
-        buildStoragePart()
-        buildAuthor()
+        buildDatabasePart {
+            self.buildStoragePart {
+                self.buildAuthor()
+            }
+        }
     }
     
-    private func buildDatabasePart() {
-        databasePart = SportNewsDatabaseFlowDataImpl(key: key, dict: dict)
+    private func buildDatabasePart(completionHandler: @escaping () -> Void) {
+        guard let databasePart = SportNewsDatabaseFlowDataImpl(key: key, dict: dict) else {
+            self.completionHandler(nil)
+            return
+        }
+        self.databasePart = databasePart
+        completionHandler()
     }
     
-    private func buildStoragePart() {
-        guard let databasePart = databasePart,
-              !databasePart.uid.isEmpty else {
+    private func buildStoragePart(completionHandler: @escaping () -> Void) {
+        guard !databasePart.uid.isEmpty else {
+                  self.completionHandler(nil)
                   return
               }
         storagePart = SportNewsStorageFlowDataImpl(eventID: databasePart.uid, imageIDs: databasePart.imageIDs)
-        let handler = {
-            self.completionHandler(self.getResult())
+        storagePart.load {
+            completionHandler()
         }
-        storagePart?.load(with: handler)
     }
     
     private func buildAuthor() {
-        guard let databasePart = databasePart else {
-            return
-        }
         let builder = SportUserBuilder(key: databasePart.author)
         builder.build { user in
             if let user = user {
                 self.author = user
             }
+            self.completionHandler(self.getResult())
         }
     }
     
     func getResult() -> SportNews? {
-        guard let databasePart = databasePart,
-              let storagePart = storagePart else {
-                  return nil
-              }
         let object = SportNews(databaseFlowObject: databasePart,
-                               storageFlowObject: storagePart)
+                               storageFlowObject: storagePart,
+                               author: author)
         return object
     }
     

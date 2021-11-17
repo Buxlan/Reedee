@@ -7,13 +7,27 @@
 
 import Firebase
 
+protocol SportUserObject {
+    var uid: String { get set }
+    var displayName: String { get set }
+    var image: UIImage? { get set }
+    var firebaseUser: User? { get set }
+    var isNew: Bool { get }
+}
+
+extension SportUserObject {
+    var isNew: Bool {
+        return uid.isEmpty
+    }
+}
+
 class SportUser {
     
     var uid: String {
-        firebaseUser?.uid ?? "---no ID---"
+        databaseFlowObject.uid
     }
     var displayName: String {
-        firebaseUser?.displayName ?? "---Unknown---"
+        databaseFlowObject.displayName
     }
     var image: UIImage? {
         return storageFlowObject.image?.image ?? nil
@@ -58,9 +72,10 @@ struct SportUserCreatorImpl: SportUserCreator {
     -> SportUser? {
         
         let uid = snapshot.key
-        guard let dict = snapshot.value as? [String: Any] else { return nil }
-        
-        let builder = SportUserBuilder(key: uid, dict: dict)
+        guard let dict = snapshot.value as? [String: Any] else {
+            return nil
+        }
+        let builder = SportUserBuilder(key: uid)
         builder.build(completionHandler: completionHandler)
         let object = builder.getResult()
         return object
@@ -96,11 +111,11 @@ class SportUserBuilder {
         }
         self.completionHandler = completionHandler
         buildDatabasePart {
-            buildStoragePart()
+            self.buildStoragePart()
         }
     }
     
-    private func buildDatabasePart(completionHandler: () -> Void) {
+    private func buildDatabasePart(completionHandler: @escaping () -> Void) {
         let path = "users"
         FirebaseManager.shared.databaseManager
             .root

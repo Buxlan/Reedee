@@ -10,6 +10,7 @@ import Firebase
 protocol SportUserDatabaseFlowData {
     var uid: String { get set }
     var imageID: String { get set }
+    var displayName: String { get set }
 }
 
 struct SportUserDatabaseFlowDataImpl: SportUserDatabaseFlowData {
@@ -32,7 +33,7 @@ struct SportUserDatabaseFlowDataImpl: SportUserDatabaseFlowData {
     }
     
     init?(key: String, dict: [String: Any]) {
-        guard let imageID = dict["imageID"] as? String,
+        guard let imageID = dict["image"] as? String,
               let displayName = dict["displayName"] as? String
         else { return nil }
                 
