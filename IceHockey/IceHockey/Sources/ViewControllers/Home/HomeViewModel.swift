@@ -55,8 +55,7 @@ class HomeViewModel: NSObject {
         databaseQuery.getData { error, snapshot in
             if let error = error {
                 preconditionFailure()
-            }
-            
+            }            
             for child in snapshot.children {
                 guard let child = child as? DataSnapshot else {
                     continue
