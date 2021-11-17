@@ -5,16 +5,14 @@
 //  Created by  Buxlan on 10/27/21.
 //
 
-import Foundation
+import UIKit
 
 struct EventDetailPhotoCellModel: TableCellModel {
     
-    let imageID: String
-    let eventID: String
+    let image: UIImage?
     
-    init(imageID: String, eventUID: String) {        
-        self.eventID = eventUID
-        self.imageID = imageID
+    init(image: UIImage?) {
+        self.image = image
     }
     
 }

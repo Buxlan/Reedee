@@ -37,6 +37,7 @@ class NewsTableCell: UITableViewCell {
         view.numberOfLines = 1
         view.textAlignment = .left
         view.font = .regularFont16
+        view.setContentHuggingPriority(.defaultLow, for: .horizontal)
         return view
     }()
     
@@ -94,6 +95,7 @@ class NewsTableCell: UITableViewCell {
         view.accessibilityIdentifier = "typeLabel (table cell)"
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setContentHuggingPriority(.defaultLow, for: .vertical)
+        view.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         view.textAlignment = .center
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
@@ -174,6 +176,7 @@ class NewsTableCell: UITableViewCell {
             typeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             typeLabel.topAnchor.constraint(equalTo: userImageView.topAnchor, constant: 4),
             typeLabel.heightAnchor.constraint(equalTo: userImageView.heightAnchor, constant: -8),
+            typeLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 100),
             
             dataImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             dataImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
@@ -239,25 +242,9 @@ extension NewsTableCell: ConfigurableCollectionContent {
         usernameLabel.backgroundColor = data.backgroundColor
         userImageView.backgroundColor = data.backgroundColor
         usernameLabel.textColor = data.textColor
-                
-        if !data.author.isEmpty {
-            SportUser.getObject(by: data.author) { (user) in
-                guard let user = user else {
-                    return
-                }
-                self.usernameLabel.text = user.displayName
-                let path = "users"
-                ImagesManager.shared.getImage(withID: user.imageID, path: path) { [weak self] (image) in
-                    guard let self = self else { return }
-                    if let image = image {
-                        self.userImageView.image = image
-                    } else {
-                        self.userImageView.image = self.noImage
-                    }
-                }
-            }
-            
-        }
+        
+        self.usernameLabel.text = data.author
+        self.userImageView.image = data.authorImage == nil ? noImage : data.authorImage
         
         dataImageView.image = data.image
         

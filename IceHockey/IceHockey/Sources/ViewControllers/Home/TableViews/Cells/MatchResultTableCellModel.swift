@@ -13,7 +13,10 @@ protocol TableCellModel {
 struct MatchResultTableCellModel: TableCellModel {
     
     var uid: String
+        
     var author: String
+    var authorImage: UIImage?
+    
     var title: String
     var homeTeam: String
     var awayTeam: String

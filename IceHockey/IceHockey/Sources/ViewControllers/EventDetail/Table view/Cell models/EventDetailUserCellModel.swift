@@ -11,6 +11,7 @@ struct EventDetailUserCellModel: TableCellModel {
     
     // MARK: - Properties
     var author: String
+    var image: UIImage?
     var type: SportEventType
     var textColor: UIColor = Asset.textColor.color
     var backgroundColor: UIColor = Asset.other3.color

@@ -115,12 +115,7 @@ extension EventDetailPhotoCollectionViewCell: ConfigurableCollectionContent {
     // MARK: - Helper functions
     func configure(with data: DataType) {
         configureInterface()
-        if dataImageView.image == nil {
-            let path = "events/\(data.eventID)"
-            ImagesManager.shared.getImage(withID: data.imageID, path: path) { (image) in
-                self.dataImageView.image = image
-            }
-        }
+        self.dataImageView.image = data.image        
     }
     
 }

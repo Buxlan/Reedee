@@ -14,7 +14,9 @@ struct NewsTableCellModel: TableCellModel {
     var description: String
     var image: UIImage?
     var type: String
+    
     var author: String
+    var authorImage: UIImage?
     
     var date: String
     

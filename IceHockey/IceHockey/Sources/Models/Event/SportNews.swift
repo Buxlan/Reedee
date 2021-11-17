@@ -94,17 +94,22 @@ struct SportNews: SportNewsDatabaseFlowData {
         return storageFlowObject.images
     }
     
+    var user: SportUser
     private var databaseFlowObject: SportNewsDatabaseFlowData
     private var storageFlowObject: SportNewsStorageFlowData
     
     init() {
         self.databaseFlowObject = SportNewsDatabaseFlowDataImpl()
         self.storageFlowObject = SportNewsStorageFlowDataImpl()
+        self.user = SportUser()
     }
     
-    init(databaseFlowObject: SportNewsDatabaseFlowData, storageFlowObject: SportNewsStorageFlowData) {
+    init(databaseFlowObject: SportNewsDatabaseFlowData,
+         storageFlowObject: SportNewsStorageFlowData,
+         author: SportUser) {
         self.databaseFlowObject = databaseFlowObject
         self.storageFlowObject = storageFlowObject
+        self.user = author
     }
     
 }

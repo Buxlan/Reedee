@@ -59,6 +59,7 @@ class SportNewsBuilder {
     
     private var databasePart: SportNewsDatabaseFlowData?
     private var storagePart: SportNewsStorageFlowData?
+    private var author: SportUser
     
     private var completionHandler: (SportEvent?) -> Void = { _ in }
     
@@ -75,6 +76,7 @@ class SportNewsBuilder {
         self.completionHandler = completionHandler
         buildDatabasePart()
         buildStoragePart()
+        buildAuthor()
     }
     
     private func buildDatabasePart() {
@@ -91,6 +93,18 @@ class SportNewsBuilder {
             self.completionHandler(self.getResult())
         }
         storagePart?.load(with: handler)
+    }
+    
+    private func buildAuthor() {
+        guard let databasePart = databasePart else {
+            return
+        }
+        let builder = SportUserBuilder(key: databasePart.author)
+        builder.build { user in
+            if let user = user {
+                self.author = user
+            }
+        }
     }
     
     func getResult() -> SportNews? {

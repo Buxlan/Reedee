@@ -179,8 +179,8 @@ extension EventDetailViewController {
     }
     
     func makePhotoTableRow() -> TableRow {
-        let cellModels = event.imageIDs.map { imageID -> EventDetailPhotoCellModel in
-            EventDetailPhotoCellModel(imageID: imageID, eventUID: self.event.uid)
+        let cellModels = event.images.map { imageData -> EventDetailPhotoCellModel in
+            EventDetailPhotoCellModel(image: imageData.image)
         }
         let config = EventDetailPhotoViewConfigurator(data: cellModels)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)

@@ -16,7 +16,6 @@
 		400B8F57272B5DAE008A8AFE /* TeamDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400B8F52272B5DAE008A8AFE /* TeamDetailViewController.swift */; };
 		400B8F58272B5DAE008A8AFE /* SquadTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400B8F55272B5DAE008A8AFE /* SquadTableCell.swift */; };
 		400B8F5D272B6499008A8AFE /* SportSquadFirebaseRemover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400B8F5C272B6499008A8AFE /* SportSquadFirebaseRemover.swift */; };
-		400E532B273A6FDB00B407E0 /* SportUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400E532A273A6FDB00B407E0 /* SportUser.swift */; };
 		400E532D273A732F00B407E0 /* ExistingSportUserFirebaseSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400E532C273A732F00B407E0 /* ExistingSportUserFirebaseSaver.swift */; };
 		400E532F273A73E100B407E0 /* NewSportUserFirebaseSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400E532E273A73E100B407E0 /* NewSportUserFirebaseSaver.swift */; };
 		400EB96926F00BFD0026EFB1 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400EB96826F00BFD0026EFB1 /* InsetLabel.swift */; };
@@ -156,9 +155,9 @@
 		40AE7D7027348B1100052643 /* CollectionViewDelegate + DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AE7D6F27348B1100052643 /* CollectionViewDelegate + DataSource.swift */; };
 		40B208CB2744F701009B769C /* SportNewsDatabaseFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B208CA2744F701009B769C /* SportNewsDatabaseFlowData.swift */; };
 		40B208CD2744F730009B769C /* SportNewsStorageFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B208CC2744F730009B769C /* SportNewsStorageFlowData.swift */; };
-		40B208D02744F87F009B769C /* UserModerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B208CF2744F87F009B769C /* UserModerator.swift */; };
-		40B208D2274506AA009B769C /* UserModeratorDatabaseFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B208D1274506AA009B769C /* UserModeratorDatabaseFlowData.swift */; };
-		40B208D4274507EA009B769C /* UserModeratorStorageFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B208D3274507EA009B769C /* UserModeratorStorageFlowData.swift */; };
+		40B208D02744F87F009B769C /* SportUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B208CF2744F87F009B769C /* SportUser.swift */; };
+		40B208D2274506AA009B769C /* SportUserDatabaseFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B208D1274506AA009B769C /* SportUserDatabaseFlowData.swift */; };
+		40B208D4274507EA009B769C /* SportUserStorageFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B208D3274507EA009B769C /* SportUserStorageFlowData.swift */; };
 		40B6C80F272DB2A600B94A9A /* HockeyPlayerRole.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B6C80E272DB2A600B94A9A /* HockeyPlayerRole.swift.swift */; };
 		40B82EC527382EDD00BED0A1 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B82EC427382EDD00BED0A1 /* LikeButton.swift */; };
 		40B82EC7273835D100BED0A1 /* ShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B82EC6273835D100BED0A1 /* ShareButton.swift */; };
@@ -220,7 +219,6 @@
 		400B8F52272B5DAE008A8AFE /* TeamDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamDetailViewController.swift; sourceTree = "<group>"; };
 		400B8F55272B5DAE008A8AFE /* SquadTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquadTableCell.swift; sourceTree = "<group>"; };
 		400B8F5C272B6499008A8AFE /* SportSquadFirebaseRemover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportSquadFirebaseRemover.swift; sourceTree = "<group>"; };
-		400E532A273A6FDB00B407E0 /* SportUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportUser.swift; sourceTree = "<group>"; };
 		400E532C273A732F00B407E0 /* ExistingSportUserFirebaseSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingSportUserFirebaseSaver.swift; sourceTree = "<group>"; };
 		400E532E273A73E100B407E0 /* NewSportUserFirebaseSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSportUserFirebaseSaver.swift; sourceTree = "<group>"; };
 		400EB96826F00BFD0026EFB1 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
@@ -361,9 +359,9 @@
 		40AE7D6F27348B1100052643 /* CollectionViewDelegate + DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionViewDelegate + DataSource.swift"; sourceTree = "<group>"; };
 		40B208CA2744F701009B769C /* SportNewsDatabaseFlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportNewsDatabaseFlowData.swift; sourceTree = "<group>"; };
 		40B208CC2744F730009B769C /* SportNewsStorageFlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportNewsStorageFlowData.swift; sourceTree = "<group>"; };
-		40B208CF2744F87F009B769C /* UserModerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModerator.swift; sourceTree = "<group>"; };
-		40B208D1274506AA009B769C /* UserModeratorDatabaseFlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModeratorDatabaseFlowData.swift; sourceTree = "<group>"; };
-		40B208D3274507EA009B769C /* UserModeratorStorageFlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModeratorStorageFlowData.swift; sourceTree = "<group>"; };
+		40B208CF2744F87F009B769C /* SportUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportUser.swift; sourceTree = "<group>"; };
+		40B208D1274506AA009B769C /* SportUserDatabaseFlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportUserDatabaseFlowData.swift; sourceTree = "<group>"; };
+		40B208D3274507EA009B769C /* SportUserStorageFlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportUserStorageFlowData.swift; sourceTree = "<group>"; };
 		40B6C80E272DB2A600B94A9A /* HockeyPlayerRole.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HockeyPlayerRole.swift.swift; sourceTree = "<group>"; };
 		40B82EC427382EDD00BED0A1 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
 		40B82EC6273835D100BED0A1 /* ShareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareButton.swift; sourceTree = "<group>"; };
@@ -806,7 +804,6 @@
 				40940BEA26E412F40098EF89 /* Auth */,
 				40940BE726E40D450098EF89 /* SportTeam.swift */,
 				40E2D65026E55E1E006503C7 /* ShopCategoryItem.swift */,
-				400E532A273A6FDB00B407E0 /* SportUser.swift */,
 				400B8F4D272B50B5008A8AFE /* FirebaseObject.swift */,
 				40A6321A272DE74B0017F6FE /* UniViewModel.swift */,
 				40B6C80E272DB2A600B94A9A /* HockeyPlayerRole.swift.swift */,
@@ -985,9 +982,9 @@
 		40B208CE2744F870009B769C /* UserModerator */ = {
 			isa = PBXGroup;
 			children = (
-				40B208CF2744F87F009B769C /* UserModerator.swift */,
-				40B208D1274506AA009B769C /* UserModeratorDatabaseFlowData.swift */,
-				40B208D3274507EA009B769C /* UserModeratorStorageFlowData.swift */,
+				40B208CF2744F87F009B769C /* SportUser.swift */,
+				40B208D1274506AA009B769C /* SportUserDatabaseFlowData.swift */,
+				40B208D3274507EA009B769C /* SportUserStorageFlowData.swift */,
 			);
 			path = UserModerator;
 			sourceTree = "<group>";
@@ -1306,7 +1303,7 @@
 				400B8F4E272B50B5008A8AFE /* FirebaseObject.swift in Sources */,
 				401C9B15270D056B00F91DC6 /* Coordinator protocols.swift in Sources */,
 				409403FA2722072C00055FC4 /* CellActionHandler.swift in Sources */,
-				40B208D2274506AA009B769C /* UserModeratorDatabaseFlowData.swift in Sources */,
+				40B208D2274506AA009B769C /* SportUserDatabaseFlowData.swift in Sources */,
 				40713A7D27204A51005F1265 /* EditEventViewModel.swift in Sources */,
 				406C306826F8F2320040F0A7 /* QuickActionsCollectionLayout.swift in Sources */,
 				4056F2322729D61B00DD75CA /* SportEventFirebaseSaver.swift in Sources */,
@@ -1314,7 +1311,7 @@
 				406E3147272B08F900C2B30F /* TeamListViewController.swift in Sources */,
 				406CE68A2723EDE6002FDDB6 /* EditEventPhotoCollectionViewLayout.swift in Sources */,
 				406AF0E826F7BDF9005C9767 /* QuickActionsCollectionView.swift in Sources */,
-				40B208D4274507EA009B769C /* UserModeratorStorageFlowData.swift in Sources */,
+				40B208D4274507EA009B769C /* SportUserStorageFlowData.swift in Sources */,
 				40F4EBD8273D9A80003DA1D3 /* EventDetailUserView.swift in Sources */,
 				40C106D726E4202600B619A1 /* Log.swift in Sources */,
 				40369EAB26E6B3FE0083E675 /* HomeViewModel.swift in Sources */,
@@ -1328,7 +1325,6 @@
 				409DD42B2735D37700055FBD /* ContentConfigurator.swift in Sources */,
 				40B82ED32738BAE200BED0A1 /* ExistingMatchResultFirebaseSaver.swift in Sources */,
 				40A1368927358D44005C0007 /* SettingsViewModel.swift in Sources */,
-				400E532B273A6FDB00B407E0 /* SportUser.swift in Sources */,
 				40F52E5C2733D4AF005BD851 /* MatchResult.swift in Sources */,
 				40940BE126E40C380098EF89 /* OtherExtensions.swift in Sources */,
 				406CE6832723EBEB002FDDB6 /* EditEventPhotoCell + CollectionView.swift in Sources */,
@@ -1408,7 +1404,7 @@
 				4065C96326E855150084E5F2 /* ActionsCollectionCell.swift in Sources */,
 				40D47C3127079B8E0038A801 /* SportModel.xcdatamodeld in Sources */,
 				400A2AC226E5987B00F13BCF /* SportCoach.swift in Sources */,
-				40B208D02744F87F009B769C /* UserModerator.swift in Sources */,
+				40B208D02744F87F009B769C /* SportUser.swift in Sources */,
 				406E7C032723105800DAD711 /* ImagePickerManagerChoosableMode.swift in Sources */,
 				40940BFA26E413200098EF89 /* DataSourceProvider.swift in Sources */,
 				40F4EBEB273DE1B8003DA1D3 /* EventDetailCopyrightCellModel.swift in Sources */,

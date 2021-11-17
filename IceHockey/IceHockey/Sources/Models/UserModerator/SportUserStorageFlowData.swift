@@ -1,5 +1,5 @@
 //
-//  UserModeratorStorageFlowData.swift
+//  SportUserStorageFlowData.swift
 //  IceHockey
 //
 //  Created by  Buxlan on 11/17/21.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol UserModeratorStorageFlowData {
+protocol SportUserStorageFlowData {
     var image: ImageData? { get set }
     init(imageID: String)
-    func load(with completionHandler: @escaping () -> Void)
+    func load(completionHandler: @escaping () -> Void)
 }
 
-class UserModeratorStorageFlowDataImpl: UserModeratorStorageFlowData {
+class SportUserStorageFlowDataImpl: SportUserStorageFlowData {
     
     // MARK: - Properties
     
@@ -39,7 +39,7 @@ class UserModeratorStorageFlowDataImpl: UserModeratorStorageFlowData {
     
     // MARK: - Helper methods
     
-    func load(with completionHandler: @escaping () -> Void) {
+    func load(completionHandler: @escaping () -> Void) {
         if imageID.isEmpty {
             return
         }

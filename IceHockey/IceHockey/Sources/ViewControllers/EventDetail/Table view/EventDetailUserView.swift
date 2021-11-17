@@ -118,24 +118,9 @@ extension EventDetailUserView: ConfigurableCollectionContent {
         usernameLabel.backgroundColor = data.backgroundColor
         userImageView.backgroundColor = data.backgroundColor
         usernameLabel.textColor = data.textColor
-                
-        if !data.author.isEmpty {
-            SportUser.getObject(by: data.author) { (user) in
-                guard let user = user else {
-                    return
-                }
-                self.usernameLabel.text = user.displayName
-                let path = "users"
-                ImagesManager.shared.getImage(withID: user.imageID, path: path) { [weak self] (image) in
-                    guard let self = self else { return }
-                    if let image = image {
-                        self.userImageView.image = image
-                    } else {
-                        self.userImageView.image = self.noImage
-                    }
-                }
-            }            
-        }
+        
+        self.usernameLabel.text = data.author
+        self.userImageView.image = data.image == nil ? noImage : data.image        
         
     }
 }
