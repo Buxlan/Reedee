@@ -18,7 +18,16 @@ struct SportNews: SportNewsDatabaseFlowData {
         }
     }
     
-    var author: String {
+    var authorID: String {
+        get {
+            databaseFlowObject.authorID
+        }
+        set {
+            databaseFlowObject.authorID = newValue
+        }
+    }
+    
+    var author: SportUser? {
         get {
             databaseFlowObject.author
         }
@@ -94,22 +103,15 @@ struct SportNews: SportNewsDatabaseFlowData {
         return storageFlowObject.images
     }
     
-    var user: SportUser
     private var databaseFlowObject: SportNewsDatabaseFlowData
     private var storageFlowObject: SportNewsStorageFlowData
     
-    init() {
-        self.databaseFlowObject = SportNewsDatabaseFlowDataImpl()
-        self.storageFlowObject = SportNewsStorageFlowDataImpl()
-        self.user = SportUser()
-    }
-    
-    init(databaseFlowObject: SportNewsDatabaseFlowData,
-         storageFlowObject: SportNewsStorageFlowData,
-         author: SportUser) {
+    init(databaseFlowObject: SportNewsDatabaseFlowData = DefaultSportNewsDatabaseFlowData(),
+         storageFlowObject: SportNewsStorageFlowData = DefaultSportNewsStorageFlowData(),
+         author: SportUser? = nil) {
         self.databaseFlowObject = databaseFlowObject
         self.storageFlowObject = storageFlowObject
-        self.user = author
+        self.author = author
     }
     
 }

@@ -105,7 +105,7 @@ class SportNewsBuilder {
     }
     
     private func buildAuthor() {
-        let builder = SportUserBuilder(key: databasePart.author)
+        let builder = SportUserBuilder(key: databasePart.authorID)
         builder.build { user in
             if let user = user {
                 self.author = user

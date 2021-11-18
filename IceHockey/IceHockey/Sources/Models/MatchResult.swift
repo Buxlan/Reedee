@@ -28,7 +28,7 @@ struct MatchResult: SportEvent {
     
     var uid: String
     
-    var author: String
+    var authorID: String
     var type: SportEventType
     var homeTeam: String
     var awayTeam: String
@@ -43,6 +43,8 @@ struct MatchResult: SportEvent {
         return MatchStatus.finished.description
     }
     
+    var author: SportUser?
+    
     init(uid: String = "",
          title: String = "",
          homeTeam: String = "",
@@ -52,7 +54,7 @@ struct MatchResult: SportEvent {
          date: Date = Date(),
          stadium: String = "",
          order: Int = 0,
-         author: String = "") {
+         authorID: String = "") {
         self.uid = uid
         self.homeTeam = homeTeam
         self.awayTeam = awayTeam
@@ -63,12 +65,12 @@ struct MatchResult: SportEvent {
         self.type = .match
         self.title = title
         self.order = order
-        self.author = author
+        self.authorID = authorID
     }
     
     init?(key: String, dict: [String: Any]) {
         guard let title = dict["title"] as? String,
-              let author = dict["author"] as? String,
+              let authorID = dict["author"] as? String,
               let homeTeam = dict["homeTeam"] as? String,
               let awayTeam = dict["awayTeam"] as? String,
               let homeTeamScore = dict["homeTeamScore"] as? Int,
@@ -79,7 +81,7 @@ struct MatchResult: SportEvent {
               let order = dict["order"] as? Int else { return nil }
                 
         self.uid = key
-        self.author = author
+        self.authorID = authorID
         self.homeTeam = homeTeam
         self.awayTeam = awayTeam
         self.homeTeamScore = homeTeamScore

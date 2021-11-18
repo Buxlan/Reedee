@@ -15,7 +15,7 @@ struct NewsTableCellModel: TableCellModel {
     var image: UIImage?
     var type: String
     
-    var author: String
+    var author: String?
     var authorImage: UIImage?
     
     var date: String
@@ -36,10 +36,9 @@ struct NewsTableCellModel: TableCellModel {
         description = data.text
         image = data.mainImage
         type = data.type.description
-        author = data.user.displayName
-        
+        author = data.author?.displayName
+        authorImage = data.author?.image
         image = data.mainImage
-        authorImage = data.user.image
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium

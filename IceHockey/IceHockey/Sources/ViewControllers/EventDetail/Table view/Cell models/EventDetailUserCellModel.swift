@@ -22,7 +22,8 @@ struct EventDetailUserCellModel: TableCellModel {
     // MARK: - Lifecircle
     
     init(_ event: SportEvent) {
-        author = event.author
+        author = event.author?.displayName ?? ""
+        image = event.author?.image
         type = event.type
     }
     

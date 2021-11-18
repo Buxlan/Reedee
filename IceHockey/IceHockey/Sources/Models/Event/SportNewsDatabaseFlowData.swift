@@ -9,7 +9,7 @@ import UIKit
 
 protocol SportNewsDatabaseFlowData: SportEvent {
     var uid: String { get set }
-    var author: String { get set }
+    var authorID: String { get set }
     var title: String { get set }
     var text: String { get set }
     var boldText: String { get set }
@@ -17,11 +17,12 @@ protocol SportNewsDatabaseFlowData: SportEvent {
     var date: Date { get set }
     var imageIDs: [String] { get set }
     var order: Int { get set }
+    var author: SportUser? { get set }
 }
 
 struct DefaultSportNewsDatabaseFlowData: SportNewsDatabaseFlowData {
     var uid: String
-    var author: String
+    var authorID: String
     var title: String
     var text: String
     var boldText: String
@@ -29,6 +30,7 @@ struct DefaultSportNewsDatabaseFlowData: SportNewsDatabaseFlowData {
     var date: Date
     var imageIDs: [String]
     var order: Int
+    var author: SportUser?
     
     init() {
         self.uid = ""
@@ -39,13 +41,13 @@ struct DefaultSportNewsDatabaseFlowData: SportNewsDatabaseFlowData {
         self.boldText = ""
         self.imageIDs = []
         self.order = 0
-        self.author = ""
+        self.authorID = ""
     }
 }
 
 struct SportNewsDatabaseFlowDataImpl: SportNewsDatabaseFlowData {
     var uid: String
-    var author: String
+    var authorID: String
     var title: String
     var text: String
     var boldText: String
@@ -53,9 +55,10 @@ struct SportNewsDatabaseFlowDataImpl: SportNewsDatabaseFlowData {
     var date: Date
     internal var imageIDs: [String] = []
     var order: Int
+    var author: SportUser?
     
     init(uid: String,
-         author: String,
+         authorID: String,
          title: String,
          text: String,
          boldText: String,
@@ -64,7 +67,7 @@ struct SportNewsDatabaseFlowDataImpl: SportNewsDatabaseFlowData {
          type: SportEventType = .event,
          order: Int) {
         self.uid = uid
-        self.author = author
+        self.authorID = authorID
         self.title = title
         self.text = text
         self.date = date
@@ -83,12 +86,12 @@ struct SportNewsDatabaseFlowDataImpl: SportNewsDatabaseFlowData {
         self.boldText = ""
         self.imageIDs = []
         self.order = 0
-        self.author = ""
+        self.authorID = ""
     }
     
     init?(key: String, dict: [String: Any]) {
         guard let text = dict["text"] as? String,
-              let author = dict["author"] as? String,
+              let authorID = dict["author"] as? String,
               let boldText = dict["boldText"] as? String,
               let title = dict["title"] as? String,
               let rawType = dict["type"] as? Int,
@@ -97,7 +100,7 @@ struct SportNewsDatabaseFlowDataImpl: SportNewsDatabaseFlowData {
               let order = dict["order"] as? Int else { return nil }
                 
         self.uid = key
-        self.author = author
+        self.authorID = authorID
         self.text = text
         self.title = title
         self.date = Date(timeIntervalSince1970: TimeInterval(dateInterval))

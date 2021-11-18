@@ -14,7 +14,7 @@ struct MatchResultTableCellModel: TableCellModel {
     
     var uid: String
         
-    var author: String
+    var author: String?
     var authorImage: UIImage?
     
     var title: String
@@ -45,7 +45,8 @@ struct MatchResultTableCellModel: TableCellModel {
         awayTeam = data.awayTeam
         stadium = data.stadium
         status = data.status
-        author = data.author
+        author = data.author?.displayName
+        authorImage = data.author?.image
         
         homeTeamScore = data.homeTeamScore
         awayTeamScore = data.awayTeamScore
