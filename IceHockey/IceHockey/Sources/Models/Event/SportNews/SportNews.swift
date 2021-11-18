@@ -8,6 +8,10 @@
 import UIKit
 
 struct SportNews: SportNewsDatabaseFlowData {
+    var viewsInfo: EventViewsInfo
+    var likesInfo: EventLikesInfo
+    
+    var viewsCount: Int = 2
         
     var uid: String {
         get {
@@ -108,9 +112,13 @@ struct SportNews: SportNewsDatabaseFlowData {
     
     init(databaseFlowObject: SportNewsDatabaseFlowData = DefaultSportNewsDatabaseFlowData(),
          storageFlowObject: SportNewsStorageFlowData = DefaultSportNewsStorageFlowData(),
-         author: SportUser? = nil) {
+         author: SportUser? = nil,
+         likesInfo: EventLikesInfo = EventLikesInfo(),
+         viewsInfo: EventViewsInfo = EventViewsInfo()) {
         self.databaseFlowObject = databaseFlowObject
         self.storageFlowObject = storageFlowObject
+        self.likesInfo = likesInfo
+        self.viewsInfo = viewsInfo
         self.author = author
     }
     

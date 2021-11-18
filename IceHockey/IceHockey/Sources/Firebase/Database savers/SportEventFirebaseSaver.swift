@@ -13,6 +13,20 @@ protocol ObjectFirebaseSaver {
     func save() throws
 }
 
+enum SportEventSaveError: LocalizedError {
+    case wrongProperties
+    case wrongInput
+    
+    var errorDescription: String? {
+        switch self {
+        case .wrongProperties:
+            return "Not every properties is defined"
+        case .wrongInput:
+            return "Wrong type of input data"
+        }
+    }
+}
+
 protocol SportEventFirebaseSaver: ObjectFirebaseSaver where DataType == SportEvent {
     
 }

@@ -53,8 +53,9 @@ class EventDetailUsefulButtonsView: UITableViewCell {
     
     // MARK: - Lifecircle
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle = .default, reuseIdentifier: String? = "") {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        translatesAutoresizingMaskIntoConstraints = false
     }
     
     required init?(coder: NSCoder) {
@@ -130,28 +131,33 @@ extension EventDetailUsefulButtonsView: ConfigurableCollectionContent {
         likeButton.setTitleColor(data.selectedViewTintColor, for: .selected)
         likeButton.backgroundColor = data.backgroundColor
         
-        FirebaseManager.shared.databaseManager
-            .getEventLikeInfo(eventID: data.eventID) { (count, userLikes) in
-            DispatchQueue.main.async {
-                self.likeButton.isSelected = userLikes
-                self.data?.likesCount = count
-                let model = LikeButtonModelImpl(textColor: data.textColor,
-                                                count: count)
-                self.likeButton.configure(with: model)
-            }
-        }
+        self.likeButton.isSelected = data.likesInfo.isLiked
+        let model = LikeButtonModelImpl(textColor: data.textColor,
+                                        count: data.likesInfo.count)
+        self.likeButton.configure(with: model)
         
-        FirebaseManager.shared.databaseManager
-            .getEventViewsInfo(eventID: data.eventID) { (count) in
-            DispatchQueue.main.async {
-                self.data?.viewsCount = count
-                let model = LabelModelImpl(text: "\(count)",
-                                           font: data.font,
-                                           textColor: data.tintColor,
-                                           backgroundColor: data.backgroundColor)
-                self.viewsCountLabel.configure(with: model)
-            }
-        }
+//        FirebaseManager.shared.databaseManager
+//            .getEventLikeInfo(eventID: data.eventID) { (count, userLikes) in
+//            DispatchQueue.main.async {
+//                self.likeButton.isSelected = userLikes
+//                self.data?.likesCount = count
+//                let model = LikeButtonModelImpl(textColor: data.textColor,
+//                                                count: count)
+//                self.likeButton.configure(with: model)
+//            }
+//        }
+//
+//        FirebaseManager.shared.databaseManager
+//            .getEventViewsInfo(eventID: data.eventID) { (count) in
+//            DispatchQueue.main.async {
+//                self.data?.viewsCount = count
+//                let model = LabelModelImpl(text: "\(count)",
+//                                           font: data.font,
+//                                           textColor: data.tintColor,
+//                                           backgroundColor: data.backgroundColor)
+//                self.viewsCountLabel.configure(with: model)
+//            }
+//        }
         
     }
     
@@ -164,10 +170,10 @@ extension EventDetailUsefulButtonsView {
         guard let data = self.data else { return }
         likeButton.isSelected.toggle()
         data.likeAction(likeButton.isSelected)
-        let count = data.likesCount + (likeButton.isSelected ? 1 : -1)
-        self.data?.likesCount = count
+        let count = data.likesInfo.count + (likeButton.isSelected ? 1 : -1)
+        self.data?.likesInfo.count = count
         let model = LikeButtonModelImpl(textColor: data.textColor,
-                                    count: count)
+                                        count: count)
         likeButton.configure(with: model)
     }
     

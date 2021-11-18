@@ -153,39 +153,12 @@ class HomeViewController: UIViewController {
             let dataSource = self.createDataSource()
             self.tableBase.updateDataSource(dataSource)
             self.tableView.reloadData()
+            if !self.viewModel.isLoading {
+                self.refreshControl.endRefreshing()
+            }
         }
         viewModel.update()
     }
-        
-//        viewModel.populateCellRelay = { (_, indexPath, snap) -> UITableViewCell in
-//            let creator = SportEventCreatorImpl()
-//            let handler: (SportNews?) -> Void = { event in
-//                guard let event = event else {
-//                    return
-//                }
-//
-//            }
-//            guard let event = creator.create(snapshot: snap, with: handler) else {
-//                return UITableViewCell()
-//            }
-//            var row: TableRow
-//            switch event.type {
-//            case .event:
-//                row = self.makeNewsTableRow(event)
-//                self.viewModel.items[indexPath] = row
-//            case .match:
-//                row = self.makeMatchResultTableRow(event)
-//                self.viewModel.items[indexPath] = row
-//            default:
-//                fatalError()
-//            }
-//            let cell = self.tableView.dequeueReusableCell(withIdentifier: row.rowId, for: indexPath)
-//            row.config.configure(view: cell)
-//            return cell
-//        }
-//        viewModel.setupTable(tableView)
-//    }
-    
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -214,7 +187,8 @@ extension HomeViewController {
     }
     
     @objc private func refreshTable(_ sender: Any) {
-        
+        refreshControl.beginRefreshing()
+        viewModel.update()
     }
     
     func createDataSource() -> TableDataSource {        
@@ -280,13 +254,11 @@ extension HomeViewController {
     }
     
     func configureModeratorFunctions() {
-        
         appendEventButton.isHidden = true
         let user = Auth.auth().currentUser
         UserRoleManager().getRole(for: user) { role in
             self.appendEventButton.isHidden = (role == .readOnly)
         }
-        
     }
     
     @objc private func handleAppendEvent() {

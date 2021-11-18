@@ -214,7 +214,7 @@ extension EditEventViewController {
         let image = imageData.image
         var cellModel = PhotoCellModel(image: image)
         cellModel.deleteAction = {
-            self.viewModel.removeImage(image)
+            self.viewModel.removeImage(imageData.imageID)
         }
         let config = EditEventPhotoCollectionCellConfigurator(data: cellModel)
         let row = CollectionRow(rowId: type(of: config).reuseIdentifier, config: config, size: size)

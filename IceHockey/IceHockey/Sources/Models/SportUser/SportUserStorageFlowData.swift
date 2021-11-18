@@ -46,6 +46,7 @@ class SportUserStorageFlowDataImpl: SportUserStorageFlowData {
         image = ImageData(imageID: imageID)
         let handler: (UIImage?) -> Void = { (image) in
             guard let image = image else {
+                completionHandler()
                 return
             }
             let imageData = ImageData(imageID: self.imageID, image: image)

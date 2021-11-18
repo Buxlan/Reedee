@@ -8,8 +8,8 @@
 import UIKit
 
 struct ImageData: Hashable {
-    var imageID: String?
-    var image: UIImage = UIImage()
+    var imageID: String = ""
+    var image: UIImage?
     var isNew: Bool = false
     var isRemoved: Bool = false
 }
@@ -70,8 +70,8 @@ extension EditEventViewModel {
         self.shouldReloadRelay()
     }
     
-    func removeImage(_ image: UIImage) {
-        if let index = imageList.firstIndex(where: { $0.image == image }) {
+    func removeImage(_ imageID: String) {
+        if let index = imageList.firstIndex(where: { $0.imageID == imageID }) {
             imageList[index].isRemoved = true
             self.shouldReloadRelay()
         }

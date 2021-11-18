@@ -45,7 +45,7 @@ class ScrollingPageControl: UIView {
     }
     
     var dotColor: UIColor = Asset.other2.color
-    var selectedColor: UIColor = Asset.other1.color
+    var selectedColor: UIColor = Asset.other0.color
     
     var dotSize: CGFloat = 9 {
         didSet {

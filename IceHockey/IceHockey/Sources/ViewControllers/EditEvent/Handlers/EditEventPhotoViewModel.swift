@@ -10,8 +10,8 @@ import UIKit
 
 struct EditEventPhotoCellModel {
      
+    var event: SportNews?
     weak var collectionBase: CollectionViewBase?
-    
     var backgroundColor = Asset.other3.color
     var tintColor = Asset.other0.color
     

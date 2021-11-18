@@ -175,7 +175,7 @@ extension MatchResultDetailViewController {
         var cellModel = SaveCellModel()
         cellModel.action = {
             do {
-                try self.editingObject.save()
+                try MatchResultFirebaseSaver(object: self.editingObject).save()
             } catch {
                 print("Save error: \(error)")
             }

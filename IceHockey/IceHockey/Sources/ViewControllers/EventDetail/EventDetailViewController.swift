@@ -14,7 +14,6 @@ class EventDetailViewController: UIViewController {
     var viewModel: EventDetailViewModel = EventDetailViewModel()
     var event: SportNews
     private var tableBase = TableViewBase()
-    private var collectionBase = CollectionViewBase()
     
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
@@ -180,10 +179,7 @@ extension EventDetailViewController {
     }
     
     func makePhotoTableRow() -> TableRow {
-        var cellModel = EditEventPhotoCellModel(collectionBase: collectionBase)
-        cellModel.collectionBase = collectionBase
-        let collectionDataSource = makeCollectionViewDataSource()
-        collectionBase.updateDataSource(collectionDataSource)
+        let cellModel = EditEventPhotoCellModel(event: event)
         let config = EventDetailPhotoViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         return row
@@ -191,7 +187,8 @@ extension EventDetailViewController {
     }
     
     func makeUsefulButtonsTableRow() -> TableRow {
-        var cellModel = EventDetailUsefulButtonsCellModel(event)
+        var cellModel = EventDetailUsefulButtonsCellModel(likesInfo: event.likesInfo,
+                                                          viewsInfo: event.viewsInfo)
         cellModel.likeAction = { (state: Bool) in
             self.event.setLike(state)
         }
@@ -227,31 +224,6 @@ extension EventDetailViewController {
         let cellModel = EventDetailCopyrightCellModel(teamID: teamID)
         let config = EventDetailCopyrightViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
-        return row
-    }
-    
-    func makeCollectionViewDataSource() -> CollectionDataSource {
-        let size = CGSize(width: 120, height: 120)
-        let collectionRows = event.images.map { imageData -> CollectionRow in
-            makePhotoCollectionRow(imageData: imageData, size: size)
-        }
-        let photoCellModel = PhotoCellModel()
-        let config = EventDetailPhotoCollectionCellConfigurator(data: photoCellModel)
-        let row = CollectionRow(rowId: type(of: config).reuseIdentifier,
-                                config: config, size: size)
-        var dataSource = CollectionDataSource()
-        var section = CollectionSection()
-        section.addRows(collectionRows)
-        section.addRow(row)
-        dataSource.addSection(section)
-        return dataSource
-    }
-    
-    func makePhotoCollectionRow(imageData: ImageData, size: CGSize) -> CollectionRow {
-        let image = imageData.image
-        let cellModel = PhotoCellModel(image: image)
-        let config = EventDetailPhotoCollectionCellConfigurator(data: cellModel)
-        let row = CollectionRow(rowId: type(of: config).reuseIdentifier, config: config, size: size)
         return row
     }
     

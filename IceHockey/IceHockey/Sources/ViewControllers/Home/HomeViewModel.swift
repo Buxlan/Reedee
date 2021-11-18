@@ -15,10 +15,12 @@ class HomeViewModel: NSObject {
         var title: String = ""
         var events: [SportEvent] = []
     }
-    var sections: [SectionData] = []    
+    var sections: [SectionData] = []
+    private var loadingHandlers: [Int: (SportEvent?) -> Void] = [:]
     
-    var dataSource: [TableRow] = []
-    var items: [IndexPath: TableRow] = [:]
+    var isLoading: Bool {
+        return !loadingHandlers.isEmpty
+    }
     
     var shouldRefreshRelay = {}
     var shouldRefreshAtIndexPathRelay: (IndexPath) -> Void = { _ in }
@@ -26,7 +28,7 @@ class HomeViewModel: NSObject {
     var databaseQuery: DatabaseQuery {
         FirebaseManager.shared.databaseManager.root.child("events")
             .queryOrdered(byChild: "order")
-            .queryLimited(toFirst: 10)
+            .queryLimited(toFirst: 2)
     }
     
     private lazy var actions: [ActionCollectionCellConfigurator] = {
@@ -53,16 +55,17 @@ class HomeViewModel: NSObject {
     func update() {
         var section = SectionData()
         databaseQuery.getData { error, snapshot in
-            if let error = error {
-                preconditionFailure()
-            }            
-            for child in snapshot.children {
-                guard let child = child as? DataSnapshot else {
-                    continue
-                }
+            assert(error == nil)
+            self.loadingHandlers.removeAll()
+            for (index, _) in snapshot.children.enumerated() {
                 let completionHandler: (SportEvent?) -> Void = { event in
                     guard let event = event else {
                         return
+                    }
+                    if let index = self.loadingHandlers.firstIndex(where: { (key, _) in
+                        key == index
+                    }) {
+                        self.loadingHandlers.remove(at: index)
                     }
                     if let index = section.events.firstIndex(where: { $0.uid == event.uid }) {
                         section.events[index] = event
@@ -70,8 +73,15 @@ class HomeViewModel: NSObject {
                         self.shouldRefreshRelay()
                     }
                 }
+                self.loadingHandlers[index] = completionHandler
+            }
+            for (index, child) in snapshot.children.enumerated() {
+                guard let child = child as? DataSnapshot,
+                      let handler = self.loadingHandlers[index] else {
+                    continue
+                }
                 let creator = SportEventCreatorImpl()
-                let event = creator.create(snapshot: child, with: completionHandler)
+                let event = creator.create(snapshot: child, with: handler)
                 if let event = event {
                     section.events.append(event)
                 }
@@ -79,16 +89,6 @@ class HomeViewModel: NSObject {
             self.sections.append(section)
             self.shouldRefreshRelay()
         }
-    }
-    
-}
-
-extension HomeViewModel: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let row = self.items[indexPath]
-        row?.action()
     }
     
 }

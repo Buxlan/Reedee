@@ -7,11 +7,9 @@
 
 import Firebase
 
-protocol SportUserObject {
-    var uid: String { get set }
+protocol SportUserObject: FirebaseObject {
     var displayName: String { get set }
-    var image: UIImage? { get set }
-    var firebaseUser: User? { get set }
+    var imageID: String { get set }
     var isNew: Bool { get }
 }
 
@@ -21,24 +19,41 @@ extension SportUserObject {
     }
 }
 
-class SportUser {
+class SportUser: SportUserObject {
     
     var uid: String {
-        databaseFlowObject.uid
+        get {
+            databaseFlowObject.uid
+        }
+        set {
+            databaseFlowObject.uid = newValue
+        }
     }
     var displayName: String {
-        databaseFlowObject.displayName
+        get {
+            databaseFlowObject.displayName
+        }
+        set {
+            databaseFlowObject.displayName = newValue
+        }
+    }
+    internal var imageID: String {
+        get {
+            databaseFlowObject.imageID
+        }
+        set {}
     }
     var image: UIImage? {
-        return storageFlowObject.image?.image ?? nil
+        get {
+            storageFlowObject.image?.image
+        }
+        set {
+            storageFlowObject.image?.image = newValue
+        }
     }
     
     var firebaseUser: User? {
         return Auth.auth().currentUser
-    }
-    
-    var isNew: Bool {
-        return uid.isEmpty
     }
     
     private var databaseFlowObject: SportUserDatabaseFlowData
@@ -78,76 +93,6 @@ struct SportUserCreatorImpl: SportUserCreator {
         let builder = SportUserBuilder(key: uid)
         builder.build(completionHandler: completionHandler)
         let object = builder.getResult()
-        return object
-    }
-    
-}
-
-class SportUserBuilder {
-    
-    // MARK: - Properties
-    
-    private let key: String
-    private let dict: [String: Any] = [:]
-    
-    private var databasePart: SportUserDatabaseFlowData?
-    private var storagePart: SportUserStorageFlowData?
-    
-    private var completionHandler: (SportUser?) -> Void = { _ in }
-    
-    // MARK: - Lifecircle
-    
-    init(key: String) {
-        self.key = key
-    }
-    
-    // MARK: - Helper Methods
-    
-    func build(completionHandler: @escaping (SportUser?) -> Void) {
-        databasePart = nil
-        storagePart = nil
-        if key.isEmpty {
-            return
-        }
-        self.completionHandler = completionHandler
-        buildDatabasePart {
-            self.buildStoragePart()
-        }
-    }
-    
-    private func buildDatabasePart(completionHandler: @escaping () -> Void) {
-        let path = "users"
-        FirebaseManager.shared.databaseManager
-            .root
-            .child(path)
-            .child(key)
-            .getData { error, snapshot in
-                assert(error == nil)
-                self.databasePart = SportUserDatabaseFlowDataImpl(snapshot: snapshot)
-                completionHandler()
-            }
-        
-    }
-    
-    private func buildStoragePart() {
-        guard let databasePart = databasePart,
-              !databasePart.uid.isEmpty else {
-                  completionHandler(nil)
-                  return
-              }
-        storagePart = SportUserStorageFlowDataImpl(imageID: databasePart.imageID)
-        storagePart?.load {
-            self.completionHandler(self.getResult())
-        }
-    }
-    
-    func getResult() -> SportUser? {
-        guard let databasePart = databasePart,
-              let storagePart = storagePart else {
-                  return nil
-              }
-        let object = SportUser(databaseFlowObject: databasePart,
-                                   storageFlowObject: storagePart)
         return object
     }
     

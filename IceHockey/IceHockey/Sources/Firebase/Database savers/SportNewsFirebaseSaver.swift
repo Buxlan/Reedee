@@ -65,7 +65,7 @@ struct SportNewsFirebaseSaver {
         }
     }
     
-    func prepareDataForSaving(for object: DataType) -> [String: Any] {
+    func encodeObject() -> [String: Any] {
         let interval = object.date.timeIntervalSince1970
         let dict: [String: Any] = [
             "uid": object.uid,
@@ -83,7 +83,7 @@ struct SportNewsFirebaseSaver {
     
     func saveNew() throws {
         
-        var dataDict = prepareDataForSaving(for: object)
+        var dataDict = encodeObject()
         
         eventReference.setValue(dataDict) { (error, ref) in
             if let error = error {

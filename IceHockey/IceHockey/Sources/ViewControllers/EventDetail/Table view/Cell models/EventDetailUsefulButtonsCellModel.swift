@@ -10,9 +10,8 @@ import UIKit
 struct EventDetailUsefulButtonsCellModel: TableCellModel {
     
     // MARK: - Properties
-    var eventID: String
-    var likesCount: Int = 0
-    var viewsCount: Int = 0
+    var likesInfo: EventLikesInfo
+    var viewsInfo: EventViewsInfo
     var tintColor: UIColor = Asset.other0.color
     var textColor: UIColor = Asset.textColor.color
     var selectedViewTintColor: UIColor = Asset.accent0.color
@@ -25,9 +24,5 @@ struct EventDetailUsefulButtonsCellModel: TableCellModel {
     var shareAction = {}
     
     // MARK: - Lifecircle
-    
-    init(_ data: SportEvent) {
-        self.eventID = data.uid
-    }
     
 }

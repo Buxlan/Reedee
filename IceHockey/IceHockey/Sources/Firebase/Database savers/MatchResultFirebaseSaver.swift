@@ -1,5 +1,5 @@
 //
-//  ExistingMatchResultFirebaseSaver.swift
+//  NewMatchResultFirebaseSaver.swift
 //  IceHockey
 //
 //  Created by  Buxlan on 11/8/21.
@@ -7,10 +7,11 @@
 
 import Firebase
 
-struct ExistingMatchResultFirebaseSaver: SportEventFirebaseSaver {
+struct MatchResultFirebaseSaver {
     
     // MARK: - Properties
-    typealias DataType = SportEvent
+    
+    typealias DataType = MatchResult
     internal let object: DataType
     
     internal var eventsDatabaseReference: DatabaseReference {
@@ -57,17 +58,52 @@ struct ExistingMatchResultFirebaseSaver: SportEventFirebaseSaver {
     // MARK: - Helper functions
     
     func save() throws {
-        guard let object = self.object as? MatchResult else {
-            throw SportEventSaveError.wrongInput
+        if object.isNew {
+            try saveExisting()
+        } else {
+            try saveNew()
         }
-        var dataDict = object.prepareDataForSaving()
+    }
+    
+    func saveNew() throws {
+        var dataDict = encodeObject()
         dataDict["order"] = orderValue
-        
-        eventReference.setValue(dataDict) { error, ref in
+        eventReference.setValue(dataDict) { error, _ in
             if let error = error {
                 print("Saving error: \(error)")
                 return
-            }            
+            }
         }
     }
+    
+    func encodeObject() -> [String: Any] {
+        let interval = object.date.timeIntervalSince1970
+        let dict: [String: Any] = [
+            "uid": object.uid,
+            "author": object.authorID,
+            "title": object.title,
+            "homeTeam": object.homeTeam,
+            "awayTeam": object.awayTeam,
+            "homeTeamScore": object.homeTeamScore,
+            "awayTeamScore": object.awayTeamScore,
+            "stadium": object.stadium,
+            "type": object.type.rawValue,
+            "date": Int(interval),
+            "order": orderValue
+        ]
+        return dict
+    }
+    
+    func saveExisting() throws {
+        var dataDict = encodeObject()
+        dataDict["order"] = orderValue
+        
+        eventReference.setValue(dataDict) { error, _ in
+            if let error = error {
+                print("Saving error: \(error)")
+                return
+            }
+        }
+    }
+    
 }

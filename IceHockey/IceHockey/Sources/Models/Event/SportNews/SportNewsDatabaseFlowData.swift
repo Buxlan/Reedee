@@ -8,19 +8,17 @@
 import UIKit
 
 protocol SportNewsDatabaseFlowData: SportEvent {
-    var uid: String { get set }
-    var authorID: String { get set }
     var title: String { get set }
-    var text: String { get set }
-    var boldText: String { get set }
-    var type: SportEventType { get set }
-    var date: Date { get set }
     var imageIDs: [String] { get set }
-    var order: Int { get set }
-    var author: SportUser? { get set }
+    var boldText: String { get set }
 }
 
 struct DefaultSportNewsDatabaseFlowData: SportNewsDatabaseFlowData {
+    var likesInfo = EventLikesInfo()
+    var viewsInfo = EventViewsInfo()
+    var author: SportUser?
+        
+    // Database Fields
     var uid: String
     var authorID: String
     var title: String
@@ -30,7 +28,6 @@ struct DefaultSportNewsDatabaseFlowData: SportNewsDatabaseFlowData {
     var date: Date
     var imageIDs: [String]
     var order: Int
-    var author: SportUser?
     
     init() {
         self.uid = ""
@@ -46,6 +43,11 @@ struct DefaultSportNewsDatabaseFlowData: SportNewsDatabaseFlowData {
 }
 
 struct SportNewsDatabaseFlowDataImpl: SportNewsDatabaseFlowData {
+    var likesInfo = EventLikesInfo()
+    var viewsInfo = EventViewsInfo()
+    var author: SportUser?
+    
+    // Database Fields
     var uid: String
     var authorID: String
     var title: String
@@ -55,7 +57,6 @@ struct SportNewsDatabaseFlowDataImpl: SportNewsDatabaseFlowData {
     var date: Date
     internal var imageIDs: [String] = []
     var order: Int
-    var author: SportUser?
     
     init(uid: String,
          authorID: String,
@@ -89,25 +90,25 @@ struct SportNewsDatabaseFlowDataImpl: SportNewsDatabaseFlowData {
         self.authorID = ""
     }
     
-    init?(key: String, dict: [String: Any]) {
-        guard let text = dict["text"] as? String,
-              let authorID = dict["author"] as? String,
-              let boldText = dict["boldText"] as? String,
-              let title = dict["title"] as? String,
-              let rawType = dict["type"] as? Int,
-              let type = SportEventType(rawValue: rawType),
-              let dateInterval = dict["date"] as? Int,
-              let order = dict["order"] as? Int else { return nil }
-                
+    init(key: String, dict: [String: Any]) {                
         self.uid = key
-        self.authorID = authorID
-        self.text = text
-        self.title = title
-        self.date = Date(timeIntervalSince1970: TimeInterval(dateInterval))
+        self.authorID = dict["author"] as? String ?? ""
+        self.title = dict["title"] as? String ?? ""
+        self.text = dict["text"] as? String ?? ""
+        self.boldText = dict["boldText"] as? String ?? ""
         self.imageIDs = dict["images"] as? [String] ?? []
-        self.type = type
-        self.boldText = boldText
-        self.order = order
+        self.order = dict["order"] as? Int ?? 0
+        
+        self.type = .event
+        if let rawType = dict["type"] as? Int,
+           let type = SportEventType(rawValue: rawType) {
+            self.type = type
+        }
+        
+        self.date = Date()
+        if let dateInterval = dict["date"] as? Int {
+            self.date = Date(timeIntervalSince1970: TimeInterval(dateInterval))
+        }
     }
     
 }

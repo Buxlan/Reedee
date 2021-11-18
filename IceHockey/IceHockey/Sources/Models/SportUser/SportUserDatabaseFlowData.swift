@@ -7,13 +7,11 @@
 
 import Firebase
 
-protocol SportUserDatabaseFlowData {
-    var uid: String { get set }
-    var imageID: String { get set }
-    var displayName: String { get set }
+protocol SportUserDatabaseFlowData: SportUserObject {    
 }
 
 struct SportUserDatabaseFlowDataImpl: SportUserDatabaseFlowData {
+    
     var uid: String
     var imageID: String
     var displayName: String
@@ -32,14 +30,10 @@ struct SportUserDatabaseFlowDataImpl: SportUserDatabaseFlowData {
         self.displayName = ""
     }
     
-    init?(key: String, dict: [String: Any]) {
-        guard let imageID = dict["image"] as? String,
-              let displayName = dict["displayName"] as? String
-        else { return nil }
-                
+    init(key: String, dict: [String: Any]) {                
         self.uid = key
-        self.imageID = imageID
-        self.displayName = displayName
+        self.imageID = dict["image"] as? String ?? ""
+        self.displayName = dict["displayName"] as? String ?? ""
     }
     
     init?(snapshot: DataSnapshot) {

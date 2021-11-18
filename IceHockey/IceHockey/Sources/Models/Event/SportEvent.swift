@@ -7,40 +7,18 @@
 
 import Firebase
 
-enum SportEventSaveError: LocalizedError {
-    case wrongProperties
-    case wrongInput
-    
-    var errorDescription: String? {
-        switch self {
-        case .wrongProperties:
-            return "Not every properties is defined"
-        case .wrongInput:
-            return "Wrong type of input data"
-        }
-    }
-}
-
-protocol SportEvent {
-    
-    // MARK: - Properties
-    var uid: String { get set }
+protocol SportEvent: FirebaseObject {
     var type: SportEventType { get set }
     var date: Date { get set }
     var authorID: String { get set }
     var isNew: Bool { get }
     var order: Int { get set }
+    var title: String { get set }
+    var text: String { get set }
     
     var author: SportUser? { get set }
-    
-    // MARK: - Lifecircle
-//    init?(key: String, dict: [String: Any])
-    
-    // MARK: - Helper methods
-//    func setLike(_ state: Bool)
-//    func prepareLikesDict(userID: String) -> [String: Any]
-//    func save() throws
-//    func prepareDataForSaving() -> [String: Any]
+    var likesInfo: EventLikesInfo { get set }
+    var viewsInfo: EventViewsInfo { get set }    
 }
 
 extension SportEvent {

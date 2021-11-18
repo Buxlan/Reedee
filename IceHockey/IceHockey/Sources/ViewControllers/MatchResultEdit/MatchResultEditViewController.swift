@@ -39,7 +39,7 @@ class MatchResultEditViewController: UIViewController {
                                            preferredStyle: .actionSheet)
         let deleteAction = UIAlertAction(title: L10n.EditEventLabel.deleteTypeTitle, style: .destructive) { _ in
             do {
-                try self.editingObject.delete()
+                try MatchResultFirebaseRemover(object: self.editingObject).remove()
                 self.navigationController?.popToRootViewController(animated: true)
             } catch {
                 print(error)
@@ -200,7 +200,7 @@ extension MatchResultEditViewController {
         var cellModel = SaveCellModel(L10n.Other.save)
         cellModel.action = {
             do {
-                try self.editingObject.save()
+                try MatchResultFirebaseSaver(object: self.editingObject).save()
             } catch {
                 print("Save error: \(error)")
             }
