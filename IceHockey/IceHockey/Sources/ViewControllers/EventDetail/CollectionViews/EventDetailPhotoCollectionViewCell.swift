@@ -13,7 +13,7 @@ class EventDetailPhotoCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    typealias DataType = EventDetailPhotoCellModel
+    typealias DataType = PhotoCellModel
     
     internal var isInterfaceConfigured: Bool = false
     let imageAspectRate: CGFloat = 1

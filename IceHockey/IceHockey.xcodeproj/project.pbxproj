@@ -63,7 +63,6 @@
 		406CE68A2723EDE6002FDDB6 /* EditEventPhotoCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406CE6892723EDE6002FDDB6 /* EditEventPhotoCollectionViewLayout.swift */; };
 		406CE68D27241926002FDDB6 /* EditEventPhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406CE68C27241926002FDDB6 /* EditEventPhotoViewModel.swift */; };
 		406D34D1271F7D5400AC9D05 /* EventDetailFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406D34D0271F7D5400AC9D05 /* EventDetailFooterView.swift */; };
-		406D49E5271E3618000A9666 /* EventDetailPhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406D49E4271E3618000A9666 /* EventDetailPhotoViewModel.swift */; };
 		406D49E8271E3806000A9666 /* EventDetailPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406D49E7271E3806000A9666 /* EventDetailPhotoCollectionViewCell.swift */; };
 		406D6FB427243194008ED014 /* EditEventAddPhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406D6FB327243194008ED014 /* EditEventAddPhotoCollectionCell.swift */; };
 		406E3147272B08F900C2B30F /* TeamListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406E3146272B08F900C2B30F /* TeamListViewController.swift */; };
@@ -97,7 +96,6 @@
 		407F48B2273C9A6000C96B28 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407F48B1273C9A6000C96B28 /* Fonts.swift */; };
 		407F48B3273C9AD800C96B28 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 407F48AF273C968D00C96B28 /* Roboto-Regular.ttf */; };
 		407F48B4273C9ADB00C96B28 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 407F48B0273C986600C96B28 /* Roboto-Bold.ttf */; };
-		4082AD9E2729745A00FF65F5 /* EventDetailPhotoCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4082AD9D2729745A00FF65F5 /* EventDetailPhotoCellModel.swift */; };
 		40842FC32725E44500E056A9 /* ImagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40842FC22725E44500E056A9 /* ImagesManager.swift */; };
 		4085A31B27201BDC00CB560E /* EventDetailBoldTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4085A31A27201BDC00CB560E /* EventDetailBoldTextView.swift */; };
 		4085A31E27201D6400CB560E /* EventDetailCopyrightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4085A31D27201D6400CB560E /* EventDetailCopyrightView.swift */; };
@@ -267,7 +265,6 @@
 		406CE6892723EDE6002FDDB6 /* EditEventPhotoCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventPhotoCollectionViewLayout.swift; sourceTree = "<group>"; };
 		406CE68C27241926002FDDB6 /* EditEventPhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventPhotoViewModel.swift; sourceTree = "<group>"; };
 		406D34D0271F7D5400AC9D05 /* EventDetailFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailFooterView.swift; sourceTree = "<group>"; };
-		406D49E4271E3618000A9666 /* EventDetailPhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailPhotoViewModel.swift; sourceTree = "<group>"; };
 		406D49E7271E3806000A9666 /* EventDetailPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		406D6FB327243194008ED014 /* EditEventAddPhotoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventAddPhotoCollectionCell.swift; sourceTree = "<group>"; };
 		406E3146272B08F900C2B30F /* TeamListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListViewController.swift; sourceTree = "<group>"; };
@@ -301,7 +298,6 @@
 		407F48AF273C968D00C96B28 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		407F48B0273C986600C96B28 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		407F48B1273C9A6000C96B28 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
-		4082AD9D2729745A00FF65F5 /* EventDetailPhotoCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailPhotoCellModel.swift; sourceTree = "<group>"; };
 		40842FC22725E44500E056A9 /* ImagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesManager.swift; sourceTree = "<group>"; };
 		4085A31A27201BDC00CB560E /* EventDetailBoldTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailBoldTextView.swift; sourceTree = "<group>"; };
 		4085A31D27201D6400CB560E /* EventDetailCopyrightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailCopyrightView.swift; sourceTree = "<group>"; };
@@ -690,7 +686,6 @@
 				4075F1C527220E1500BEA63A /* EditEventInputBoldTextCell.swift */,
 				4032D7052723536D00151A4D /* EditEventSaveCell.swift */,
 				406CE6822723EBEB002FDDB6 /* EditEventPhotoCell + CollectionView.swift */,
-				406CE68C27241926002FDDB6 /* EditEventPhotoViewModel.swift */,
 			);
 			path = TableViews;
 			sourceTree = "<group>";
@@ -777,6 +772,7 @@
 				409403F92722072C00055FC4 /* CellActionHandler.swift */,
 				409403FC2722075000055FC4 /* EditEventHandler.swift */,
 				409403F52721F8D500055FC4 /* TextFieldEditEventHandler.swift */,
+				406CE68C27241926002FDDB6 /* EditEventPhotoViewModel.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -941,7 +937,6 @@
 				40E7203D26E400FE00A64C60 /* AppDelegate.swift */,
 				40C106B426E419CB00B619A1 /* AppController.swift */,
 				40842FC22725E44500E056A9 /* ImagesManager.swift */,
-				4082AD9D2729745A00FF65F5 /* EventDetailPhotoCellModel.swift */,
 				40A4462926E4054E00129B89 /* Localizable.strings */,
 			);
 			path = Sources;
@@ -1089,7 +1084,6 @@
 			children = (
 				40F4EBD9273DC9D3003DA1D3 /* EventDetailHeaderCellModel.swift */,
 				40F4EBE4273DD7FD003DA1D3 /* EventDetailUserCellModel.swift */,
-				406D49E4271E3618000A9666 /* EventDetailPhotoViewModel.swift */,
 				40F4EBE0273DCC28003DA1D3 /* EventDetailUsefulButtonsCellModel.swift */,
 				40F4EBDE273DCBBD003DA1D3 /* EventDetailTitleCellModel.swift */,
 				40F4EBE6273DDFC8003DA1D3 /* EventDetailDescriptionCellModel.swift */,
@@ -1310,7 +1304,6 @@
 				40713A7D27204A51005F1265 /* EditEventViewModel.swift in Sources */,
 				406C306826F8F2320040F0A7 /* QuickActionsCollectionLayout.swift in Sources */,
 				4056F2322729D61B00DD75CA /* SportEventFirebaseSaver.swift in Sources */,
-				406D49E5271E3618000A9666 /* EventDetailPhotoViewModel.swift in Sources */,
 				406E3147272B08F900C2B30F /* TeamListViewController.swift in Sources */,
 				406CE68A2723EDE6002FDDB6 /* EditEventPhotoCollectionViewLayout.swift in Sources */,
 				406AF0E826F7BDF9005C9767 /* QuickActionsCollectionView.swift in Sources */,
@@ -1442,7 +1435,6 @@
 				40940BE826E40D450098EF89 /* SportTeam.swift in Sources */,
 				40772C0C273B3E98006CD549 /* NewTrainingScheduleFirebaseSaver.swift in Sources */,
 				406E7C0727232B8800DAD711 /* ImagePickerManager.swift in Sources */,
-				4082AD9E2729745A00FF65F5 /* EventDetailPhotoCellModel.swift in Sources */,
 				4065C95226E84E410084E5F2 /* ComingEventTableCell.swift in Sources */,
 				4098D765271EFDE0005CD01A /* EventDetailDescriptionView.swift in Sources */,
 				40AE7D7027348B1100052643 /* CollectionViewDelegate + DataSource.swift in Sources */,

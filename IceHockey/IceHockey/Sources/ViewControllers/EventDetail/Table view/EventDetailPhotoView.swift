@@ -7,16 +7,13 @@
 
 import UIKit
 
-class EventDetailPhotoView: UITableViewCell, CollectionViewDelegate {
+class EventDetailPhotoView: UITableViewCell {
     
     // MARK: - Properties
     
-    typealias DataType = [EventDetailPhotoCellModel]
+    typealias DataType = EditEventPhotoCellModel
     var isInterfaceConfigured = false
     var imageAspectRate: CGFloat = 1
-//    var timer: Timer?
-    weak var delegate: UICollectionViewDelegate?
-    private var viewModel = EventDetailPhotoViewModel()
     
     private lazy var collectionView: PhotoCollectionView = {
         let layout = EventDetailPhotoCollectionViewLayout()
@@ -30,10 +27,7 @@ class EventDetailPhotoView: UITableViewCell, CollectionViewDelegate {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isPagingEnabled = true
         view.register(EventDetailPhotoCollectionViewCell.self,
-                      forCellWithReuseIdentifier: EventDetailPhotoCollectionViewCell.reuseIdentifier)
-        
-        view.delegate = self
-        view.dataSource = self
+                      forCellWithReuseIdentifier: EventDetailPhotoCollectionViewCell.reuseIdentifier)        
         
         return view
     }()
@@ -95,35 +89,14 @@ extension EventDetailPhotoView: ConfigurableCollectionContent {
     
     func configure(with data: DataType) {
         configureUI()
-        viewModel.setImageData(data)
-        pageControl.numberOfPages = data.count
+        data.collectionBase?.setupCollection(collectionView)
         collectionView.reloadData()
+        
+        collectionView.backgroundColor = data.backgroundColor
+        collectionView.tintColor = data.tintColor
+        pageControl.numberOfPages = collectionView.numberOfItems(inSection: 0)   
     }
     
-}
-
-extension EventDetailPhotoView: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.rows.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let row = viewModel.item(at: indexPath)
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: row.rowId,
-                                                      for: indexPath)
-        row.config.configure(view: cell)
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("touched")
-    }
- 
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let page = round(scrollView.contentOffset.x / scrollView.frame.width)
-        pageControl.currentPage = Int(page)
-    }
 }
 
 extension EventDetailPhotoView: EventCollectionViewLayoutDelegate {

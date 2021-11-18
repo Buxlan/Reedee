@@ -12,7 +12,6 @@ class EditEventPhotoCell: UITableViewCell {
     // MARK: - Properties
     
     typealias DataType = EditEventPhotoCellModel
-    var data: DataType?
     var isInterfaceConfigured = false
     let cellHeight: CGFloat = 120
     
@@ -45,7 +44,6 @@ class EditEventPhotoCell: UITableViewCell {
     
     override func prepareForReuse() {
         isInterfaceConfigured = false
-        data = nil
     }
     
     // MARK: - Helper functions
@@ -76,7 +74,6 @@ class EditEventPhotoCell: UITableViewCell {
 extension EditEventPhotoCell: ConfigurableCollectionContent {
     
     func configure(with data: DataType) {
-        self.data = data
         configureUI()
         data.collectionBase?.setupCollection(collectionView)
         collectionView.reloadData()
