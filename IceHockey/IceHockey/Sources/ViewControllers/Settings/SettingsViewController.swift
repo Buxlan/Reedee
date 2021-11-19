@@ -112,7 +112,8 @@ extension SettingsViewController {
                                          hasDisclosure: setting.hasDisclosure)
         let config = SettingViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
-        row.action = {
+        row.action = { indexPath in
+            self.tableView.deselectRow(at: indexPath, animated: true)
             let alertController: UIAlertController = {
                 let controller = UIAlertController(title: "Add event", message: "Sorry, not implemented yet", preferredStyle: .alert)
                 let action = UIAlertAction(title: "OK", style: .default)
@@ -130,7 +131,8 @@ extension SettingsViewController {
                                          hasDisclosure: setting.hasDisclosure)
         let config = SettingViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
-        row.action = {
+        row.action = { indexPath in
+            self.tableView.deselectRow(at: indexPath, animated: true)
             let alertController: UIAlertController = {
                 let controller = UIAlertController(title: "Sign up", message: "Sorry, not implemented yet", preferredStyle: .alert)
                 let action = UIAlertAction(title: "OK", style: .default)

@@ -43,11 +43,11 @@ extension TableViewBase: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        dataSource.rowFromIndexPath(indexPath).action()
+        dataSource.rowFromIndexPath(indexPath).action(indexPath)
     }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        dataSource.rowFromIndexPath(indexPath).deselectAction()
+        dataSource.rowFromIndexPath(indexPath).deselectAction(indexPath)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

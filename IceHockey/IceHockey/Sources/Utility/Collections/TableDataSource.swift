@@ -16,8 +16,8 @@ final class TableRow {
     var rowId: String
     var config: ContentConfigurator
     var height: CGFloat = UITableView.automaticDimension
-    var action = {}
-    var deselectAction = {}
+    var action: (IndexPath) -> Void = { _ in }
+    var deselectAction: (IndexPath) -> Void = { _ in }
     var willDisplay: (UITableViewCell, IndexPath) -> Void = { (_, _) in }
     
     init(rowId: String,

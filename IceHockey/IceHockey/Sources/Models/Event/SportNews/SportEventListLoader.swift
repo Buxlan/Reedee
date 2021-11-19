@@ -11,18 +11,23 @@ class SportEventListLoader {
     
     // MARK: - Properties
     
-    private let capacity: UInt
-    private var lastValue: Int?
-    
-    private var loadingHandlers: [String: (SportEvent?) -> Void] = [:]
     var isLoading: Bool {
         return !loadingHandlers.isEmpty
     }
     var databaseQuery: DatabaseQuery {
-        FirebaseManager.shared.databaseManager.root.child("events")
+        FirebaseManager.shared.databaseManager
+            .root
+            .child(databaseRootPath)
             .queryOrdered(byChild: "order")
             .queryLimited(toFirst: capacity)
     }
+    
+    private var databaseRootPath = "events"
+    private let capacity: UInt
+    private var lastValue: Int?
+    private var endOfListIsReached: Bool = false
+    
+    private var loadingHandlers: [String: (SportEvent?) -> Void] = [:]
     
     // MARK: - Lifecircle
     
@@ -36,6 +41,9 @@ class SportEventListLoader {
     
     func load(eventListCompletionHandler: @escaping ([SportEvent]) -> Void,
               eventLoadedCompletionHandler: @escaping (SportEvent) -> Void) {
+        if endOfListIsReached {
+            return
+        }
         var query = databaseQuery
         if let lastValue = lastValue {
             query = query.queryStarting(afterValue: lastValue)
@@ -43,7 +51,9 @@ class SportEventListLoader {
         var events: [SportEvent] = []
         query.getData { error, snapshot in
             assert(error == nil)
-            self.loadingHandlers.removeAll()
+            if snapshot.childrenCount < self.capacity {
+                self.endOfListIsReached = true
+            }
             for child in snapshot.children {
                 guard let child = child as? DataSnapshot else {
                     continue
