@@ -88,6 +88,6 @@ extension TableViewBase: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        dataSource.rowFromIndexPath(indexPath).willDisplay(cell)
+        dataSource.rowFromIndexPath(indexPath).willDisplay(cell, indexPath)
     }
 }

@@ -10,8 +10,6 @@ import UIKit
 struct SportNews: SportNewsDatabaseFlowData {
     var viewsInfo: EventViewsInfo
     var likesInfo: EventLikesInfo
-    
-    var viewsCount: Int = 2
         
     var uid: String {
         get {

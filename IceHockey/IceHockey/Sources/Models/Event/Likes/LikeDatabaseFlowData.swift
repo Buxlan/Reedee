@@ -36,11 +36,11 @@ struct LikeDatabaseFlowDataImpl: LikeDatabaseFlowData {
         // current user! Nedd to refactor this later
         let currentUserID = Auth.auth().currentUser?.uid ?? ""
         self.uid = key
-        self.count = dict["count"] as? Int ?? 0
+        self.count = 0
         self.isLiked = false
-        if let usersDict = dict["users"] as? [String: Any],
-           usersDict[currentUserID] != nil {
-            self.isLiked = true
+        if let usersDict = dict["users"] as? [String: Any] {
+            self.count = usersDict.count
+            self.isLiked = usersDict[currentUserID] != nil
         }
     }
     

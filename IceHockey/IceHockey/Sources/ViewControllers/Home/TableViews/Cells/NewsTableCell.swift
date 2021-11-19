@@ -272,7 +272,6 @@ extension NewsTableCell {
     
     @objc
     private func handleShareAction() {
-        self.shareButton.isSelected.toggle()
         data?.shareAction()
     }
 }

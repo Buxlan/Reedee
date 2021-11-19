@@ -352,15 +352,10 @@ extension MatchResultTableCell: ConfigurableCollectionContent {
         self.usernameLabel.text = data.author
         self.userImageView.image = data.authorImage == nil ? noImage : data.authorImage
         
-        FirebaseManager.shared.databaseManager.getEventLikeInfo(eventID: data.uid) { (count, userLikes) in
-            DispatchQueue.main.async {
-                self.likeButton.isSelected = userLikes
-                self.data?.likesCount = count
-                let model = LikeButtonModelImpl(textColor: data.textColor,
-                                                count: count)
-                self.likeButton.configure(with: model)
-            }
-        }
+        self.likeButton.isSelected = data.likesInfo.isLiked
+        let model = LikeButtonModelImpl(textColor: data.textColor,
+                                        count: data.likesInfo.count)
+        self.likeButton.configure(with: model)
         
     }
     
@@ -395,15 +390,14 @@ extension MatchResultTableCell {
         guard let data = self.data else { return }
         likeButton.isSelected.toggle()
         data.likeAction(likeButton.isSelected)
-        let count = data.likesCount + (likeButton.isSelected ? 1 : -1)
-        self.data?.likesCount = count
+        let count = data.likesInfo.count + (likeButton.isSelected ? 1 : -1)
+        self.data?.likesInfo.count = count
         let model = LikeButtonModelImpl(textColor: data.textColor,
                                         count: count)
         likeButton.configure(with: model)
     }
     
     @objc private func handleShareAction() {
-        self.shareButton.isSelected.toggle()
         data?.shareAction()
     }
     

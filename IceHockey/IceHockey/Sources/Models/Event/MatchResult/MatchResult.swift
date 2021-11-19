@@ -87,11 +87,13 @@ struct MatchResult: MatchResultDatabaseFlowData {
     
     init(databaseFlowObject: MatchResultDatabaseFlowData = DefaultMatchResultDatabaseFlowData(),
          storageFlowObject: MatchResultStorageFlowData = DefaultMatchResultStorageFlowData(),
-         author: SportUser? = nil) {
+         author: SportUser? = nil,
+         likesInfo: EventLikesInfo = EventLikesInfo(),
+         viewsInfo: EventViewsInfo = EventViewsInfo()) {
         self.databaseFlowObject = databaseFlowObject
         self.storageFlowObject = storageFlowObject
-        self.likesInfo = EventLikesInfo()
-        self.viewsInfo = EventViewsInfo()
+        self.likesInfo = likesInfo
+        self.viewsInfo = viewsInfo
         self.author = author        
     }
     

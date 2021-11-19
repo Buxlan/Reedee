@@ -11,25 +11,22 @@ import FirebaseDatabaseUI
 class HomeViewModel: NSObject {
     
     // MARK: - Properties
+    
     struct SectionData {
         var title: String = ""
         var events: [SportEvent] = []
     }
     var sections: [SectionData] = []
-    private var loadingHandlers: [Int: (SportEvent?) -> Void] = [:]
-    
-    var isLoading: Bool {
-        return !loadingHandlers.isEmpty
-    }
-    
+    var dataSource = TableDataSource()
     var shouldRefreshRelay = {}
     var shouldRefreshAtIndexPathRelay: (IndexPath) -> Void = { _ in }
-    
-    var databaseQuery: DatabaseQuery {
-        FirebaseManager.shared.databaseManager.root.child("events")
-            .queryOrdered(byChild: "order")
-            .queryLimited(toFirst: 2)
+    var isLoading: Bool {
+        return loader.isLoading
     }
+    
+    private var loader = SportEventListLoader()
+    
+    // MARK: - Actions
     
     private lazy var actions: [ActionCollectionCellConfigurator] = {
         [
@@ -51,44 +48,53 @@ class HomeViewModel: NSObject {
     func action(at indexPath: IndexPath) -> ActionCollectionCellConfigurator {
         actions[indexPath.item]
     }
-    
+        
     func update() {
-        var section = SectionData()
-        databaseQuery.getData { error, snapshot in
-            assert(error == nil)
-            self.loadingHandlers.removeAll()
-            for (index, _) in snapshot.children.enumerated() {
-                let completionHandler: (SportEvent?) -> Void = { event in
-                    guard let event = event else {
-                        return
-                    }
-                    if let index = self.loadingHandlers.firstIndex(where: { (key, _) in
-                        key == index
-                    }) {
-                        self.loadingHandlers.remove(at: index)
-                    }
-                    if let index = section.events.firstIndex(where: { $0.uid == event.uid }) {
-                        section.events[index] = event
-                        self.sections = [section]
-                        self.shouldRefreshRelay()
-                    }
-                }
-                self.loadingHandlers[index] = completionHandler
+        loader.flush()
+        let eventListCompletionHandler: ([SportEvent]) -> Void = { events in
+            guard events.count > 0 else {
+                return
             }
-            for (index, child) in snapshot.children.enumerated() {
-                guard let child = child as? DataSnapshot,
-                      let handler = self.loadingHandlers[index] else {
-                    continue
-                }
-                let creator = SportEventCreatorImpl()
-                let event = creator.create(snapshot: child, with: handler)
-                if let event = event {
-                    section.events.append(event)
-                }
-            }
-            self.sections.append(section)
+            var section = SectionData()
+            section.events.append(contentsOf: events)
+            self.sections = [section]
             self.shouldRefreshRelay()
         }
+        let eventLoadedCompletionHandler: (SportEvent) -> Void = { event in
+            assert(self.sections.count > 0)
+            if let index = self.sections[0].events.firstIndex(where: { $0.uid == event.uid }) {
+                self.sections[0].events[index] = event
+                self.shouldRefreshRelay()
+            }
+        }
+        loader.load(eventListCompletionHandler: eventListCompletionHandler,
+                    eventLoadedCompletionHandler: eventLoadedCompletionHandler)
+    }
+    
+    func nextUpdate() {
+        let eventListCompletionHandler: ([SportEvent]) -> Void = { events in
+            assert(self.sections.count > 0)
+            guard events.count > 0 else {
+                return
+            }
+            events.forEach { event in
+                if let index = self.sections[0].events.firstIndex(where: { $0.uid == event.uid }) {
+                    self.sections[0].events[index] = event
+                } else {
+                    self.sections[0].events.append(event)
+                }
+            }
+            self.shouldRefreshRelay()
+        }
+        let eventLoadedCompletionHandler: (SportEvent) -> Void = { event in
+            assert(self.sections.count > 0)
+            if let index = self.sections[0].events.firstIndex(where: { $0.uid == event.uid }) {
+                self.sections[0].events[index] = event
+                self.shouldRefreshRelay()
+            }
+        }
+        loader.load(eventListCompletionHandler: eventListCompletionHandler,
+                    eventLoadedCompletionHandler: eventLoadedCompletionHandler)
     }
     
 }

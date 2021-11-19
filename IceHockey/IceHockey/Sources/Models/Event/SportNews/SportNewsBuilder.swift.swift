@@ -35,8 +35,8 @@ class SportNewsBuilder {
     func build(completionHandler: @escaping (SportEvent?) -> Void) {
         self.completionHandler = completionHandler
         buildDatabasePart {
-            self.buildAuthor() {
-                self.buildLikesInfo() {
+            self.buildAuthor {
+                self.buildLikesInfo {
                     self.buildStoragePart()
                 }
             }

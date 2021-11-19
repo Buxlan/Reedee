@@ -150,8 +150,8 @@ class HomeViewController: UIViewController {
         tableBase.setupTable(tableView)
         configureModeratorFunctions()
         viewModel.shouldRefreshRelay = {
-            let dataSource = self.createDataSource()
-            self.tableBase.updateDataSource(dataSource)
+            self.viewModel.dataSource = self.createDataSource()
+            self.tableBase.updateDataSource(self.viewModel.dataSource)
             self.tableView.reloadData()
             if !self.viewModel.isLoading {
                 self.refreshControl.endRefreshing()
@@ -221,7 +221,7 @@ extension HomeViewController {
         }
         var cellModel = NewsTableCellModel(data: event)
         cellModel.likeAction = { (state: Bool) in
-            event.setLike(state)
+            LikeManager().setLike(for: event.uid, newState: state)
         }
         let config = NewsViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config)
@@ -230,6 +230,12 @@ extension HomeViewController {
             vc.modalPresentationStyle = .pageSheet
             vc.modalTransitionStyle = .crossDissolve            
             self.navigationController?.pushViewController(vc, animated: true)
+        }
+        row.willDisplay = { _, indexPath in
+            let lastIndexPath = self.viewModel.dataSource.lastIndexPath
+            if indexPath == lastIndexPath {
+                self.viewModel.nextUpdate()
+            }
         }
         return row
     }
@@ -240,7 +246,7 @@ extension HomeViewController {
         }
         var cellModel = MatchResultTableCellModel(data: event)
         cellModel.likeAction = { (state: Bool) in
-            event.setLike(state)
+            LikeManager().setLike(for: event.uid, newState: state)
         }
         let config = MatchResultViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config)
@@ -249,6 +255,12 @@ extension HomeViewController {
             vc.modalPresentationStyle = .pageSheet
             vc.modalTransitionStyle = .crossDissolve
             self.navigationController?.pushViewController(vc, animated: true)
+        }
+        row.willDisplay = { _, indexPath in
+            let lastIndexPath = self.viewModel.dataSource.lastIndexPath
+            if indexPath == lastIndexPath {
+                self.viewModel.nextUpdate()
+            }
         }
         return row
     }

@@ -112,13 +112,9 @@ extension EventDetailPhotoView: ConfigurableCollectionContent {
             }
             self.data?.likesInfo.isLiked = state
             
-            let count = data.likesInfo.count + (data.likesInfo.isLiked ? 1 : -1)
+            let count = data.likesInfo.count + (state ? 1 : -1)
             self.data?.likesInfo.count = count
-            
-            let model = EventDetailUsefulButtonsCellModel(likesInfo: data.likesInfo,
-                                                          viewsInfo: data.viewsInfo)
-            self.usefulButtonsView.configure(with: model)
-            self.data?.likeAction(data.likesInfo.isLiked)
+            self.data?.likeAction(state)
         }
         viewModel.shareAction = {
             self.data?.shareAction()

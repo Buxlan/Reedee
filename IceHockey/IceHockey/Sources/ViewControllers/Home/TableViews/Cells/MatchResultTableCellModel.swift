@@ -34,8 +34,10 @@ struct MatchResultTableCellModel: TableCellModel {
     var typeBackgroundColor: UIColor
     var typeTextColor: UIColor
     
+    var likesInfo: EventLikesInfo
+    var viewsInfo: EventViewsInfo
+    
     var type: String
-    var likesCount: Int = 0
     
     var likeAction: (Bool) -> Void = { _ in }
     var shareAction = {}
@@ -62,5 +64,7 @@ struct MatchResultTableCellModel: TableCellModel {
         
         typeBackgroundColor = data.type.backgroundColor
         typeTextColor = data.type.textColor
+        likesInfo = data.likesInfo
+        viewsInfo = data.viewsInfo
     }
 }

@@ -118,6 +118,7 @@ extension EventDetailUsefulButtonsView: ConfigurableCollectionContent {
         viewsCountLabel.textColor = data.tintColor
         viewsCountLabel.backgroundColor = data.backgroundColor
         
+        self.backgroundColor = data.backgroundColor
         contentView.backgroundColor = data.backgroundColor
         
         shareButton.setTitleColor(data.tintColor, for: .normal)
@@ -135,30 +136,6 @@ extension EventDetailUsefulButtonsView: ConfigurableCollectionContent {
         let model = LikeButtonModelImpl(textColor: data.textColor,
                                         count: data.likesInfo.count)
         self.likeButton.configure(with: model)
-        
-//        FirebaseManager.shared.databaseManager
-//            .getEventLikeInfo(eventID: data.eventID) { (count, userLikes) in
-//            DispatchQueue.main.async {
-//                self.likeButton.isSelected = userLikes
-//                self.data?.likesCount = count
-//                let model = LikeButtonModelImpl(textColor: data.textColor,
-//                                                count: count)
-//                self.likeButton.configure(with: model)
-//            }
-//        }
-//
-//        FirebaseManager.shared.databaseManager
-//            .getEventViewsInfo(eventID: data.eventID) { (count) in
-//            DispatchQueue.main.async {
-//                self.data?.viewsCount = count
-//                let model = LabelModelImpl(text: "\(count)",
-//                                           font: data.font,
-//                                           textColor: data.tintColor,
-//                                           backgroundColor: data.backgroundColor)
-//                self.viewsCountLabel.configure(with: model)
-//            }
-//        }
-        
     }
     
 }
@@ -167,12 +144,23 @@ extension EventDetailUsefulButtonsView: ConfigurableCollectionContent {
 extension EventDetailUsefulButtonsView {
         
     @objc private func handleLike() {
+        guard let data = self.data else {
+            return
+        }
         likeButton.isSelected.toggle()
-        data?.likeAction(likeButton.isSelected)
+        let state = likeButton.isSelected
+        let count = data.likesInfo.count + (state ? 1 : -1)
+        
+        let model = LikeButtonModelImpl(textColor: data.textColor,
+                                        count: count)
+        likeButton.configure(with: model)
+        
+        self.data?.likesInfo.isLiked = state
+        self.data?.likesInfo.count = count
+        self.data?.likeAction(state)
     }
     
     @objc private func handleShare() {
-        self.shareButton.isSelected.toggle()
         data?.shareAction()
     }
     
