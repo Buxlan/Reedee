@@ -11,7 +11,7 @@ class EventDetailPhotoView: UITableViewCell {
     
     // MARK: - Properties
     
-    typealias DataType = EditEventPhotoCellModel
+    typealias DataType = EventDetailPhotoCellModel
     var isInterfaceConfigured = false
     var imageAspectRate: CGFloat = 1
     var data: DataType?
@@ -29,8 +29,7 @@ class EventDetailPhotoView: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isPagingEnabled = true
         view.register(EventDetailPhotoCollectionViewCell.self,
-                      forCellWithReuseIdentifier: EventDetailPhotoCollectionViewCell.reuseIdentifier)        
-        
+                      forCellWithReuseIdentifier: EventDetailPhotoCollectionViewCell.reuseIdentifier)
         return view
     }()
     
@@ -105,15 +104,30 @@ extension EventDetailPhotoView: ConfigurableCollectionContent {
         configureUI()
         self.data = data
         
-        if let event = data.event {
-            let viewModel = EventDetailUsefulButtonsCellModel(likesInfo: event.likesInfo,
-                                                              viewsInfo: event.viewsInfo)
-            usefulButtonsView.configure(with: viewModel)
-            pageControl.numberOfPages = event.images.count
-            let collectionDataSource = makeCollectionViewDataSource(images: event.images)
-            collectionBase.updateDataSource(collectionDataSource)
-            collectionView.reloadData()
+        var viewModel = EventDetailUsefulButtonsCellModel(likesInfo: data.likesInfo,
+                                                          viewsInfo: data.viewsInfo)
+        viewModel.likeAction = { state in
+            guard let data = self.data else {
+                return
+            }
+            self.data?.likesInfo.isLiked = state
+            
+            let count = data.likesInfo.count + (data.likesInfo.isLiked ? 1 : -1)
+            self.data?.likesInfo.count = count
+            
+            let model = EventDetailUsefulButtonsCellModel(likesInfo: data.likesInfo,
+                                                          viewsInfo: data.viewsInfo)
+            self.usefulButtonsView.configure(with: model)
+            self.data?.likeAction(data.likesInfo.isLiked)
         }
+        viewModel.shareAction = {
+            self.data?.shareAction()
+        }
+        usefulButtonsView.configure(with: viewModel)
+        pageControl.numberOfPages = data.images.count
+        let collectionDataSource = makeCollectionViewDataSource(images: data.images)
+        collectionBase.updateDataSource(collectionDataSource)
+        collectionView.reloadData()        
         
         collectionView.backgroundColor = data.backgroundColor
         collectionView.tintColor = data.tintColor        
@@ -157,5 +171,4 @@ extension EventDetailPhotoView {
         let row = CollectionRow(rowId: type(of: config).reuseIdentifier, config: config, size: size)
         return row
     }
-    
 }

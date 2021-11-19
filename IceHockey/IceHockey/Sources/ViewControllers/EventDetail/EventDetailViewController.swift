@@ -158,12 +158,11 @@ extension EventDetailViewController {
         
         let userRow = makeUserTableRow(),
             photoRow = makePhotoTableRow(),
-            usefulButtonsRow = makeUsefulButtonsTableRow(),
             titleRow = makeTitleTableRow(),
             descriptionRow = makeDescriptionTableRow(),
             boldTextRow = makeBoldTextTableRow()
         
-        section.addRows([userRow, photoRow, usefulButtonsRow,
+        section.addRows([userRow, photoRow,
                          titleRow, descriptionRow, boldTextRow])
         sections.append(section)
         let dataSource = TableDataSource(sections: sections)
@@ -179,23 +178,14 @@ extension EventDetailViewController {
     }
     
     func makePhotoTableRow() -> TableRow {
-        let cellModel = EditEventPhotoCellModel(event: event)
+        var cellModel = EventDetailPhotoCellModel(event: event)
+        cellModel.likeAction = { (state: Bool) in
+            self.event.setLike(state)
+        }
         let config = EventDetailPhotoViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         return row
         
-    }
-    
-    func makeUsefulButtonsTableRow() -> TableRow {
-        var cellModel = EventDetailUsefulButtonsCellModel(likesInfo: event.likesInfo,
-                                                          viewsInfo: event.viewsInfo)
-        cellModel.likeAction = { (state: Bool) in
-            self.event.setLike(state)
-        }
-        let config = EventDetailUsefulButtonsViewConfigurator(data: cellModel)
-        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
-        row.height = 48.0
-        return row
     }
     
     func makeTitleTableRow() -> TableRow {

@@ -167,14 +167,8 @@ extension EventDetailUsefulButtonsView: ConfigurableCollectionContent {
 extension EventDetailUsefulButtonsView {
         
     @objc private func handleLike() {
-        guard let data = self.data else { return }
         likeButton.isSelected.toggle()
-        data.likeAction(likeButton.isSelected)
-        let count = data.likesInfo.count + (likeButton.isSelected ? 1 : -1)
-        self.data?.likesInfo.count = count
-        let model = LikeButtonModelImpl(textColor: data.textColor,
-                                        count: count)
-        likeButton.configure(with: model)
+        data?.likeAction(likeButton.isSelected)
     }
     
     @objc private func handleShare() {

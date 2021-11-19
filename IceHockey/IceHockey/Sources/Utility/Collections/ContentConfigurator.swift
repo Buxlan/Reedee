@@ -68,7 +68,7 @@ typealias EventDetailUserViewConfigurator = CollectionViewConfigurator<EventDeta
                                                                        EventDetailUserCellModel>
 
 typealias EventDetailPhotoViewConfigurator = CollectionViewConfigurator<EventDetailPhotoView,
-                                                                        EditEventPhotoCellModel>
+                                                                        EventDetailPhotoCellModel>
 typealias EventDetailPhotoCollectionCellConfigurator = CollectionViewConfigurator<EventDetailPhotoCollectionViewCell,
                                                                                   PhotoCellModel>
 typealias EventDetailUsefulButtonsViewConfigurator = CollectionViewConfigurator<EventDetailUsefulButtonsView,
