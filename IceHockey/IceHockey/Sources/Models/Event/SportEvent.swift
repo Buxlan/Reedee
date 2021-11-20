@@ -18,7 +18,9 @@ protocol SportEvent: FirebaseObject {
     
     var author: SportUser? { get set }
     var likesInfo: EventLikesInfo { get set }
-    var viewsInfo: EventViewsInfo { get set }    
+    var viewsInfo: EventViewsInfo { get set }
+    
+    var isLoading: Bool { get }
 }
 
 extension SportEvent {

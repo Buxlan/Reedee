@@ -14,7 +14,7 @@ class MatchResultBuilder {
     
     private var databasePart: MatchResultDatabaseFlowData
     private var storagePart: MatchResultStorageFlowData
-    private var author: SportUser
+    private var author: SportUser?
     private var likesInfo = EventLikesInfo()
     private var viewsInfo = EventViewsInfo()
     
@@ -27,7 +27,6 @@ class MatchResultBuilder {
         self.dict = dict
         databasePart = DefaultMatchResultDatabaseFlowData()
         storagePart = DefaultMatchResultStorageFlowData()
-        author = SportUser()
     }
     
     // MARK: - Helper Methods

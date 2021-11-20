@@ -20,6 +20,7 @@ struct DefaultMatchResultDatabaseFlowData: MatchResultDatabaseFlowData {
     var likesInfo = EventLikesInfo()
     var viewsInfo = EventViewsInfo()
     var author: SportUser?
+    var isLoading: Bool = false
     
     var uid: String = ""
     var type: SportEventType = .match
@@ -40,6 +41,7 @@ struct MatchResultDatabaseFlowDataImpl: MatchResultDatabaseFlowData {
     var likesInfo = EventLikesInfo()
     var viewsInfo = EventViewsInfo()
     var author: SportUser?
+    var isLoading: Bool = false
     
     var uid: String
     var type: SportEventType = .match

@@ -25,6 +25,20 @@ class EditEventInputDateCell: UITableViewCell {
         view.font = .regularFont16
         return view
     }()
+    
+    private lazy var dateTextField: UITextView = {
+        let view = UITextView()
+        view.textAlignment = .left
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.font = .regularFont14
+        view.autocorrectionType = .no
+        view.inputView = datePicker
+        view.inputAccessoryView = keyboardAccessoryView
+        view.keyboardAppearance = .light
+        view.keyboardType = .default
+//        view.delegate = self
+        return view
+    }()
         
     private lazy var datePicker: UIDatePicker = {
         let view = UIDatePicker()
@@ -32,25 +46,17 @@ class EditEventInputDateCell: UITableViewCell {
         view.datePickerMode = .date
         view.backgroundColor = Asset.other3.color
         view.tintColor = Asset.textColor.color
-        
-        let currentDate = Date()
-        var dateComponentMaximum = DateComponents()
-        dateComponentMaximum.year = 1
-        
-        var dateComponentMinimum = DateComponents()
-        dateComponentMinimum.year = -1
-        
-        view.maximumDate = Calendar.current.date(byAdding: dateComponentMaximum, to: currentDate)
-        view.minimumDate = Calendar.current.date(byAdding: dateComponentMinimum, to: currentDate)
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
-               
         if #available(iOS 13.4, *) {
             view.preferredDatePickerStyle = UIDatePickerStyle.automatic
         }
-        
-        view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-        
+        return view
+    }()
+    
+    private var keyboardAccessoryView: KeyboardAccessoryDoneView = {
+        let width = UIScreen.main.bounds.width
+        let frame = CGRect(x: 0, y: 0, width: width, height: 44)
+        let view = KeyboardAccessoryDoneView(frame: frame)
         return view
     }()
 
@@ -75,22 +81,28 @@ class EditEventInputDateCell: UITableViewCell {
         contentView.backgroundColor = Asset.other3.color
         tintColor = Asset.other1.color
         contentView.addSubview(titleLabel)
-        contentView.addSubview(datePicker)
+        contentView.addSubview(dateTextField)
         configureConstraints()
         isInterfaceConfigured = true
+        var model = KeyboardAccessoryDoneViewModel()
+        model.doneAction = {
+            self.doneButtonHandle()
+        }
+        keyboardAccessoryView.configure(data: model)
     }
     
     internal func configureConstraints() {
-        let datePickerBottomConstraint = datePicker.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        let datePickerBottomConstraint = dateTextField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
 //        datePickerBottomConstraint.priority = .defaultLow
         let constraints: [NSLayoutConstraint] = [
             titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
 
-            datePicker.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            datePicker.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
-            datePicker.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 0),
+            dateTextField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            dateTextField.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
+            dateTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 0),
+            dateTextField.heightAnchor.constraint(equalToConstant: 44),
             datePickerBottomConstraint
         ]
         NSLayoutConstraint.activate(constraints)
@@ -108,6 +120,19 @@ extension EditEventInputDateCell: ConfigurableCollectionContent {
     @objc
     private func dateChanged(_ sender: UIDatePicker) {
 //        handler?.setDate(sender.date)
+    }
+    
+}
+
+extension EditEventInputDateCell {
+    
+    private func doneButtonHandle() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = Calendar.current
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        dateTextField.text = dateFormatter.string(from: datePicker.date)
+        dateTextField.endEditing(false)
     }
     
 }

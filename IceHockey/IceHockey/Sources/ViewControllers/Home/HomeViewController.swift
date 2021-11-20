@@ -227,6 +227,10 @@ extension HomeViewController {
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config)
         row.action = { indexPath in
             self.tableView.deselectRow(at: indexPath, animated: false)
+            let object = self.viewModel.sections[indexPath.section].events[indexPath.row]
+            if object.isLoading {
+                return
+            }
             let vc = EventDetailViewController(event)
             vc.modalPresentationStyle = .pageSheet
             vc.modalTransitionStyle = .crossDissolve            
@@ -252,7 +256,11 @@ extension HomeViewController {
         let config = MatchResultViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config)
         row.action = { indexPath in
-            self.tableView.deselectRow(at: indexPath, animated: false)
+            self.tableView.deselectRow(at: indexPath, animated: true)
+            let object = self.viewModel.sections[indexPath.section].events[indexPath.row]
+            if object.isLoading {
+                return
+            }
             let vc = MatchResultDetailViewController(editMode: .edit(event))
             vc.modalPresentationStyle = .pageSheet
             vc.modalTransitionStyle = .crossDissolve

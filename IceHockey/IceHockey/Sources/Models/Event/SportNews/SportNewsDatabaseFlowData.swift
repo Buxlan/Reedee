@@ -17,6 +17,7 @@ struct DefaultSportNewsDatabaseFlowData: SportNewsDatabaseFlowData {
     var likesInfo = EventLikesInfo()
     var viewsInfo = EventViewsInfo()
     var author: SportUser?
+    internal var isLoading: Bool = false
         
     // Database Fields
     var uid: String
@@ -46,6 +47,7 @@ struct SportNewsDatabaseFlowDataImpl: SportNewsDatabaseFlowData {
     var likesInfo = EventLikesInfo()
     var viewsInfo = EventViewsInfo()
     var author: SportUser?
+    internal var isLoading: Bool = false
     
     // Database Fields
     var uid: String

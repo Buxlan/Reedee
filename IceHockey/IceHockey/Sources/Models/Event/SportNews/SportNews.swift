@@ -101,6 +101,10 @@ struct SportNews: SportNewsDatabaseFlowData {
         }
     }
     
+    var isLoading: Bool {
+        author == nil
+    }
+    
     var images: [ImageData] {
         return storageFlowObject.images
     }

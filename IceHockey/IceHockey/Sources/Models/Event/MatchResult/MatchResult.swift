@@ -80,6 +80,10 @@ struct MatchResult: MatchResultDatabaseFlowData {
         return MatchStatus.finished.description
     }
     
+    var isLoading: Bool {
+        return author == nil
+    }
+    
     var author: SportUser?
     
     private var databaseFlowObject: MatchResultDatabaseFlowData

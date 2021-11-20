@@ -14,7 +14,7 @@ class SportNewsBuilder {
     
     private var databasePart: SportNewsDatabaseFlowData
     private var storagePart: SportNewsStorageFlowData
-    private var author: SportUser
+    private var author: SportUser?
     private var likesInfo = EventLikesInfo()
     private var viewsInfo = EventViewsInfo()
     
@@ -27,7 +27,6 @@ class SportNewsBuilder {
         self.dict = dict
         databasePart = DefaultSportNewsDatabaseFlowData()
         storagePart = DefaultSportNewsStorageFlowData()
-        author = SportUser()
     }
     
     // MARK: - Helper Methods
