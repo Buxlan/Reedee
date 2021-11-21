@@ -46,52 +46,6 @@ struct TableViewCellConfigurator<CellType: ConfigurableCell,
     }
 }
 
-struct ActionableTableViewCellConfigurator<CellType: ConfigurableActionCell,
-                                           DataType,
-                                           HandlerType: CellActionHandler>: CellConfigurator where DataType == CellType.DataType,
-                                                                                                   HandlerType == CellType.HandlerType,
-                                                                                                   CellType: UIView {
-    static var reuseIdentifier: String { return CellType.reuseIdentifier }
-    
-    let data: DataType
-    let handler: HandlerType
-    
-    func configure(cell: UIView) {
-        guard let cell = cell as? CellType else {
-            Log(text: "Can't cast table view cell to \(CellType.self)", object: self)
-            return
-        }
-        cell.configure(with: data, handler: handler)
-    }
-    
-    static func registerCell(tableView: UITableView) {
-        tableView.register(CellType.self, forCellReuseIdentifier: CellType.reuseIdentifier)
-    }
-}
-
-struct ActionableCollectionViewCellConfigurator<CellType: ConfigurableActionCell,
-                                                DataType,
-                                                HandlerType: CellActionHandler>: CellConfigurator where DataType == CellType.DataType,
-                                                                                                        HandlerType == CellType.HandlerType,
-                                                                                                        CellType: UIView {
-    static var reuseIdentifier: String { return CellType.reuseIdentifier }
-    
-    let data: DataType
-    let handler: HandlerType
-    
-    func configure(cell: UIView) {
-        guard let cell = cell as? CellType else {
-            Log(text: "Can't cast collection view cell to \(CellType.self)", object: self)
-            return
-        }
-        cell.configure(with: data, handler: handler)
-    }
-    
-    static func registerCell(collectionView: UICollectionView) {
-        collectionView.register(CellType.self, forCellWithReuseIdentifier: CellType.reuseIdentifier)
-    }
-}
-
 struct CollectionViewCellConfigurator<CellType: ConfigurableCell,
                                       DataType>: CellConfigurator where DataType == CellType.DataType,
                                                                         CellType: UIView {
@@ -111,24 +65,6 @@ struct CollectionViewCellConfigurator<CellType: ConfigurableCell,
         collectionView.register(CellType.self, forCellWithReuseIdentifier: CellType.reuseIdentifier)
     }
 }
-
-// MARK: - MatchResult cell configurator
-
-// MARK: - Event detail configurators
-//typealias EventPhotoCellConfigurator = TableViewCellConfigurator<EventDetailPhotoCell,
-//                                                                 [EventDetailPhotoCellModel]>
-//typealias EventDetailPhotoCollectionCellConfigurator = CollectionViewCellConfigurator<EventDetailPhotoCollectionViewCell,
-//                                                                                      EventDetailPhotoCellModel>
-//typealias EventDetailUsefulButtonsCellConfigurator = TableViewCellConfigurator<EventDetailUsefulButtonsCell,
-//                                                                               SportNews>
-//typealias EventDetailTitleCellConfigurator = TableViewCellConfigurator<EventDetailTitleCell,
-//                                                                       SportNews>
-//typealias EventDetailDescriptionCellConfigurator = TableViewCellConfigurator<EventDetailDescriptionCell,
-//                                                                             SportNews>
-//typealias EventDetailBoldTextCellConfigurator = TableViewCellConfigurator<EventDetailBoldViewCell,
-//                                                                          SportNews>
-//typealias EventDetailCopyrightCellConfigurator = TableViewCellConfigurator<EventDetailCopyrightCell,
-//   
 
 // MARK: Teams
 

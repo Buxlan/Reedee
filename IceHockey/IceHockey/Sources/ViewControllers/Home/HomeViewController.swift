@@ -11,6 +11,7 @@ import Firebase
 class HomeViewController: UIViewController {
     
     // MARK: - Properties
+    
     var tableBase = TableViewBase()
     var viewModel = HomeViewModel()
     var team = SportTeam.current
@@ -57,6 +58,12 @@ class HomeViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 16
         view.contentEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
+        return view
+    }()
+    
+    private lazy var myLabel: UILabel = {
+        let view = UILabel()
+        view.text = "text"
         return view
     }()
     
@@ -117,6 +124,7 @@ class HomeViewController: UIViewController {
     private func configureUI() {
         view.addSubview(tableView)
         view.addSubview(appendEventButton)
+        view.addSubview(myLabel)
         refreshControl.addTarget(self, action: #selector(refreshTable(_:)), for: .valueChanged)
     }
     
@@ -129,7 +137,11 @@ class HomeViewController: UIViewController {
             appendEventButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             appendEventButton.widthAnchor.constraint(equalToConstant: 44),
             appendEventButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -32),
-            appendEventButton.heightAnchor.constraint(equalToConstant: 44)
+            appendEventButton.heightAnchor.constraint(equalToConstant: 44),
+            myLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+            myLabel.widthAnchor.constraint(equalToConstant: 44),
+            myLabel.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -32),
+            myLabel.heightAnchor.constraint(equalToConstant: 44)
         ]
         NSLayoutConstraint.activate(constraints)
     }
@@ -232,7 +244,6 @@ extension HomeViewController {
                 return
             }
             let vc = EventDetailViewController(event)
-            vc.modalPresentationStyle = .pageSheet
             vc.modalTransitionStyle = .crossDissolve            
             self.navigationController?.pushViewController(vc, animated: true)
         }

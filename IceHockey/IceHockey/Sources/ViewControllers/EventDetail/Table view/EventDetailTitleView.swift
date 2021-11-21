@@ -63,7 +63,7 @@ class EventDetailTitleView: UITableViewCell {
 // MARK: - ConfigurableCell extension
 extension EventDetailTitleView: ConfigurableCollectionContent {
         
-    typealias DataType = TextCellModel
+    typealias DataType = TitleCellModel
     func configure(with data: DataType) {
         configureUI()
         titleLabel.text = data.text

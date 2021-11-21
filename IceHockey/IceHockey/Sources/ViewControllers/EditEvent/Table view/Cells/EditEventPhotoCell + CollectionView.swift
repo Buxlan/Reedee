@@ -13,7 +13,7 @@ class EditEventPhotoCell: UITableViewCell {
     
     typealias DataType = EditEventPhotoCellModel
     var isInterfaceConfigured = false
-    let cellHeight: CGFloat = 120
+    let cellHeight: CGFloat = 240
     
     private lazy var collectionView: PhotoCollectionView = {
         let layout = EditEventPhotoCollectionViewLayout()

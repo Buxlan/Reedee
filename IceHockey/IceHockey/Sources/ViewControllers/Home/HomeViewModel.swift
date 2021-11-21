@@ -23,7 +23,6 @@ class HomeViewModel: NSObject {
     var isLoading: Bool {
         return loader.isLoading
     }
-    
     private var loader = SportEventListLoader()
     
     // MARK: - Actions

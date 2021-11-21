@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EditEventInputDateCell: UITableViewCell {
+class EditEventDateCell: UITableViewCell {
     
     // MARK: - Properties
     typealias DataType = DateCellModel
@@ -24,7 +24,7 @@ class EditEventInputDateCell: UITableViewCell {
     
     private lazy var dateTextField: UITextField = {
         let view = UITextField()
-        view.placeholder = L10n.Events.editEventTitlePlaceholder
+        view.placeholder = L10n.EditEventLabel.datePlaceholder
         view.textAlignment = .left
         view.translatesAutoresizingMaskIntoConstraints = false
         view.font = .boldFont17
@@ -98,7 +98,7 @@ class EditEventInputDateCell: UITableViewCell {
     
 }
 
-extension EditEventInputDateCell: ConfigurableCollectionContent {
+extension EditEventDateCell: ConfigurableCollectionContent {
     
     func configure(with data: DataType) {
         self.data = data
@@ -113,7 +113,7 @@ extension EditEventInputDateCell: ConfigurableCollectionContent {
         dateTextField.backgroundColor = data.textFieldBackgroundColor
         dateTextField.font = data.font
         dateTextField.textColor = data.textColor
-        let placeholderText = NSAttributedString(string: L10n.EditEventLabel.datePlaceholer,
+        let placeholderText = NSAttributedString(string: L10n.EditEventLabel.datePlaceholder,
                                                  attributes: [NSAttributedString.Key.foregroundColor: data.placeholderColor])
         dateTextField.attributedPlaceholder = placeholderText
         roundedView.backgroundColor = data.textFieldBackgroundColor
@@ -134,11 +134,11 @@ extension EditEventInputDateCell: ConfigurableCollectionContent {
     
 }
 
-extension EditEventInputDateCell: UITextFieldDelegate {
+extension EditEventDateCell: UITextFieldDelegate {
     
 }
 
-extension EditEventInputDateCell {
+extension EditEventDateCell {
     
     private func getString(from date: Date) -> String {
         let dateFormatter = DateFormatter()

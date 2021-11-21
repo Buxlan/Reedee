@@ -53,20 +53,6 @@ class MainTabBarViewController: UITabBarController {
 // UITabBarControllerDelegate
 extension MainTabBarViewController: UITabBarControllerDelegate {
     
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        
-//        tabBar.frame.size.width = self.view.frame.width + 4
-//        tabBar.frame.origin.x = -2
-//        
-//        let items = viewModel.viewControllers
-//        let numberOfItems = CGFloat(items.count)
-//        let tabBarItemSize = CGSize(width: tabBar.frame.width / numberOfItems,
-//                                    height: tabBar.frame.height)
-//        let color = Asset.other1.color
-//        
-//        let image = UIImage.imageWithColor(color: color,
-//                                           size: tabBarItemSize)
-//        let resImage = image.resizableImage(withCapInsets: UIEdgeInsets.zero)
-//        tabBar.selectionIndicatorImage = resImage        
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {     
     }
 }

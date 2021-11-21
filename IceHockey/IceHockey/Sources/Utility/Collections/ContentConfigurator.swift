@@ -47,7 +47,7 @@ typealias MatchResultEditViewConfigurator = CollectionViewConfigurator<MatchResu
 typealias MatchResultViewConfigurator = CollectionViewConfigurator<MatchResultTableCell,
                                                                    MatchResultTableCellModel>
 
-typealias SaveViewConfigurator = CollectionViewConfigurator<SaveTableCell,
+typealias SaveViewConfigurator = CollectionViewConfigurator<EditEventSaveCell,
                                                             SaveCellModel>
 
 // MARK: - News cell configurator
@@ -72,7 +72,7 @@ typealias EventDetailPhotoViewConfigurator = CollectionViewConfigurator<EventDet
 typealias EventDetailPhotoCollectionCellConfigurator = CollectionViewConfigurator<EventDetailPhotoCollectionViewCell,
                                                                                   PhotoCellModel>
 typealias EventDetailTitleViewConfigurator = CollectionViewConfigurator<EventDetailTitleView,
-                                                                        TextCellModel>
+                                                                        TitleCellModel>
 typealias EventDetailDescriptionViewConfigurator = CollectionViewConfigurator<EventDetailDescriptionView,
                                                                               TextCellModel>
 typealias EventDetailBoldTextViewConfigurator = CollectionViewConfigurator<EventDetailBoldTextView,
@@ -82,16 +82,14 @@ typealias EventDetailCopyrightViewConfigurator = CollectionViewConfigurator<Even
 
 // MARK: - Edit event configurators
 typealias EditEventTitleViewConfigurator = CollectionViewConfigurator<EditEventTitleCell,
-                                                                      TextCellModel>
-typealias EditEventTitleTextFieldViewConfigurator = CollectionViewConfigurator<EditEventInputTitleCell,
-                                                                               TextCellModel>
-typealias EditEventTextViewConfigurator = CollectionViewConfigurator<EditEventInputTextCell,
-                                                                     TextCellModel>
-typealias EditEventBoldTextViewConfigurator = CollectionViewConfigurator<EditEventInputBoldTextCell,
+                                                                      TitleCellModel>
+typealias EditEventDescriptionViewConfigurator = CollectionViewConfigurator<EditEventDescriptionCell,
+                                                                            TextCellModel>
+typealias EditEventBoldTextViewConfigurator = CollectionViewConfigurator<EditEventBoldTextCell,
                                                                          TextCellModel>
 typealias EditEventAddPhotoViewConfigurator = CollectionViewConfigurator<EditEventPhotoCell,
                                                                          EditEventPhotoCellModel>
-typealias EditEventInputDateViewConfigurator = CollectionViewConfigurator<EditEventInputDateCell,
+typealias EditEventInputDateViewConfigurator = CollectionViewConfigurator<EditEventDateCell,
                                                                           DateCellModel>
 
 typealias EditEventAddPhotoCollectionCellConfigurator = CollectionViewConfigurator<EditEventAddPhotoCollectionCell,

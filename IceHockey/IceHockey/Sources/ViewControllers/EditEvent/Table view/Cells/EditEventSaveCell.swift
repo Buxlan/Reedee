@@ -19,10 +19,9 @@ class EditEventSaveCell: UITableViewCell {
         let view = UIButton()
         view.accessibilityIdentifier = "saveButton"
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 16
+        view.layer.cornerRadius = 8
         view.clipsToBounds = true
         view.contentEdgeInsets = .init(top: 4, left: 8, bottom: 4, right: 8)
-//        view.setContentHuggingPriority(.defaultHigh, for: .vertical)
         view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         view.contentEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
         return view
@@ -38,8 +37,6 @@ class EditEventSaveCell: UITableViewCell {
     
     func configureUI() {
         if isInterfaceConfigured { return }
-        contentView.backgroundColor = Asset.other3.color
-        tintColor = Asset.other1.color
         contentView.addSubview(saveButton)
         configureConstraints()
         isInterfaceConfigured = true
@@ -53,7 +50,7 @@ class EditEventSaveCell: UITableViewCell {
             saveButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             saveButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
             saveButton.topAnchor.constraint(equalTo: contentView.topAnchor),
-            saveButton.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor),
+            saveButton.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -16),
             saveHeightConstraint
         ]
         NSLayoutConstraint.activate(constraints)
@@ -68,12 +65,13 @@ extension EditEventSaveCell: ConfigurableCollectionContent {
         configureUI()
         saveButton.setTitleColor(data.textColor, for: .normal)
         saveButton.setTitle(data.title, for: .normal)
-        saveButton.backgroundColor = data.backgroundColor
+        saveButton.backgroundColor = data.buttonBackgroundColor
+        contentView.backgroundColor = data.backgroundColor
     }
     
     @objc
     private func buttonHandle(_ sender: UIButton) {
-//        handler?.save()
+        data?.action()
     }
     
 }

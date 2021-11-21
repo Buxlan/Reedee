@@ -197,7 +197,7 @@ extension MatchResultEditViewController {
     }    
     
     func makeSaveTableRow() -> TableRow {
-        var cellModel = SaveCellModel(L10n.Other.save)
+        var cellModel = SaveCellModel()
         cellModel.action = {
             do {
                 try MatchResultFirebaseSaver(object: self.editingObject).save()

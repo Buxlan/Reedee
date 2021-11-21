@@ -55,7 +55,7 @@ class ComingEventTableCell: UITableViewCell, ConfigurableCell {
         view.setContentHuggingPriority(.defaultLow, for: .vertical)
         view.numberOfLines = 2
         view.textAlignment = .left
-        view.font = .bxBody
+        view.font = .bxBody1
         return view
     }()
     

@@ -188,7 +188,7 @@ extension EventDetailViewController {
     }
     
     func makeTitleTableRow() -> TableRow {
-        let cellModel = TextCellModel(text: event.title)
+        let cellModel = TitleCellModel(text: event.title)
         let config = EventDetailTitleViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         return row

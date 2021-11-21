@@ -11,6 +11,7 @@ import FirebaseDatabase
 class TrainingScheduleViewController: UIViewController {
     
     // MARK: - Properties
+    
     typealias InputDataType = SportTeam
     var viewModel: TrainingScheduleViewModel = TrainingScheduleViewModel()
     private var tableBase = TableViewBase()

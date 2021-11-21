@@ -11,6 +11,8 @@ import UIKit
 @IBDesignable
 open class TextViewWithPlaceholder: UITextView {
     
+    // MARK: - Properties
+    
     // Maximum length of text. 0 means no limit.
     @IBInspectable open var maxLength: Int = 0
     
@@ -18,14 +20,15 @@ open class TextViewWithPlaceholder: UITextView {
     @IBInspectable open var placeholder: String? {
         didSet { setNeedsDisplay() }
     }
-    @IBInspectable open var placeholderColor: UIColor = UIColor(white: 0.7, alpha: 1.0) {
+    @IBInspectable open var placeholderColor: UIColor = Asset.other0.color {
         didSet { setNeedsDisplay() }
     }
     open var attributedPlaceholder: NSAttributedString? {
         didSet { setNeedsDisplay() }
     }
     
-    // Initialize
+    // MARK: - Lifecircle
+    
     override public init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         commonInit()
@@ -35,6 +38,8 @@ open class TextViewWithPlaceholder: UITextView {
         super.init(coder: aDecoder)
         commonInit()
     }
+    
+    // MARK: - Helper methods
     
     private func commonInit() {
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange),

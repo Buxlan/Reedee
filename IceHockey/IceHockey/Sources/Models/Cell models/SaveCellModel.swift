@@ -12,9 +12,10 @@ struct SaveCellModel: TableCellModel {
     
     // MARK: - Properties
     var title: String
-    var textColor: UIColor = Asset.textColor.color
-    var backgroundColor: UIColor = Asset.other3.color
-    var font: UIFont = .regularFont17
+    var textColor: UIColor = Asset.other3.color
+    var backgroundColor: UIColor = Asset.other1.color
+    var buttonBackgroundColor: UIColor = Asset.accent0.color
+    var font: UIFont = .bxTitle3
     
     // MARK: - Actions
     
@@ -22,7 +23,7 @@ struct SaveCellModel: TableCellModel {
     
     // MARK: - Lifecircle
     
-    init(_ title: String = L10n.Other.save) {
+    init(title: String = L10n.Other.save) {
         self.title = title
     }
     

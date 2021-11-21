@@ -70,8 +70,6 @@
 "Events.selectNewEventTitle" = "Новость";
 "Events.selectNewMatchResult" = "Результат матча";
 "Events.addEventTitle" = "Редактирование новости";
-"Events.editEventTitlePlaceholder" = "Заголовок";
-"Events.editEventTextPlaceholder" = "Текст";
 "Events.eventsTabBarItemTitle" = "Мероприятия";
 "Events.eventsTitle" = "Мероприятия";
 "Events.defaultActionTitle" = "Подробнее";
@@ -150,9 +148,11 @@
 "EditEventLabel.editEventTitle" = "Редакт. новость";
 "EditEventLabel.homeTeamPlaceholder" = "Хозяева";
 "EditEventLabel.awayTeamPlaceholder" = "Гости";
-"EditEventLabel.datePlaceholer" = "Дата";
+"EditEventLabel.datePlaceholder" = "Дата";
 "EditEventLabel.scorePlaceholder" = "Счет";
-"EditEventLabel.titlePlaceholder" = "Текст для воодушевления";
+"EditEventLabel.titlePlaceholder" = "Заголовок";
+"EditEventLabel.descriptionPlaceholder" = "Текст новости";
+"EditEventLabel.boldTextPlaceholder" = "Доп. текст жирным шрифтом";
 "EditEventLabel.newMatchNavigationBarTitle" = "Создать матч";
 "EditEventLabel.existingMatchNavigationBarTitle" = "Изменить матч";
 "EditEventLabel.selectEditTypeTitle" = "Выберите действие";

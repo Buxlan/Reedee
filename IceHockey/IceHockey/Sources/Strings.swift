@@ -101,10 +101,14 @@ internal enum L10n {
   internal enum EditEventLabel {
     /// Away team
     internal static let awayTeamPlaceholder = L10n.tr("Localizable", "EditEventLabel.awayTeamPlaceholder")
+    /// Bold text
+    internal static let boldTextPlaceholder = L10n.tr("Localizable", "EditEventLabel.boldTextPlaceholder")
     /// Date
-    internal static let datePlaceholer = L10n.tr("Localizable", "EditEventLabel.datePlaceholer")
+    internal static let datePlaceholder = L10n.tr("Localizable", "EditEventLabel.datePlaceholder")
     /// Delete
     internal static let deleteTypeTitle = L10n.tr("Localizable", "EditEventLabel.deleteTypeTitle")
+    /// Type text here
+    internal static let descriptionPlaceholder = L10n.tr("Localizable", "EditEventLabel.descriptionPlaceholder")
     /// Edit event
     internal static let editEventTitle = L10n.tr("Localizable", "EditEventLabel.editEventTitle")
     /// Edit
@@ -121,7 +125,7 @@ internal enum L10n {
     internal static let scorePlaceholder = L10n.tr("Localizable", "EditEventLabel.scorePlaceholder")
     /// Select edit type
     internal static let selectEditTypeTitle = L10n.tr("Localizable", "EditEventLabel.selectEditTypeTitle")
-    /// Type text here
+    /// Type title here
     internal static let titlePlaceholder = L10n.tr("Localizable", "EditEventLabel.titlePlaceholder")
     /// Realy want to delete?
     internal static let wantDelete = L10n.tr("Localizable", "EditEventLabel.wantDelete")
@@ -137,10 +141,6 @@ internal enum L10n {
     internal static let addEventTitle = L10n.tr("Localizable", "Events.addEventTitle")
     /// More
     internal static let defaultActionTitle = L10n.tr("Localizable", "Events.defaultActionTitle")
-    /// Enter text
-    internal static let editEventTextPlaceholder = L10n.tr("Localizable", "Events.editEventTextPlaceholder")
-    /// Enter title
-    internal static let editEventTitlePlaceholder = L10n.tr("Localizable", "Events.editEventTitlePlaceholder")
     /// Other
     internal static let inputBoldTextTitle = L10n.tr("Localizable", "Events.inputBoldTextTitle")
     /// Date

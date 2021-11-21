@@ -1,5 +1,5 @@
 //
-//  EditEventTextCell.swift
+//  EditEventDescriptionCell.swift
 //  IceHockey
 //
 //  Created by  Buxlan on 10/21/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EditEventInputTextCell: UITableViewCell {
+class EditEventDescriptionCell: UITableViewCell {
     
     // MARK: - Properties
     typealias DataType = TextCellModel
@@ -19,20 +19,23 @@ class EditEventInputTextCell: UITableViewCell {
         let cornerRadius: CGFloat = 12.0
         let view = CorneredView(corners: [.bottomLeft, .bottomRight], radius: cornerRadius)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.masksToBounds = true
         return view
     }()
         
-    private lazy var eventTextView: TextViewWithPlaceholder = {
+    private lazy var dataTextView: TextViewWithPlaceholder = {
         let view = TextViewWithPlaceholder()
+        view.textContainerInset = .zero
+        view.textContainer.lineFragmentPadding = 0.0
         view.textAlignment = .left
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .regularFont15
         view.autocorrectionType = .no
         view.inputAccessoryView = keyboardAccessoryView
         view.keyboardAppearance = .light
         view.keyboardType = .default
         view.delegate = self
-        view.placeholder = L10n.EditEventLabel.awayTeamPlaceholder
+        view.isScrollEnabled = false
+        view.placeholder = L10n.EditEventLabel.descriptionPlaceholder
         return view
     }()
     
@@ -61,77 +64,60 @@ class EditEventInputTextCell: UITableViewCell {
     
     func configureUI() {
         if isInterfaceConfigured { return }
-        contentView.backgroundColor = Asset.other3.color
-        tintColor = Asset.other1.color
         contentView.addSubview(roundedView)
-        contentView.addSubview(eventTextView)
+        contentView.addSubview(dataTextView)
         configureConstraints()
         isInterfaceConfigured = true
     }
     
     internal func configureConstraints() {
         let constraints: [NSLayoutConstraint] = [
-            eventTextView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
-            eventTextView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -4),
-            eventTextView.heightAnchor.constraint(greaterThanOrEqualToConstant: 150),
-            eventTextView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            eventTextView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -64),
-            eventTextView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            dataTextView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            dataTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            dataTextView.heightAnchor.constraint(greaterThanOrEqualToConstant: 120),
+            dataTextView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            dataTextView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -64),
             
             roundedView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             roundedView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
-            roundedView.topAnchor.constraint(equalTo: eventTextView.topAnchor, constant: -4),
-            roundedView.bottomAnchor.constraint(equalTo: eventTextView.bottomAnchor, constant: 4)
+            roundedView.topAnchor.constraint(equalTo: dataTextView.topAnchor, constant: -8),
+            roundedView.bottomAnchor.constraint(equalTo: dataTextView.bottomAnchor, constant: 8)
         ]
         NSLayoutConstraint.activate(constraints)
     }
     
 }
 
-extension EditEventInputTextCell: ConfigurableCollectionContent {
+extension EditEventDescriptionCell: ConfigurableCollectionContent {
     
     func configure(with data: DataType) {
-        self.data = data
         configureUI()
-        eventTextView.text = data.text
-        eventTextView.backgroundColor = data.textFieldBackgroundColor
-        eventTextView.font = data.font
-        eventTextView.textColor = data.textColor
+        self.data = data
+        dataTextView.text = data.text
+        dataTextView.backgroundColor = data.textFieldBackgroundColor
+        dataTextView.font = data.font
+        dataTextView.textColor = data.textColor
+        dataTextView.placeholderColor = data.placeholderColor
         roundedView.backgroundColor = data.textFieldBackgroundColor
         contentView.backgroundColor = data.backgroundColor
         var viewModel = KeyboardAccessoryDoneViewModel()
         viewModel.doneAction = {
-            self.resignFirstResponder()
-            self.data?.valueChanged(self.eventTextView.text)
+            self.dataTextView.endEditing(false)
+            self.data?.valueChanged(self.dataTextView.text)
         }
-        keyboardAccessoryView.configure(data: viewModel)        
+        keyboardAccessoryView.configure(data: viewModel)
     }
     
 }
 
-extension EditEventInputTextCell: UITextViewDelegate {
+extension EditEventDescriptionCell: UITextViewDelegate {
+    
+    func textViewDidChange(_ textView: UITextView) {
+        data?.valueChanged(textView.text)
+    }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-//        handler?.setText(textView.text)
-    }
-    
-}
-
-extension EditEventInputTextCell {
-    
-    @objc
-    private func cameraButtonHandle(_ sender: UIButton) {
-//        handler?.makePhoto()
-    }
-    
-    @objc
-    private func galleryButtonHandle(_ sender: UIButton) {
-//        handler?.openGallery()
-    }
-    
-    @objc
-    private func doneButtonHandle(_ sender: UIButton) {
-        eventTextView.resignFirstResponder()
+        data?.valueChanged(textView.text)
     }
     
 }

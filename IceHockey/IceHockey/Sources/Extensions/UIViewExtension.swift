@@ -16,6 +16,7 @@ extension UIView {
         let mask = CAShapeLayer()
         mask.path = path.cgPath
         layer.mask = mask
+        
     }
 }
 

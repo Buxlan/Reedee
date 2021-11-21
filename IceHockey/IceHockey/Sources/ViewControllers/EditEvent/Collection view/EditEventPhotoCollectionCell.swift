@@ -16,7 +16,6 @@ class EditEventPhotoCollectionCell: UICollectionViewCell {
     
     internal var isInterfaceConfigured: Bool = false
     let imageAspectRate: CGFloat = 1.77
-    let imageHeight: CGFloat = 160
     let actionButtonHeight: CGFloat = 24
         
     private lazy var dataImageView: UIImageView = {

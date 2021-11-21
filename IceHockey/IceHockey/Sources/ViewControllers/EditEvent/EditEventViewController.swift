@@ -30,27 +30,19 @@ class EditEventViewController: UIViewController {
         view.allowsSelectionDuringEditing = false
         view.allowsMultipleSelectionDuringEditing = false
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.tableFooterView = tableFooterView
+        view.tableFooterView = UIView()
         view.showsVerticalScrollIndicator = true
-        view.separatorInset = .init(top: 0, left: 16, bottom: 0, right: 16)
+        view.separatorStyle = .none
         view.register(EventDetailUserView.self, forCellReuseIdentifier: EventDetailUserViewConfigurator.reuseIdentifier)
+        view.register(EditEventDateCell.self, forCellReuseIdentifier: EditEventInputDateViewConfigurator.reuseIdentifier)
         view.register(EditEventTitleCell.self, forCellReuseIdentifier: EditEventTitleViewConfigurator.reuseIdentifier)
-        view.register(EditEventInputDateCell.self, forCellReuseIdentifier: EditEventInputDateViewConfigurator.reuseIdentifier)
-        view.register(EditEventInputTitleCell.self, forCellReuseIdentifier: EditEventTitleTextFieldViewConfigurator.reuseIdentifier)
-        view.register(EditEventInputTextCell.self, forCellReuseIdentifier: EditEventTextViewConfigurator.reuseIdentifier)
-        view.register(EditEventInputBoldTextCell.self, forCellReuseIdentifier: EditEventBoldTextViewConfigurator.reuseIdentifier)
-        view.register(SaveTableCell.self, forCellReuseIdentifier: SaveViewConfigurator.reuseIdentifier)
+        view.register(EditEventDescriptionCell.self, forCellReuseIdentifier: EditEventDescriptionViewConfigurator.reuseIdentifier)
+        view.register(EditEventBoldTextCell.self, forCellReuseIdentifier: EditEventBoldTextViewConfigurator.reuseIdentifier)
+        view.register(EditEventSaveCell.self, forCellReuseIdentifier: SaveViewConfigurator.reuseIdentifier)
         view.register(EditEventPhotoCell.self, forCellReuseIdentifier: EditEventAddPhotoViewConfigurator.reuseIdentifier)
         if #available(iOS 15.0, *) {
-            view.sectionHeaderTopPadding = 40
+            view.sectionHeaderTopPadding = 16
         }
-        return view
-    }()
-    
-    private lazy var tableFooterView: EventDetailFooterView = {
-        let frame = CGRect(x: 0, y: 0, width: 0, height: 150)
-        let view = EventDetailFooterView(frame: frame)
-        view.configure(with: SportTeam.current)
         return view
     }()
     
@@ -78,19 +70,16 @@ class EditEventViewController: UIViewController {
     // MARK: - Lifecircle
     
     init(editMode: EditMode) {
+        var isNew = false
         switch editMode {
         case .new:
             viewModel = EditEventViewModel(event: SportNews())
+            isNew = true
         case .edit(let data):
             viewModel = EditEventViewModel(event: data)
         }
         super.init(nibName: nil, bundle: nil)
-        switch editMode {
-        case .new:
-            title = L10n.EditEventLabel.newEventTitle
-        case .edit(_):
-            title = L10n.EditEventLabel.editEventTitle
-        }
+        title = isNew ? L10n.EditEventLabel.newEventTitle : L10n.EditEventLabel.editEventTitle
     }
     
     required init?(coder: NSCoder) {
@@ -164,10 +153,10 @@ extension EditEventViewController {
     
     private func makeTableSections() -> [TableSection] {
         return [
-            makeTableSection0(),
-            makeTableSection1(),
-            makeTableSection2(),
-            makeTableSection3()
+//            makeTableSectionMainInfo(),
+            makeTableSectionAdditionalInfo(),
+            makeTableSectionPhotos(),            
+            makeTableSectionSave()
         ]
     }
     
@@ -181,7 +170,7 @@ extension EditEventViewController {
 
 extension EditEventViewController {
     
-    func makeTableSection0() -> TableSection {
+    func makeTableSectionMainInfo() -> TableSection {
         var section = TableSection()
         let rows = [
             makeDateTableRow(),
@@ -192,7 +181,7 @@ extension EditEventViewController {
         return section
     }
     
-    func makeTableSection1() -> TableSection {
+    func makeTableSectionPhotos() -> TableSection {
         var section = TableSection()
         let rows = [
             makePhotoTableRow()
@@ -201,7 +190,7 @@ extension EditEventViewController {
         return section
     }
     
-    func makeTableSection2() -> TableSection {
+    func makeTableSectionAdditionalInfo() -> TableSection {
         var section = TableSection()
         let rows = [
             makeBoldTextTableRow()
@@ -210,7 +199,7 @@ extension EditEventViewController {
         return section
     }
     
-    func makeTableSection3() -> TableSection {
+    func makeTableSectionSave() -> TableSection {
         var section = TableSection()
         let rows = [
             makeSaveTableRow()
@@ -244,7 +233,7 @@ extension EditEventViewController {
     }
     
     func makeCollectionViewDataSource() -> CollectionDataSource {
-        let size = CGSize(width: 120, height: 120)
+        let size = CGSize(width: 240, height: 240)
         let collectionRows = viewModel.unremovedImageList.map { imageData -> CollectionRow in
             makePhotoCollectionRow(imageData: imageData, size: size)
         }
@@ -275,16 +264,6 @@ extension EditEventViewController {
         return row
     }
     
-    func makeTitleTableRow() -> TableRow {
-        var cellModel = TextCellModel(text: viewModel.event.title)
-        cellModel.valueChanged = { text in
-            self.viewModel.event.title = text
-        }
-        let config = EditEventTitleTextFieldViewConfigurator(data: cellModel)
-        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
-        return row
-    }
-    
     func makeDateTableRow() -> TableRow {
         let cellModel = DateCellModel(viewModel.event.date)
         let config = EditEventInputDateViewConfigurator(data: cellModel)
@@ -292,23 +271,45 @@ extension EditEventViewController {
         return row
     }
     
+    func makeTitleTableRow() -> TableRow {
+        var cellModel = TitleCellModel(text: viewModel.event.title)
+        cellModel.valueChanged = { text in
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
+            self.viewModel.event.title = text
+        }
+        let config = EditEventTitleViewConfigurator(data: cellModel)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
+        return row
+    }
+    
     func makeDescriptionTableRow() -> TableRow {
-        let cellModel = TextCellModel(text: viewModel.event.text)
-        let config = EditEventTextViewConfigurator(data: cellModel)
+        var cellModel = TextCellModel(text: viewModel.event.text)
+        cellModel.valueChanged = { text in
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
+            self.viewModel.event.text = text
+        }
+        let config = EditEventDescriptionViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         return row
     }
     
     func makeBoldTextTableRow() -> TableRow {
         var cellModel = TextCellModel(text: viewModel.event.boldText)
-        cellModel.font = .regularFont17
+        cellModel.font = .bxBody2
+        cellModel.valueChanged = { text in
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
+            self.viewModel.event.boldText = text
+        }
         let config = EditEventBoldTextViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         return row
     }
     
     func makeSaveTableRow() -> TableRow {
-        var cellModel = SaveCellModel(L10n.Other.save)
+        var cellModel = SaveCellModel()
         cellModel.action = {
             do {
                 try self.viewModel.save()

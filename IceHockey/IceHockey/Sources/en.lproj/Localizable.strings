@@ -70,8 +70,6 @@
 "Events.selectNewEventTitle" = "News";
 "Events.selectNewMatchResult" = "Match result";
 "Events.addEventTitle" = "Editing event";
-"Events.editEventTitlePlaceholder" = "Enter title";
-"Events.editEventTextPlaceholder" = "Enter text";
 "Events.tabBarItemTitle" = "Events";
 "Events.title" = "Events";
 "Events.defaultActionTitle" = "More";
@@ -150,9 +148,11 @@
 "EditEventLabel.editEventTitle" = "Edit event";
 "EditEventLabel.homeTeamPlaceholder" = "Home team";
 "EditEventLabel.awayTeamPlaceholder" = "Away team";
-"EditEventLabel.datePlaceholer" = "Date";
+"EditEventLabel.datePlaceholder" = "Date";
+"EditEventLabel.boldTextPlaceholder" = "Bold text";
 "EditEventLabel.scorePlaceholder" = "Score";
-"EditEventLabel.titlePlaceholder" = "Type text here";
+"EditEventLabel.titlePlaceholder" = "Type title here";
+"EditEventLabel.descriptionPlaceholder" = "Type text here";
 "EditEventLabel.newMatchNavigationBarTitle" = "Create match";
 "EditEventLabel.existingMatchNavigationBarTitle" = "Change match";
 "EditEventLabel.selectEditTypeTitle" = "Select edit type";

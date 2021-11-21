@@ -17,7 +17,10 @@ class TrainingScheduleViewModel: NSObject {
         
     var team: SportTeam?
     var sections: [SectionData] = []
-    private var loadings: [String] = []
+    var isLoading: Bool {
+        return loader.isLoading
+    }
+    private var loader = TrainingScheduleListLoader()
     
     var shouldRefreshRelay = {}
     
@@ -39,57 +42,57 @@ class TrainingScheduleViewModel: NSObject {
     
     private func loadItems() {
         
-        guard let team = team else {
-            return
-        }
-        sections.removeAll()
-        team.squadIDs.forEach { squadID in
-            let handler: (SportSquad?) -> Void = { squad in
-                guard let squad = squad else {
-                    let index = self.loadings.firstIndex { $0 == squadID }
-                    if let index = index {
-                        self.loadings.remove(at: index)
-                    }
-                    return
-                }
-                let handler: (TrainingSchedule?) -> Void = { schedule in
-                    defer {
-                        let index = self.loadings.firstIndex { $0 == squadID }
-                        if let index = index {
-                            self.loadings.remove(at: index)
-                        }
-                        if self.loadings.isEmpty {
-                            self.shouldRefreshRelay()
-                        }
-                    }
-                    guard let schedule = schedule else {
-                        return
-                    }
-                    let section = SectionData(squad: squad, schedule: schedule)
-                    self.sections.append(section)
-                }
-                FirebaseObjectLoader<TrainingSchedule>().load(uid: squadID, completionHandler: handler)
-            }
-            loadings.append(squadID)
-            FirebaseObjectLoader<SportSquad>().load(uid: squadID, completionHandler: handler)
-        }
+//        guard let team = team else {
+//            return
+//        }
+//        sections.removeAll()
+//        team.squadIDs.forEach { squadID in
+//            let handler: (SportSquad?) -> Void = { squad in
+//                guard let squad = squad else {
+//                    let index = self.loadings.firstIndex { $0 == squadID }
+//                    if let index = index {
+//                        self.loadings.remove(at: index)
+//                    }
+//                    return
+//                }
+//                let handler: (TrainingSchedule?) -> Void = { schedule in
+//                    defer {
+//                        let index = self.loadings.firstIndex { $0 == squadID }
+//                        if let index = index {
+//                            self.loadings.remove(at: index)
+//                        }
+//                        if self.loadings.isEmpty {
+//                            self.shouldRefreshRelay()
+//                        }
+//                    }
+//                    guard let schedule = schedule else {
+//                        return
+//                    }
+//                    let section = SectionData(squad: squad, schedule: schedule)
+//                    self.sections.append(section)
+//                }
+//                FirebaseObjectLoader<TrainingSchedule>().load(uid: squadID, completionHandler: handler)
+//            }
+//            loadings.append(squadID)
+//            FirebaseObjectLoader<SportSquad>().load(uid: squadID, completionHandler: handler)
+//        }
     
     }
     
     func update() {
-        guard loadings.count == 0,
-            let teamID = Bundle.main.object(forInfoDictionaryKey: "teamID") as? String else {
-            return
-        }
-        let handler: (SportTeam?) -> Void = { (team) in
-            if let team = team {
-                self.team = team
-                self.loadings.removeAll()
-                self.loadItems()
-            }
-        }
-        loadings.append(teamID)
-        FirebaseObjectLoader<SportTeam>().load(uid: teamID, completionHandler: handler)
+//        guard loadings.count == 0,
+//            let teamID = Bundle.main.object(forInfoDictionaryKey: "teamID") as? String else {
+//            return
+//        }
+//        let handler: (SportTeam?) -> Void = { (team) in
+//            if let team = team {
+//                self.team = team
+//                self.loadings.removeAll()
+//                self.loadItems()
+//            }
+//        }
+//        loadings.append(teamID)
+//        FirebaseObjectLoader<SportTeam>().load(uid: teamID, completionHandler: handler)
     }
     
 }
