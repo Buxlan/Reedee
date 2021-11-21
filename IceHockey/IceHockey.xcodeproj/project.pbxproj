@@ -43,6 +43,9 @@
 		40429BAB274A81AC00DAD070 /* TitleCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40429BAA274A81AC00DAD070 /* TitleCellModel.swift */; };
 		40429BAD274A826D00DAD070 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40429BAC274A826800DAD070 /* Roboto-Medium.ttf */; };
 		40429BB3274AC0D400DAD070 /* TrainingScheduleListLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40429BB2274AC0D400DAD070 /* TrainingScheduleListLoader.swift */; };
+		40429BB6274AC94F00DAD070 /* TrainingScheduleCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40429BB5274AC94F00DAD070 /* TrainingScheduleCreator.swift */; };
+		40429BB8274ACA8600DAD070 /* TrainingScheduleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40429BB7274ACA8500DAD070 /* TrainingScheduleBuilder.swift */; };
+		40429BBA274ACC8800DAD070 /* TrainingScheduleDatabaseFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40429BB9274ACC8800DAD070 /* TrainingScheduleDatabaseFlow.swift */; };
 		404C028B26EFDE1800CFAF3F /* ShadowCorneredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C028A26EFDE1800CFAF3F /* ShadowCorneredView.swift */; };
 		4055FCDC26E816D900E5BB79 /* CellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4055FCDB26E816D900E5BB79 /* CellConfigurator.swift */; };
 		4056F2322729D61B00DD75CA /* SportEventFirebaseSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4056F2312729D61B00DD75CA /* SportEventFirebaseSaver.swift */; };
@@ -257,6 +260,9 @@
 		40429BAA274A81AC00DAD070 /* TitleCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCellModel.swift; sourceTree = "<group>"; };
 		40429BAC274A826800DAD070 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		40429BB2274AC0D400DAD070 /* TrainingScheduleListLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingScheduleListLoader.swift; sourceTree = "<group>"; };
+		40429BB5274AC94F00DAD070 /* TrainingScheduleCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingScheduleCreator.swift; sourceTree = "<group>"; };
+		40429BB7274ACA8500DAD070 /* TrainingScheduleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingScheduleBuilder.swift; sourceTree = "<group>"; };
+		40429BB9274ACC8800DAD070 /* TrainingScheduleDatabaseFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingScheduleDatabaseFlow.swift; sourceTree = "<group>"; };
 		404C028A26EFDE1800CFAF3F /* ShadowCorneredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowCorneredView.swift; sourceTree = "<group>"; };
 		4055FCDB26E816D900E5BB79 /* CellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellConfigurator.swift; sourceTree = "<group>"; };
 		4056F2312729D61B00DD75CA /* SportEventFirebaseSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportEventFirebaseSaver.swift; sourceTree = "<group>"; };
@@ -595,6 +601,18 @@
 			path = "Cell models";
 			sourceTree = "<group>";
 		};
+		40429BB4274AC8D300DAD070 /* TrainingSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				40772C07273B2B74006CD549 /* TrainingSchedule.swift */,
+				40429BB5274AC94F00DAD070 /* TrainingScheduleCreator.swift */,
+				40429BB7274ACA8500DAD070 /* TrainingScheduleBuilder.swift */,
+				40429BB2274AC0D400DAD070 /* TrainingScheduleListLoader.swift */,
+				40429BB9274ACC8800DAD070 /* TrainingScheduleDatabaseFlow.swift */,
+			);
+			path = TrainingSchedule;
+			sourceTree = "<group>";
+		};
 		4057FB562732696B002E2BBE /* TableViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -836,8 +854,6 @@
 				400B8F4D272B50B5008A8AFE /* FirebaseObject.swift */,
 				40A6321A272DE74B0017F6FE /* UniViewModel.swift */,
 				40B6C80E272DB2A600B94A9A /* HockeyPlayerRole.swift.swift */,
-				40772C07273B2B74006CD549 /* TrainingSchedule.swift */,
-				40429BB2274AC0D400DAD070 /* TrainingScheduleListLoader.swift */,
 				402EDA6826E43060004A2992 /* SportSquad.swift */,
 				40DEC8B32718D083008A59A8 /* SportEventType.swift */,
 				40B947C126EE909100D9E8DA /* TableViewCellConfiguration.swift */,
@@ -1011,6 +1027,7 @@
 		40AE442427411F1F00BD6506 /* Event */ = {
 			isa = PBXGroup;
 			children = (
+				40429BB4274AC8D300DAD070 /* TrainingSchedule */,
 				40A113992747179F001BDD99 /* Views */,
 				40A1139427471494001BDD99 /* Likes */,
 				40C9E9182746A7ED009B0417 /* MatchResult */,
@@ -1397,6 +1414,7 @@
 				4093D9A9271780E000DCF35D /* ApplicationUser.swift in Sources */,
 				40C106CC26E41F2800B619A1 /* ContactsViewController.swift in Sources */,
 				40E7203E26E400FE00A64C60 /* AppDelegate.swift in Sources */,
+				40429BB6274AC94F00DAD070 /* TrainingScheduleCreator.swift in Sources */,
 				4065C96026E854C00084E5F2 /* CorneredView.swift in Sources */,
 				40B82EC7273835D100BED0A1 /* ShareButton.swift in Sources */,
 				400B8F56272B5DAE008A8AFE /* TeamDetailViewModel.swift in Sources */,
@@ -1445,11 +1463,13 @@
 				404C028B26EFDE1800CFAF3F /* ShadowCorneredView.swift in Sources */,
 				40F4EBDD273DCAA2003DA1D3 /* EventDetailHeaderView.swift in Sources */,
 				40F4EBE3273DD212003DA1D3 /* ConfigurableLabel.swift in Sources */,
+				40429BB8274ACA8600DAD070 /* TrainingScheduleBuilder.swift in Sources */,
 				40B6C80F272DB2A600B94A9A /* HockeyPlayerRole.swift.swift in Sources */,
 				406C306F26F909690040F0A7 /* PhotoCollectionView.swift in Sources */,
 				40A1139327471465001BDD99 /* EventLikeInfoBuilder.swift in Sources */,
 				40B947C226EE909100D9E8DA /* TableViewCellConfiguration.swift in Sources */,
 				40E85C5827403C4900AB37A7 /* DateCellModel.swift in Sources */,
+				40429BBA274ACC8800DAD070 /* TrainingScheduleDatabaseFlow.swift in Sources */,
 				409560C926F93F6D00BCA664 /* QuickActions.swift in Sources */,
 				40A1368727358D33005C0007 /* SettingsViewController.swift in Sources */,
 				40A6321B272DE74B0017F6FE /* UniViewModel.swift in Sources */,
