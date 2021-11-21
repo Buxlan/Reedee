@@ -43,7 +43,7 @@ class MatchResultEditCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 1
         view.textAlignment = .left
-        view.font = .regularFont16
+        view.font = .regularFont17
         view.text = "Author"
         return view
     }()
@@ -69,7 +69,7 @@ class MatchResultEditCell: UITableViewCell {
         view.textAlignment = .center
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
-        view.font = .boldFont16
+        view.font = .boldFont17
         return view
     }()
     
@@ -109,7 +109,7 @@ class MatchResultEditCell: UITableViewCell {
         let view = TextViewWithPlaceholder()
         view.textAlignment = .center
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .boldFont16
+        view.font = .boldFont17
         view.keyboardAppearance = .dark
         view.keyboardType = .default
         view.isScrollEnabled = false
@@ -124,7 +124,7 @@ class MatchResultEditCell: UITableViewCell {
         let view = TextViewWithPlaceholder()
         view.textAlignment = .center
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .boldFont16
+        view.font = .boldFont17
         view.keyboardAppearance = .dark
         view.keyboardType = .default
         view.isScrollEnabled = false
@@ -180,7 +180,7 @@ class MatchResultEditCell: UITableViewCell {
         let view = TextViewWithPlaceholder()
         view.textAlignment = .left
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .regularFont14
+        view.font = .regularFont15
         view.keyboardAppearance = .dark
         view.keyboardType = .default
         view.delegate = self

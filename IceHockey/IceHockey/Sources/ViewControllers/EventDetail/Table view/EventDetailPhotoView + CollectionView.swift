@@ -66,7 +66,7 @@ class EventDetailPhotoView: UITableViewCell {
         contentView.addSubview(collectionView)
         contentView.addSubview(usefulButtonsView)
         contentView.addSubview(pageControl)
-        usefulButtonsView.contentView.translatesAutoresizingMaskIntoConstraints = false
+        usefulButtonsView.translatesAutoresizingMaskIntoConstraints = false
         configureConstraints()
         isInterfaceConfigured = true
     }
@@ -78,15 +78,11 @@ class EventDetailPhotoView: UITableViewCell {
             collectionView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             collectionView.heightAnchor.constraint(equalTo: collectionView.widthAnchor),
             
-            usefulButtonsView.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 4),
+            usefulButtonsView.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 0),
             usefulButtonsView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             usefulButtonsView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            usefulButtonsView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            
-            usefulButtonsView.contentView.centerYAnchor.constraint(equalTo: usefulButtonsView.centerYAnchor),
-            usefulButtonsView.contentView.centerXAnchor.constraint(equalTo: usefulButtonsView.centerXAnchor),
-            usefulButtonsView.contentView.widthAnchor.constraint(equalTo: usefulButtonsView.widthAnchor),
-            usefulButtonsView.contentView.heightAnchor.constraint(equalTo: usefulButtonsView.heightAnchor),
+            usefulButtonsView.heightAnchor.constraint(equalToConstant: 40),
+            usefulButtonsView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor),
             
             pageControl.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             pageControl.centerYAnchor.constraint(equalTo: usefulButtonsView.centerYAnchor),

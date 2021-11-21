@@ -1,31 +1,26 @@
 //
-//  DateCellModel.swift
+//  EventDetailTitleCellModel.swift
 //  IceHockey
 //
-//  Created by  Buxlan on 11/13/21.
+//  Created by  Buxlan on 11/12/21.
 //
 
-import Foundation
 import UIKit
 
-struct DateCellModel: TableCellModel {
+struct TextCellModel: TableCellModel {
     
     // MARK: - Properties
-    var date: Date
+    var text: String
     var placeholderColor: UIColor = Asset.other1.color
     var textColor: UIColor = Asset.textColor.color
-    var backgroundColor: UIColor = Asset.other1.color
+    var backgroundColor: UIColor = Asset.other1.color    
     var font: UIFont = .bxBody
     var textFieldBackgroundColor: UIColor = Asset.other3.color
-    
+        
     // MARK: - Actions
     
-    var valueChanged: (Date) -> Void = { _ in }
+    var valueChanged: (String) -> Void = { _ in }
     
     // MARK: - Lifecircle
-    
-    init(_ date: Date? = nil) {
-        self.date = date ?? Date()
-    }
     
 }

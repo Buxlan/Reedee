@@ -20,7 +20,7 @@ class MapTableCell: UITableViewCell {
         view.numberOfLines = 4
         view.lineBreakMode = .byWordWrapping
         view.textAlignment = .center
-        view.font = .boldFont16
+        view.font = .boldFont17
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

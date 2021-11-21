@@ -10,7 +10,7 @@ import UIKit
 class EditEventInputBoldTextCell: UITableViewCell {
     
     // MARK: - Properties
-    typealias DataType = EventDetailBoldTextCellModel
+    typealias DataType = TextCellModel
     var data: DataType?
     
     var isInterfaceConfigured: Bool = false
@@ -26,7 +26,6 @@ class EditEventInputBoldTextCell: UITableViewCell {
         let view = UITextView()
         view.textAlignment = .left
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .boldFont14
         view.autocorrectionType = .no
         view.inputAccessoryView = photoAccessoryView
         view.delegate = self
@@ -40,7 +39,7 @@ class EditEventInputBoldTextCell: UITableViewCell {
         view.text = L10n.Events.inputBoldTextTitle
         view.textAlignment = .left
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .regularFont16
+        view.font = .regularFont17
         return view
     }()
 
@@ -95,7 +94,8 @@ extension EditEventInputBoldTextCell: ConfigurableCollectionContent {
     func configure(with data: DataType) {
         self.data = data
         configureUI()
-        eventTextField.text = data.title
+        eventTextField.text = data.text
+        eventTextField.font = .regularFont17
     }
     
 }

@@ -82,10 +82,10 @@
 "Events.typePhoto" = "Фото";
 "Events.typeComingSoon" = "Скоро";
 "Events.Save" = "Сохранить";
-"Events.inputDateTitle" = "Введите дату";
-"Events.inputTitle" = "Введите заголовок";
-"Events.inputTextTitle" = "Введите текст";
-"Events.inputBoldTextTitle" = "Введите рекламный текст";
+"Events.inputDateTitle" = "Дата";
+"Events.inputTitle" = "Заголовок";
+"Events.inputTextTitle" = "Описание";
+"Events.inputBoldTextTitle" = "Другое";
 // Event detail
 "EventDetail.title" = "Новость";
 // Match result
@@ -128,8 +128,8 @@
 "Actions.showTrainingSchedule" = "Расписание занятий";
 "Actions.photoGallery" = "Фотогалерея";
 "Actions.contacts" = "Контакты";
-"Actions.action2" = "действие 2";
-"Actions.action3" = "действие 3";
+"Actions.askUs" = "Задать вопрос";
+"Actions.showOnMap" = "Мы на карте";
 /* Other */
 "Other.done" = "Готово";
 "Other.cancel" = "Отменить";
@@ -146,8 +146,11 @@
 "MatchStatus.inProgressTitle" = "Идет сейчас";
 "MatchStatus.finishedTitle" = "Закончен";
 /* Edit event labels */
+"EditEventLabel.newEventTitle" = "Создать новость";
+"EditEventLabel.editEventTitle" = "Редакт. новость";
 "EditEventLabel.homeTeamPlaceholder" = "Хозяева";
 "EditEventLabel.awayTeamPlaceholder" = "Гости";
+"EditEventLabel.datePlaceholer" = "Дата";
 "EditEventLabel.scorePlaceholder" = "Счет";
 "EditEventLabel.titlePlaceholder" = "Текст для воодушевления";
 "EditEventLabel.newMatchNavigationBarTitle" = "Создать матч";

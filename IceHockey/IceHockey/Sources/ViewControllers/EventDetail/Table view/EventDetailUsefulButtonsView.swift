@@ -7,9 +7,10 @@
 
 import UIKit
 
-class EventDetailUsefulButtonsView: UITableViewCell {
+class EventDetailUsefulButtonsView: UIView {
     
     // MARK: - Properties
+    
     var data: DataType?
     
     var isInterfaceConfigured: Bool = false
@@ -53,54 +54,41 @@ class EventDetailUsefulButtonsView: UITableViewCell {
     
     // MARK: - Lifecircle
     
-    override init(style: UITableViewCell.CellStyle = .default, reuseIdentifier: String? = "") {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func prepareForReuse() {
-        isInterfaceConfigured = false
-    }
-    
     // MARK: - Helper functions    
     
     func configureUI() {
         if isInterfaceConfigured { return }
-        contentView.backgroundColor = Asset.other2.color
+        self.backgroundColor = Asset.other2.color
         tintColor = Asset.other1.color
 //        contentView.addSubview(coloredView)
-        contentView.addSubview(viewsCountImageView)
-        contentView.addSubview(viewsCountLabel)
-        contentView.addSubview(likeButton)
-        contentView.addSubview(shareButton)
+        self.addSubview(viewsCountImageView)
+        self.addSubview(viewsCountLabel)
+        self.addSubview(likeButton)
+        self.addSubview(shareButton)
         configureConstraints()
         isInterfaceConfigured = true
     }
     
     internal func configureConstraints() {
         let constraints: [NSLayoutConstraint] = [            
-            likeButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            likeButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            likeButton.heightAnchor.constraint(equalToConstant: 44),
+            likeButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            likeButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            likeButton.heightAnchor.constraint(equalTo: self.heightAnchor),
             
             shareButton.topAnchor.constraint(equalTo: likeButton.topAnchor),
             shareButton.leadingAnchor.constraint(equalTo: likeButton.trailingAnchor, constant: 16),
-            shareButton.trailingAnchor.constraint(lessThanOrEqualTo: contentView.centerXAnchor),
+            shareButton.trailingAnchor.constraint(lessThanOrEqualTo: self.centerXAnchor),
             shareButton.heightAnchor.constraint(equalTo: likeButton.heightAnchor),
             
-            viewsCountImageView.leadingAnchor.constraint(greaterThanOrEqualTo: contentView.centerXAnchor),
-            viewsCountImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            viewsCountImageView.leadingAnchor.constraint(greaterThanOrEqualTo: self.centerXAnchor),
+            viewsCountImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             viewsCountImageView.widthAnchor.constraint(equalToConstant: 28),
             viewsCountImageView.heightAnchor.constraint(equalToConstant: 28),
             
             viewsCountLabel.leadingAnchor.constraint(equalTo: viewsCountImageView.trailingAnchor, constant: 4),
             viewsCountLabel.centerYAnchor.constraint(equalTo: viewsCountImageView.centerYAnchor),
             viewsCountLabel.heightAnchor.constraint(equalTo: viewsCountImageView.heightAnchor),
-            viewsCountLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+            viewsCountLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)
         ]
         NSLayoutConstraint.activate(constraints)
     }
@@ -119,7 +107,7 @@ extension EventDetailUsefulButtonsView: ConfigurableCollectionContent {
         viewsCountLabel.backgroundColor = data.backgroundColor
         
         self.backgroundColor = data.backgroundColor
-        contentView.backgroundColor = data.backgroundColor
+        self.backgroundColor = data.backgroundColor
         
         shareButton.setTitleColor(data.tintColor, for: .normal)
         shareButton.tintColor = data.tintColor
@@ -157,6 +145,7 @@ extension EventDetailUsefulButtonsView {
         
         self.data?.likesInfo.isLiked = state
         self.data?.likesInfo.count = count
+        
         self.data?.likeAction(state)
     }
     

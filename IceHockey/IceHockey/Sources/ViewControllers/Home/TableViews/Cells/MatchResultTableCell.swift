@@ -33,7 +33,7 @@ class MatchResultTableCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 1
         view.textAlignment = .left
-        view.font = .regularFont16
+        view.font = .regularFont17
         return view
     }()
     
@@ -58,7 +58,7 @@ class MatchResultTableCell: UITableViewCell {
         view.textAlignment = .center
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
-        view.font = .boldFont16
+        view.font = .boldFont17
         return view
     }()
     
@@ -95,7 +95,7 @@ class MatchResultTableCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 3
         view.textAlignment = .center
-        view.font = .regularFont16
+        view.font = .regularFont17
         return view
     }()
     
@@ -105,7 +105,7 @@ class MatchResultTableCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 3
         view.textAlignment = .center
-        view.font = .regularFont16
+        view.font = .regularFont17
         return view
     }()
     
@@ -147,7 +147,7 @@ class MatchResultTableCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 5
         view.textAlignment = .left
-        view.font = .regularFont14
+        view.font = .regularFont15
         return view
     }()
     

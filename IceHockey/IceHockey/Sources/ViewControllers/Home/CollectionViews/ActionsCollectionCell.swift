@@ -36,7 +36,7 @@ class ActionsCollectionCell: UICollectionViewCell, ConfigurableCell {
         view.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         view.numberOfLines = 2
         view.textAlignment = .left
-        view.font = .regularFont14
+        view.font = .regularFont15
         return view
     }()
         

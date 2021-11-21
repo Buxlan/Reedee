@@ -162,6 +162,8 @@
 		40B208D02744F87F009B769C /* SportUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B208CF2744F87F009B769C /* SportUser.swift */; };
 		40B208D2274506AA009B769C /* SportUserDatabaseFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B208D1274506AA009B769C /* SportUserDatabaseFlowData.swift */; };
 		40B208D4274507EA009B769C /* SportUserStorageFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B208D3274507EA009B769C /* SportUserStorageFlowData.swift */; };
+		40B3117C27499F1A00E18820 /* TableCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B3117B27499F1A00E18820 /* TableCellModel.swift */; };
+		40B311822749C0BF00E18820 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40B311802749BDE600E18820 /* Roboto-Light.ttf */; };
 		40B6C80F272DB2A600B94A9A /* HockeyPlayerRole.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B6C80E272DB2A600B94A9A /* HockeyPlayerRole.swift.swift */; };
 		40B82EC527382EDD00BED0A1 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B82EC427382EDD00BED0A1 /* LikeButton.swift */; };
 		40B82EC7273835D100BED0A1 /* ShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B82EC6273835D100BED0A1 /* ShareButton.swift */; };
@@ -206,12 +208,10 @@
 		40F4EBD8273D9A80003DA1D3 /* EventDetailUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F4EBD7273D9A80003DA1D3 /* EventDetailUserView.swift */; };
 		40F4EBDA273DC9D3003DA1D3 /* EventDetailHeaderCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F4EBD9273DC9D3003DA1D3 /* EventDetailHeaderCellModel.swift */; };
 		40F4EBDD273DCAA2003DA1D3 /* EventDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F4EBDC273DCAA2003DA1D3 /* EventDetailHeaderView.swift */; };
-		40F4EBDF273DCBBD003DA1D3 /* EventDetailTitleCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F4EBDE273DCBBD003DA1D3 /* EventDetailTitleCellModel.swift */; };
+		40F4EBDF273DCBBD003DA1D3 /* TextCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F4EBDE273DCBBD003DA1D3 /* TextCellModel.swift */; };
 		40F4EBE1273DCC28003DA1D3 /* EventDetailUsefulButtonsCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F4EBE0273DCC28003DA1D3 /* EventDetailUsefulButtonsCellModel.swift */; };
 		40F4EBE3273DD212003DA1D3 /* ConfigurableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F4EBE2273DD212003DA1D3 /* ConfigurableLabel.swift */; };
 		40F4EBE5273DD7FE003DA1D3 /* EventDetailUserCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F4EBE4273DD7FD003DA1D3 /* EventDetailUserCellModel.swift */; };
-		40F4EBE7273DDFC8003DA1D3 /* EventDetailDescriptionCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F4EBE6273DDFC8003DA1D3 /* EventDetailDescriptionCellModel.swift */; };
-		40F4EBE9273DE171003DA1D3 /* EventDetailBoldTextCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F4EBE8273DE171003DA1D3 /* EventDetailBoldTextCellModel.swift */; };
 		40F4EBEB273DE1B8003DA1D3 /* EventDetailCopyrightCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F4EBEA273DE1B8003DA1D3 /* EventDetailCopyrightCellModel.swift */; };
 		40F52E5C2733D4AF005BD851 /* MatchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F52E5B2733D4AF005BD851 /* MatchResult.swift */; };
 		40FF308F27341BA000A9E375 /* SportEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FF308E27341BA000A9E375 /* SportEvent.swift */; };
@@ -378,6 +378,8 @@
 		40B208CF2744F87F009B769C /* SportUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportUser.swift; sourceTree = "<group>"; };
 		40B208D1274506AA009B769C /* SportUserDatabaseFlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportUserDatabaseFlowData.swift; sourceTree = "<group>"; };
 		40B208D3274507EA009B769C /* SportUserStorageFlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportUserStorageFlowData.swift; sourceTree = "<group>"; };
+		40B3117B27499F1A00E18820 /* TableCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellModel.swift; sourceTree = "<group>"; };
+		40B311802749BDE600E18820 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		40B6C80E272DB2A600B94A9A /* HockeyPlayerRole.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HockeyPlayerRole.swift.swift; sourceTree = "<group>"; };
 		40B82EC427382EDD00BED0A1 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
 		40B82EC6273835D100BED0A1 /* ShareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareButton.swift; sourceTree = "<group>"; };
@@ -424,12 +426,10 @@
 		40F4EBD7273D9A80003DA1D3 /* EventDetailUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailUserView.swift; sourceTree = "<group>"; };
 		40F4EBD9273DC9D3003DA1D3 /* EventDetailHeaderCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailHeaderCellModel.swift; sourceTree = "<group>"; };
 		40F4EBDC273DCAA2003DA1D3 /* EventDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailHeaderView.swift; sourceTree = "<group>"; };
-		40F4EBDE273DCBBD003DA1D3 /* EventDetailTitleCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailTitleCellModel.swift; sourceTree = "<group>"; };
+		40F4EBDE273DCBBD003DA1D3 /* TextCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCellModel.swift; sourceTree = "<group>"; };
 		40F4EBE0273DCC28003DA1D3 /* EventDetailUsefulButtonsCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailUsefulButtonsCellModel.swift; sourceTree = "<group>"; };
 		40F4EBE2273DD212003DA1D3 /* ConfigurableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableLabel.swift; sourceTree = "<group>"; };
 		40F4EBE4273DD7FD003DA1D3 /* EventDetailUserCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailUserCellModel.swift; sourceTree = "<group>"; };
-		40F4EBE6273DDFC8003DA1D3 /* EventDetailDescriptionCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailDescriptionCellModel.swift; sourceTree = "<group>"; };
-		40F4EBE8273DE171003DA1D3 /* EventDetailBoldTextCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailBoldTextCellModel.swift; sourceTree = "<group>"; };
 		40F4EBEA273DE1B8003DA1D3 /* EventDetailCopyrightCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailCopyrightCellModel.swift; sourceTree = "<group>"; };
 		40F52E5B2733D4AF005BD851 /* MatchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResult.swift; sourceTree = "<group>"; };
 		40FF308E27341BA000A9E375 /* SportEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportEvent.swift; sourceTree = "<group>"; };
@@ -705,8 +705,8 @@
 		40713A8227204A68005F1265 /* TableViews */ = {
 			isa = PBXGroup;
 			children = (
+				40B3117D2749ACBA00E18820 /* unused */,
 				40E85C5627403C3C00AB37A7 /* Cell models */,
-				40980ABF2720C2490022A640 /* EditEventTitleCell.swift */,
 				40C3BC74272802C800BBA67F /* EditEventInputDateCell.swift */,
 				40980ACD2720D2A60022A640 /* EditEventInputTitleCell.swift */,
 				406E36A827219BD600C5FEF0 /* EditEventInputTextCell.swift */,
@@ -775,6 +775,7 @@
 			children = (
 				407F48AF273C968D00C96B28 /* Roboto-Regular.ttf */,
 				407F48B0273C986600C96B28 /* Roboto-Bold.ttf */,
+				40B311802749BDE600E18820 /* Roboto-Light.ttf */,
 			);
 			path = fonts;
 			sourceTree = "<group>";
@@ -1035,6 +1036,14 @@
 			path = SportUser;
 			sourceTree = "<group>";
 		};
+		40B3117D2749ACBA00E18820 /* unused */ = {
+			isa = PBXGroup;
+			children = (
+				40980ABF2720C2490022A640 /* EditEventTitleCell.swift */,
+			);
+			path = unused;
+			sourceTree = "<group>";
+		};
 		40B82ED02738BA8300BED0A1 /* Database savers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1155,11 +1164,10 @@
 				40F4EBD9273DC9D3003DA1D3 /* EventDetailHeaderCellModel.swift */,
 				40F4EBE4273DD7FD003DA1D3 /* EventDetailUserCellModel.swift */,
 				40F4EBE0273DCC28003DA1D3 /* EventDetailUsefulButtonsCellModel.swift */,
-				40F4EBDE273DCBBD003DA1D3 /* EventDetailTitleCellModel.swift */,
-				40F4EBE6273DDFC8003DA1D3 /* EventDetailDescriptionCellModel.swift */,
-				40F4EBE8273DE171003DA1D3 /* EventDetailBoldTextCellModel.swift */,
+				40F4EBDE273DCBBD003DA1D3 /* TextCellModel.swift */,
 				40F4EBEA273DE1B8003DA1D3 /* EventDetailCopyrightCellModel.swift */,
 				409AFDB62747ADD300AAD62E /* EventDetailPhotoCellModel.swift */,
+				40B3117B27499F1A00E18820 /* TableCellModel.swift */,
 			);
 			path = "Cell models";
 			sourceTree = "<group>";
@@ -1247,6 +1255,7 @@
 				407028E526E402BE00C6CE5F /* .swiftlint.yml in Resources */,
 				40A4462726E4054E00129B89 /* Localizable.strings in Resources */,
 				407F48B4273C9ADB00C96B28 /* Roboto-Bold.ttf in Resources */,
+				40B311822749C0BF00E18820 /* Roboto-Light.ttf in Resources */,
 				40E7204A26E400FF00A64C60 /* LaunchScreen.storyboard in Resources */,
 				40E7204726E400FF00A64C60 /* Assets.xcassets in Resources */,
 				408BD21D26E5A54A00D66D9B /* GoogleService-Info.plist in Resources */,
@@ -1404,7 +1413,6 @@
 				40A1139127470474001BDD99 /* EventLikesInfo.swift in Sources */,
 				40C3BC75272802C800BBA67F /* EditEventInputDateCell.swift in Sources */,
 				40E70B9A27486E4A0074CD2D /* KeyboardAccessoryDoneView.swift in Sources */,
-				40F4EBE7273DDFC8003DA1D3 /* EventDetailDescriptionCellModel.swift in Sources */,
 				4094E6DE272B25A4004ED01B /* TeamTableCell.swift in Sources */,
 				409AFDB72747ADD300AAD62E /* EventDetailPhotoCellModel.swift in Sources */,
 				40781507272CA3D3006D3AD2 /* ExistingSportTeamFirebaseSaver.swift in Sources */,
@@ -1438,7 +1446,6 @@
 				406E7C0D2723302300DAD711 /* FirebaseStorageManager.swift in Sources */,
 				40940C0526E418E50098EF89 /* MainTabBarViewModel.swift in Sources */,
 				400E532F273A73E100B407E0 /* NewSportUserFirebaseSaver.swift in Sources */,
-				40F4EBE9273DE171003DA1D3 /* EventDetailBoldTextCellModel.swift in Sources */,
 				400E532D273A732F00B407E0 /* ExistingSportUserFirebaseSaver.swift in Sources */,
 				40A63223272E00C60017F6FE /* TeamInfoTableCell.swift in Sources */,
 				40DBD76E26E83BFD00CDBADD /* TableCellActionsProxy.swift in Sources */,
@@ -1495,6 +1502,7 @@
 				4063EAE9271EE2A100B6B8C7 /* EventDetailPhotoCollectionViewLayout.swift in Sources */,
 				40A11396274714B9001BDD99 /* LikeDatabaseFlowData.swift in Sources */,
 				406CD2CA26F7248E00F1EDFE /* ScaleAspectFitImageView.swift in Sources */,
+				40B3117C27499F1A00E18820 /* TableCellModel.swift in Sources */,
 				4098C04226E572A700F0BBE6 /* UserExtension.swift in Sources */,
 				40940BE226E40C380098EF89 /* UIImageExtension.swift in Sources */,
 				40B82EC92738A42B00BED0A1 /* TextViewWithPlaceholder.swift in Sources */,
@@ -1530,7 +1538,7 @@
 				40E85C5A27403E6E00AB37A7 /* SaveCellModel.swift in Sources */,
 				401C9B11270D04BF00F91DC6 /* ViewControllerCoordinator.swift in Sources */,
 				4065C95526E84E990084E5F2 /* NewsTableCell.swift in Sources */,
-				40F4EBDF273DCBBD003DA1D3 /* EventDetailTitleCellModel.swift in Sources */,
+				40F4EBDF273DCBBD003DA1D3 /* TextCellModel.swift in Sources */,
 				40980AC02720C2490022A640 /* EditEventTitleCell.swift in Sources */,
 				40940BEE26E412F40098EF89 /* AuthSection.swift in Sources */,
 				40ADABED273C47F4008AAC90 /* TrainingCellModel.swift in Sources */,

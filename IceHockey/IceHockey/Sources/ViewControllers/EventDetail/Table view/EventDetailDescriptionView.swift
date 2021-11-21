@@ -19,7 +19,7 @@ class EventDetailDescriptionView: UITableViewCell {
         view.lineBreakMode = .byWordWrapping
         view.textAlignment = .left
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .regularFont14
+        view.font = .regularFont15
         return view
     }()
     
@@ -63,10 +63,10 @@ class EventDetailDescriptionView: UITableViewCell {
 // MARK: - ConfigurableCell extension
 extension EventDetailDescriptionView: ConfigurableCollectionContent {
         
-    typealias DataType = EventDetailDescriptionCellModel
+    typealias DataType = TextCellModel
     func configure(with data: DataType) {
         configureUI()
-        descriptionLabel.text = data.title
+        descriptionLabel.text = data.text
         descriptionLabel.textColor = data.textColor
         contentView.backgroundColor = data.backgroundColor
         descriptionLabel.backgroundColor = data.backgroundColor

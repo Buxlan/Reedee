@@ -29,7 +29,7 @@ class ContactsViewController: UIViewController {
         view.layer.cornerRadius = 16
         view.contentEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 16)
         view.titleEdgeInsets = .init(top: 0, left: 8, bottom: 0, right: -8)
-        view.titleLabel?.font = .boldFont16
+        view.titleLabel?.font = .boldFont17
         view.setTitle(L10n.Contacts.toCallUsTitle, for: .normal)
         return view
     }()

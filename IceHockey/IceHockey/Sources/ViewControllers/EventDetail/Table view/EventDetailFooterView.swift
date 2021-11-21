@@ -36,7 +36,7 @@ class EventDetailFooterView: UIView {
         view.numberOfLines = 6
         view.textAlignment = .left
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .regularFont16
+        view.font = .regularFont17
         view.textColor = Asset.other0.color
         view.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         view.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
@@ -49,7 +49,7 @@ class EventDetailFooterView: UIView {
         view.lineBreakMode = .byWordWrapping
         view.textAlignment = .left
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .regularFont14
+        view.font = .regularFont15
         view.textColor = Asset.other0.color
         return view
     }()

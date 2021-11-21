@@ -28,7 +28,6 @@ class EventDetailViewController: UIViewController {
         view.showsVerticalScrollIndicator = true
         view.register(EventDetailUserView.self, forCellReuseIdentifier: EventDetailUserViewConfigurator.reuseIdentifier)
         view.register(EventDetailPhotoView.self, forCellReuseIdentifier: EventDetailPhotoViewConfigurator.reuseIdentifier)
-        view.register(EventDetailUsefulButtonsView.self, forCellReuseIdentifier: EventDetailUsefulButtonsViewConfigurator.reuseIdentifier)
         view.register(EventDetailTitleView.self, forCellReuseIdentifier: EventDetailTitleViewConfigurator.reuseIdentifier)
         view.register(EventDetailDescriptionView.self, forCellReuseIdentifier: EventDetailDescriptionViewConfigurator.reuseIdentifier)
         view.register(EventDetailBoldTextView.self, forCellReuseIdentifier: EventDetailBoldTextViewConfigurator.reuseIdentifier)
@@ -189,21 +188,21 @@ extension EventDetailViewController {
     }
     
     func makeTitleTableRow() -> TableRow {
-        let cellModel = EventDetailTitleCellModel(title: event.title)
+        let cellModel = TextCellModel(text: event.title)
         let config = EventDetailTitleViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         return row
     }
     
     func makeDescriptionTableRow() -> TableRow {
-        let cellModel = EventDetailDescriptionCellModel(title: event.text)
+        let cellModel = TextCellModel(text: event.text)
         let config = EventDetailDescriptionViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         return row
     }
     
     func makeBoldTextTableRow() -> TableRow {
-        let cellModel = EventDetailBoldTextCellModel(title: event.boldText)
+        let cellModel = TextCellModel(text: event.boldText)
         let config = EventDetailBoldTextViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         return row

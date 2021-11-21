@@ -9,6 +9,10 @@ import UIKit
 
 struct SquadHeaderCellModel: TableCellModel {
     
+    var textColor: UIColor = Asset.textColor.color
+    var backgroundColor: UIColor = Asset.other3.color
+    var font: UIFont = .regularFont17    
+    
     // MARK: - Properties
     var uid: String
     var title: String

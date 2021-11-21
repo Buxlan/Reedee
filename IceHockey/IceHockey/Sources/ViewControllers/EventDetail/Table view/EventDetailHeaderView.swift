@@ -21,7 +21,7 @@ class EventDetailHeaderView: UITableViewHeaderFooterView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 2
         view.textAlignment = .left
-        view.font = .boldFont16
+        view.font = .boldFont17
         view.setContentHuggingPriority(.defaultLow, for: .horizontal)
         view.setContentHuggingPriority(.defaultLow, for: .vertical)
         view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)

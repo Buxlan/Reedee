@@ -11,26 +11,15 @@ class EditEventInputTitleCell: UITableViewCell {
     
     // MARK: - Properties
     
-    typealias DataType = EventDetailTitleCellModel
+    typealias DataType = TextCellModel
     var data: DataType?
     
     var isInterfaceConfigured: Bool = false
     
-    private var photoAccessoryView: KeyboardAccessoryPhotoView = {
-        let width = UIScreen.main.bounds.width
-        let frame = CGRect(x: 0, y: 0, width: width, height: 44)
-        let view = KeyboardAccessoryPhotoView(frame: frame)
-        return view
-    }()
-    
-    private lazy var titleLabel: UILabel = {
-        let view = UILabel()
-        view.accessibilityIdentifier = "titleLabel3"
-        view.numberOfLines = 2
-        view.text = L10n.Events.inputTitle
-        view.textAlignment = .left
+    private lazy var roundedView: UIView = {
+        let cornerRadius: CGFloat = 12.0
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .regularFont16
         return view
     }()
         
@@ -39,10 +28,18 @@ class EditEventInputTitleCell: UITableViewCell {
         view.placeholder = L10n.Events.editEventTitlePlaceholder
         view.textAlignment = .left
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .boldFont16
+        view.font = .boldFont17
         view.autocorrectionType = .no
-        view.inputAccessoryView = photoAccessoryView
+        view.inputAccessoryView = keyboardAccessoryView
         view.delegate = self
+//        view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        return view
+    }()
+    
+    private var keyboardAccessoryView: KeyboardAccessoryDoneView = {
+        let width = UIScreen.main.bounds.width
+        let frame = CGRect(x: 0, y: 0, width: width, height: 44)
+        let view = KeyboardAccessoryDoneView(frame: frame)
         return view
     }()
 
@@ -66,26 +63,24 @@ class EditEventInputTitleCell: UITableViewCell {
         if isInterfaceConfigured { return }
         contentView.backgroundColor = Asset.other3.color
         tintColor = Asset.other1.color
-        contentView.addSubview(titleLabel)
+        contentView.addSubview(roundedView)
         contentView.addSubview(titleTextField)
         configureConstraints()
-        photoAccessoryView.cameraButton.addTarget(self, action: #selector(cameraButtonHandle), for: .touchUpInside)
-        photoAccessoryView.galleryButton.addTarget(self, action: #selector(galleryButtonHandle), for: .touchUpInside)
-        photoAccessoryView.doneButton.addTarget(self, action: #selector(doneButtonHandle), for: .touchUpInside)
         isInterfaceConfigured = true
     }
     
     internal func configureConstraints() {
-        let constraints: [NSLayoutConstraint] = [
-            titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            
+        let constraints: [NSLayoutConstraint] = [            
+            titleTextField.heightAnchor.constraint(equalToConstant: 40),
             titleTextField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            titleTextField.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
-            titleTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-            titleTextField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            titleTextField.heightAnchor.constraint(equalToConstant: 44)
+            titleTextField.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -64),
+            titleTextField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            
+            roundedView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            roundedView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
+            roundedView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            roundedView.heightAnchor.constraint(equalToConstant: 44),
+            roundedView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
     }
@@ -97,7 +92,24 @@ extension EditEventInputTitleCell: ConfigurableCollectionContent {
     func configure(with data: DataType) {
         self.data = data
         configureUI()
-        titleTextField.text = data.title
+        titleTextField.text = data.text
+        titleTextField.backgroundColor = data.textFieldBackgroundColor
+        titleTextField.font = data.font
+        titleTextField.textColor = data.textColor
+        let placeholderText = NSAttributedString(string: L10n.Events.editEventTitlePlaceholder,
+                                                 attributes: [NSAttributedString.Key.foregroundColor: data.placeholderColor])
+        titleTextField.attributedPlaceholder = placeholderText
+        roundedView.backgroundColor = data.textFieldBackgroundColor
+        contentView.backgroundColor = data.backgroundColor
+        var viewModel = KeyboardAccessoryDoneViewModel()
+        viewModel.doneAction = {
+            self.resignFirstResponder()
+            guard let text = self.titleTextField.text else {
+                return
+            }
+            self.data?.valueChanged(text)
+        }
+        keyboardAccessoryView.configure(data: viewModel)
     }
     
 }
@@ -105,9 +117,10 @@ extension EditEventInputTitleCell: ConfigurableCollectionContent {
 extension EditEventInputTitleCell: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if let text = textField.text {
-//            handler?.setTitle(text)
+        guard let text = textField.text else {
+            return
         }
+        data?.valueChanged(text)
     }
     
 }

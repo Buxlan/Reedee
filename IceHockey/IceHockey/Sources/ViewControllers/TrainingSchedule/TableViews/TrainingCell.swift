@@ -21,7 +21,7 @@ class TrainingCell: UITableViewCell {
         view.isScrollEnabled = false
         view.textAlignment = .left
         view.isUserInteractionEnabled = true
-        view.font = .regularFont14
+        view.font = .regularFont15
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -44,7 +44,7 @@ class TrainingCell: UITableViewCell {
         view.isScrollEnabled = false
         view.textAlignment = .left
         view.isUserInteractionEnabled = true
-        view.font = .regularFont14
+        view.font = .regularFont15
         return view
     }()
     
@@ -54,7 +54,7 @@ class TrainingCell: UITableViewCell {
         view.isScrollEnabled = false
         view.textAlignment = .left
         view.isUserInteractionEnabled = true
-        view.font = .regularFont14
+        view.font = .regularFont15
         return view
     }()
     
@@ -64,7 +64,7 @@ class TrainingCell: UITableViewCell {
         view.isScrollEnabled = false
         view.textAlignment = .left
         view.isUserInteractionEnabled = true
-        view.font = .regularFont14
+        view.font = .regularFont15
         return view
     }()
         

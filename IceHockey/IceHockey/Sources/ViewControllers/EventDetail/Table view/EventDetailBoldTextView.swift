@@ -19,7 +19,6 @@ class EventDetailBoldTextView: UITableViewCell {
         view.lineBreakMode = .byWordWrapping
         view.textAlignment = .center
         view.isUserInteractionEnabled = true
-        view.font = .boldFont14
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -64,11 +63,12 @@ class EventDetailBoldTextView: UITableViewCell {
 // MARK: - ConfigurableCell extension
 extension EventDetailBoldTextView: ConfigurableCollectionContent {
         
-    typealias DataType = EventDetailBoldTextCellModel
+    typealias DataType = TextCellModel
     func configure(with data: DataType) {
         configureUI()
-        boldTextLabel.text = data.title
+        boldTextLabel.text = data.text
         boldTextLabel.textColor = data.textColor
+        boldTextLabel.font = data.font
         contentView.backgroundColor = data.backgroundColor
         boldTextLabel.backgroundColor = data.backgroundColor
     }

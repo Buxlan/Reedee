@@ -10,39 +10,36 @@ import UIKit
 class EditEventInputTextCell: UITableViewCell {
     
     // MARK: - Properties
-    typealias DataType = EventDetailDescriptionCellModel
+    typealias DataType = TextCellModel
     var data: DataType?
     
     var isInterfaceConfigured: Bool = false
     
-    private var photoAccessoryView: KeyboardAccessoryPhotoView = {
-        let width = UIScreen.main.bounds.width
-        let frame = CGRect(x: 0, y: 0, width: width, height: 44)
-        let view = KeyboardAccessoryPhotoView(frame: frame)
+    private lazy var roundedView: UIView = {
+        let cornerRadius: CGFloat = 12.0
+        let view = CorneredView(corners: [.bottomLeft, .bottomRight], radius: cornerRadius)
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
         
-    private lazy var eventTextField: UITextView = {
-        let view = UITextView()
+    private lazy var eventTextView: TextViewWithPlaceholder = {
+        let view = TextViewWithPlaceholder()
         view.textAlignment = .left
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .regularFont14
+        view.font = .regularFont15
         view.autocorrectionType = .no
-        view.inputAccessoryView = photoAccessoryView
+        view.inputAccessoryView = keyboardAccessoryView
         view.keyboardAppearance = .light
         view.keyboardType = .default
         view.delegate = self
+        view.placeholder = L10n.EditEventLabel.awayTeamPlaceholder
         return view
     }()
     
-    private lazy var titleLabel: UILabel = {
-        let view = UILabel()
-        view.accessibilityIdentifier = "titleLabel4"
-        view.numberOfLines = 2
-        view.text = L10n.Events.inputTextTitle
-        view.textAlignment = .left
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .regularFont16
+    private var keyboardAccessoryView: KeyboardAccessoryDoneView = {
+        let width = UIScreen.main.bounds.width
+        let frame = CGRect(x: 0, y: 0, width: width, height: 44)
+        let view = KeyboardAccessoryDoneView(frame: frame)
         return view
     }()
 
@@ -66,26 +63,25 @@ class EditEventInputTextCell: UITableViewCell {
         if isInterfaceConfigured { return }
         contentView.backgroundColor = Asset.other3.color
         tintColor = Asset.other1.color
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(eventTextField)
+        contentView.addSubview(roundedView)
+        contentView.addSubview(eventTextView)
         configureConstraints()
         isInterfaceConfigured = true
-        photoAccessoryView.cameraButton.addTarget(self, action: #selector(cameraButtonHandle), for: .touchUpInside)
-        photoAccessoryView.galleryButton.addTarget(self, action: #selector(galleryButtonHandle), for: .touchUpInside)
-        photoAccessoryView.doneButton.addTarget(self, action: #selector(doneButtonHandle), for: .touchUpInside)
     }
     
     internal func configureConstraints() {
         let constraints: [NSLayoutConstraint] = [
-            titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            eventTextView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
+            eventTextView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -4),
+            eventTextView.heightAnchor.constraint(greaterThanOrEqualToConstant: 150),
+            eventTextView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            eventTextView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -64),
+            eventTextView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
-            eventTextField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            eventTextField.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
-            eventTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-            eventTextField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            eventTextField.heightAnchor.constraint(equalToConstant: 150)
+            roundedView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            roundedView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
+            roundedView.topAnchor.constraint(equalTo: eventTextView.topAnchor, constant: -4),
+            roundedView.bottomAnchor.constraint(equalTo: eventTextView.bottomAnchor, constant: 4)
         ]
         NSLayoutConstraint.activate(constraints)
     }
@@ -97,7 +93,18 @@ extension EditEventInputTextCell: ConfigurableCollectionContent {
     func configure(with data: DataType) {
         self.data = data
         configureUI()
-        eventTextField.text = data.title
+        eventTextView.text = data.text
+        eventTextView.backgroundColor = data.textFieldBackgroundColor
+        eventTextView.font = data.font
+        eventTextView.textColor = data.textColor
+        roundedView.backgroundColor = data.textFieldBackgroundColor
+        contentView.backgroundColor = data.backgroundColor
+        var viewModel = KeyboardAccessoryDoneViewModel()
+        viewModel.doneAction = {
+            self.resignFirstResponder()
+            self.data?.valueChanged(self.eventTextView.text)
+        }
+        keyboardAccessoryView.configure(data: viewModel)        
     }
     
 }
@@ -124,7 +131,7 @@ extension EditEventInputTextCell {
     
     @objc
     private func doneButtonHandle(_ sender: UIButton) {
-        eventTextField.resignFirstResponder()
+        eventTextView.resignFirstResponder()
     }
     
 }

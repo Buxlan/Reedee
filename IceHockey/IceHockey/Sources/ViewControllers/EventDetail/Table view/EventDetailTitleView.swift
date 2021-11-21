@@ -18,7 +18,7 @@ class EventDetailTitleView: UITableViewCell {
         view.numberOfLines = 4
         view.lineBreakMode = .byWordWrapping
         view.textAlignment = .left
-        view.font = .regularFont16
+        view.font = .regularFont17
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -63,12 +63,13 @@ class EventDetailTitleView: UITableViewCell {
 // MARK: - ConfigurableCell extension
 extension EventDetailTitleView: ConfigurableCollectionContent {
         
-    typealias DataType = EventDetailTitleCellModel
+    typealias DataType = TextCellModel
     func configure(with data: DataType) {
         configureUI()
-        titleLabel.text = data.title
+        titleLabel.text = data.text
         titleLabel.textColor = data.textColor
         titleLabel.backgroundColor = data.backgroundColor
+        titleLabel.font = data.font
         contentView.backgroundColor = data.backgroundColor
     }
     

@@ -7,10 +7,9 @@
 
 import UIKit
 
-protocol TableCellModel {
-}
-
 struct MatchResultTableCellModel: TableCellModel {
+    
+    var font: UIFont = .regularFont15
     
     var uid: String
         

@@ -22,6 +22,7 @@ struct NewsTableCellModel: TableCellModel {
     
     var backgroundColor: UIColor = Asset.other3.color
     var textColor: UIColor = Asset.textColor.color
+    var font: UIFont = .regularFont15
     
     var typeBackgroundColor: UIColor
     var typeTextColor: UIColor

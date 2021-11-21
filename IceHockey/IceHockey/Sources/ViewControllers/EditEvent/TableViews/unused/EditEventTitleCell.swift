@@ -11,7 +11,7 @@ class EditEventTitleCell: UITableViewCell {
     
     // MARK: - Properties
     
-    typealias DataType = EventDetailTitleCellModel
+    typealias DataType = TextCellModel
     var data: DataType?
     
     var isInterfaceConfigured: Bool = false
@@ -24,7 +24,7 @@ class EditEventTitleCell: UITableViewCell {
         view.text = L10n.Events.addEventTitle
         view.textAlignment = .center
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .boldFont16
+        view.font = .boldFont17
         view.setContentHuggingPriority(.defaultLow, for: .vertical)
 //        view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         return view

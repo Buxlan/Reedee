@@ -21,7 +21,7 @@ class SquadHeaderView: UITableViewHeaderFooterView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 2
         view.textAlignment = .left
-        view.font = .boldFont16
+        view.font = .boldFont17
         return view
     }()
         

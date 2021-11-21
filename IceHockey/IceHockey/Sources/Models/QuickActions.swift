@@ -12,7 +12,7 @@ enum QuickAction: Int, RawRepresentable, Codable, CustomStringConvertible {
     case photoGallery
     case contacts
     case showOnMap
-    case action3
+    case askUs
     
     var description: String {
         switch self {
@@ -25,9 +25,9 @@ enum QuickAction: Int, RawRepresentable, Codable, CustomStringConvertible {
         case .contacts:
             return L10n.Actions.contacts
         case .showOnMap:
-            return L10n.Actions.action2
-        case .action3:
-            return L10n.Actions.action3
+            return L10n.Actions.showOnMap
+        case .askUs:
+            return L10n.Actions.askUs
         }
     }
     
@@ -43,8 +43,8 @@ enum QuickAction: Int, RawRepresentable, Codable, CustomStringConvertible {
         case .contacts:
             image = Asset.contacts.image
         case .showOnMap:
-            image = Asset.questionMark.image
-        case .action3:
+            image = Asset.map.image
+        case .askUs:
             image = Asset.questionMark.image
         }
         return image

@@ -82,10 +82,10 @@
 "Events.typePhoto" = "Photo";
 "Events.typeComingSoon" = "Soon";
 "Events.Save" = "Save";
-"Events.inputDateTitle" = "Input date";
-"Events.inputTitle" = "Input title";
-"Events.inputTextTitle" = "Input text";
-"Events.inputBoldTextTitle" = "Input ad text";
+"Events.inputDateTitle" = "Date";
+"Events.inputTitle" = "Title";
+"Events.inputTextTitle" = "Text";
+"Events.inputBoldTextTitle" = "Other";
 // Event detail
 "EventDetail.title" = "Event";
 // Match result
@@ -128,8 +128,8 @@
 "Actions.showTrainingSchedule" = "Training schedule";
 "Actions.photoGallery" = "Photos";
 "Actions.contacts" = "Contacts";
-"Actions.action2" = "action2";
-"Actions.action3" = "action3";
+"Actions.askUs" = "Ask a question";
+"Actions.showOnMap" = "Show on map";
 /* Other */
 "Other.done" = "Done";
 "Other.cancel" = "Cancel";
@@ -146,8 +146,11 @@
 "MatchStatus.inProgressTitle" = "In progress";
 "MatchStatus.finishedTitle" = "Finished";
 /* Edit event labels */
+"EditEventLabel.newEventTitle" = "New event";
+"EditEventLabel.editEventTitle" = "Edit event";
 "EditEventLabel.homeTeamPlaceholder" = "Home team";
 "EditEventLabel.awayTeamPlaceholder" = "Away team";
+"EditEventLabel.datePlaceholer" = "Date";
 "EditEventLabel.scorePlaceholder" = "Score";
 "EditEventLabel.titlePlaceholder" = "Type text here";
 "EditEventLabel.newMatchNavigationBarTitle" = "Create match";

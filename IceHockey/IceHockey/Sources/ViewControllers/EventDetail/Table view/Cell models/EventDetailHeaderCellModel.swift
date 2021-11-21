@@ -8,11 +8,12 @@
 import UIKit
 
 struct EventDetailHeaderCellModel: TableCellModel {
-    
+       
     // MARK: - Properties
     var title: String
     var textColor: UIColor = Asset.textColor.color
     var backgroundColor: UIColor = Asset.other3.color
+    var font: UIFont = .regularFont15
     
     // MARK: - Actions
     

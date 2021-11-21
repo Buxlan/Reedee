@@ -26,6 +26,7 @@ struct MatchResultEditCellModel: TableCellModel {
     
     var backgroundColor: UIColor = Asset.other3.color
     var textColor: UIColor = Asset.textColor.color
+    var font: UIFont = .regularFont17
     
     var type: SportEventType
     
