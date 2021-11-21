@@ -138,7 +138,7 @@ extension TrainingScheduleViewController {
             section.headerConfig = config
             section.headerHeight = 60.0
             section.headerViewId = type(of: config).reuseIdentifier
-            let rows = sectionData.schedule.trainings.map { training -> TableRow in
+            let rows = sectionData.schedule.workouts.map { training -> TableRow in
                 makeTrainingTableRow(training)
             }
             section.addRows(rows)
@@ -149,7 +149,7 @@ extension TrainingScheduleViewController {
         return dataSource
     }
     
-    func makeTrainingTableRow(_ object: DailyTraining) -> TableRow {
+    func makeTrainingTableRow(_ object: DayWorkout) -> TableRow {
         let cellModel = TrainingCellModel(data: object)
         let config = TrainingViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)

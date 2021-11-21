@@ -9,6 +9,13 @@ import Firebase
 
 struct FirebaseObjectFactory {
     
+    func makeWorkoutSchedule(from snapshot: DataSnapshot) -> WorkoutSchedule? {
+        let builder = WorkoutScheduleBuilder(snapshot: snapshot)
+        builder.build()
+        let object = builder.getInstance()
+        return object
+    }
+    
     func create<DataType: FirebaseObject>(objectType: DataType.Type,
                                           from snapshot: DataSnapshot,
                                           with completionHandler: @escaping (DataType?) -> Void)
@@ -16,7 +23,7 @@ struct FirebaseObjectFactory {
         
         switch objectType {
         case is SportEvent.Type:
-            let factory = SportEventCreatorImpl()
+            let factory = SportEventCreator()
             let handler: (SportEvent?) -> Void = { object in
                 let casted = object as? DataType
                 completionHandler(casted)

@@ -11,7 +11,7 @@ struct TrainingCellModel: TableCellModel {
     
     // MARK: - Properties
     var day: String
-    var trainings: [TrainingTime]
+    var trainings: [Workout]
     
     var textColor: UIColor = Asset.textColor.color
     var backgroundColor: UIColor = Asset.other3.color
@@ -21,7 +21,7 @@ struct TrainingCellModel: TableCellModel {
     
     // MARK: - Lifecircle
     
-    init(data: DailyTraining) {
+    init(data: DayWorkout) {
         self.day = data.day.description
         self.trainings = data.time
     }

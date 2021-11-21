@@ -39,6 +39,6 @@ protocol SportUserFirebaseSaver: ObjectFirebaseSaver where DataType == SportUser
     
 }
 
-protocol TrainingScheduleFirebaseSaver: ObjectFirebaseSaver where DataType == TrainingSchedule {
+protocol TrainingScheduleFirebaseSaver: ObjectFirebaseSaver where DataType == WorkoutSchedule {
     
 }

@@ -7,15 +7,7 @@
 
 import Firebase
 
-protocol SportEventCreator {
-    
-    func create(snapshot: DataSnapshot,
-                with completionHandler: @escaping (SportEvent?) -> Void)
-    -> SportEvent?
-    
-}
-
-struct SportEventCreatorImpl: SportEventCreator {
+struct SportEventCreator {
     
     func create(snapshot: DataSnapshot,
                 with completionHandler: @escaping (SportEvent?) -> Void)

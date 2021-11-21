@@ -42,10 +42,14 @@
 		40369EC626E6E33C0083E675 /* ActionsTableCell + CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40369EC526E6E33C0083E675 /* ActionsTableCell + CollectionView.swift */; };
 		40429BAB274A81AC00DAD070 /* TitleCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40429BAA274A81AC00DAD070 /* TitleCellModel.swift */; };
 		40429BAD274A826D00DAD070 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40429BAC274A826800DAD070 /* Roboto-Medium.ttf */; };
-		40429BB3274AC0D400DAD070 /* TrainingScheduleListLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40429BB2274AC0D400DAD070 /* TrainingScheduleListLoader.swift */; };
-		40429BB6274AC94F00DAD070 /* TrainingScheduleCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40429BB5274AC94F00DAD070 /* TrainingScheduleCreator.swift */; };
-		40429BB8274ACA8600DAD070 /* TrainingScheduleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40429BB7274ACA8500DAD070 /* TrainingScheduleBuilder.swift */; };
-		40429BBA274ACC8800DAD070 /* TrainingScheduleDatabaseFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40429BB9274ACC8800DAD070 /* TrainingScheduleDatabaseFlow.swift */; };
+		40429BB3274AC0D400DAD070 /* WorkoutScheduleListLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40429BB2274AC0D400DAD070 /* WorkoutScheduleListLoader.swift */; };
+		40429BB6274AC94F00DAD070 /* UnusedTrainingScheduleCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40429BB5274AC94F00DAD070 /* UnusedTrainingScheduleCreator.swift */; };
+		40429BB8274ACA8600DAD070 /* WorkoutScheduleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40429BB7274ACA8500DAD070 /* WorkoutScheduleBuilder.swift */; };
+		40429BBC274AE3E600DAD070 /* MatchResultStatus.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40429BBB274AE3E600DAD070 /* MatchResultStatus.swift.swift */; };
+		40429BBE274AE5A200DAD070 /* DayOfWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40429BBD274AE5A200DAD070 /* DayOfWeek.swift */; };
+		40429BC0274AE5D600DAD070 /* TrainingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40429BBF274AE5D600DAD070 /* TrainingType.swift */; };
+		40429BC2274AF10800DAD070 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40429BC1274AF10800DAD070 /* Workout.swift */; };
+		40429BC4274AF12300DAD070 /* DayWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40429BC3274AF12300DAD070 /* DayWorkout.swift */; };
 		404C028B26EFDE1800CFAF3F /* ShadowCorneredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C028A26EFDE1800CFAF3F /* ShadowCorneredView.swift */; };
 		4055FCDC26E816D900E5BB79 /* CellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4055FCDB26E816D900E5BB79 /* CellConfigurator.swift */; };
 		4056F2322729D61B00DD75CA /* SportEventFirebaseSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4056F2312729D61B00DD75CA /* SportEventFirebaseSaver.swift */; };
@@ -85,7 +89,7 @@
 		40713A7D27204A51005F1265 /* EditEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40713A7C27204A51005F1265 /* EditEventViewModel.swift */; };
 		40713A8527204BC4005F1265 /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40713A8427204BC4005F1265 /* ContactsViewModel.swift */; };
 		4075F1C627220E1500BEA63A /* EditEventBoldTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4075F1C527220E1500BEA63A /* EditEventBoldTextCell.swift */; };
-		40772C08273B2B74006CD549 /* TrainingSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40772C07273B2B74006CD549 /* TrainingSchedule.swift */; };
+		40772C08273B2B74006CD549 /* WorkoutSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40772C07273B2B74006CD549 /* WorkoutSchedule.swift */; };
 		40772C0A273B3DC9006CD549 /* ExistingTrainingScheduleFirebaseSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40772C09273B3DC9006CD549 /* ExistingTrainingScheduleFirebaseSaver.swift */; };
 		40772C0C273B3E98006CD549 /* NewTrainingScheduleFirebaseSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40772C0B273B3E98006CD549 /* NewTrainingScheduleFirebaseSaver.swift */; };
 		40781507272CA3D3006D3AD2 /* ExistingSportTeamFirebaseSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40781506272CA3D3006D3AD2 /* ExistingSportTeamFirebaseSaver.swift */; };
@@ -259,10 +263,14 @@
 		40369EC526E6E33C0083E675 /* ActionsTableCell + CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActionsTableCell + CollectionView.swift"; sourceTree = "<group>"; };
 		40429BAA274A81AC00DAD070 /* TitleCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCellModel.swift; sourceTree = "<group>"; };
 		40429BAC274A826800DAD070 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
-		40429BB2274AC0D400DAD070 /* TrainingScheduleListLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingScheduleListLoader.swift; sourceTree = "<group>"; };
-		40429BB5274AC94F00DAD070 /* TrainingScheduleCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingScheduleCreator.swift; sourceTree = "<group>"; };
-		40429BB7274ACA8500DAD070 /* TrainingScheduleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingScheduleBuilder.swift; sourceTree = "<group>"; };
-		40429BB9274ACC8800DAD070 /* TrainingScheduleDatabaseFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingScheduleDatabaseFlow.swift; sourceTree = "<group>"; };
+		40429BB2274AC0D400DAD070 /* WorkoutScheduleListLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutScheduleListLoader.swift; sourceTree = "<group>"; };
+		40429BB5274AC94F00DAD070 /* UnusedTrainingScheduleCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnusedTrainingScheduleCreator.swift; sourceTree = "<group>"; };
+		40429BB7274ACA8500DAD070 /* WorkoutScheduleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutScheduleBuilder.swift; sourceTree = "<group>"; };
+		40429BBB274AE3E600DAD070 /* MatchResultStatus.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResultStatus.swift.swift; sourceTree = "<group>"; };
+		40429BBD274AE5A200DAD070 /* DayOfWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOfWeek.swift; sourceTree = "<group>"; };
+		40429BBF274AE5D600DAD070 /* TrainingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingType.swift; sourceTree = "<group>"; };
+		40429BC1274AF10800DAD070 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
+		40429BC3274AF12300DAD070 /* DayWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWorkout.swift; sourceTree = "<group>"; };
 		404C028A26EFDE1800CFAF3F /* ShadowCorneredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowCorneredView.swift; sourceTree = "<group>"; };
 		4055FCDB26E816D900E5BB79 /* CellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellConfigurator.swift; sourceTree = "<group>"; };
 		4056F2312729D61B00DD75CA /* SportEventFirebaseSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportEventFirebaseSaver.swift; sourceTree = "<group>"; };
@@ -302,7 +310,7 @@
 		40713A7C27204A51005F1265 /* EditEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewModel.swift; sourceTree = "<group>"; };
 		40713A8427204BC4005F1265 /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
 		4075F1C527220E1500BEA63A /* EditEventBoldTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventBoldTextCell.swift; sourceTree = "<group>"; };
-		40772C07273B2B74006CD549 /* TrainingSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingSchedule.swift; sourceTree = "<group>"; };
+		40772C07273B2B74006CD549 /* WorkoutSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSchedule.swift; sourceTree = "<group>"; };
 		40772C09273B3DC9006CD549 /* ExistingTrainingScheduleFirebaseSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingTrainingScheduleFirebaseSaver.swift; sourceTree = "<group>"; };
 		40772C0B273B3E98006CD549 /* NewTrainingScheduleFirebaseSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTrainingScheduleFirebaseSaver.swift; sourceTree = "<group>"; };
 		40781506272CA3D3006D3AD2 /* ExistingSportTeamFirebaseSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingSportTeamFirebaseSaver.swift; sourceTree = "<group>"; };
@@ -604,11 +612,14 @@
 		40429BB4274AC8D300DAD070 /* TrainingSchedule */ = {
 			isa = PBXGroup;
 			children = (
-				40772C07273B2B74006CD549 /* TrainingSchedule.swift */,
-				40429BB5274AC94F00DAD070 /* TrainingScheduleCreator.swift */,
-				40429BB7274ACA8500DAD070 /* TrainingScheduleBuilder.swift */,
-				40429BB2274AC0D400DAD070 /* TrainingScheduleListLoader.swift */,
-				40429BB9274ACC8800DAD070 /* TrainingScheduleDatabaseFlow.swift */,
+				40772C07273B2B74006CD549 /* WorkoutSchedule.swift */,
+				40429BB5274AC94F00DAD070 /* UnusedTrainingScheduleCreator.swift */,
+				40429BB7274ACA8500DAD070 /* WorkoutScheduleBuilder.swift */,
+				40429BB2274AC0D400DAD070 /* WorkoutScheduleListLoader.swift */,
+				40429BBD274AE5A200DAD070 /* DayOfWeek.swift */,
+				40429BBF274AE5D600DAD070 /* TrainingType.swift */,
+				40429BC1274AF10800DAD070 /* Workout.swift */,
+				40429BC3274AF12300DAD070 /* DayWorkout.swift */,
 			);
 			path = TrainingSchedule;
 			sourceTree = "<group>";
@@ -1125,6 +1136,7 @@
 				40C9E9152746A608009B0417 /* MatchResultBuilder.swift */,
 				40C9E9192746A804009B0417 /* MatchResultDatabaseFlowData.swift */,
 				40C9E91F2746BB5E009B0417 /* MatchResultStorageFlowData.swift */,
+				40429BBB274AE3E600DAD070 /* MatchResultStatus.swift.swift */,
 			);
 			path = MatchResult;
 			sourceTree = "<group>";
@@ -1377,7 +1389,7 @@
 				4056F2322729D61B00DD75CA /* SportEventFirebaseSaver.swift in Sources */,
 				406E3147272B08F900C2B30F /* TeamListViewController.swift in Sources */,
 				406CE68A2723EDE6002FDDB6 /* EditEventPhotoCollectionViewLayout.swift in Sources */,
-				40429BB3274AC0D400DAD070 /* TrainingScheduleListLoader.swift in Sources */,
+				40429BB3274AC0D400DAD070 /* WorkoutScheduleListLoader.swift in Sources */,
 				406AF0E826F7BDF9005C9767 /* QuickActionsCollectionView.swift in Sources */,
 				40C9E91E2746AB36009B0417 /* FirebaseObjectFactory.swift in Sources */,
 				40B208D4274507EA009B769C /* SportUserStorageFlowData.swift in Sources */,
@@ -1386,6 +1398,7 @@
 				40369EAB26E6B3FE0083E675 /* HomeViewModel.swift in Sources */,
 				4032D7062723536D00151A4D /* EditEventSaveCell.swift in Sources */,
 				400B8F57272B5DAE008A8AFE /* TeamDetailViewController.swift in Sources */,
+				40429BBC274AE3E600DAD070 /* MatchResultStatus.swift.swift in Sources */,
 				402EDA6926E43060004A2992 /* SportSquad.swift in Sources */,
 				40C9E9202746BB5E009B0417 /* MatchResultStorageFlowData.swift in Sources */,
 				40D010912729EA3100283D99 /* HomeTableViewHeader.swift in Sources */,
@@ -1403,6 +1416,7 @@
 				4035DAB927309A0A00AAFDA8 /* SquadHeaderView.swift in Sources */,
 				40A1139127470474001BDD99 /* EventLikesInfo.swift in Sources */,
 				40C3BC75272802C800BBA67F /* EditEventDateCell.swift in Sources */,
+				40429BBE274AE5A200DAD070 /* DayOfWeek.swift in Sources */,
 				40E70B9A27486E4A0074CD2D /* KeyboardAccessoryDoneView.swift in Sources */,
 				4094E6DE272B25A4004ED01B /* TeamTableCell.swift in Sources */,
 				409AFDB72747ADD300AAD62E /* EventDetailPhotoCellModel.swift in Sources */,
@@ -1414,7 +1428,7 @@
 				4093D9A9271780E000DCF35D /* ApplicationUser.swift in Sources */,
 				40C106CC26E41F2800B619A1 /* ContactsViewController.swift in Sources */,
 				40E7203E26E400FE00A64C60 /* AppDelegate.swift in Sources */,
-				40429BB6274AC94F00DAD070 /* TrainingScheduleCreator.swift in Sources */,
+				40429BB6274AC94F00DAD070 /* UnusedTrainingScheduleCreator.swift in Sources */,
 				4065C96026E854C00084E5F2 /* CorneredView.swift in Sources */,
 				40B82EC7273835D100BED0A1 /* ShareButton.swift in Sources */,
 				400B8F56272B5DAE008A8AFE /* TeamDetailViewModel.swift in Sources */,
@@ -1458,18 +1472,18 @@
 				407ACEBA2736A907005D522C /* SportEventCreator.swift.swift in Sources */,
 				409C69E1271CDB0D005434A4 /* OtherProtocols.swift in Sources */,
 				406E314B272B0A2B00C2B30F /* TeamListViewModel.swift in Sources */,
+				40429BC0274AE5D600DAD070 /* TrainingType.swift in Sources */,
 				4075F1C627220E1500BEA63A /* EditEventBoldTextCell.swift in Sources */,
 				401C9B19270D07FF00F91DC6 /* ErrorDescriptionViewController.swift in Sources */,
 				404C028B26EFDE1800CFAF3F /* ShadowCorneredView.swift in Sources */,
 				40F4EBDD273DCAA2003DA1D3 /* EventDetailHeaderView.swift in Sources */,
 				40F4EBE3273DD212003DA1D3 /* ConfigurableLabel.swift in Sources */,
-				40429BB8274ACA8600DAD070 /* TrainingScheduleBuilder.swift in Sources */,
+				40429BB8274ACA8600DAD070 /* WorkoutScheduleBuilder.swift in Sources */,
 				40B6C80F272DB2A600B94A9A /* HockeyPlayerRole.swift.swift in Sources */,
 				406C306F26F909690040F0A7 /* PhotoCollectionView.swift in Sources */,
 				40A1139327471465001BDD99 /* EventLikeInfoBuilder.swift in Sources */,
 				40B947C226EE909100D9E8DA /* TableViewCellConfiguration.swift in Sources */,
 				40E85C5827403C4900AB37A7 /* DateCellModel.swift in Sources */,
-				40429BBA274ACC8800DAD070 /* TrainingScheduleDatabaseFlow.swift in Sources */,
 				409560C926F93F6D00BCA664 /* QuickActions.swift in Sources */,
 				40A1368727358D33005C0007 /* SettingsViewController.swift in Sources */,
 				40A6321B272DE74B0017F6FE /* UniViewModel.swift in Sources */,
@@ -1526,6 +1540,7 @@
 				400B8F4B272B4EAC008A8AFE /* SportTeamFirebaseRemover.swift in Sources */,
 				40F4EBDA273DC9D3003DA1D3 /* EventDetailHeaderCellModel.swift in Sources */,
 				40A6321D272DF1F30017F6FE /* MapTableCell.swift.swift in Sources */,
+				40429BC2274AF10800DAD070 /* Workout.swift in Sources */,
 				40B82ECD2738B65C00BED0A1 /* SaveTableCell.swift in Sources */,
 				40781511272CB1C6006D3AD2 /* SquadDetailViewModel.swift in Sources */,
 				40E85C5A27403E6E00AB37A7 /* SaveCellModel.swift in Sources */,
@@ -1535,13 +1550,14 @@
 				40940BEE26E412F40098EF89 /* AuthSection.swift in Sources */,
 				40ADABED273C47F4008AAC90 /* TrainingCellModel.swift in Sources */,
 				4011D8932739B91D00D092B9 /* SportNewsFirebaseRemover.swift in Sources */,
+				40429BC4274AF12300DAD070 /* DayWorkout.swift in Sources */,
 				40A11398274714EC001BDD99 /* LikeManager.swift in Sources */,
 				40ADABE9273C4517008AAC90 /* SquadHeaderCellModel.swift in Sources */,
 				40F4EBE5273DD7FE003DA1D3 /* EventDetailUserCellModel.swift in Sources */,
 				401C9B21270D139800F91DC6 /* MainViewControllerCoordinator.swift in Sources */,
 				407A621B2737D5C400558998 /* MatchResultEditCellModel.swift in Sources */,
 				40E7204026E400FE00A64C60 /* SceneDelegate.swift in Sources */,
-				40772C08273B2B74006CD549 /* TrainingSchedule.swift in Sources */,
+				40772C08273B2B74006CD549 /* WorkoutSchedule.swift in Sources */,
 				40099B112735B1AF0097B1B7 /* SettingModel.swift in Sources */,
 				40B82ED52738BCFB00BED0A1 /* MatchResultFirebaseSaver.swift in Sources */,
 				40369EC626E6E33C0083E675 /* ActionsTableCell + CollectionView.swift in Sources */,

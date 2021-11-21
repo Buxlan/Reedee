@@ -7,23 +7,6 @@
 
 import UIKit
 
-enum MatchStatus: Int, CustomStringConvertible {
-    case planned
-    case inProgress
-    case finished
-    
-    var description: String {
-        switch self {
-        case .planned:
-            return L10n.MatchStatus.plannedTitle
-        case .inProgress:
-            return L10n.MatchStatus.inProgressTitle
-        case .finished:
-            return L10n.MatchStatus.finishedTitle
-        }
-    }
-}
-
 struct MatchResult: MatchResultDatabaseFlowData {
     var likesInfo: EventLikesInfo
     var viewsInfo: EventViewsInfo

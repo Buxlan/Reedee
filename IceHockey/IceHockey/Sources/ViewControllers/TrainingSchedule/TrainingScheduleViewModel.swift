@@ -12,15 +12,15 @@ class TrainingScheduleViewModel: NSObject {
     // MARK: - Properties
     struct SectionData {
         let squad: SportSquad
-        let schedule: TrainingSchedule
+        let schedule: WorkoutSchedule
     }
         
-    var team: SportTeam?
+    var team: SportTeam = SportTeam.current
     var sections: [SectionData] = []
     var isLoading: Bool {
         return loader.isLoading
     }
-    private var loader = TrainingScheduleListLoader()
+    private var loader = WorkoutScheduleListLoader()
     
     var shouldRefreshRelay = {}
     
@@ -36,8 +36,8 @@ class TrainingScheduleViewModel: NSObject {
         sections[index].squad.displayName
     }
     
-    func item(at indexPath: IndexPath) -> DailyTraining {
-        sections[indexPath.section].schedule.trainings[indexPath.row]
+    func item(at indexPath: IndexPath) -> DayWorkout {
+        sections[indexPath.section].schedule.workouts[indexPath.row]
     }
     
     private func loadItems() {
@@ -80,6 +80,24 @@ class TrainingScheduleViewModel: NSObject {
     }
     
     func update() {
+        
+        let completionHandler: ([WorkoutSchedule]) -> Void = { schedules in
+            guard schedules.count > 0 else {
+                return
+            }
+            self.sections.removeAll()
+            schedules.forEach { schedule in
+                guard let squad = self.getSquad(by: schedule.uid) else {
+                    return
+                }
+                let section = SectionData(squad: squad, schedule: schedule)
+                self.sections.append(section)
+            }
+            self.shouldRefreshRelay()
+            
+        }
+        loader.load(completionHandler: completionHandler)
+        
 //        guard loadings.count == 0,
 //            let teamID = Bundle.main.object(forInfoDictionaryKey: "teamID") as? String else {
 //            return
@@ -93,6 +111,14 @@ class TrainingScheduleViewModel: NSObject {
 //        }
 //        loadings.append(teamID)
 //        FirebaseObjectLoader<SportTeam>().load(uid: teamID, completionHandler: handler)
+    }
+    
+    private func getSquad(by uid: String) -> SportSquad? {
+        guard let index = team.squadIDs.firstIndex(where: { $0 == uid }) else {
+            return nil
+        }
+        let squad = SportSquad(uid: uid, displayName: "12313", headCoach: "4341")
+        return squad
     }
     
 }

@@ -11,7 +11,7 @@ struct NewTrainingScheduleFirebaseSaver: TrainingScheduleFirebaseSaver {
     
     // MARK: - Properties
     
-    typealias DataType = TrainingSchedule
+    typealias DataType = WorkoutSchedule
     internal let object: DataType
     
     internal var eventsDatabaseReference: DatabaseReference {

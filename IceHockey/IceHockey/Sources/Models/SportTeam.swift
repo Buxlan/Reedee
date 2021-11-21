@@ -47,7 +47,7 @@ struct SportTeam: Codable, FirebaseObject {
                                    smallImageID: "",
                                    largeImageID: "",
                                    copyright: "Copyright © 2018 kidshockey.spb.ru",
-                                   squadIDs: [],
+                                   squadIDs: ["-Mmyxk7Vkh1q7_vQTfUv1", "-Mmyxk7Vkh1q7_vQTfUv2"],
                                    location: nil)
     
     var isNew: Bool {

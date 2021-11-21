@@ -81,7 +81,7 @@ class SportEventListLoader {
                 guard let handler = self.loadingHandlers[key] else {
                     return
                 }
-                let creator = SportEventCreatorImpl()
+                let creator = SportEventCreator()
                 let event = creator.create(snapshot: child, with: handler)
                 if let event = event {
                     self.lastValue = event.order
