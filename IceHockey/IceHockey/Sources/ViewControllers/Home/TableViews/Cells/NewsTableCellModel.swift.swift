@@ -9,7 +9,7 @@ import UIKit
 
 struct NewsTableCellModel: TableCellModel {
     
-    var uid: String
+    var objectIdentifier: String
     var title: String
     var description: String
     var image: UIImage?
@@ -33,7 +33,7 @@ struct NewsTableCellModel: TableCellModel {
     var shareAction = {}
     
     init(data: SportNews) {
-        uid = data.uid
+        objectIdentifier = data.objectIdentifier
         title = data.title
         description = data.text
         image = data.mainImage

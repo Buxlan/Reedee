@@ -11,16 +11,16 @@ struct SportSquad: FirebaseObject, Codable {
         
     // MARK: - Properties
     
-    var uid: String
+    var objectIdentifier: String
     var displayName: String
     var headCoach: String
     
     // MARK: - Lifecircle
     
-    init(uid: String,
+    init(objectIdentifier: String,
          displayName: String,
          headCoach: String) {
-        self.uid = uid
+        self.objectIdentifier = objectIdentifier
         self.displayName = displayName
         self.headCoach = headCoach
     }
@@ -56,7 +56,7 @@ struct SportSquad: FirebaseObject, Codable {
             return nil
         }
         
-        self.uid = key
+        self.objectIdentifier = key
         self.headCoach = headCoach
         self.displayName = displayName        
     }

@@ -27,7 +27,7 @@ struct SportNewsFirebaseRemover: FirebaseObjectRemover {
     }
     
     internal var objectDatabaseReference: DatabaseReference {
-        objectsRootDatabaseReference.child(object.uid)
+        objectsRootDatabaseReference.child(object.objectIdentifier)
     }
     
     // MARK: Lifecircle
@@ -39,7 +39,7 @@ struct SportNewsFirebaseRemover: FirebaseObjectRemover {
         guard let object = self.object as? DataType else {
             throw AppError.dataMismatch
         }
-        imagesStorageReference.child(object.uid).listAll { result, error in
+        imagesStorageReference.child(object.objectIdentifier).listAll { result, error in
             if let error = error {
                 print(error)
                 return

@@ -7,7 +7,7 @@
 
 import Firebase
 
-struct NewSportTeamFirebaseSaver: SportTeamFirebaseSaver {
+struct NewSportTeamFirebaseSaver {
     
     // MARK: - Properties
     
@@ -32,7 +32,7 @@ struct NewSportTeamFirebaseSaver: SportTeamFirebaseSaver {
         if object.isNew {
             ref = eventsDatabaseReference.childByAutoId()
         } else {
-            ref = eventsDatabaseReference.child(object.uid)
+            ref = eventsDatabaseReference.child(object.objectIdentifier)
         }
         return ref
     }
@@ -47,7 +47,7 @@ struct NewSportTeamFirebaseSaver: SportTeamFirebaseSaver {
     
     func save() throws {
         
-        let dataDict = object.prepareDataForSaving()
+        let dataDict = object.encode()
         
         eventReference.setValue(dataDict) { (error, ref) in
             if let error = error {

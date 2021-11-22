@@ -1,19 +1,19 @@
 //
-//  SportNewsBuilder.swift.swift
+//  MatchResultBuilder.swift
 //  IceHockey
 //
 //  Created by  Buxlan on 11/18/21.
 //
 
-class SportNewsBuilder {
+class MatchResultBuilder {
     
     // MARK: - Properties
     
     private let key: String
     private let dict: [String: Any]
     
-    private var databasePart: SportNewsDatabaseFlowData
-    private var storagePart: SportNewsStorageFlowData
+    private var databasePart: MatchResultDatabaseFlowData
+    private var storagePart: MatchResultStorageFlowData
     private var author: SportUser?
     private var likesInfo = EventLikesInfo()
     private var viewsInfo = EventViewsInfo()
@@ -25,8 +25,8 @@ class SportNewsBuilder {
     init(key: String, dict: [String: Any]) {
         self.key = key
         self.dict = dict
-        databasePart = DefaultSportNewsDatabaseFlowData()
-        storagePart = DefaultSportNewsStorageFlowData()
+        databasePart = DefaultMatchResultDatabaseFlowData()
+        storagePart = DefaultMatchResultStorageFlowData()
     }
     
     // MARK: - Helper Methods
@@ -43,17 +43,16 @@ class SportNewsBuilder {
     }
     
     private func buildDatabasePart(completionHandler: @escaping () -> Void) {
-        self.databasePart = SportNewsDatabaseFlowDataImpl(key: key, dict: dict)
+        self.databasePart = MatchResultDatabaseFlowDataImpl(key: key, dict: dict)
         completionHandler()
     }
     
     private func buildStoragePart() {
-        guard !databasePart.uid.isEmpty else {
+        guard !databasePart.objectIdentifier.isEmpty else {
                   self.completionHandler(nil)
                   return
               }
-        storagePart = SportNewsStorageFlowDataImpl(eventID: databasePart.uid,
-                                                   imageIDs: databasePart.imageIDs)
+        storagePart = MatchResultStorageFlowDataImpl()
         storagePart.load {
             self.completionHandler(self.getResult())
         }
@@ -79,12 +78,12 @@ class SportNewsBuilder {
         }
     }
     
-    func getResult() -> SportNews? {
-        let object = SportNews(databaseFlowObject: databasePart,
-                               storageFlowObject: storagePart,
-                               author: author,
-                               likesInfo: likesInfo,
-                               viewsInfo: viewsInfo)
+    func getResult() -> MatchResult? {
+        let object = MatchResult(databaseFlowObject: databasePart,
+                                 storageFlowObject: storagePart,
+                                 author: author,
+                                 likesInfo: likesInfo,
+                                 viewsInfo: viewsInfo)
         return object
     }
     

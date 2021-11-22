@@ -7,36 +7,29 @@
 
 import UIKit
 
-struct ImageData: Hashable {
-    var imageID: String = ""
-    var image: UIImage?
-    var isNew: Bool = false
-    var isRemoved: Bool = false
-}
-
-struct ImageList {
-    
-    var data: [ImageData] = []
-    
-    subscript(index: Int) -> ImageData {
-        assert(index > 0 && index < data.count)
-        return data[index]
-    }
-    
-    mutating func append(_ newElement: ImageData) {
-        data.append(newElement)
-    }
-    
-    mutating func remove(at index: Int) {
-        assert(index > 0 && index < data.count)
-        data.remove(at: index)
-    }
-    
-    mutating func firstIndex(where predicate: (ImageData) throws -> Bool) throws -> Int? {
-        try data.firstIndex(where: predicate)
-    }
-    
-}
+//struct ImageList {
+//    
+//    var data: [ImageData] = []
+//    
+//    subscript(index: Int) -> ImageData {
+//        assert(index > 0 && index < data.count)
+//        return data[index]
+//    }
+//    
+//    mutating func append(_ newElement: ImageData) {
+//        data.append(newElement)
+//    }
+//    
+//    mutating func remove(at index: Int) {
+//        assert(index > 0 && index < data.count)
+//        data.remove(at: index)
+//    }
+//    
+//    mutating func firstIndex(where predicate: (ImageData) throws -> Bool) throws -> Int? {
+//        try data.firstIndex(where: predicate)
+//    }
+//    
+//}
 
 class EditEventViewModel {
     
@@ -81,7 +74,7 @@ extension EditEventViewModel {
         if imageList.count > 0 {
             return
         }
-        let eventID = event.uid
+        let eventID = event.objectIdentifier
         guard !eventID.isEmpty else {
             return
         }

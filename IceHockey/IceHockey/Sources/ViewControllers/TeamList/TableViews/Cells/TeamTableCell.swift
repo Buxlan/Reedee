@@ -61,14 +61,14 @@ extension TeamTableCell: ConfigurableCell {
         
         self.textLabel?.text = data.displayName
         
-        let detailText = L10n.Squads.squadsCountTitle + "\(data.squadIDs.count)"
+        let detailText = L10n.Squads.squadsCountTitle + "\(data.squadsIdentifiers.count)"
         self.detailTextLabel?.text = detailText
         
         let imageID = data.smallImageID
         if imageID.isEmpty {
             self.imageView?.image = noImage
         } else {
-            let path = "events/\(data.uid)"
+            let path = "events/\(data.objectIdentifier)"
             ImagesManager.shared.getImage(withID: imageID, path: path) { [weak self] (image) in
                 guard let self = self else { return }
                 if let image = image {

@@ -61,7 +61,7 @@ class HomeViewModel: NSObject {
         }
         let eventLoadedCompletionHandler: (SportEvent) -> Void = { event in
             assert(self.sections.count > 0)
-            if let index = self.sections[0].events.firstIndex(where: { $0.uid == event.uid }) {
+            if let index = self.sections[0].events.firstIndex(where: { $0.objectIdentifier == event.objectIdentifier }) {
                 self.sections[0].events[index] = event
                 self.shouldRefreshRelay()
             }
@@ -77,7 +77,7 @@ class HomeViewModel: NSObject {
                 return
             }
             events.forEach { event in
-                if let index = self.sections[0].events.firstIndex(where: { $0.uid == event.uid }) {
+                if let index = self.sections[0].events.firstIndex(where: { $0.objectIdentifier == event.objectIdentifier }) {
                     self.sections[0].events[index] = event
                 } else {
                     self.sections[0].events.append(event)
@@ -87,7 +87,7 @@ class HomeViewModel: NSObject {
         }
         let eventLoadedCompletionHandler: (SportEvent) -> Void = { event in
             assert(self.sections.count > 0)
-            if let index = self.sections[0].events.firstIndex(where: { $0.uid == event.uid }) {
+            if let index = self.sections[0].events.firstIndex(where: { $0.objectIdentifier == event.objectIdentifier }) {
                 self.sections[0].events[index] = event
                 self.shouldRefreshRelay()
             }

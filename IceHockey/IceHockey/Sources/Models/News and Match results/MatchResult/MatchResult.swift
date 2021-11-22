@@ -11,9 +11,9 @@ struct MatchResult: MatchResultDatabaseFlowData {
     var likesInfo: EventLikesInfo
     var viewsInfo: EventViewsInfo
     
-    var uid: String {
-        get { databaseFlowObject.uid }
-        set { databaseFlowObject.uid = newValue }
+    var objectIdentifier: String {
+        get { databaseFlowObject.objectIdentifier }
+        set { databaseFlowObject.objectIdentifier = newValue }
     }
     var authorID: String {
         get { databaseFlowObject.authorID }

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol FirebaseObject {
-    var uid: String { get set }    
+    var objectIdentifier: String { get set }    
 }

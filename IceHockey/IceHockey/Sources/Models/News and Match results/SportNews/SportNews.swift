@@ -11,12 +11,12 @@ struct SportNews: SportNewsDatabaseFlowData {
     var viewsInfo: EventViewsInfo
     var likesInfo: EventLikesInfo
         
-    var uid: String {
+    var objectIdentifier: String {
         get {
-            databaseFlowObject.uid
+            databaseFlowObject.objectIdentifier
         }
         set {
-            databaseFlowObject.uid = newValue
+            databaseFlowObject.objectIdentifier = newValue
         }
     }
     
@@ -129,7 +129,7 @@ struct SportNews: SportNewsDatabaseFlowData {
 extension SportNews {
     
     var isNew: Bool {
-        return databaseFlowObject.uid.isEmpty
+        return databaseFlowObject.objectIdentifier.isEmpty
     }
     
     var mainImage: UIImage? {

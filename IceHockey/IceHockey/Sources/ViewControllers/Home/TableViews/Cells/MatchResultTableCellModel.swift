@@ -11,7 +11,7 @@ struct MatchResultTableCellModel: TableCellModel {
     
     var font: UIFont = .regularFont15
     
-    var uid: String
+    var objectIdentifier: String
         
     var author: String?
     var authorImage: UIImage?
@@ -59,7 +59,7 @@ struct MatchResultTableCellModel: TableCellModel {
         
         type = data.type.description
         title = data.title
-        uid = data.uid
+        objectIdentifier = data.objectIdentifier
         
         typeBackgroundColor = data.type.backgroundColor
         typeTextColor = data.type.textColor

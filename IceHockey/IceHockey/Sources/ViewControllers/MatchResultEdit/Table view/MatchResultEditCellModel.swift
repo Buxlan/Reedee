@@ -11,7 +11,7 @@ struct MatchResultEditCellModel: TableCellModel {
     
     // MARK: - Properties
     
-    var uid: String
+    var objectIdentifier: String
     var title: String
     var homeTeam: String
     var awayTeam: String
@@ -62,7 +62,7 @@ struct MatchResultEditCellModel: TableCellModel {
         
         type = data.type
         title = data.title
-        uid = data.uid
+        objectIdentifier = data.objectIdentifier
         
     }
 }

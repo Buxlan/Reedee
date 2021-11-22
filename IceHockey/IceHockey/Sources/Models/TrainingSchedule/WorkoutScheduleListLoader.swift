@@ -61,7 +61,7 @@ class WorkoutScheduleListLoader {
                 self.lastValue = child.key
                 let object = self.factory.makeWorkoutSchedule(from: child)
                 if let object = object {
-                    self.lastValue = object.uid
+                    self.lastValue = object.objectIdentifier
                     objects.append(object)
                 }
             }

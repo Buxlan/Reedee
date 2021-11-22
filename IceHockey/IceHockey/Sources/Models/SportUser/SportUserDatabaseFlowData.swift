@@ -12,26 +12,26 @@ protocol SportUserDatabaseFlowData: SportUserObject {
 
 struct SportUserDatabaseFlowDataImpl: SportUserDatabaseFlowData {
     
-    var uid: String
+    var objectIdentifier: String
     var imageID: String
     var displayName: String
     
-    init(uid: String,
+    init(objectIdentifier: String,
          displayName: String,
          imageID: String) {
-        self.uid = uid
+        self.objectIdentifier = objectIdentifier
         self.imageID = imageID
         self.displayName = displayName
     }
     
     internal init() {
-        self.uid = ""
+        self.objectIdentifier = ""
         self.imageID = ""
         self.displayName = ""
     }
     
     init(key: String, dict: [String: Any]) {                
-        self.uid = key
+        self.objectIdentifier = key
         self.imageID = dict["image"] as? String ?? ""
         self.displayName = dict["displayName"] as? String ?? ""
     }

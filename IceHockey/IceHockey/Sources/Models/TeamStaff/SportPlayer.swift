@@ -8,7 +8,7 @@ import Firebase
 
 struct SportPlayer: FirebaseObject, Codable {
     
-    var uid: String
+    var objectIdentifier: String
     var displayName: String
     var smallImage: String = ""
     var largeImage: String = ""
@@ -18,9 +18,9 @@ struct SportPlayer: FirebaseObject, Codable {
     // MARK: - Lifecircle
     
     init?(snapshot: DataSnapshot) {
-        let uid = snapshot.key
+        let objectIdentifier = snapshot.key
         guard let dict = snapshot.value as? [String: Any] else { return nil }
-        self.init(key: uid, dict: dict)
+        self.init(key: objectIdentifier, dict: dict)
     }
     
     init?(key: String, dict: [String: Any]) {
@@ -29,7 +29,7 @@ struct SportPlayer: FirebaseObject, Codable {
         let type = (dict["type"] as? Int) ?? 0
         let position = HockeyPlayerRole(rawValue: type)
                 
-        self.uid = key
+        self.objectIdentifier = key
         self.displayName = displayName
         self.number = number
         self.position = position

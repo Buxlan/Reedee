@@ -26,7 +26,7 @@ protocol SportEvent: FirebaseObject {
 extension SportEvent {
     
     var isNew: Bool {
-        return uid.isEmpty
+        return objectIdentifier.isEmpty
     }
     
 }

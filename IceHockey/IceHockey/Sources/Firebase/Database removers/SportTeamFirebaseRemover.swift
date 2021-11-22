@@ -33,7 +33,7 @@ struct SportTeamFirebaseRemover: FirebaseObjectRemover {
     }
     
     internal var objectDatabaseReference: DatabaseReference {
-        objectsRootDatabaseReference.child(object.uid)
+        objectsRootDatabaseReference.child(object.objectIdentifier)
     }
     
     // MARK: Lifecircle

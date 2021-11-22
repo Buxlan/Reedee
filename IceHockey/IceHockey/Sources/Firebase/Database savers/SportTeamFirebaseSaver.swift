@@ -7,7 +7,7 @@
 
 import Firebase
 
-struct ExistingSportTeamFirebaseSaver: SportTeamFirebaseSaver {
+struct SportTeamFirebaseSaver {
     
     // MARK: - Properties
     typealias DataType = SportTeam
@@ -31,7 +31,7 @@ struct ExistingSportTeamFirebaseSaver: SportTeamFirebaseSaver {
         if object.isNew {
             ref = objectsDatabaseReference.childByAutoId()
         } else {
-            ref = objectsDatabaseReference.child(object.uid)
+            ref = objectsDatabaseReference.child(object.objectIdentifier)
         }
         return ref
     }
@@ -50,7 +50,7 @@ struct ExistingSportTeamFirebaseSaver: SportTeamFirebaseSaver {
             && oldImageID != newImageID {
             // need to remove image from server
             let imageName = ImagesManager.shared.getImageName(withID: oldImageID)
-            let imageStorageRef = imagesStorageReference.child(object.uid).child(imageName)
+            let imageStorageRef = imagesStorageReference.child(object.objectIdentifier).child(imageName)
             imageStorageRef.delete { (error) in
                 if let error = error {
                     print("An error occupied while deleting an image: \(error)")
@@ -72,26 +72,26 @@ struct ExistingSportTeamFirebaseSaver: SportTeamFirebaseSaver {
     
     func save() throws {
         
-        let dataDict = object.prepareDataForSaving()
-        
-        // get old data
-        // compare and delete old images if needed
-        objectDatabaseReference.getData { error, snapshot in
-            if let error = error {
-                print(error)
-                return
-            }
-            guard let oldObject = DataType(snapshot: snapshot) else {
-                return
-            }
-            performImageOperation(oldImageID: oldObject.smallImageID, newImageID: object.smallImageID)
-            performImageOperation(oldImageID: oldObject.largeImageID, newImageID: object.largeImageID)
-        }
-        objectsDatabaseReference.setValue(dataDict) { (error, ref) in
-            if let error = error {
-                print(error)
-                return
-            }         
-        }
+//        let dataDict = object.encode()
+//
+//        // get old data
+//        // compare and delete old images if needed
+//        objectDatabaseReference.getData { error, snapshot in
+//            if let error = error {
+//                print(error)
+//                return
+//            }
+//            guard let oldObject = DataType(snapshot: snapshot) else {
+//                return
+//            }
+//            performImageOperation(oldImageID: oldObject.smallImageID, newImageID: object.smallImageID)
+//            performImageOperation(oldImageID: oldObject.largeImageID, newImageID: object.largeImageID)
+//        }
+//        objectsDatabaseReference.setValue(dataDict) { (error, ref) in
+//            if let error = error {
+//                print(error)
+//                return
+//            }         
+//        }
     }
 }

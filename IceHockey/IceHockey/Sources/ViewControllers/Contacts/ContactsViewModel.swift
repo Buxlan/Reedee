@@ -44,7 +44,7 @@ class ContactsViewModel: NSObject {
             let infoSection = OldTableSection(title: L10n.Team.aboutClubTitle, items: rows)
             sections.append(infoSection)
             // prepare section 1
-            let ids = filter.squadIDs
+            let ids = filter.squadsIdentifiers
             // get objects
             objectsDatabaseReference.getData { (error, snapshot) in
                 if let error = error {
@@ -100,7 +100,7 @@ class ContactsViewModel: NSObject {
         if indexPath.section == 0 { return }
         let row = sections[indexPath.section].items[indexPath.row]
         do {
-            try row.data.delete()
+//            try row.data.delete()
         } catch AppError.dataMismatch {
             print("Data mismatch")
         } catch {

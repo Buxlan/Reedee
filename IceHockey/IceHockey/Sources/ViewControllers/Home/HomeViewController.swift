@@ -233,7 +233,7 @@ extension HomeViewController {
         }
         var cellModel = NewsTableCellModel(data: event)
         cellModel.likeAction = { (state: Bool) in
-            LikeManager().setLike(for: event.uid, newState: state)
+            LikeManager().setLike(for: event.objectIdentifier, newState: state)
         }
         let config = NewsViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config)
@@ -262,7 +262,7 @@ extension HomeViewController {
         }
         var cellModel = MatchResultTableCellModel(data: event)
         cellModel.likeAction = { (state: Bool) in
-            LikeManager().setLike(for: event.uid, newState: state)
+            LikeManager().setLike(for: event.objectIdentifier, newState: state)
         }
         let config = MatchResultViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config)

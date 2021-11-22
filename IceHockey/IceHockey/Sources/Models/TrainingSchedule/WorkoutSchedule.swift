@@ -10,7 +10,7 @@ import UIKit
 
 struct WorkoutSchedule: Codable {
     
-    var uid: String = ""
+    var objectIdentifier: String = ""
     var workouts: [DayWorkout] = []    
     
     init?(key: String, dict: [String: Any]) {
@@ -20,7 +20,7 @@ struct WorkoutSchedule: Codable {
                 trainings.append(dailyTraining)
             }
         }
-        self.uid = key
+        self.objectIdentifier = key
         self.workouts = trainings
     }
     
@@ -36,7 +36,7 @@ struct WorkoutSchedule: Codable {
                 }
             }
         }
-        self.uid = key
+        self.objectIdentifier = key
         self.workouts = trainings
     }
     
@@ -88,7 +88,7 @@ extension WorkoutSchedule: FirebaseObject {
     }
         
     var isNew: Bool {
-        return self.uid.isEmpty
+        return objectIdentifier.isEmpty
     }
     
     func checkProperties() -> Bool {
@@ -108,9 +108,9 @@ extension WorkoutSchedule: FirebaseObject {
         }
     }
     
-    func prepareDataForSaving() -> [String: Any] {
+    func encode() -> [String: Any] {
         let dict: [String: Any] = [
-            "uid": self.uid,
+            "uid": self.objectIdentifier,
             "trainings": self.workouts
         ]
         return dict

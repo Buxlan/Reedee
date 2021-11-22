@@ -20,7 +20,7 @@ struct DefaultSportNewsDatabaseFlowData: SportNewsDatabaseFlowData {
     internal var isLoading: Bool = false
         
     // Database Fields
-    var uid: String
+    var objectIdentifier: String
     var authorID: String
     var title: String
     var text: String
@@ -31,7 +31,7 @@ struct DefaultSportNewsDatabaseFlowData: SportNewsDatabaseFlowData {
     var order: Int
     
     init() {
-        self.uid = ""
+        self.objectIdentifier = ""
         self.title = .empty
         self.text = .empty
         self.date = Date()
@@ -50,7 +50,7 @@ struct SportNewsDatabaseFlowDataImpl: SportNewsDatabaseFlowData {
     internal var isLoading: Bool = false
     
     // Database Fields
-    var uid: String
+    var objectIdentifier: String
     var authorID: String
     var title: String
     var text: String
@@ -60,7 +60,7 @@ struct SportNewsDatabaseFlowDataImpl: SportNewsDatabaseFlowData {
     internal var imageIDs: [String] = []
     var order: Int
     
-    init(uid: String,
+    init(objectIdentifier: String,
          authorID: String,
          title: String,
          text: String,
@@ -69,7 +69,7 @@ struct SportNewsDatabaseFlowDataImpl: SportNewsDatabaseFlowData {
          date: Date,
          type: SportEventType = .event,
          order: Int) {
-        self.uid = uid
+        self.objectIdentifier = objectIdentifier
         self.authorID = authorID
         self.title = title
         self.text = text
@@ -81,7 +81,7 @@ struct SportNewsDatabaseFlowDataImpl: SportNewsDatabaseFlowData {
     }
     
     internal init() {
-        self.uid = ""
+        self.objectIdentifier = ""
         self.title = .empty
         self.text = .empty
         self.date = Date()
@@ -93,7 +93,7 @@ struct SportNewsDatabaseFlowDataImpl: SportNewsDatabaseFlowData {
     }
     
     init(key: String, dict: [String: Any]) {                
-        self.uid = key
+        self.objectIdentifier = key
         self.authorID = dict["author"] as? String ?? ""
         self.title = dict["title"] as? String ?? ""
         self.text = dict["text"] as? String ?? ""

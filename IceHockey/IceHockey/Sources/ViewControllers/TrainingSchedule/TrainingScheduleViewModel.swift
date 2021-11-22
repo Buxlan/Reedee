@@ -87,7 +87,7 @@ class TrainingScheduleViewModel: NSObject {
             }
             self.sections.removeAll()
             schedules.forEach { schedule in
-                guard let squad = self.getSquad(by: schedule.uid) else {
+                guard let squad = self.getSquad(by: schedule.objectIdentifier) else {
                     return
                 }
                 let section = SectionData(squad: squad, schedule: schedule)
@@ -114,10 +114,10 @@ class TrainingScheduleViewModel: NSObject {
     }
     
     private func getSquad(by uid: String) -> SportSquad? {
-        guard let index = team.squadIDs.firstIndex(where: { $0 == uid }) else {
+        guard let index = team.squadsIdentifiers.firstIndex(where: { $0 == uid }) else {
             return nil
         }
-        let squad = SportSquad(uid: uid, displayName: "12313", headCoach: "4341")
+        let squad = SportSquad(objectIdentifier: uid, displayName: "12313", headCoach: "4341")
         return squad
     }
     

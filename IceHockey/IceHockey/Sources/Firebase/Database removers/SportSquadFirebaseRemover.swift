@@ -19,7 +19,7 @@ struct SportSquadFirebaseRemover: FirebaseObjectRemover {
     }
     
     internal var objectDatabaseReference: DatabaseReference {
-        objectsRootDatabaseReference.child(object.uid)
+        objectsRootDatabaseReference.child(object.objectIdentifier)
     }
     
     internal var searchLocationDatabaseReference: DatabaseReference {
@@ -31,29 +31,29 @@ struct SportSquadFirebaseRemover: FirebaseObjectRemover {
     // MARK: - Helper methods
     
     func remove() throws {
-        guard let object = self.object as? DataType else {
-            throw AppError.dataMismatch
-        }
-        // find references and remove
-        let query = searchLocationDatabaseReference.queryEqual(toValue: object.uid, childKey: "squads")
-        query.getData { error, snapshot in
-            if let error = error {
-                print("GetData error: \(error)")
-            }
-            guard let foundObject = SportTeam(snapshot: snapshot) else {
-                return
-            }
-            let squads = foundObject.squadIDs
-            var newSquads: [String] = []
-            squads.reversed().forEach { uid in
-                if uid != object.uid {
-                    newSquads.append(uid)
-                }
-            }
-            snapshot.setValue(newSquads, forKey: "squads")
-//            foundObject.squadIDs = newSquads
-//            foundObject.save()
-        }
-        objectDatabaseReference.removeValue()
+//        guard let object = self.object as? DataType else {
+//            throw AppError.dataMismatch
+//        }
+//        // find references and remove
+//        let query = searchLocationDatabaseReference.queryEqual(toValue: object.uid, childKey: "squads")
+//        query.getData { error, snapshot in
+//            if let error = error {
+//                print("GetData error: \(error)")
+//            }
+//            guard let foundObject = SportTeam(snapshot: snapshot) else {
+//                return
+//            }
+//            let squads = foundObject.squadIDs
+//            var newSquads: [String] = []
+//            squads.reversed().forEach { uid in
+//                if uid != object.uid {
+//                    newSquads.append(uid)
+//                }
+//            }
+//            snapshot.setValue(newSquads, forKey: "squads")
+////            foundObject.squadIDs = newSquads
+////            foundObject.save()
+//        }
+//        objectDatabaseReference.removeValue()
     }
 }

@@ -9,6 +9,15 @@ import Firebase
 
 struct FirebaseObjectFactory {
     
+    func makeTeam(with objectIdentifier: String,
+                  completionHandler: @escaping (SportTeam?) -> Void)
+    -> SportTeam? {
+        let builder = TeamBuilder(objectIdentifier: objectIdentifier)        
+        builder.build(completionHandler: completionHandler)
+        let object = builder.getResult()
+        return object
+    }
+    
     func makeWorkoutSchedule(from snapshot: DataSnapshot) -> WorkoutSchedule? {
         let builder = WorkoutScheduleBuilder(snapshot: snapshot)
         builder.build()

@@ -179,7 +179,7 @@ extension EventDetailViewController {
     func makePhotoTableRow() -> TableRow {
         var cellModel = EventDetailPhotoCellModel(event: event)
         cellModel.likeAction = { (state: Bool) in
-            LikeManager().setLike(for: self.event.uid, newState: state)
+            LikeManager().setLike(for: self.event.objectIdentifier, newState: state)
         }
         let config = EventDetailPhotoViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)

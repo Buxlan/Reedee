@@ -22,7 +22,7 @@ struct DefaultMatchResultDatabaseFlowData: MatchResultDatabaseFlowData {
     var author: SportUser?
     var isLoading: Bool = false
     
-    var uid: String = ""
+    var objectIdentifier: String = ""
     var type: SportEventType = .match
     var title: String = ""
     var text: String = ""
@@ -43,7 +43,7 @@ struct MatchResultDatabaseFlowDataImpl: MatchResultDatabaseFlowData {
     var author: SportUser?
     var isLoading: Bool = false
     
-    var uid: String
+    var objectIdentifier: String
     var type: SportEventType = .match
     var title: String
     var text: String
@@ -57,7 +57,7 @@ struct MatchResultDatabaseFlowDataImpl: MatchResultDatabaseFlowData {
     var stadium: String
     
     init(key: String, dict: [String: Any]) {
-        self.uid = key
+        self.objectIdentifier = key
         self.authorID = dict["author"] as? String ?? ""
         self.homeTeam = dict["homeTeam"] as? String ?? ""
         self.awayTeam = dict["awayTeam"] as? String ?? ""
@@ -81,11 +81,11 @@ struct MatchResultDatabaseFlowDataImpl: MatchResultDatabaseFlowData {
     }
     
     init?(snapshot: DataSnapshot) {
-        let uid = snapshot.key
+        let objectIdentifier = snapshot.key
         guard let dict = snapshot.value as? [String: Any] else {
             return nil
         }
-        self.init(key: uid, dict: dict)
+        self.init(key: objectIdentifier, dict: dict)
     }
     
 }

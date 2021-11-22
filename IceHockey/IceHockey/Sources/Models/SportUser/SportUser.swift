@@ -15,18 +15,18 @@ protocol SportUserObject: FirebaseObject {
 
 extension SportUserObject {
     var isNew: Bool {
-        return uid.isEmpty
+        return objectIdentifier.isEmpty
     }
 }
 
 class SportUser: SportUserObject {
     
-    var uid: String {
+    var objectIdentifier: String {
         get {
-            databaseFlowObject.uid
+            databaseFlowObject.objectIdentifier
         }
         set {
-            databaseFlowObject.uid = newValue
+            databaseFlowObject.objectIdentifier = newValue
         }
     }
     var displayName: String {

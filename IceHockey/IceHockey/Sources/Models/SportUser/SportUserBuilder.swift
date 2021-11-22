@@ -65,7 +65,7 @@ class SportUserBuilder {
     
     private func buildStoragePart() {
         guard let databasePart = databasePart,
-              !databasePart.uid.isEmpty else {
+              !databasePart.objectIdentifier.isEmpty else {
                   completionHandler(nil)
                   return
               }

@@ -32,7 +32,7 @@ struct MatchResultFirebaseSaver {
         if object.isNew {
             ref = eventsDatabaseReference.childByAutoId()
         } else {
-            ref = eventsDatabaseReference.child(object.uid)
+            ref = eventsDatabaseReference.child(object.objectIdentifier)
         }
         return ref
     }
@@ -79,7 +79,7 @@ struct MatchResultFirebaseSaver {
     func encodeObject() -> [String: Any] {
         let interval = object.date.timeIntervalSince1970
         let dict: [String: Any] = [
-            "uid": object.uid,
+            "uid": object.objectIdentifier,
             "author": object.authorID,
             "title": object.title,
             "homeTeam": object.homeTeam,

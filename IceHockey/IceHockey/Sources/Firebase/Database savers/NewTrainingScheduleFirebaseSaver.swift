@@ -23,7 +23,7 @@ struct NewTrainingScheduleFirebaseSaver: TrainingScheduleFirebaseSaver {
         if object.isNew {
             ref = eventsDatabaseReference.childByAutoId()
         } else {
-            ref = eventsDatabaseReference.child(object.uid)
+            ref = eventsDatabaseReference.child(object.objectIdentifier)
         }
         return ref
     }
@@ -37,7 +37,7 @@ struct NewTrainingScheduleFirebaseSaver: TrainingScheduleFirebaseSaver {
     // MARK: - Helper functions
     
     func save() throws {
-        let dataDict = object.prepareDataForSaving()        
+        let dataDict = object.encode()
         objectReference.setValue(dataDict) { (error, ref) in
             if let error = error {
                 print(error)

@@ -164,7 +164,7 @@ extension MatchResultDetailViewController {
     func makeMatchResultTableRow() -> TableRow {
         var cellModel = MatchResultTableCellModel(data: editingObject)
         cellModel.likeAction = { (state: Bool) in
-            LikeManager().setLike(for: self.editingObject.uid, newState: state)
+            LikeManager().setLike(for: self.editingObject.objectIdentifier, newState: state)
         }
         let config = MatchResultViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config)
