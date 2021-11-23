@@ -15,7 +15,7 @@ class TrainingScheduleViewModel: NSObject {
         let schedule: WorkoutSchedule
     }
         
-    var team: SportTeam = SportTeam.current
+    var team: SportTeam = SportTeamManager.shared.current
     var sections: [SectionData] = []
     var isLoading: Bool {
         return loader.isLoading

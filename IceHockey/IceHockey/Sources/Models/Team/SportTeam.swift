@@ -7,45 +7,117 @@
 
 import Firebase
 
-struct SportTeam: FirebaseObject {
+protocol SportTeam: FirebaseObject {
+    var objectIdentifier: String { get set }
+    var address: String { get set }
+    var copyright: String { get set }
+    var displayName: String { get set }
+    var email: String { get set }
+    var largeLogoID: String { get set }
+    var smallLogoID: String { get set }
+    var location: Coord? { get set }
+    var phone: String { get set }
+    var webSite: String { get set }
+    var squadsIdentifiers: [String] { get set }
+    
+    func encode() -> [String: Any]
+}
+
+extension SportTeam {
+    var isNew: Bool {
+        return self.objectIdentifier.isEmpty
+    }
+}
+
+class SportTeamProxy: SportTeam {
+    var team: SportTeamImpl? {
+        didSet {
+            loadingCompletionHandler()
+        }
+    }
+    var loadingCompletionHandler: () -> Void = {}
+    
+    var objectIdentifier: String {
+        get { team?.objectIdentifier ?? "" }
+        set { team?.objectIdentifier = newValue }
+    }
+    var address: String {
+        get { team?.address ?? "" }
+        set { team?.address = newValue }
+    }
+    var copyright: String {
+        get { team?.copyright ?? "" }
+        set { team?.copyright = newValue }
+    }
+    var displayName: String {
+        get { team?.displayName ?? "" }
+        set { team?.displayName = newValue }
+    }
+    var email: String {
+        get { team?.email ?? "" }
+        set { team?.email = newValue }
+    }
+    var largeLogoID: String {
+        get { team?.largeLogoID ?? "" }
+        set { team?.largeLogoID = newValue }
+    }
+    var smallLogoID: String {
+        get { team?.smallLogoID ?? "" }
+        set { team?.smallLogoID = newValue }
+    }
+    var location: Coord? {
+        get { team?.location }
+        set { team?.location = newValue }
+    }
+    var phone: String {
+        get { team?.phone ?? "" }
+        set { team?.phone = newValue }
+    }
+    var webSite: String {
+        get { team?.webSite ?? "" }
+        set { team?.webSite = newValue }
+    }
+    var squadsIdentifiers: [String] {
+        get { team?.squadsIdentifiers ?? [] }
+        set { team?.squadsIdentifiers = newValue }
+    }
+    
+    func encode() -> [String: Any] {
+        guard let team = team else {
+            return [:]
+        }
+        return team.encode()
+
+    }
+    
+}
+
+struct SportTeamImpl: SportTeam {
     
     // MARK: - Properties
-    
     var objectIdentifier: String
     var displayName: String
     var phone: String
-    var smallImageID: String
-    var largeImageID: String
+    var smallLogoID: String
+    var largeLogoID: String
     var copyright: String
     var squadsIdentifiers: [String]
     var location: Coord?
     var address: String = "-"
     var email: String = ""
-    var ourSquadsTitle: String = ""
     var webSite: String = ""
     
     var images: [ImageData] = []
     
-    static var current = SportTeam(displayName: L10n.Team.listTitle,
-                                   objectIdentifier: "redBears",
-                                   phone: "79095626666",
-                                   smallImageID: "",
-                                   largeImageID: "",
-                                   copyright: "Copyright © 2018 kidshockey.spb.ru",
-                                   squadsIdentifiers: ["-Mmyxk7Vkh1q7_vQTfUv1", "-Mmyxk7Vkh1q7_vQTfUv2"],
-                                   location: nil)
-    
-    var isNew: Bool {
-        return self.objectIdentifier.isEmpty
-    }
+    static var current = SportTeamManager.shared.current
     
     // MARK: - Lifecircle
     
     init(displayName: String,
          objectIdentifier: String,
          phone: String,
-         smallImageID: String,
-         largeImageID: String,
+         smallLogoID: String,
+         largeLogoID: String,
          copyright: String,
          squadsIdentifiers: [String],
          location: Coord? = nil,
@@ -55,8 +127,8 @@ struct SportTeam: FirebaseObject {
         self.objectIdentifier = objectIdentifier
         self.displayName = displayName
         self.phone = phone
-        self.smallImageID = smallImageID
-        self.largeImageID = largeImageID
+        self.smallLogoID = smallLogoID
+        self.largeLogoID = largeLogoID
         self.copyright = copyright
         self.squadsIdentifiers = squadsIdentifiers
         self.location = location
@@ -71,8 +143,8 @@ struct SportTeam: FirebaseObject {
         self.objectIdentifier = databaseData.objectIdentifier
         self.displayName = databaseData.displayName
         self.phone = databaseData.phone
-        self.smallImageID = databaseData.smallLogoID
-        self.largeImageID = databaseData.largeLogoID
+        self.smallLogoID = databaseData.smallLogoID
+        self.largeLogoID = databaseData.largeLogoID
         self.copyright = databaseData.copyright
         self.squadsIdentifiers = databaseData.squadsIDs
         self.location = databaseData.location
@@ -90,13 +162,12 @@ struct SportTeam: FirebaseObject {
             "uid": self.objectIdentifier,
             "copyright": self.copyright,
             "displayName": self.displayName,
-            "largeLogo": self.largeImageID,
-            "smallLogo": self.smallImageID,
+            "largeLogo": self.largeLogoID,
+            "smallLogo": self.smallLogoID,
             "phone": self.phone,
             "squads": self.squadsIdentifiers,
             "address": self.address,
-            "email": self.email,
-            "ourSquardTitle": self.ourSquadsTitle
+            "email": self.email
         ]
         
         if let location = location {

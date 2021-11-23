@@ -10,8 +10,8 @@ import Firebase
 struct FirebaseObjectFactory {
     
     func makeTeam(with objectIdentifier: String,
-                  completionHandler: @escaping (SportTeam?) -> Void)
-    -> SportTeam? {
+                  completionHandler: @escaping () -> Void)
+    -> SportTeam {
         let builder = TeamBuilder(objectIdentifier: objectIdentifier)        
         builder.build(completionHandler: completionHandler)
         let object = builder.getResult()

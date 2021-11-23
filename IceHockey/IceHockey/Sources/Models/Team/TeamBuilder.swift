@@ -14,12 +14,11 @@ class TeamBuilder {
     typealias DataType = SportTeam
     
     private let objectIdentifier: String
-    private var dict: [String: Any] = [:]
     
     private var databasePart: TeamDatabaseFlowData
     private var storagePart: TeamStorageFlowData
     
-    private var completionHandler: (DataType?) -> Void = { _ in }
+    private let proxy = SportTeamProxy()
     
     // MARK: - Lifecircle
     
@@ -31,48 +30,51 @@ class TeamBuilder {
     
     // MARK: - Helper Methods
     
-    func build(completionHandler: @escaping (DataType?) -> Void) {
-        self.completionHandler = completionHandler
+    func build(completionHandler: @escaping () -> Void) {
+        proxy.loadingCompletionHandler = completionHandler
         buildDatabasePart {
-            self.buildStoragePart()
+            self.buildStoragePart {
+                let object = SportTeamImpl(databaseData: self.databasePart,
+                                           storageData: self.storagePart)
+                self.proxy.team = object
+            }
         }
     }
     
     private func buildDatabasePart(completionHandler: @escaping () -> Void) {
         let loader = SportTeamDatabaseLoader(objectIdentifier: objectIdentifier)
         loader.load { databaseObject in
-            guard let databaseObject = databaseObject else {
-                self.completionHandler(nil)
-                return
+            if let databaseObject = databaseObject {
+                self.databasePart = databaseObject
             }
-            self.databasePart = databaseObject
             completionHandler()
         }
     }
     
-    private func buildStoragePart() {
-        guard !databasePart.objectIdentifier.isEmpty else {
-                  self.completionHandler(nil)
-                  return
-              }
-        let imagesIds = [databasePart.largeLogoID,
-                         databasePart.smallLogoID]
+    private func buildStoragePart(completionHandler: @escaping () -> Void) {
+        var imagesIds: [String] = []
+        if !databasePart.largeLogoID.isEmpty {
+            imagesIds.append(databasePart.largeLogoID)
+        }
+        if !databasePart.smallLogoID.isEmpty {
+            imagesIds.append(databasePart.smallLogoID)
+        }
+//        guard imagesIds.count > 0 else {
+//            completionHandler()
+//            return
+//        }
         let loader = SportTeamStorageDataLoader(objectIdentifier: objectIdentifier,
                                                  imagesIdentifiers: imagesIds)
         loader.load { storageObject in
-            guard let storageObject = storageObject else {
-                self.completionHandler(nil)
-                return
+            if let storageObject = storageObject {
+                self.storagePart = storageObject
             }
-            self.storagePart = storageObject
-            self.completionHandler(self.getResult())
+            completionHandler()
         }
     }
     
-    func getResult() -> DataType? {
-        let object = DataType(databaseData: databasePart,
-                              storageData: storagePart)
-        return object
+    func getResult() -> DataType {
+        return proxy
     }
     
 }

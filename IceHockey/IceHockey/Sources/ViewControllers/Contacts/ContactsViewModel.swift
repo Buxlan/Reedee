@@ -117,18 +117,7 @@ class ContactsViewModel: NSObject {
     }
     
     func update() {
-        guard loadings.count == 0,
-            let teamID = Bundle.main.object(forInfoDictionaryKey: "teamID") as? String else {
-            return
-        }
-        let handler: (SportTeam?) -> Void = { (team) in
-            if let team = team {
-                self.filter = team
-                self.loadings.removeAll()
-            }
-        }
-        loadings.append(teamID)
-        FirebaseObjectLoader<SportTeam>().load(uid: teamID, completionHandler: handler)
+        self.filter = SportTeamManager.shared.current
     }
     
 }

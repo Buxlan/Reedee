@@ -64,7 +64,7 @@ extension TeamTableCell: ConfigurableCell {
         let detailText = L10n.Squads.squadsCountTitle + "\(data.squadsIdentifiers.count)"
         self.detailTextLabel?.text = detailText
         
-        let imageID = data.smallImageID
+        let imageID = data.smallLogoID
         if imageID.isEmpty {
             self.imageView?.image = noImage
         } else {

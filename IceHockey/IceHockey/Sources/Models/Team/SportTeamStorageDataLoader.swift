@@ -39,16 +39,15 @@ class SportTeamStorageDataLoader {
             }
             images.append(ImageData(imageID: imageID))
             let handler: (UIImage?) -> Void = { (image) in
-                guard let image = image else {
-                    return
-                }
-                let imageData = ImageData(imageID: imageID, image: image)
-                if let index = images.firstIndex(where: { $0.imageID == imageID }) {
-                    images[index] = imageData
-                }
                 if let index = self.handlers.index(forKey: imageID) {
                     self.handlers.remove(at: index)
                 }
+                if let image = image,
+                   let index = images.firstIndex(where: { $0.imageID == imageID }) {
+                    let imageData = ImageData(imageID: imageID, image: image)
+                    images[index] = imageData                    
+                }
+                
                 if self.handlers.count == 0 {
                     let object = DataTypeImpl(objectIdentifier: self.objectIdentifier,
                                               images: images)

@@ -15,7 +15,7 @@ class TrainingScheduleViewController: UIViewController {
     typealias InputDataType = SportTeam
     var viewModel: TrainingScheduleViewModel = TrainingScheduleViewModel()
     private var tableBase = TableViewBase()
-    var team = SportTeam.current
+    var team = SportTeamManager.shared.current
     
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)

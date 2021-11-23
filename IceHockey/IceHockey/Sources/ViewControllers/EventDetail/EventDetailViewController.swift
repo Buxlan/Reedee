@@ -42,7 +42,7 @@ class EventDetailViewController: UIViewController {
     private lazy var tableFooterView: EventDetailFooterView = {
         let frame = CGRect(x: 0, y: 0, width: 0, height: 150)
         let view = EventDetailFooterView(frame: frame)
-        view.configure(with: SportTeam.current)
+        view.configure(with: SportTeamManager.shared.current)
         return view
     }()
     

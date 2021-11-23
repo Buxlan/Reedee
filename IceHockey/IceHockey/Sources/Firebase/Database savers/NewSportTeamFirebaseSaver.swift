@@ -58,7 +58,7 @@ struct NewSportTeamFirebaseSaver {
                 return
             }
             let imagesManager = ImagesManager.shared
-            let imageIDs = [object.smallImageID, object.largeImageID]
+            let imageIDs = [object.smallLogoID, object.largeLogoID]
             for imageId in imageIDs {
                 let imageName = ImagesManager.shared.getImageName(withID: imageId)
                 let imageRef = imagesDatabaseReference.child(imageId)

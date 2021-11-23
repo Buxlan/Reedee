@@ -14,7 +14,7 @@ class HomeViewController: UIViewController {
     
     var tableBase = TableViewBase()
     var viewModel = HomeViewModel()
-    var team = SportTeam.current
+    var team = SportTeamManager.shared.current
     
     private let refreshControl = UIRefreshControl()
     private lazy var alert: UIAlertController = {

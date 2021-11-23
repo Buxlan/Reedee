@@ -45,7 +45,7 @@ struct SportTeamFirebaseRemover: FirebaseObjectRemover {
             throw AppError.dataMismatch
         }
         objectDatabaseReference.removeValue()
-        let smallImageID = object.smallImageID
+        let smallImageID = object.smallLogoID
         if !smallImageID.isEmpty {
             let imageRef = imagesStorageReference.child(smallImageID)
             imageRef.delete { (error) in
@@ -56,7 +56,7 @@ struct SportTeamFirebaseRemover: FirebaseObjectRemover {
             }
             
         }
-        let largeImageID = object.largeImageID
+        let largeImageID = object.largeLogoID
         let imageRef = imagesStorageReference.child(largeImageID)
         imageRef.delete { (error) in
             if let error = error {
