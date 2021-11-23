@@ -65,8 +65,8 @@ struct SportTeam: FirebaseObject {
         self.webSite = webSite
     }
     
-    init(databaseData: TeamDatabaseFlowData,
-         storageData: TeamStorageFlowData) {
+    init(databaseData: TeamDatabaseFlowData = DefaultTeamDatabaseFlowData(),
+         storageData: TeamStorageFlowData = DefaultTeamStorageFlowData()) {
         
         self.objectIdentifier = databaseData.objectIdentifier
         self.displayName = databaseData.displayName

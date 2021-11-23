@@ -111,6 +111,7 @@
 		407F48B2273C9A6000C96B28 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407F48B1273C9A6000C96B28 /* Fonts.swift */; };
 		407F48B3273C9AD800C96B28 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 407F48AF273C968D00C96B28 /* Roboto-Regular.ttf */; };
 		407F48B4273C9ADB00C96B28 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 407F48B0273C986600C96B28 /* Roboto-Bold.ttf */; };
+		40821D07274CD965009F79F7 /* SportTeamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40821D06274CD965009F79F7 /* SportTeamManager.swift */; };
 		40842FC32725E44500E056A9 /* ImagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40842FC22725E44500E056A9 /* ImagesManager.swift */; };
 		4085A31B27201BDC00CB560E /* EventDetailBoldTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4085A31A27201BDC00CB560E /* EventDetailBoldTextView.swift */; };
 		4085A31E27201D6400CB560E /* EventDetailCopyrightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4085A31D27201D6400CB560E /* EventDetailCopyrightView.swift */; };
@@ -337,6 +338,7 @@
 		407F48AF273C968D00C96B28 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		407F48B0273C986600C96B28 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		407F48B1273C9A6000C96B28 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		40821D06274CD965009F79F7 /* SportTeamManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportTeamManager.swift; sourceTree = "<group>"; };
 		40842FC22725E44500E056A9 /* ImagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesManager.swift; sourceTree = "<group>"; };
 		4085A31A27201BDC00CB560E /* EventDetailBoldTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailBoldTextView.swift; sourceTree = "<group>"; };
 		4085A31D27201D6400CB560E /* EventDetailCopyrightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailCopyrightView.swift; sourceTree = "<group>"; };
@@ -1116,6 +1118,7 @@
 				407BB05F274BA743008DF228 /* TeamDatabaseFlowData.swift */,
 				407BB061274BB6B1008DF228 /* TeamStorageFlowData.swift */,
 				407BB065274BC89E008DF228 /* SportTeamStorageDataLoader.swift */,
+				40821D06274CD965009F79F7 /* SportTeamManager.swift */,
 			);
 			path = Team;
 			sourceTree = "<group>";
@@ -1592,6 +1595,7 @@
 				4035DAB127306BC800AAFDA8 /* SimpleSectionTableHeaderView.swift in Sources */,
 				406CE68D27241926002FDDB6 /* EditEventPhotoViewModel.swift in Sources */,
 				407BC11B273BCF4400A6D580 /* FirebaseObjectLoader.swift in Sources */,
+				40821D07274CD965009F79F7 /* SportTeamManager.swift in Sources */,
 				40A63221272DFD5F0017F6FE /* MKMapViewExtension.swift.swift in Sources */,
 				4035DAB6273077BE00AAFDA8 /* TrainingScheduleViewController.swift in Sources */,
 				400B8F58272B5DAE008A8AFE /* SquadTableCell.swift in Sources */,
