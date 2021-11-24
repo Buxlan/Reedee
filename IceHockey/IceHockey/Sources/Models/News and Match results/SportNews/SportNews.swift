@@ -57,7 +57,7 @@ class SportNewsProxy: SportNews {
         set { event?.boldText = newValue }
     }
     var type: SportEventType {
-        get { event?.type ?? .match }
+        get { event?.type ?? .event }
         set { event?.type = newValue }
     }
     var date: Date {
