@@ -169,6 +169,17 @@ class HomeViewController: UIViewController {
                 self.refreshControl.endRefreshing()
             }
         }
+        viewModel.shouldRefreshAtIndexPathRelay = { indexPath in
+            let event = self.viewModel.sections[indexPath.section].events[indexPath.row]
+            let row = self.makeTableRow(event: event)
+            self.tableBase.updateRow(row, at: indexPath)
+//            self.tableView.beginUpdates()
+            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+//            self.tableView.endUpdates()
+            if !self.viewModel.isLoading {
+                self.refreshControl.endRefreshing()
+            }
+        }
         viewModel.update()
     }
 }
@@ -208,16 +219,7 @@ extension HomeViewController {
         viewModel.sections.forEach { sectionData in
             var section = TableSection()
             let rows = sectionData.events.map { event -> TableRow in
-                var row = TableRow(rowId: "")
-                switch event.type {
-                case .event:
-                    row = self.makeNewsTableRow(event)
-                case .match:
-                    row = self.makeMatchResultTableRow(event)
-                default:
-                    assertionFailure()
-                }
-                return row
+                self.makeTableRow(event: event)
             }
             section.addRows(rows)
             sections.append(section)
@@ -225,6 +227,17 @@ extension HomeViewController {
         
         let dataSource = TableDataSource(sections: sections)
         return dataSource
+    }
+    
+    func makeTableRow(event: SportEvent) -> TableRow {
+        var row: TableRow
+        switch event.type {
+        case .event:
+            row = self.makeNewsTableRow(event)
+        case .match:
+            row = self.makeMatchResultTableRow(event)
+        }
+        return row
     }
     
     func makeNewsTableRow(_ event: SportEvent) -> TableRow {
@@ -250,7 +263,7 @@ extension HomeViewController {
         row.willDisplay = { _, indexPath in
             let lastIndexPath = self.viewModel.dataSource.lastIndexPath
             if indexPath == lastIndexPath {
-                self.viewModel.nextUpdate()
+                self.viewModel.updateNextPortion()
             }
         }
         return row
@@ -280,7 +293,7 @@ extension HomeViewController {
         row.willDisplay = { _, indexPath in
             let lastIndexPath = self.viewModel.dataSource.lastIndexPath
             if indexPath == lastIndexPath {
-                self.viewModel.nextUpdate()
+                self.viewModel.updateNextPortion()
             }
         }
         return row

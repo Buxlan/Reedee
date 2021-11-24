@@ -69,33 +69,25 @@ class HomeViewModel: NSObject {
             self.sections = [section]
             self.shouldRefreshRelay()
         }
-        let eventLoadedCompletionHandler: () -> Void = {
-            self.shouldRefreshRelay()
+        let eventLoadedCompletionHandler: (IndexPath) -> Void = { indexPath in
+            self.shouldRefreshAtIndexPathRelay(indexPath)
         }
         loader.load(eventListCompletionHandler: eventListCompletionHandler,
                     eventLoadedCompletionHandler: eventLoadedCompletionHandler)
     }
     
-    func nextUpdate() {
+    func updateNextPortion() {
         guard isAuthCompleted else {
             return
         }
+        print("updateNextPortion")
         let eventListCompletionHandler: ([SportEvent]) -> Void = { events in
             assert(self.sections.count > 0)
-            guard events.count > 0 else {
-                return
-            }
-            events.forEach { event in
-                if let index = self.sections[0].events.firstIndex(where: { $0.objectIdentifier == event.objectIdentifier }) {
-                    self.sections[0].events[index] = event
-                } else {
-                    self.sections[0].events.append(event)
-                }
-            }
+            self.sections[0].events.append(contentsOf: events)
             self.shouldRefreshRelay()
         }
-        let eventLoadedCompletionHandler: () -> Void = {
-            self.shouldRefreshRelay()
+        let eventLoadedCompletionHandler: (IndexPath) -> Void = { indexPath in
+            self.shouldRefreshAtIndexPathRelay(indexPath)
         }
         loader.load(eventListCompletionHandler: eventListCompletionHandler,
                     eventLoadedCompletionHandler: eventLoadedCompletionHandler)

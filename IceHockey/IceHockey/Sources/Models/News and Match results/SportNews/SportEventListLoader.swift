@@ -32,7 +32,7 @@ class SportEventListLoader {
     
     // MARK: - Lifecircle
     
-    init(capacity: UInt = 4) {
+    init(capacity: UInt = 10) {
         self.capacity = capacity
     }
     
@@ -41,7 +41,7 @@ class SportEventListLoader {
     }
     
     func load(eventListCompletionHandler: @escaping ([SportEvent]) -> Void,
-              eventLoadedCompletionHandler: @escaping () -> Void) {
+              eventLoadedCompletionHandler: @escaping (IndexPath) -> Void) {
         if endOfListIsReached {
             return
         }
@@ -55,7 +55,7 @@ class SportEventListLoader {
             if snapshot.childrenCount < self.capacity {
                 self.endOfListIsReached = true
             }
-            for child in snapshot.children {
+            for (index, child) in snapshot.children.enumerated() {
                 guard let child = child as? DataSnapshot else {
                     continue
                 }
@@ -67,7 +67,8 @@ class SportEventListLoader {
                     }) {
                         self.loadingHandlers.remove(at: handlerIndex)
                     }
-                    eventLoadedCompletionHandler()
+                    let indexPath = IndexPath(row: index, section: 0)
+                    eventLoadedCompletionHandler(indexPath)
                 }
                 self.loadingHandlers[eventID] = completionHandler
             }

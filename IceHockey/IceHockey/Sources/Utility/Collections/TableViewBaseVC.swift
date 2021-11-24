@@ -8,7 +8,7 @@
 import UIKit
 
 final class TableViewBase: NSObject {
-    private var dataSource: TableDataSource
+    var dataSource: TableDataSource
 
     override init() {
         self.dataSource = TableDataSource()
@@ -26,6 +26,11 @@ final class TableViewBase: NSObject {
         table.delegate = self
         table.dataSource = self
     }
+    
+    func updateRow(_ row: TableRow, at indexPath: IndexPath) {
+        dataSource.sections[indexPath.section].rows[indexPath.row] = row
+    }
+    
 }
 
 extension TableViewBase: UITableViewDelegate, UITableViewDataSource {
