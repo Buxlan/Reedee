@@ -10,7 +10,7 @@ import Firebase
 struct SportEventCreator {
     
     func create(snapshot: DataSnapshot,
-                with completionHandler: @escaping (SportEvent?) -> Void)
+                with completionHandler: @escaping () -> Void)
     -> SportEvent? {
         
         let uid = snapshot.key
@@ -20,11 +20,13 @@ struct SportEventCreator {
         
         switch type {
         case .event:
-            let builder = SportNewsBuilder(key: uid, dict: dict)
+            let builder = SportNewsBuilder(objectIdentifier: uid)
+            builder.dict = dict
             builder.build(completionHandler: completionHandler)
             object = builder.getResult()
         case .match:
-            let builder = MatchResultBuilder(key: uid, dict: dict)
+            let builder = MatchResultBuilder(objectIdentifier: uid)
+            builder.dict = dict
             builder.build(completionHandler: completionHandler)
             object = builder.getResult()
         default:

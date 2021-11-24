@@ -9,57 +9,62 @@ class MatchResultBuilder {
     
     // MARK: - Properties
     
-    private let key: String
-    private let dict: [String: Any]
+    private let objectIdentifier: String
+    var dict: [String: Any]?
     
-    private var databasePart: MatchResultDatabaseFlowData
-    private var storagePart: MatchResultStorageFlowData
+    private var databasePart: MatchResultDatabaseFlowData = EmptyMatchResultDatabaseFlowData()
+    private var storagePart: StorageFlowData = EmptyStorageFlowData()
     private var author: SportUser?
-    private var likesInfo = EventLikesInfo()
-    private var viewsInfo = EventViewsInfo()
+    private var likesInfo: EventLikesInfo = EventLikesInfoImpl.empty
+    private var viewsInfo: EventViewsInfo = EventViewsInfoImpl.empty
     
-    private var completionHandler: (SportEvent?) -> Void = { _ in }
+    private var completionHandler: () -> Void = {}
+    private var proxy = MatchResultProxy()
     
     // MARK: - Lifecircle
     
-    init(key: String, dict: [String: Any]) {
-        self.key = key
-        self.dict = dict
-        databasePart = DefaultMatchResultDatabaseFlowData()
-        storagePart = DefaultMatchResultStorageFlowData()
+    init(objectIdentifier: String) {
+        self.objectIdentifier = objectIdentifier
     }
     
     // MARK: - Helper Methods
     
-    func build(completionHandler: @escaping (SportEvent?) -> Void) {
-        self.completionHandler = completionHandler
+    func build(completionHandler: @escaping () -> Void) {
+        guard !objectIdentifier.isEmpty else {
+            completionHandler()
+            return
+        }
+        proxy.loadingCompletionHandler = completionHandler
         buildDatabasePart {
             self.buildAuthor {
                 self.buildLikesInfo {
-                    self.buildStoragePart()
+                    self.buildStoragePart {
+                        let object = MatchResultImpl(databaseFlowObject: self.databasePart,
+                                                     storageFlowObject: self.storagePart,
+                                                     author: self.author,
+                                                     likesInfo: self.likesInfo,
+                                                     viewsInfo: self.viewsInfo)
+                        self.proxy.event = object
+                    }
                 }
             }
         }
     }
     
     private func buildDatabasePart(completionHandler: @escaping () -> Void) {
-        self.databasePart = MatchResultDatabaseFlowDataImpl(key: key, dict: dict)
+        if let dict = dict {
+            self.databasePart = MatchResultDatabaseFlowDataImpl(key: objectIdentifier, dict: dict)
+        }
+        // NEED DEVELOP!
         completionHandler()
     }
     
-    private func buildStoragePart() {
-        guard !databasePart.objectIdentifier.isEmpty else {
-                  self.completionHandler(nil)
-                  return
-              }
-        storagePart = MatchResultStorageFlowDataImpl()
-        storagePart.load {
-            self.completionHandler(self.getResult())
-        }
+    private func buildStoragePart(completionHandler: @escaping () -> Void) {
+        completionHandler()
     }
     
     private func buildLikesInfo(completionHandler: @escaping () -> Void) {
-        let builder = EventLikeInfoBuilder(key: key)
+        let builder = EventLikeInfoBuilder(key: objectIdentifier)
         builder.build { likesInfo in
             if let likesInfo = likesInfo {
                 self.likesInfo = likesInfo
@@ -70,21 +75,14 @@ class MatchResultBuilder {
     
     private func buildAuthor(completionHandler: @escaping () -> Void) {
         let builder = SportUserBuilder(key: databasePart.authorID)
-        builder.build { user in
-            if let user = user {
-                self.author = user
-            }
+        builder.build {
             completionHandler()
         }
+        self.author = builder.getResult()
     }
     
-    func getResult() -> MatchResult? {
-        let object = MatchResult(databaseFlowObject: databasePart,
-                                 storageFlowObject: storagePart,
-                                 author: author,
-                                 likesInfo: likesInfo,
-                                 viewsInfo: viewsInfo)
-        return object
+    func getResult() -> MatchResult {
+        return proxy
     }
     
 }

@@ -8,16 +8,20 @@
 import UIKit
 
 protocol SportNewsDatabaseFlowData: SportEvent {
+    var type: SportEventType { get set }
+    var date: Date { get set }
+    var authorID: String { get set }
+    var order: Int { get set }
     var title: String { get set }
+    var text: String { get set }
     var imageIDs: [String] { get set }
     var boldText: String { get set }
 }
 
-struct DefaultSportNewsDatabaseFlowData: SportNewsDatabaseFlowData {
-    var likesInfo = EventLikesInfo()
-    var viewsInfo = EventViewsInfo()
+struct EmptySportNewsDatabaseFlowData: SportNewsDatabaseFlowData {
+    var likesInfo: EventLikesInfo = EventLikesInfoImpl.empty
+    var viewsInfo: EventViewsInfo = EventViewsInfoImpl.empty
     var author: SportUser?
-    internal var isLoading: Bool = false
         
     // Database Fields
     var objectIdentifier: String
@@ -44,8 +48,8 @@ struct DefaultSportNewsDatabaseFlowData: SportNewsDatabaseFlowData {
 }
 
 struct SportNewsDatabaseFlowDataImpl: SportNewsDatabaseFlowData {
-    var likesInfo = EventLikesInfo()
-    var viewsInfo = EventViewsInfo()
+    var likesInfo: EventLikesInfo = EventLikesInfoImpl.empty
+    var viewsInfo: EventViewsInfo = EventViewsInfoImpl.empty
     var author: SportUser?
     internal var isLoading: Bool = false
     

@@ -26,7 +26,7 @@ class WorkoutScheduleListLoader {
     private var lastValue: String?
     private var endOfListIsReached: Bool = false
     
-    private var factory = FirebaseObjectFactory()
+    private var factory = FirebaseObjectFactory.shared
     
     private var loadingHandlers: [String: (WorkoutSchedule?) -> Void] = [:]
     

@@ -12,13 +12,14 @@ class SportUserBuilder {
     // MARK: - Properties
     
     private let key: String
-    private let dict: [String: Any] = [:]
-    
-    private var databasePart: SportUserDatabaseFlowData?
-    private var storagePart: SportUserStorageFlowData?
     private var snapshot: DataSnapshot?
     
-    private var completionHandler: (SportUser?) -> Void = { _ in }
+    private var databasePart: SportUserDatabaseFlowData = SportUserDatabaseFlowDataImpl.empty
+    private var storagePart: StorageFlowData = EmptyStorageFlowData()
+    
+    private let proxy = SportUserProxy()
+    
+    private var completionHandler: () -> Void = {}
     
     // MARK: - Lifecircle
     
@@ -33,56 +34,56 @@ class SportUserBuilder {
     
     // MARK: - Helper Methods
     
-    func build(completionHandler: @escaping (SportUser?) -> Void) {
-        databasePart = nil
-        storagePart = nil
+    func build(completionHandler: @escaping () -> Void) {
         if key.isEmpty {
+            completionHandler()
             return
         }
-        self.completionHandler = completionHandler
+        proxy.loadingCompletionHandler = completionHandler
         buildDatabasePart {
-            self.buildStoragePart()
+            self.buildStoragePart {
+                let object = SportUserImpl(databaseData: self.databasePart,
+                                           storageData: self.storagePart)
+                self.proxy.user = object
+            }
         }
     }
     
     private func buildDatabasePart(completionHandler: @escaping () -> Void) {
         if let snapshot = snapshot {
-            self.databasePart = SportUserDatabaseFlowDataImpl(snapshot: snapshot)
+            if let databasePart = SportUserDatabaseFlowDataImpl(snapshot: snapshot) {
+                self.databasePart = databasePart
+            }
             completionHandler()
         } else {
-            let path = "users"
-            FirebaseManager.shared.databaseManager
-                .root
-                .child(path)
-                .child(key)
-                .getData { error, snapshot in
-                    assert(error == nil)
-                    self.databasePart = SportUserDatabaseFlowDataImpl(snapshot: snapshot)
-                    completionHandler()
+            let loader = SportUserDatabaseLoader(objectIdentifier: key)
+            loader.load { data in
+                if let data = data {
+                    self.databasePart = data
                 }
+                completionHandler()
+            }
         }        
     }
     
-    private func buildStoragePart() {
-        guard let databasePart = databasePart,
-              !databasePart.objectIdentifier.isEmpty else {
-                  completionHandler(nil)
+    private func buildStoragePart(completionHandler: @escaping () -> Void) {
+        guard !databasePart.objectIdentifier.isEmpty,
+              !databasePart.imageID.isEmpty else {
+                  completionHandler()
                   return
               }
-        storagePart = SportUserStorageFlowDataImpl(imageID: databasePart.imageID)
-        storagePart?.load {
-            self.completionHandler(self.getResult())
+        let loader = UserImageLoader(objectIdentifier: databasePart.objectIdentifier,
+                                     imageIdentifier: databasePart.imageID)
+        loader.load { data in
+            if let data = data {
+                self.storagePart = data
+            }
+            completionHandler()
         }
     }
     
-    func getResult() -> SportUser? {
-        guard let databasePart = databasePart,
-              let storagePart = storagePart else {
-                  return nil
-              }
-        let object = SportUser(databaseFlowObject: databasePart,
-                                   storageFlowObject: storagePart)
-        return object
+    func getResult() -> SportUser {
+        return proxy
     }
     
 }

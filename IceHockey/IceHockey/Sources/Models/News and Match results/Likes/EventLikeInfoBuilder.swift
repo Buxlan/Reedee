@@ -51,8 +51,8 @@ class EventLikeInfoBuilder {
     }
     
     func getResult() -> EventLikesInfo? {
-        let object = EventLikesInfo(count: databasePart.count,
-                                   isLiked: databasePart.isLiked)
+        let object = EventLikesInfoImpl(count: databasePart.count,
+                                        isLiked: databasePart.isLiked)
         return object
     }
     

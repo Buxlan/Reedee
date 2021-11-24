@@ -9,16 +9,73 @@ import Firebase
 
 struct FirebaseObjectFactory {
     
+    // MARK: - Properties
+    
+    static let shared = FirebaseObjectFactory()
+    
+    // MARK: - Lifecircle
+    
+    private init() {
+    }
+    
+    // MARK: - Factory methods
+    
     func makeTeam(with objectIdentifier: String,
                   completionHandler: @escaping () -> Void)
-    -> SportTeam {
-        let builder = TeamBuilder(objectIdentifier: objectIdentifier)        
+    -> Club {
+        let builder = ClubBuilder(objectIdentifier: objectIdentifier)
         builder.build(completionHandler: completionHandler)
         let object = builder.getResult()
         return object
     }
     
-    func makeWorkoutSchedule(from snapshot: DataSnapshot) -> WorkoutSchedule? {
+    func makeUser(with objectIdentifier: String,
+                  completionHandler: @escaping () -> Void)
+    -> SportUser {
+        let builder = SportUserBuilder(key: objectIdentifier)
+        builder.build(completionHandler: completionHandler)
+        let object = builder.getResult()
+        return object
+    }
+    
+    func makeSportNews(with objectIdentifier: String,
+                  completionHandler: @escaping () -> Void)
+    -> SportNews {
+        let builder = SportNewsBuilder(objectIdentifier: objectIdentifier)
+        builder.build(completionHandler: completionHandler)
+        let object = builder.getResult()
+        return object
+    }
+    
+    func makeMatchResult(with objectIdentifier: String,
+                         completionHandler: @escaping () -> Void)
+    -> MatchResult {
+        let builder = MatchResultBuilder(objectIdentifier: objectIdentifier)
+        builder.build(completionHandler: completionHandler)
+        let object = builder.getResult()
+        return object
+    }
+    
+    func makeSquad(with objectIdentifier: String,
+                   completionHandler: @escaping () -> Void)
+    -> Squad {
+        let builder = SquadBuilder(objectIdentifier: objectIdentifier)
+        builder.build(completionHandler: completionHandler)
+        let object = builder.getResult()
+        return object
+    }
+    
+//    func makeEvent(with objectIdentifier: String,
+//                   completionHandler: @escaping () -> Void)
+//    -> SportEvent {
+//        let builder = SquadBuilder(objectIdentifier: objectIdentifier)
+//        builder.build(completionHandler: completionHandler)
+//        let object = builder.getResult()
+//        return object
+//    }
+    
+    func makeWorkoutSchedule(from snapshot: DataSnapshot)
+    -> WorkoutSchedule? {
         let builder = WorkoutScheduleBuilder(snapshot: snapshot)
         builder.build()
         let object = builder.getInstance()
@@ -27,23 +84,21 @@ struct FirebaseObjectFactory {
     
     func create<DataType: FirebaseObject>(objectType: DataType.Type,
                                           from snapshot: DataSnapshot,
-                                          with completionHandler: @escaping (DataType?) -> Void)
+                                          with completionHandler: @escaping () -> Void)
     -> DataType? {
         
         switch objectType {
         case is SportEvent.Type:
             let factory = SportEventCreator()
-            let handler: (SportEvent?) -> Void = { object in
-                let casted = object as? DataType
-                completionHandler(casted)
+            let handler: () -> Void = {
+                completionHandler()
             }
             let object = factory.create(snapshot: snapshot, with: handler) as? DataType
             return object
         case is SportUser.Type:
             let builder = SportUserBuilder(key: snapshot.key)
-            let handler: (SportUser?) -> Void = { object in
-                let casted = object as? DataType
-                completionHandler(casted)
+            let handler: () -> Void = {
+                completionHandler()
             }
             builder.build(completionHandler: handler)
             let object = builder.getResult() as? DataType

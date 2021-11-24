@@ -5,28 +5,29 @@
 //  Created by  Buxlan on 11/4/21.
 //
 
-import Firebase
+import Foundation
+import UIKit
 
-protocol SportEvent: FirebaseObject {
+protocol Event: FirebaseObject {
     var type: SportEventType { get set }
     var date: Date { get set }
     var authorID: String { get set }
-    var isNew: Bool { get }
     var order: Int { get set }
     var title: String { get set }
     var text: String { get set }
-    
+}
+
+protocol SportEvent: Event {
     var author: SportUser? { get set }
     var likesInfo: EventLikesInfo { get set }
     var viewsInfo: EventViewsInfo { get set }
-    
-    var isLoading: Bool { get }
 }
 
 extension SportEvent {
-    
+    var isLoading: Bool {
+        return false
+    }
     var isNew: Bool {
         return objectIdentifier.isEmpty
     }
-    
 }

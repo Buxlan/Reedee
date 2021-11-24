@@ -7,116 +7,149 @@
 
 import UIKit
 
-struct SportNews: SportNewsDatabaseFlowData {
-    var viewsInfo: EventViewsInfo
-    var likesInfo: EventLikesInfo
+protocol SportNews: SportNewsDatabaseFlowData {
+    var author: SportUser? { get set }
+    var mainImage: UIImage? { get }
+    var images: [ImageData] { get set }
+}
+
+class SportNewsProxy: SportNews {
+    
+    var event: SportNews? {
+        didSet {
+            loadingCompletionHandler()
+            loadingCompletionHandler = {}
+        }
+    }
+    var loadingCompletionHandler: () -> Void = {}
+    
+    var likesInfo: EventLikesInfo {
+        get { event?.likesInfo ?? EventLikesInfoImpl.empty }
+        set { event?.likesInfo = newValue }
+    }
+    var viewsInfo: EventViewsInfo {
+        get { event?.viewsInfo ?? EventViewsInfoImpl.empty }
+        set { event?.viewsInfo = newValue }
+    }
         
     var objectIdentifier: String {
-        get {
-            databaseFlowObject.objectIdentifier
-        }
-        set {
-            databaseFlowObject.objectIdentifier = newValue
-        }
+        get { event?.objectIdentifier ?? "" }
+        set { event?.objectIdentifier = newValue }
+    }
+    var authorID: String {
+        get { event?.authorID ?? "" }
+        set { event?.authorID = newValue }
+    }
+    var author: SportUser? {
+        get { event?.author }
+        set { event?.author = newValue }
+    }
+    var title: String {
+        get { event?.title ?? "" }
+        set { event?.title = newValue }
+    }
+    var text: String {
+        get { event?.text ?? "" }
+        set { event?.text = newValue }
+    }
+    var boldText: String {
+        get { event?.boldText ?? "" }
+        set { event?.boldText = newValue }
+    }
+    var type: SportEventType {
+        get { event?.type ?? .match }
+        set { event?.type = newValue }
+    }
+    var date: Date {
+        get { event?.date ?? Date() }
+        set { event?.date = newValue }
+    }
+    internal var imageIDs: [String] {
+        get { event?.imageIDs ?? [] }
+        set { event?.imageIDs = newValue }
+    }
+    var order: Int {
+        get { event?.order ?? 0 }
+        set { event?.order = newValue }
+    }
+    var images: [ImageData] {
+        get { return event?.images ?? [] }
+        set { event?.images = newValue }
+    }
+    var mainImage: UIImage? {
+        return event?.mainImage        
+    }
+    
+}
+
+struct SportNewsImpl: SportNews {
+    
+    var viewsInfo: EventViewsInfo = EventViewsInfoImpl.empty
+    var likesInfo: EventLikesInfo = EventLikesInfoImpl.empty
+        
+    var objectIdentifier: String {
+        get { databaseFlowObject.objectIdentifier }
+        set { databaseFlowObject.objectIdentifier = newValue }
     }
     
     var authorID: String {
-        get {
-            databaseFlowObject.authorID
-        }
-        set {
-            databaseFlowObject.authorID = newValue
-        }
+        get { databaseFlowObject.authorID }
+        set { databaseFlowObject.authorID = newValue }
     }
     
     var author: SportUser? {
-        get {
-            databaseFlowObject.author
-        }
-        set {
-            databaseFlowObject.author = newValue
-        }
+        get { databaseFlowObject.author }
+        set { databaseFlowObject.author = newValue }
     }
     
     var title: String {
-        get {
-            databaseFlowObject.title
-        }
-        set {
-            databaseFlowObject.title = newValue
-        }
+        get { databaseFlowObject.title }
+        set { databaseFlowObject.title = newValue }
     }
     
     var text: String {
-        get {
-            databaseFlowObject.text
-        }
-        set {
-            databaseFlowObject.text = newValue
-        }
+        get { databaseFlowObject.text }
+        set { databaseFlowObject.text = newValue }
     }
     
     var boldText: String {
-        get {
-            databaseFlowObject.boldText
-        }
-        set {
-            databaseFlowObject.boldText = newValue
-        }
+        get { databaseFlowObject.boldText }
+        set { databaseFlowObject.boldText = newValue }
     }
     
     var type: SportEventType {
-        get {
-            databaseFlowObject.type
-        }
-        set {
-            databaseFlowObject.type = newValue
-        }
+        get { databaseFlowObject.type }
+        set { databaseFlowObject.type = newValue }
     }
     
     var date: Date {
-        get {
-            databaseFlowObject.date
-        }
-        set {
-            databaseFlowObject.date = newValue
-        }
+        get { databaseFlowObject.date }
+        set { databaseFlowObject.date = newValue }
     }
     
     internal var imageIDs: [String] {
-        get {
-            databaseFlowObject.imageIDs
-        }
-        set {
-            databaseFlowObject.imageIDs = newValue
-        }
+        get { databaseFlowObject.imageIDs }
+        set { databaseFlowObject.imageIDs = newValue }
     }
     
     var order: Int {
-        get {
-            databaseFlowObject.order
-        }
-        set {
-            databaseFlowObject.order = newValue
-        }
-    }
-    
-    var isLoading: Bool {
-        author == nil
+        get { databaseFlowObject.order }
+        set { databaseFlowObject.order = newValue }
     }
     
     var images: [ImageData] {
-        return storageFlowObject.images
+        get { return storageFlowObject.images }
+        set { storageFlowObject.images = newValue }
     }
     
     private var databaseFlowObject: SportNewsDatabaseFlowData
-    private var storageFlowObject: SportNewsStorageFlowData
+    private var storageFlowObject: StorageFlowData
     
-    init(databaseFlowObject: SportNewsDatabaseFlowData = DefaultSportNewsDatabaseFlowData(),
-         storageFlowObject: SportNewsStorageFlowData = DefaultSportNewsStorageFlowData(),
+    init(databaseFlowObject: SportNewsDatabaseFlowData = EmptySportNewsDatabaseFlowData(),
+         storageFlowObject: StorageFlowData = EmptyStorageFlowData(),
          author: SportUser? = nil,
-         likesInfo: EventLikesInfo = EventLikesInfo(),
-         viewsInfo: EventViewsInfo = EventViewsInfo()) {
+         likesInfo: EventLikesInfo = EventLikesInfoImpl.empty,
+         viewsInfo: EventViewsInfo = EventViewsInfoImpl.empty) {
         self.databaseFlowObject = databaseFlowObject
         self.storageFlowObject = storageFlowObject
         self.likesInfo = likesInfo
@@ -126,11 +159,7 @@ struct SportNews: SportNewsDatabaseFlowData {
     
 }
 
-extension SportNews {
-    
-    var isNew: Bool {
-        return databaseFlowObject.objectIdentifier.isEmpty
-    }
+extension SportNewsImpl {
     
     var mainImage: UIImage? {
         if storageFlowObject.images.count > 0 {

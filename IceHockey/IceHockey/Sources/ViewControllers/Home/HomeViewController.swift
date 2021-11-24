@@ -14,7 +14,7 @@ class HomeViewController: UIViewController {
     
     var tableBase = TableViewBase()
     var viewModel = HomeViewModel()
-    var team = SportTeamManager.shared.current
+    var club = ClubManager.shared.current
     
     private let refreshControl = UIRefreshControl()
     private lazy var alert: UIAlertController = {
@@ -100,7 +100,7 @@ class HomeViewController: UIViewController {
     private lazy var tableFooterView: EventDetailFooterView = {
         let frame = CGRect(x: 0, y: 0, width: 0, height: 150)
         let view = EventDetailFooterView(frame: frame)
-        view.configure(with: team)
+        view.configure(with: club)
         return view
     }()
         
@@ -176,7 +176,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.actionsCount
+        return viewModel.actions.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

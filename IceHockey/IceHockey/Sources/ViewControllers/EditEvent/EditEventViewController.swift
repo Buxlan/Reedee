@@ -73,7 +73,7 @@ class EditEventViewController: UIViewController {
         var isNew = false
         switch editMode {
         case .new:
-            viewModel = EditEventViewModel(event: SportNews())
+            viewModel = EditEventViewModel(event: SportNewsImpl())
             isNew = true
         case .edit(let data):
             viewModel = EditEventViewModel(event: data)

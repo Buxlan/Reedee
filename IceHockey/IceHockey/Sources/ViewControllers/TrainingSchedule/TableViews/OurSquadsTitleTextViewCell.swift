@@ -65,7 +65,7 @@ class OurSquadsTitleTextViewCell: UITableViewCell {
 // MARK: - ConfigurableCell extension
 extension OurSquadsTitleTextViewCell: ConfigurableCell {
         
-    typealias DataType = SportTeam
+    typealias DataType = Club
     func configure(with data: DataType) {
         configureUI()
         titleTextView.text = data.webSite

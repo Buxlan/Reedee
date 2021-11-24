@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-protocol MatchResultDatabaseFlowData: SportEvent {
+protocol MatchResultDatabaseFlowData: Event {
     var homeTeam: String { get set }
     var awayTeam: String { get set }
     var homeTeamScore: Int { get set }
@@ -16,11 +16,7 @@ protocol MatchResultDatabaseFlowData: SportEvent {
     var stadium: String { get set }
 }
 
-struct DefaultMatchResultDatabaseFlowData: MatchResultDatabaseFlowData {
-    var likesInfo = EventLikesInfo()
-    var viewsInfo = EventViewsInfo()
-    var author: SportUser?
-    var isLoading: Bool = false
+struct EmptyMatchResultDatabaseFlowData: MatchResultDatabaseFlowData {
     
     var objectIdentifier: String = ""
     var type: SportEventType = .match
@@ -38,10 +34,6 @@ struct DefaultMatchResultDatabaseFlowData: MatchResultDatabaseFlowData {
 }
 
 struct MatchResultDatabaseFlowDataImpl: MatchResultDatabaseFlowData {
-    var likesInfo = EventLikesInfo()
-    var viewsInfo = EventViewsInfo()
-    var author: SportUser?
-    var isLoading: Bool = false
     
     var objectIdentifier: String
     var type: SportEventType = .match

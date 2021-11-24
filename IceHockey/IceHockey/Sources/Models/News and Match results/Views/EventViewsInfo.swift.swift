@@ -7,7 +7,14 @@
 
 import Foundation
 
-struct EventViewsInfo {
+protocol EventViewsInfo {
     
-    
+}
+
+//struct EmptyEventViewsInfo: EventViewsInfo {
+//
+//}
+
+struct EventViewsInfoImpl: EventViewsInfo {
+    static let empty = Self()
 }

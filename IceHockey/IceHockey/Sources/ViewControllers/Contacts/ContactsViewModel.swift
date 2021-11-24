@@ -16,13 +16,15 @@ class ContactsViewModel: NSObject {
     
     // MARK: - Properties
     
-    typealias DataType = SportSquad
-    typealias PredicateType = SportTeam
+    typealias DataType = Squad
+    typealias PredicateType = Club
     typealias CellConfiguratorType = SquadCellConfigurator
     typealias TableRowType = OldTableRow<PredicateType>
     typealias TableSectionType = OldTableSection<TableRowType>
     
     var sections: [TableSectionType] = []
+    
+    let factory = FirebaseObjectFactory.shared
     
     private var loadings: [String] = []
         
@@ -58,8 +60,8 @@ class ContactsViewModel: NSObject {
                     guard let item = result[uid] as? [String: Any] else {
                         return
                     }
-                    guard let object = SportSquad(key: uid, dict: item) else {
-                        fatalError("Invalid Reference")
+                    let object = self.factory.makeSquad(with: uid) {
+                        
                     }
                     let config = CellConfiguratorType(data: object)
                     items.append(config)
@@ -117,7 +119,7 @@ class ContactsViewModel: NSObject {
     }
     
     func update() {
-        self.filter = SportTeamManager.shared.current
+        self.filter = ClubManager.shared.current
     }
     
 }

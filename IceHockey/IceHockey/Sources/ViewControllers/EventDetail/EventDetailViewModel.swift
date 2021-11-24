@@ -11,7 +11,7 @@ class EventDetailViewModel: NSObject {
     
     // MARK: - Properties
     struct SectionData {
-        let squad: SportSquad
+        let squad: Squad
         let schedule: WorkoutSchedule
     }
     

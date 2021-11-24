@@ -43,7 +43,7 @@ class MatchResultDetailViewController: UIViewController {
     private lazy var tableFooterView: EventDetailFooterView = {
         let frame = CGRect(x: 0, y: 0, width: 0, height: 150)
         let view = EventDetailFooterView(frame: frame)
-        view.configure(with: SportTeamManager.shared.current)
+        view.configure(with: ClubManager.shared.current)
         return view
     }()
     
@@ -79,7 +79,7 @@ class MatchResultDetailViewController: UIViewController {
     init(editMode: EditMode) {
         switch editMode {
         case .new:
-            editingObject = InputDataType()
+            editingObject = MatchResultImpl()
         case .edit(let data):
             editingObject = data
         }

@@ -100,7 +100,7 @@ class EventDetailFooterView: UIView {
 }
 
 extension EventDetailFooterView: ConfigurableCell {
-    typealias DataType = SportTeam
+    typealias DataType = Club
     func configure(with data: DataType) {
         configureUI()
         titleLabel.text = data.displayName

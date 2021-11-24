@@ -11,16 +11,17 @@ class TrainingScheduleViewModel: NSObject {
     
     // MARK: - Properties
     struct SectionData {
-        let squad: SportSquad
+        let squad: Squad
         let schedule: WorkoutSchedule
     }
         
-    var team: SportTeam = SportTeamManager.shared.current
+    var team: Club = ClubManager.shared.current
     var sections: [SectionData] = []
     var isLoading: Bool {
         return loader.isLoading
     }
     private var loader = WorkoutScheduleListLoader()
+    private var factory = FirebaseObjectFactory.shared
     
     var shouldRefreshRelay = {}
     
@@ -87,8 +88,8 @@ class TrainingScheduleViewModel: NSObject {
             }
             self.sections.removeAll()
             schedules.forEach { schedule in
-                guard let squad = self.getSquad(by: schedule.objectIdentifier) else {
-                    return
+                let squad = self.factory.makeSquad(with: schedule.objectIdentifier) {
+                    self.shouldRefreshRelay()
                 }
                 let section = SectionData(squad: squad, schedule: schedule)
                 self.sections.append(section)
@@ -97,28 +98,7 @@ class TrainingScheduleViewModel: NSObject {
             
         }
         loader.load(completionHandler: completionHandler)
-        
-//        guard loadings.count == 0,
-//            let teamID = Bundle.main.object(forInfoDictionaryKey: "teamID") as? String else {
-//            return
-//        }
-//        let handler: (SportTeam?) -> Void = { (team) in
-//            if let team = team {
-//                self.team = team
-//                self.loadings.removeAll()
-//                self.loadItems()
-//            }
-//        }
-//        loadings.append(teamID)
-//        FirebaseObjectLoader<SportTeam>().load(uid: teamID, completionHandler: handler)
-    }
-    
-    private func getSquad(by uid: String) -> SportSquad? {
-        guard let index = team.squadsIdentifiers.firstIndex(where: { $0 == uid }) else {
-            return nil
-        }
-        let squad = SportSquad(objectIdentifier: uid, displayName: "12313", headCoach: "4341")
-        return squad
+
     }
     
 }

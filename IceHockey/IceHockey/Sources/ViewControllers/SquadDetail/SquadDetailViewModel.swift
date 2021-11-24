@@ -13,7 +13,7 @@ class SquadDetailViewModel: NSObject {
     // MARK: - Properties
     
     typealias DataType = SportPlayer
-    typealias PredicateType = SportSquad
+    typealias PredicateType = Squad
     typealias CellConfiguratorType = PlayerCellConfigurator
     
     var filter: PredicateType? {

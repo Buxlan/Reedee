@@ -107,7 +107,7 @@ class TeamInfoTableCell: UITableViewCell {
 // MARK: - ConfigurableCell extension
 extension TeamInfoTableCell: ConfigurableCell {
         
-    typealias DataType = SportTeam
+    typealias DataType = Club
     func configure(with data: DataType) {
         configureUI()
         phoneTextView.text = L10n.Team.phoneTitle + data.phone

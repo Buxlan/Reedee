@@ -7,93 +7,56 @@
 
 import Firebase
 
-protocol SportUserObject: FirebaseObject {
+protocol SportUser: FirebaseObject {
     var displayName: String { get set }
     var imageID: String { get set }
     var isNew: Bool { get }
+    var image: UIImage? { get set }
 }
 
-extension SportUserObject {
-    var isNew: Bool {
-        return objectIdentifier.isEmpty
-    }
-}
-
-class SportUser: SportUserObject {
-    
-    var objectIdentifier: String {
-        get {
-            databaseFlowObject.objectIdentifier
-        }
-        set {
-            databaseFlowObject.objectIdentifier = newValue
-        }
-    }
-    var displayName: String {
-        get {
-            databaseFlowObject.displayName
-        }
-        set {
-            databaseFlowObject.displayName = newValue
-        }
-    }
-    internal var imageID: String {
-        get {
-            databaseFlowObject.imageID
-        }
-        set {}
-    }
-    var image: UIImage? {
-        get {
-            storageFlowObject.image?.image
-        }
-        set {
-            storageFlowObject.image?.image = newValue
-        }
-    }
-    
+extension SportUser {
     var firebaseUser: User? {
         return Auth.auth().currentUser
     }
-    
-    private var databaseFlowObject: SportUserDatabaseFlowData
-    private var storageFlowObject: SportUserStorageFlowData
-    
-    init() {
-        self.databaseFlowObject = SportUserDatabaseFlowDataImpl()
-        self.storageFlowObject = SportUserStorageFlowDataImpl()
-    }
-    
-    init(databaseFlowObject: SportUserDatabaseFlowData,
-         storageFlowObject: SportUserStorageFlowData) {
-        self.databaseFlowObject = databaseFlowObject
-        self.storageFlowObject = storageFlowObject
-    }
-    
 }
 
-protocol SportUserCreator {
+struct SportUserImpl: SportUser {
     
-    func create(snapshot: DataSnapshot,
-                with completionHandler: @escaping (SportUser?) -> Void)
-    -> SportUser?
-    
-}
-
-struct SportUserCreatorImpl: SportUserCreator {
-    
-    func create(snapshot: DataSnapshot,
-                with completionHandler: @escaping (SportUser?) -> Void)
-    -> SportUser? {
-        
-        let uid = snapshot.key
-        guard let dict = snapshot.value as? [String: Any] else {
-            return nil
+    var objectIdentifier: String {
+        get { databaseData.objectIdentifier }
+        set { databaseData.objectIdentifier = newValue }
+    }
+    var displayName: String {
+        get { databaseData.displayName }
+        set { databaseData.displayName = newValue }
+    }
+    internal var imageID: String {
+        get { databaseData.imageID }
+        set { databaseData.imageID = newValue }
+    }
+    var image: UIImage? {
+        get {
+            return storageData.images.count > 0 ? storageData.images[0].image : nil
         }
-        let builder = SportUserBuilder(key: uid)
-        builder.build(completionHandler: completionHandler)
-        let object = builder.getResult()
-        return object
+        set {
+            if storageData.images.count > 0 {
+                storageData.images[0].image = newValue
+            } else {
+                let imageData = ImageData(imageID: imageID,
+                                          image: newValue,
+                                          isNew: true)
+                storageData.images.append(imageData)
+            }
+        }
+    }
+    
+    private var databaseData: SportUserDatabaseFlowData = SportUserDatabaseFlowDataImpl.empty
+    private var storageData: StorageFlowData = StorageFlowDataImpl()
+    
+    init(databaseData: SportUserDatabaseFlowData,
+         storageData: StorageFlowData) {
+        self.databaseData = databaseData
+        self.storageData = storageData
     }
     
 }

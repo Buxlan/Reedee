@@ -7,7 +7,11 @@
 
 import UIKit
 
-struct MatchResult: MatchResultDatabaseFlowData {
+protocol MatchResult: SportEvent, MatchResultDatabaseFlowData {
+    var status: MatchStatus { get }
+}
+
+struct MatchResultImpl: MatchResult {
     var likesInfo: EventLikesInfo
     var viewsInfo: EventViewsInfo
     
@@ -59,8 +63,8 @@ struct MatchResult: MatchResultDatabaseFlowData {
         get { databaseFlowObject.order }
         set { databaseFlowObject.order = newValue }
     }
-    var status: String {
-        return MatchStatus.finished.description
+    var status: MatchStatus {
+        return MatchStatus.finished
     }
     
     var isLoading: Bool {
@@ -70,13 +74,13 @@ struct MatchResult: MatchResultDatabaseFlowData {
     var author: SportUser?
     
     private var databaseFlowObject: MatchResultDatabaseFlowData
-    private var storageFlowObject: MatchResultStorageFlowData
+    private var storageFlowObject: StorageFlowData
     
-    init(databaseFlowObject: MatchResultDatabaseFlowData = DefaultMatchResultDatabaseFlowData(),
-         storageFlowObject: MatchResultStorageFlowData = DefaultMatchResultStorageFlowData(),
+    init(databaseFlowObject: MatchResultDatabaseFlowData = EmptyMatchResultDatabaseFlowData(),
+         storageFlowObject: StorageFlowData = EmptyStorageFlowData(),
          author: SportUser? = nil,
-         likesInfo: EventLikesInfo = EventLikesInfo(),
-         viewsInfo: EventViewsInfo = EventViewsInfo()) {
+         likesInfo: EventLikesInfo = EventLikesInfoImpl.empty,
+         viewsInfo: EventViewsInfo = EventViewsInfoImpl.empty) {
         self.databaseFlowObject = databaseFlowObject
         self.storageFlowObject = storageFlowObject
         self.likesInfo = likesInfo

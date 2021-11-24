@@ -11,7 +11,7 @@ class SquadDetailViewController: UIViewController {
     
     // MARK: - Properties
     
-    typealias InputDataType = SportSquad
+    typealias InputDataType = Squad
     private lazy var viewModel: SquadDetailViewModel = {
         return SquadDetailViewModel(delegate: self)
     }()
@@ -19,7 +19,7 @@ class SquadDetailViewController: UIViewController {
     private lazy var tableFooterView: EventDetailFooterView = {
         let frame = CGRect(x: 0, y: 0, width: 0, height: 150)
         let view = EventDetailFooterView(frame: frame)
-        view.configure(with: SportTeamManager.shared.current)
+        view.configure(with: ClubManager.shared.current)
         return view
     }()
     

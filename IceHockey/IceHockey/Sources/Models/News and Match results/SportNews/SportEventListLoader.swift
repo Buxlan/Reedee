@@ -26,8 +26,9 @@ class SportEventListLoader {
     private let capacity: UInt
     private var lastValue: Int?
     private var endOfListIsReached: Bool = false
+    private let factory = FirebaseObjectFactory.shared
     
-    private var loadingHandlers: [String: (SportEvent?) -> Void] = [:]
+    private var loadingHandlers: [String: () -> Void] = [:]
     
     // MARK: - Lifecircle
     
@@ -40,7 +41,7 @@ class SportEventListLoader {
     }
     
     func load(eventListCompletionHandler: @escaping ([SportEvent]) -> Void,
-              eventLoadedCompletionHandler: @escaping (SportEvent) -> Void) {
+              eventLoadedCompletionHandler: @escaping () -> Void) {
         if endOfListIsReached {
             return
         }
@@ -59,17 +60,14 @@ class SportEventListLoader {
                     continue
                 }
                 let eventID = child.key
-                let completionHandler: (SportEvent?) -> Void = { event in
+                let completionHandler: () -> Void = {
                     if let handlerIndex = self.loadingHandlers
                         .firstIndex(where: { (key, _) in
                         key == eventID
                     }) {
                         self.loadingHandlers.remove(at: handlerIndex)
                     }
-                    guard let event = event else {
-                        return
-                    }
-                    eventLoadedCompletionHandler(event)
+                    eventLoadedCompletionHandler()
                 }
                 self.loadingHandlers[eventID] = completionHandler
             }

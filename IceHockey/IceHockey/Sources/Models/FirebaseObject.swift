@@ -10,3 +10,9 @@ import Foundation
 protocol FirebaseObject {
     var objectIdentifier: String { get set }    
 }
+
+extension FirebaseObject {
+    var isNew: Bool {
+        return self.objectIdentifier.isEmpty
+    }
+}

@@ -6,7 +6,6 @@
 //
 
 import Firebase
-import FirebaseDatabaseUI
 
 class HomeViewModel: NSObject {
     
@@ -27,20 +26,28 @@ class HomeViewModel: NSObject {
     
     // MARK: - Actions
     
-    private lazy var actions: [ActionCollectionCellConfigurator] = {
-        [
-            ActionCollectionCellConfigurator(data: QuickAction.joinClub),
-            ActionCollectionCellConfigurator(data: QuickAction.contacts),
-            ActionCollectionCellConfigurator(data: QuickAction.showTrainingSchedule),
-            ActionCollectionCellConfigurator(data: QuickAction.showOnMap)
-        ]
-    }()
+    var actions: [ActionCollectionCellConfigurator] = [
+        ActionCollectionCellConfigurator(data: QuickAction.joinClub),
+        ActionCollectionCellConfigurator(data: QuickAction.contacts),
+        ActionCollectionCellConfigurator(data: QuickAction.showTrainingSchedule),
+        ActionCollectionCellConfigurator(data: QuickAction.showOnMap)
+    ]
     
-    var actionsCount: Int {
-        actions.count
+    private var isAuthCompleted = false
+    private lazy var authStateListener: (Auth, User?) -> Void = { [weak self] (_, _) in
+        guard let self = self else {
+            return
+        }
+        self.isAuthCompleted = true
+        self.update()
     }
     
     // MARK: Lifecircle
+    
+    override init() {
+        super.init()
+        Auth.auth().addStateDidChangeListener(self.authStateListener)
+    }
             
     // MARK: - Hepler functions     
     
@@ -49,6 +56,9 @@ class HomeViewModel: NSObject {
     }
         
     func update() {
+        guard isAuthCompleted else {
+            return
+        }
         loader.flush()
         let eventListCompletionHandler: ([SportEvent]) -> Void = { events in
             guard events.count > 0 else {
@@ -59,18 +69,17 @@ class HomeViewModel: NSObject {
             self.sections = [section]
             self.shouldRefreshRelay()
         }
-        let eventLoadedCompletionHandler: (SportEvent) -> Void = { event in
-            assert(self.sections.count > 0)
-            if let index = self.sections[0].events.firstIndex(where: { $0.objectIdentifier == event.objectIdentifier }) {
-                self.sections[0].events[index] = event
-                self.shouldRefreshRelay()
-            }
+        let eventLoadedCompletionHandler: () -> Void = {
+            self.shouldRefreshRelay()
         }
         loader.load(eventListCompletionHandler: eventListCompletionHandler,
                     eventLoadedCompletionHandler: eventLoadedCompletionHandler)
     }
     
     func nextUpdate() {
+        guard isAuthCompleted else {
+            return
+        }
         let eventListCompletionHandler: ([SportEvent]) -> Void = { events in
             assert(self.sections.count > 0)
             guard events.count > 0 else {
@@ -85,12 +94,8 @@ class HomeViewModel: NSObject {
             }
             self.shouldRefreshRelay()
         }
-        let eventLoadedCompletionHandler: (SportEvent) -> Void = { event in
-            assert(self.sections.count > 0)
-            if let index = self.sections[0].events.firstIndex(where: { $0.objectIdentifier == event.objectIdentifier }) {
-                self.sections[0].events[index] = event
-                self.shouldRefreshRelay()
-            }
+        let eventLoadedCompletionHandler: () -> Void = {
+            self.shouldRefreshRelay()
         }
         loader.load(eventListCompletionHandler: eventListCompletionHandler,
                     eventLoadedCompletionHandler: eventLoadedCompletionHandler)

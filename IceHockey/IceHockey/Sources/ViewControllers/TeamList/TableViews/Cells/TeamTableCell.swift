@@ -12,7 +12,7 @@ class TeamTableCell: UITableViewCell {
     
     // MARK: - Properties
     
-    typealias DataType = SportTeam
+    typealias DataType = Club
     
     var isInterfaceConfigured = false
     var imageAspectRate: CGFloat = 1

@@ -12,10 +12,10 @@ class TrainingScheduleViewController: UIViewController {
     
     // MARK: - Properties
     
-    typealias InputDataType = SportTeam
+    typealias InputDataType = Club
     var viewModel: TrainingScheduleViewModel = TrainingScheduleViewModel()
     private var tableBase = TableViewBase()
-    var team = SportTeamManager.shared.current
+    var team = ClubManager.shared.current
     
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)

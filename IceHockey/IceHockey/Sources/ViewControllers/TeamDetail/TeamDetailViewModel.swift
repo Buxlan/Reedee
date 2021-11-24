@@ -21,13 +21,15 @@ class TeamDetailViewModel: NSObject {
     
     // MARK: - Properties
     
-    typealias DataType = SportSquad
-    typealias PredicateType = SportTeam
+    typealias DataType = Squad
+    typealias PredicateType = Club
     typealias CellConfiguratorType = SquadCellConfigurator
     typealias TableRowType = OldTableRow<PredicateType>
     typealias TableSectionType = OldTableSection<TableRowType>
     
     var sections: [TableSectionType] = []
+    
+    let factory = FirebaseObjectFactory.shared
         
     var filter: PredicateType? {
         didSet {
@@ -61,8 +63,8 @@ class TeamDetailViewModel: NSObject {
                     guard let item = result[uid] as? [String: Any] else {
                         return
                     }
-                    guard let object = SportSquad(key: uid, dict: item) else {
-                        fatalError("Invalid Reference")
+                    let object = self.factory.makeSquad(with: uid) {
+                        
                     }
                     let config = CellConfiguratorType(data: object)
                     items.append(config)

@@ -45,7 +45,7 @@ struct MatchResultTableCellModel: TableCellModel {
         homeTeam = data.homeTeam
         awayTeam = data.awayTeam
         stadium = data.stadium
-        status = data.status
+        status = data.status.description
         author = data.author?.displayName
         authorImage = data.author?.image
         

@@ -48,7 +48,7 @@ struct MatchResultEditCellModel: TableCellModel {
         homeTeam = data.homeTeam
         awayTeam = data.awayTeam
         stadium = data.stadium
-        status = data.status
+        status = data.status.description
         
         homeTeamScore = data.homeTeamScore
         awayTeamScore = data.awayTeamScore

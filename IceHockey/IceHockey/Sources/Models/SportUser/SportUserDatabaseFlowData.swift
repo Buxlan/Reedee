@@ -7,14 +7,29 @@
 
 import Firebase
 
-protocol SportUserDatabaseFlowData: SportUserObject {    
+protocol SportUserDatabaseFlowData: FirebaseObject, SnapshotInitiable {
+    var objectIdentifier: String { get set }
+    var imageID: String { get set }
+    var displayName: String { get set }
+    static var empty: SportUserDatabaseFlowData { get }
+    init?(snapshot: DataSnapshot)
 }
 
 struct SportUserDatabaseFlowDataImpl: SportUserDatabaseFlowData {
+
+    static var empty: SportUserDatabaseFlowData {
+        return Self()
+    }
     
     var objectIdentifier: String
     var imageID: String
     var displayName: String
+    
+    init() {
+        self.objectIdentifier = ""
+        self.imageID = ""
+        self.displayName = ""
+    }
     
     init(objectIdentifier: String,
          displayName: String,
@@ -22,12 +37,6 @@ struct SportUserDatabaseFlowDataImpl: SportUserDatabaseFlowData {
         self.objectIdentifier = objectIdentifier
         self.imageID = imageID
         self.displayName = displayName
-    }
-    
-    internal init() {
-        self.objectIdentifier = ""
-        self.imageID = ""
-        self.displayName = ""
     }
     
     init(key: String, dict: [String: Any]) {                

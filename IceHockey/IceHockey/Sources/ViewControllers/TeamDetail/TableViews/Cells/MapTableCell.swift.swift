@@ -90,7 +90,7 @@ class MapTableCell: UITableViewCell {
 // MARK: - ConfigurableCell extension
 extension MapTableCell: ConfigurableCell {
         
-    typealias DataType = SportTeam
+    typealias DataType = Club
     func configure(with data: DataType) {
         configureUI()
         mapView.removeAnnotations(mapView.annotations)

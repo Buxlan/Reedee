@@ -82,7 +82,7 @@ class MatchResultEditViewController: UIViewController {
     init(editMode: EditMode) {
         switch editMode {
         case .new:
-            editingObject = InputDataType()
+            editingObject = MatchResultImpl()
         case .edit(let data):
             editingObject = data
         }
