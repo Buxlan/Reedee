@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-protocol MatchResultDatabaseFlowData: Event {
+protocol MatchResultDatabaseFlowData: SportEventDatabaseFlowData {
     var homeTeam: String { get set }
     var awayTeam: String { get set }
     var homeTeamScore: Int { get set }

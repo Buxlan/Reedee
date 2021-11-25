@@ -69,8 +69,8 @@ class HomeViewModel: NSObject {
             self.sections = [section]
             self.shouldRefreshRelay()
         }
-        let eventLoadedCompletionHandler: (IndexPath) -> Void = { indexPath in
-            self.shouldRefreshAtIndexPathRelay(indexPath)
+        let eventLoadedCompletionHandler: () -> Void = {
+            self.shouldRefreshRelay()
         }
         loader.load(eventListCompletionHandler: eventListCompletionHandler,
                     eventLoadedCompletionHandler: eventLoadedCompletionHandler)
@@ -86,8 +86,8 @@ class HomeViewModel: NSObject {
             self.sections[0].events.append(contentsOf: events)
             self.shouldRefreshRelay()
         }
-        let eventLoadedCompletionHandler: (IndexPath) -> Void = { indexPath in
-            self.shouldRefreshAtIndexPathRelay(indexPath)
+        let eventLoadedCompletionHandler: () -> Void = {
+            self.shouldRefreshRelay()
         }
         loader.load(eventListCompletionHandler: eventListCompletionHandler,
                     eventLoadedCompletionHandler: eventLoadedCompletionHandler)

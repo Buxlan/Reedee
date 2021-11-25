@@ -14,6 +14,7 @@ protocol MatchResult: SportEvent, MatchResultDatabaseFlowData {
 struct MatchResultImpl: MatchResult {
     var likesInfo: EventLikesInfo
     var viewsInfo: EventViewsInfo
+    var author: SportUser?
     
     var objectIdentifier: String {
         get { databaseFlowObject.objectIdentifier }
@@ -70,8 +71,6 @@ struct MatchResultImpl: MatchResult {
     var isLoading: Bool {
         return author == nil
     }
-    
-    var author: SportUser?
     
     private var databaseFlowObject: MatchResultDatabaseFlowData
     private var storageFlowObject: StorageFlowData

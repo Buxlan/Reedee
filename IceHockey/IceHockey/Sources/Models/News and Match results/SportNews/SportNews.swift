@@ -7,10 +7,12 @@
 
 import UIKit
 
-protocol SportNews: SportNewsDatabaseFlowData {
+protocol SportNews: SportEvent, SportNewsDatabaseFlowData {
     var author: SportUser? { get set }
     var mainImage: UIImage? { get }
     var images: [ImageData] { get set }
+    var likesInfo: EventLikesInfo { get set }
+    var viewsInfo: EventViewsInfo { get set }
 }
 
 class SportNewsProxy: SportNews {
@@ -86,6 +88,7 @@ struct SportNewsImpl: SportNews {
     
     var viewsInfo: EventViewsInfo = EventViewsInfoImpl.empty
     var likesInfo: EventLikesInfo = EventLikesInfoImpl.empty
+    var author: SportUser?
         
     var objectIdentifier: String {
         get { databaseFlowObject.objectIdentifier }
@@ -95,11 +98,6 @@ struct SportNewsImpl: SportNews {
     var authorID: String {
         get { databaseFlowObject.authorID }
         set { databaseFlowObject.authorID = newValue }
-    }
-    
-    var author: SportUser? {
-        get { databaseFlowObject.author }
-        set { databaseFlowObject.author = newValue }
     }
     
     var title: String {

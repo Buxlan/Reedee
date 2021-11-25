@@ -117,6 +117,12 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         configureBars()
         configureViewModel()
+        ClubManager.shared.addObserver(self)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        ClubManager.shared.removeObserver(self)
     }
     
     // MARK: - Hepler functions
@@ -196,6 +202,14 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                                                       for: indexPath)
         item.configure(cell: cell)
         return cell
+    }
+    
+}
+
+extension HomeViewController: ClubObserver {
+    
+    func didChangeTeam(_ club: Club) {
+        tableFooterView.configure(with: club)
     }
     
 }

@@ -16,25 +16,37 @@ struct SportEventCreator {
         let uid = snapshot.key
         guard let dict = snapshot.value as? [String: Any] else { return nil }
         let type = getType(dict)
-        var object: SportEvent?
         
         switch type {
         case .event:
             let builder = SportNewsBuilder(objectIdentifier: uid)
             builder.dict = dict
             builder.build(completionHandler: completionHandler)
-            object = builder.getResult()
+            return builder.getResult()
         case .match:
             let builder = MatchResultBuilder(objectIdentifier: uid)
             builder.dict = dict
             builder.build(completionHandler: completionHandler)
-            object = builder.getResult()
+            return builder.getResult()
         default:
-            object = nil
+            return nil
         }
+    }
+    
+    func makeDatabasePart(from snapshot: DataSnapshot)
+    -> SportEventDatabaseFlowData? {
         
-        return object
-        
+        let objectIdentifier = snapshot.key
+        guard let dict = snapshot.value as? [String: Any] else { return nil }
+        let type = getType(dict)
+        switch type {
+        case .event:
+            return SportNewsDatabaseFlowDataImpl(key: objectIdentifier, dict: dict)
+        case .match:
+            return MatchResultDatabaseFlowDataImpl(key: objectIdentifier, dict: dict)
+        default:
+            return nil
+        }
     }
     
     private func getType(_ dict: [String: Any]) -> SportEventType? {

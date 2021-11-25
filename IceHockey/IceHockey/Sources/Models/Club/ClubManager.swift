@@ -12,7 +12,7 @@ struct WeakClubObserver {
 }
 
 protocol ClubObserver: AnyObject {
-    func didChangeTeam(_ newTeam: Club)
+    func didChangeTeam(_ club: Club)
 }
 
 class ClubManager {
