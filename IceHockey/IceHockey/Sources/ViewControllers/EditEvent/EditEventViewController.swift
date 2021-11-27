@@ -130,7 +130,6 @@ class EditEventViewController: UIViewController {
     }
     
     private func configureViewModel() {
-        self.viewModel.loadImagesIfNeeded(event: viewModel.event)
         let dataSource = self.createDataSource()
         tableBase.updateDataSource(dataSource)
         tableBase.setupTable(tableView)
@@ -153,7 +152,7 @@ extension EditEventViewController {
     
     private func makeTableSections() -> [TableSection] {
         return [
-//            makeTableSectionMainInfo(),
+            makeTableSectionMainInfo(),
             makeTableSectionAdditionalInfo(),
             makeTableSectionPhotos(),            
             makeTableSectionSave()
@@ -234,7 +233,7 @@ extension EditEventViewController {
     
     func makeCollectionViewDataSource() -> CollectionDataSource {
         let size = CGSize(width: 240, height: 240)
-        let collectionRows = viewModel.unremovedImageList.map { imageData -> CollectionRow in
+        let collectionRows = viewModel.unremovedImages.map { imageData -> CollectionRow in
             makePhotoCollectionRow(imageData: imageData, size: size)
         }
         let addPhotoCellModel = PhotoCellModel()

@@ -65,12 +65,12 @@ extension EventDetailBoldTextView: ConfigurableCollectionContent {
         
     typealias DataType = TextCellModel
     func configure(with data: DataType) {
-        configureUI()
+        configureUI()        
         boldTextLabel.text = data.text
-        boldTextLabel.textColor = data.textColor
+        boldTextLabel.backgroundColor = data.lightBackgroundColor
         boldTextLabel.font = data.font
-        contentView.backgroundColor = data.backgroundColor
-        boldTextLabel.backgroundColor = data.backgroundColor
+        boldTextLabel.textColor = data.textColor
+        contentView.backgroundColor = data.lightBackgroundColor
     }
     
 }

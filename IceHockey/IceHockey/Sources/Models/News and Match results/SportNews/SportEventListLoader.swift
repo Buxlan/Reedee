@@ -16,11 +16,10 @@ class SportEventListLoader {
     }
     
     private var databaseRootPath = "events"
-    private var collection = DataSnapshotsCollection()
+    private lazy var collection = DataSnapshotsCollection(portionSize: portionSize)
     private lazy var iterator = DataSnapshotsIterator(collection: collection)
-    private var collectionCapacity: UInt = 10
     
-    private let portion: UInt
+    private let portionSize: UInt
     private var endOfListIsReached: Bool = false
     private let factory = FirebaseObjectFactory.shared
     
@@ -28,8 +27,8 @@ class SportEventListLoader {
     
     // MARK: - Lifecircle
     
-    init(portion: UInt = 10) {
-        self.portion = portion
+    init(portionSize: UInt = 10) {
+        self.portionSize = portionSize
     }
     
     func flush() {
@@ -45,7 +44,7 @@ class SportEventListLoader {
                 guard let child = child as? DataSnapshot else {
                     return
                 }
-                self.collection.append(child)
+                self.collection.appendItem(child)
                 count += 1
             }
             completionHandler(count)
@@ -58,10 +57,9 @@ class SportEventListLoader {
             .root
             .child(databaseRootPath)
             .queryOrdered(byChild: "order")
-            .queryLimited(toFirst: collectionCapacity)
+            .queryLimited(toFirst: portionSize)
         if !collection.isEmpty {
-            iterator.last()
-            guard let objects = iterator.next(),
+            guard let objects = iterator.previous(),
                   let snapshot = objects.items.last else {
                 fatalError()
             }
@@ -71,7 +69,7 @@ class SportEventListLoader {
                     .child(databaseRootPath)
                     .queryOrdered(byChild: "order")
                     .queryStarting(afterValue: databasePart.order)
-                    .queryLimited(toFirst: collectionCapacity)
+                    .queryLimited(toFirst: portionSize)
             }
         }
         return query

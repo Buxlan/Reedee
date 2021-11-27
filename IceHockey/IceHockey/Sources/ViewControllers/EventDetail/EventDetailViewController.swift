@@ -147,13 +147,7 @@ extension EventDetailViewController {
     func createDataSource() -> TableDataSource {
         
         var sections: [TableSection] = []
-        
-//        let cellModel = EventDetailHeaderCellModel(title: event.title)
-//        let config = EventDetailHeaderViewConfigurator(data: cellModel)
         var section = TableSection()
-//        section.headerConfig = config
-//        section.headerHeight = 60.0
-//        section.headerViewId = type(of: config).reuseIdentifier
         
         let userRow = makeUserTableRow(),
             photoRow = makePhotoTableRow(),
@@ -202,7 +196,8 @@ extension EventDetailViewController {
     }
     
     func makeBoldTextTableRow() -> TableRow {
-        let cellModel = TextCellModel(text: event.boldText)
+        var cellModel = TextCellModel(text: event.boldText)
+        cellModel.font = .bxBody2
         let config = EventDetailBoldTextViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         return row

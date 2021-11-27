@@ -35,21 +35,34 @@ class EditEventViewModel {
     
     // MARK: - Propetries
     
-    var event: SportNews
+    weak var eventProxy: SportNewsProxy? {
+        didSet {
+            guard let event = eventProxy?.event else {
+                return
+            }
+            self.event = event
+        }
+    }
+    var event: SportNews = SportNewsImpl()
     var shouldReloadRelay = {}
     var collectionViewDataSource = CollectionDataSource()
+    var wasEdited: Bool = false
     
-    var unremovedImageList: [ImageData] {
-        imageList.filter { imageData in
+    var unremovedImages: [ImageData] {
+        event.images.filter { imageData in
             !imageData.isRemoved
         }
     }
-    private var imageList: [ImageData] = []      
     private var loadingHandlers: [String: (UIImage?) -> Void] = [:]
     
     init(event: SportNews) {
         self.event = event
     }
+    
+    deinit {
+        print("!!!! deinit!")
+    }
+    
 }
 
 extension EditEventViewModel {
@@ -57,60 +70,21 @@ extension EditEventViewModel {
     // MARK: - Helper methods
     
     func appendImage(_ image: UIImage) {
-        let image = image.resizeImage(to: 512, aspectRatio: .square)
-        let imageData = ImageData(image: image, isNew: true)
-        self.imageList.append(imageData)
+        event.addImage(image)
         self.shouldReloadRelay()
     }
     
     func removeImage(_ imageID: String) {
-        if let index = imageList.firstIndex(where: { $0.imageID == imageID }) {
-            imageList[index].isRemoved = true
-            self.shouldReloadRelay()
-        }
-    }
-    
-    func loadImagesIfNeeded(event: SportNews) {
-        if imageList.count > 0 {
-            return
-        }
-        let eventID = event.objectIdentifier
-        guard !eventID.isEmpty else {
-            return
-        }
-        imageList.removeAll()
-        loadingHandlers.removeAll()
-        let path = "events/\(eventID)"
+        event.removeImage(with: imageID)
+        self.shouldReloadRelay()
+    }    
         
-        DispatchQueue.global(qos: .userInitiated).async {
-            event.imageIDs.forEach { imageID in
-                let handler: (UIImage?) -> Void = { image in
-                    if let image = image {
-                        let imageData = ImageData(imageID: imageID, image: image)
-                        self.imageList.append(imageData)
-                    }
-                    if let index = self.loadingHandlers.index(forKey: imageID) {
-                        self.loadingHandlers.remove(at: index)
-                    }
-                    if self.loadingHandlers.count == 0 {
-                        DispatchQueue.main.async {
-                            self.shouldReloadRelay()
-                        }
-                    }
-                }
-                self.loadingHandlers[imageID] = handler
-            }
-            event.imageIDs.forEach { imageID in
-                ImagesManager.shared.getImage(withID: imageID, path: path) { (image) in
-                    self.loadingHandlers[imageID]?(image)
-                }
-            }
-        }
-        
-    }
-    
     func save() throws {
-//        event.save()
+        SportNewsFirebaseSaver(object: event).save { error in
+            if let error = error {
+                fatalError("Saving error: \(String(describing: error))")
+            }
+        }
     }
     
     func makeEventForSaving() -> SportNews {

@@ -57,33 +57,18 @@ struct SportNewsFirebaseSaver {
     
     // MARK: - Helper functions
     
-    func save() throws {
+    func save(completionHandler: (SportEventSaveError?) -> Void) {
         if object.isNew {
-            try saveExisting()
+            saveNew()
         } else {
-            try saveNew()
+            saveExisting()
         }
+        completionHandler(nil)
     }
     
-    func encodeObject() -> [String: Any] {
-        let interval = object.date.timeIntervalSince1970
-        let dict: [String: Any] = [
-            "uid": object.objectIdentifier,
-            "author": object.author,
-            "title": object.title,
-            "text": object.text,
-            "boldText": object.boldText,
-            "type": object.type.rawValue,
-            "date": Int(interval),
-            "images": object.imageIDs,
-            "order": orderValue
-        ]
-        return dict
-    }
-    
-    func saveNew() throws {
+    func saveNew() {
         
-        var dataDict = encodeObject()
+        let dataDict = object.encode()
         
         eventReference.setValue(dataDict) { (error, ref) in
             if let error = error {
@@ -108,7 +93,7 @@ struct SportNewsFirebaseSaver {
         }
     }
     
-    func saveExisting() throws {
+    func saveExisting() {
         
 //        guard let object = self.object as? SportNews else {
 //            throw SportEventSaveError.wrongInput

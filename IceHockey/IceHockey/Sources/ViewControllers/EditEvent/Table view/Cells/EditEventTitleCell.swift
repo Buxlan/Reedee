@@ -37,6 +37,12 @@ class EditEventTitleCell: UITableViewCell {
         return view
     }()
     
+    private lazy var borderView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private var keyboardAccessoryView: KeyboardAccessoryDoneView = {
         let width = UIScreen.main.bounds.width
         let frame = CGRect(x: 0, y: 0, width: width, height: 44)
@@ -64,6 +70,7 @@ class EditEventTitleCell: UITableViewCell {
         if isInterfaceConfigured { return }
         contentView.addSubview(roundedView)
         contentView.addSubview(dataTextView)
+        contentView.addSubview(borderView)
         configureConstraints()
         isInterfaceConfigured = true
     }
@@ -79,7 +86,12 @@ class EditEventTitleCell: UITableViewCell {
             roundedView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             roundedView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
             roundedView.topAnchor.constraint(equalTo: dataTextView.topAnchor, constant: -8),
-            roundedView.bottomAnchor.constraint(equalTo: dataTextView.bottomAnchor, constant: 8)
+            roundedView.bottomAnchor.constraint(equalTo: dataTextView.bottomAnchor, constant: 8),
+            
+            borderView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            borderView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -64),
+            borderView.heightAnchor.constraint(equalToConstant: 1),
+            borderView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
     }
@@ -92,12 +104,13 @@ extension EditEventTitleCell: ConfigurableCollectionContent {
         configureUI()
         self.data = data
         dataTextView.text = data.text
-        dataTextView.backgroundColor = data.textFieldBackgroundColor
+        dataTextView.backgroundColor = data.lightBackgroundColor
         dataTextView.font = data.font
         dataTextView.textColor = data.textColor
         dataTextView.placeholderColor = data.placeholderColor
-        roundedView.backgroundColor = data.textFieldBackgroundColor
+        roundedView.backgroundColor = data.lightBackgroundColor
         contentView.backgroundColor = data.backgroundColor
+        borderView.backgroundColor = data.backgroundColor
         var viewModel = KeyboardAccessoryDoneViewModel()
         viewModel.doneAction = {
             self.dataTextView.endEditing(false)

@@ -15,7 +15,7 @@ struct TitleCellModel: TableCellModel {
     var textColor: UIColor = Asset.textColor.color
     var backgroundColor: UIColor = Asset.other1.color
     var font: UIFont = .bxSubheading
-    var textFieldBackgroundColor: UIColor = Asset.other3.color
+    var lightBackgroundColor: UIColor = Asset.other3.color
         
     // MARK: - Actions
     

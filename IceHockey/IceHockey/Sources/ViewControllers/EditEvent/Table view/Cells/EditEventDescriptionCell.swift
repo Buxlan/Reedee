@@ -94,11 +94,11 @@ extension EditEventDescriptionCell: ConfigurableCollectionContent {
         configureUI()
         self.data = data
         dataTextView.text = data.text
-        dataTextView.backgroundColor = data.textFieldBackgroundColor
+        dataTextView.backgroundColor = data.lightBackgroundColor
         dataTextView.font = data.font
         dataTextView.textColor = data.textColor
         dataTextView.placeholderColor = data.placeholderColor
-        roundedView.backgroundColor = data.textFieldBackgroundColor
+        roundedView.backgroundColor = data.lightBackgroundColor
         contentView.backgroundColor = data.backgroundColor
         var viewModel = KeyboardAccessoryDoneViewModel()
         viewModel.doneAction = {

@@ -13,75 +13,10 @@ protocol SportNews: SportEvent, SportNewsDatabaseFlowData {
     var images: [ImageData] { get set }
     var likesInfo: EventLikesInfo { get set }
     var viewsInfo: EventViewsInfo { get set }
-}
-
-class SportNewsProxy: SportNews {
     
-    var event: SportNews? {
-        didSet {
-            loadingCompletionHandler()
-            loadingCompletionHandler = {}
-        }
-    }
-    var loadingCompletionHandler: () -> Void = {}
-    
-    var likesInfo: EventLikesInfo {
-        get { event?.likesInfo ?? EventLikesInfoImpl.empty }
-        set { event?.likesInfo = newValue }
-    }
-    var viewsInfo: EventViewsInfo {
-        get { event?.viewsInfo ?? EventViewsInfoImpl.empty }
-        set { event?.viewsInfo = newValue }
-    }
-        
-    var objectIdentifier: String {
-        get { event?.objectIdentifier ?? "" }
-        set { event?.objectIdentifier = newValue }
-    }
-    var authorID: String {
-        get { event?.authorID ?? "" }
-        set { event?.authorID = newValue }
-    }
-    var author: SportUser? {
-        get { event?.author }
-        set { event?.author = newValue }
-    }
-    var title: String {
-        get { event?.title ?? "" }
-        set { event?.title = newValue }
-    }
-    var text: String {
-        get { event?.text ?? "" }
-        set { event?.text = newValue }
-    }
-    var boldText: String {
-        get { event?.boldText ?? "" }
-        set { event?.boldText = newValue }
-    }
-    var type: SportEventType {
-        get { event?.type ?? .event }
-        set { event?.type = newValue }
-    }
-    var date: Date {
-        get { event?.date ?? Date() }
-        set { event?.date = newValue }
-    }
-    internal var imageIDs: [String] {
-        get { event?.imageIDs ?? [] }
-        set { event?.imageIDs = newValue }
-    }
-    var order: Int {
-        get { event?.order ?? 0 }
-        set { event?.order = newValue }
-    }
-    var images: [ImageData] {
-        get { return event?.images ?? [] }
-        set { event?.images = newValue }
-    }
-    var mainImage: UIImage? {
-        return event?.mainImage        
-    }
-    
+    mutating func addImage(_ image: UIImage)
+    mutating func removeImage(with imageID: String)
+    func encode() -> [String: Any]
 }
 
 struct SportNewsImpl: SportNews {
@@ -160,28 +95,42 @@ struct SportNewsImpl: SportNews {
 extension SportNewsImpl {
     
     var mainImage: UIImage? {
-        if storageFlowObject.images.count > 0 {
-            return storageFlowObject.images[0].image
+        if images.count > 0 {
+            return images[0].image
         }
         return nil
     }
-        
-    mutating func appendImage(_ image: UIImage) {
-        let imageData = ImageData(image: image)
-        storageFlowObject.images.append(imageData)
+    
+    mutating func updateImages(images: [ImageData]) {
+        self.images = images
     }
-
-    mutating func removeImage(withID imageID: String) {
-        let index = storageFlowObject.images.firstIndex {
-            $0.imageID == imageID
-        }
-        if let index = index {
-            storageFlowObject.images.remove(at: index)
+    
+    mutating func addImage(_ image: UIImage) {
+        let image = image.resizeImage(to: 512, aspectRatio: .square)
+        let imageData = ImageData(image: image, isNew: true)
+        images.append(imageData)
+    }
+    
+    mutating func removeImage(with imageID: String) {
+        if let index = images.firstIndex(where: { $0.imageID == imageID }) {
+            images[index].isRemoved = true
         }
     }
     
-    mutating func updateImages(images: [ImageData]) {
-        storageFlowObject.images = images
+    func encode() -> [String: Any] {
+        let interval = date.timeIntervalSince1970
+        let dict: [String: Any] = [
+            "uid": objectIdentifier,
+            "author": authorID,
+            "title": title,
+            "text": text,
+            "boldText": boldText,
+            "type": type.rawValue,
+            "date": Int(interval),
+            "images": imageIDs,
+            "order": order
+        ]
+        return dict
     }
     
 }

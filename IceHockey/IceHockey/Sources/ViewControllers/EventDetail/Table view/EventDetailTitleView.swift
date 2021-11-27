@@ -67,10 +67,10 @@ extension EventDetailTitleView: ConfigurableCollectionContent {
     func configure(with data: DataType) {
         configureUI()
         titleLabel.text = data.text
-        titleLabel.textColor = data.textColor
-        titleLabel.backgroundColor = data.backgroundColor
+        titleLabel.backgroundColor = data.lightBackgroundColor
         titleLabel.font = data.font
-        contentView.backgroundColor = data.backgroundColor
+        titleLabel.textColor = data.textColor
+        contentView.backgroundColor = data.lightBackgroundColor
     }
     
 }

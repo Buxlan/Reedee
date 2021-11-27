@@ -65,11 +65,12 @@ extension EventDetailDescriptionView: ConfigurableCollectionContent {
         
     typealias DataType = TextCellModel
     func configure(with data: DataType) {
-        configureUI()
+        configureUI()        
         descriptionLabel.text = data.text
+        descriptionLabel.backgroundColor = data.lightBackgroundColor
+        descriptionLabel.font = data.font
         descriptionLabel.textColor = data.textColor
-        contentView.backgroundColor = data.backgroundColor
-        descriptionLabel.backgroundColor = data.backgroundColor
+        contentView.backgroundColor = data.lightBackgroundColor
     }
     
 }

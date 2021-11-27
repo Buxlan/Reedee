@@ -54,7 +54,9 @@ extension ImagesManager {
         cache.removeObject(forKey: nskey)
     }
 
-    private func downloadImage(withName imageName: String, path: String, completionHandler: @escaping (UIImage?) -> Void) {
+    private func downloadImage(withName imageName: String,
+                               path: String,
+                               completionHandler: @escaping (UIImage?) -> Void) {
         let ref = getImageStorageReference(imageName: imageName, path: path)
         let maxSize: Int64 = 1 * 1024 * 1024
         ref.getData(maxSize: maxSize) { (data, error) in
@@ -65,7 +67,7 @@ extension ImagesManager {
             }
             if let data = data,
                let image = UIImage(data: data) {
-                self.cache.setObject(image, forKey: imageName as NSString)
+                self.cache.setObject(image, forKey: (path + "/" + imageName) as NSString)
                 completionHandler(image)
                 return
             }
