@@ -118,6 +118,16 @@ extension SportNewsImpl {
     }
     
     func encode() -> [String: Any] {
+        
+        var imagesID: [String] = []
+        self.images.forEach { imageData in
+            guard !imageData.isRemoved,
+                  imageData.image != nil else {
+                return
+            }
+            imagesID.append(imageData.imageID)
+        }
+        
         let interval = date.timeIntervalSince1970
         let dict: [String: Any] = [
             "uid": objectIdentifier,
@@ -127,18 +137,14 @@ extension SportNewsImpl {
             "boldText": boldText,
             "type": type.rawValue,
             "date": Int(interval),
-            "images": imageIDs,
+            "images": imagesID,
             "order": order
         ]
         return dict
     }
     
-    func save(completionHandler: (SportEventSaveError?) -> Void) {
-        SportNewsFirebaseSaver(object: self).save { error in
-            if let error = error {
-                fatalError("Saving error: \(String(describing: error))")
-            }
-        }
+    func save(completionHandler: @escaping (SportEventSaveError?) -> Void) {
+        SportNewsFirebaseSaver(object: self).save(completionHandler: completionHandler)
     }
     
 }

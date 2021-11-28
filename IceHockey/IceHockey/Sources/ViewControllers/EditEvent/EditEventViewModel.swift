@@ -79,7 +79,7 @@ extension EditEventViewModel {
         self.shouldReloadRelay()
     }    
         
-    func save(completionHandler: (SportEventSaveError?) -> Void) {
+    func save(completionHandler: @escaping (SportEventSaveError?) -> Void) {
         event.save(completionHandler: completionHandler)
     }
     

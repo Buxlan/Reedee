@@ -11,6 +11,6 @@ struct PhotoCellModel {
     
     var image: UIImage?
     
-    var deleteAction = {}    
+    var deleteAction = {}
     
 }

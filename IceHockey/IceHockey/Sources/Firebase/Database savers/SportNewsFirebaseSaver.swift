@@ -7,7 +7,7 @@
 
 import Firebase
 
-struct SportNewsFirebaseSaver {
+class SportNewsFirebaseSaver {
     
     // MARK: - Properties
     
@@ -67,6 +67,28 @@ struct SportNewsFirebaseSaver {
     }
     
     func saveNew(completionHandler: @escaping (SportEventSaveError?) -> Void) {
+                
+        let imagesManager = ImagesManager.shared
+        
+        // prepare images array
+        var imagesTableData: [String: String] = [:]
+        for (index, imageData) in object.images.enumerated() {
+            guard !imageData.isRemoved,
+                  imageData.image != nil else {
+                      return
+            }
+            if imageData.imageID.isEmpty {
+                guard let imageID = self.imagesDatabaseReference.childByAutoId().key else {
+                    completionHandler(.storageError)
+                    return
+                }
+                imagesTableData[imageID] = imagesManager.getImageName(withID: imageID)
+                object.images[index].imageID = imageID
+            } else {
+                let imageID = imageData.imageID
+                imagesTableData[imageID] = imagesManager.getImageName(withID: imageID)
+            }
+        }
         
         let dataDict = object.encode()
         
@@ -78,44 +100,23 @@ struct SportNewsFirebaseSaver {
             guard let objectIdentifier = ref.key else {
                 return
             }
-            let imagesManager = ImagesManager.shared
-            var imagesTableData: [String: String] = [:]
-            for imageData in object.images {
-                guard !imageData.isRemoved,
-                      imageData.image != nil else {
-                          return
-                }
-                if imageData.imageID.isEmpty {
-                    guard let imageID = self.imagesDatabaseReference.childByAutoId().key else {
-                        completionHandler(.storageError)
-                        return
-                    }
-                    imagesTableData[imageID] = imagesManager.getImageName(withID: imageID)
-                } else {
-                    let imageID = imageData.imageID
-                    imagesTableData[imageID] = imagesManager.getImageName(withID: imageID)
-                }
-            }
+            
             if imagesTableData.isEmpty {
                 return
             }
-            self.imagesDatabaseReference.setValue(imagesTableData) {
-                if error != nil {
-                    completionHandler(.databaseError)
-                    return
+            self.imagesDatabaseReference.updateChildValues(imagesTableData)
+            self.object.images.forEach { imageData in
+                guard !imageData.isRemoved,
+                      let data = imageData.image?.pngData(),
+                      let imageName = imagesTableData[imageData.imageID] else {
+                          return
                 }
-                object.images.forEach { imageData in
-                    guard !imageData.isRemoved,
-                          let data = imageData.image?.pngData() else {
-                              return
-                    }
-                    let path = objectIdentifier
-                    let ref = self.imagesStorageReference.child(path)
-                    ref.putData(data, metadata: nil) { (_, error) in
-                        if error != nil {
-                            completionHandler(.storageError)
-                            return
-                        }
+                let path = objectIdentifier
+                let ref = self.imagesStorageReference.child(path).child(imageName)
+                ref.putData(data, metadata: nil) { (_, error) in
+                    if error != nil {
+                        completionHandler(.storageError)
+                        return
                     }
                 }
             }

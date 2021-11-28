@@ -57,6 +57,11 @@ class FirebaseImagesLoaderImpl {
                 if self.handlers.count == 0 {
                     let object = StorageFlowDataImpl(objectIdentifier: self.objectIdentifier,
                                               images: images)
+                    if let index = images.firstIndex(where: { imageData in
+                        imageData.imageID == "-Mpaee-jW90OK2r4q0W8"
+                    }) {
+                        print("-Mpaee-jW90OK2r4q0W8 HEREE!")
+                    }
                     completionHandler(object)
                 }
             }

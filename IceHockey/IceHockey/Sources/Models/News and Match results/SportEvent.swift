@@ -22,7 +22,7 @@ protocol SportEvent: Event {
     var likesInfo: EventLikesInfo { get set }
     var viewsInfo: EventViewsInfo { get set }
     
-    func save(completionHandler: (SportEventSaveError?) -> Void)
+    func save(completionHandler: @escaping (SportEventSaveError?) -> Void)
     func encode() -> [String: Any]
 }
 
