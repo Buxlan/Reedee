@@ -87,6 +87,12 @@ struct SportNewsImpl: SportNews {
         self.storageFlowObject = storageFlowObject
         self.likesInfo = likesInfo
         self.viewsInfo = viewsInfo
+        if author == nil,
+           objectIdentifier.isEmpty,
+           let currentUser = AuthManager.shared.current {
+            self.author = currentUser.sportUser
+            self.authorID = currentUser.uid
+        }
         self.author = author
     }
     
@@ -130,7 +136,6 @@ extension SportNewsImpl {
         
         let interval = date.timeIntervalSince1970
         let dict: [String: Any] = [
-            "uid": objectIdentifier,
             "author": authorID,
             "title": title,
             "text": text,

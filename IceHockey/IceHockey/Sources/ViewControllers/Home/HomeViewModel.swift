@@ -18,7 +18,6 @@ class HomeViewModel: NSObject {
     var sections: [SectionData] = []
     var dataSource = TableDataSource()
     var shouldRefreshRelay = {}
-    var shouldRefreshAtIndexPathRelay: (IndexPath) -> Void = { _ in }
     var isLoading: Bool {
         return loader.isLoading
     }

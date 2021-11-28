@@ -132,11 +132,15 @@
 "Other.done" = "Done";
 "Other.cancel" = "Cancel";
 "Other.edit" = "Edit";
+"Other.back" = "Back";
 "Other.report" = "Report";
 "Other.bugReport" = "Report a bug";
 "Other.delete" = "Delete";
 "Other.selectAction" = "Select action";
 "Other.save" = "Save";
+"Other.areYouSureToDiscardChanges" = "Are you sure to discard changes?";
+"Other.discardChanges" = "Discard changes";
+"Other.continueEditing" = "No, I'd like to continue";
 /* Settings */
 "Settings.navigationBarTitle" = "Settings";
 /* Match status */

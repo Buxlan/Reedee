@@ -93,15 +93,14 @@ class SportNewsFirebaseSaver {
         let dataDict = object.encode()
         
         eventReference.setValue(dataDict) { (error, ref) in
-            if error != nil {
+            guard error == nil,
+               let objectIdentifier = ref.key else {
                 completionHandler(.databaseError)
-                return
-            }
-            guard let objectIdentifier = ref.key else {
                 return
             }
             
             if imagesTableData.isEmpty {
+                completionHandler(nil)
                 return
             }
             self.imagesDatabaseReference.updateChildValues(imagesTableData)
@@ -114,10 +113,11 @@ class SportNewsFirebaseSaver {
                 let path = objectIdentifier
                 let ref = self.imagesStorageReference.child(path).child(imageName)
                 ref.putData(data, metadata: nil) { (_, error) in
-                    if error != nil {
+                    guard error == nil else {
                         completionHandler(.storageError)
                         return
                     }
+                    completionHandler(nil)
                 }
             }
             

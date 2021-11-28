@@ -98,7 +98,6 @@ extension MatchResult {
     func encode() -> [String: Any] {
         let interval = date.timeIntervalSince1970
         let dict: [String: Any] = [
-            "uid": objectIdentifier,
             "author": authorID,
             "title": title,
             "homeTeam": homeTeam,

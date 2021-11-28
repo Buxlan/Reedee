@@ -132,11 +132,15 @@
 "Other.done" = "Готово";
 "Other.cancel" = "Отменить";
 "Other.edit" = "Изменить";
+"Other.back" = "Назад";
 "Other.report" = "Пожаловаться";
 "Other.bugReport" = "Сообщить об ошибке";
 "Other.delete" = "Удалить";
 "Other.selectAction" = "Выберите действие";
-"Other.save" = "Save";
+"Other.save" = "Сохранить";
+"Other.areYouSureToDiscardChanges" = "Вы действительно хотите отказаться от изменений?";
+"Other.discardChanges" = "Да, удалить черновик";
+"Other.continueEditing" = "Нет, я хочу продолжить";
 /* Settings */
 "Settings.navigationBarTitle" = "Настройки";
 /* Match status */

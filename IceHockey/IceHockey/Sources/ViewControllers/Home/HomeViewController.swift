@@ -175,17 +175,6 @@ class HomeViewController: UIViewController {
                 self.refreshControl.endRefreshing()
             }
         }
-        viewModel.shouldRefreshAtIndexPathRelay = { indexPath in
-            let event = self.viewModel.sections[indexPath.section].events[indexPath.row]
-            let row = self.makeTableRow(event: event)
-            self.tableBase.updateRow(row, at: indexPath)
-//            self.tableView.beginUpdates()
-            self.tableView.reloadRows(at: [indexPath], with: .automatic)
-//            self.tableView.endUpdates()
-            if !self.viewModel.isLoading {
-                self.refreshControl.endRefreshing()
-            }
-        }
         viewModel.update()
     }
 }

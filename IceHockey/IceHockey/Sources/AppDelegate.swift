@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var appController = AppController()
-    var authManager: AuthManager?
+    var authManager: AuthManager = AuthManager.shared
     var coordinator: ViewControllerCoordinator?
 
     func application(_ application: UIApplication,
@@ -28,9 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         prepareFirstLaunch()
         
         configureAppearance()
-        
-        authManager = AuthManager()
-        authManager?.signInAnonymously()
+                
+        authManager.signInAnonymously()
         
         return true
     }
@@ -87,10 +86,6 @@ extension AppDelegate {
         UINavigationBar.appearance().barTintColor = Asset.accent1.color
         UINavigationBar.appearance().titleTextAttributes = attrLight
         
-    }
-    
-    private func signIn() {
-        authManager?.signInAnonymously()
     }
     
 }

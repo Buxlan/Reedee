@@ -21,7 +21,6 @@ class SportEventListLoader {
     
     private let portionSize: UInt
     private var endOfListIsReached: Bool = false
-    private let factory = FirebaseObjectFactory.shared
     
     private var loadingHandlers: [String: () -> Void] = [:]
     
@@ -32,7 +31,8 @@ class SportEventListLoader {
     }
     
     func flush() {
-        iterator.first()
+        collection = DataSnapshotsCollection(portionSize: portionSize)
+        iterator = DataSnapshotsIterator(collection: collection)
     }
     
     private func loadSnapshots(completionHandler: @escaping (Int) -> Void) {
@@ -59,7 +59,7 @@ class SportEventListLoader {
             .queryOrdered(byChild: "order")
             .queryLimited(toFirst: portionSize)
         if !collection.isEmpty {
-            guard let objects = iterator.previous(),
+            guard let objects = iterator.last(),
                   let snapshot = objects.items.last else {
                 fatalError()
             }

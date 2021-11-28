@@ -7,24 +7,23 @@
 import Firebase
 
 struct ApplicationUser {
-    var firebaseUser: User?
+    var firebaseUser: User
+    var sportUser: SportUser
+    
+    init(firebaseUser: User, sportUser: SportUser) {
+        self.firebaseUser = firebaseUser
+        self.sportUser = sportUser        
+    }
+    
 }
 
 extension ApplicationUser {
-    var user: User? {
-        get {
-            firebaseUser
-        }
-        set {
-            firebaseUser = newValue
-        }
-    }
     
     var isAnonymous: Bool {
-        firebaseUser?.isAnonymous ?? true
+        firebaseUser.isAnonymous
     }
     
-    var uid: String? {
-        firebaseUser?.uid ?? ""
+    var uid: String {
+        firebaseUser.uid
     }
 }

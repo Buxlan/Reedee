@@ -47,15 +47,15 @@ class EditEventViewController: UIViewController {
     }()
     
     private lazy var alert: UIAlertController = {
-        let controller = UIAlertController(title: L10n.Other.selectAction,
+        let controller = UIAlertController(title: L10n.Other.areYouSureToDiscardChanges,
                                            message: nil,
                                            preferredStyle: .actionSheet)
-        let deleteAction = UIAlertAction(title: L10n.Other.bugReport, style: .destructive) { _ in
-            // bug report
+        let discardAction = UIAlertAction(title: L10n.Other.discardChanges, style: .destructive) { _ in
+            self.navigationController?.popViewController(animated: true)
         }
-        let cancelAction = UIAlertAction(title: L10n.Other.cancel, style: .cancel) { _ in
+        let cancelAction = UIAlertAction(title: L10n.Other.continueEditing, style: .cancel) { _ in
         }
-        controller.addAction(deleteAction)
+        controller.addAction(discardAction)
         controller.addAction(cancelAction)
         
         return controller
@@ -127,6 +127,9 @@ class EditEventViewController: UIViewController {
         
         let menuItem = UIBarButtonItem(image: menuImage, style: .plain, target: self, action: #selector(handleMenu))
         navigationItem.rightBarButtonItem = menuItem
+        
+        let backButton = UIBarButtonItem(title: L10n.Other.cancel, style: .plain, target: self, action: #selector(self.backButtonHandle))
+        self.navigationItem.leftBarButtonItem = backButton
     }
     
     private func configureViewModel() {
@@ -161,6 +164,16 @@ extension EditEventViewController {
     
     @objc private func handleMenu() {
         present(alert, animated: true)
+    }
+    
+    @objc private func backButtonHandle() {
+        if viewModel.wasEdited {
+            present(alert, animated: true) {
+                print("!!!presented!")
+            }
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
     }
     
 }
@@ -256,6 +269,7 @@ extension EditEventViewController {
         let image = imageData.image
         var cellModel = PhotoCellModel(image: image)
         cellModel.deleteAction = {
+            self.viewModel.wasEdited = true
             self.viewModel.removeImage(imageData.imageID)
         }
         let config = EditEventPhotoCollectionCellConfigurator(data: cellModel)
@@ -264,7 +278,12 @@ extension EditEventViewController {
     }
     
     func makeDateTableRow() -> TableRow {
-        let cellModel = DateCellModel(viewModel.event.date)
+        var cellModel = DateCellModel(viewModel.event.date)
+        cellModel.valueChanged = { newValue in
+            self.viewModel.event.date = newValue
+            self.viewModel.wasEdited = true
+            self.tableView.reloadData()
+        }
         let config = EditEventInputDateViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         return row
@@ -273,9 +292,10 @@ extension EditEventViewController {
     func makeTitleTableRow() -> TableRow {
         var cellModel = TitleCellModel(text: viewModel.event.title)
         cellModel.valueChanged = { text in
+            self.viewModel.event.title = text
+            self.viewModel.wasEdited = true
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
-            self.viewModel.event.title = text
         }
         let config = EditEventTitleViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
@@ -285,9 +305,10 @@ extension EditEventViewController {
     func makeDescriptionTableRow() -> TableRow {
         var cellModel = TextCellModel(text: viewModel.event.text)
         cellModel.valueChanged = { text in
+            self.viewModel.event.text = text
+            self.viewModel.wasEdited = true
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
-            self.viewModel.event.text = text
         }
         let config = EditEventDescriptionViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
@@ -298,9 +319,10 @@ extension EditEventViewController {
         var cellModel = TextCellModel(text: viewModel.event.boldText)
         cellModel.font = .bxBody2
         cellModel.valueChanged = { text in
+            self.viewModel.event.boldText = text
+            self.viewModel.wasEdited = true
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
-            self.viewModel.event.boldText = text
         }
         let config = EditEventBoldTextViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
@@ -312,9 +334,9 @@ extension EditEventViewController {
         cellModel.action = {
             self.viewModel.save { error in
                 if let error = error {
-                    print(String(describing: error))
+                    assertionFailure(error.errorDescription ?? "")
                 }
-                self.navigationController?.popViewController(animated: true)
+                self.navigationController?.popToRootViewController(animated: true)
             }            
         }
         let config = SaveViewConfigurator(data: cellModel)

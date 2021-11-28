@@ -253,12 +253,20 @@ internal enum L10n {
   }
 
   internal enum Other {
+    /// Are you sure to discard changes?
+    internal static let areYouSureToDiscardChanges = L10n.tr("Localizable", "Other.areYouSureToDiscardChanges")
+    /// Back
+    internal static let back = L10n.tr("Localizable", "Other.back")
     /// Report a bug
     internal static let bugReport = L10n.tr("Localizable", "Other.bugReport")
     /// Cancel
     internal static let cancel = L10n.tr("Localizable", "Other.cancel")
+    /// No, I'd like to continue
+    internal static let continueEditing = L10n.tr("Localizable", "Other.continueEditing")
     /// Delete
     internal static let delete = L10n.tr("Localizable", "Other.delete")
+    /// Discard changes
+    internal static let discardChanges = L10n.tr("Localizable", "Other.discardChanges")
     /// Done
     internal static let done = L10n.tr("Localizable", "Other.done")
     /// Edit
