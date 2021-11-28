@@ -27,10 +27,10 @@ struct SquadImpl: Squad {
     // MARK: - Helper methods
     
     func encode() -> [String: Any] {
-        var dict: [String: Any] = [
-            "uid": self.objectIdentifier,
-            "name": self.displayName,
-            "headCoach": self.headCoach
+        let dict: [String: Any] = [
+            "uid": objectIdentifier,
+            "name": displayName,
+            "headCoach": headCoach
         ]
         return dict
     }

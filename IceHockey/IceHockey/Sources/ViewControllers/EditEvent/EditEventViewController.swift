@@ -310,12 +310,12 @@ extension EditEventViewController {
     func makeSaveTableRow() -> TableRow {
         var cellModel = SaveCellModel()
         cellModel.action = {
-            do {
-                try self.viewModel.save()
-            } catch {
-                print("Save error: \(error)")
-            }
-            self.navigationController?.popViewController(animated: true)
+            self.viewModel.save { error in
+                if let error = error {
+                    print(String(describing: error))
+                }
+                self.navigationController?.popViewController(animated: true)
+            }            
         }
         let config = SaveViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)

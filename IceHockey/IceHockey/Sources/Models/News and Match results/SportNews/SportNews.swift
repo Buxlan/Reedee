@@ -133,4 +133,12 @@ extension SportNewsImpl {
         return dict
     }
     
+    func save(completionHandler: (SportEventSaveError?) -> Void) {
+        SportNewsFirebaseSaver(object: self).save { error in
+            if let error = error {
+                fatalError("Saving error: \(String(describing: error))")
+            }
+        }
+    }
+    
 }

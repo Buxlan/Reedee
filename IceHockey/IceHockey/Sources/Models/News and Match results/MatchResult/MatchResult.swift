@@ -89,53 +89,28 @@ struct MatchResultImpl: MatchResult {
     
 }
 
-//extension MatchResult: FirebaseObject {
-//
-//    private static var databaseObjects: DatabaseReference {
-//        FirebaseManager.shared.databaseManager.root.child("events")
-//    }
-//
-//    var isNew: Bool {
-//        return self.uid.isEmpty
-//    }
-//
-//    func delete() throws {
-//        try FirebaseManager.shared.delete(self)
-//    }
-//
-//    func checkProperties() -> Bool {
-//        return true
-//    }
-//
-//    func save() throws {
-//
-//        if !checkProperties() {
-//            print("Error. Properties are wrong")
-//        }
-//
-//        if isNew {
-//            try ExistingMatchResultFirebaseSaver(object: self).save()
-//        } else {
-//            try NewMatchResultFirebaseSaver(object: self).save()
-//        }
-//    }
-//
-//    func prepareDataForSaving() -> [String: Any] {
-//        let interval = self.date.timeIntervalSince1970
-//        let dict: [String: Any] = [
-//            "uid": self.uid,
-//            "author": self.author,
-//            "title": self.title,
-//            "homeTeam": self.homeTeam,
-//            "awayTeam": self.awayTeam,
-//            "homeTeamScore": self.homeTeamScore,
-//            "awayTeamScore": self.awayTeamScore,
-//            "stadium": self.stadium,
-//            "type": self.type.rawValue,
-//            "date": Int(interval),
-//            "order": Int(order)
-//        ]
-//        return dict
-//    }
-//
-//}
+extension MatchResult {
+    
+    func save(completionHandler: (SportEventSaveError?) -> Void) {
+        MatchResultFirebaseSaver(object: self).save(completionHandler: completionHandler)
+    }
+    
+    func encode() -> [String: Any] {
+        let interval = date.timeIntervalSince1970
+        let dict: [String: Any] = [
+            "uid": objectIdentifier,
+            "author": authorID,
+            "title": title,
+            "homeTeam": homeTeam,
+            "awayTeam": awayTeam,
+            "homeTeamScore": homeTeamScore,
+            "awayTeamScore": awayTeamScore,
+            "stadium": stadium,
+            "type": type.rawValue,
+            "date": Int(interval),
+            "order": order
+        ]
+        return dict
+    }
+    
+}

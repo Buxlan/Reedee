@@ -94,4 +94,8 @@ extension SportNewsProxy {
         }
     }
     
+    func save(completionHandler: (SportEventSaveError?) -> Void) {
+        event?.save(completionHandler: completionHandler)
+    }
+    
 }

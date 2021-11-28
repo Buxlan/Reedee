@@ -57,15 +57,16 @@ struct MatchResultFirebaseSaver {
     
     // MARK: - Helper functions
     
-    func save() throws {
+    func save(completionHandler: (SportEventSaveError?) -> Void) {
         if object.isNew {
-            try saveExisting()
+            saveExisting()
         } else {
-            try saveNew()
+            saveNew()
         }
+        completionHandler(nil)
     }
     
-    func saveNew() throws {
+    func saveNew() {
         var dataDict = encodeObject()
         dataDict["order"] = orderValue
         eventReference.setValue(dataDict) { error, _ in
@@ -94,7 +95,7 @@ struct MatchResultFirebaseSaver {
         return dict
     }
     
-    func saveExisting() throws {
+    func saveExisting() {
         var dataDict = encodeObject()
         dataDict["order"] = orderValue
         

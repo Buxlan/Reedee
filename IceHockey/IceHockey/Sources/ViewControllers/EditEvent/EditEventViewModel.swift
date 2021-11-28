@@ -79,12 +79,8 @@ extension EditEventViewModel {
         self.shouldReloadRelay()
     }    
         
-    func save() throws {
-        SportNewsFirebaseSaver(object: event).save { error in
-            if let error = error {
-                fatalError("Saving error: \(String(describing: error))")
-            }
-        }
+    func save(completionHandler: (SportEventSaveError?) -> Void) {
+        event.save(completionHandler: completionHandler)
     }
     
     func makeEventForSaving() -> SportNews {

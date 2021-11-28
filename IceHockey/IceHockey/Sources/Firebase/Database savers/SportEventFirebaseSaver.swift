@@ -14,15 +14,21 @@ protocol ObjectFirebaseSaver {
 }
 
 enum SportEventSaveError: LocalizedError {
-    case wrongProperties
-    case wrongInput
+    case wrongPropertiesError
+    case wrongInputError
+    case databaseError
+    case storageError
     
     var errorDescription: String? {
         switch self {
-        case .wrongProperties:
+        case .wrongPropertiesError:
             return "Not every properties is defined"
-        case .wrongInput:
+        case .wrongInputError:
             return "Wrong type of input data"
+        case .databaseError:
+            return "Database error occured"
+        case .storageError:
+            return "Storage error occured"
         }
     }
 }

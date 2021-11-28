@@ -13,6 +13,7 @@ struct SportNewsFirebaseSaver {
     
     typealias DataType = SportNews
     internal var object: DataType
+    private var imagesPath = "events"
     
     internal var eventsDatabaseReference: DatabaseReference {
         FirebaseManager.shared.databaseManager.root.child("events")
@@ -57,43 +58,72 @@ struct SportNewsFirebaseSaver {
     
     // MARK: - Helper functions
     
-    func save(completionHandler: (SportEventSaveError?) -> Void) {
+    func save(completionHandler: @escaping (SportEventSaveError?) -> Void) {
         if object.isNew {
-            saveNew()
+            saveNew(completionHandler: completionHandler)
         } else {
-            saveExisting()
+            saveExisting(completionHandler: completionHandler)
         }
-        completionHandler(nil)
     }
     
-    func saveNew() {
+    func saveNew(completionHandler: @escaping (SportEventSaveError?) -> Void) {
         
         let dataDict = object.encode()
         
         eventReference.setValue(dataDict) { (error, ref) in
-            if let error = error {
-                print(error)
+            if error != nil {
+                completionHandler(.databaseError)
                 return
             }
-            guard let eventId = ref.key else {
+            guard let objectIdentifier = ref.key else {
                 return
             }
             let imagesManager = ImagesManager.shared
-            for imageId in object.imageIDs {
-                let imageName = ImagesManager.shared.getImageName(withID: imageId)
-                let imageRef = imagesDatabaseReference.child(imageId)
-                imageRef.setValue(imageName)
-                let ref = imagesStorageReference.child(eventId).child(imageName)
-                if let image = ImagesManager.shared.getCachedImage(withName: imageName),
-                   let data = image.pngData() {
-                    let task = ref.putData(data)
-                    imagesManager.appendUploadTask(task)
+            var imagesTableData: [String: String] = [:]
+            for imageData in object.images {
+                guard !imageData.isRemoved,
+                      imageData.image != nil else {
+                          return
+                }
+                if imageData.imageID.isEmpty {
+                    guard let imageID = self.imagesDatabaseReference.childByAutoId().key else {
+                        completionHandler(.storageError)
+                        return
+                    }
+                    imagesTableData[imageID] = imagesManager.getImageName(withID: imageID)
+                } else {
+                    let imageID = imageData.imageID
+                    imagesTableData[imageID] = imagesManager.getImageName(withID: imageID)
                 }
             }
+            if imagesTableData.isEmpty {
+                return
+            }
+            self.imagesDatabaseReference.setValue(imagesTableData) {
+                if error != nil {
+                    completionHandler(.databaseError)
+                    return
+                }
+                object.images.forEach { imageData in
+                    guard !imageData.isRemoved,
+                          let data = imageData.image?.pngData() else {
+                              return
+                    }
+                    let path = objectIdentifier
+                    let ref = self.imagesStorageReference.child(path)
+                    ref.putData(data, metadata: nil) { (_, error) in
+                        if error != nil {
+                            completionHandler(.storageError)
+                            return
+                        }
+                    }
+                }
+            }
+            
         }
     }
     
-    func saveExisting() {
+    func saveExisting(completionHandler: @escaping (SportEventSaveError?) -> Void) {
         
 //        guard let object = self.object as? SportNews else {
 //            throw SportEventSaveError.wrongInput

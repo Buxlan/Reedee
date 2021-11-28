@@ -199,10 +199,9 @@ extension MatchResultEditViewController {
     func makeSaveTableRow() -> TableRow {
         var cellModel = SaveCellModel()
         cellModel.action = {
-            do {
-                try MatchResultFirebaseSaver(object: self.editingObject).save()
-            } catch {
-                print("Save error: \(error)")
+            MatchResultFirebaseSaver(object: self.editingObject)
+                .save { error in
+                
             }
             self.navigationController?.popToRootViewController(animated: true)
         }

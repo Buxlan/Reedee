@@ -87,3 +87,19 @@ class MatchResultProxy: MatchResult {
     }
     
 }
+
+extension MatchResultProxy {
+    
+    func save(completionHandler: (SportEventSaveError?) -> Void) {
+        event?.save(completionHandler: completionHandler)
+    }
+    
+    func encode() -> [String : Any] {
+        if let event = event {
+            return event.encode()
+        } else {
+            return [:]
+        }
+    }
+    
+}

@@ -21,6 +21,9 @@ protocol SportEvent: Event {
     var author: SportUser? { get set }
     var likesInfo: EventLikesInfo { get set }
     var viewsInfo: EventViewsInfo { get set }
+    
+    func save(completionHandler: (SportEventSaveError?) -> Void)
+    func encode() -> [String: Any]
 }
 
 extension SportEvent {
