@@ -26,10 +26,12 @@ struct MatchResultFirebaseRemover: FirebaseObjectRemover {
     
     // MARK: - Helper methods
     
-    func remove() throws {
-        guard let _ = self.object as? DataType else {
-            throw FirebaseRemoveError.dataMismatch
+    func remove(completionHandler: @escaping (FirebaseRemoveError?) -> Void) {
+        guard (self.object as? DataType) != nil else {
+            completionHandler(.dataMismatch)
+            return
         }
         objectDatabaseReference.removeValue()
+        completionHandler(nil)
     }
 }

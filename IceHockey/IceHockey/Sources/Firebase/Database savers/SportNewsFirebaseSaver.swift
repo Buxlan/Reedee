@@ -44,7 +44,7 @@ class SportNewsFirebaseSaver {
         dateComponent.calendar = Calendar.current
         dateComponent.year = 2024
         guard let templateDate = dateComponent.date else {
-            fatalError()
+            return 0
         }
         let order = Int(templateDate.timeIntervalSince(object.date))
         return order
@@ -69,13 +69,16 @@ class SportNewsFirebaseSaver {
     func saveNew(completionHandler: @escaping (SportEventSaveError?) -> Void) {
                 
         let imagesManager = ImagesManager.shared
+        object.order = orderValue
         
         // prepare images array
+        let imagesCount = object.images.count
         var imagesTableData: [String: String] = [:]
-        for (index, imageData) in object.images.enumerated() {
-            guard !imageData.isRemoved,
-                  imageData.image != nil else {
-                      return
+        for (index, imageData) in object.images.reversed().enumerated() {
+            if imageData.isRemoved || imageData.image == nil {
+                let index = imagesCount - 1 - index
+                object.images.remove(at: index)
+                continue
             }
             if imageData.imageID.isEmpty {
                 guard let imageID = self.imagesDatabaseReference.childByAutoId().key else {
@@ -90,8 +93,70 @@ class SportNewsFirebaseSaver {
             }
         }
         
-        let dataDict = object.encode()
+        saveData(imagesDictionary: imagesTableData, completionHandler: completionHandler)
         
+    }
+    
+    func saveExisting(completionHandler: @escaping (SportEventSaveError?) -> Void) {
+        
+        let imagesManager = ImagesManager.shared
+        object.order = orderValue
+                
+        // prepare images array
+        let imagesCount = object.images.count
+        var imagesTableData: [String: String] = [:]
+        for (index, imageData) in object.images.reversed().enumerated() {
+            if imageData.imageID.isEmpty,
+               !imageData.isRemoved {
+                guard let imageID = self.imagesDatabaseReference.childByAutoId().key else {
+                    completionHandler(.storageError)
+                    return
+                }
+                let index = imagesCount - 1 - index
+                imagesTableData[imageID] = imagesManager.getImageName(withID: imageID)
+                object.images[index].imageID = imageID
+            } else {
+                let imageName = imagesManager.getImageName(withID: imageData.imageID)
+                if imageData.isRemoved {
+                    let imageStorageRef = imagesStorageReference
+                        .child(self.object.objectIdentifier)
+                        .child(imageName)
+                    imageStorageRef.delete()
+                    let index = imagesCount - 1 - index
+                    object.images.remove(at: index)
+                } else {
+                    let imageID = imageData.imageID
+                    imagesTableData[imageID] = imageName
+                }
+            }
+        }
+        
+        saveData(imagesDictionary: imagesTableData, completionHandler: completionHandler)
+        
+    }
+        
+    private func saveData(imagesDictionary imagesTableData: [String: String], completionHandler: @escaping (SportEventSaveError?) -> Void) {
+        
+        var storageErrorWasHappened = false
+        var handlers: [String: (StorageMetadata?, Error?) -> Void] = [:]
+        imagesTableData.forEach { (key, _) in
+            handlers[key] = { (_, error) in
+                if let index = handlers.firstIndex(where: { (dictKey, _) in
+                    key == dictKey
+                }) {
+                    handlers.remove(at: index)
+                }
+                if error != nil {
+                    storageErrorWasHappened = true
+                }
+                if handlers.isEmpty {
+                    let error = storageErrorWasHappened ? SportEventSaveError.storageError : nil
+                    completionHandler(error)
+                }
+            }
+        }
+        
+        let dataDict = object.encode()
         eventReference.setValue(dataDict) { (error, ref) in
             guard error == nil,
                let objectIdentifier = ref.key else {
@@ -105,85 +170,18 @@ class SportNewsFirebaseSaver {
             }
             self.imagesDatabaseReference.updateChildValues(imagesTableData)
             self.object.images.forEach { imageData in
-                guard !imageData.isRemoved,
-                      let data = imageData.image?.pngData(),
-                      let imageName = imagesTableData[imageData.imageID] else {
+                guard let data = imageData.image?.pngData(),
+                      let imageName = imagesTableData[imageData.imageID],
+                      let handler = handlers[imageData.imageID] else {
+                          assertionFailure()
                           return
                 }
-                let path = objectIdentifier
-                let ref = self.imagesStorageReference.child(path).child(imageName)
-                ref.putData(data, metadata: nil) { (_, error) in
-                    guard error == nil else {
-                        completionHandler(.storageError)
-                        return
-                    }
-                    completionHandler(nil)
-                }
+                let ref = self.imagesStorageReference.child(objectIdentifier).child(imageName)
+                ref.putData(data, metadata: nil, completion: handler)
             }
             
         }
-    }
-    
-    func saveExisting(completionHandler: @escaping (SportEventSaveError?) -> Void) {
         
-//        guard let object = self.object as? SportNews else {
-//            throw SportEventSaveError.wrongInput
-//        }
-//
-//        var dataDict = object.prepareDataForSaving()
-//        dataDict["order"] = orderValue
-//
-//        eventReference.child("images").getData { (error, snapshot) in
-//            if let error = error {
-//                print(error)
-//                return
-//            }
-//            let oldImageIDs = snapshot.value as? [String] ?? []
-//
-//            for imageId in oldImageIDs {
-//                if object.imageIDs.firstIndex(of: imageId) != nil {
-//                    continue
-//                }
-//                // need to remove image from storage
-//                let imageName = ImagesManager.shared.getImageName(withID: imageId)
-//                let imageStorageRef = imagesStorageReference.child(object.uid).child(imageName)
-//                imageStorageRef.delete { (error) in
-//                    if let error = error {
-//                        print("An error occupied while deleting an image: \(error)")
-//                    }
-//                }
-//            }
-//
-//            var newImageIds: [String] = []
-//            for imageId in object.imageIDs {
-//                if oldImageIDs.firstIndex(of: imageId) != nil {
-//                    continue
-//                }
-//                newImageIds.append(imageId)
-//            }
-//
-//            eventReference.setValue(dataDict) { (error, ref) in
-//                if let error = error {
-//                    print(error)
-//                    return
-//                }
-//                guard let eventId = ref.key else {
-//                    return
-//                }
-//                let imagesManager = ImagesManager.shared
-//                for imageId in newImageIds {
-//                    let imageName = ImagesManager.shared.getImageName(withID: imageId)
-//                    let imageRef = imagesDatabaseReference.child(imageId)
-//                    imageRef.setValue(imageName)
-//                    let ref = imagesStorageReference.child(eventId).child(imageName)
-//                    if let image = ImagesManager.shared.getCachedImage(withName: imageName),
-//                       let data = image.pngData() {
-//                        let task = ref.putData(data)
-//                        imagesManager.appendUploadTask(task)
-//                    }
-//                }
-//            }
-//        }
     }
     
 }

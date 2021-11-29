@@ -34,24 +34,25 @@ struct SportNewsFirebaseRemover: FirebaseObjectRemover {
     
     // MARK: - Helper methods
     
-    func remove() throws {
+    func remove(completionHandler: @escaping (FirebaseRemoveError?) -> Void) {
         
         guard let object = self.object as? DataType else {
-            throw AppError.dataMismatch
+            completionHandler(FirebaseRemoveError.dataMismatch)
+            return
         }
-        imagesStorageReference.child(object.objectIdentifier).listAll { result, error in
-            if let error = error {
-                print(error)
-                return
-            }
-            result.items.forEach { ref in
-                ref.delete { error in
-                    if let error = error {
-                        print(error)
-                    }
+        
+        imagesStorageReference
+            .child(object.objectIdentifier)
+            .listAll { result, error in
+                guard error == nil else {
+                    completionHandler(FirebaseRemoveError.storageError)
+                    return
+                }
+                result.items.forEach { ref in
+                    ref.delete()
                 }
             }
-        }
         objectDatabaseReference.removeValue()
+        completionHandler(nil)
     }
 }

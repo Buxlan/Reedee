@@ -30,7 +30,7 @@ struct SportSquadFirebaseRemover: FirebaseObjectRemover {
     
     // MARK: - Helper methods
     
-    func remove() throws {
+    func remove(completionHandler: @escaping (FirebaseRemoveError?) -> Void) {
 //        guard let object = self.object as? DataType else {
 //            throw AppError.dataMismatch
 //        }

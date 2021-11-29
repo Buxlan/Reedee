@@ -84,7 +84,7 @@ extension WorkoutSchedule: FirebaseObject {
     }
     
     func delete() throws {
-        try FirebaseManager.shared.delete(self)
+//        try FirebaseManager.shared.delete(self)
     }
         
     var isNew: Bool {

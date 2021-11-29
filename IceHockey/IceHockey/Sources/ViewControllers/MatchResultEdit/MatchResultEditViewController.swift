@@ -38,11 +38,8 @@ class MatchResultEditViewController: UIViewController {
                                            message: nil,
                                            preferredStyle: .actionSheet)
         let deleteAction = UIAlertAction(title: L10n.EditEventLabel.deleteTypeTitle, style: .destructive) { _ in
-            do {
-                try MatchResultFirebaseRemover(object: self.editingObject).remove()
+            MatchResultFirebaseRemover(object: self.editingObject).remove() { _ in
                 self.navigationController?.popToRootViewController(animated: true)
-            } catch {
-                print(error)
             }
         }
         let cancelAction = UIAlertAction(title: L10n.Other.cancel, style: .cancel) { _ in

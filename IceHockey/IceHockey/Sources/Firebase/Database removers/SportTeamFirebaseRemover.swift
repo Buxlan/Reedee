@@ -39,30 +39,28 @@ struct SportTeamFirebaseRemover: FirebaseObjectRemover {
     // MARK: Lifecircle
     
     // MARK: - Helper methods
-    
-    func remove() throws {
+        
+    func remove(completionHandler: @escaping (FirebaseRemoveError?) -> Void) {
         guard let object = self.object as? DataType else {
-            throw AppError.dataMismatch
+            completionHandler(.dataMismatch)
+            return
         }
         objectDatabaseReference.removeValue()
         let smallImageID = object.smallLogoID
         if !smallImageID.isEmpty {
-            let imageRef = imagesStorageReference.child(smallImageID)
-            imageRef.delete { (error) in
-                if let error = error {
-                    print(error)
-                }
-                imagesDatabaseReference.child(smallImageID)
-            }
-            
+            let imageStorageRef = imagesStorageReference
+                .child(object.objectIdentifier)
+                .child(smallImageID)
+            imageStorageRef.delete()
         }
+        
         let largeImageID = object.largeLogoID
-        let imageRef = imagesStorageReference.child(largeImageID)
-        imageRef.delete { (error) in
-            if let error = error {
-                print(error)
-            }
-            imagesDatabaseReference.child(largeImageID)
+        if !largeImageID.isEmpty {
+            let imageRef = imagesStorageReference
+                .child(object.objectIdentifier)
+                .child(largeImageID)
+            imageRef.delete()
         }
+        completionHandler(nil)
     }    
 }

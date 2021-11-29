@@ -42,7 +42,7 @@ struct SportPlayer: FirebaseObject, Codable {
     }
     
     func delete() throws {
-        try FirebaseManager.shared.delete(self)
+//        try FirebaseManager.shared.delete(self)
     }
     
     static func getObject(by uid: String, completionHandler handler: @escaping (SportPlayer?) -> Void) {

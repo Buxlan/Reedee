@@ -27,18 +27,18 @@ struct FirebaseManager: FirebaseManagerInterface {
         FirebaseApp.configure()
     }
     
-    func delete(_ object: FirebaseObject) throws {
-        if let object = object as? Club {
-            try SportTeamFirebaseRemover(object: object).remove()
-        } else if let object = object as? Squad {
-            try SportSquadFirebaseRemover(object: object).remove()
-//        } else if let object = object as? SportNews {
-//            try SportNewsFirebaseRemover(object: object).remove()
-        } else if let object = object as? MatchResult {
-            try MatchResultFirebaseRemover(object: object).remove()
-        } else if let object = object as? SportUser {
-            throw FirebaseRemoveError.notImplemented
-        }
-    }
+//    func delete(_ object: FirebaseObject) throws {
+//        if let object = object as? Club {
+//            try SportTeamFirebaseRemover(object: object).remove()
+//        } else if let object = object as? Squad {
+//            try SportSquadFirebaseRemover(object: object).remove()
+////        } else if let object = object as? SportNews {
+////            try SportNewsFirebaseRemover(object: object).remove()
+//        } else if let object = object as? MatchResult {
+//            try MatchResultFirebaseRemover(object: object).remove()
+//        } else if let object = object as? SportUser {
+//            throw FirebaseRemoveError.notImplemented
+//        }
+//    }
     
 }

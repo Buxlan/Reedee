@@ -35,15 +35,7 @@ class EditEventViewModel {
     
     // MARK: - Propetries
     
-    weak var eventProxy: SportNewsProxy? {
-        didSet {
-            guard let event = eventProxy?.event else {
-                return
-            }
-            self.event = event
-        }
-    }
-    var event: SportNews = SportNewsImpl()
+    var event: SportNews
     var shouldReloadRelay = {}
     var collectionViewDataSource = CollectionDataSource()
     var wasEdited: Bool = false
@@ -81,6 +73,10 @@ extension EditEventViewModel {
         
     func save(completionHandler: @escaping (SportEventSaveError?) -> Void) {
         event.save(completionHandler: completionHandler)
+    }
+    
+    func delete(completionHandler: @escaping (FirebaseRemoveError?) -> Void) {
+        event.delete(completionHandler: completionHandler)
     }
     
     func makeEventForSaving() -> SportNews {

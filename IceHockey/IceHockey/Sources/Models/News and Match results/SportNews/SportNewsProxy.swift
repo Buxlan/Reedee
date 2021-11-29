@@ -98,4 +98,8 @@ extension SportNewsProxy {
         event?.save(completionHandler: completionHandler)
     }
     
+    func delete(completionHandler: @escaping (FirebaseRemoveError?) -> Void) {
+        event?.delete(completionHandler: completionHandler)
+    }
+    
 }

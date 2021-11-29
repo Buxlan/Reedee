@@ -91,8 +91,12 @@ struct MatchResultImpl: MatchResult {
 
 extension MatchResult {
     
-    func save(completionHandler: (SportEventSaveError?) -> Void) {
+    func save(completionHandler: @escaping (SportEventSaveError?) -> Void) {
         MatchResultFirebaseSaver(object: self).save(completionHandler: completionHandler)
+    }
+    
+    func delete(completionHandler: @escaping (FirebaseRemoveError?) -> Void) {
+        MatchResultFirebaseRemover(object: self).remove(completionHandler: completionHandler)
     }
     
     func encode() -> [String: Any] {

@@ -90,8 +90,12 @@ class MatchResultProxy: MatchResult {
 
 extension MatchResultProxy {
     
-    func save(completionHandler: (SportEventSaveError?) -> Void) {
+    func save(completionHandler: @escaping (SportEventSaveError?) -> Void) {
         event?.save(completionHandler: completionHandler)
+    }
+    
+    func delete(completionHandler: @escaping (FirebaseRemoveError?) -> Void) {
+        event?.delete(completionHandler: completionHandler)
     }
     
     func encode() -> [String : Any] {

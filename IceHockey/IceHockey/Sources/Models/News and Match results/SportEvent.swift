@@ -23,6 +23,7 @@ protocol SportEvent: Event {
     var viewsInfo: EventViewsInfo { get set }
     
     func save(completionHandler: @escaping (SportEventSaveError?) -> Void)
+    func delete(completionHandler: @escaping (FirebaseRemoveError?) -> Void)
     func encode() -> [String: Any]
 }
 

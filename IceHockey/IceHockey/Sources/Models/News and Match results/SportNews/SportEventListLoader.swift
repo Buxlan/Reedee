@@ -12,6 +12,7 @@ class SportEventListLoader {
     // MARK: - Properties
     
     var isLoading: Bool {
+        print("Loading handlers count: \(loadingHandlers.count)")
         return !loadingHandlers.isEmpty
     }
     
@@ -61,7 +62,8 @@ class SportEventListLoader {
         if !collection.isEmpty {
             guard let objects = iterator.last(),
                   let snapshot = objects.items.last else {
-                fatalError()
+                      assertionFailure()
+                      return query
             }
             if let databasePart = SportEventCreator().makeDatabasePart(from: snapshot) {
                 query = FirebaseManager.shared.databaseManager

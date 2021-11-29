@@ -152,4 +152,8 @@ extension SportNewsImpl {
         SportNewsFirebaseSaver(object: self).save(completionHandler: completionHandler)
     }
     
+    func delete(completionHandler: @escaping (FirebaseRemoveError?) -> Void) {
+        SportNewsFirebaseRemover(object: self).remove(completionHandler: completionHandler)
+    }
+    
 }

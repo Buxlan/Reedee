@@ -46,7 +46,7 @@ class EditEventViewController: UIViewController {
         return view
     }()
     
-    private lazy var alert: UIAlertController = {
+    private lazy var discardChangesAlert: UIAlertController = {
         let controller = UIAlertController(title: L10n.Other.areYouSureToDiscardChanges,
                                            message: nil,
                                            preferredStyle: .actionSheet)
@@ -56,6 +56,23 @@ class EditEventViewController: UIViewController {
         let cancelAction = UIAlertAction(title: L10n.Other.continueEditing, style: .cancel) { _ in
         }
         controller.addAction(discardAction)
+        controller.addAction(cancelAction)
+        
+        return controller
+    }()
+    
+    private lazy var deleteObjectAlert: UIAlertController = {
+        let controller = UIAlertController(title: L10n.Other.selectAction,
+                                           message: nil,
+                                           preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: L10n.Other.delete, style: .destructive) { _ in
+            self.viewModel.delete { _ in
+                self.navigationController?.popToRootViewController(animated: true)
+            }            
+        }
+        let cancelAction = UIAlertAction(title: L10n.Other.cancel, style: .cancel) { _ in
+        }
+        controller.addAction(deleteAction)
         controller.addAction(cancelAction)
         
         return controller
@@ -163,14 +180,12 @@ extension EditEventViewController {
     }
     
     @objc private func handleMenu() {
-        present(alert, animated: true)
+        present(deleteObjectAlert, animated: true)
     }
     
     @objc private func backButtonHandle() {
         if viewModel.wasEdited {
-            present(alert, animated: true) {
-                print("!!!presented!")
-            }
+            present(discardChangesAlert, animated: true)
         } else {
             navigationController?.popViewController(animated: true)
         }

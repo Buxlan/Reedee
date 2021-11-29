@@ -16,5 +16,5 @@ enum FirebaseRemoveError: Error {
 
 protocol FirebaseObjectRemover {
     var object: FirebaseObject { get }
-    func remove() throws
+    func remove(completionHandler: @escaping (FirebaseRemoveError?) -> Void)
 }
