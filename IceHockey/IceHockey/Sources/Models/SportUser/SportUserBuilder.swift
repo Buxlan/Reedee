@@ -46,7 +46,7 @@ class SportUserBuilder: FirebaseObjectBuilder {
         self.activeBuilders.removeAll()
         self.activeLoaders.removeAll()
         buildDatabasePart { [weak self] in
-            self?.buildStoragePart {
+            self?.buildStoragePart { [weak self] in
                 guard let self = self else { return }
                 let object = SportUserImpl(databaseData: self.databasePart,
                                            storageData: self.storagePart)

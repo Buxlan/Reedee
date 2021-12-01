@@ -29,7 +29,7 @@ struct ClubImpl: Club {
     // MARK: - Lifecircle   
     
     init(databaseData: ClubDatabaseFlowData = EmptyClubDatabaseFlowData(),
-         storageData: ClubStorageFlowData = EmptyClubStorageFlowData()) {
+         storageData: StorageFlowData = EmptyStorageFlowData()) {
         
         self.objectIdentifier = databaseData.objectIdentifier
         self.displayName = databaseData.displayName

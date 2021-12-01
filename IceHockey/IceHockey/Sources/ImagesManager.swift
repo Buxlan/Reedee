@@ -14,12 +14,16 @@ class ImagesManager {
     
     static let shared = ImagesManager()
     
-    private let cache = NSCache<NSString, UIImage>()
-    private var uploadTasks: [StorageTask] = []
+//    private let cache = NSCache<NSString, UIImage>()
+//    private var uploadTasks: [StorageTask] = []
     
     // MARK: Lifecircle
     
-    private init() {
+//    private init() {
+//    }
+    
+    deinit {
+        print("deinit \(type(of: self))")
     }
     
 }
@@ -32,16 +36,17 @@ extension ImagesManager {
                   completion handler: @escaping (UIImage?) -> Void) {
         let imageName = self.getImageName(withID: imageID)
         let nskey = imageName as NSString
-        if let image = self.cache.object(forKey: nskey) {
-            handler(image)
-            return
-        }
+//        if let image = self.cache.object(forKey: nskey) {
+//            handler(image)
+//            return
+//        }
         self.downloadImage(withName: imageName, path: path, completionHandler: handler)        
     }
     
     func getCachedImage(withName imageName: String) -> UIImage? {
         let nskey = imageName as NSString
-        return cache.object(forKey: nskey)
+//        return cache.object(forKey: nskey)
+        return nil
     }
     
     func appendToCache(_ image: UIImage, for key: String) {
@@ -51,7 +56,7 @@ extension ImagesManager {
     
     func removeFromCache(imageForKey key: String) {
         let nskey = key as NSString
-        cache.removeObject(forKey: nskey)
+//        cache.removeObject(forKey: nskey)
     }
 
     private func downloadImage(withName imageName: String,
@@ -59,7 +64,7 @@ extension ImagesManager {
                                completionHandler: @escaping (UIImage?) -> Void) {
         let ref = getImageStorageReference(imageName: imageName, path: path)
         let maxSize: Int64 = 1 * 1024 * 1024
-        ref.getData(maxSize: maxSize) { [weak self] (data, error) in
+        let task = ref.getData(maxSize: maxSize) { (data, error) in
             if let error = error {
                 print("Download error: \(error)")
                 completionHandler(nil)
@@ -73,10 +78,14 @@ extension ImagesManager {
             }
             completionHandler(nil)
         }
+        task.observe(.success) { snapshot in
+            print("success")
+        }
+        print(task)
     }
     
     private func getImageStorageReference(imageName: String, path: String) -> StorageReference {
-        let ref = FirebaseManager.shared.storageManager.root
+        let ref = Storage.storage().reference()
             .child(path)
             .child(imageName)
         return ref
@@ -86,20 +95,20 @@ extension ImagesManager {
 extension ImagesManager {
     
     func appendUploadTask(_ task: StorageUploadTask) {
-        task.observe(.success) { [weak self] (snapshot) in
-            guard let self = self else { return }
-            if let index = self.uploadTasks.firstIndex(of: snapshot.task) {
-                self.uploadTasks.remove(at: index)
-            }
-        }
-        task.observe(.failure) { [weak self] (snapshot) in
-            guard let self = self else { return }
-            if let index = self.uploadTasks.firstIndex(of: snapshot.task) {
-                self.uploadTasks.remove(at: index)
-            }
-        }
-        uploadTasks.append(task)
-        task.resume()
+//        task.observe(.success) { [weak self] (snapshot) in
+//            guard let self = self else { return }
+//            if let index = self.uploadTasks.firstIndex(of: snapshot.task) {
+//                self.uploadTasks.remove(at: index)
+//            }
+//        }
+//        task.observe(.failure) { [weak self] (snapshot) in
+//            guard let self = self else { return }
+//            if let index = self.uploadTasks.firstIndex(of: snapshot.task) {
+//                self.uploadTasks.remove(at: index)
+//            }
+//        }
+//        uploadTasks.append(task)
+//        task.resume()
     }
     
     func getImageName(withID imageID: String) -> String {

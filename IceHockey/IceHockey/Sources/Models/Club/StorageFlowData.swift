@@ -17,7 +17,7 @@ struct EmptyStorageFlowData: StorageFlowData {
     var images: [ImageData] = []
 }
 
-class StorageFlowDataImpl: StorageFlowData {
+struct StorageFlowDataImpl: StorageFlowData {
     
     // MARK: - Properties
     

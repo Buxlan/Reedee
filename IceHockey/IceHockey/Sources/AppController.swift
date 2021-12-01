@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class AppController: NSObject {
+struct AppController {
     
     // MARK: - Properties
     static let shared = AppController()
@@ -35,8 +35,7 @@ class AppController: NSObject {
         
     // MARK: - Lifecircle
     
-    override init() {
-        super.init()
+    private init() {
         
         let bundleVersion = Bundle.main.object(forInfoDictionaryKey: Key.bundleVersion)
         if let bundleVersion = bundleVersion as? String {

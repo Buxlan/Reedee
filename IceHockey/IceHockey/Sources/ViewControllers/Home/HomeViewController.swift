@@ -79,7 +79,7 @@ class HomeViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.estimatedRowHeight = 300
         view.rowHeight = UITableView.automaticDimension
-        view.tableHeaderView = tableHeaderView
+//        view.tableHeaderView = tableHeaderView
         view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = false
         view.refreshControl = refreshControl
@@ -89,14 +89,14 @@ class HomeViewController: UIViewController {
         return view
     }()
     
-    private lazy var tableHeaderView: HomeTableViewHeader = {
-        let height = UIScreen.main.bounds.height * 0.15
-        let frame = CGRect(x: 0, y: 0, width: 0, height: height)
-        let view = HomeTableViewHeader(frame: frame)
-        view.dataSource = self
-        view.configureUI()
-        return view
-    }()
+//    private lazy var tableHeaderView: HomeTableViewHeader = {
+//        let height = UIScreen.main.bounds.height * 0.15
+//        let frame = CGRect(x: 0, y: 0, width: 0, height: height)
+//        let view = HomeTableViewHeader(frame: frame)
+//        view.dataSource = self
+//        view.configureUI()
+//        return view
+//    }()
     
     private lazy var tableFooterView: EventDetailFooterView = {
         let frame = CGRect(x: 0, y: 0, width: 0, height: 150)
@@ -186,22 +186,22 @@ class HomeViewController: UIViewController {
     }
 }
 
-extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.actions.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = viewModel.action(at: indexPath)
-        let reuseIdentifier = type(of: item).reuseIdentifier
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
-                                                      for: indexPath)
-        item.configure(cell: cell)
-        return cell
-    }
-    
-}
+//extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+//
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return viewModel.actions.count
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let item = viewModel.action(at: indexPath)
+//        let reuseIdentifier = type(of: item).reuseIdentifier
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
+//                                                      for: indexPath)
+//        item.configure(cell: cell)
+//        return cell
+//    }
+//
+//}
 
 extension HomeViewController {
     

@@ -48,11 +48,11 @@ class SportEventListLoader {
             guard let self = self else { return }
             assert(error == nil)
             var count = 0
-            snapshot.children.forEach { child in
+            snapshot.children.forEach { [weak self] child in
                 guard let child = child as? DataSnapshot else {
                     return
                 }
-                self.collection.appendItem(child)
+                self?.collection.appendItem(child)
                 count += 1
             }
             completionHandler(count)

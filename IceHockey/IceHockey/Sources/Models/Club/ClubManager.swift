@@ -27,7 +27,8 @@ class ClubManager {
             return
         }
         current = FirebaseObjectFactory.shared.makeTeam(with: teamID) {
-            self.observers.forEach { weakObserver in
+            self.observers.forEach { [weak self] weakObserver in
+                guard let self = self else { return }
                 weakObserver.value?.didChangeTeam(self.current)
             }
         }

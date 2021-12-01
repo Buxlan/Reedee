@@ -18,6 +18,7 @@ class FirebaseImagesLoaderImpl {
     // MARK: - Properties
     
     let objectIdentifier: String
+    var imagesManager: ImagesManager?
     
     private var imagesPath: String
     private var handlers: [String: (UIImage?) -> Void] = [:]
@@ -39,6 +40,7 @@ class FirebaseImagesLoaderImpl {
             completionHandler(nil)
             return
         }
+        imagesManager = ImagesManager()
         handlers.removeAll()
         var images: [ImageData] = []
         imagesIdentifiers.forEach { [weak self] imageID in
@@ -62,17 +64,20 @@ class FirebaseImagesLoaderImpl {
                 if self.handlers.count == 0 {
                     let object = StorageFlowDataImpl(objectIdentifier: self.objectIdentifier,
                                               images: images)
+                    self.imagesManager = nil
                     completionHandler(object)
                 }
             }
             handlers[imageID] = handler
         }
-        imagesIdentifiers.forEach { imageID in
+        imagesIdentifiers.forEach { [weak self] imageID in
             if imageID.isEmpty {
                 return
             }
             if let handler = handlers[imageID] {
-                ImagesManager.shared.getImage(withID: imageID, path: imagesPath, completion: handler)
+                self?.imagesManager?.getImage(withID: imageID,
+                                              path: imagesPath,
+                                              completion: handler)
             }
         }
     }

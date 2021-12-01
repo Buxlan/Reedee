@@ -12,7 +12,6 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var appController = AppController()
     var coordinator: ViewControllerCoordinator?
 
     func application(_ application: UIApplication,

@@ -42,9 +42,9 @@ class SportNewsBuilder: FirebaseObjectBuilder {
         activeLoaders.removeAll()
         activeBuilders.removeAll()
         buildDatabasePart { [weak self] in
-            self?.buildAuthor {
-                self?.buildLikesInfo {
-                    self?.buildStoragePart {
+            self?.buildAuthor { [weak self] in
+                self?.buildLikesInfo { [weak self] in
+                    self?.buildStoragePart { [weak self] in
                         guard let self = self else { return }
                         let object = SportNewsImpl(databaseFlowObject: self.databasePart,
                                                    storageFlowObject: self.storagePart,

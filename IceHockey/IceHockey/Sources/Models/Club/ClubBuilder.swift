@@ -16,7 +16,7 @@ class ClubBuilder {
     private let objectIdentifier: String
     
     private var databasePart: ClubDatabaseFlowData = EmptyClubDatabaseFlowData()
-    private var storagePart: ClubStorageFlowData = EmptyClubStorageFlowData()
+    private var storagePart: StorageFlowData = EmptyStorageFlowData()
     
     private let proxy = ClubProxy()
     

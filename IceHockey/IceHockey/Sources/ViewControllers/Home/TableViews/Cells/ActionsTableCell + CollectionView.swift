@@ -107,7 +107,8 @@ class ActionsTableCell: UITableViewCell,
     
     func startTimer() {
         timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] (_) in
+        timer = Timer.scheduledTimer(withTimeInterval: 5.0,
+                                     repeats: true) { [weak self] (_) in
             guard let self = self else {
                 return
             }
@@ -152,7 +153,8 @@ extension ActionsTableCell: UICollectionViewDelegate, UICollectionViewDataSource
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("touched")
+        // not implemented yet
+        fatalError()
     }
 
 }

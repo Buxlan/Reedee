@@ -24,6 +24,7 @@ class AuthManager {
     var userCreator: ApplicationUserCreator?
     
     private var observers: [WeakUserObserver] = []
+    
     lazy var authStateListener: (Auth, User?) -> Void = { [weak self] (_, user) in
         guard let self = self,
               let user = user else {
@@ -32,13 +33,15 @@ class AuthManager {
         print("Succesfully signed, user ID is: \(user.uid)")
         let creator = ApplicationUserCreator()
         self.userCreator = creator
-        self.current = creator.create(firebaseUser: user) {
-            self.observers.forEach { weakObserver in
-                guard let user = self.current else {
+        self.current = creator.create(firebaseUser: user) { [weak self] in
+            guard let self = self else { return }
+            self.observers.forEach { [weak self] weakObserver in
+                guard let user = self?.current else {
                     return
                 }
                 weakObserver.value?.didChangeUser(user)
             }
+            self.userCreator = nil
         }
     }
     
