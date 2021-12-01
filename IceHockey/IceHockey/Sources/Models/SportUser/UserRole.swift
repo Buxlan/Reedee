@@ -14,7 +14,7 @@ struct UserRoleManager {
         case readWrite
     }
         
-    func getRole(for user: User?, completionHandler: @escaping (Role) -> Void) {
+    func getRole(for user: ApplicationUser?, completionHandler: @escaping (Role) -> Void) {
         guard let user = user else {
             completionHandler(.readOnly)
             return

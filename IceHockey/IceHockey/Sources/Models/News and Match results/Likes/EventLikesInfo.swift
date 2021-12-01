@@ -10,13 +10,20 @@ protocol EventLikesInfo {
     var isLiked: Bool { get set }
 }
 
-//struct EmptyEventLikesInfo: EventLikesInfo {
-//    var count: Int = 0
-//    var isLiked: Bool = false
-//}
-
 struct EventLikesInfoImpl: EventLikesInfo {
+    
     static let empty = Self(count: 0, isLiked: false)
     var count: Int
     var isLiked: Bool
+    
+    init(databaseData: LikeDatabaseFlowData) {
+        count = databaseData.count
+        isLiked = databaseData.isLiked
+    }
+    
+    private init(count: Int, isLiked: Bool) {
+        self.count = count
+        self.isLiked = isLiked
+    }
+    
 }

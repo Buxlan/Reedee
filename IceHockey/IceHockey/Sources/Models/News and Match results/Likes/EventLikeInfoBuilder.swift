@@ -7,31 +7,36 @@
 
 import Firebase
 
-class EventLikeInfoBuilder {
+class EventLikeInfoBuilder: FirebaseObjectBuilder {
     
     // MARK: - Properties
     
-    private let key: String
+    private let objectIdentifier: String
     private let dict: [String: Any] = [:]
     
     private var databasePart: LikeDatabaseFlowData = DefaultLikeDatabaseFlowData()
-    private var completionHandler: (EventLikesInfo?) -> Void = { _ in }
+    
+    private var proxy = EventLikesInfoProxy()
     
     // MARK: - Lifecircle
     
-    init(key: String) {
-        self.key = key
+    required init(objectIdentifier: String) {
+        self.objectIdentifier = objectIdentifier
     }
     
     // MARK: - Helper Methods
     
-    func build(completionHandler: @escaping (EventLikesInfo?) -> Void) {
-        if key.isEmpty {
+    func build(completionHandler: @escaping () -> Void) {
+        if objectIdentifier.isEmpty {
             return
         }
-        self.completionHandler = completionHandler
-        buildDatabasePart {
-            self.completionHandler(self.getResult())
+        buildDatabasePart { [weak self] in
+            guard let self = self else {
+                return                
+            }
+            let object = EventLikesInfoImpl(databaseData: self.databasePart)
+            self.proxy.object = object
+            completionHandler()
         }
     }
     
@@ -40,20 +45,18 @@ class EventLikeInfoBuilder {
         FirebaseManager.shared.databaseManager
             .root
             .child(path)
-            .child(key)
-            .getData { error, snapshot in
+            .child(objectIdentifier)
+            .getData { [weak self] error, snapshot in
                 assert(error == nil)
                 if let databasePart = LikeDatabaseFlowDataImpl(snapshot: snapshot) {
-                    self.databasePart = databasePart
+                    self?.databasePart = databasePart
                 }
                 completionHandler()
             }
     }
     
-    func getResult() -> EventLikesInfo? {
-        let object = EventLikesInfoImpl(count: databasePart.count,
-                                        isLiked: databasePart.isLiked)
-        return object
+    func getResult() -> EventLikesInfo {
+        return proxy
     }
     
 }

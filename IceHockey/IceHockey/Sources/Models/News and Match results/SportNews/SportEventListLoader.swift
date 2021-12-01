@@ -12,8 +12,8 @@ class SportEventListLoader {
     // MARK: - Properties
     
     var isLoading: Bool {
-        print("Loading handlers count: \(loadingHandlers.count)")
-        return !loadingHandlers.isEmpty
+        print("Loading handlers count: \(loadings.count)")
+        return !loadings.isEmpty
     }
     
     private var databaseRootPath = "events"
@@ -23,13 +23,19 @@ class SportEventListLoader {
     private let portionSize: UInt
     private var endOfListIsReached: Bool = false
     
-    private var loadingHandlers: [String: () -> Void] = [:]
+    private var loadings: [String: (SportEventCreator, () -> Void)] = [:]
     
     // MARK: - Lifecircle
     
     init(portionSize: UInt = 10) {
         self.portionSize = portionSize
     }
+    
+    deinit {
+        print("deinit SportEventListLoader")
+    }
+    
+    // MARK: - Helper methods
     
     func flush() {
         collection = DataSnapshotsCollection(portionSize: portionSize)
@@ -38,7 +44,8 @@ class SportEventListLoader {
     
     private func loadSnapshots(completionHandler: @escaping (Int) -> Void) {
         let query = prepareQuery()
-        query.getData { error, snapshot in
+        query.getData { [weak self] error, snapshot in
+            guard let self = self else { return }
             assert(error == nil)
             var count = 0
             snapshot.children.forEach { child in
@@ -81,9 +88,9 @@ class SportEventListLoader {
         if let data = iterator.next() {
             completionHandler(data.items)
         } else {
-            loadSnapshots { loadedSnapshotsCount in
+            loadSnapshots { [weak self] loadedSnapshotsCount in
                 if loadedSnapshotsCount > 0 {
-                    self.getNextPortion(completionHandler: completionHandler)
+                    self?.getNextPortion(completionHandler: completionHandler)
                 }
             }
         }
@@ -92,26 +99,29 @@ class SportEventListLoader {
     func load(eventListCompletionHandler: @escaping ([SportEvent]) -> Void,
               eventLoadedCompletionHandler: @escaping () -> Void) {
         var events: [SportEvent] = []
-        getNextPortion { snapshots in
+        getNextPortion { [weak self] snapshots in
+            guard let self = self else { return }
             for snapshot in snapshots {
                 let eventID = snapshot.key
-                let completionHandler: () -> Void = {
-                    if let handlerIndex = self.loadingHandlers
+                let completionHandler: () -> Void = { [weak self] in
+                    guard let self = self else {
+                        return                        
+                    }
+                    if let handlerIndex = self.loadings
                         .firstIndex(where: { (key, _) in
                         key == eventID
                     }) {
-                        self.loadingHandlers.remove(at: handlerIndex)
+                        self.loadings.remove(at: handlerIndex)
                     }
                     eventLoadedCompletionHandler()
                 }
-                self.loadingHandlers[eventID] = completionHandler
+                self.loadings[eventID] = (SportEventCreator(), completionHandler)
             }
             for snapshot in snapshots {
                 let key = snapshot.key
-                guard let handler = self.loadingHandlers[key] else {
+                guard let (creator, handler) = self.loadings[key] else {
                     return
                 }
-                let creator = SportEventCreator()
                 let event = creator.create(snapshot: snapshot, with: handler)
                 if let event = event {
                     events.append(event)

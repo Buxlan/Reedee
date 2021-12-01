@@ -34,8 +34,9 @@ class SquadBuilder {
             return
         }
         proxy.loadingCompletionHandler = completionHandler
-        buildDatabasePart {
-            self.buildStoragePart {
+        buildDatabasePart { [weak self] in
+            self?.buildStoragePart {
+                guard let self = self else { return }
                 let object = SquadImpl(databaseData: self.databasePart,
                                        storageData: self.storagePart)
                 self.proxy.squad = object
@@ -45,9 +46,9 @@ class SquadBuilder {
     
     private func buildDatabasePart(completionHandler: @escaping () -> Void) {
         let loader = SquadDatabaseLoader(objectIdentifier: objectIdentifier)
-        loader.load { databaseObject in
+        loader.load { [weak self] databaseObject in
             if let databaseObject = databaseObject {
-                self.databasePart = databaseObject
+                self?.databasePart = databaseObject
             }
             completionHandler()
         }

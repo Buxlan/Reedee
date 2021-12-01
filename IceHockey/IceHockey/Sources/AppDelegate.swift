@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var appController = AppController()
-    var authManager: AuthManager = AuthManager.shared
     var coordinator: ViewControllerCoordinator?
 
     func application(_ application: UIApplication,
@@ -29,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         configureAppearance()
                 
+        let authManager = AuthManager.shared
+        Auth.auth().addStateDidChangeListener(authManager.authStateListener)
         authManager.signInAnonymously()
         
         return true

@@ -11,7 +11,7 @@ protocol SnapshotInitiable {
     init?(snapshot: DataSnapshot)
 }
 
-protocol FirebaseDatabaseLoader {
+protocol FirebaseDatabaseLoader: FirebaseLoader {
     associatedtype DataType: SnapshotInitiable
     var objectIdentifier: String { get }
     var databaseQuery: DatabaseQuery { get }

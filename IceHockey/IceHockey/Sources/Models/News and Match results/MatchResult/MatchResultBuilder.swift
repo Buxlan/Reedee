@@ -5,7 +5,7 @@
 //  Created by  Buxlan on 11/18/21.
 //
 
-class MatchResultBuilder {
+class MatchResultBuilder: FirebaseObjectBuilder {
     
     // MARK: - Properties
     
@@ -18,13 +18,18 @@ class MatchResultBuilder {
     private var likesInfo: EventLikesInfo = EventLikesInfoImpl.empty
     private var viewsInfo: EventViewsInfo = EventViewsInfoImpl.empty
     
-    private var completionHandler: () -> Void = {}
     private var proxy = MatchResultProxy()
+    private var activeBuilders: [String: FirebaseObjectBuilder] = [:]
+    private var activeLoaders: [String: EventImagesLoader] = [:]
     
     // MARK: - Lifecircle
     
-    init(objectIdentifier: String) {
+    required init(objectIdentifier: String) {
         self.objectIdentifier = objectIdentifier
+    }
+    
+    deinit {
+        print("deinit \(type(of: self))")
     }
     
     // MARK: - Helper Methods
@@ -34,17 +39,23 @@ class MatchResultBuilder {
             completionHandler()
             return
         }
-        proxy.loadingCompletionHandler = completionHandler
-        buildDatabasePart {
-            self.buildAuthor {
-                self.buildLikesInfo {
-                    self.buildStoragePart {
+        activeBuilders.removeAll()
+        buildDatabasePart { [weak self] in
+            self?.buildAuthor {
+                self?.buildLikesInfo {
+                    self?.buildStoragePart {
+                        guard let self = self else {
+                            return
+                        }
                         let object = MatchResultImpl(databaseFlowObject: self.databasePart,
                                                      storageFlowObject: self.storagePart,
                                                      author: self.author,
                                                      likesInfo: self.likesInfo,
                                                      viewsInfo: self.viewsInfo)
                         self.proxy.event = object
+                        completionHandler()
+                        self.activeBuilders.removeAll()
+                        self.activeLoaders.removeAll()
                     }
                 }
             }
@@ -55,7 +66,8 @@ class MatchResultBuilder {
         if let dict = dict {
             self.databasePart = MatchResultDatabaseFlowDataImpl(key: objectIdentifier, dict: dict)
         }
-        // NEED DEVELOP!
+        // 20.11.21 NEED DEVELOP!
+        // 01.12.21 But what to develop? I've forgotten
         completionHandler()
     }
     
@@ -64,17 +76,17 @@ class MatchResultBuilder {
     }
     
     private func buildLikesInfo(completionHandler: @escaping () -> Void) {
-        let builder = EventLikeInfoBuilder(key: objectIdentifier)
-        builder.build { likesInfo in
-            if let likesInfo = likesInfo {
-                self.likesInfo = likesInfo
-            }
+        let builder = EventLikeInfoBuilder(objectIdentifier: objectIdentifier)
+        activeBuilders["LikesInfoBuilder"] = builder
+        builder.build {
             completionHandler()
         }
+        likesInfo = builder.getResult()
     }
     
     private func buildAuthor(completionHandler: @escaping () -> Void) {
-        let builder = SportUserBuilder(key: databasePart.authorID)
+        let builder = SportUserBuilder(objectIdentifier: databasePart.authorID)
+        activeBuilders["AuthorBuilder"] = builder
         builder.build {
             completionHandler()
         }

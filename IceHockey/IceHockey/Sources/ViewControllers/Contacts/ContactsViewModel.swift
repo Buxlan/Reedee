@@ -6,7 +6,6 @@
 //
 
 import Firebase
-import FirebaseDatabaseUI
 
 struct ContactsModel {
     
@@ -48,7 +47,8 @@ class ContactsViewModel: NSObject {
             // prepare section 1
             let ids = filter.squadsIdentifiers
             // get objects
-            objectsDatabaseReference.getData { (error, snapshot) in
+            objectsDatabaseReference.getData { [weak self] (error, snapshot) in
+                guard let self = self else { return }
                 if let error = error {
                     print("Get data error: \(error)")
                 }

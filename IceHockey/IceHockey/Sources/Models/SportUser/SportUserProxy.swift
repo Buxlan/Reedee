@@ -9,13 +9,7 @@ import UIKit
 
 class SportUserProxy: SportUser {
     
-    var user: SportUserImpl? {
-        didSet {
-            loadingCompletionHandler()
-            loadingCompletionHandler = {}
-        }
-    }
-    var loadingCompletionHandler: () -> Void = {}
+    var user: SportUserImpl?
     
     var objectIdentifier: String {
         get { user?.objectIdentifier ?? "" }

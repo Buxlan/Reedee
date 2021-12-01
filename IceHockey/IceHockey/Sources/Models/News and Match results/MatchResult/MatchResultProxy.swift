@@ -9,13 +9,7 @@ import Foundation
 
 class MatchResultProxy: MatchResult {
     
-    var event: MatchResult? {
-        didSet {
-            loadingCompletionHandler()
-            loadingCompletionHandler = {}
-        }
-    }
-    var loadingCompletionHandler: () -> Void = {}
+    var event: MatchResult?
     
     var likesInfo: EventLikesInfo {
         get { event?.likesInfo ?? EventLikesInfoImpl.empty }
@@ -84,6 +78,10 @@ class MatchResultProxy: MatchResult {
     
     var isLoading: Bool {
         return event == nil
+    }
+    
+    deinit {
+        print("deinit MatchResult")
     }
     
 }

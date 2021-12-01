@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FirebaseStorageUI
 
 class NewsTableCell: UITableViewCell {
     

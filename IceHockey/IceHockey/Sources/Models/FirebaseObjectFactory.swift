@@ -19,7 +19,7 @@ struct FirebaseObjectFactory {
     }
     
     // MARK: - Factory methods
-    
+        
     func makeTeam(with objectIdentifier: String,
                   completionHandler: @escaping () -> Void)
     -> Club {
@@ -29,17 +29,8 @@ struct FirebaseObjectFactory {
         return object
     }
     
-    func makeUser(with objectIdentifier: String,
-                  completionHandler: @escaping () -> Void)
-    -> SportUser {
-        let builder = SportUserBuilder(key: objectIdentifier)
-        builder.build(completionHandler: completionHandler)
-        let object = builder.getResult()
-        return object
-    }
-    
     func makeSportNews(with objectIdentifier: String,
-                  completionHandler: @escaping () -> Void)
+                       completionHandler: @escaping () -> Void)
     -> SportNews {
         let builder = SportNewsBuilder(objectIdentifier: objectIdentifier)
         builder.build(completionHandler: completionHandler)
@@ -96,7 +87,7 @@ struct FirebaseObjectFactory {
             let object = factory.create(snapshot: snapshot, with: handler) as? DataType
             return object
         case is SportUser.Type:
-            let builder = SportUserBuilder(key: snapshot.key)
+            let builder = SportUserBuilder(objectIdentifier: snapshot.key)
             let handler: () -> Void = {
                 completionHandler()
             }

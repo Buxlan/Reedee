@@ -19,7 +19,7 @@ class ClubManager {
     
     static let shared = ClubManager()
     var current: Club
-    private var observers: [WeakClubObserver] = []
+    private var observers: [WeakClubObserver] = []    
             
     private init() {
         current = ClubProxy()

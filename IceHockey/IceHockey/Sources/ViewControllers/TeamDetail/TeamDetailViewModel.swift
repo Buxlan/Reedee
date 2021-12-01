@@ -6,7 +6,6 @@
 //
 
 import Firebase
-import FirebaseDatabaseUI
 
 struct OldTableSection<DataType> {
     var title: String

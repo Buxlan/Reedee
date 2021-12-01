@@ -7,44 +7,53 @@
 
 import Firebase
 
-class SportUserBuilder {
+class SportUserBuilder: FirebaseObjectBuilder {
     
     // MARK: - Properties
     
-    private let key: String
+    private let objectIdentifier: String
     private var snapshot: DataSnapshot?
     
     private var databasePart: SportUserDatabaseFlowData = SportUserDatabaseFlowDataImpl.empty
     private var storagePart: StorageFlowData = EmptyStorageFlowData()
     
     private let proxy = SportUserProxy()
-    
-    private var completionHandler: () -> Void = {}
+    private var activeBuilders: [String: FirebaseObjectBuilder] = [:]
+    private var activeLoaders: [String: FirebaseLoader] = [:]
     
     // MARK: - Lifecircle
     
     init(snapshot: DataSnapshot) {
-        self.key = snapshot.key
+        self.objectIdentifier = snapshot.key
         self.snapshot = snapshot
     }
     
-    init(key: String) {
-        self.key = key
+    required init(objectIdentifier: String) {
+        self.objectIdentifier = objectIdentifier
+    }
+    
+    deinit {
+        print("deinit \(type(of: self))")
     }
     
     // MARK: - Helper Methods
     
     func build(completionHandler: @escaping () -> Void) {
-        if key.isEmpty {
+        if objectIdentifier.isEmpty {
             completionHandler()
             return
         }
-        proxy.loadingCompletionHandler = completionHandler
-        buildDatabasePart {
-            self.buildStoragePart {
+        self.activeBuilders.removeAll()
+        self.activeLoaders.removeAll()
+        buildDatabasePart { [weak self] in
+            self?.buildStoragePart {
+                guard let self = self else { return }
                 let object = SportUserImpl(databaseData: self.databasePart,
                                            storageData: self.storagePart)
                 self.proxy.user = object
+                completionHandler()
+                self.activeBuilders.removeAll()
+                self.activeLoaders.removeAll()
             }
         }
     }
@@ -56,10 +65,11 @@ class SportUserBuilder {
             }
             completionHandler()
         } else {
-            let loader = SportUserDatabaseLoader(objectIdentifier: key)
-            loader.load { data in
+            let loader = SportUserDatabaseLoader(objectIdentifier: objectIdentifier)
+            activeLoaders["DatabaseLoader"] = loader
+            loader.load { [weak self] data in
                 if let data = data {
-                    self.databasePart = data
+                    self?.databasePart = data
                 }
                 completionHandler()
             }
@@ -74,9 +84,10 @@ class SportUserBuilder {
               }
         let loader = UserImageLoader(objectIdentifier: databasePart.objectIdentifier,
                                      imageIdentifier: databasePart.imageID)
-        loader.load { data in
+        activeLoaders["ImageLoader"] = loader
+        loader.load { [weak self] data in
             if let data = data {
-                self.storagePart = data
+                self?.storagePart = data
             }
             completionHandler()
         }

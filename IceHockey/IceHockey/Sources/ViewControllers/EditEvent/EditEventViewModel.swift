@@ -79,8 +79,4 @@ extension EditEventViewModel {
         event.delete(completionHandler: completionHandler)
     }
     
-    func makeEventForSaving() -> SportNews {
-        return event
-    }
-    
 }

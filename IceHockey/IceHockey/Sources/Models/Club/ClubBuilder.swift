@@ -34,8 +34,9 @@ class ClubBuilder {
             return
         }
         proxy.loadingCompletionHandler = completionHandler
-        buildDatabasePart {
-            self.buildStoragePart {
+        buildDatabasePart { [weak self] in
+            self?.buildStoragePart { [weak self] in
+                guard let self = self else { return }
                 let object = ClubImpl(databaseData: self.databasePart,
                                            storageData: self.storagePart)
                 self.proxy.team = object
@@ -45,9 +46,9 @@ class ClubBuilder {
     
     private func buildDatabasePart(completionHandler: @escaping () -> Void) {
         let loader = ClubDatabaseLoader(objectIdentifier: objectIdentifier)
-        loader.load { databaseObject in
+        loader.load { [weak self] databaseObject in
             if let databaseObject = databaseObject {
-                self.databasePart = databaseObject
+                self?.databasePart = databaseObject
             }
             completionHandler()
         }
@@ -67,9 +68,9 @@ class ClubBuilder {
         }
         let loader = ClubStorageDataLoader(objectIdentifier: objectIdentifier,
                                                  imagesIdentifiers: imagesIds)
-        loader.load { storageObject in
+        loader.load { [weak self] storageObject in
             if let storageObject = storageObject {
-                self.storagePart = storageObject
+                self?.storagePart = storageObject
             }
             completionHandler()
         }

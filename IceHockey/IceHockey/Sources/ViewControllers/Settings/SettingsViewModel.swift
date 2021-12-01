@@ -6,7 +6,6 @@
 //
 
 import Firebase
-import FirebaseDatabaseUI
 
 enum Setting: CustomStringConvertible {
     case signIn

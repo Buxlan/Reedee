@@ -7,7 +7,7 @@
 
 import Firebase
 
-class UserImageLoader: FirebaseImagesLoaderImpl {
+class UserImageLoader: FirebaseImagesLoaderImpl, FirebaseLoader {
     
     init(objectIdentifier: String,
          imageIdentifier: String) {

@@ -9,13 +9,7 @@ import UIKit
 
 class SportNewsProxy: SportNews {
     
-    var event: SportNews? {
-        didSet {
-            loadingCompletionHandler()
-            loadingCompletionHandler = {}
-        }
-    }
-    var loadingCompletionHandler: () -> Void = {}
+    var event: SportNews?
     
     var likesInfo: EventLikesInfo {
         get { event?.likesInfo ?? EventLikesInfoImpl.empty }
@@ -72,6 +66,10 @@ class SportNewsProxy: SportNews {
     }
     var mainImage: UIImage? {
         return event?.mainImage
+    }
+    
+    deinit {
+        print("deinit News")
     }
     
 }

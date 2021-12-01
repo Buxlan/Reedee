@@ -81,6 +81,10 @@ class EventDetailViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
+    deinit {
+        print("deinit")
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -133,7 +137,8 @@ class EventDetailViewController: UIViewController {
         let dataSource = self.createDataSource()
         tableBase.updateDataSource(dataSource)
         tableBase.setupTable(tableView)
-        viewModel.shouldRefreshRelay = {
+        viewModel.shouldRefreshRelay = { [weak self] in
+            guard let self = self else { return }
             let dataSource = self.createDataSource()
             self.tableBase.updateDataSource(dataSource)
             self.tableView.reloadData()
@@ -172,7 +177,8 @@ extension EventDetailViewController {
     
     func makePhotoTableRow() -> TableRow {
         var cellModel = EventDetailPhotoCellModel(event: event)
-        cellModel.likeAction = { (state: Bool) in
+        cellModel.likeAction = { [weak self] (state: Bool) in
+            guard let self = self else { return }
             LikeManager().setLike(for: self.event.objectIdentifier, newState: state)
         }
         let config = EventDetailPhotoViewConfigurator(data: cellModel)

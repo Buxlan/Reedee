@@ -6,7 +6,6 @@
 //
 
 import Firebase
-import FirebaseDatabaseUI
 
 class SquadDetailViewModel: NSObject {
     

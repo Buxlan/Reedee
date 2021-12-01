@@ -9,13 +9,7 @@ import Foundation
 
 class SportEventProxy: SportEvent {
     
-    var event: SportEvent? {
-        didSet {
-            loadingCompletionHandler()
-            loadingCompletionHandler = {}
-        }
-    }
-    var loadingCompletionHandler: () -> Void = {}
+    var event: SportEvent?
     
     var objectIdentifier: String {
         get { event?.objectIdentifier ?? "" }

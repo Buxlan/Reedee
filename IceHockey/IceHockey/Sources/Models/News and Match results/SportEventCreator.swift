@@ -7,7 +7,9 @@
 
 import Firebase
 
-struct SportEventCreator {
+class SportEventCreator {
+    
+    private var builder: FirebaseObjectBuilder?
     
     func create(snapshot: DataSnapshot,
                 with completionHandler: @escaping () -> Void)
@@ -20,13 +22,21 @@ struct SportEventCreator {
         switch type {
         case .event:
             let builder = SportNewsBuilder(objectIdentifier: uid)
+            self.builder = builder
             builder.dict = dict
-            builder.build(completionHandler: completionHandler)
+            builder.build { [weak self] in
+                completionHandler()
+                self?.builder = nil
+            }
             return builder.getResult()
         case .match:
             let builder = MatchResultBuilder(objectIdentifier: uid)
+            self.builder = builder
             builder.dict = dict
-            builder.build(completionHandler: completionHandler)
+            builder.build { [weak self] in
+                completionHandler()
+                self?.builder = nil
+            }
             return builder.getResult()
         default:
             return nil

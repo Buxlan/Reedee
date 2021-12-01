@@ -7,7 +7,7 @@
 
 import Firebase
 
-protocol FirebaseImagesLoader {
+protocol FirebaseImagesLoader: FirebaseLoader {
     var objectIdentifier: String { get }
     var imagesPath: String { get }
     func load(completionHandler: @escaping (StorageFlowData?) -> Void)
@@ -41,12 +41,16 @@ class FirebaseImagesLoaderImpl {
         }
         handlers.removeAll()
         var images: [ImageData] = []
-        imagesIdentifiers.forEach { imageID in
+        imagesIdentifiers.forEach { [weak self] imageID in
+            guard let self = self else { return }
             if imageID.isEmpty {
                 return
             }
             images.append(ImageData(imageID: imageID))
-            let handler: (UIImage?) -> Void = { (image) in
+            let handler: (UIImage?) -> Void = { [weak self] (image) in
+                guard let self = self else {
+                    return
+                }
                 if let index = self.handlers.index(forKey: imageID) {
                     self.handlers.remove(at: index)
                 }

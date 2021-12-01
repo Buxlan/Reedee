@@ -58,6 +58,7 @@ class HomeViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 16
         view.contentEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
+        view.isHidden = true
         return view
     }()
     
@@ -117,12 +118,11 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         configureBars()
         configureViewModel()
-        ClubManager.shared.addObserver(self)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        ClubManager.shared.removeObserver(self)
+        
     }
     
     // MARK: - Hepler functions
@@ -166,14 +166,21 @@ class HomeViewController: UIViewController {
     
     private func configureViewModel() {
         tableBase.setupTable(tableView)
-        configureModeratorFunctions()
-        viewModel.shouldRefreshRelay = {
+        viewModel.shouldTableRefreshRelay = { [weak self] in
+            guard let self = self else { return }
             self.viewModel.dataSource = self.createDataSource()
             self.tableBase.updateDataSource(self.viewModel.dataSource)
             self.tableView.reloadData()
             if !self.viewModel.isLoading {
                 self.refreshControl.endRefreshing()
             }
+        }
+        viewModel.shouldClubRefreshRelay = { [weak self] in
+            guard let self = self else { return }
+            self.tableFooterView.configure(with: self.viewModel.club)
+        }
+        viewModel.setRightsEventAdditionRelay = { [weak self] (role) in
+            self?.appendEventButton.isHidden = (role == .readOnly)
         }
         viewModel.update()
     }
@@ -187,18 +194,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = viewModel.action(at: indexPath)
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type(of: item).reuseIdentifier,
+        let reuseIdentifier = type(of: item).reuseIdentifier
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
                                                       for: indexPath)
         item.configure(cell: cell)
         return cell
-    }
-    
-}
-
-extension HomeViewController: ClubObserver {
-    
-    func didChangeTeam(_ club: Club) {
-        tableFooterView.configure(with: club)
     }
     
 }
@@ -253,7 +253,8 @@ extension HomeViewController {
         }
         let config = NewsViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config)
-        row.action = { indexPath in
+        row.action = { [weak self] indexPath in
+            guard let self = self else { return }
             self.tableView.deselectRow(at: indexPath, animated: false)
             let object = self.viewModel.sections[indexPath.section].events[indexPath.row]
             if object.isLoading {
@@ -263,7 +264,8 @@ extension HomeViewController {
             vc.modalTransitionStyle = .crossDissolve            
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        row.willDisplay = { _, indexPath in
+        row.willDisplay = { [weak self] _, indexPath in
+            guard let self = self else { return }
             let lastIndexPath = self.viewModel.dataSource.lastIndexPath
             if indexPath == lastIndexPath {
                 self.viewModel.updateNextPortion()
@@ -274,7 +276,8 @@ extension HomeViewController {
     
     func makeMatchResultTableRow(_ event: SportEvent) -> TableRow {
         guard let event = event as? MatchResult else {
-            fatalError()
+            assertionFailure()
+            return TableRow(rowId: "")
         }
         var cellModel = MatchResultTableCellModel(data: event)
         cellModel.likeAction = { (state: Bool) in
@@ -282,7 +285,8 @@ extension HomeViewController {
         }
         let config = MatchResultViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config)
-        row.action = { indexPath in
+        row.action = { [weak self] indexPath in
+            guard let self = self else { return }
             self.tableView.deselectRow(at: indexPath, animated: true)
             let object = self.viewModel.sections[indexPath.section].events[indexPath.row]
             if object.isLoading {
@@ -293,21 +297,14 @@ extension HomeViewController {
             vc.modalTransitionStyle = .crossDissolve
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        row.willDisplay = { _, indexPath in
+        row.willDisplay = { [weak self] _, indexPath in
+            guard let self = self else { return }
             let lastIndexPath = self.viewModel.dataSource.lastIndexPath
             if indexPath == lastIndexPath {
                 self.viewModel.updateNextPortion()
             }
         }
         return row
-    }
-    
-    func configureModeratorFunctions() {
-        appendEventButton.isHidden = true
-        let user = Auth.auth().currentUser
-        UserRoleManager().getRole(for: user) { role in
-            self.appendEventButton.isHidden = (role == .readOnly)
-        }
     }
     
     @objc private func handleAppendEvent() {

@@ -12,33 +12,20 @@ class MatchResultEditViewController: UIViewController {
     
     // MARK: - Properties
     typealias InputDataType = MatchResult
-    enum EditMode: CustomStringConvertible, Equatable {
+    enum EditMode {
         case new
         case edit(InputDataType)
-        
-        var description: String {
-            switch self {
-            case .new:
-                return "new"
-            case .edit(_):
-                return "existing"
-            }
-        }
-        
-        static func == (lhs: MatchResultEditViewController.EditMode, rhs: MatchResultEditViewController.EditMode) -> Bool {
-            lhs.description == rhs.description
-        }
     }
-    private var editingObject: InputDataType
     
-    var viewModel = TableViewBase()
+    private var viewModel: MatchResultEditViewModel
+    private var tableBase = TableViewBase()
     
     private lazy var alert: UIAlertController = {
         let controller = UIAlertController(title: L10n.EditEventLabel.wantDelete,
                                            message: nil,
                                            preferredStyle: .actionSheet)
         let deleteAction = UIAlertAction(title: L10n.EditEventLabel.deleteTypeTitle, style: .destructive) { _ in
-            MatchResultFirebaseRemover(object: self.editingObject).remove() { _ in
+            self.viewModel.event.delete { _ in
                 self.navigationController?.popToRootViewController(animated: true)
             }
         }
@@ -77,14 +64,16 @@ class MatchResultEditViewController: UIViewController {
     // MARK: - Init
     
     init(editMode: EditMode) {
+        var isNew = false
         switch editMode {
         case .new:
-            editingObject = MatchResultImpl()
+            viewModel = MatchResultEditViewModel(event: MatchResultImpl())
+            var isNew = true
         case .edit(let data):
-            editingObject = data
+            viewModel = MatchResultEditViewModel(event: data)
         }
         super.init(nibName: nil, bundle: nil)
-        title = (editMode == .new) ? L10n.EditEventLabel.newMatchNavigationBarTitle : L10n.EditEventLabel.existingMatchNavigationBarTitle
+        title = isNew ? L10n.EditEventLabel.newMatchNavigationBarTitle : L10n.EditEventLabel.existingMatchNavigationBarTitle
         
     }
     
@@ -136,16 +125,16 @@ class MatchResultEditViewController: UIViewController {
         navigationController?.setToolbarHidden(true, animated: false)
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationBar.prefersLargeTitles = false
-        if !editingObject.isNew {
+        if !viewModel.event.isNew {
             let itemDelete = UIBarButtonItem(title: L10n.Other.delete, style: .plain, target: self, action: #selector(handleDelete))
             navigationItem.rightBarButtonItem = itemDelete
         }
     }
     
     private func configureViewModel() {
-        viewModel.setupTable(tableView)
+        tableBase.setupTable(tableView)
         let dataSource = createDataSource()
-        viewModel.updateDataSource(dataSource)
+        tableBase.updateDataSource(dataSource)
     }
     
 }
@@ -165,46 +154,46 @@ extension MatchResultEditViewController {
     }
     
     func makeEventEditTableRow() -> TableRow {
-        var cellModel = MatchResultEditCellModel(data: editingObject)
+        var cellModel = MatchResultEditCellModel(data: viewModel.event)
         cellModel.setTitleAction = { (text: String) in
-            self.editingObject.title = text
+            self.viewModel.event.title = text
         }
         cellModel.setHomeTeamAction = { (text: String) in
-            self.editingObject.homeTeam = text
+            self.viewModel.event.homeTeam = text
         }
         cellModel.setAwayTeamAction = { (text: String) in
-            self.editingObject.awayTeam = text
+            self.viewModel.event.awayTeam = text
         }
         cellModel.setHomeTeamScoreAction = { (score: Int) in
-            self.editingObject.homeTeamScore = score
+            self.viewModel.event.homeTeamScore = score
         }
         cellModel.setAwayTeamScoreAction = { (score: Int) in
-            self.editingObject.awayTeamScore = score
+            self.viewModel.event.awayTeamScore = score
         }
         cellModel.setStadiumAction = { (text: String) in
-            self.editingObject.stadium = text
+            self.viewModel.event.stadium = text
         }
         cellModel.setDateAction = { (date: Date) in
-            self.editingObject.date = date
+            self.viewModel.event.date = date
         }
         let config = MatchResultEditViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier,
                            config: config, height: UITableView.automaticDimension)
         return row
-    }    
+    }
     
     func makeSaveTableRow() -> TableRow {
         var cellModel = SaveCellModel()
         cellModel.action = {
-            MatchResultFirebaseSaver(object: self.editingObject)
-                .save { error in
-                
+            self.viewModel.save { error in
+                if let error = error {
+                    assertionFailure(error.errorDescription ?? "")
+                }
+                self.navigationController?.popToRootViewController(animated: true)
             }
-            self.navigationController?.popToRootViewController(animated: true)
         }
         let config = SaveViewConfigurator(data: cellModel)
-        let row = TableRow(rowId: type(of: config).reuseIdentifier,
-                           config: config)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         return row
     }
     

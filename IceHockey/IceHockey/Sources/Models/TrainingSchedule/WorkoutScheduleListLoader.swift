@@ -49,7 +49,8 @@ class WorkoutScheduleListLoader {
             query = query.queryStarting(afterValue: lastValue)
         }
         var objects: [WorkoutSchedule] = []
-        query.getData { error, snapshot in
+        query.getData { [weak self] error, snapshot in
+            guard let self = self else { return }
             assert(error == nil)
             if snapshot.childrenCount < self.capacity {
                 self.endOfListIsReached = true

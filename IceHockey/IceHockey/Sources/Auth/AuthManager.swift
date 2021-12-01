@@ -21,15 +21,18 @@ class AuthManager {
     
     static let shared = AuthManager()
     var current: ApplicationUser?
+    var userCreator: ApplicationUserCreator?
     
     private var observers: [WeakUserObserver] = []
-    private lazy var authStateListener: (Auth, User?) -> Void = { [weak self] (_, user) in
+    lazy var authStateListener: (Auth, User?) -> Void = { [weak self] (_, user) in
         guard let self = self,
               let user = user else {
             return
         }
         print("Succesfully signed, user ID is: \(user.uid)")
-        self.current = AuthFactory().makeApplicationUser(firebaseUser: user) {
+        let creator = ApplicationUserCreator()
+        self.userCreator = creator
+        self.current = creator.create(firebaseUser: user) {
             self.observers.forEach { weakObserver in
                 guard let user = self.current else {
                     return
@@ -47,26 +50,7 @@ class AuthManager {
     // MARK: - Hepler methods
     
     func signInAnonymously() {
-        Auth.auth().signInAnonymously { (authResult, error) in
-            if let error = error {
-                print(error)
-                return
-            }
-            guard let user = authResult?.user else {
-                return
-            }
-            print("Succesfully signed, user ID is: \(user.uid)")
-            Auth.auth().addStateDidChangeListener(self.authStateListener)
-            self.current = AuthFactory().makeApplicationUser(firebaseUser: user) {
-                guard let user = self.current else {
-                    return
-                }
-                self.observers.forEach { weakObserver in
-                    weakObserver.value?.didChangeUser(user)
-                }
-            }
-            
-        }
+        Auth.auth().signInAnonymously()
     }
     
     func addObserver(_ observer: UserObserver) {
