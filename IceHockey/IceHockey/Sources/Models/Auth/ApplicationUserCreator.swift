@@ -22,9 +22,9 @@ class ApplicationUserCreator {
             completionHandler()
             self?.builder = nil
         }
-        let sportUser = builder.getResult()
+        let object = builder.getResult()
         let applicationUser = ApplicationUser(firebaseUser: firebaseUser,
-                                              sportUser: sportUser)
+                                              sportUser: object)
         return applicationUser
     }
     

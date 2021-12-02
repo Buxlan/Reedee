@@ -7,7 +7,7 @@
 
 import Firebase
 
-class TrainingScheduleViewModel: NSObject {
+class TrainingScheduleViewModel {
     
     // MARK: - Properties
     struct SectionData {
@@ -21,7 +21,8 @@ class TrainingScheduleViewModel: NSObject {
         return loader.isLoading
     }
     private var loader = WorkoutScheduleListLoader()
-    private var factory = FirebaseObjectFactory.shared
+    private var activeCreators: [SquadCreator] = []
+    
     
     var shouldRefreshRelay = {}
     
@@ -41,60 +42,30 @@ class TrainingScheduleViewModel: NSObject {
         sections[indexPath.section].schedule.workouts[indexPath.row]
     }
     
-    private func loadItems() {
-        
-//        guard let team = team else {
-//            return
-//        }
-//        sections.removeAll()
-//        team.squadIDs.forEach { squadID in
-//            let handler: (SportSquad?) -> Void = { squad in
-//                guard let squad = squad else {
-//                    let index = self.loadings.firstIndex { $0 == squadID }
-//                    if let index = index {
-//                        self.loadings.remove(at: index)
-//                    }
-//                    return
-//                }
-//                let handler: (TrainingSchedule?) -> Void = { schedule in
-//                    defer {
-//                        let index = self.loadings.firstIndex { $0 == squadID }
-//                        if let index = index {
-//                            self.loadings.remove(at: index)
-//                        }
-//                        if self.loadings.isEmpty {
-//                            self.shouldRefreshRelay()
-//                        }
-//                    }
-//                    guard let schedule = schedule else {
-//                        return
-//                    }
-//                    let section = SectionData(squad: squad, schedule: schedule)
-//                    self.sections.append(section)
-//                }
-//                FirebaseObjectLoader<TrainingSchedule>().load(uid: squadID, completionHandler: handler)
-//            }
-//            loadings.append(squadID)
-//            FirebaseObjectLoader<SportSquad>().load(uid: squadID, completionHandler: handler)
-//        }
-    
-    }
-    
     func update() {
         
-        let completionHandler: ([WorkoutSchedule]) -> Void = { schedules in
+        let completionHandler: ([WorkoutSchedule]) -> Void = { [weak self] schedules in
             guard schedules.count > 0 else {
                 return
             }
-            self.sections.removeAll()
-            schedules.forEach { schedule in
-                let squad = self.factory.makeSquad(with: schedule.objectIdentifier) {
-                    self.shouldRefreshRelay()
-                }
+            self?.activeCreators.removeAll()
+            self?.sections.removeAll()
+            schedules.forEach { [weak self] schedule in
+                let creator = SquadCreator()
+                self?.activeCreators.append(creator)
+                let squad = creator.create(
+                    objectIdentifier: schedule.objectIdentifier) { [weak self] in
+                        guard let self = self else { return }
+                        if let index = self.activeCreators.firstIndex(
+                            where: { $0 === creator }) {
+                            self.activeCreators.remove(at: index)
+                        }                        
+                        self.shouldRefreshRelay()
+                    }
                 let section = SectionData(squad: squad, schedule: schedule)
-                self.sections.append(section)
+                self?.sections.append(section)
             }
-            self.shouldRefreshRelay()
+            self?.shouldRefreshRelay()
             
         }
         loader.load(completionHandler: completionHandler)

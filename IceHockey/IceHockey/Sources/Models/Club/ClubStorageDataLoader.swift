@@ -7,7 +7,7 @@
 
 import Firebase
 
-class ClubStorageDataLoader {
+class ClubStorageDataLoader: FirebaseLoader {
     
     // MARK: - Properties
     

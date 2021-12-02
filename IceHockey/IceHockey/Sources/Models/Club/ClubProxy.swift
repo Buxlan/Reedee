@@ -7,13 +7,7 @@
 
 class ClubProxy: Club {
     
-    var team: ClubImpl? {
-        didSet {
-            loadingCompletionHandler()
-            loadingCompletionHandler = {}
-        }
-    }
-    var loadingCompletionHandler: () -> Void = {}
+    var team: ClubImpl?
     
     var objectIdentifier: String {
         get { team?.objectIdentifier ?? "" }

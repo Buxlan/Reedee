@@ -6,6 +6,8 @@
 //
 
 protocol FirebaseObjectBuilder {
+//    associatedtype DataType
     init(objectIdentifier: String)
-    func build(completionHandler: @escaping () -> Void)
+    func build(completionHandler: @escaping () -> Void)    
+//    func getResult() -> DataType
 }

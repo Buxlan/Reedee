@@ -8,7 +8,6 @@
 import Firebase
 
 protocol Club: FirebaseObject {
-    var objectIdentifier: String { get set }
     var address: String { get set }
     var copyright: String { get set }
     var displayName: String { get set }

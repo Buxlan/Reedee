@@ -28,13 +28,6 @@ class HomeTableViewHeader: UIView,
     var isInterfaceConfigured = false
     var imageAspectRate: CGFloat = 1.77
     
-//    private lazy var coloredView: UIView = {
-//        let view = UIView()
-//        view.backgroundColor = Asset.other2.color
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        return view
-//    }()
-    
     private lazy var collectionView: QuickActionsCollectionView = {
         let layout = QuickActionsCollectionLayout()
         let inset = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
@@ -69,7 +62,6 @@ class HomeTableViewHeader: UIView,
         if isInterfaceConfigured { return }
         self.backgroundColor = Asset.accent0.color
         tintColor = Asset.other1.color
-//        contentView.addSubview(coloredView)
         self.addSubview(collectionView)
         configureConstraints()
         isInterfaceConfigured = true

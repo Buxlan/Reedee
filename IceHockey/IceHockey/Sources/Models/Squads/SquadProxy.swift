@@ -7,13 +7,7 @@
 
 class SquadProxy: Squad {
     
-    var squad: SquadImpl? {
-        didSet {
-            loadingCompletionHandler()
-            loadingCompletionHandler = {}
-        }
-    }
-    var loadingCompletionHandler: () -> Void = {}
+    var squad: SquadImpl?
     
     var objectIdentifier: String {
         get { squad?.objectIdentifier ?? "" }

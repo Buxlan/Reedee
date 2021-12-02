@@ -51,6 +51,7 @@ class FirebaseImagesLoaderImpl {
             images.append(ImageData(imageID: imageID))
             let handler: (UIImage?) -> Void = { [weak self] (image) in
                 guard let self = self else {
+                    completionHandler(nil)
                     return
                 }
                 if let index = self.handlers.index(forKey: imageID) {

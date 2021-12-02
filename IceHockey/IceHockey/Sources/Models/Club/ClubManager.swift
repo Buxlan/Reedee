@@ -19,18 +19,22 @@ class ClubManager {
     
     static let shared = ClubManager()
     var current: Club
-    private var observers: [WeakClubObserver] = []    
+    private var observers: [WeakClubObserver] = []
+    var clubCreator: ClubCreator?
             
     private init() {
         current = ClubProxy()
         guard let teamID = Bundle.main.object(forInfoDictionaryKey: "teamID") as? String else {
             return
         }
-        current = FirebaseObjectFactory.shared.makeTeam(with: teamID) {
+        let creator = ClubCreator()
+        self.clubCreator = creator
+        current = creator.create(objectIdentifier: teamID) {
             self.observers.forEach { [weak self] weakObserver in
                 guard let self = self else { return }
                 weakObserver.value?.didChangeTeam(self.current)
             }
+            self.clubCreator = nil
         }
     }
     

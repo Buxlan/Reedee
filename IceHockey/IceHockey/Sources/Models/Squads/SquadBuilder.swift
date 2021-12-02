@@ -19,6 +19,8 @@ class SquadBuilder {
     private var storagePart: StorageFlowData = EmptyStorageFlowData()
     
     private let proxy = SquadProxy()
+    private var activeBuilders: [String: FirebaseObjectBuilder] = [:]
+    private var activeLoaders: [String: FirebaseLoader] = [:]
     
     // MARK: - Lifecircle
     
@@ -33,19 +35,24 @@ class SquadBuilder {
             completionHandler()
             return
         }
-        proxy.loadingCompletionHandler = completionHandler
+        self.activeBuilders.removeAll()
+        self.activeLoaders.removeAll()
         buildDatabasePart { [weak self] in
-            self?.buildStoragePart { [weak self] in
+            self?.buildStoragePart {
                 guard let self = self else { return }
                 let object = SquadImpl(databaseData: self.databasePart,
                                        storageData: self.storagePart)
                 self.proxy.squad = object
+                completionHandler()
+                self.activeBuilders.removeAll()
+                self.activeLoaders.removeAll()
             }
         }
     }
     
     private func buildDatabasePart(completionHandler: @escaping () -> Void) {
         let loader = SquadDatabaseLoader(objectIdentifier: objectIdentifier)
+        activeLoaders["DatabaseLoader"] = loader
         loader.load { [weak self] databaseObject in
             if let databaseObject = databaseObject {
                 self?.databasePart = databaseObject

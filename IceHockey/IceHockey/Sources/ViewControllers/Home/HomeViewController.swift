@@ -86,11 +86,14 @@ class HomeViewController: UIViewController {
         view.register(NewsTableCell.self, forCellReuseIdentifier: NewsViewConfigurator.reuseIdentifier)
         view.register(MatchResultTableCell.self, forCellReuseIdentifier: MatchResultViewConfigurator.reuseIdentifier)
         ActionCellConfigurator.registerCell(tableView: view)
+        if #available(iOS 15.0, *) {
+            view.sectionHeaderTopPadding = 8
+        }
         return view
     }()
     
     private lazy var tableHeaderView: HomeTableViewHeader = {
-        let height = UIScreen.main.bounds.height * 0.15
+        let height = UIScreen.main.bounds.height * 0.10
         let frame = CGRect(x: 0, y: 0, width: 0, height: height)
         let view = HomeTableViewHeader(frame: frame)
         view.dataSource = self

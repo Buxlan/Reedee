@@ -187,6 +187,9 @@
 		40B82ED52738BCFB00BED0A1 /* MatchResultFirebaseSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B82ED42738BCFB00BED0A1 /* MatchResultFirebaseSaver.swift */; };
 		40B947C226EE909100D9E8DA /* TableViewCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B947C126EE909100D9E8DA /* TableViewCellConfiguration.swift */; };
 		40B947C526EEBD5E00D9E8DA /* ConfigurableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B947C426EEBD5E00D9E8DA /* ConfigurableCell.swift */; };
+		40C05260275836F200C1930A /* SquadCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0525F275836F200C1930A /* SquadCreator.swift */; };
+		40C0526227583AAC00C1930A /* ClubCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0526127583AAC00C1930A /* ClubCreator.swift */; };
+		40C0526427583F6100C1930A /* FirebaseObjectCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0526327583F6100C1930A /* FirebaseObjectCreator.swift */; };
 		40C106B526E419CB00B619A1 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106B426E419CB00B619A1 /* AppController.swift */; };
 		40C106BB26E41A2200B619A1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106B926E41A2200B619A1 /* HomeViewController.swift */; };
 		40C106BF26E41E4800B619A1 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C106BE26E41E4700B619A1 /* Utils.swift */; };
@@ -433,6 +436,9 @@
 		40B82ED42738BCFB00BED0A1 /* MatchResultFirebaseSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResultFirebaseSaver.swift; sourceTree = "<group>"; };
 		40B947C126EE909100D9E8DA /* TableViewCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellConfiguration.swift; sourceTree = "<group>"; };
 		40B947C426EEBD5E00D9E8DA /* ConfigurableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableCell.swift; sourceTree = "<group>"; };
+		40C0525F275836F200C1930A /* SquadCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquadCreator.swift; sourceTree = "<group>"; };
+		40C0526127583AAC00C1930A /* ClubCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubCreator.swift; sourceTree = "<group>"; };
+		40C0526327583F6100C1930A /* FirebaseObjectCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseObjectCreator.swift; sourceTree = "<group>"; };
 		40C106B426E419CB00B619A1 /* AppController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 		40C106B926E41A2200B619A1 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		40C106BE26E41E4700B619A1 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -576,6 +582,7 @@
 				40B82ED02738BA8300BED0A1 /* Database savers */,
 				401C9B23270D155C00F91DC6 /* FirebaseManager.swift */,
 				406E7C0C2723302300DAD711 /* FirebaseStorageManager.swift */,
+				40C0526327583F6100C1930A /* FirebaseObjectCreator.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -1158,6 +1165,7 @@
 				407BB059274B9E83008DF228 /* Coord.swift */,
 				40940BE726E40D450098EF89 /* Club.swift */,
 				40C44180274D54F800F9EC8B /* ClubImpl.swift */,
+				40C0526127583AAC00C1930A /* ClubCreator.swift */,
 				40C4417E274D4F6200F9EC8B /* ClubProxy.swift */,
 				407BB05D274BA6D0008DF228 /* ClubBuilder.swift */,
 				407BB05B274BA00E008DF228 /* ClubDatabaseLoader.swift */,
@@ -1196,6 +1204,7 @@
 				40C44185274D559700F9EC8B /* SquadProxy.swift */,
 				40C44186274D559700F9EC8B /* SquadImpl.swift */,
 				40C44182274D559700F9EC8B /* SquadBuilder.swift */,
+				40C0525F275836F200C1930A /* SquadCreator.swift */,
 				40C44184274D559700F9EC8B /* SquadDatabaseFlowData.swift */,
 				40C44189274D559800F9EC8B /* SquadDatabaseLoader.swift */,
 			);
@@ -1491,6 +1500,7 @@
 				4035DAB927309A0A00AAFDA8 /* SquadHeaderView.swift in Sources */,
 				40A1139127470474001BDD99 /* EventLikesInfo.swift in Sources */,
 				40C3BC75272802C800BBA67F /* EditEventDateCell.swift in Sources */,
+				40C0526427583F6100C1930A /* FirebaseObjectCreator.swift in Sources */,
 				40429BBE274AE5A200DAD070 /* DayOfWeek.swift in Sources */,
 				40E70B9A27486E4A0074CD2D /* KeyboardAccessoryDoneView.swift in Sources */,
 				4094E6CA2756C739000737B9 /* ApplicationUserCreator.swift in Sources */,
@@ -1504,6 +1514,7 @@
 				40940C0626E418E50098EF89 /* MainTabBarViewController.swift in Sources */,
 				40E70B962748534F0074CD2D /* SportEventListLoader.swift in Sources */,
 				4093D9A9271780E000DCF35D /* ApplicationUser.swift in Sources */,
+				40C05260275836F200C1930A /* SquadCreator.swift in Sources */,
 				40C4419F274DD98700F9EC8B /* MatchResultProxy.swift in Sources */,
 				40C106CC26E41F2800B619A1 /* ContactsViewController.swift in Sources */,
 				40E7203E26E400FE00A64C60 /* AppDelegate.swift in Sources */,
@@ -1644,6 +1655,7 @@
 				40C44199274DBE5200F9EC8B /* SportUserDatabaseLoader.swift in Sources */,
 				40C44195274D8CE800F9EC8B /* SportEventProxy.swift in Sources */,
 				40F4EBE5273DD7FE003DA1D3 /* EventDetailUserCellModel.swift in Sources */,
+				40C0526227583AAC00C1930A /* ClubCreator.swift in Sources */,
 				401C9B21270D139800F91DC6 /* MainViewControllerCoordinator.swift in Sources */,
 				407A621B2737D5C400558998 /* MatchResultEditCellModel.swift in Sources */,
 				40E7204026E400FE00A64C60 /* SceneDelegate.swift in Sources */,
