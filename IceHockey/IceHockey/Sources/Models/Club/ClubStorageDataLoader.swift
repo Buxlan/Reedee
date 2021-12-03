@@ -40,9 +40,7 @@ class ClubStorageDataLoader: FirebaseLoader {
             images.append(ImageData(imageID: imageID))
             let handler: (UIImage?) -> Void = { [weak self] (image) in
                 guard let self = self else { return }
-                if let index = self.handlers.index(forKey: imageID) {
-                    self.handlers.remove(at: index)
-                }
+                self.handlers[imageID] = nil
                 if let image = image,
                    let index = images.firstIndex(where: { $0.imageID == imageID }) {
                     let imageData = ImageData(imageID: imageID, image: image)

@@ -141,11 +141,7 @@ class SportNewsFirebaseSaver {
         var handlers: [String: (StorageMetadata?, Error?) -> Void] = [:]
         imagesTableData.forEach { (key, _) in
             handlers[key] = { (_, error) in
-                if let index = handlers.firstIndex(where: { (dictKey, _) in
-                    key == dictKey
-                }) {
-                    handlers.remove(at: index)
-                }
+                handlers[key] = nil
                 if error != nil {
                     storageErrorWasHappened = true
                 }
