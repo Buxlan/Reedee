@@ -50,11 +50,11 @@ class TrainingScheduleViewModel {
             }
             self?.activeCreators.removeAll()
             self?.sections.removeAll()
-            schedules.forEach { [weak self] schedule in
+            for schedule in schedules {
                 let creator = SquadCreator()
                 self?.activeCreators.append(creator)
                 let squad = creator.create(
-                    objectIdentifier: schedule.objectIdentifier) { [weak self] in
+                    objectIdentifier: schedule.objectIdentifier) {
                         guard let self = self else { return }
                         if let index = self.activeCreators.firstIndex(
                             where: { $0 === creator }) {

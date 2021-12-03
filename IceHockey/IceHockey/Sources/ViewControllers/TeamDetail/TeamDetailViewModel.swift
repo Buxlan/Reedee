@@ -54,17 +54,12 @@ class TeamDetailViewModel: NSObject {
                 if snapshot.value == nil {
                     return
                 }
-                guard let result = snapshot.value as? [String: Any] else {
+                guard let _ = snapshot.value as? [String: Any] else {
                     return
                 }
                 var items: [CellConfigurator] = []
-                ids.forEach { [weak self] (uid) in
-                    guard let self = self,
-                        let item = result[uid] as? [String: Any] else {
-                        return
-                    }
+                for uid in ids {
                     let object = self.factory.makeSquad(with: uid) {
-                        
                     }
                     let config = CellConfiguratorType(data: object)
                     items.append(config)

@@ -33,8 +33,7 @@ class ClubStorageDataLoader: FirebaseLoader {
         }
         handlers.removeAll()
         var images: [ImageData] = []
-        imagesIdentifiers.forEach { [weak self] imageID in
-            guard let self = self else { return }
+        for imageID in imagesIdentifiers {
             if imageID.isEmpty {
                 return
             }

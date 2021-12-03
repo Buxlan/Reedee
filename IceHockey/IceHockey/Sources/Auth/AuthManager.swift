@@ -35,8 +35,8 @@ class AuthManager {
         self.userCreator = creator
         self.current = creator.create(firebaseUser: user) { [weak self] in
             guard let self = self else { return }
-            self.observers.forEach { [weak self] weakObserver in
-                guard let user = self?.current else {
+            for weakObserver in self.observers {
+                guard let user = self.current else {
                     return
                 }
                 weakObserver.value?.didChangeUser(user)

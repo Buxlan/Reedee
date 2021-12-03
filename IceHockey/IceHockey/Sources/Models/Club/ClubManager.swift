@@ -29,9 +29,9 @@ class ClubManager {
         }
         let creator = ClubCreator()
         self.clubCreator = creator
-        current = creator.create(objectIdentifier: teamID) {
-            self.observers.forEach { [weak self] weakObserver in
-                guard let self = self else { return }
+        current = creator.create(objectIdentifier: teamID) { [weak self] in
+            guard let self = self else { return }
+            for weakObserver in self.observers {
                 weakObserver.value?.didChangeTeam(self.current)
             }
             self.clubCreator = nil

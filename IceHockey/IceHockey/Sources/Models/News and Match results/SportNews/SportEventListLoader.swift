@@ -45,10 +45,9 @@ class SportEventListLoader {
     private func loadSnapshots(completionHandler: @escaping (Int) -> Void) {
         let query = prepareQuery()
         query.getData { [weak self] error, snapshot in
-            guard let self = self else { return }
             assert(error == nil)
             var count = 0
-            snapshot.children.forEach { [weak self] child in
+            for child in snapshot.children {
                 guard let child = child as? DataSnapshot else {
                     return
                 }

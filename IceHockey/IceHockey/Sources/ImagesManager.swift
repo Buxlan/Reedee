@@ -14,8 +14,8 @@ class ImagesManager {
     
     static let shared = ImagesManager()
     
-//    private let cache = NSCache<NSString, UIImage>()
-//    private var uploadTasks: [StorageTask] = []
+    private let cache = NSCache<NSString, UIImage>()
+    private var uploadTasks: [StorageTask] = []
     
     // MARK: Lifecircle
     
@@ -36,27 +36,26 @@ extension ImagesManager {
                   completion handler: @escaping (UIImage?) -> Void) {
         let imageName = self.getImageName(withID: imageID)
         let nskey = imageName as NSString
-//        if let image = self.cache.object(forKey: nskey) {
-//            handler(image)
-//            return
-//        }
+        if let image = self.cache.object(forKey: nskey) {
+            handler(image)
+            return
+        }
         self.downloadImage(withName: imageName, path: path, completionHandler: handler)        
     }
     
     func getCachedImage(withName imageName: String) -> UIImage? {
         let nskey = imageName as NSString
-//        return cache.object(forKey: nskey)
-        return nil
+        return cache.object(forKey: nskey)
     }
     
     func appendToCache(_ image: UIImage, for key: String) {
         let nskey = key as NSString
-//        cache.setObject(image, forKey: nskey)
+        cache.setObject(image, forKey: nskey)
     }
     
     func removeFromCache(imageForKey key: String) {
         let nskey = key as NSString
-//        cache.removeObject(forKey: nskey)
+        cache.removeObject(forKey: nskey)
     }
 
     private func downloadImage(withName imageName: String,
@@ -95,20 +94,20 @@ extension ImagesManager {
 extension ImagesManager {
     
     func appendUploadTask(_ task: StorageUploadTask) {
-//        task.observe(.success) { [weak self] (snapshot) in
-//            guard let self = self else { return }
-//            if let index = self.uploadTasks.firstIndex(of: snapshot.task) {
-//                self.uploadTasks.remove(at: index)
-//            }
-//        }
-//        task.observe(.failure) { [weak self] (snapshot) in
-//            guard let self = self else { return }
-//            if let index = self.uploadTasks.firstIndex(of: snapshot.task) {
-//                self.uploadTasks.remove(at: index)
-//            }
-//        }
-//        uploadTasks.append(task)
-//        task.resume()
+        task.observe(.success) { [weak self] (snapshot) in
+            guard let self = self else { return }
+            if let index = self.uploadTasks.firstIndex(of: snapshot.task) {
+                self.uploadTasks.remove(at: index)
+            }
+        }
+        task.observe(.failure) { [weak self] (snapshot) in
+            guard let self = self else { return }
+            if let index = self.uploadTasks.firstIndex(of: snapshot.task) {
+                self.uploadTasks.remove(at: index)
+            }
+        }
+        uploadTasks.append(task)
+        task.resume()
     }
     
     func getImageName(withID imageID: String) -> String {

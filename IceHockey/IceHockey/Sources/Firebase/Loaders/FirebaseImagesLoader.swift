@@ -43,8 +43,7 @@ class FirebaseImagesLoaderImpl {
         imagesManager = ImagesManager()
         handlers.removeAll()
         var images: [ImageData] = []
-        imagesIdentifiers.forEach { [weak self] imageID in
-            guard let self = self else { return }
+        for imageID in imagesIdentifiers {
             if imageID.isEmpty {
                 return
             }
@@ -71,12 +70,12 @@ class FirebaseImagesLoaderImpl {
             }
             handlers[imageID] = handler
         }
-        imagesIdentifiers.forEach { [weak self] imageID in
+        for imageID in imagesIdentifiers {
             if imageID.isEmpty {
                 return
             }
             if let handler = handlers[imageID] {
-                self?.imagesManager?.getImage(withID: imageID,
+                self.imagesManager?.getImage(withID: imageID,
                                               path: imagesPath,
                                               completion: handler)
             }

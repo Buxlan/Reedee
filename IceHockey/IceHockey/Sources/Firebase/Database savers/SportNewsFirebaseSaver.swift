@@ -169,9 +169,8 @@ class SportNewsFirebaseSaver {
                 return
             }
             self.imagesDatabaseReference.updateChildValues(imagesTableData)
-            self.object.images.forEach { [weak self] imageData in
-                guard let self = self,
-                      let data = imageData.image?.pngData(),
+            for imageData in self.object.images {
+                guard let data = imageData.image?.pngData(),
                       let imageName = imagesTableData[imageData.imageID],
                       let handler = handlers[imageData.imageID] else {
                           assertionFailure()

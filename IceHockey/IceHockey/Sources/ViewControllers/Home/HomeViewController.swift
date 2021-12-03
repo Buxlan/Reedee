@@ -62,12 +62,6 @@ class HomeViewController: UIViewController {
         return view
     }()
     
-    private lazy var myLabel: UILabel = {
-        let view = UILabel()
-        view.text = "text"
-        return view
-    }()
-    
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
         view.isUserInteractionEnabled = true
@@ -133,7 +127,6 @@ class HomeViewController: UIViewController {
     private func configureUI() {
         view.addSubview(tableView)
         view.addSubview(appendEventButton)
-        view.addSubview(myLabel)
         refreshControl.addTarget(self, action: #selector(refreshTable(_:)), for: .valueChanged)
     }
     
@@ -145,12 +138,7 @@ class HomeViewController: UIViewController {
             tableView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor),
             appendEventButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             appendEventButton.widthAnchor.constraint(equalToConstant: 44),
-            appendEventButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -32),
-            appendEventButton.heightAnchor.constraint(equalToConstant: 44),
-            myLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            myLabel.widthAnchor.constraint(equalToConstant: 44),
-            myLabel.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -32),
-            myLabel.heightAnchor.constraint(equalToConstant: 44)
+            appendEventButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -32)
         ]
         NSLayoutConstraint.activate(constraints)
     }
@@ -191,11 +179,13 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         return viewModel.actions.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = viewModel.action(at: indexPath)
         let reuseIdentifier = type(of: item).reuseIdentifier
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,

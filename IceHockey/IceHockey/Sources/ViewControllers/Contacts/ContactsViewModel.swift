@@ -56,13 +56,8 @@ class ContactsViewModel: NSObject {
                     return
                 }
                 var items: [CellConfigurator] = []
-                ids.forEach { [weak self] (uid) in
-                    guard let self = self,
-                        let item = result[uid] as? [String: Any] else {
-                        return
-                    }
-                    let object = self.factory.makeSquad(with: uid) {
-                        
+                for uid in ids {
+                    let object = self.factory.makeSquad(with: uid) {                        
                     }
                     let config = CellConfiguratorType(data: object)
                     items.append(config)
