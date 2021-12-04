@@ -19,5 +19,7 @@ protocol Club: FirebaseObject {
     var webSite: String { get set }
     var squadsIdentifiers: [String] { get set }
     
+    var squads: [Squad] { get set }
+    
     func encode() -> [String: Any]
 }

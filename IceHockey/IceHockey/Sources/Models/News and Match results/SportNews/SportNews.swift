@@ -89,7 +89,7 @@ struct SportNewsImpl: SportNews {
         self.viewsInfo = viewsInfo
         if author == nil,
            objectIdentifier.isEmpty,
-           let currentUser = AuthManager.shared.current {
+           let currentUser = FirebaseAuthManager.shared.current {
             self.author = currentUser.sportUser
             self.authorID = currentUser.uid
         }

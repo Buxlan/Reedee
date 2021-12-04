@@ -46,7 +46,7 @@ class ClubBuilder: FirebaseObjectBuilder {
                 guard let self = self else { return }
                 let object = ClubImpl(databaseData: self.databasePart,
                                            storageData: self.storagePart)
-                self.proxy.team = object
+                self.proxy.object = object
                 completionHandler()
                 self.activeBuilders.removeAll()
                 self.activeLoaders.removeAll()

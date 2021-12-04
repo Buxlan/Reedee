@@ -70,18 +70,10 @@ struct CollectionViewCellConfigurator<CellType: ConfigurableCell,
 
 typealias TeamCellConfigurator = TableViewCellConfigurator<TeamTableCell,
                                                            Club>
-typealias TeamDetailInfoCellConfigurator = TableViewCellConfigurator<TeamInfoTableCell,
-                                                                     Club>
-typealias MapCellConfigurator = TableViewCellConfigurator<MapTableCell,
-                                                          Club>
 
 typealias OurSquadsTitleTextViewCellConfigurator = TableViewCellConfigurator<OurSquadsTitleTextViewCell,
                                                                              Club>
 
-// MARK: Squads
-
-typealias SquadCellConfigurator = TableViewCellConfigurator<SquadTableCell,
-                                                            Squad>
 
 // MARK: Players
 

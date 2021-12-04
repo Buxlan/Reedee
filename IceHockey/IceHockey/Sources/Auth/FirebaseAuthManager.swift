@@ -1,0 +1,62 @@
+//
+//  FirebaseAuthManager.swift
+//  IceHockey
+//
+//  Created by  Buxlan on 12/4/21.
+//
+
+import Firebase
+
+class FirebaseAuthManager: AuthManager {
+    
+    // MARK: - Properties
+    
+    static let shared: AuthManager = FirebaseAuthManager()
+    var current: ApplicationUser?
+    
+    private var userCreator: ApplicationUserCreator?    
+    private var observers: [WeakUserObserver] = []
+    
+    lazy var authStateListener: (Auth, User?) -> Void = { [weak self] (_, user) in
+        guard let self = self,
+              let user = user else {
+            return
+        }
+        print("Succesfully signed, user ID is: \(user.uid)")
+        let creator = ApplicationUserCreator()
+        self.userCreator = creator
+        self.current = creator.create(firebaseUser: user) { [weak self] in
+            guard let self = self else { return }
+            for weakObserver in self.observers {
+                guard let user = self.current else {
+                    return
+                }
+                weakObserver.value?.didChangeUser(user)
+            }
+            self.userCreator = nil
+        }
+    }
+    
+    // MARK: - Lifrecircle
+    
+    private init() {
+    }
+    
+    // MARK: - Hepler methods
+    
+    func signInAnonymously() {
+        Auth.auth().signInAnonymously()
+    }
+    
+    func addObserver(_ observer: UserObserver) {
+        let weakObserver = WeakUserObserver(value: observer)
+        observers.append(weakObserver)
+    }
+    
+    func removeObserver(_ observer: UserObserver) {
+        if let index = observers.firstIndex(where: { $0.value === observer }) {
+            observers.remove(at: index)
+        }
+    }
+    
+}

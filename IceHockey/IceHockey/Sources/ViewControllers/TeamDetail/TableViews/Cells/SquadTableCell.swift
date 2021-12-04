@@ -11,7 +11,7 @@ class SquadTableCell: UITableViewCell {
     
     // MARK: - Properties
     
-    typealias DataType = Squad
+    typealias DataType = SquadCellModel
     
     var isInterfaceConfigured = false
     var imageAspectRate: CGFloat = 1
@@ -53,15 +53,14 @@ class SquadTableCell: UITableViewCell {
     }
 }
 
-extension SquadTableCell: ConfigurableCell {
-    
+extension SquadTableCell: ConfigurableCollectionContent {
+       
     func configure(with data: DataType) {
         configureUI()        
-        self.textLabel?.text = data.displayName
-//        if let coachName = data.headCoach?.displayName {
-//            let detailText = L10n.Squads.coachTitle + "\(coachName)"
-//            self.detailTextLabel?.text = detailText
-//        }
+        textLabel?.text = data.displayName
+        textLabel?.textColor = data.textColor
+        textLabel?.backgroundColor = data.backgroundColor
+        contentView.backgroundColor = data.backgroundColor        
     }
     
 }

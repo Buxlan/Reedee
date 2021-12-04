@@ -18,7 +18,8 @@ class HomeViewModel {
     var sections: [SectionData] = []
     var dataSource = TableDataSource()
     var club: Club = ClubManager.shared.current
-    var user: ApplicationUser? = AuthManager.shared.current
+    private var authManager: AuthManager = FirebaseAuthManager.shared
+    lazy var user: ApplicationUser? = authManager.current
     
     var shouldTableRefreshRelay = {}
     var shouldClubRefreshRelay = {}
@@ -45,13 +46,12 @@ class HomeViewModel {
     // MARK: Lifecircle
     
     init() {
-        AuthManager.shared.addObserver(self)
+        authManager.addObserver(self)
         ClubManager.shared.addObserver(self)
     }
     
     deinit {
-        print("deinit HWM")
-        AuthManager.shared.removeObserver(self)
+        authManager.removeObserver(self)
         ClubManager.shared.removeObserver(self)
     }
             
@@ -84,7 +84,7 @@ class HomeViewModel {
                     eventLoadedCompletionHandler: eventLoadedCompletionHandler)
     }
     
-    func updateNextPortion() {
+    func nextUpdate() {
         guard isAuthCompleted else {
             return
         }

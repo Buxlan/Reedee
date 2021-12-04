@@ -6,7 +6,7 @@
 //
 
 struct Coord: Codable {
-    
+        
     var longitude: Double
     var latitude: Double
     

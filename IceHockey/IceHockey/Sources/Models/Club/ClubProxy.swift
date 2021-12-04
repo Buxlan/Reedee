@@ -7,55 +7,60 @@
 
 class ClubProxy: Club {
     
-    var team: ClubImpl?
+    var object: ClubImpl?
     
     var objectIdentifier: String {
-        get { team?.objectIdentifier ?? "" }
-        set { team?.objectIdentifier = newValue }
+        get { object?.objectIdentifier ?? "" }
+        set { object?.objectIdentifier = newValue }
     }
     var address: String {
-        get { team?.address ?? "" }
-        set { team?.address = newValue }
+        get { object?.address ?? "" }
+        set { object?.address = newValue }
     }
     var copyright: String {
-        get { team?.copyright ?? "" }
-        set { team?.copyright = newValue }
+        get { object?.copyright ?? "" }
+        set { object?.copyright = newValue }
     }
     var displayName: String {
-        get { team?.displayName ?? "" }
-        set { team?.displayName = newValue }
+        get { object?.displayName ?? "" }
+        set { object?.displayName = newValue }
     }
     var email: String {
-        get { team?.email ?? "" }
-        set { team?.email = newValue }
+        get { object?.email ?? "" }
+        set { object?.email = newValue }
     }
     var largeLogoID: String {
-        get { team?.largeLogoID ?? "" }
-        set { team?.largeLogoID = newValue }
+        get { object?.largeLogoID ?? "" }
+        set { object?.largeLogoID = newValue }
     }
     var smallLogoID: String {
-        get { team?.smallLogoID ?? "" }
-        set { team?.smallLogoID = newValue }
+        get { object?.smallLogoID ?? "" }
+        set { object?.smallLogoID = newValue }
     }
     var location: Coord? {
-        get { team?.location }
-        set { team?.location = newValue }
+        get { object?.location }
+        set { object?.location = newValue }
     }
     var phone: String {
-        get { team?.phone ?? "" }
-        set { team?.phone = newValue }
+        get { object?.phone ?? "" }
+        set { object?.phone = newValue }
     }
     var webSite: String {
-        get { team?.webSite ?? "" }
-        set { team?.webSite = newValue }
+        get { object?.webSite ?? "" }
+        set { object?.webSite = newValue }
     }
     var squadsIdentifiers: [String] {
-        get { team?.squadsIdentifiers ?? [] }
-        set { team?.squadsIdentifiers = newValue }
+        get { object?.squadsIdentifiers ?? [] }
+        set { object?.squadsIdentifiers = newValue }
+    }
+    
+    var squads: [Squad] {
+        get { object?.squads ?? [] }
+        set { object?.squads = newValue }
     }
     
     func encode() -> [String: Any] {
-        guard let team = team else {
+        guard let team = object else {
             return [:]
         }
         return team.encode()

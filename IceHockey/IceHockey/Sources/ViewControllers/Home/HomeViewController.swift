@@ -14,7 +14,6 @@ class HomeViewController: UIViewController {
     
     var tableBase = TableViewBase()
     var viewModel = HomeViewModel()
-    var club = ClubManager.shared.current
     
     private let refreshControl = UIRefreshControl()
     private lazy var alert: UIAlertController = {
@@ -98,7 +97,7 @@ class HomeViewController: UIViewController {
     private lazy var tableFooterView: EventDetailFooterView = {
         let frame = CGRect(x: 0, y: 0, width: 0, height: 150)
         let view = EventDetailFooterView(frame: frame)
-        view.configure(with: club)
+        view.configure(with: viewModel.club)
         return view
     }()
         
@@ -261,7 +260,7 @@ extension HomeViewController {
             guard let self = self else { return }
             let lastIndexPath = self.viewModel.dataSource.lastIndexPath
             if indexPath == lastIndexPath {
-                self.viewModel.updateNextPortion()
+                self.viewModel.nextUpdate()
             }
         }
         return row
@@ -294,11 +293,15 @@ extension HomeViewController {
             guard let self = self else { return }
             let lastIndexPath = self.viewModel.dataSource.lastIndexPath
             if indexPath == lastIndexPath {
-                self.viewModel.updateNextPortion()
+                self.viewModel.nextUpdate()
             }
         }
         return row
     }
+    
+}
+
+extension HomeViewController {
     
     @objc private func handleAppendEvent() {
         present(alert, animated: true)

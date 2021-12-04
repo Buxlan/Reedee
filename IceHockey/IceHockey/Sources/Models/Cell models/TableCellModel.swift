@@ -12,3 +12,7 @@ protocol TableCellModel {
     var backgroundColor: UIColor { get set }
     var font: UIFont { get set }
 }
+
+protocol TintColorable {
+    var tintColor: UIColor { get set }
+}

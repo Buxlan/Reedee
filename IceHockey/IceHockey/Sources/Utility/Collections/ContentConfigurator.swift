@@ -97,3 +97,11 @@ typealias EditEventAddPhotoCollectionCellConfigurator = CollectionViewConfigurat
 
 typealias EditEventPhotoCollectionCellConfigurator = CollectionViewConfigurator<EditEventPhotoCollectionCell,
                                                                                 PhotoCellModel>
+
+typealias ClubInfoViewConfigurator = CollectionViewConfigurator<TeamInfoTableCell,
+                                                               ClubInfoCellModel>
+typealias MapViewConfigurator = CollectionViewConfigurator<MapTableCell,
+                                                           MapCellModel>
+
+typealias SquadViewConfigurator = CollectionViewConfigurator<SquadTableCell,
+                                                             SquadCellModel>

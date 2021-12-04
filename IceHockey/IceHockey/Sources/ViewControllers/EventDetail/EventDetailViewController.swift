@@ -6,11 +6,11 @@
 //
 
 import UIKit
-import FirebaseDatabase
 
 class EventDetailViewController: UIViewController {
     
     // MARK: - Properties
+    
     var viewModel: EventDetailViewModel = EventDetailViewModel()
     var event: SportNews
     private var tableBase = TableViewBase()

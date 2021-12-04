@@ -12,6 +12,7 @@ class MapTableCell: UITableViewCell {
     
     // MARK: - Properties
     
+    var data: DataType?
     var isInterfaceConfigured: Bool = false
     
     private lazy var titleLabel: InsetLabel = {
@@ -70,7 +71,7 @@ class MapTableCell: UITableViewCell {
     }
     
     internal func configureConstraints() {
-        let mapViewHeightConstraint = mapView.heightAnchor.constraint(equalTo: contentView.widthAnchor)
+        let mapViewHeightConstraint = mapView.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.75)
         mapViewHeightConstraint.priority = .defaultLow
         let constraints: [NSLayoutConstraint] = [
             titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
@@ -88,10 +89,11 @@ class MapTableCell: UITableViewCell {
 }
 
 // MARK: - ConfigurableCell extension
-extension MapTableCell: ConfigurableCell {
+extension MapTableCell: ConfigurableCollectionContent {
         
-    typealias DataType = Club
+    typealias DataType = MapCellModel
     func configure(with data: DataType) {
+        self.data = data
         configureUI()
         mapView.removeAnnotations(mapView.annotations)
         if let location = data.location {
@@ -101,6 +103,10 @@ extension MapTableCell: ConfigurableCell {
             mapView.addAnnotation(annotation)
         }
         titleLabel.text = data.displayName + " " + L10n.Team.onTheMapTitle
+        titleLabel.font = data.font
+        titleLabel.textColor = data.textColor
+        titleLabel.backgroundColor = data.backgroundColor
+        contentView.backgroundColor = data.backgroundColor
     }
     
     private func prepareAnnotation(with data: DataType, coordinate: CLLocationCoordinate2D) -> MKAnnotation {

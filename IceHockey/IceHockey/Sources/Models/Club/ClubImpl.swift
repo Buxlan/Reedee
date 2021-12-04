@@ -22,6 +22,7 @@ struct ClubImpl: Club {
     var email: String = ""
     var webSite: String = ""
     
+    var squads: [Squad] = []
     var images: [ImageData] = []
     
     static var current = ClubManager.shared.current

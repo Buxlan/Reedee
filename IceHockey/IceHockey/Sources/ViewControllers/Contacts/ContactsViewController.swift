@@ -11,9 +11,8 @@ class ContactsViewController: UIViewController {
     
     // MARK: - Properties
     
-    private lazy var viewModel: ContactsViewModel = {
-        ContactsViewModel(delegate: self)
-    }()
+    var tableBase = TableViewBase()
+    var viewModel: ContactsViewModel
     
     private lazy var callUsButton: UIButton = {
         let view = UIButton()
@@ -44,8 +43,6 @@ class ContactsViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
         view.isUserInteractionEnabled = true
-        view.delegate = self
-        view.dataSource = viewModel
         view.backgroundColor = Asset.other2.color
         view.allowsSelection = true
         view.allowsMultipleSelection = false
@@ -56,16 +53,36 @@ class ContactsViewController: UIViewController {
         view.rowHeight = UITableView.automaticDimension
         view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = false
-        SquadCellConfigurator.registerCell(tableView: view)
-        MapCellConfigurator.registerCell(tableView: view)
-        TeamDetailInfoCellConfigurator.registerCell(tableView: view)
-        view.register(SimpleSectionTableHeaderView.self, forHeaderFooterViewReuseIdentifier: SimpleSectionTableHeaderView.reuseIdentifier)
+        view.register(EventDetailTitleView.self, forCellReuseIdentifier: EventDetailTitleViewConfigurator.reuseIdentifier)
+        view.register(SquadTableCell.self, forCellReuseIdentifier: SquadViewConfigurator.reuseIdentifier)
+        view.register(MapTableCell.self, forCellReuseIdentifier: MapViewConfigurator.reuseIdentifier)
+        view.register(TeamInfoTableCell.self, forCellReuseIdentifier: ClubInfoViewConfigurator.reuseIdentifier)
+        if #available(iOS 15.0, *) {
+            view.sectionHeaderTopPadding = 0
+        }
         return view
+    }()
+    
+    private lazy var alert: UIAlertController = {
+        let controller = UIAlertController(title: L10n.Other.selectAction,
+                                           message: nil,
+                                           preferredStyle: .actionSheet)
+        
+        let reportAction = UIAlertAction(title: L10n.Other.bugReport, style: .destructive) { _ in
+            // bug report
+        }
+        let cancelAction = UIAlertAction(title: L10n.Other.cancel, style: .cancel) { _ in
+        }
+        controller.addAction(reportAction)
+        controller.addAction(cancelAction)
+        
+        return controller
     }()
         
     // MARK: - Lifecircle
     
-    init() {
+    init(club: Club = ClubManager.shared.current) {
+        viewModel = ContactsViewModel(club: club)
         super.init(nibName: nil, bundle: nil)
         configureTabBarItem()
     }
@@ -127,7 +144,15 @@ class ContactsViewController: UIViewController {
     }
     
     private func configureViewModel() {
-        viewModel.delegate = self
+        let dataSource = self.createDataSource()
+        tableBase.updateDataSource(dataSource)
+        tableBase.setupTable(tableView)
+        viewModel.shouldRefreshRelay = { [weak self] in
+            guard let self = self else { return }
+            let dataSource = self.createDataSource()
+            self.tableBase.updateDataSource(dataSource)
+            self.tableView.reloadData()
+        }
         viewModel.update()
     }
     
@@ -135,62 +160,130 @@ class ContactsViewController: UIViewController {
 
 // MARK: - UITableViewDelegate
 
-extension ContactsViewController: UITableViewDelegate {
-        
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 { return }
-        guard let item = viewModel.config(at: indexPath) as? SquadCellConfigurator else { return }
-        let data = item.data
-        let vc = SquadDetailViewController()
-        vc.modalPresentationStyle = .pageSheet
-        vc.modalTransitionStyle = .crossDissolve
-        vc.setInputData(data)
-        navigationController?.pushViewController(vc, animated: true)
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        if indexPath.section == 0 { return nil }
-        let deleteAction = UITableViewRowAction(style: .normal,
-                                                title: "Delete") { (_, indexPath) in
-            self.viewModel.deleteItem(at: indexPath)
-        }
-        deleteAction.backgroundColor = Asset.accent2.color
-        return [deleteAction]
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let reuseIdentifier = SimpleSectionTableHeaderView.reuseIdentifier
-        guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseIdentifier)
-                as? SimpleSectionTableHeaderView else {
-            return UIView()
-        }
-        let data = TitleTableHeaderData(title: viewModel.sections[section].title)
-        view.configure(with: data)
-        return view
-    }
-    
-}
+//extension ContactsViewController: UITableViewDelegate {
+//
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        if indexPath.section == 0 { return }
+//        guard let item = viewModel.config(at: indexPath) as? SquadCellConfigurator else { return }
+//        let data = item.data
+//        let vc = SquadDetailViewController()
+//        vc.modalPresentationStyle = .pageSheet
+//        vc.modalTransitionStyle = .crossDissolve
+//        vc.setInputData(data)
+//        navigationController?.pushViewController(vc, animated: true)
+//        tableView.deselectRow(at: indexPath, animated: true)
+//    }
+//
+//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+//        if indexPath.section == 0 { return nil }
+//        let deleteAction = UITableViewRowAction(style: .normal,
+//                                                title: "Delete") { (_, indexPath) in
+//            self.viewModel.deleteItem(at: indexPath)
+//        }
+//        deleteAction.backgroundColor = Asset.accent2.color
+//        return [deleteAction]
+//    }
+//
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let reuseIdentifier = SimpleSectionTableHeaderView.reuseIdentifier
+//        guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseIdentifier)
+//                as? SimpleSectionTableHeaderView else {
+//            return UIView()
+//        }
+//        let data = TitleTableHeaderData(title: viewModel.sections[section].title)
+//        view.configure(with: data)
+//        return view
+//    }
+//
+//}
 
-extension ContactsViewController: CellUpdatable {
+extension ContactsViewController {
     
-    func configureCell(at indexPath: IndexPath, configurator: CellConfigurator) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: type(of: configurator).reuseIdentifier,
-                                                 for: indexPath)
-        configurator.configure(cell: cell)
-        return cell
+    func createDataSource() -> TableDataSource {
+        let sections = makeTableSections()
+        let dataSource = TableDataSource(sections: sections)
+        return dataSource
     }
     
-    func reloadData() {
-        tableView.reloadData()
+    private func makeTableSections() -> [TableSection] {
+        return [
+            makeTableSectionMainInfo(),
+            makeTableSectionSquads()
+        ]
+    }
+    
+    @objc private func handleMenu() {
+        present(alert, animated: true)
     }
     
 }
 
 extension ContactsViewController {
     
+    func makeTableSectionMainInfo() -> TableSection {
+        var section = TableSection()
+        let rows = [
+            makeTitleTableRow(),
+            makeClubInfoTableRow(),
+            makeMapTableRow()
+        ]
+        section.addRows(rows)
+        return section
+    }
+    
+    func makeTableSectionSquads() -> TableSection {
+        var section = TableSection()
+        var rows: [TableRow] = []
+        for squad in viewModel.club.squads {
+            rows.append(makeSquadTableRow(squad: squad))
+        }
+        section.addRows(rows)
+        return section
+    }
+    
+}
+
+// MARK: - Table rows
+
+extension ContactsViewController {
+    
+    func makeClubInfoTableRow() -> TableRow {
+        let cellModel = ClubInfoCellModel(data: viewModel.club)
+        let config = ClubInfoViewConfigurator(data: cellModel)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
+        return row
+    }
+    
+    func makeMapTableRow() -> TableRow {
+        let cellModel = MapCellModel(data: viewModel.club)
+        let config = MapViewConfigurator(data: cellModel)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
+        return row
+    }
+    
+    func makeSquadTableRow(squad: Squad) -> TableRow {
+        let cellModel = SquadCellModel(data: squad)
+        let config = SquadViewConfigurator(data: cellModel)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
+        return row
+    }
+    
+    func makeTitleTableRow() -> TableRow {
+        var cellModel = TitleCellModel(text: viewModel.club.displayName)
+        cellModel.font = .bxBody2
+        let config = EventDetailTitleViewConfigurator(data: cellModel)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
+        return row
+    }
+    
+}
+
+
+
+extension ContactsViewController {
+    
     @objc private func handleCallUs() {
-        
+        fatalError()
     }
     
 }

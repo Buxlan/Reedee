@@ -11,6 +11,7 @@ class TeamInfoTableCell: UITableViewCell {
     
     // MARK: - Properties
     
+    var data: DataType?
     var isInterfaceConfigured: Bool = false
     
     private lazy var stackView: UIStackView = {
@@ -105,14 +106,34 @@ class TeamInfoTableCell: UITableViewCell {
 }
 
 // MARK: - ConfigurableCell extension
-extension TeamInfoTableCell: ConfigurableCell {
+extension TeamInfoTableCell: ConfigurableCollectionContent {
         
-    typealias DataType = Club
+    typealias DataType = ClubInfoCellModel
     func configure(with data: DataType) {
+        self.data = data
         configureUI()
         phoneTextView.text = L10n.Team.phoneTitle + data.phone
         addressTextView.text = L10n.Team.addressTitle + data.address
         emailTextView.text = L10n.Team.emailTitle + data.email
+        
+        phoneTextView.textColor = data.textColor
+        phoneTextView.backgroundColor = data.backgroundColor
+        phoneTextView.font = data.font
+        
+        addressTextView.textColor = data.textColor
+        addressTextView.backgroundColor = data.backgroundColor
+        addressTextView.font = data.font
+        
+        emailTextView.textColor = data.textColor
+        emailTextView.backgroundColor = data.backgroundColor
+        emailTextView.font = data.font
+        
+        phoneTextView.tintColor = data.tintColor
+        addressTextView.tintColor = data.tintColor
+        emailTextView.tintColor = data.tintColor
+        
+        contentView.backgroundColor = data.backgroundColor
+        
     }
     
 }

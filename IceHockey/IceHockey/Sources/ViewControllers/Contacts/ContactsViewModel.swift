@@ -11,128 +11,26 @@ struct ContactsModel {
     
 }
 
-class ContactsViewModel: NSObject {
+struct ContactsViewModel {
     
     // MARK: - Properties
     
-    typealias DataType = Squad
-    typealias PredicateType = Club
-    typealias CellConfiguratorType = SquadCellConfigurator
-    typealias TableRowType = OldTableRow<PredicateType>
-    typealias TableSectionType = OldTableSection<TableRowType>
+    var club: Club
     
-    var sections: [TableSectionType] = []
-    
-    let factory = FirebaseObjectFactory.shared
-    
-    private var loadings: [String] = []
-        
-    var filter: PredicateType? {
-        didSet {
-            // get ids
-            guard let filter = filter else {
-                return
-            }
-            sections.removeAll()
-            // prepare section 0
-            let infoSectionItems: [CellConfigurator] = [
-                TeamDetailInfoCellConfigurator(data: filter),
-                MapCellConfigurator(data: filter)
-            ]
-            let rows = infoSectionItems.map { config in
-                TableRowType(config: config, data: filter)
-            }
-            let infoSection = OldTableSection(title: L10n.Team.aboutClubTitle, items: rows)
-            sections.append(infoSection)
-            // prepare section 1
-            let ids = filter.squadsIdentifiers
-            // get objects
-            objectsDatabaseReference.getData { [weak self] (error, snapshot) in
-                guard let self = self else { return }
-                if let error = error {
-                    print("Get data error: \(error)")
-                }
-                guard let result = snapshot.value as? [String: Any] else {
-                    return
-                }
-                var items: [CellConfigurator] = []
-                for uid in ids {
-                    let object = self.factory.makeSquad(with: uid) {                        
-                    }
-                    let config = CellConfiguratorType(data: object)
-                    items.append(config)
-                }
-                let rows = items.map { config in
-                    TableRowType(config: config, data: filter)
-                }
-                let section = OldTableSection(title: L10n.Team.listTitle, items: rows)
-                self.sections.append(section)
-                DispatchQueue.main.async {
-                    self.delegate?.reloadData()
-                }
-            }
-            
-        }
+    struct SectionData {
+        let squad: Squad
+        let schedule: WorkoutSchedule
     }
+    var sections: [SectionData] = []
     
-    weak var delegate: CellUpdatable?
+    var shouldRefreshRelay = {}
     
     // MARK: Lifecircle
     
-    init(delegate: CellUpdatable) {
-        super.init()
-        self.delegate = delegate
-    }
-        
     // MARK: - Hepler functions
-    
-    var objectsDatabaseReference: DatabaseReference {
-        FirebaseManager.shared.databaseManager.root.child("squads")
-    }
-    
-    // MARK: Lifecircle
-            
-    // MARK: - Hepler functions
-    
-    func deleteItem(at indexPath: IndexPath) {
-        if indexPath.section == 0 { return }
-        let row = sections[indexPath.section].items[indexPath.row]
-        do {
-//            try row.data.delete()
-        } catch AppError.dataMismatch {
-            print("Data mismatch")
-        } catch {
-            print("Some other error")
-        }
-    }
-    
-    func row(at indexPath: IndexPath) -> TableRowType {
-        return sections[indexPath.section].items[indexPath.row]
-    }
-    
-    func config(at indexPath: IndexPath) -> CellConfigurator {
-        return sections[indexPath.section].items[indexPath.row].config
-    }
     
     func update() {
-        self.filter = ClubManager.shared.current
-    }
-    
-}
-
-extension ContactsViewModel: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        sections.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].items.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = sections[indexPath.section].items[indexPath.row]
-        return delegate?.configureCell(at: indexPath, configurator: row.config) ?? UITableViewCell()
+        
     }
     
 }

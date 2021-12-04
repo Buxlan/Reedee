@@ -121,11 +121,11 @@ extension TrainingCell: ConfigurableCollectionContent {
         dayTextView.textColor = Asset.textColor.color
         dayTextView.backgroundColor = Asset.other3.color
         
-        stackView.backgroundColor = Asset.other3.color
-        training1TextView.textColor = Asset.textColor.color
-        training1TextView.backgroundColor = Asset.other3.color
-        training2TextView.textColor = Asset.textColor.color
-        training2TextView.backgroundColor = Asset.other3.color
+        stackView.backgroundColor = data.backgroundColor
+        training1TextView.textColor = data.textColor
+        training1TextView.backgroundColor = data.textColor
+        training2TextView.textColor = data.textColor
+        training2TextView.backgroundColor = data.backgroundColor
         
         for (index, training) in data.trainings.enumerated() {
             let view = getTextView(at: index)

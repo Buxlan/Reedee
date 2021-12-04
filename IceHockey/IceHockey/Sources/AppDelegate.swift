@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         configureAppearance()
                 
-        let authManager = AuthManager.shared
+        let authManager = FirebaseAuthManager.shared
         Auth.auth().addStateDidChangeListener(authManager.authStateListener)
         authManager.signInAnonymously()
         
