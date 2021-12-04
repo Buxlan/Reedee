@@ -55,7 +55,7 @@ class ComingEventTableCell: UITableViewCell, ConfigurableCell {
         view.setContentHuggingPriority(.defaultLow, for: .vertical)
         view.numberOfLines = 2
         view.textAlignment = .left
-        view.font = .bxBody1
+        view.font = Fonts.Regular.body
         return view
     }()
     
@@ -69,7 +69,7 @@ class ComingEventTableCell: UITableViewCell, ConfigurableCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setContentHuggingPriority(.defaultLow, for: .vertical)
         view.textAlignment = .left
-        view.font = .regularFont12
+        view.font = Fonts.Regular.caption
         return view
     }()
     
@@ -85,7 +85,7 @@ class ComingEventTableCell: UITableViewCell, ConfigurableCell {
         view.textAlignment = .center
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
-        view.font = .regularFont12
+        view.font = Fonts.Regular.caption
         return view
     }()
     

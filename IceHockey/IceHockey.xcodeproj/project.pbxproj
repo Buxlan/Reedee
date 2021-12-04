@@ -127,7 +127,7 @@
 		40940BE126E40C380098EF89 /* OtherExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BDB26E40C380098EF89 /* OtherExtensions.swift */; };
 		40940BE226E40C380098EF89 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BDC26E40C380098EF89 /* UIImageExtension.swift */; };
 		40940BE326E40C380098EF89 /* UIVIewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BDD26E40C380098EF89 /* UIVIewControllerExtension.swift */; };
-		40940BE426E40C380098EF89 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BDE26E40C380098EF89 /* UIFontExtension.swift */; };
+		40940BE426E40C380098EF89 /* Apponts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BDE26E40C380098EF89 /* Apponts.swift */; };
 		40940BE826E40D450098EF89 /* Club.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BE726E40D450098EF89 /* Club.swift */; };
 		40940BEE26E412F40098EF89 /* AuthSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BEB26E412F40098EF89 /* AuthSection.swift */; };
 		40940BEF26E412F40098EF89 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40940BEC26E412F40098EF89 /* AuthProvider.swift */; };
@@ -379,7 +379,7 @@
 		40940BDB26E40C380098EF89 /* OtherExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherExtensions.swift; sourceTree = "<group>"; };
 		40940BDC26E40C380098EF89 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		40940BDD26E40C380098EF89 /* UIVIewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVIewControllerExtension.swift; sourceTree = "<group>"; };
-		40940BDE26E40C380098EF89 /* UIFontExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
+		40940BDE26E40C380098EF89 /* Apponts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Apponts.swift; sourceTree = "<group>"; };
 		40940BE726E40D450098EF89 /* Club.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Club.swift; sourceTree = "<group>"; };
 		40940BEB26E412F40098EF89 /* AuthSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthSection.swift; sourceTree = "<group>"; };
 		40940BEC26E412F40098EF89 /* AuthProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
@@ -921,7 +921,7 @@
 				40940BDC26E40C380098EF89 /* UIImageExtension.swift */,
 				40A63220272DFD5F0017F6FE /* MKMapViewExtension.swift */,
 				40940BDD26E40C380098EF89 /* UIVIewControllerExtension.swift */,
-				40940BDE26E40C380098EF89 /* UIFontExtension.swift */,
+				40940BDE26E40C380098EF89 /* Apponts.swift */,
 				4098C04126E572A700F0BBE6 /* UserExtension.swift */,
 				40940BDB26E40C380098EF89 /* OtherExtensions.swift */,
 			);
@@ -1614,7 +1614,7 @@
 				40940BFA26E413200098EF89 /* DataSourceProvider.swift in Sources */,
 				40F4EBEB273DE1B8003DA1D3 /* EventDetailCopyrightCellModel.swift in Sources */,
 				40C9E9162746A608009B0417 /* MatchResultBuilder.swift in Sources */,
-				40940BE426E40C380098EF89 /* UIFontExtension.swift in Sources */,
+				40940BE426E40C380098EF89 /* Apponts.swift in Sources */,
 				40A4464926E409D900129B89 /* Assets.swift in Sources */,
 				4063EAED271EE7E700B6B8C7 /* EventDetailUsefulButtonsView.swift in Sources */,
 				40781509272CA408006D3AD2 /* NewSportTeamFirebaseSaver.swift in Sources */,

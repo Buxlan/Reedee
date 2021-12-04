@@ -19,7 +19,7 @@ class OurSquadsTitleTextViewCell: UITableViewCell {
         view.isScrollEnabled = false
         view.textAlignment = .center
         view.isUserInteractionEnabled = true
-        view.font = .boldFont17
+        view.font = Fonts.Bold.subhead
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

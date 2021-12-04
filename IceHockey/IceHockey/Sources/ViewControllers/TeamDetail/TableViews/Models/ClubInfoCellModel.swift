@@ -16,7 +16,7 @@ struct ClubInfoCellModel: TableCellModel, TintColorable {
     
     var textColor: UIColor = Asset.textColor.color
     var backgroundColor: UIColor = Asset.other3.color
-    var font: UIFont = .regularFont17
+    var font: UIFont = Fonts.Regular.subhead
     var tintColor: UIColor = .black
         
     // MARK: - Actions

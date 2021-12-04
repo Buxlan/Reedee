@@ -21,7 +21,7 @@ class TrainingCell: UITableViewCell {
         view.isScrollEnabled = false
         view.textAlignment = .left
         view.isUserInteractionEnabled = true
-        view.font = .regularFont15
+        view.font = Fonts.Regular.body
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -44,7 +44,7 @@ class TrainingCell: UITableViewCell {
         view.isScrollEnabled = false
         view.textAlignment = .left
         view.isUserInteractionEnabled = true
-        view.font = .regularFont15
+        view.font = Fonts.Regular.body
         return view
     }()
     
@@ -54,7 +54,7 @@ class TrainingCell: UITableViewCell {
         view.isScrollEnabled = false
         view.textAlignment = .left
         view.isUserInteractionEnabled = true
-        view.font = .regularFont15
+        view.font = Fonts.Regular.body
         return view
     }()
     
@@ -64,7 +64,7 @@ class TrainingCell: UITableViewCell {
         view.isScrollEnabled = false
         view.textAlignment = .left
         view.isUserInteractionEnabled = true
-        view.font = .regularFont15
+        view.font = Fonts.Regular.body
         return view
     }()
         
@@ -122,8 +122,10 @@ extension TrainingCell: ConfigurableCollectionContent {
         dayTextView.backgroundColor = Asset.other3.color
         
         stackView.backgroundColor = data.backgroundColor
+        training0TextView.textColor = data.textColor
+        training0TextView.backgroundColor = data.backgroundColor
         training1TextView.textColor = data.textColor
-        training1TextView.backgroundColor = data.textColor
+        training1TextView.backgroundColor = data.backgroundColor
         training2TextView.textColor = data.textColor
         training2TextView.backgroundColor = data.backgroundColor
         

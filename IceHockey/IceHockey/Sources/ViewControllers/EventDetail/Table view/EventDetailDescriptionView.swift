@@ -19,7 +19,7 @@ class EventDetailDescriptionView: UITableViewCell {
         view.lineBreakMode = .byWordWrapping
         view.textAlignment = .left
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .regularFont15
+        view.font = Fonts.Regular.body
         return view
     }()
     

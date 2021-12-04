@@ -43,7 +43,7 @@ class MatchResultEditCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 1
         view.textAlignment = .left
-        view.font = .regularFont17
+        view.font = Fonts.Regular.subhead
         view.text = "Author"
         return view
     }()
@@ -69,7 +69,7 @@ class MatchResultEditCell: UITableViewCell {
         view.textAlignment = .center
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
-        view.font = .boldFont17
+        view.font = Fonts.Bold.subhead
         return view
     }()
     
@@ -79,7 +79,7 @@ class MatchResultEditCell: UITableViewCell {
         view.textColor = Asset.other0.color
         view.textAlignment = .center
         view.numberOfLines = 1
-        view.font = .regularFont12
+        view.font = Fonts.Regular.caption
         return view
     }()
     
@@ -90,7 +90,7 @@ class MatchResultEditCell: UITableViewCell {
         view.setContentHuggingPriority(.defaultLow, for: .vertical)
         view.textAlignment = .center
         view.numberOfLines = 2
-        view.font = .regularFont12
+        view.font = Fonts.Regular.caption
         return view
     }()
     
@@ -101,7 +101,7 @@ class MatchResultEditCell: UITableViewCell {
         view.setContentHuggingPriority(.defaultLow, for: .vertical)
         view.textAlignment = .center
         view.numberOfLines = 1
-        view.font = .regularFont12
+        view.font = Fonts.Regular.caption
         return view
     }()
     
@@ -109,7 +109,7 @@ class MatchResultEditCell: UITableViewCell {
         let view = TextViewWithPlaceholder()
         view.textAlignment = .center
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .boldFont17
+        view.font = Fonts.Bold.subhead
         view.keyboardAppearance = .dark
         view.keyboardType = .default
         view.isScrollEnabled = false
@@ -124,7 +124,7 @@ class MatchResultEditCell: UITableViewCell {
         let view = TextViewWithPlaceholder()
         view.textAlignment = .center
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .boldFont17
+        view.font = Fonts.Bold.subhead
         view.keyboardAppearance = .dark
         view.keyboardType = .default
         view.isScrollEnabled = false
@@ -143,7 +143,7 @@ class MatchResultEditCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.keyboardAppearance = .dark
         view.keyboardType = .numberPad
-        view.font = .regularFont50
+        view.font = Fonts.Regular.scoreDisplay
         view.delegate = self
         view.placeholder = "0"
         return view
@@ -155,7 +155,7 @@ class MatchResultEditCell: UITableViewCell {
         view.placeholder = L10n.EditEventLabel.scorePlaceholder
         view.textAlignment = .center
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .regularFont50
+        view.font = Fonts.Regular.scoreDisplay
         view.delegate = self
         view.keyboardAppearance = .dark
         view.keyboardType = .numberPad
@@ -171,7 +171,7 @@ class MatchResultEditCell: UITableViewCell {
         view.setContentHuggingPriority(.defaultLow, for: .vertical)
         view.textAlignment = .center
         view.numberOfLines = 1
-        view.font = .regularFont50
+        view.font = Fonts.Regular.scoreDisplay
         view.text = ":"
         return view
     }()
@@ -180,7 +180,7 @@ class MatchResultEditCell: UITableViewCell {
         let view = TextViewWithPlaceholder()
         view.textAlignment = .left
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .regularFont15
+        view.font = Fonts.Regular.body
         view.keyboardAppearance = .dark
         view.keyboardType = .default
         view.delegate = self

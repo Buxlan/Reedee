@@ -13,7 +13,7 @@ struct EventDetailHeaderCellModel: TableCellModel {
     var title: String
     var textColor: UIColor = Asset.textColor.color
     var backgroundColor: UIColor = Asset.other3.color
-    var font: UIFont = .regularFont15
+    var font: UIFont = Fonts.Regular.body
     
     // MARK: - Actions
     

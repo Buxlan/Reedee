@@ -35,7 +35,7 @@ class EventDetailUserView: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 1
         view.textAlignment = .left
-        view.font = .regularFont17
+        view.font = Fonts.Regular.subhead
         return view
     }()
     
@@ -55,7 +55,7 @@ class EventDetailUserView: UITableViewCell {
         view.textAlignment = .center
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
-        view.font = .boldFont17
+        view.font = Fonts.Bold.subhead
         return view
     }()
     

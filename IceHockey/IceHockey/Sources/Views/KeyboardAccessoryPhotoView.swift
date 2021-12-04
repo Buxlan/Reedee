@@ -21,7 +21,7 @@ class KeyboardAccessoryPhotoView: UIView {
         let image = Asset.photo.image.withRenderingMode(.alwaysTemplate)
         view.setImage(image, for: .normal)
         view.imageView?.contentMode = .scaleAspectFit
-        view.titleLabel?.font = .boldFont17
+        view.titleLabel?.font = Fonts.Bold.subhead
         view.contentEdgeInsets = .init(top: 4, left: 8, bottom: 4, right: 8)
         return view
     }()
@@ -36,7 +36,7 @@ class KeyboardAccessoryPhotoView: UIView {
         let image = Asset.camera.image.withRenderingMode(.alwaysTemplate)
         view.setImage(image, for: .normal)
         view.imageView?.contentMode = .scaleAspectFit
-        view.titleLabel?.font = .boldFont17
+        view.titleLabel?.font = Fonts.Bold.subhead
         view.contentEdgeInsets = .init(top: 4, left: 8, bottom: 4, right: 8)
         return view
     }()
@@ -53,7 +53,7 @@ class KeyboardAccessoryPhotoView: UIView {
         view.tintColor = Asset.other0.color
         view.setTitle(L10n.Other.done, for: .normal)
         view.contentEdgeInsets = .init(top: 4, left: 8, bottom: 4, right: 8)
-        view.titleLabel?.font = .bxTitle3
+        view.titleLabel?.font = Fonts.Medium.title
         view.sizeToFit()
         view.frame = CGRect(x: width - view.frame.width,
                             y: 0,

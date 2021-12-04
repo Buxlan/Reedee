@@ -28,7 +28,7 @@ class ContactsViewController: UIViewController {
         view.layer.cornerRadius = 16
         view.contentEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 16)
         view.titleEdgeInsets = .init(top: 0, left: 8, bottom: 0, right: -8)
-        view.titleLabel?.font = .boldFont17
+        view.titleLabel?.font = Fonts.Bold.subhead
         view.setTitle(L10n.Contacts.toCallUsTitle, for: .normal)
         return view
     }()
@@ -270,7 +270,7 @@ extension ContactsViewController {
     
     func makeTitleTableRow() -> TableRow {
         var cellModel = TitleCellModel(text: viewModel.club.displayName)
-        cellModel.font = .bxBody2
+        cellModel.font = Fonts.Medium.body
         let config = EventDetailTitleViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         return row

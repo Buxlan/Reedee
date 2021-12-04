@@ -23,7 +23,7 @@ class DoneKeyboardAccessoryView: UIView {
         view.tintColor = Asset.other0.color
         view.setTitle(L10n.Other.done, for: .normal)
         view.contentEdgeInsets = .init(top: 4, left: 8, bottom: 4, right: 8)
-        view.titleLabel?.font = .bxTitle3
+        view.titleLabel?.font = Fonts.Medium.title
         view.sizeToFit()
         view.frame = CGRect(x: width - view.frame.width,
                             y: 0,

@@ -203,7 +203,7 @@ extension EventDetailViewController {
     
     func makeBoldTextTableRow() -> TableRow {
         var cellModel = TextCellModel(text: event.boldText)
-        cellModel.font = .bxBody2
+        cellModel.font = Fonts.Medium.body
         let config = EventDetailBoldTextViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         return row

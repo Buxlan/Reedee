@@ -33,7 +33,7 @@ class MatchResultTableCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 1
         view.textAlignment = .left
-        view.font = .regularFont17
+        view.font = Fonts.Regular.subhead
         return view
     }()
     
@@ -58,7 +58,7 @@ class MatchResultTableCell: UITableViewCell {
         view.textAlignment = .center
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
-        view.font = .boldFont17
+        view.font = Fonts.Bold.subhead
         return view
     }()
     
@@ -67,7 +67,7 @@ class MatchResultTableCell: UITableViewCell {
         view.accessibilityIdentifier = "dateLabel"
         view.textAlignment = .center
         view.numberOfLines = 1
-        view.font = .regularFont12
+        view.font = Fonts.Regular.caption
         return view
     }()
     
@@ -76,7 +76,7 @@ class MatchResultTableCell: UITableViewCell {
         view.accessibilityIdentifier = "stadiumLabel"
         view.textAlignment = .center
         view.numberOfLines = 2
-        view.font = .regularFont12
+        view.font = Fonts.Regular.caption
         return view
     }()
     
@@ -85,7 +85,7 @@ class MatchResultTableCell: UITableViewCell {
         view.accessibilityIdentifier = "dateLabel"
         view.textAlignment = .center
         view.numberOfLines = 1
-        view.font = .regularFont12
+        view.font = Fonts.Regular.caption
         return view
     }()
     
@@ -95,7 +95,7 @@ class MatchResultTableCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 3
         view.textAlignment = .center
-        view.font = .regularFont17
+        view.font = Fonts.Regular.subhead
         return view
     }()
     
@@ -105,7 +105,7 @@ class MatchResultTableCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 3
         view.textAlignment = .center
-        view.font = .regularFont17
+        view.font = Fonts.Regular.subhead
         return view
     }()
     
@@ -115,7 +115,7 @@ class MatchResultTableCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 3
         view.textAlignment = .center
-        view.font = .regularFont50
+        view.font = Fonts.Regular.scoreDisplay
         return view
     }()
     
@@ -125,7 +125,7 @@ class MatchResultTableCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 3
         view.textAlignment = .center
-        view.font = .regularFont50
+        view.font = Fonts.Regular.scoreDisplay
         return view
     }()
     
@@ -135,7 +135,7 @@ class MatchResultTableCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.textAlignment = .center
         view.numberOfLines = 1
-        view.font = .regularFont50
+        view.font = Fonts.Regular.scoreDisplay
         view.text = ":"
         return view
     }()
@@ -147,7 +147,7 @@ class MatchResultTableCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 5
         view.textAlignment = .left
-        view.font = .regularFont15
+        view.font = Fonts.Regular.body
         return view
     }()
     

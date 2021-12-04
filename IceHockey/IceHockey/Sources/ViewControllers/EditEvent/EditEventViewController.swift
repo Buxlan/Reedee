@@ -332,7 +332,7 @@ extension EditEventViewController {
     
     func makeBoldTextTableRow() -> TableRow {
         var cellModel = TextCellModel(text: viewModel.event.boldText)
-        cellModel.font = .bxBody2
+        cellModel.font = Fonts.Medium.body
         cellModel.valueChanged = { text in
             self.viewModel.event.boldText = text
             self.viewModel.wasEdited = true

@@ -16,14 +16,14 @@ protocol LabelModel {
 
 struct DefaultLabelModel: LabelModel {
     var text = ""
-    var font: UIFont = .regularFont15
+    var font: UIFont = Fonts.Regular.body
     var textColor: UIColor = Asset.textColor.color
     var backgroundColor: UIColor = Asset.other3.color
 }
 
 struct LabelModelImpl: LabelModel {
     var text: String
-    var font: UIFont = .regularFont15
+    var font: UIFont = Fonts.Regular.body
     var textColor: UIColor = Asset.textColor.color
     var backgroundColor: UIColor = Asset.other3.color
 }

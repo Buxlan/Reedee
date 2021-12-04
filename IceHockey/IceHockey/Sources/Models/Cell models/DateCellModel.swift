@@ -15,7 +15,7 @@ struct DateCellModel: TableCellModel {
     var placeholderColor: UIColor = Asset.other1.color
     var textColor: UIColor = Asset.textColor.color
     var backgroundColor: UIColor = Asset.other1.color
-    var font: UIFont = .bxBody1
+    var font: UIFont = Fonts.Regular.body
     var textFieldBackgroundColor: UIColor = Asset.other3.color
     
     // MARK: - Actions

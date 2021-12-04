@@ -15,7 +15,7 @@ struct SquadCellModel: TableCellModel {
     
     var textColor: UIColor = Asset.textColor.color
     var backgroundColor: UIColor = Asset.other3.color
-    var font: UIFont = .regularFont17
+    var font: UIFont = Fonts.Regular.subhead
         
     // MARK: - Actions
     

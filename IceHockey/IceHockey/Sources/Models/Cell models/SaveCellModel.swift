@@ -15,7 +15,7 @@ struct SaveCellModel: TableCellModel {
     var textColor: UIColor = Asset.other3.color
     var backgroundColor: UIColor = Asset.other1.color
     var buttonBackgroundColor: UIColor = Asset.accent0.color
-    var font: UIFont = .bxTitle3
+    var font: UIFont = Fonts.Medium.title
     
     // MARK: - Actions
     

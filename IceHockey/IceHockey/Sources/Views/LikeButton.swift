@@ -40,7 +40,7 @@ class LikeButton: UIButton {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.contentEdgeInsets = .init(top: 8, left: 0, bottom: 8, right: 24)
         self.titleEdgeInsets = .init(top: 0, left: 8, bottom: 0, right: -8)
-        self.titleLabel?.font = .boldFont17
+        self.titleLabel?.font = Fonts.Bold.subhead
         
         self.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         self.setContentHuggingPriority(.defaultHigh, for: .horizontal)

@@ -31,7 +31,7 @@ class TeamInfoTableCell: UITableViewCell {
     private lazy var addressTextView: UITextView = {
         let view = UITextView()
         view.textAlignment = .left
-        view.font = .boldFont17
+        view.font = Fonts.Bold.subhead
         view.isEditable = true
         view.dataDetectorTypes = .address
         view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
@@ -44,7 +44,7 @@ class TeamInfoTableCell: UITableViewCell {
     private lazy var phoneTextView: UITextView = {
         let view = UITextView()
         view.textAlignment = .left
-        view.font = .boldFont17
+        view.font = Fonts.Bold.subhead
         view.isEditable = false
         view.dataDetectorTypes = .phoneNumber
         view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
@@ -57,7 +57,7 @@ class TeamInfoTableCell: UITableViewCell {
     private lazy var emailTextView: UITextView = {
         let view = UITextView()
         view.textAlignment = .left
-        view.font = .boldFont17
+        view.font = Fonts.Bold.subhead
         view.isEditable = false
         view.dataDetectorTypes = .link
         view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)

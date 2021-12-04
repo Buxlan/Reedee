@@ -44,7 +44,7 @@ class EventDetailCopyrightView: UITableViewCell {
         view.numberOfLines = 4
         view.textAlignment = .left
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .regularFont15
+        view.font = Fonts.Regular.body
         return view
     }()
     
@@ -54,7 +54,7 @@ class EventDetailCopyrightView: UITableViewCell {
         view.lineBreakMode = .byWordWrapping
         view.textAlignment = .left
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .regularFont12
+        view.font = Fonts.Regular.caption
         return view
     }()
 

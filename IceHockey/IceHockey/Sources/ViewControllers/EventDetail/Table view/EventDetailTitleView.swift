@@ -18,7 +18,7 @@ class EventDetailTitleView: UITableViewCell {
         view.numberOfLines = 4
         view.lineBreakMode = .byWordWrapping
         view.textAlignment = .left
-        view.font = .regularFont17
+        view.font = Fonts.Regular.subhead
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

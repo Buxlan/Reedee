@@ -35,7 +35,7 @@ class NewsTableCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 1
         view.textAlignment = .left
-        view.font = .regularFont17
+        view.font = Fonts.Regular.subhead
         view.setContentHuggingPriority(.defaultLow, for: .horizontal)
         return view
     }()
@@ -70,7 +70,7 @@ class NewsTableCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 5
         view.textAlignment = .left
-        view.font = .regularFont15
+        view.font = Fonts.Regular.body
         view.setContentHuggingPriority(.defaultLow, for: .vertical)
         view.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         return view
@@ -84,7 +84,7 @@ class NewsTableCell: UITableViewCell {
         view.setContentHuggingPriority(.defaultHigh, for: .vertical)
         view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         view.textAlignment = .left
-        view.font = .regularFont15
+        view.font = Fonts.Regular.body
         return view
     }()
     
@@ -98,7 +98,7 @@ class NewsTableCell: UITableViewCell {
         view.textAlignment = .center
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
-        view.font = .boldFont17
+        view.font = Fonts.Bold.subhead
         return view
     }()
     

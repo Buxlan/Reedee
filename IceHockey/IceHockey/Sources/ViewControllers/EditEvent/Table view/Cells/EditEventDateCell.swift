@@ -27,7 +27,7 @@ class EditEventDateCell: UITableViewCell {
         view.placeholder = L10n.EditEventLabel.datePlaceholder
         view.textAlignment = .left
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .boldFont17
+        view.font = Fonts.Bold.subhead
         view.autocorrectionType = .no
         view.inputAccessoryView = keyboardAccessoryView
         view.inputView = datePicker

@@ -9,7 +9,7 @@ import UIKit
 
 struct MatchResultTableCellModel: TableCellModel {
     
-    var font: UIFont = .regularFont15
+    var font: UIFont = Fonts.Regular.body
     
     var objectIdentifier: String
         
