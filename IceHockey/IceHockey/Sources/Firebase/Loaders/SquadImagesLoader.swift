@@ -7,14 +7,17 @@
 
 import Firebase
 
-class SquadImagesLoader: FirebaseImagesLoaderImpl {
+class SquadImagesLoader: FirebaseImagesLoader {
     
-    init(objectIdentifier: String,
-         imagesIdentifiers: [String]) {
-        let imagesPath = "squads/\(objectIdentifier)"
-        super.init(objectIdentifier: objectIdentifier,
-                   imagesIdentifiers: imagesIdentifiers,
-                   imagesPath: imagesPath)
+    internal var objectIdentifier: String
+    internal lazy var imagesPath: String = "squads/\(objectIdentifier)"
+    internal var handlers: [String: (UIImage?) -> Void] = [:]
+    internal var imagesIdentifiers: [String]
+    
+    required init(objectIdentifier: String,
+                  imagesIdentifiers: [String]) {
+        self.objectIdentifier = objectIdentifier
+        self.imagesIdentifiers = imagesIdentifiers
     }
     
 }

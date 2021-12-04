@@ -7,15 +7,22 @@
 
 import Firebase
 
-class UserImageLoader: FirebaseImagesLoaderImpl, FirebaseLoader {
+class UserImageLoader: FirebaseImagesLoader {
     
-    init(objectIdentifier: String,
-         imageIdentifier: String) {
-        let imagesPath = "users/\(objectIdentifier)"
-        let imagesIdentifiers = [imageIdentifier]
-        super.init(objectIdentifier: objectIdentifier,
-                   imagesIdentifiers: imagesIdentifiers,
-                   imagesPath: imagesPath)
+    internal var objectIdentifier: String
+    internal lazy var imagesPath: String = "users/\(objectIdentifier)"
+    internal var handlers: [String: (UIImage?) -> Void] = [:]
+    internal var imagesIdentifiers: [String]
+    
+    convenience init(objectIdentifier: String,
+                     imageIdentifier: String) {
+        self.init(objectIdentifier: objectIdentifier, imagesIdentifiers: [imageIdentifier])
+    }
+    
+    required internal init(objectIdentifier: String,
+                           imagesIdentifiers: [String]) {
+        self.objectIdentifier = objectIdentifier
+        self.imagesIdentifiers = imagesIdentifiers
     }
     
 }

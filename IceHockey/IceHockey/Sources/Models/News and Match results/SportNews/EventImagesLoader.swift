@@ -5,14 +5,19 @@
 //  Created by  Buxlan on 11/17/21.
 //
 
-class EventImagesLoader: FirebaseImagesLoaderImpl {
+import UIKit
+
+class EventImagesLoader: FirebaseImagesLoader {    
     
-    init(objectIdentifier: String,
-         imagesIdentifiers: [String]) {
-        let imagesPath = "events/\(objectIdentifier)"
-        super.init(objectIdentifier: objectIdentifier,
-                   imagesIdentifiers: imagesIdentifiers,
-                   imagesPath: imagesPath)
+    internal var objectIdentifier: String
+    internal lazy var imagesPath: String = "events/\(objectIdentifier)"
+    internal var handlers: [String: (UIImage?) -> Void] = [:]
+    internal var imagesIdentifiers: [String]
+    
+    required init(objectIdentifier: String,
+                  imagesIdentifiers: [String]) {
+        self.objectIdentifier = objectIdentifier
+        self.imagesIdentifiers = imagesIdentifiers
     }
     
 }

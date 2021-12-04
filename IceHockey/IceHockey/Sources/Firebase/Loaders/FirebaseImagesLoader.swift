@@ -7,32 +7,17 @@
 
 import Firebase
 
-protocol FirebaseImagesLoader: FirebaseLoader {
+protocol FirebaseImagesLoader: FirebaseLoader, AnyObject {
     var objectIdentifier: String { get }
     var imagesPath: String { get }
     func load(completionHandler: @escaping (StorageFlowData?) -> Void)
+    var handlers: [String: (UIImage?) -> Void] { get set }
+    var imagesIdentifiers: [String] { get set }
+    init(objectIdentifier: String,
+         imagesIdentifiers: [String])
 }
 
-class FirebaseImagesLoaderImpl {
-    
-    // MARK: - Properties
-    
-    let objectIdentifier: String
-    var imagesManager: ImagesManager?
-    
-    private var imagesPath: String
-    private var handlers: [String: (UIImage?) -> Void] = [:]
-    private var imagesIdentifiers: [String]
-    
-    // MARK: - Lifecircle
-    
-    init(objectIdentifier: String,
-         imagesIdentifiers: [String],
-         imagesPath: String) {
-        self.objectIdentifier = objectIdentifier
-        self.imagesIdentifiers = imagesIdentifiers
-        self.imagesPath = imagesPath
-    }
+extension FirebaseImagesLoader {
     
     func load(completionHandler: @escaping (StorageFlowData?) -> Void) {
         guard !objectIdentifier.isEmpty,
@@ -40,7 +25,7 @@ class FirebaseImagesLoaderImpl {
             completionHandler(nil)
             return
         }
-        imagesManager = ImagesManager()
+        let imagesManager = ImagesManager.shared
         handlers.removeAll()
         var images: [ImageData] = []
         for imageID in imagesIdentifiers {
@@ -62,7 +47,6 @@ class FirebaseImagesLoaderImpl {
                 if self.handlers.count == 0 {
                     let object = StorageFlowDataImpl(objectIdentifier: self.objectIdentifier,
                                               images: images)
-                    self.imagesManager = nil
                     completionHandler(object)
                 }
             }
@@ -73,10 +57,11 @@ class FirebaseImagesLoaderImpl {
                 return
             }
             if let handler = handlers[imageID] {
-                self.imagesManager?.getImage(withID: imageID,
+                imagesManager.getImage(withID: imageID,
                                               path: imagesPath,
                                               completion: handler)
             }
         }
     }
+    
 }
