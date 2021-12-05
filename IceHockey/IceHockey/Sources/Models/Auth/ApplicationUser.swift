@@ -26,4 +26,8 @@ extension ApplicationUser {
     var uid: String {
         firebaseUser.uid
     }
+    
+    var displayName: String {
+        sportUser.displayName
+    }
 }

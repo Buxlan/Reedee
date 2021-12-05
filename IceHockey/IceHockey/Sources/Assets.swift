@@ -61,6 +61,8 @@ internal enum Asset {
   internal static let cameraViewfinder = ImageAsset(name: "cameraViewfinder")
   internal static let chevronRight = ImageAsset(name: "chevronRight")
   internal static let contacts = ImageAsset(name: "contacts")
+  internal static let disclosure = ImageAsset(name: "disclosure")
+  internal static let edit = ImageAsset(name: "edit")
   internal static let emailAuth = ImageAsset(name: "emailAuth")
   internal static let exclamationmarkCircle = ImageAsset(name: "exclamationmarkCircle")
   internal static let eye = ImageAsset(name: "eye")

@@ -139,6 +139,8 @@ internal enum L10n {
   internal enum Events {
     /// Editing event
     internal static let addEventTitle = L10n.tr("Localizable", "Events.addEventTitle")
+    /// Append new event
+    internal static let appendNew = L10n.tr("Localizable", "Events.appendNew")
     /// More
     internal static let defaultActionTitle = L10n.tr("Localizable", "Events.defaultActionTitle")
     /// Other
@@ -196,6 +198,8 @@ internal enum L10n {
   }
 
   internal enum MatchResult {
+    /// Append new match result
+    internal static let appendNew = L10n.tr("Localizable", "MatchResult.appendNew")
     /// Match
     internal static let navigationBarTitle = L10n.tr("Localizable", "MatchResult.navigationBarTitle")
   }
@@ -287,6 +291,8 @@ internal enum L10n {
   }
 
   internal enum Profile {
+    /// Authentication
+    internal static let authSectionTitle = L10n.tr("Localizable", "Profile.authSectionTitle")
     /// Change password
     internal static let changePassword = L10n.tr("Localizable", "Profile.changePassword")
     /// Change user photo
@@ -297,16 +303,16 @@ internal enum L10n {
     internal static let edit = L10n.tr("Localizable", "Profile.edit")
     /// Log out
     internal static let logout = L10n.tr("Localizable", "Profile.logout")
+    /// Author panel
+    internal static let operationsSectionTitle = L10n.tr("Localizable", "Profile.operationsSectionTitle")
     /// Privacy
     internal static let privacy = L10n.tr("Localizable", "Profile.privacy")
+    /// Sign in
+    internal static let signIn = L10n.tr("Localizable", "Profile.signIn")
+    /// Register
+    internal static let signUp = L10n.tr("Localizable", "Profile.signUp")
     /// Profile
     internal static let title = L10n.tr("Localizable", "Profile.title")
-    internal enum Buttons {
-      /// Sign in
-      internal static let signIn = L10n.tr("Localizable", "Profile.Buttons.SignIn")
-      /// Register
-      internal static let signUp = L10n.tr("Localizable", "Profile.Buttons.SignUp")
-    }
   }
 
   internal enum Settings {
@@ -318,7 +324,7 @@ internal enum L10n {
     internal static let crashReposts = L10n.tr("Localizable", "Settings.crashReposts")
     /// Email
     internal static let emails = L10n.tr("Localizable", "Settings.emails")
-    /// Settings
+    /// Profile
     internal static let navigationBarTitle = L10n.tr("Localizable", "Settings.navigationBarTitle")
     /// Notifications
     internal static let notifications = L10n.tr("Localizable", "Settings.notifications")

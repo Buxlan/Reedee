@@ -212,10 +212,6 @@ extension ContactsViewController {
         ]
     }
     
-    @objc private func handleMenu() {
-        present(alert, animated: true)
-    }
-    
 }
 
 extension ContactsViewController {
@@ -278,12 +274,14 @@ extension ContactsViewController {
     
 }
 
-
-
 extension ContactsViewController {
     
     @objc private func handleCallUs() {
         fatalError()
+    }
+    
+    @objc private func handleMenu() {
+        present(alert, animated: true)
     }
     
 }

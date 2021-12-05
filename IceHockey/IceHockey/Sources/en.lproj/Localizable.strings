@@ -38,8 +38,10 @@
 "FavoritePlaces.title" = "Favorite";
 /* Profile */
 "Profile.title" = "Profile";
-"Profile.Buttons.SignIn" = "Sign in";
-"Profile.Buttons.SignUp" = "Register";
+"Profile.authSectionTitle" = "Authentication";
+"Profile.operationsSectionTitle" = "Author panel";
+"Profile.signIn" = "Sign in";
+"Profile.signUp" = "Register";
 "Profile.logout" = "Log out";
 "Profile.privacy" = "Privacy";
 "Profile.communication" = "Communication";
@@ -70,6 +72,7 @@
 "Events.selectNewEventTitle" = "News";
 "Events.selectNewMatchResult" = "Match result";
 "Events.addEventTitle" = "Editing event";
+"Events.appendNew" = "Append new event";
 "Events.tabBarItemTitle" = "Events";
 "Events.title" = "Events";
 "Events.defaultActionTitle" = "More";
@@ -88,6 +91,7 @@
 "EventDetail.title" = "Event";
 // Match result
 "MatchResult.navigationBarTitle" = "Match";
+"MatchResult.appendNew" = "Append new match result";
 /* Contacts */
 "Contacts.tabBarItemTitle" = "About club";
 "Contacts.title" = "About club";
@@ -142,7 +146,7 @@
 "Other.discardChanges" = "Discard changes";
 "Other.continueEditing" = "No, I'd like to continue";
 /* Settings */
-"Settings.navigationBarTitle" = "Settings";
+"Settings.navigationBarTitle" = "Profile";
 /* Match status */
 "MatchStatus.plannedTitle" = "Planned";
 "MatchStatus.inProgressTitle" = "In progress";

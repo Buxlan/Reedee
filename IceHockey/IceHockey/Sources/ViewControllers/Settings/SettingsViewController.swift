@@ -16,7 +16,7 @@ class SettingsViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
         view.isUserInteractionEnabled = true
-        view.backgroundColor = Asset.accent1.color
+        view.backgroundColor = .white
         view.allowsSelection = true
         view.allowsMultipleSelection = false
         view.allowsSelectionDuringEditing = false
@@ -24,10 +24,20 @@ class SettingsViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.estimatedRowHeight = 300
         view.rowHeight = UITableView.automaticDimension
+        view.sectionHeaderHeight = 100
+        view.estimatedSectionHeaderHeight = 100
         view.tableHeaderView = tableHeaderView
         view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = false
-        view.register(SettingTableCell.self, forCellReuseIdentifier: SettingViewConfigurator.reuseIdentifier)
+        view.register(SettingTableCell.self,
+                      forCellReuseIdentifier: SettingViewConfigurator.reuseIdentifier)
+        view.register(ProfileInfoTableCell.self,
+                      forCellReuseIdentifier: ProfileInfoViewConfigurator.reuseIdentifier)
+        view.register(TitleHeaderView.self,
+                      forHeaderFooterViewReuseIdentifier: AuthHeaderViewConfigurator.reuseIdentifier)
+        if #available(iOS 15.0, *) {
+            view.sectionHeaderTopPadding = 0
+        }
         return view
     }()
     
@@ -95,32 +105,76 @@ class SettingsViewController: UIViewController {
 extension SettingsViewController {
     
     func createDataSource() -> TableDataSource {
-        var sections: [TableSection] = []
-        var section = TableSection()
-        let signUpRow = makeSignUpTableRow(),
-            addEventRow = makeAddEventTableRow()
-        section.addRows([signUpRow, addEventRow])
-        sections.append(section)
-        
+        let sections = makeTableSections()
         let dataSource = TableDataSource(sections: sections)
         return dataSource
     }
     
-    func makeAddEventTableRow() -> TableRow {
-        let setting = Setting.addEvent
+    private func makeTableSections() -> [TableSection] {
+        return [
+            makeTableSectionMainInfo(),
+            makeTableSectionAuth(),
+            makeTableSectionOperations()
+        ]
+    }
+    
+}
+
+extension SettingsViewController {
+    
+    func makeTableSectionMainInfo() -> TableSection {
+        var section = TableSection()
+        let rows = [
+            makeProfileInfoTableRow()
+        ]
+        section.addRows(rows)
+        return section
+    }
+    
+    func makeTableSectionAuth() -> TableSection {
+        var section = TableSection()
+        let model = AuthHeaderModel(title: L10n.Profile.authSectionTitle)
+        let config = AuthHeaderViewConfigurator(data: model)
+        section.headerConfig = config
+        section.headerHeight = 50
+        section.headerViewId = type(of: config).reuseIdentifier
+        
+        let rows = [
+            makeSignUpTableRow(),
+            makeSignInTableRow(),
+            makeLogoutTableRow()
+        ]
+        section.addRows(rows)
+        return section
+    }
+    
+    func makeTableSectionOperations() -> TableSection {
+        var section = TableSection()
+        let model = AuthHeaderModel(title: L10n.Profile.operationsSectionTitle)
+        let config = AuthHeaderViewConfigurator(data: model)
+        section.headerConfig = config
+        section.headerHeight = 50
+        section.headerViewId = type(of: config).reuseIdentifier
+        
+        let newEventRow = makeEventTableRow(),
+            newMatchResultRow = makeMatchResultTableRow()
+        section.addRows([newEventRow, newMatchResultRow])
+        return section
+    }
+    
+}
+
+extension SettingsViewController {
+    
+    func makeEventTableRow() -> TableRow {
+        let setting = Setting.newEvent
         let cellModel = SettingCellModel(title: setting.description,
                                          hasDisclosure: setting.hasDisclosure)
         let config = SettingViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
-        row.action = { indexPath in
-            self.tableView.deselectRow(at: indexPath, animated: true)
-            let alertController: UIAlertController = {
-                let controller = UIAlertController(title: "Add event", message: "Sorry, not implemented yet", preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .default)
-                controller.addAction(action)
-                return controller
-            }()
-            self.present(alertController, animated: true)
+        row.action = { [weak self] indexPath in
+            self?.tableView.deselectRow(at: indexPath, animated: true)
+            fatalError()
         }
         return row
     }
@@ -131,15 +185,59 @@ extension SettingsViewController {
                                          hasDisclosure: setting.hasDisclosure)
         let config = SettingViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
-        row.action = { indexPath in
-            self.tableView.deselectRow(at: indexPath, animated: true)
-            let alertController: UIAlertController = {
-                let controller = UIAlertController(title: "Sign up", message: "Sorry, not implemented yet", preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .default)
-                controller.addAction(action)
-                return controller
-            }()
-            self.present(alertController, animated: true)
+        row.action = { [weak self] indexPath in
+            self?.tableView.deselectRow(at: indexPath, animated: true)
+            fatalError()
+        }
+        return row
+    }
+    
+    func makeLogoutTableRow() -> TableRow {
+        let setting = Setting.logout
+        let cellModel = SettingCellModel(title: setting.description,
+                                         hasDisclosure: setting.hasDisclosure)
+        let config = SettingViewConfigurator(data: cellModel)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
+        row.action = { [weak self] indexPath in
+            self?.tableView.deselectRow(at: indexPath, animated: true)
+            fatalError()
+        }
+        return row
+    }
+    
+    func makeSignInTableRow() -> TableRow {
+        let setting = Setting.signIn
+        let cellModel = SettingCellModel(title: setting.description,
+                                         hasDisclosure: setting.hasDisclosure)
+        let config = SettingViewConfigurator(data: cellModel)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
+        row.action = { [weak self] indexPath in
+            self?.tableView.deselectRow(at: indexPath, animated: true)
+            fatalError()
+        }
+        return row
+    }
+    
+    func makeMatchResultTableRow() -> TableRow {
+        let setting = Setting.newMatchResult
+        let cellModel = SettingCellModel(title: setting.description,
+                                         hasDisclosure: setting.hasDisclosure)
+        let config = SettingViewConfigurator(data: cellModel)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
+        row.action = { [weak self] indexPath in
+            self?.tableView.deselectRow(at: indexPath, animated: true)
+            fatalError()
+        }
+        return row
+    }
+    
+    func makeProfileInfoTableRow() -> TableRow {
+        let cellModel = ProfileInfoCellModel(username: "Buxlan", image: nil)
+        let config = ProfileInfoViewConfigurator(data: cellModel)
+        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
+        row.action = { [weak self] indexPath in
+            self?.tableView.deselectRow(at: indexPath, animated: true)
+            fatalError()
         }
         return row
     }

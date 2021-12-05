@@ -8,27 +8,33 @@
 import Firebase
 
 enum Setting: CustomStringConvertible {
+    case profileInfo
     case signIn
     case signUp
-    case signOut
-    case addEvent
+    case logout
+    case newEvent
+    case newMatchResult
     
     var description: String {
         switch self {
+        case .profileInfo:
+            return L10n.Profile.title
         case .signIn:
-            return "Sign in"
-        case .signOut:
-            return "Sign out"
+            return L10n.Profile.signIn
+        case .logout:
+            return L10n.Profile.logout
         case .signUp:
-            return "Sign up"
-        case .addEvent:
-            return "Add new event"
+            return L10n.Profile.signUp
+        case .newEvent:
+            return L10n.Events.appendNew
+        case .newMatchResult:
+            return L10n.MatchResult.appendNew
         }
     }
     
     var hasDisclosure: Bool {
         switch self {
-        case .addEvent:
+        case .newEvent, .signUp, .signIn, .newMatchResult:
             return true
         default:
             return false

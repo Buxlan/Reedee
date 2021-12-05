@@ -41,6 +41,12 @@ where ContentType.DataType == DataType, ContentType: UIView {
 typealias SettingViewConfigurator = CollectionViewConfigurator<SettingTableCell,
                                                                SettingCellModel>
 
+typealias ProfileInfoViewConfigurator = CollectionViewConfigurator<ProfileInfoTableCell,
+                                                                   ProfileInfoCellModel>
+
+typealias AuthHeaderViewConfigurator = CollectionViewConfigurator<TitleHeaderView,
+                                                                  AuthHeaderModel>
+
 typealias MatchResultEditViewConfigurator = CollectionViewConfigurator<MatchResultEditCell,
                                                                        MatchResultEditCellModel>
 

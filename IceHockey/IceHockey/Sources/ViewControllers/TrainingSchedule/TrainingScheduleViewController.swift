@@ -132,7 +132,8 @@ extension TrainingScheduleViewController {
         
         var sections: [TableSection] = []
         viewModel.sections.forEach { sectionData in
-            let cellModel = SquadHeaderCellModel(uid: sectionData.squad.objectIdentifier, title: sectionData.squad.displayName)
+            let cellModel = SquadHeaderCellModel(uid: sectionData.squad.objectIdentifier,
+                                                 title: sectionData.squad.displayName)
             let config = SquadHeaderViewConfigurator(data: cellModel)
             var section = TableSection()
             section.headerConfig = config

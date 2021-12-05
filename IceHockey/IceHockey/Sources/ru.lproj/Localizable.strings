@@ -38,8 +38,10 @@
 "FavoritePlaces.title" = "Любимые";
 /* Profile */
 "Profile.title" = "Профиль";
-"Profile.Buttons.SignIn" = "Войти";
-"Profile.Buttons.SignUp" = "Зарегистрироваться";
+"Profile.authSectionTitle" = "Авторизация";
+"Profile.operationsSectionTitle" = "Функции редактора";
+"Profile.signIn" = "Войти";
+"Profile.signUp" = "Зарегистрироваться";
 "Profile.logout" = "Выйти";
 "Profile.privacy" = "Приватность";
 "Profile.communication" = "Уведомления";
@@ -70,6 +72,7 @@
 "Events.selectNewEventTitle" = "Новость";
 "Events.selectNewMatchResult" = "Результат матча";
 "Events.addEventTitle" = "Редактирование новости";
+"Events.appendNew" = "Добавить новость";
 "Events.eventsTabBarItemTitle" = "Мероприятия";
 "Events.eventsTitle" = "Мероприятия";
 "Events.defaultActionTitle" = "Подробнее";
@@ -88,6 +91,7 @@
 "EventDetail.title" = "Новость";
 // Match result
 "MatchResult.navigationBarTitle" = "Матч";
+"MatchResult.appendNew" = "Добавить результат матча";
 /* Contacts */
 "Contacts.tabBarItemTitle" = "Контакты";
 "Contacts.title" = "О клубе";
@@ -142,7 +146,7 @@
 "Other.discardChanges" = "Да, удалить черновик";
 "Other.continueEditing" = "Нет, я хочу продолжить";
 /* Settings */
-"Settings.navigationBarTitle" = "Настройки";
+"Settings.navigationBarTitle" = "Профиль";
 /* Match status */
 "MatchStatus.plannedTitle" = "Скоро";
 "MatchStatus.inProgressTitle" = "Идет сейчас";
