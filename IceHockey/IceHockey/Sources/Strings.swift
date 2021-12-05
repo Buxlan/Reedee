@@ -309,7 +309,7 @@ internal enum L10n {
     internal static let privacy = L10n.tr("Localizable", "Profile.privacy")
     /// Sign in
     internal static let signIn = L10n.tr("Localizable", "Profile.signIn")
-    /// Register
+    /// Sign up
     internal static let signUp = L10n.tr("Localizable", "Profile.signUp")
     /// Profile
     internal static let title = L10n.tr("Localizable", "Profile.title")

@@ -25,7 +25,12 @@ struct ProfileInfoCellModel: TableCellModel, TintColorable {
          image: UIImage?) {
         self.username = username
         self.image = image
-        self.userIdentifier = FirebaseAuthManager.shared.current?.uid ?? "uid: <unfilled>"
+        if let uid = FirebaseAuthManager.shared.current?.uid {
+            let lastSymbols = uid.suffix(14)
+            self.userIdentifier = "uid: \(lastSymbols)"
+        } else {
+            self.userIdentifier = "uid: <unknown>"
+        }
     }
     
     init (user: ApplicationUser) {

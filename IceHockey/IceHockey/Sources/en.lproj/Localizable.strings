@@ -41,7 +41,7 @@
 "Profile.authSectionTitle" = "Authentication";
 "Profile.operationsSectionTitle" = "Author panel";
 "Profile.signIn" = "Sign in";
-"Profile.signUp" = "Register";
+"Profile.signUp" = "Sign up";
 "Profile.logout" = "Log out";
 "Profile.privacy" = "Privacy";
 "Profile.communication" = "Communication";
