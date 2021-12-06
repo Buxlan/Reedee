@@ -15,12 +15,6 @@ protocol SquadDatabaseFlowData: SnapshotInitiable {
     init?(snapshot: DataSnapshot)
 }
 
-//struct EmptySquadDatabaseFlowData: SquadDatabaseFlowData {
-//    var objectIdentifier: String = ""
-//    var displayName: String = ""
-//    var headCoach: String = ""
-//}
-
 struct SquadDatabaseFlowDataImpl: SquadDatabaseFlowData {
     
     static let empty = Self()

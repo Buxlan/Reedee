@@ -169,6 +169,11 @@
 		40A88CB4275516ED007A31C5 /* MatchResultEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A88CB3275516ED007A31C5 /* MatchResultEditViewModel.swift */; };
 		40A9185F275D505D00262BDE /* AuthHeaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9185E275D505D00262BDE /* AuthHeaderModel.swift */; };
 		40A91861275D50CD00262BDE /* TitleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A91860275D50CD00262BDE /* TitleHeaderView.swift */; };
+		40A91864275D81F600262BDE /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A91863275D81F600262BDE /* SignInViewController.swift */; };
+		40A91866275D820600262BDE /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A91865275D820600262BDE /* SignInViewModel.swift */; };
+		40A91868275D827D00262BDE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A91867275D827D00262BDE /* Colors.swift */; };
+		40A9186B275D879100262BDE /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9186A275D879100262BDE /* LoginTextField.swift */; };
+		40A9186D275D8AA900262BDE /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9186C275D8AA900262BDE /* PasswordTextField.swift */; };
 		40ADABE9273C4517008AAC90 /* SquadHeaderCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADABE8273C4517008AAC90 /* SquadHeaderCellModel.swift */; };
 		40ADABEB273C47D4008AAC90 /* TrainingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADABEA273C47D4008AAC90 /* TrainingCell.swift */; };
 		40ADABED273C47F4008AAC90 /* TrainingCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADABEC273C47F4008AAC90 /* TrainingCellModel.swift */; };
@@ -424,6 +429,11 @@
 		40A88CB3275516ED007A31C5 /* MatchResultEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResultEditViewModel.swift; sourceTree = "<group>"; };
 		40A9185E275D505D00262BDE /* AuthHeaderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHeaderModel.swift; sourceTree = "<group>"; };
 		40A91860275D50CD00262BDE /* TitleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeaderView.swift; sourceTree = "<group>"; };
+		40A91863275D81F600262BDE /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		40A91865275D820600262BDE /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		40A91867275D827D00262BDE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		40A9186A275D879100262BDE /* LoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
+		40A9186C275D8AA900262BDE /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 		40ADABE8273C4517008AAC90 /* SquadHeaderCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquadHeaderCellModel.swift; sourceTree = "<group>"; };
 		40ADABEA273C47D4008AAC90 /* TrainingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingCell.swift; sourceTree = "<group>"; };
 		40ADABEC273C47F4008AAC90 /* TrainingCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingCellModel.swift; sourceTree = "<group>"; };
@@ -1006,6 +1016,7 @@
 		40940C0126E418B10098EF89 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				40A91862275D81DE00262BDE /* Sign in */,
 				40A1368527358D25005C0007 /* Settings */,
 				40AE7D6A2734575B00052643 /* MatchResultDetail */,
 				4035DAB3273077BE00AAFDA8 /* TrainingSchedule */,
@@ -1093,6 +1104,7 @@
 				40940BD826E40C380098EF89 /* Extensions */,
 				40A4464726E409D800129B89 /* Assets.swift */,
 				407F48B1273C9A6000C96B28 /* Fonts.swift */,
+				40A91867275D827D00262BDE /* Colors.swift */,
 				40A4464626E409D800129B89 /* Strings.swift */,
 				401C9B13270D051700F91DC6 /* ViewControllerCoordinator */,
 				401C9B27270D156900F91DC6 /* Auth */,
@@ -1104,6 +1116,25 @@
 				40A4462926E4054E00129B89 /* Localizable.strings */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		40A91862275D81DE00262BDE /* Sign in */ = {
+			isa = PBXGroup;
+			children = (
+				40A91863275D81F600262BDE /* SignInViewController.swift */,
+				40A91865275D820600262BDE /* SignInViewModel.swift */,
+				40A91869275D877F00262BDE /* Views */,
+			);
+			path = "Sign in";
+			sourceTree = "<group>";
+		};
+		40A91869275D877F00262BDE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				40A9186A275D879100262BDE /* LoginTextField.swift */,
+				40A9186C275D8AA900262BDE /* PasswordTextField.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		40AE442327411EE100BD6506 /* Collections */ = {
@@ -1483,6 +1514,7 @@
 				40C9E91C2746AB17009B0417 /* SportUserBuilder.swift in Sources */,
 				407BB060274BA743008DF228 /* ClubDatabaseFlowData.swift in Sources */,
 				40B82EC527382EDD00BED0A1 /* LikeButton.swift in Sources */,
+				40A9186B275D879100262BDE /* LoginTextField.swift in Sources */,
 				40C44181274D54F800F9EC8B /* ClubImpl.swift in Sources */,
 				40A88CB4275516ED007A31C5 /* MatchResultEditViewModel.swift in Sources */,
 				40713A8527204BC4005F1265 /* ContactsViewModel.swift in Sources */,
@@ -1596,11 +1628,14 @@
 				40429BC0274AE5D600DAD070 /* TrainingType.swift in Sources */,
 				4075F1C627220E1500BEA63A /* EditEventBoldTextCell.swift in Sources */,
 				404C028B26EFDE1800CFAF3F /* ShadowCorneredView.swift in Sources */,
+				40A91868275D827D00262BDE /* Colors.swift in Sources */,
 				40F4EBDD273DCAA2003DA1D3 /* EventDetailHeaderView.swift in Sources */,
 				40F4EBE3273DD212003DA1D3 /* ConfigurableLabel.swift in Sources */,
+				40A91866275D820600262BDE /* SignInViewModel.swift in Sources */,
 				40429BB8274ACA8600DAD070 /* WorkoutScheduleBuilder.swift in Sources */,
 				40B6C80F272DB2A600B94A9A /* HockeyPlayerRole.swift in Sources */,
 				401D53C8275AE1A8006B5458 /* SquadCellModel.swift in Sources */,
+				40A91864275D81F600262BDE /* SignInViewController.swift in Sources */,
 				406C306F26F909690040F0A7 /* PhotoCollectionView.swift in Sources */,
 				40A1139327471465001BDD99 /* EventLikeInfoBuilder.swift in Sources */,
 				401D53C4275ADC23006B5458 /* ClubInfoCellModel.swift in Sources */,
@@ -1645,6 +1680,7 @@
 				406E36A927219BD600C5FEF0 /* EditEventDescriptionCell.swift in Sources */,
 				407A62162737CCCE00558998 /* MatchResultEditViewController.swift in Sources */,
 				40C106BB26E41A2200B619A1 /* HomeViewController.swift in Sources */,
+				40A9186D275D8AA900262BDE /* PasswordTextField.swift in Sources */,
 				40B82ECB2738AE9000BED0A1 /* DoneKeyboardAccessoryView.swift in Sources */,
 				40C4419B274DCC4E00F9EC8B /* UserImageLoader.swift in Sources */,
 				40AE7D6C2734578700052643 /* MatchResultDetailViewController.swift in Sources */,

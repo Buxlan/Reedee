@@ -74,7 +74,6 @@ typealias TeamCellConfigurator = TableViewCellConfigurator<TeamTableCell,
 typealias OurSquadsTitleTextViewCellConfigurator = TableViewCellConfigurator<OurSquadsTitleTextViewCell,
                                                                              Club>
 
-
 // MARK: Players
 
 typealias PlayerCellConfigurator = TableViewCellConfigurator<PlayerTableCell,
@@ -86,7 +85,7 @@ typealias ActionCellConfigurator = TableViewCellConfigurator<ActionsTableCell,
                                                              QuickAction>
 
 typealias ActionCollectionCellConfigurator = CollectionViewCellConfigurator<ActionsCollectionCell,
-                                                                             QuickAction>
+                                                                            QuickAction>
 // MARK: - Not using
 
 typealias ComingEventCellConfigurator = TableViewCellConfigurator<ComingEventTableCell,

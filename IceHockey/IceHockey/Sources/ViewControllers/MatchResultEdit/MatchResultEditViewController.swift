@@ -68,7 +68,7 @@ class MatchResultEditViewController: UIViewController {
         switch editMode {
         case .new:
             viewModel = MatchResultEditViewModel(event: MatchResultImpl())
-            var isNew = true
+            isNew = true
         case .edit(let data):
             viewModel = MatchResultEditViewModel(event: data)
         }

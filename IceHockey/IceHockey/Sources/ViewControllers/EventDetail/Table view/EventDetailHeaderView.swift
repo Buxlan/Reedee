@@ -75,4 +75,3 @@ extension EventDetailHeaderView: ConfigurableCollectionContent {
     }
     
 }
-

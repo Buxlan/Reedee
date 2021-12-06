@@ -26,4 +26,3 @@ class UserImageLoader: FirebaseImagesLoader {
     }
     
 }
-

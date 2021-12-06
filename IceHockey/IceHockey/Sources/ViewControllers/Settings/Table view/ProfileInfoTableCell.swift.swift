@@ -10,6 +10,7 @@ import SnapKit
 class ProfileInfoTableCell: UITableViewCell {
     
     // MARK: - Properties
+    
     typealias DataType = ProfileInfoCellModel
     var data: DataType?
     
@@ -122,9 +123,6 @@ class ProfileInfoTableCell: UITableViewCell {
             let size = usernameTextView.sizeThatFits(CGSize(width: Int(contentView.frame.width - 64),
                                                             height: height))
             make.width.equalTo(size.width)
-////            make.width.lessThanOrEqualToSuperview().offset(-64)
-////            make.leading.greaterThanOrEqualToSuperview().offset(32).priority(.low)
-////            make.trailing.lessThanOrEqualToSuperview().offset(-32).priority(.low)
             make.height.equalTo(40)
         }
         editUsernameButton.snp.makeConstraints { make in

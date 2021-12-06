@@ -5,7 +5,6 @@
 //  Created by  Buxlan on 12/4/21.
 //
 
-
 import UIKit
 
 struct SquadCellModel: TableCellModel {

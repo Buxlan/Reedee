@@ -213,7 +213,9 @@ extension SettingsViewController {
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         row.action = { [weak self] indexPath in
             self?.tableView.deselectRow(at: indexPath, animated: true)
-            fatalError()
+            let vc = SignInViewController()
+            vc.modalTransitionStyle = .crossDissolve
+            self?.navigationController?.pushViewController(vc, animated: true)
         }
         return row
     }
