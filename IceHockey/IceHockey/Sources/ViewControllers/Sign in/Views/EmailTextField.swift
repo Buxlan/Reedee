@@ -1,5 +1,5 @@
 //
-//  PasswordTextField.swift
+//  EmailTextField.swift.swift
 //  IceHockey
 //
 //  Created by  Buxlan on 12/6/21.
@@ -7,11 +7,12 @@
 
 import UIKit
 
-class PasswordTextField: UITextField {
-        
+class EmailTextField: UITextField {
+     
     init() {
         super.init(frame: .zero)
-        accessibilityIdentifier = "passwordTextField"
+        accessibilityIdentifier = "emailTextField"
+        placeholder = L10n.Auth.usernamePlaceholder
         textAlignment = .left
         translatesAutoresizingMaskIntoConstraints = false
         keyboardAppearance = .dark
@@ -20,17 +21,16 @@ class PasswordTextField: UITextField {
         font = Fonts.Regular.subhead
         layer.cornerRadius = 8
         clipsToBounds = true
-        isSecureTextEntry = true
         tintColor = Colors.Gray.dark
         let attr: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.foregroundColor: Colors.Gray.dark,
             NSAttributedString.Key.font: Fonts.Regular.subhead
         ]
         attributedPlaceholder = NSAttributedString(
-            string: L10n.Auth.passwordPlaceholder,
+            string: L10n.Auth.usernamePlaceholder,
             attributes: attr
         )
-        self.setImage(Asset.lock.image.withRenderingMode(.alwaysTemplate))
+        self.setImage(Asset.person.image.withRenderingMode(.alwaysTemplate))
     }
     
     required init?(coder: NSCoder) {
@@ -47,7 +47,7 @@ class PasswordTextField: UITextField {
     
 }
 
-extension PasswordTextField {
+extension EmailTextField {
     
     typealias DataType = TextFieldModel
     func configure(data: DataType) {
@@ -61,3 +61,4 @@ extension PasswordTextField {
         ]
     }
 }
+

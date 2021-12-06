@@ -87,6 +87,7 @@ internal enum Asset {
   internal static let personCircleFill = ImageAsset(name: "personCircleFill")
   internal static let personCropCircleBadgePlus = ImageAsset(name: "personCropCircleBadgePlus")
   internal static let personCropCircleFillBadgePlus = ImageAsset(name: "personCropCircleFillBadgePlus")
+  internal static let personFill = ImageAsset(name: "personFill")
   internal static let photo = ImageAsset(name: "photo")
   internal static let play = ImageAsset(name: "play")
   internal static let plus = ImageAsset(name: "plus")

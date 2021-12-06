@@ -11,7 +11,7 @@ import RxRelay
 class SignInViewModel {
     
     var disposeBag = DisposeBag()
-    
+
     var loginBehaviorRelay = BehaviorRelay<String>(value: "")
     var passwordBehaviorRelay = BehaviorRelay<String>(value: "")
     
@@ -31,7 +31,10 @@ class SignInViewModel {
     func isValid() -> Observable<Bool> {
         return Observable.combineLatest(loginBehaviorRelay, passwordBehaviorRelay)
             .map { userName, password in
-                return userName.count > 3 && password.count > 3
+                return userName.count > 3
+                        && userName.count < 20
+                        && password.count > 3
+                        && password.count < 25
             }
     }
         

@@ -272,8 +272,8 @@ class MatchResultTableCell: UITableViewCell {
             awayTeamScoreLabel.heightAnchor.constraint(equalTo: scoreLabel.heightAnchor),
             
             titleLabel.topAnchor.constraint(equalTo: homeTeamScoreLabel.bottomAnchor, constant: 8),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -64),
             titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: likeButton.topAnchor, constant: -8),
             titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 40),
             

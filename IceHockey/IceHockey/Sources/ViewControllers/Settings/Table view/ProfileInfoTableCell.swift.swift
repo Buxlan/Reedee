@@ -19,6 +19,7 @@ class ProfileInfoTableCell: UITableViewCell {
         view.layer.borderWidth = 0.5
         view.layer.cornerRadius = 32
         view.clipsToBounds = true
+        view.contentMode = .scaleAspectFit
         return view
     }()
     
@@ -110,8 +111,8 @@ class ProfileInfoTableCell: UITableViewCell {
     
     private func configureConstraints() {
         userImageButton.snp.makeConstraints { make in
-            make.width.equalTo(contentView.snp.width).multipliedBy(0.5)
-            make.height.equalTo(contentView.snp.width).multipliedBy(0.5)
+            make.width.equalTo(contentView.snp.width).multipliedBy(0.4)
+            make.height.equalTo(contentView.snp.width).multipliedBy(0.4)
             make.top.equalTo(contentView.snp.top).offset(16)
             make.centerX.equalTo(contentView.snp.centerX)
         }

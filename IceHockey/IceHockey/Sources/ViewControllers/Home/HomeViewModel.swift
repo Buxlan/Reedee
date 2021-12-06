@@ -32,13 +32,6 @@ class HomeViewModel {
     
     // MARK: - Actions
     
-    var actions: [ActionCollectionCellConfigurator] = [
-        ActionCollectionCellConfigurator(data: QuickAction.joinClub),
-        ActionCollectionCellConfigurator(data: QuickAction.contacts),
-        ActionCollectionCellConfigurator(data: QuickAction.showTrainingSchedule),
-        ActionCollectionCellConfigurator(data: QuickAction.showOnMap)
-    ]
-    
     private var isAuthCompleted: Bool {
         return user != nil
     }
@@ -55,11 +48,7 @@ class HomeViewModel {
         ClubManager.shared.removeObserver(self)
     }
             
-    // MARK: - Hepler functions     
-    
-    func action(at indexPath: IndexPath) -> ActionCollectionCellConfigurator {
-        actions[indexPath.item]
-    }
+    // MARK: - Hepler functions        
         
     func update() {
         guard isAuthCompleted else {

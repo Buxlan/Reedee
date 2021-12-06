@@ -46,6 +46,8 @@ internal enum L10n {
     internal static let authProvidersTitle = L10n.tr("Localizable", "Auth.authProvidersTitle")
     /// Email & Password login
     internal static let emailPasswordSignIn = L10n.tr("Localizable", "Auth.emailPasswordSignIn")
+    /// Email
+    internal static let emailPlaceholder = L10n.tr("Localizable", "Auth.emailPlaceholder")
     /// Login with Facebook
     internal static let facebookSignIn = L10n.tr("Localizable", "Auth.facebookSignIn")
     /// Places authorization
@@ -60,7 +62,7 @@ internal enum L10n {
     internal static let signUp = L10n.tr("Localizable", "Auth.signUp")
     /// Joining us allow to share you own essay about variable places...
     internal static let title = L10n.tr("Localizable", "Auth.title")
-    /// Username / E-mail
+    /// Username
     internal static let usernamePlaceholder = L10n.tr("Localizable", "Auth.usernamePlaceholder")
     internal enum Buttons {
       /// Login

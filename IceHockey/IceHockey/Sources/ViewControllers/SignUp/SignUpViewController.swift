@@ -1,14 +1,14 @@
 //
-//  SettingsViewController.swift
+//  SignUpViewController.swift
 //  IceHockey
 //
-//  Created by  Buxlan on 11/5/21.
+//  Created by  Buxlan on 12/6/21.
 //
 
 import SnapKit
 import FirebaseDatabase
 
-class SettingsViewController: UIViewController {
+class SignUpViewController: UIViewController {
     
     // MARK: - Properties
     var tableBase = TableViewBase()
@@ -22,6 +22,7 @@ class SettingsViewController: UIViewController {
         view.allowsMultipleSelection = false
         view.allowsSelectionDuringEditing = false
         view.allowsMultipleSelectionDuringEditing = false
+        view.separatorStyle = .none
         view.rowHeight = UITableView.automaticDimension
         view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = false
@@ -97,7 +98,7 @@ class SettingsViewController: UIViewController {
     
 }
 
-extension SettingsViewController {
+extension SignUpViewController {
     
     func createDataSource() -> TableDataSource {
         let sections = makeTableSections()
@@ -115,7 +116,7 @@ extension SettingsViewController {
     
 }
 
-extension SettingsViewController {
+extension SignUpViewController {
     
     func makeTableSectionMainInfo() -> TableSection {
         var section = TableSection()
@@ -159,7 +160,7 @@ extension SettingsViewController {
     
 }
 
-extension SettingsViewController {
+extension SignUpViewController {
     
     func makeSignUpTableRow() -> TableRow {
         let setting = Setting.signUp
@@ -169,9 +170,7 @@ extension SettingsViewController {
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         row.action = { [weak self] indexPath in
             self?.tableView.deselectRow(at: indexPath, animated: true)
-            let vc = SignUpViewController()
-            vc.modalTransitionStyle = .crossDissolve
-            self?.navigationController?.pushViewController(vc, animated: true)
+            fatalError()
         }
         return row
     }
@@ -247,3 +246,4 @@ extension SettingsViewController {
     }
     
 }
+

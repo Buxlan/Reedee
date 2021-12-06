@@ -9,9 +9,9 @@ import UIKit
 
 enum Colors {
     enum Gray {
-        static let lightest: UIColor = Asset.other3.color
-        static let ultraLight: UIColor = Asset.other2.color
-        static let light: UIColor = Asset.other1.color
+        static let ultraLight: UIColor = Asset.other3.color
+        static let light: UIColor = Asset.other2.color
+        static let medium: UIColor = Asset.other1.color
         static let dark: UIColor = Asset.other0.color
     }
     enum Accent {

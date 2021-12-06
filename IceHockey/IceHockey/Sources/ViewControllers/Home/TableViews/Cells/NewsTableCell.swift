@@ -182,8 +182,8 @@ class NewsTableCell: UITableViewCell {
             dataImageView.topAnchor.constraint(equalTo: userImageView.bottomAnchor, constant: 8),
             dataImageView.heightAnchor.constraint(equalTo: dataImageView.widthAnchor),
             
-            dataLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            dataLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            dataLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            dataLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -64),
             dataLabel.topAnchor.constraint(equalTo: dataImageView.bottomAnchor, constant: 8),
 //            dataLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 20),
             

@@ -81,7 +81,7 @@ extension SignInViewController {
     }
     
     private func configureUI() {
-        view.backgroundColor = Colors.Gray.lightest
+        view.backgroundColor = Colors.Gray.ultraLight
         view.addSubview(topBackgroundView)
         view.addSubview(logoImageView)
         view.addSubview(loginTextField)
@@ -96,6 +96,7 @@ extension SignInViewController {
             make.top.equalTo(view.snp.top)
             make.width.equalTo(view.snp.width)
             make.bottom.equalTo(view.layoutMarginsGuide.snp.top)
+            make.centerX.equalTo(view.layoutMarginsGuide.snp.centerX)
         }
         
         logoImageView.snp.makeConstraints { make in

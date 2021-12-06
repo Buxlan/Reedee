@@ -21,23 +21,18 @@ struct ProfileInfoCellModel: TableCellModel, TintColorable {
     
     var action = {}
     
-    init(username: String,
-         image: UIImage?) {
-        self.username = username
-        self.image = image
-        if let uid = FirebaseAuthManager.shared.current?.uid {
-            let lastSymbols = uid.suffix(14)
-            self.userIdentifier = "uid: \(lastSymbols)"
-        } else {
-            self.userIdentifier = "uid: <unknown>"
-        }
+    init() {
+        self.username = "<unknown>"
+        self.image = nil
+        self.userIdentifier = "uid: <unknown>"
     }
     
     init (user: ApplicationUser) {
         self.username = user.displayName
         self.userIdentifier = user.uid
         self.image = user.sportUser.image
-        self.userIdentifier = "uid: " + user.uid
+        let lastSymbols = user.uid.suffix(14)
+        self.userIdentifier = "uid: \(lastSymbols)"
     }
     
 }

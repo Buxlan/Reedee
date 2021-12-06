@@ -6,6 +6,8 @@
 //
 
 import Firebase
+import RxSwift
+import RxRelay
 
 class FirebaseAuthManager: AuthManager {
     
@@ -13,6 +15,8 @@ class FirebaseAuthManager: AuthManager {
     
     static let shared: AuthManager = FirebaseAuthManager()
     var current: ApplicationUser?
+        
+    var currentUser: PublishRelay<ApplicationUser> = PublishRelay()
     
     private var userCreator: ApplicationUserCreator?    
     private var observers: [WeakUserObserver] = []
@@ -32,6 +36,7 @@ class FirebaseAuthManager: AuthManager {
                     return
                 }
                 weakObserver.value?.didChangeUser(user)
+                self.currentUser.accept(user)
             }
             self.userCreator = nil
         }

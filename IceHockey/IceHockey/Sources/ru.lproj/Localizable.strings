@@ -14,6 +14,7 @@
 "Auth.forgotPassword" = "Забыли пароль?";
 "Auth.title" = "Регистрация позволит Вам оставлять эссе и предложения о создании новых мест.";
 "Auth.usernamePlaceholder" = "Имя / Почта";
+"Auth.emailPlaceholder" = "E-mail";
 "Auth.passwordPlaceholder" = "Пароль";
 "Auth.signUp" = "Зарегистрироваться";
 "Auth.Buttons.signUpSectionTitle" = "Нет аккаунта?";

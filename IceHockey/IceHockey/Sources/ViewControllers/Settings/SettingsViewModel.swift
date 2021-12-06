@@ -6,6 +6,9 @@
 //
 
 import Firebase
+import RxSwift
+import RxCocoa
+import Combine
 
 enum Setting: CustomStringConvertible {
     case profileInfo
@@ -39,6 +42,29 @@ enum Setting: CustomStringConvertible {
         default:
             return false
         }
+    }
+    
+}
+
+class SettingsViewModel {
+    
+    var shouldTableRefreshRelay = {}
+    let disposeBag = DisposeBag()
+    var user: ApplicationUser?
+    
+    func configure() {
+        FirebaseAuthManager.shared.currentUser
+            .subscribe { [weak self] user in
+                print("User is: \(user)")
+                self?.user = user
+                self?.shouldTableRefreshRelay()
+            } onError: { error in
+                print(error)
+            } onCompleted: {
+                print("user completed")
+            } onDisposed: {
+                print("disposed")
+            }.disposed(by: disposeBag)
     }
     
 }

@@ -13,7 +13,8 @@
 "SignIn.title" = "Login";
 "Auth.forgotPassword" = "Forget password?";
 "Auth.title" = "Joining us allow to share you own essay about variable places...";
-"Auth.usernamePlaceholder" = "Username / E-mail";
+"Auth.usernamePlaceholder" = "Username";
+"Auth.emailPlaceholder" = "Email";
 "Auth.passwordPlaceholder" = "Password";
 "Auth.Buttons.signUpSectionTitle" = "Haven't account?";
 "Auth.signUp" = "Sign up now";
