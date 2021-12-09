@@ -9,10 +9,10 @@ import UIKit
 class MainTabBarViewModel {
     
     enum ViewControllerData: Int, CustomStringConvertible {
-        case home = 0
-        case ourSquads = 1
-        case ourContacts = 2
-        case profile = 3
+        case home
+        case ourSquads
+        case ourContacts
+        case profile
         
         init(rawValue: Int) {
             switch rawValue {
@@ -22,10 +22,8 @@ class MainTabBarViewModel {
                 self = .ourSquads
             case 2:
                 self = .ourContacts
-            case 3:
-                self = .profile
             default:
-                fatalError()
+                self = .profile
             }
         }
         

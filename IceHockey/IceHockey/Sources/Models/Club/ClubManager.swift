@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 struct WeakClubObserver {
     weak var value: ClubObserver?
@@ -21,10 +23,20 @@ class ClubManager {
     var current: Club
     private var observers: [WeakClubObserver] = []
     var clubCreator: ClubCreator?
-            
+    
+    private let authManager: AuthManager = FirebaseAuthManager.shared
+    private let disposeBag = DisposeBag()
+
     private init() {
-        current = ClubProxy()
-        guard let teamID = Bundle.main.object(forInfoDictionaryKey: "teamID") as? String else {
+        current = EmptyClub()
+        _ = authManager.currentUser.subscribe { [weak self] _ in
+            self?.prepareCurrentClub()
+        }.disposed(by: disposeBag)
+    }
+    
+    private func prepareCurrentClub() {
+        guard let teamID = Bundle.main.object(forInfoDictionaryKey: "teamID") as? String
+        else {
             return
         }
         let creator = ClubCreator()

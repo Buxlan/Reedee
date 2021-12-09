@@ -6,6 +6,8 @@
 //
 
 import Firebase
+import RxSwift
+import RxCocoa
 
 class ClubCreator {
     

@@ -55,10 +55,11 @@ extension EmailTextField {
         backgroundColor = data.backgroundColor
         font = data.font
         tintColor = data.tintColor
-        let attr: [NSAttributedString.Key: Any] = [
+        let attributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.foregroundColor: data.tintColor,
             NSAttributedString.Key.font: data.font
         ]
+        attributedPlaceholder = NSAttributedString(string: data.placeholderText,
+                                                   attributes: attributes)
     }
 }
-

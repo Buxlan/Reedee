@@ -5,6 +5,8 @@
 //  Created by  Buxlan on 11/23/21.
 //
 
+typealias EmptyClub = ClubProxy
+
 class ClubProxy: Club {
     
     var object: ClubImpl?

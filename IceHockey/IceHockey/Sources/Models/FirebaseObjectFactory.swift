@@ -19,15 +19,6 @@ struct FirebaseObjectFactory {
     }
     
     // MARK: - Factory methods
-        
-    func makeTeam(with objectIdentifier: String,
-                  completionHandler: @escaping () -> Void)
-    -> Club {
-        let builder = ClubBuilder(objectIdentifier: objectIdentifier)
-        builder.build(completionHandler: completionHandler)
-        let object = builder.getResult()
-        return object
-    }
     
     func makeSportNews(with objectIdentifier: String,
                        completionHandler: @escaping () -> Void)
