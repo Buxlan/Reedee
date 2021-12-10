@@ -149,6 +149,7 @@
 		4098C04526E5756800F0BBE6 /* SportPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4098C04426E5756800F0BBE6 /* SportPlayer.swift */; };
 		4098D765271EFDE0005CD01A /* EventDetailDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4098D764271EFDE0005CD01A /* EventDetailDescriptionView.swift */; };
 		409AFDB72747ADD300AAD62E /* EventDetailPhotoCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409AFDB62747ADD300AAD62E /* EventDetailPhotoCellModel.swift */; };
+		409AFE4C2763C1D800011261 /* FirebaseDatabaseLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409AFE4B2763C1D800011261 /* FirebaseDatabaseLoader.swift */; };
 		409C69E1271CDB0D005434A4 /* OtherProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409C69E0271CDB0D005434A4 /* OtherProtocols.swift */; };
 		409DD42B2735D37700055FBD /* ContentConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409DD42A2735D37700055FBD /* ContentConfigurator.swift */; };
 		409DD42D2735D43500055FBD /* TableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409DD42C2735D43500055FBD /* TableDataSource.swift */; };
@@ -412,6 +413,7 @@
 		4098C04426E5756800F0BBE6 /* SportPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportPlayer.swift; sourceTree = "<group>"; };
 		4098D764271EFDE0005CD01A /* EventDetailDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailDescriptionView.swift; sourceTree = "<group>"; };
 		409AFDB62747ADD300AAD62E /* EventDetailPhotoCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailPhotoCellModel.swift; sourceTree = "<group>"; };
+		409AFE4B2763C1D800011261 /* FirebaseDatabaseLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseLoader.swift; sourceTree = "<group>"; };
 		409C69E0271CDB0D005434A4 /* OtherProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProtocols.swift; sourceTree = "<group>"; };
 		409DD42A2735D37700055FBD /* ContentConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentConfigurator.swift; sourceTree = "<group>"; };
 		409DD42C2735D43500055FBD /* TableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDataSource.swift; sourceTree = "<group>"; };
@@ -898,6 +900,7 @@
 				407BC11A273BCF4400A6D580 /* FirebaseLoader.swift */,
 				40C44192274D78FA00F9EC8B /* FirebaseImagesLoader.swift */,
 				40C44188274D559700F9EC8B /* SquadImagesLoader.swift */,
+				409AFE4B2763C1D800011261 /* FirebaseDatabaseLoader.swift */,
 			);
 			path = Loaders;
 			sourceTree = "<group>";
@@ -1660,6 +1663,7 @@
 				401D53C8275AE1A8006B5458 /* SquadCellModel.swift in Sources */,
 				40A91864275D81F600262BDE /* SignInViewController.swift in Sources */,
 				406C306F26F909690040F0A7 /* PhotoCollectionView.swift in Sources */,
+				409AFE4C2763C1D800011261 /* FirebaseDatabaseLoader.swift in Sources */,
 				40A1139327471465001BDD99 /* EventLikeInfoBuilder.swift in Sources */,
 				401D53C4275ADC23006B5458 /* ClubInfoCellModel.swift in Sources */,
 				40B947C226EE909100D9E8DA /* TableViewCellConfiguration.swift in Sources */,
