@@ -48,7 +48,7 @@ enum Setting: CustomStringConvertible {
 
 class SettingsViewModel {
     
-    var shouldTableRefreshRelay = {}
+    var onTableRefresh = {}
     let disposeBag = DisposeBag()
     var user: ApplicationUser?
     
@@ -57,7 +57,7 @@ class SettingsViewModel {
             .subscribe { [weak self] user in
                 print("User is: \(user)")
                 self?.user = user
-                self?.shouldTableRefreshRelay()
+                self?.onTableRefresh()
             } onError: { error in
                 print(error)
             } onCompleted: {

@@ -100,11 +100,13 @@ class EventDetailFooterView: UIView {
 }
 
 extension EventDetailFooterView: ConfigurableCell {
-    typealias DataType = Club
+    
+    typealias DataType = Club?
+    
     func configure(with data: DataType) {
         configureUI()
-        titleLabel.text = data.displayName
-        copyrightLabel.text = data.copyright
+        titleLabel.text = data?.displayName
+        copyrightLabel.text = data?.copyright
         dataImageView.image = Asset.logo.image
     }
 }

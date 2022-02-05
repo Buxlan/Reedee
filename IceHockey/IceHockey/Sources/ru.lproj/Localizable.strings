@@ -30,6 +30,7 @@
 "Auth.authLinkHeader" = "Управляйте привязкой аккаунтов между провайдерами";
 "Auth.authLinkFooter" = "Select an unchecked row to link the currently signed in user to that auth provider. To unlink the user from a linked provider, select its corresponding row marked with a checkmark.";
 /* Main tab bar */
+"TabBar.finance" = "Финансы";
 /* Place list */
 "PlacesList.title" = "Лента";
 "PlacesList.toReviews" = "К обзорам";
@@ -181,3 +182,8 @@
 "TrainingType.ice" = "Лёд";
 "TrainingType.gym" = "Зал";
 "TrainingType.unknown" = "Неизв. тип";
+// Finance
+"Finance.Transactions.title" = "Транзакции";
+"Finance.Reports.title" = "Отчеты";
+"Finance.Transactions.addIncome" = "Добавить поступления";
+"Finance.Transactions.addCosts" = "Добавить расходы";

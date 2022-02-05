@@ -39,12 +39,13 @@ class SportUserBuilder: FirebaseObjectBuilder {
     // MARK: - Helper Methods
     
     func build(completionHandler: @escaping () -> Void) {
+        log.debug("SportUserBuilder build")
         if objectIdentifier.isEmpty {
             completionHandler()
             return
         }
-        self.activeBuilders.removeAll()
-        self.activeLoaders.removeAll()
+        activeBuilders.removeAll()
+        activeLoaders.removeAll()
         buildDatabasePart { [weak self] in
             self?.buildStoragePart { [weak self] in
                 guard let self = self else { return }
@@ -59,6 +60,7 @@ class SportUserBuilder: FirebaseObjectBuilder {
     }
     
     private func buildDatabasePart(completionHandler: @escaping () -> Void) {
+        log.debug("SportUserBuilder buildDatabasePart")
         if let snapshot = snapshot {
             if let databasePart = SportUserDatabaseFlowDataImpl(snapshot: snapshot) {
                 self.databasePart = databasePart
@@ -67,9 +69,20 @@ class SportUserBuilder: FirebaseObjectBuilder {
         } else {
             let loader = SportUserDatabaseLoader(objectIdentifier: objectIdentifier)
             activeLoaders["DatabaseLoader"] = loader
-            loader.load { [weak self] data in
-                if let data = data {
-                    self?.databasePart = data
+            loader.load { [weak self] result in
+                switch result {
+                case .success(let databaseObject):
+                    if let databaseObject = databaseObject {
+                        self?.databasePart = databaseObject
+                    }
+                case .failure(let error):
+                    log.debug("SquadBuilder buildDatabasePart: error: \(error)")
+                    switch error {
+                    case .notFound:
+                        self?.databasePart.displayName = "Not defined"
+                    case .other:
+                        fatalError()
+                    }
                 }
                 completionHandler()
             }
@@ -77,6 +90,7 @@ class SportUserBuilder: FirebaseObjectBuilder {
     }
     
     private func buildStoragePart(completionHandler: @escaping () -> Void) {
+        log.debug("SportUserBuilder buildStoragePart")
         guard !databasePart.objectIdentifier.isEmpty,
               !databasePart.imageID.isEmpty else {
                   completionHandler()

@@ -9,7 +9,15 @@ import Firebase
 import RxCocoa
 import RxSwift
 
-protocol AuthManager {
+protocol SaveStateProtocol {
+    func save()
+}
+
+protocol RestoreStateProtocol {
+    func restore() -> ApplicationUser?
+}
+
+protocol AuthManager: SaveStateProtocol, RestoreStateProtocol {
     static var shared: AuthManager { get }
     var current: ApplicationUser? { get set }
     var currentUser: PublishRelay<ApplicationUser> { get }

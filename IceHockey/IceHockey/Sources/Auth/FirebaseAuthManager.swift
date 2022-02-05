@@ -37,6 +37,7 @@ class FirebaseAuthManager: AuthManager {
                 }
                 weakObserver.value?.didChangeUser(user)
                 self.currentUser.accept(user)
+                self.save()
             }
             self.userCreator = nil
         }
@@ -62,6 +63,29 @@ class FirebaseAuthManager: AuthManager {
         if let index = observers.firstIndex(where: { $0.value === observer }) {
             observers.remove(at: index)
         }
+    }
+    
+}
+
+extension FirebaseAuthManager {
+    
+    func save() {
+        log.debug("FirebaseAuthManager save")
+        let encodedData = try? NSKeyedArchiver.archivedData(withRootObject: current as Any, requiringSecureCoding: false)
+        AppState.currentUser.modify(encodedData)
+    }
+    
+    func restore() -> ApplicationUser? {
+        log.debug("FirebaseAuthManager restore")
+        guard let data = AppState.currentUser.value,
+              let unwrapped = data,
+              let object = try? NSKeyedUnarchiver
+                .unarchiveTopLevelObjectWithData(unwrapped) as? ApplicationUser
+        else {
+            return nil
+        }
+        
+        return object
     }
     
 }

@@ -86,6 +86,17 @@ extension AppDelegate {
         UINavigationBar.appearance().barTintColor = Asset.accent1.color
         UINavigationBar.appearance().titleTextAttributes = attrLight
         
+//        if #available(iOS 13, *) {
+//            let appearance = UINavigationBarAppearance()
+//            appearance.backgroundColor = Asset.accent1.color
+////            appearance.tintColor = Asset.other3.color
+////            appearance.barTintColor = Asset.accent1.color
+//            appearance.titleTextAttributes = attrLight
+//            appearance.configureWithOpaqueBackground()
+//            UINavigationBar.appearance().standardAppearance = appearance
+//            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+//        }
+        
     }
     
 }

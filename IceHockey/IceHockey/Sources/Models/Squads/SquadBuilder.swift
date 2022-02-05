@@ -53,9 +53,20 @@ class SquadBuilder {
     private func buildDatabasePart(completionHandler: @escaping () -> Void) {
         let loader = SquadDatabaseLoader(objectIdentifier: objectIdentifier)
         activeLoaders["DatabaseLoader"] = loader
-        loader.load { [weak self] databaseObject in
-            if let databaseObject = databaseObject {
-                self?.databasePart = databaseObject
+        loader.load { [weak self] result in
+            switch result {
+            case .success(let databaseObject):
+                if let databaseObject = databaseObject {
+                    self?.databasePart = databaseObject
+                }
+            case .failure(let error):
+                log.debug("SquadBuilder buildDatabasePart: error: \(error)")
+                switch error {
+                case .notFound:
+                    self?.databasePart.displayName = "Not defined"
+                case .other:
+                    fatalError()
+                }
             }
             completionHandler()
         }

@@ -96,6 +96,7 @@ class HomeViewModel {
 
 extension HomeViewModel: UserObserver {
     func didChangeUser(_ user: ApplicationUser) {
+        log.debug("HomeViewModel didChangeUser: user: \(user)")
         self.user = user
         UserRoleManager().getRole(for: user) { [weak self] role in
             self?.setRightsEventAdditionRelay(role)
@@ -107,6 +108,7 @@ extension HomeViewModel: UserObserver {
 extension HomeViewModel: ClubObserver {
     
     func didChangeTeam(_ club: Club) {
+        log.debug("HomeViewModel didChangeTeam: club: \(club)")
         self.club = club
         shouldClubRefreshRelay()
     }

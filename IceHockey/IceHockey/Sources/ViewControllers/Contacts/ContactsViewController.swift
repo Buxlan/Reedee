@@ -36,7 +36,7 @@ class ContactsViewController: UIViewController {
     private lazy var tableFooterView: EventDetailFooterView = {
         let frame = CGRect(x: 0, y: 0, width: 0, height: 150)
         let view = EventDetailFooterView(frame: frame)
-        view.configure(with: ClubManager.shared.current)
+        view.configure(with: viewModel.club)
         return view
     }()
     
@@ -84,6 +84,7 @@ class ContactsViewController: UIViewController {
     init(club: Club = ClubManager.shared.current) {
         viewModel = ContactsViewModel(club: club)
         super.init(nibName: nil, bundle: nil)
+        
         configureTabBarItem()
     }
     
@@ -147,7 +148,7 @@ class ContactsViewController: UIViewController {
         let dataSource = self.createDataSource()
         tableBase.updateDataSource(dataSource)
         tableBase.setupTable(tableView)
-        viewModel.shouldRefreshRelay = { [weak self] in
+        viewModel.onRefresh = { [weak self] in
             guard let self = self else { return }
             let dataSource = self.createDataSource()
             self.tableBase.updateDataSource(dataSource)
@@ -229,8 +230,11 @@ extension ContactsViewController {
     
     func makeTableSectionSquads() -> TableSection {
         var section = TableSection()
+        guard let club = viewModel.club else {
+            return section
+        }
         var rows: [TableRow] = []
-        for squad in viewModel.club.squads {
+        for squad in club.squads {
             rows.append(makeSquadTableRow(squad: squad))
         }
         section.addRows(rows)
@@ -265,7 +269,7 @@ extension ContactsViewController {
     }
     
     func makeTitleTableRow() -> TableRow {
-        var cellModel = TitleCellModel(text: viewModel.club.displayName)
+        var cellModel = TitleCellModel(text: viewModel.club?.displayName ?? "")
         cellModel.font = Fonts.Medium.body
         let config = EventDetailTitleViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)

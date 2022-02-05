@@ -21,9 +21,9 @@ struct MapCellModel: TableCellModel {
     
     // MARK: - Lifecircle
     
-    init(data: Club) {
-        displayName = data.displayName
-        location = data.location
+    init(data: Club?) {
+        displayName = data?.displayName ?? ""
+        location = data?.location
     }
     
 }

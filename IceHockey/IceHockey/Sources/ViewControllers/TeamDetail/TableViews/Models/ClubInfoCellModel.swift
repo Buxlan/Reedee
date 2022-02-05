@@ -23,10 +23,10 @@ struct ClubInfoCellModel: TableCellModel, TintColorable {
     
     // MARK: - Lifecircle
     
-    init(data: Club) {
-        phone = data.phone
-        address = data.address
-        email = data.email
+    init(data: Club?) {
+        phone = data?.phone ?? ""
+        address = data?.address ?? ""
+        email = data?.email ?? ""
     }
     
 }

@@ -84,7 +84,7 @@ class SettingsViewController: UIViewController {
     
     private func configureViewModel() {
         viewModel.configure()
-        viewModel.shouldTableRefreshRelay = { [weak self] in
+        viewModel.onTableRefresh = { [weak self] in
             guard let self = self else { return }
             let dataSource = self.createDataSource()
             self.tableBase.updateDataSource(dataSource)

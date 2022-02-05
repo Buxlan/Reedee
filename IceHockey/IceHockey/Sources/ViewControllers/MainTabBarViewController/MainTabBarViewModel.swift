@@ -12,6 +12,7 @@ class MainTabBarViewModel {
         case home
         case ourSquads
         case ourContacts
+        case finance
         case profile
         
         init(rawValue: Int) {
@@ -22,6 +23,8 @@ class MainTabBarViewModel {
                 self = .ourSquads
             case 2:
                 self = .ourContacts
+            case 3:
+                self = .finance
             default:
                 self = .profile
             }
@@ -35,6 +38,8 @@ class MainTabBarViewModel {
                 return L10n.Squads.trainingTitle
             case .ourContacts:
                 return L10n.Contacts.title
+            case .finance:
+                return L10n.TabBar.finance
             case .profile:
                 return L10n.Profile.title
             }
@@ -51,6 +56,9 @@ class MainTabBarViewModel {
                     .withRenderingMode(.alwaysTemplate)
             case .ourContacts:
                 return Asset.contacts.image.resizeImage(to: height, aspectRatio: .current)
+                    .withRenderingMode(.alwaysTemplate)
+            case .finance:
+                return Asset.dollar.image.resizeImage(to: height, aspectRatio: .current)
                     .withRenderingMode(.alwaysTemplate)
             case .profile:
                 return Asset.gear.image.resizeImage(to: height, aspectRatio: .current)
@@ -73,6 +81,9 @@ class MainTabBarViewModel {
             case .profile:
                 return Asset.gearFill.image.resizeImage(to: height, aspectRatio: .current)
                     .withRenderingMode(.alwaysTemplate)
+            case .finance:
+                return Asset.dollarFill.image.resizeImage(to: height, aspectRatio: .current)
+                    .withRenderingMode(.alwaysTemplate)
             }
         }
         
@@ -88,6 +99,9 @@ class MainTabBarViewModel {
         items.append(vc)
         
         vc = UINavigationController(rootViewController: ContactsViewController())
+        items.append(vc)
+        
+        vc = UINavigationController(rootViewController: FinanceRouterViewController())
         items.append(vc)
         
         vc = UINavigationController(rootViewController: SettingsViewController())

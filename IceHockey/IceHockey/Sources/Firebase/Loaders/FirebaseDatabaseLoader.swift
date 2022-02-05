@@ -7,6 +7,11 @@
 
 import Firebase
 
+enum DatabaseLoadingDataError: Error {
+    case notFound
+    case other
+}
+
 protocol FirebaseDatabaseLoader: FirebaseLoader {
     associatedtype DataType: SnapshotInitiable
     var objectIdentifier: String { get }
@@ -16,15 +21,19 @@ protocol FirebaseDatabaseLoader: FirebaseLoader {
 
 extension FirebaseDatabaseLoader {
     
-    func load(completionHandler: @escaping (DataType?) -> Void) {
+    func load(completionHandler: @escaping (Result<DataType?, DatabaseLoadingDataError>) -> Void) {
+        log.debug("FirebaseDatabaseLoader load: \(self)")
         guard !objectIdentifier.isEmpty else {
-            completionHandler(nil)
+            completionHandler(.failure(.other))
             return
         }
         databaseQuery.getData { error, snapshot in
-            assert(error == nil && !(snapshot.value is NSNull))
+            guard error == nil && !(snapshot.value is NSNull) else {
+                completionHandler(.failure(.notFound))
+                return
+            }
             let object = DataType(snapshot: snapshot)
-            completionHandler(object)
+            completionHandler(.success(object))
         }
     }
 }

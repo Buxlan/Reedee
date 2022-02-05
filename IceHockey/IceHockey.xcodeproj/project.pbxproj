@@ -279,9 +279,19 @@
 		40F52E5C2733D4AF005BD851 /* MatchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F52E5B2733D4AF005BD851 /* MatchResult.swift */; };
 		40FF308F27341BA000A9E375 /* SportEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FF308E27341BA000A9E375 /* SportEvent.swift */; };
 		40FF3091273437A500A9E375 /* NewsTableCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FF3090273437A500A9E375 /* NewsTableCellModel.swift */; };
+		47C609D527AEF5F3007BE5D9 /* FinanceRouterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609D427AEF5F3007BE5D9 /* FinanceRouterViewController.swift */; };
+		47C609DA27AEF69B007BE5D9 /* FinanceTransactionsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609D727AEF69B007BE5D9 /* FinanceTransactionsButton.swift */; };
+		47C609DB27AEF69B007BE5D9 /* FinanceReportsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609D827AEF69B007BE5D9 /* FinanceReportsButton.swift */; };
+		47C609DC27AEF69B007BE5D9 /* FinanceRouterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609D927AEF69B007BE5D9 /* FinanceRouterButton.swift */; };
+		47C609DE27AEF8D1007BE5D9 /* ResourceUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609DD27AEF8D1007BE5D9 /* ResourceUtil.swift */; };
+		47C609E027AF044F007BE5D9 /* FinanceTransactionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609DF27AF044F007BE5D9 /* FinanceTransactionListViewController.swift */; };
+		47C609E227AF0477007BE5D9 /* FinanceReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609E127AF0477007BE5D9 /* FinanceReportsViewController.swift */; };
+		47C609E627AF093E007BE5D9 /* FinanceTransactionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609E527AF093E007BE5D9 /* FinanceTransactionListViewModel.swift */; };
+		B7D8AC654CBB4343456785E1 /* Pods_IceHockey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8325F396C1FF970B449CCE43 /* Pods_IceHockey.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1CE7F2D19482A84B5EFF9ADA /* Pods-IceHockey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IceHockey.release.xcconfig"; path = "Target Support Files/Pods-IceHockey/Pods-IceHockey.release.xcconfig"; sourceTree = "<group>"; };
 		4007F7E82754F43A0013E348 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		40099B102735B1AF0097B1B7 /* SettingCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCellModel.swift; sourceTree = "<group>"; };
 		400A2AC126E5987B00F13BCF /* SportCoach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCoach.swift; sourceTree = "<group>"; };
@@ -557,6 +567,16 @@
 		40F52E5B2733D4AF005BD851 /* MatchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResult.swift; sourceTree = "<group>"; };
 		40FF308E27341BA000A9E375 /* SportEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportEvent.swift; sourceTree = "<group>"; };
 		40FF3090273437A500A9E375 /* NewsTableCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableCellModel.swift; sourceTree = "<group>"; };
+		47C609D427AEF5F3007BE5D9 /* FinanceRouterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceRouterViewController.swift; sourceTree = "<group>"; };
+		47C609D727AEF69B007BE5D9 /* FinanceTransactionsButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinanceTransactionsButton.swift; sourceTree = "<group>"; };
+		47C609D827AEF69B007BE5D9 /* FinanceReportsButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinanceReportsButton.swift; sourceTree = "<group>"; };
+		47C609D927AEF69B007BE5D9 /* FinanceRouterButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinanceRouterButton.swift; sourceTree = "<group>"; };
+		47C609DD27AEF8D1007BE5D9 /* ResourceUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceUtil.swift; sourceTree = "<group>"; };
+		47C609DF27AF044F007BE5D9 /* FinanceTransactionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTransactionListViewController.swift; sourceTree = "<group>"; };
+		47C609E127AF0477007BE5D9 /* FinanceReportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceReportsViewController.swift; sourceTree = "<group>"; };
+		47C609E527AF093E007BE5D9 /* FinanceTransactionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTransactionListViewModel.swift; sourceTree = "<group>"; };
+		8325F396C1FF970B449CCE43 /* Pods_IceHockey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IceHockey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2B9770323A6212842C2E71D /* Pods-IceHockey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IceHockey.debug.xcconfig"; path = "Target Support Files/Pods-IceHockey/Pods-IceHockey.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -564,6 +584,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7D8AC654CBB4343456785E1 /* Pods_IceHockey.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -847,6 +868,7 @@
 		4065C95A26E853410084E5F2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				47C609D627AEF67D007BE5D9 /* Finance */,
 				40E949BE26ED59A600962590 /* CircularView.swift */,
 				400EB96826F00BFD0026EFB1 /* InsetLabel.swift */,
 				4065C95C26E853500084E5F2 /* CorneredImageView.swift */,
@@ -1073,6 +1095,7 @@
 				406E7C0627232B8800DAD711 /* ImagePickerManager.swift */,
 				406E7C022723105800DAD711 /* ImagePickerManagerChoosableMode.swift */,
 				4032D70227234E9100151A4D /* KeyboardAppearanceManager.swift */,
+				47C609DD27AEF8D1007BE5D9 /* ResourceUtil.swift */,
 				40940BF326E413200098EF89 /* Auth */,
 				409C69E0271CDB0D005434A4 /* OtherProtocols.swift */,
 			);
@@ -1100,7 +1123,8 @@
 		40940C0126E418B10098EF89 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				409525D9275DD472009A330C /* SignUp */,
+				47C609D327AEF5DA007BE5D9 /* Finance */,
+				409525D9275DD472009A330C /* Sign up */,
 				40A91862275D81DE00262BDE /* Sign in */,
 				40A1368527358D25005C0007 /* Settings */,
 				40AE7D6A2734575B00052643 /* MatchResultDetail */,
@@ -1129,13 +1153,13 @@
 			path = MainTabBarViewController;
 			sourceTree = "<group>";
 		};
-		409525D9275DD472009A330C /* SignUp */ = {
+		409525D9275DD472009A330C /* Sign up */ = {
 			isa = PBXGroup;
 			children = (
 				409525DA275DD482009A330C /* SignUpViewController.swift */,
 				409525DC275DD48B009A330C /* SignUpViewModel.swift */,
 			);
-			path = SignUp;
+			path = "Sign up";
 			sourceTree = "<group>";
 		};
 		4098C05826E576A100F0BBE6 /* Shop */ = {
@@ -1401,6 +1425,7 @@
 				40E7203C26E400FE00A64C60 /* IceHockey */,
 				40E7203B26E400FE00A64C60 /* Products */,
 				F04DFA82FC63DB8D9E533CEC /* Pods */,
+				BDCB3E75FEC632B242982B60 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1427,9 +1452,56 @@
 			path = IceHockey;
 			sourceTree = "<group>";
 		};
+		47C609D327AEF5DA007BE5D9 /* Finance */ = {
+			isa = PBXGroup;
+			children = (
+				47C609E427AF08F8007BE5D9 /* TransactionList */,
+				47C609E327AF08EE007BE5D9 /* Router */,
+				47C609E127AF0477007BE5D9 /* FinanceReportsViewController.swift */,
+			);
+			path = Finance;
+			sourceTree = "<group>";
+		};
+		47C609D627AEF67D007BE5D9 /* Finance */ = {
+			isa = PBXGroup;
+			children = (
+				47C609D927AEF69B007BE5D9 /* FinanceRouterButton.swift */,
+				47C609D727AEF69B007BE5D9 /* FinanceTransactionsButton.swift */,
+				47C609D827AEF69B007BE5D9 /* FinanceReportsButton.swift */,
+			);
+			path = Finance;
+			sourceTree = "<group>";
+		};
+		47C609E327AF08EE007BE5D9 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				47C609D427AEF5F3007BE5D9 /* FinanceRouterViewController.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		47C609E427AF08F8007BE5D9 /* TransactionList */ = {
+			isa = PBXGroup;
+			children = (
+				47C609DF27AF044F007BE5D9 /* FinanceTransactionListViewController.swift */,
+				47C609E527AF093E007BE5D9 /* FinanceTransactionListViewModel.swift */,
+			);
+			path = TransactionList;
+			sourceTree = "<group>";
+		};
+		BDCB3E75FEC632B242982B60 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8325F396C1FF970B449CCE43 /* Pods_IceHockey.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F04DFA82FC63DB8D9E533CEC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				E2B9770323A6212842C2E71D /* Pods-IceHockey.debug.xcconfig */,
+				1CE7F2D19482A84B5EFF9ADA /* Pods-IceHockey.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1441,11 +1513,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 40E7204E26E400FF00A64C60 /* Build configuration list for PBXNativeTarget "IceHockey" */;
 			buildPhases = (
+				864CA6DB44DA56F1D2486D7B /* [CP] Check Pods Manifest.lock */,
 				407028E726E4030100C6CE5F /* Lint */,
 				407028E826E4031C00C6CE5F /* Swiftgen */,
 				40E7203626E400FE00A64C60 /* Sources */,
 				40E7203726E400FE00A64C60 /* Frameworks */,
 				40E7203826E400FE00A64C60 /* Resources */,
+				CE1E43139CAB6D052A6B5708 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1547,6 +1621,45 @@
 			shellPath = /bin/sh;
 			shellScript = " ${PODS_ROOT}/SwiftGen/bin/swiftgen config run\n";
 		};
+		864CA6DB44DA56F1D2486D7B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IceHockey-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE1E43139CAB6D052A6B5708 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IceHockey/Pods-IceHockey-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IceHockey/Pods-IceHockey-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IceHockey/Pods-IceHockey-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1566,6 +1679,7 @@
 				40C44181274D54F800F9EC8B /* ClubImpl.swift in Sources */,
 				40A88CB4275516ED007A31C5 /* MatchResultEditViewModel.swift in Sources */,
 				40713A8527204BC4005F1265 /* ContactsViewModel.swift in Sources */,
+				47C609D527AEF5F3007BE5D9 /* FinanceRouterViewController.swift in Sources */,
 				401C9B24270D155C00F91DC6 /* FirebaseManager.swift in Sources */,
 				40AE442127411ECC00BD6506 /* CollectionViewBaseVC.swift in Sources */,
 				400B8F4E272B50B5008A8AFE /* FirebaseObject.swift in Sources */,
@@ -1606,11 +1720,13 @@
 				40940BE126E40C380098EF89 /* OtherExtensions.swift in Sources */,
 				406CE6832723EBEB002FDDB6 /* EditEventPhotoCell + CollectionView.swift in Sources */,
 				409DD42F2735D60F00055FBD /* TableViewBaseVC.swift in Sources */,
+				47C609DA27AEF69B007BE5D9 /* FinanceTransactionsButton.swift in Sources */,
 				40FF3091273437A500A9E375 /* NewsTableCellModel.swift in Sources */,
 				4052F316279CA4C10084C8F9 /* ComponentStyle.swift in Sources */,
 				40E60BC12732F4AE00B31CB5 /* MatchResultTableCell.swift in Sources */,
 				4035DAB927309A0A00AAFDA8 /* SquadHeaderView.swift in Sources */,
 				40A1139127470474001BDD99 /* EventLikesInfo.swift in Sources */,
+				47C609DE27AEF8D1007BE5D9 /* ResourceUtil.swift in Sources */,
 				4052F325279CBE170084C8F9 /* PhoneCode.swift in Sources */,
 				40C3BC75272802C800BBA67F /* EditEventDateCell.swift in Sources */,
 				40C0526427583F6100C1930A /* FirebaseObjectCreator.swift in Sources */,
@@ -1618,9 +1734,11 @@
 				40E70B9A27486E4A0074CD2D /* KeyboardAccessoryDoneView.swift in Sources */,
 				4094E6CA2756C739000737B9 /* ApplicationUserCreator.swift in Sources */,
 				407BB066274BC89E008DF228 /* ClubStorageDataLoader.swift in Sources */,
+				47C609DB27AEF69B007BE5D9 /* FinanceReportsButton.swift in Sources */,
 				4094E6DE272B25A4004ED01B /* TeamTableCell.swift in Sources */,
 				409AFDB72747ADD300AAD62E /* EventDetailPhotoCellModel.swift in Sources */,
 				40781507272CA3D3006D3AD2 /* SportTeamFirebaseSaver.swift in Sources */,
+				47C609E627AF093E007BE5D9 /* FinanceTransactionListViewModel.swift in Sources */,
 				40940BF026E412F40098EF89 /* AuthUserActions.swift in Sources */,
 				40C44190274D559800F9EC8B /* SquadImagesLoader.swift in Sources */,
 				40F4EBE1273DCC28003DA1D3 /* EventDetailUsefulButtonsCellModel.swift in Sources */,
@@ -1629,6 +1747,7 @@
 				4093D9A9271780E000DCF35D /* ApplicationUser.swift in Sources */,
 				40C05260275836F200C1930A /* SquadCreator.swift in Sources */,
 				40C4419F274DD98700F9EC8B /* MatchResultProxy.swift in Sources */,
+				47C609E027AF044F007BE5D9 /* FinanceTransactionListViewController.swift in Sources */,
 				40B5953B275E2FB000FA36B2 /* EmailTextField.swift in Sources */,
 				40C106CC26E41F2800B619A1 /* ContactsViewController.swift in Sources */,
 				40E7203E26E400FE00A64C60 /* AppDelegate.swift in Sources */,
@@ -1675,10 +1794,12 @@
 				4035DAB7273077BE00AAFDA8 /* TrainingScheduleViewModel.swift in Sources */,
 				40B5953D275E312900FA36B2 /* TextFieldModel.swift in Sources */,
 				4032D70327234E9100151A4D /* KeyboardAppearanceManager.swift in Sources */,
+				47C609DC27AEF69B007BE5D9 /* FinanceRouterButton.swift in Sources */,
 				400B8F5D272B6499008A8AFE /* SportSquadFirebaseRemover.swift in Sources */,
 				40E70B98274854680074CD2D /* Like.swift in Sources */,
 				407ACEBA2736A907005D522C /* SportEventCreator.swift in Sources */,
 				40C4417F274D4F6200F9EC8B /* ClubProxy.swift in Sources */,
+				47C609E227AF0477007BE5D9 /* FinanceReportsViewController.swift in Sources */,
 				407BB05C274BA00E008DF228 /* ClubDatabaseLoader.swift in Sources */,
 				409C69E1271CDB0D005434A4 /* OtherProtocols.swift in Sources */,
 				407EF254275CE2F4000F1B76 /* ProfileInfoCellModel.swift in Sources */,
@@ -1969,6 +2090,7 @@
 		};
 		40E7204F26E400FF00A64C60 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2B9770323A6212842C2E71D /* Pods-IceHockey.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1988,6 +2110,7 @@
 		};
 		40E7205026E400FF00A64C60 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1CE7F2D19482A84B5EFF9ADA /* Pods-IceHockey.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

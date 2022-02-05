@@ -11,11 +11,11 @@ struct ContactsModel {
     
 }
 
-struct ContactsViewModel {
+class ContactsViewModel {
     
     // MARK: - Properties
     
-    var club: Club
+    var club: Club?
     
     struct SectionData {
         let squad: Squad
@@ -23,14 +23,35 @@ struct ContactsViewModel {
     }
     var sections: [SectionData] = []
     
-    var shouldRefreshRelay = {}
+    var onRefresh = {}
     
     // MARK: Lifecircle
+    
+    init(club: Club?) {
+        self.club = club
+        if club != nil {
+            update()
+        }
+        ClubManager.shared.addObserver(self)
+    }
+    
+    deinit {
+        ClubManager.shared.removeObserver(self)
+    }
     
     // MARK: - Hepler functions
     
     func update() {
-        
+        onRefresh()
+    }
+    
+}
+
+extension ContactsViewModel: ClubObserver {
+    
+    func didChangeTeam(_ club: Club) {
+        self.club = club
+        update()
     }
     
 }

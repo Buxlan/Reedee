@@ -23,6 +23,7 @@ struct FirebaseObjectFactory {
     func makeSportNews(with objectIdentifier: String,
                        completionHandler: @escaping () -> Void)
     -> SportNews {
+        log.debug("FirebaseObjectFactory makeSportNews")
         let builder = SportNewsBuilder(objectIdentifier: objectIdentifier)
         builder.build(completionHandler: completionHandler)
         let object = builder.getResult()
@@ -32,6 +33,7 @@ struct FirebaseObjectFactory {
     func makeMatchResult(with objectIdentifier: String,
                          completionHandler: @escaping () -> Void)
     -> MatchResult {
+        log.debug("FirebaseObjectFactory makeMatchResult")
         let builder = MatchResultBuilder(objectIdentifier: objectIdentifier)
         builder.build(completionHandler: completionHandler)
         let object = builder.getResult()
@@ -41,6 +43,7 @@ struct FirebaseObjectFactory {
     func makeSquad(with objectIdentifier: String,
                    completionHandler: @escaping () -> Void)
     -> Squad {
+        log.debug("FirebaseObjectFactory makeSquad")
         let builder = SquadBuilder(objectIdentifier: objectIdentifier)
         builder.build(completionHandler: completionHandler)
         let object = builder.getResult()
@@ -58,6 +61,7 @@ struct FirebaseObjectFactory {
     
     func makeWorkoutSchedule(from snapshot: DataSnapshot)
     -> WorkoutSchedule? {
+        log.debug("FirebaseObjectFactory makeWorkoutSchedule")
         let builder = WorkoutScheduleBuilder(snapshot: snapshot)
         builder.build()
         let object = builder.getInstance()
@@ -69,6 +73,7 @@ struct FirebaseObjectFactory {
                                           with completionHandler: @escaping () -> Void)
     -> DataType? {
         
+        log.debug("FirebaseObjectFactory create")
         switch objectType {
         case is SportEvent.Type:
             let factory = SportEventCreator()

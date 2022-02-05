@@ -85,6 +85,7 @@ class MatchResultBuilder: FirebaseObjectBuilder {
     }
     
     private func buildAuthor(completionHandler: @escaping () -> Void) {
+        log.debug("MatchResultBuilder buildAuthor")
         let builder = SportUserBuilder(objectIdentifier: databasePart.authorID)
         activeBuilders["AuthorBuilder"] = builder
         builder.build {

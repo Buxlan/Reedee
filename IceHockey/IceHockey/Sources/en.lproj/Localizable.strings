@@ -30,6 +30,7 @@
 "Auth.authLinkHeader" = "Manage linking between providers";
 "Auth.authLinkFooter" = "Select an unchecked row to link the currently signed in user to that auth provider. To unlink the user from a linked provider, select its corresponding row marked with a checkmark.";
 /* Main tab bar */
+"TabBar.finance" = "Finance";
 /* Place list */
 "PlacesList.title" = "Top";
 "PlacesList.toReviews" = "Go to reviews";
@@ -181,3 +182,8 @@
 "TrainingType.ice" = "Ice";
 "TrainingType.gym" = "Gym";
 "TrainingType.unknown" = "Unknown";
+// Finance
+"Finance.Transactions.title" = "Transactions";
+"Finance.Reports.title" = "Reports";
+"Finance.Transactions.addIncome" = "Add income";
+"Finance.Transactions.addCosts" = "Add costs";

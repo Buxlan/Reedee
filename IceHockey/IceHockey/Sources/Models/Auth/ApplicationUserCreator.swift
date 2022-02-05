@@ -15,6 +15,7 @@ class ApplicationUserCreator {
                 completed completionHandler: @escaping () -> Void)
     -> ApplicationUser {
         
+        log.debug("ApplicationUserCreator create")
         let objectIdentifier = firebaseUser.uid
         let builder = SportUserBuilder(objectIdentifier: objectIdentifier)
         self.builder = builder

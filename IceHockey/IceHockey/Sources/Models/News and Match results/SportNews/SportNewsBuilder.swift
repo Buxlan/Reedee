@@ -35,6 +35,7 @@ class SportNewsBuilder: FirebaseObjectBuilder {
     // MARK: - Helper Methods
     
     func build(completionHandler: @escaping () -> Void) {
+        log.debug("SportNewsBuilder build")
         guard !objectIdentifier.isEmpty else {
             completionHandler()
             return
@@ -62,6 +63,7 @@ class SportNewsBuilder: FirebaseObjectBuilder {
     }
     
     private func buildDatabasePart(completionHandler: @escaping () -> Void) {
+        log.debug("SportNewsBuilder buildDatabasePart")
         if let dict = dict {
             self.databasePart = SportNewsDatabaseFlowDataImpl(key: objectIdentifier, dict: dict)
         }
@@ -69,6 +71,7 @@ class SportNewsBuilder: FirebaseObjectBuilder {
     }
     
     private func buildStoragePart(completionHandler: @escaping () -> Void) {
+        log.debug("SportNewsBuilder buildStoragePart")
         guard !databasePart.objectIdentifier.isEmpty else {
                   completionHandler()
                   return
@@ -85,6 +88,7 @@ class SportNewsBuilder: FirebaseObjectBuilder {
     }
     
     private func buildLikesInfo(completionHandler: @escaping () -> Void) {
+        log.debug("SportNewsBuilder buildLikesInfo")
         let builder = EventLikeInfoBuilder(objectIdentifier: objectIdentifier)
         activeBuilders["LikesInfoBuilder"] = builder
         builder.build {
@@ -94,6 +98,7 @@ class SportNewsBuilder: FirebaseObjectBuilder {
     }
     
     private func buildAuthor(completionHandler: @escaping () -> Void) {
+        log.debug("SportNewsBuilder buildAuthor")
         let builder = SportUserBuilder(objectIdentifier: databasePart.authorID)
         activeBuilders["AuthorBuilder"] = builder
         builder.build {

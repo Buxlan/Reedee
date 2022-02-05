@@ -12,22 +12,10 @@ struct AppState {
                                                                key: "isAppStarted")
     public static let isFirstLaunch = UserDefaultsState<Bool>.init(true,
                                                                    key: "isFirstLaunch")
-    public static let isCallKitUsed = UserDefaultsState<Bool>.init(false,
-                                                                   key: "isCallKitUsed")
     public static let isLoggedIn = UserDefaultsState<Bool>.init(false,
                                                                 key: "isLoggedIn")
-    public static let lastReviewedVersion = UserDefaultsState<String>.init("undefined",
-                                                                           key: "lastReviewedVersion")
-    public static let lastAttemtToReviewDate = UserDefaultsState<Date>.init(nil,
-                                                                            key: "lastAttemtToReviewDate")
     public static let userId = UserDefaultsState<String>.init("undefined",
                                                               key: "userId")
-    public static let server = UserDefaultsState<String>.init(ApplicationContext.shared.theme.getProductionServer(),
-                                                              key: "server")
-    public static let isTestServer = UserDefaultsState<Bool>.init(false,
-                                                                  key: "isTestServer")
-    public static let testServerLabel = UserDefaultsState<String>.init(nil,
-                                                                       key: "testServerLabel")
     public static let systemSettings = UserDefaultsState<SystemSettings>.init(SystemSettings(),
                                                                               key: "systemSettings")
     public static let notificationId = MonitoredState<String>.init(nil,
@@ -43,8 +31,8 @@ struct AppState {
                                                                     key: "phoneCodes")
     public static let isSessionIdSaved = UserDefaultsState<Bool>.init(false,
                                                                       key: "isSessionIdSaved")
-    public static let currentUser = UserDefaultsState<SportUser>.init(nil,
-                                                                          key: "currentPatient")
+    public static let currentUser = UserDefaultsState<Data?>.init(nil,
+                                                                          key: "currentUser")
     public static let fileTypesBlackList = UserDefaultsState<[String]>.init(nil,
                                                                             key: "fileTypesBlackList")
 

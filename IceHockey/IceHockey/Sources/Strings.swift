@@ -184,6 +184,21 @@ internal enum L10n {
     internal static let title = L10n.tr("Localizable", "FavoritePlaces.title")
   }
 
+  internal enum Finance {
+    internal enum Reports {
+      /// Reports
+      internal static let title = L10n.tr("Localizable", "Finance.Reports.title")
+    }
+    internal enum Transactions {
+      /// Add costs
+      internal static let addCosts = L10n.tr("Localizable", "Finance.Transactions.addCosts")
+      /// Add income
+      internal static let addIncome = L10n.tr("Localizable", "Finance.Transactions.addIncome")
+      /// Transactions
+      internal static let title = L10n.tr("Localizable", "Finance.Transactions.title")
+    }
+  }
+
   internal enum HockeyPlayer {
     /// Defender
     internal static let positionDefender = L10n.tr("Localizable", "HockeyPlayer.positionDefender")
@@ -376,6 +391,11 @@ internal enum L10n {
     internal static let player = L10n.tr("Localizable", "Staff.player")
     /// Description
     internal static let playerDescription = L10n.tr("Localizable", "Staff.playerDescription")
+  }
+
+  internal enum TabBar {
+    /// Finance
+    internal static let finance = L10n.tr("Localizable", "TabBar.finance")
   }
 
   internal enum Team {
