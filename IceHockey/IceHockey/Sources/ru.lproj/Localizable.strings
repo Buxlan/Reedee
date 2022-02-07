@@ -185,5 +185,12 @@
 // Finance
 "Finance.Transactions.title" = "Транзакции";
 "Finance.Reports.title" = "Отчеты";
+"Finance.Transactions.selectAction" = "Выберите действие";
 "Finance.Transactions.addIncome" = "Добавить поступления";
 "Finance.Transactions.addCosts" = "Добавить расходы";
+"Finance.Transactions.income" = "Поступления";
+"Finance.Transactions.costs" = "Расходы";
+"Finance.Transactions.amount" = "Сумма (необязательно)";
+"Common.next" = "Далее";
+"Common.confirm" = "Подтвердить";
+"Common.remain" = "Остаток";

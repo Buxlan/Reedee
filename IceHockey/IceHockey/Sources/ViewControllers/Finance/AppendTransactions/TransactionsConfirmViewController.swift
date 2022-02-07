@@ -1,64 +1,22 @@
 //
-//  FinanceTransactionListViewController.swift
+//  TransactionsConfirmViewController.swift
 //  IceHockey
 //
-//  Created by Sergey Bush bushmakin@outlook.com on 05.02.2022.
+//  Created by Sergey Bush bushmakin@outlook.com on 06.02.2022.
 //
 
 import SnapKit
 import FirebaseDatabase
 
-class FinanceTransactionListViewController: UIViewController {
+class TransactionsConfirmViewController: UIViewController {
     
     // MARK: - Properties
     
-    var tableBase = TableViewBase()
-    var viewModel = FinanceTransactionListViewModel()
+    var onNext = {}
+    var viewModel: TransactionsConfirmViewModel
     
-    private lazy var alert: UIAlertController = {
-        let controller = UIAlertController(title: L10n.Finance.Transactions.selectAction,
-                                           message: nil,
-                                           preferredStyle: .actionSheet)
-        let incomeAction = UIAlertAction(title: L10n.Finance.Transactions.addIncome, style: .default) { _ in
-            let vc = AppendTransactionsStepByStepViewController(type: .income)
-            vc.modalPresentationStyle = .pageSheet
-            vc.modalTransitionStyle = .crossDissolve
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-        let costsAction = UIAlertAction(title: L10n.Finance.Transactions.addCosts, style: .default) { _ in
-            let vc = AppendTransactionsStepByStepViewController(type: .cost)
-            vc.modalPresentationStyle = .pageSheet
-            vc.modalTransitionStyle = .crossDissolve
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-        let cancelAction = UIAlertAction(title: L10n.Other.cancel, style: .cancel) { _ in
-        }
-        controller.addAction(incomeAction)
-        controller.addAction(costsAction)
-        controller.addAction(cancelAction)
-        
-        return controller
-    }()
-    
-    private lazy var appendEventImage: UIImage = {
-        Asset.plus.image
-            .resizeImage(to: 32, aspectRatio: .current)
-            .withRenderingMode(.alwaysTemplate)
-    }()
-    
-    private lazy var appendEventButton: UIButton = {
-        let view = UIButton()
-        view.accessibilityIdentifier = "appendEventButton"
-        view.backgroundColor = Asset.accent1.color
-        view.tintColor = Asset.other3.color
-        view.addTarget(self, action: #selector(appendEventHandle), for: .touchUpInside)
-        view.setImage(appendEventImage, for: .normal)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 16
-        view.contentEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
-        view.isHidden = false
-        return view
-    }()
+    private var type: TransactionType
+    private var tableBase = TableViewBase()
     
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
@@ -80,14 +38,26 @@ class FinanceTransactionListViewController: UIViewController {
         return view
     }()
     
-    private lazy var tableFooterView: TransactionListTableFooterView = {
+    private lazy var tableFooterView: TransactionConfirmTableFooterView = {
         let frame = CGRect(x: 0, y: 0, width: 0, height: 80)
-        let view = TransactionListTableFooterView(frame: frame)
-        view.configure(amount: 0.0)
+        let view = TransactionConfirmTableFooterView(frame: frame)
+        view.onConfirm = { [weak self] in
+            self?.onNext()
+        }
         return view
     }()
         
     // MARK: - Lifecircle
+    
+    init(type: TransactionType, viewModel: TransactionsConfirmViewModel) {
+        self.type = type
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         view.backgroundColor = Asset.accent1.color
@@ -107,7 +77,6 @@ class FinanceTransactionListViewController: UIViewController {
     private func configureUI() {
         view.backgroundColor = Asset.accent1.color
         view.addSubview(tableView)
-        view.addSubview(appendEventButton)
     }
     
     private func configureConstraints() {
@@ -116,12 +85,6 @@ class FinanceTransactionListViewController: UIViewController {
             make.bottom.equalTo(view.layoutMarginsGuide.snp.bottom)
             make.leading.equalTo(view.snp.leading)
             make.trailing.equalTo(view.snp.trailing)
-        }
-        
-        appendEventButton.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-32)
-            make.bottom.equalTo(view.layoutMarginsGuide.snp.bottom).offset(-32)
-            make.width.height.equalTo(44)
         }
     }
     
@@ -144,7 +107,6 @@ class FinanceTransactionListViewController: UIViewController {
             self.tableBase.updateDataSource(dataSource)
             self.tableView.reloadData()
         }
-        viewModel.update()
         
         tableBase.setupTable(tableView)
         let dataSource = createDataSource()
@@ -155,7 +117,7 @@ class FinanceTransactionListViewController: UIViewController {
 
 // MARK: Table view configuring
 
-extension FinanceTransactionListViewController {
+extension TransactionsConfirmViewController {
     
     func createDataSource() -> TableDataSource {
         let sections = makeTableSections()
@@ -171,7 +133,7 @@ extension FinanceTransactionListViewController {
     
 }
 
-extension FinanceTransactionListViewController {
+extension TransactionsConfirmViewController {
     
     func makeTableSectionTransactions() -> TableSection {
         
@@ -184,38 +146,20 @@ extension FinanceTransactionListViewController {
         let rows = viewModel.sections[0].transactions.map { transaction in
             makeTransactionTableRow(transaction: transaction)
         }
-        
+
         section.addRows(rows)
         return section
     }
-    
-}
 
-extension FinanceTransactionListViewController {
-    
     func makeTransactionTableRow(transaction: FinanceTransaction) -> TableRow {
         let cellModel = TransactionCellModel(transaction: transaction)
         let config = TransactionViewConfigurator(data: cellModel)
-        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
+        let row = TableRow(rowId: Swift.type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         row.action = { [weak self] indexPath in
-            guard let self = self else {
-                return
-            }
-            self.tableView.deselectRow(at: indexPath, animated: true)
-            let balance = self.viewModel.getBalance(number: transaction.number)
-            self.tableFooterView.configure(amount: balance)
+            self?.tableView.deselectRow(at: indexPath, animated: true)
+            fatalError()
         }
         return row
-    }
-    
-}
-
-// MARK: - Actions
-
-extension FinanceTransactionListViewController {
-    
-    @objc private func appendEventHandle() {
-        present(alert, animated: true)
     }
     
 }

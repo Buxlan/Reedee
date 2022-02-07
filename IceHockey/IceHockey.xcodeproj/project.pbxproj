@@ -279,6 +279,9 @@
 		40F52E5C2733D4AF005BD851 /* MatchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F52E5B2733D4AF005BD851 /* MatchResult.swift */; };
 		40FF308F27341BA000A9E375 /* SportEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FF308E27341BA000A9E375 /* SportEvent.swift */; };
 		40FF3091273437A500A9E375 /* NewsTableCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FF3090273437A500A9E375 /* NewsTableCellModel.swift */; };
+		470C215427B07B58002198E1 /* TransactionConfirmTableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C215327B07B58002198E1 /* TransactionConfirmTableFooterView.swift */; };
+		470C215627B08203002198E1 /* FinanceTransactionUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C215527B08203002198E1 /* FinanceTransactionUploader.swift */; };
+		470C215827B09321002198E1 /* TransactionListTableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C215727B09321002198E1 /* TransactionListTableFooterView.swift */; };
 		47C609D527AEF5F3007BE5D9 /* FinanceRouterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609D427AEF5F3007BE5D9 /* FinanceRouterViewController.swift */; };
 		47C609DA27AEF69B007BE5D9 /* FinanceTransactionsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609D727AEF69B007BE5D9 /* FinanceTransactionsButton.swift */; };
 		47C609DB27AEF69B007BE5D9 /* FinanceReportsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609D827AEF69B007BE5D9 /* FinanceReportsButton.swift */; };
@@ -287,6 +290,20 @@
 		47C609E027AF044F007BE5D9 /* FinanceTransactionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609DF27AF044F007BE5D9 /* FinanceTransactionListViewController.swift */; };
 		47C609E227AF0477007BE5D9 /* FinanceReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609E127AF0477007BE5D9 /* FinanceReportsViewController.swift */; };
 		47C609E627AF093E007BE5D9 /* FinanceTransactionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609E527AF093E007BE5D9 /* FinanceTransactionListViewModel.swift */; };
+		47C609EA27AF1060007BE5D9 /* TransactionTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609E927AF1060007BE5D9 /* TransactionTableCell.swift */; };
+		47C609EC27AF1085007BE5D9 /* TransactionCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609EB27AF1085007BE5D9 /* TransactionCellModel.swift */; };
+		47C609EF27AF15C5007BE5D9 /* TransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609EE27AF15C5007BE5D9 /* TransactionType.swift */; };
+		47C609F127AF1655007BE5D9 /* FinanceTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609F027AF1655007BE5D9 /* FinanceTransaction.swift */; };
+		47C609F327AF21A8007BE5D9 /* FinanceTransactionListLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609F227AF21A8007BE5D9 /* FinanceTransactionListLoader.swift */; };
+		47C609F527AF2466007BE5D9 /* FinanceTransactionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609F427AF2466007BE5D9 /* FinanceTransactionCreator.swift */; };
+		47C609F727AF24C8007BE5D9 /* FinanceTransactionDatabaseFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609F627AF24C8007BE5D9 /* FinanceTransactionDatabaseFlowData.swift */; };
+		47C609F927AF28D4007BE5D9 /* FinanceTransactionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609F827AF28D4007BE5D9 /* FinanceTransactionBuilder.swift */; };
+		47C609FB27AF2985007BE5D9 /* FinanceTransactionProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609FA27AF2985007BE5D9 /* FinanceTransactionProxy.swift */; };
+		47C609FE27AF3F7F007BE5D9 /* AppendTransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609FD27AF3F7F007BE5D9 /* AppendTransactionsViewController.swift */; };
+		47C60A0027AFFAA2007BE5D9 /* AppendTransactionsStepByStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609FF27AFFAA2007BE5D9 /* AppendTransactionsStepByStepViewController.swift */; };
+		47C60A0227AFFC57007BE5D9 /* TransactionsConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C60A0127AFFC57007BE5D9 /* TransactionsConfirmViewController.swift */; };
+		47C60A0427B006E8007BE5D9 /* TransactionsConfirmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C60A0327B006E8007BE5D9 /* TransactionsConfirmViewModel.swift */; };
+		47C60A0627B0110C007BE5D9 /* AppendTransactionsStepByStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C60A0527B0110C007BE5D9 /* AppendTransactionsStepByStepViewModel.swift */; };
 		B7D8AC654CBB4343456785E1 /* Pods_IceHockey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8325F396C1FF970B449CCE43 /* Pods_IceHockey.framework */; };
 /* End PBXBuildFile section */
 
@@ -567,6 +584,9 @@
 		40F52E5B2733D4AF005BD851 /* MatchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResult.swift; sourceTree = "<group>"; };
 		40FF308E27341BA000A9E375 /* SportEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportEvent.swift; sourceTree = "<group>"; };
 		40FF3090273437A500A9E375 /* NewsTableCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableCellModel.swift; sourceTree = "<group>"; };
+		470C215327B07B58002198E1 /* TransactionConfirmTableFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConfirmTableFooterView.swift; sourceTree = "<group>"; };
+		470C215527B08203002198E1 /* FinanceTransactionUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTransactionUploader.swift; sourceTree = "<group>"; };
+		470C215727B09321002198E1 /* TransactionListTableFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListTableFooterView.swift; sourceTree = "<group>"; };
 		47C609D427AEF5F3007BE5D9 /* FinanceRouterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceRouterViewController.swift; sourceTree = "<group>"; };
 		47C609D727AEF69B007BE5D9 /* FinanceTransactionsButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinanceTransactionsButton.swift; sourceTree = "<group>"; };
 		47C609D827AEF69B007BE5D9 /* FinanceReportsButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinanceReportsButton.swift; sourceTree = "<group>"; };
@@ -575,6 +595,20 @@
 		47C609DF27AF044F007BE5D9 /* FinanceTransactionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTransactionListViewController.swift; sourceTree = "<group>"; };
 		47C609E127AF0477007BE5D9 /* FinanceReportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceReportsViewController.swift; sourceTree = "<group>"; };
 		47C609E527AF093E007BE5D9 /* FinanceTransactionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTransactionListViewModel.swift; sourceTree = "<group>"; };
+		47C609E927AF1060007BE5D9 /* TransactionTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableCell.swift; sourceTree = "<group>"; };
+		47C609EB27AF1085007BE5D9 /* TransactionCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCellModel.swift; sourceTree = "<group>"; };
+		47C609EE27AF15C5007BE5D9 /* TransactionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionType.swift; sourceTree = "<group>"; };
+		47C609F027AF1655007BE5D9 /* FinanceTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTransaction.swift; sourceTree = "<group>"; };
+		47C609F227AF21A8007BE5D9 /* FinanceTransactionListLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTransactionListLoader.swift; sourceTree = "<group>"; };
+		47C609F427AF2466007BE5D9 /* FinanceTransactionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTransactionCreator.swift; sourceTree = "<group>"; };
+		47C609F627AF24C8007BE5D9 /* FinanceTransactionDatabaseFlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTransactionDatabaseFlowData.swift; sourceTree = "<group>"; };
+		47C609F827AF28D4007BE5D9 /* FinanceTransactionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTransactionBuilder.swift; sourceTree = "<group>"; };
+		47C609FA27AF2985007BE5D9 /* FinanceTransactionProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTransactionProxy.swift; sourceTree = "<group>"; };
+		47C609FD27AF3F7F007BE5D9 /* AppendTransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppendTransactionsViewController.swift; sourceTree = "<group>"; };
+		47C609FF27AFFAA2007BE5D9 /* AppendTransactionsStepByStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppendTransactionsStepByStepViewController.swift; sourceTree = "<group>"; };
+		47C60A0127AFFC57007BE5D9 /* TransactionsConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsConfirmViewController.swift; sourceTree = "<group>"; };
+		47C60A0327B006E8007BE5D9 /* TransactionsConfirmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsConfirmViewModel.swift; sourceTree = "<group>"; };
+		47C60A0527B0110C007BE5D9 /* AppendTransactionsStepByStepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppendTransactionsStepByStepViewModel.swift; sourceTree = "<group>"; };
 		8325F396C1FF970B449CCE43 /* Pods_IceHockey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IceHockey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B9770323A6212842C2E71D /* Pods-IceHockey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IceHockey.debug.xcconfig"; path = "Target Support Files/Pods-IceHockey/Pods-IceHockey.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1051,6 +1085,7 @@
 		40940BE626E40C4F0098EF89 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				47C609ED27AF15B6007BE5D9 /* Finance */,
 				4052F323279CBE060084C8F9 /* Util */,
 				40C4417D274D49C400F9EC8B /* Squads */,
 				40AE442427411F1F00BD6506 /* News and Match results */,
@@ -1452,9 +1487,18 @@
 			path = IceHockey;
 			sourceTree = "<group>";
 		};
+		470C215227B07B38002198E1 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				470C215327B07B58002198E1 /* TransactionConfirmTableFooterView.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
 		47C609D327AEF5DA007BE5D9 /* Finance */ = {
 			isa = PBXGroup;
 			children = (
+				47C609FC27AF3F4B007BE5D9 /* AppendTransactions */,
 				47C609E427AF08F8007BE5D9 /* TransactionList */,
 				47C609E327AF08EE007BE5D9 /* Router */,
 				47C609E127AF0477007BE5D9 /* FinanceReportsViewController.swift */,
@@ -1483,10 +1527,57 @@
 		47C609E427AF08F8007BE5D9 /* TransactionList */ = {
 			isa = PBXGroup;
 			children = (
+				47C609E727AF0FF9007BE5D9 /* TableView */,
 				47C609DF27AF044F007BE5D9 /* FinanceTransactionListViewController.swift */,
 				47C609E527AF093E007BE5D9 /* FinanceTransactionListViewModel.swift */,
 			);
 			path = TransactionList;
+			sourceTree = "<group>";
+		};
+		47C609E727AF0FF9007BE5D9 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				47C609E827AF1022007BE5D9 /* CellModels */,
+				47C609E927AF1060007BE5D9 /* TransactionTableCell.swift */,
+				470C215727B09321002198E1 /* TransactionListTableFooterView.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		47C609E827AF1022007BE5D9 /* CellModels */ = {
+			isa = PBXGroup;
+			children = (
+				47C609EB27AF1085007BE5D9 /* TransactionCellModel.swift */,
+			);
+			path = CellModels;
+			sourceTree = "<group>";
+		};
+		47C609ED27AF15B6007BE5D9 /* Finance */ = {
+			isa = PBXGroup;
+			children = (
+				47C609EE27AF15C5007BE5D9 /* TransactionType.swift */,
+				47C609F027AF1655007BE5D9 /* FinanceTransaction.swift */,
+				47C609FA27AF2985007BE5D9 /* FinanceTransactionProxy.swift */,
+				47C609F227AF21A8007BE5D9 /* FinanceTransactionListLoader.swift */,
+				47C609F427AF2466007BE5D9 /* FinanceTransactionCreator.swift */,
+				47C609F627AF24C8007BE5D9 /* FinanceTransactionDatabaseFlowData.swift */,
+				47C609F827AF28D4007BE5D9 /* FinanceTransactionBuilder.swift */,
+				470C215527B08203002198E1 /* FinanceTransactionUploader.swift */,
+			);
+			path = Finance;
+			sourceTree = "<group>";
+		};
+		47C609FC27AF3F4B007BE5D9 /* AppendTransactions */ = {
+			isa = PBXGroup;
+			children = (
+				470C215227B07B38002198E1 /* TableView */,
+				47C609FF27AFFAA2007BE5D9 /* AppendTransactionsStepByStepViewController.swift */,
+				47C60A0527B0110C007BE5D9 /* AppendTransactionsStepByStepViewModel.swift */,
+				47C609FD27AF3F7F007BE5D9 /* AppendTransactionsViewController.swift */,
+				47C60A0127AFFC57007BE5D9 /* TransactionsConfirmViewController.swift */,
+				47C60A0327B006E8007BE5D9 /* TransactionsConfirmViewModel.swift */,
+			);
+			path = AppendTransactions;
 			sourceTree = "<group>";
 		};
 		BDCB3E75FEC632B242982B60 /* Frameworks */ = {
@@ -1680,6 +1771,7 @@
 				40A88CB4275516ED007A31C5 /* MatchResultEditViewModel.swift in Sources */,
 				40713A8527204BC4005F1265 /* ContactsViewModel.swift in Sources */,
 				47C609D527AEF5F3007BE5D9 /* FinanceRouterViewController.swift in Sources */,
+				47C609F527AF2466007BE5D9 /* FinanceTransactionCreator.swift in Sources */,
 				401C9B24270D155C00F91DC6 /* FirebaseManager.swift in Sources */,
 				40AE442127411ECC00BD6506 /* CollectionViewBaseVC.swift in Sources */,
 				400B8F4E272B50B5008A8AFE /* FirebaseObject.swift in Sources */,
@@ -1689,6 +1781,7 @@
 				40713A7D27204A51005F1265 /* EditEventViewModel.swift in Sources */,
 				406C306826F8F2320040F0A7 /* QuickActionsCollectionLayout.swift in Sources */,
 				4056F2322729D61B00DD75CA /* SportEventFirebaseSaver.swift in Sources */,
+				47C609F327AF21A8007BE5D9 /* FinanceTransactionListLoader.swift in Sources */,
 				40C4418A274D559800F9EC8B /* SquadBuilder.swift in Sources */,
 				407BB05A274B9E83008DF228 /* Coord.swift in Sources */,
 				406E3147272B08F900C2B30F /* TeamListViewController.swift in Sources */,
@@ -1696,6 +1789,7 @@
 				406CE68A2723EDE6002FDDB6 /* EditEventPhotoCollectionViewLayout.swift in Sources */,
 				40429BB3274AC0D400DAD070 /* WorkoutScheduleListLoader.swift in Sources */,
 				406AF0E826F7BDF9005C9767 /* QuickActionsCollectionView.swift in Sources */,
+				47C609F927AF28D4007BE5D9 /* FinanceTransactionBuilder.swift in Sources */,
 				40C9E91E2746AB36009B0417 /* FirebaseObjectFactory.swift in Sources */,
 				40F4EBD8273D9A80003DA1D3 /* EventDetailUserView.swift in Sources */,
 				40C106D726E4202600B619A1 /* Log.swift in Sources */,
@@ -1729,11 +1823,13 @@
 				47C609DE27AEF8D1007BE5D9 /* ResourceUtil.swift in Sources */,
 				4052F325279CBE170084C8F9 /* PhoneCode.swift in Sources */,
 				40C3BC75272802C800BBA67F /* EditEventDateCell.swift in Sources */,
+				47C60A0627B0110C007BE5D9 /* AppendTransactionsStepByStepViewModel.swift in Sources */,
 				40C0526427583F6100C1930A /* FirebaseObjectCreator.swift in Sources */,
 				40429BBE274AE5A200DAD070 /* DayOfWeek.swift in Sources */,
 				40E70B9A27486E4A0074CD2D /* KeyboardAccessoryDoneView.swift in Sources */,
 				4094E6CA2756C739000737B9 /* ApplicationUserCreator.swift in Sources */,
 				407BB066274BC89E008DF228 /* ClubStorageDataLoader.swift in Sources */,
+				47C60A0427B006E8007BE5D9 /* TransactionsConfirmViewModel.swift in Sources */,
 				47C609DB27AEF69B007BE5D9 /* FinanceReportsButton.swift in Sources */,
 				4094E6DE272B25A4004ED01B /* TeamTableCell.swift in Sources */,
 				409AFDB72747ADD300AAD62E /* EventDetailPhotoCellModel.swift in Sources */,
@@ -1754,6 +1850,7 @@
 				4065C96026E854C00084E5F2 /* CorneredView.swift in Sources */,
 				40B82EC7273835D100BED0A1 /* ShareButton.swift in Sources */,
 				400B8F56272B5DAE008A8AFE /* TeamDetailViewModel.swift in Sources */,
+				47C609EA27AF1060007BE5D9 /* TransactionTableCell.swift in Sources */,
 				4052F302279CA1D20084C8F9 /* AppState.swift in Sources */,
 				409DD42D2735D43500055FBD /* TableDataSource.swift in Sources */,
 				407BB05E274BA6D0008DF228 /* ClubBuilder.swift in Sources */,
@@ -1767,6 +1864,7 @@
 				40C106BF26E41E4800B619A1 /* Utils.swift in Sources */,
 				40A6321F272DF7160017F6FE /* SportTeamAnnotation.swift in Sources */,
 				4055FCDC26E816D900E5BB79 /* CellConfigurator.swift in Sources */,
+				47C609FB27AF2985007BE5D9 /* FinanceTransactionProxy.swift in Sources */,
 				40AE442A274123AA00BD6506 /* PhotoCellModel.swift in Sources */,
 				40DEC8B42718D083008A59A8 /* SportEventType.swift in Sources */,
 				4011D8952739C83200D092B9 /* MatchResultFirebaseRemover.swift in Sources */,
@@ -1807,6 +1905,7 @@
 				406E314B272B0A2B00C2B30F /* TeamListViewModel.swift in Sources */,
 				40429BC0274AE5D600DAD070 /* TrainingType.swift in Sources */,
 				4075F1C627220E1500BEA63A /* EditEventBoldTextCell.swift in Sources */,
+				470C215827B09321002198E1 /* TransactionListTableFooterView.swift in Sources */,
 				4052F314279CA47A0084C8F9 /* AppTheme.swift in Sources */,
 				404C028B26EFDE1800CFAF3F /* ShadowCorneredView.swift in Sources */,
 				40A91868275D827D00262BDE /* Colors.swift in Sources */,
@@ -1827,6 +1926,7 @@
 				40A1368727358D33005C0007 /* SettingsViewController.swift in Sources */,
 				4085A31E27201D6400CB560E /* EventDetailCopyrightView.swift in Sources */,
 				4057FB5827326994002E2BBE /* OurSquadsTitleTextViewCell.swift in Sources */,
+				47C60A0227AFFC57007BE5D9 /* TransactionsConfirmViewController.swift in Sources */,
 				4085A3222720216C00CB560E /* EventDetailTitleView.swift in Sources */,
 				4052F322279CBC6A0084C8F9 /* NotificationConfig.swift in Sources */,
 				40369EBA26E6DB490083E675 /* EventDetailViewController.swift in Sources */,
@@ -1842,6 +1942,7 @@
 				40A4464926E409D900129B89 /* Assets.swift in Sources */,
 				4063EAED271EE7E700B6B8C7 /* EventDetailUsefulButtonsView.swift in Sources */,
 				40781509272CA408006D3AD2 /* NewSportTeamFirebaseSaver.swift in Sources */,
+				47C609F127AF1655007BE5D9 /* FinanceTransaction.swift in Sources */,
 				407A62192737D59B00558998 /* MatchResultEditCell.swift in Sources */,
 				4085A31B27201BDC00CB560E /* EventDetailBoldTextView.swift in Sources */,
 				4063EAE9271EE2A100B6B8C7 /* EventDetailPhotoCollectionViewLayout.swift in Sources */,
@@ -1878,6 +1979,7 @@
 				40B208CB2744F701009B769C /* SportNewsDatabaseFlowData.swift in Sources */,
 				40429BAB274A81AC00DAD070 /* TitleCellModel.swift in Sources */,
 				40940BE826E40D450098EF89 /* Club.swift in Sources */,
+				470C215427B07B58002198E1 /* TransactionConfirmTableFooterView.swift in Sources */,
 				4052F305279CA2060084C8F9 /* MonitoredState.swift in Sources */,
 				40772C0C273B3E98006CD549 /* NewTrainingScheduleFirebaseSaver.swift in Sources */,
 				40E3115B2752EA4A00A5C24F /* SportNewsProxy.swift in Sources */,
@@ -1898,6 +2000,7 @@
 				40E85C5A27403E6E00AB37A7 /* SaveCellModel.swift in Sources */,
 				401C9B11270D04BF00F91DC6 /* ViewControllerCoordinator.swift in Sources */,
 				4065C95526E84E990084E5F2 /* NewsTableCell.swift in Sources */,
+				47C609EF27AF15C5007BE5D9 /* TransactionType.swift in Sources */,
 				40F4EBDF273DCBBD003DA1D3 /* TextCellModel.swift in Sources */,
 				40940BEE26E412F40098EF89 /* AuthSection.swift in Sources */,
 				40ADABED273C47F4008AAC90 /* TrainingCellModel.swift in Sources */,
@@ -1908,12 +2011,14 @@
 				40ADABE9273C4517008AAC90 /* SquadHeaderCellModel.swift in Sources */,
 				40C44199274DBE5200F9EC8B /* SportUserDatabaseLoader.swift in Sources */,
 				40C44195274D8CE800F9EC8B /* SportEventProxy.swift in Sources */,
+				47C609FE27AF3F7F007BE5D9 /* AppendTransactionsViewController.swift in Sources */,
 				40F4EBE5273DD7FE003DA1D3 /* EventDetailUserCellModel.swift in Sources */,
 				40C0526227583AAC00C1930A /* ClubCreator.swift in Sources */,
 				401C9B21270D139800F91DC6 /* MainViewControllerCoordinator.swift in Sources */,
 				407A621B2737D5C400558998 /* MatchResultEditCellModel.swift in Sources */,
 				40E7204026E400FE00A64C60 /* SceneDelegate.swift in Sources */,
 				40772C08273B2B74006CD549 /* WorkoutSchedule.swift in Sources */,
+				47C609EC27AF1085007BE5D9 /* TransactionCellModel.swift in Sources */,
 				40099B112735B1AF0097B1B7 /* SettingCellModel.swift in Sources */,
 				40B82ED52738BCFB00BED0A1 /* MatchResultFirebaseSaver.swift in Sources */,
 				40369EC626E6E33C0083E675 /* ActionsTableCell + CollectionView.swift in Sources */,
@@ -1921,7 +2026,9 @@
 				406CE68D27241926002FDDB6 /* EditEventPhotoViewModel.swift in Sources */,
 				407BC11B273BCF4400A6D580 /* FirebaseLoader.swift in Sources */,
 				40D899B5274FC997007DFC52 /* DataSnapshotsCollection + Iterator.swift in Sources */,
+				47C609F727AF24C8007BE5D9 /* FinanceTransactionDatabaseFlowData.swift in Sources */,
 				40821D07274CD965009F79F7 /* ClubManager.swift in Sources */,
+				470C215627B08203002198E1 /* FinanceTransactionUploader.swift in Sources */,
 				4052F312279CA45A0084C8F9 /* ApplicationContext.swift in Sources */,
 				40C44191274D559800F9EC8B /* SquadDatabaseLoader.swift in Sources */,
 				40A63221272DFD5F0017F6FE /* MKMapViewExtension.swift in Sources */,
@@ -1935,6 +2042,7 @@
 				40E949BC26ED54BF00962590 /* ScrollingPageControl.swift in Sources */,
 				407F48B2273C9A6000C96B28 /* Fonts.swift in Sources */,
 				409DD4312735E12A00055FBD /* SettingTableCell.swift in Sources */,
+				47C60A0027AFFAA2007BE5D9 /* AppendTransactionsStepByStepViewController.swift in Sources */,
 				4094E6CC2756DAF3000737B9 /* FirebaseObjectBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -72,6 +72,15 @@ internal enum L10n {
     }
   }
 
+  internal enum Common {
+    /// Confirm
+    internal static let confirm = L10n.tr("Localizable", "Common.confirm")
+    /// Next
+    internal static let next = L10n.tr("Localizable", "Common.next")
+    /// Remain
+    internal static let remain = L10n.tr("Localizable", "Common.remain")
+  }
+
   internal enum Contacts {
     /// About club
     internal static let tabBarItemTitle = L10n.tr("Localizable", "Contacts.tabBarItemTitle")
@@ -194,6 +203,14 @@ internal enum L10n {
       internal static let addCosts = L10n.tr("Localizable", "Finance.Transactions.addCosts")
       /// Add income
       internal static let addIncome = L10n.tr("Localizable", "Finance.Transactions.addIncome")
+      /// Amount (not requiered)
+      internal static let amount = L10n.tr("Localizable", "Finance.Transactions.amount")
+      /// Costs
+      internal static let costs = L10n.tr("Localizable", "Finance.Transactions.costs")
+      /// Income
+      internal static let income = L10n.tr("Localizable", "Finance.Transactions.income")
+      /// Select action
+      internal static let selectAction = L10n.tr("Localizable", "Finance.Transactions.selectAction")
       /// Transactions
       internal static let title = L10n.tr("Localizable", "Finance.Transactions.title")
     }

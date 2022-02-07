@@ -37,6 +37,12 @@ class FinanceRouterViewController: UIViewController {
         return view
     }()
     
+    private lazy var topBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = Asset.accent1.color
+        return view
+    }()
+    
     // MARK: - Lifecircle
     
     override func viewDidLoad() {
@@ -44,6 +50,7 @@ class FinanceRouterViewController: UIViewController {
         
         view.backgroundColor = Colors.Gray.light
         
+        view.addSubview(topBackgroundView)
         view.addSubview(transactionsButton)
         view.addSubview(reportsButton)
         
@@ -63,6 +70,13 @@ class FinanceRouterViewController: UIViewController {
 extension FinanceRouterViewController {
     
     private func configureConstraints() {
+        
+        topBackgroundView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(view.snp.top)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.top).offset(-4)
+            make.width.equalToSuperview()
+        }
         
         transactionsButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()

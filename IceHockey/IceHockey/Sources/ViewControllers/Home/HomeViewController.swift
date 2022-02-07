@@ -272,6 +272,8 @@ extension HomeViewController {
     
 }
 
+// MARK: - Actions
+
 extension HomeViewController {
     
     @objc private func handleAppendEvent() {

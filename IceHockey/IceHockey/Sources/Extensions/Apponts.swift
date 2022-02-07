@@ -26,6 +26,7 @@ enum Fonts {
     enum Bold {
         static let body = FontFamily.Roboto.bold.font(size: 14)
         static let subhead = FontFamily.Roboto.bold.font(size: 16)
+        static let title = FontFamily.Roboto.bold.font(size: 20)
     }
     
 }

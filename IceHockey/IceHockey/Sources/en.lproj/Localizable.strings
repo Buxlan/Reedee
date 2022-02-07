@@ -185,5 +185,12 @@
 // Finance
 "Finance.Transactions.title" = "Transactions";
 "Finance.Reports.title" = "Reports";
+"Finance.Transactions.selectAction" = "Select action";
 "Finance.Transactions.addIncome" = "Add income";
 "Finance.Transactions.addCosts" = "Add costs";
+"Finance.Transactions.income" = "Income";
+"Finance.Transactions.costs" = "Costs";
+"Finance.Transactions.amount" = "Amount (not requiered)";
+"Common.next" = "Next";
+"Common.confirm" = "Confirm";
+"Common.remain" = "Remain";

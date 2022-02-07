@@ -111,3 +111,8 @@ typealias MapViewConfigurator = CollectionViewConfigurator<MapTableCell,
 
 typealias SquadViewConfigurator = CollectionViewConfigurator<SquadTableCell,
                                                              SquadCellModel>
+
+// Finance
+typealias TransactionViewConfigurator = CollectionViewConfigurator<TransactionTableCell,
+                                                                   TransactionCellModel>
+
