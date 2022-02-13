@@ -50,7 +50,7 @@ class FinanceTransactionListViewModel {
             return
         }
         loader.flush()
-        let eventListCompletionHandler: ([FinanceTransaction]) -> Void = { [weak self] objects in
+        let objectListCompletionHandler: ([FinanceTransaction]) -> Void = { [weak self] objects in
             guard let self = self,
                   objects.count > 0 else {
                 return
@@ -60,12 +60,12 @@ class FinanceTransactionListViewModel {
             self.sections = [section]
             self.shouldTableRefresh()
         }
-        let eventLoadedCompletionHandler: () -> Void = { [weak self] in
+        let objectLoadedCompletionHandler: () -> Void = { [weak self] in
             guard let self = self else { return }
             self.shouldTableRefresh()
         }
-        loader.load(eventListCompletionHandler: eventListCompletionHandler,
-                    eventLoadedCompletionHandler: eventLoadedCompletionHandler)
+        loader.load(objectListCompletionHandler: objectListCompletionHandler,
+                    objectLoadedCompletionHandler: objectLoadedCompletionHandler)
     }
     
     func nextUpdate() {
@@ -73,18 +73,18 @@ class FinanceTransactionListViewModel {
             return
         }
         print("updateNextPortion")
-        let eventListCompletionHandler: ([FinanceTransaction]) -> Void = { [weak self] objects in
+        let objectListCompletionHandler: ([FinanceTransaction]) -> Void = { [weak self] objects in
             guard let self = self else { return }
             assert(self.sections.count > 0)
             self.sections[0].transactions.append(contentsOf: objects)
             self.shouldTableRefresh()
         }
-        let eventLoadedCompletionHandler: () -> Void = { [weak self] in
+        let objectLoadedCompletionHandler: () -> Void = { [weak self] in
             guard let self = self else { return }
             self.shouldTableRefresh()
         }
-        loader.load(eventListCompletionHandler: eventListCompletionHandler,
-                    eventLoadedCompletionHandler: eventLoadedCompletionHandler)
+        loader.load(objectListCompletionHandler: objectListCompletionHandler,
+                    objectLoadedCompletionHandler: objectLoadedCompletionHandler)
     }
     
     func getBalance(number: String) -> Double {

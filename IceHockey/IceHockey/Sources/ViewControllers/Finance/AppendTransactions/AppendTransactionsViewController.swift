@@ -15,36 +15,13 @@ class AppendTransactionsViewController: UIViewController {
     // MARK: - Properties
     
     static let str = """
-    1    Бушмакин Егор    14 300 Взнос
-    2    Валиуллин Айман    88 300
-    3    Вилков Александр    28 300
-    4    Дзодзуашвили Георгий    30
-    5    Егоров Михаил    15
-    6    Иванов Дима    21
-    7    Ишимов Марк    27
-    8    Климонов Даниил    17
-    9    Колесниченко Константин    55
-    10    Круглов Иван    31
-    11    Кудимов Дмитрий    5
-    12    Курьянов Вселовод    1
-    13    Кутейкин Владимир    45
-    14    Лабунский Филипп    11
-    15    Магнев Даниил    9
-    16    Манько Платон    43
-    17    Моисеев Максим    13
-    18    Москвитин Федор    7
-    19    Плугин Виктор    10
-    20    Погонченков Геннадий    3
-    21    Пшенко Марк    22
-    22    Румянцев Дмитрий    99
-    23    Сидоренко Даниил    78
-    24    Фатхтдинов Артём    19
-    25    Шаталов Егор    8
+    1    ФИО    #Номер    Сумма    Комментарий
     """
     
     var onNext = {}
     var text: String = AppendTransactionsViewController.str
     var amount: Double = 0.0
+    var comment: String = ""
     
     private var disposeBag = DisposeBag()
     
@@ -53,13 +30,32 @@ class AppendTransactionsViewController: UIViewController {
     private lazy var amountTextField: UITextField = {
         let view = UITextField()
         view.delegate = self
-        view.placeholder = L10n.Finance.Transactions.amount
         view.textColor = .black
         view.backgroundColor = .white
         view.autocorrectionType = .no
         view.autocapitalizationType = .none
         view.layer.cornerRadius = 6
-        view.keyboardType = .numberPad
+        view.inputAccessoryView = keyboardAccessoryView
+        view.attributedPlaceholder = NSAttributedString(
+            string: L10n.Finance.Transactions.amountPlaceholer,
+            attributes: [NSAttributedString.Key.foregroundColor: Colors.Gray.dark]
+        )
+        return view
+    }()
+    
+    private lazy var commentTextField: UITextField = {
+        let view = UITextField()
+        view.delegate = self
+        view.textColor = .black
+        view.backgroundColor = .white
+        view.autocorrectionType = .no
+        view.autocapitalizationType = .none
+        view.layer.cornerRadius = 6
+        view.inputAccessoryView = keyboardAccessoryView
+        view.attributedPlaceholder = NSAttributedString(
+            string: L10n.Finance.Transactions.commentPlaceholder,
+            attributes: [NSAttributedString.Key.foregroundColor: Colors.Gray.dark]
+        )
         return view
     }()
     
@@ -74,6 +70,7 @@ class AppendTransactionsViewController: UIViewController {
         view.font = Fonts.Regular.subhead
         view.backgroundColor = .white
         view.delegate = self
+        view.inputAccessoryView = keyboardAccessoryView
         return view
     }()
     
@@ -87,6 +84,15 @@ class AppendTransactionsViewController: UIViewController {
         view.addTarget(self, action: #selector(onNextHandle), for: .touchUpInside)
         return view
     }()
+    
+    private var keyboardAccessoryView: DoneKeyboardAccessoryView = {
+        let width = UIScreen.main.bounds.width
+        let frame = CGRect(x: 0, y: 0, width: width, height: 44)
+        let view = DoneKeyboardAccessoryView(frame: frame)
+        return view
+    }()
+    
+    private var keyboardManager = KeyboardAppearanceManager()
     
     // MARK: - Lifecircle
     
@@ -105,6 +111,7 @@ class AppendTransactionsViewController: UIViewController {
         view.backgroundColor = Colors.Gray.light
         
         view.addSubview(amountTextField)
+        view.addSubview(commentTextField)
         view.addSubview(nextButton)
         view.addSubview(transactionsTextView)
         
@@ -119,6 +126,13 @@ class AppendTransactionsViewController: UIViewController {
                 }
             }).disposed(by: disposeBag)
         
+        commentTextField.rx.text
+            .orEmpty
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] value in
+                self?.comment = value
+            }).disposed(by: disposeBag)
+        
         transactionsTextView.text = text
         transactionsTextView.rx.text
             .orEmpty
@@ -126,6 +140,9 @@ class AppendTransactionsViewController: UIViewController {
             .subscribe(onNext: { [weak self] value in
                 self?.text = value
             }).disposed(by: disposeBag)
+        
+        keyboardAccessoryView.doneButton.addTarget(self, action: #selector(handleDoneButton), for: .touchUpInside)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -144,21 +161,28 @@ extension AppendTransactionsViewController {
         
         amountTextField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(8)
+            make.width.equalToSuperview().offset(-32)
+            make.height.equalTo(40)
+        }
+        
+        commentTextField.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(amountTextField.snp.bottom).offset(8)
             make.width.equalToSuperview().offset(-32)
             make.height.equalTo(40)
         }
         
         transactionsTextView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(amountTextField.snp.bottom).offset(16)
+            make.top.equalTo(commentTextField.snp.bottom).offset(8)
             make.width.equalToSuperview().offset(-32)
-            make.bottom.equalTo(nextButton.snp.top).offset(-16)
+            make.bottom.equalTo(nextButton.snp.top).offset(-8)
         }
         
         nextButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.snp.centerY).offset(16)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-8)
             make.width.equalTo(120)
             make.height.equalTo(44)
         }
@@ -177,27 +201,28 @@ extension AppendTransactionsViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
     }
     
-    private func navigateToTransactionsViewController() {
-        let vc = FinanceTransactionListViewController()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    private func navigateToReportsViewController() {
-        let vc = FinanceReportsViewController()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
 }
 
 // MARK: - Text field delegate
 
 extension AppendTransactionsViewController: UITextFieldDelegate {
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.becomeFirstResponder()
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if let _ = Double(string) {
-            return true
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case amountTextField:
+            commentTextField.becomeFirstResponder()
+        default:
+            transactionsTextView.becomeFirstResponder()
         }
-        return false
+        return true
     }
     
 }
@@ -206,10 +231,17 @@ extension AppendTransactionsViewController: UITextFieldDelegate {
 
 extension AppendTransactionsViewController: UITextViewDelegate {
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        DispatchQueue.main.async {
+            textView.becomeFirstResponder()
+            textView.selectAll(self)
+        }
+    }
+    
     func textView(_ textView: UITextView, shouldInteractWith textAttachment: NSTextAttachment, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         return true
     }
-    
+
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         return true
     }
@@ -222,6 +254,15 @@ extension AppendTransactionsViewController {
     
     @objc private func onNextHandle() {
         onNext()
+    }
+    
+    @objc private func handleDoneButton() {
+        view.subviews.forEach { (view) in
+            if view.isFirstResponder {
+                view.resignFirstResponder()
+                return
+            }
+        }
     }
     
 }

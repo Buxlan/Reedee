@@ -13,6 +13,17 @@ class TransactionTableCell: UITableViewCell {
     
     var data: DataType?
     
+    private var isInterfaceConfigured = false
+    
+    private lazy var orderLabel: UILabel = {
+        let view = UILabel()
+        view.accessibilityIdentifier = "orderLabel"
+        view.numberOfLines = 1
+        view.textAlignment = .left
+        view.font = Fonts.Regular.subhead
+        return view
+    }()
+    
     private lazy var nameLabel: UILabel = {
         let view = UILabel()
         view.accessibilityIdentifier = "nameLabel"
@@ -24,7 +35,7 @@ class TransactionTableCell: UITableViewCell {
     
     private lazy var numberLabel: UILabel = {
         let view = UILabel()
-        view.accessibilityIdentifier = "nameLabel"
+        view.accessibilityIdentifier = "numberLabel"
         view.numberOfLines = 1
         view.textAlignment = .left
         view.font = Fonts.Bold.subhead
@@ -33,7 +44,7 @@ class TransactionTableCell: UITableViewCell {
     
     private lazy var amountLabel: UILabel = {
         let view = UILabel()
-        view.accessibilityIdentifier = "nameLabel"
+        view.accessibilityIdentifier = "amountLabel"
         view.numberOfLines = 1
         view.textAlignment = .left
         view.font = Fonts.Bold.title
@@ -42,7 +53,7 @@ class TransactionTableCell: UITableViewCell {
     
     private lazy var commentLabel: UILabel = {
         let view = UILabel()
-        view.accessibilityIdentifier = "nameLabel"
+        view.accessibilityIdentifier = "commentLabel"
         view.numberOfLines = 1
         view.textAlignment = .left
         view.font = Fonts.Regular.body
@@ -77,36 +88,47 @@ class TransactionTableCell: UITableViewCell {
     // MARK: - Helper functions
     
     func configureUI() {
+        
+        configureViewHierarchy()
+        
         if let data = data {
-            nameLabel.text = data.name
+            
+            orderLabel.text = "\(data.order)"
+            orderLabel.textColor = data.textColor
+            orderLabel.font = data.font
+            
+            nameLabel.text = data.transaction.name
             nameLabel.textColor = data.textColor
             nameLabel.font = data.font
             
-            numberLabel.text = data.number
+            numberLabel.text = data.transaction.number
             numberLabel.textColor = data.textColor
             numberLabel.font = data.font
             
-            amountLabel.text = "\(data.amount)"
+            amountLabel.text = "\(data.transaction.amount)"
             amountLabel.textColor = data.textColor
             amountLabel.font = data.font
             
-            commentLabel.text = "\(data.comment)"
+            commentLabel.text = "\(data.transaction.comment)"
             commentLabel.textColor = data.textColor
             commentLabel.font = data.font
             
-            typeImageView.image = data.type.image.withRenderingMode(.alwaysTemplate)
+            typeImageView.image = data.transaction.type.image.withRenderingMode(.alwaysTemplate)
             
-            typeImageView.tintColor = data.type == .income ? .green : .red
+            typeImageView.tintColor = data.transaction.type == .income ? .green : .red
             
             contentView.backgroundColor = data.backgroundColor
+            
+            orderLabel.isHidden = !data.isShowOrder
+            setTypeImageViewConstraints()
         }
-        configureViewHierarchy()
     }
     
     private func configureViewHierarchy() {
         guard contentView.subviews.isEmpty else {
             return
         }
+        contentView.addSubview(orderLabel)
         contentView.addSubview(nameLabel)
         contentView.addSubview(numberLabel)
         contentView.addSubview(amountLabel)
@@ -116,40 +138,67 @@ class TransactionTableCell: UITableViewCell {
     }
     
     private func configureConstraints() {
+        
         nameLabel.snp.makeConstraints { make in
             make.leading.equalTo(typeImageView.snp.trailing).offset(16)
             make.trailing.equalTo(amountLabel.snp.leading).offset(-8).priority(500)
-            make.top.equalToSuperview().offset(8)
-            make.height.equalTo(24)
+            make.top.equalToSuperview().offset(16)
+            make.height.equalTo(16)
         }
         
         numberLabel.snp.makeConstraints { make in
             make.leading.equalTo(typeImageView.snp.trailing).offset(16)
             make.trailing.equalTo(amountLabel.snp.leading).offset(-8).priority(500)
             make.top.equalTo(nameLabel.snp.bottom).offset(4)
-            make.height.equalTo(24)
+            make.height.equalTo(16)
         }
         
         commentLabel.snp.makeConstraints { make in
             make.leading.equalTo(typeImageView.snp.trailing).offset(16)
             make.trailing.equalTo(amountLabel.snp.leading).offset(-8).priority(500)
             make.top.equalTo(numberLabel.snp.bottom).offset(4)
-            make.height.equalTo(24)
-            make.bottom.equalToSuperview().offset(-8)
+            make.bottom.equalToSuperview().offset(-16)
+            make.height.equalTo(16)
         }
         
         amountLabel.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-8)
             make.width.equalTo(80)
             make.centerY.equalToSuperview()
+            make.height.equalTo(16)
         }
         
-        typeImageView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(15)
-            make.centerY.equalToSuperview()
-            make.height.equalTo(32)
-            make.width.equalTo(32)
+        orderLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(typeImageView)
+            make.top.equalToSuperview().offset(16)
+            make.height.equalTo(16)
+            make.width.equalTo(16)
         }
+        
+        setTypeImageViewConstraints()
+    }
+    
+    private func setTypeImageViewConstraints() {
+        
+        switch orderLabel.isHidden {
+        case true:
+            typeImageView.snp.removeConstraints()
+            typeImageView.snp.makeConstraints { make in
+                make.leading.equalToSuperview().offset(15)
+                make.centerY.equalToSuperview()
+                make.height.equalTo(24)
+                make.width.equalTo(24)
+            }
+         case false:
+            typeImageView.snp.removeConstraints()
+            typeImageView.snp.makeConstraints { make in
+                make.leading.equalToSuperview().offset(15)
+                make.top.equalTo(orderLabel.snp.bottom).offset(8)
+                make.height.equalTo(24)
+                make.width.equalTo(24)
+            }
+        }
+        
     }
     
 }

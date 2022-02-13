@@ -46,7 +46,7 @@ internal enum L10n {
     internal static let authProvidersTitle = L10n.tr("Localizable", "Auth.authProvidersTitle")
     /// Email & Password login
     internal static let emailPasswordSignIn = L10n.tr("Localizable", "Auth.emailPasswordSignIn")
-    /// Email
+    /// Your e-mail
     internal static let emailPlaceholder = L10n.tr("Localizable", "Auth.emailPlaceholder")
     /// Login with Facebook
     internal static let facebookSignIn = L10n.tr("Localizable", "Auth.facebookSignIn")
@@ -56,13 +56,15 @@ internal enum L10n {
     internal static let forgotPassword = L10n.tr("Localizable", "Auth.forgotPassword")
     /// Sign in with Google
     internal static let googleSignIn = L10n.tr("Localizable", "Auth.googleSignIn")
-    /// Password
+    /// Your Password
     internal static let passwordPlaceholder = L10n.tr("Localizable", "Auth.passwordPlaceholder")
+    /// Repeat your password
+    internal static let repeatPasswordPlaceholder = L10n.tr("Localizable", "Auth.repeatPasswordPlaceholder")
     /// Sign up now
     internal static let signUp = L10n.tr("Localizable", "Auth.signUp")
     /// Joining us allow to share you own essay about variable places...
     internal static let title = L10n.tr("Localizable", "Auth.title")
-    /// Username
+    /// Your username
     internal static let usernamePlaceholder = L10n.tr("Localizable", "Auth.usernamePlaceholder")
     internal enum Buttons {
       /// Login
@@ -75,6 +77,8 @@ internal enum L10n {
   internal enum Common {
     /// Confirm
     internal static let confirm = L10n.tr("Localizable", "Common.confirm")
+    /// Export
+    internal static let export = L10n.tr("Localizable", "Common.export")
     /// Next
     internal static let next = L10n.tr("Localizable", "Common.next")
     /// Remain
@@ -194,6 +198,10 @@ internal enum L10n {
   }
 
   internal enum Finance {
+    /// Balance
+    internal static let balance = L10n.tr("Localizable", "Finance.balance")
+    /// Balance for export
+    internal static let exportBalance = L10n.tr("Localizable", "Finance.exportBalance")
     internal enum Reports {
       /// Reports
       internal static let title = L10n.tr("Localizable", "Finance.Reports.title")
@@ -204,7 +212,9 @@ internal enum L10n {
       /// Add income
       internal static let addIncome = L10n.tr("Localizable", "Finance.Transactions.addIncome")
       /// Amount (not requiered)
-      internal static let amount = L10n.tr("Localizable", "Finance.Transactions.amount")
+      internal static let amountPlaceholer = L10n.tr("Localizable", "Finance.Transactions.amountPlaceholer")
+      /// Comment (not requiered)
+      internal static let commentPlaceholder = L10n.tr("Localizable", "Finance.Transactions.commentPlaceholder")
       /// Costs
       internal static let costs = L10n.tr("Localizable", "Finance.Transactions.costs")
       /// Income
@@ -382,6 +392,11 @@ internal enum L10n {
   internal enum SignIn {
     /// Login
     internal static let title = L10n.tr("Localizable", "SignIn.title")
+  }
+
+  internal enum SignUp {
+    /// Sign up
+    internal static let title = L10n.tr("Localizable", "SignUp.title")
   }
 
   internal enum Squads {

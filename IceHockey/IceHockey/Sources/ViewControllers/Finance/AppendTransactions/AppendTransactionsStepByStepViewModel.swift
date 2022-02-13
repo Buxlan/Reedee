@@ -11,7 +11,7 @@ struct AppendTransactionsStepByStepViewModel {
     
     let type: TransactionType
     
-    let pattern = "^[0-9]*[.]{0,1}\\s*(?<name>[А-Яа-я]*\\s*[А-Яа-я]*)\\s*(?<number>[#]*\\d+)\\s*(?<amount>[\\d.]*)\\s*(?<comment>[А-Яа-я\\d]*)$"
+    let pattern = "^[0-9]*[.]{0,1}[\\s;:]*(?<name>[А-Яа-я]*\\s*[А-Яа-я]*)[\\s;:]*(?<number>[#]*\\d+)[\\s;:]*(?<amount>[\\d.]*)[\\s;:]*(?<comment>[А-Яа-я+\\d\\s]*)$"
     
     func isTextValid(_ text: String) -> Bool {
         return true

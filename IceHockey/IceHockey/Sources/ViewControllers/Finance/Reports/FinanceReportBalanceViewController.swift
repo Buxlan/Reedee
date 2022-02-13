@@ -1,21 +1,18 @@
 //
-//  TransactionsConfirmViewController.swift
+//  FinanceReportBalanceViewController.swift
 //  IceHockey
 //
-//  Created by Sergey Bush bushmakin@outlook.com on 06.02.2022.
+//  Created by Sergey Bush bushmakin@outlook.com on 05.02.2022.
 //
 
 import SnapKit
-import FirebaseDatabase
 
-class TransactionsConfirmViewController: UIViewController {
+class FinanceReportBalanceViewController: UIViewController {
     
     // MARK: - Properties
     
-    var onNext = {}
-    var viewModel: TransactionsConfirmViewModel
+    var viewModel = FinanceBalanceViewModel()
     
-    private var type: TransactionType
     private var tableBase = TableViewBase()
     
     private lazy var tableView: UITableView = {
@@ -38,20 +35,24 @@ class TransactionsConfirmViewController: UIViewController {
         return view
     }()
     
-    private lazy var tableFooterView: TransactionConfirmTableFooterView = {
-        let frame = CGRect(x: 0, y: 0, width: 0, height: 80)
-        let view = TransactionConfirmTableFooterView(frame: frame)
-        view.onConfirm = { [weak self] in
-            self?.onNext()
+    private lazy var tableFooterView: FinanceBalanceExportTableFooterView = {
+        let frame = CGRect(x: 0,
+                           y: 0,
+                           width: 0,
+                           height: FinanceBalanceExportTableFooterView.height)
+        let view = FinanceBalanceExportTableFooterView(frame: frame)
+        view.onAction = { [weak self] in
+            let vc = FinanceTextReportViewController()
+            vc.text = self?.viewModel.exportBalance() ?? ""
+            vc.modalTransitionStyle = .crossDissolve
+            self?.navigationController?.pushViewController(vc, animated: true)
         }
         return view
     }()
         
     // MARK: - Lifecircle
     
-    init(type: TransactionType, viewModel: TransactionsConfirmViewModel) {
-        self.type = type
-        self.viewModel = viewModel
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -94,7 +95,7 @@ class TransactionsConfirmViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        title = L10n.Finance.Transactions.title
+        title = L10n.Finance.balance
         navigationController?.setToolbarHidden(true, animated: false)
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -111,13 +112,14 @@ class TransactionsConfirmViewController: UIViewController {
         tableBase.setupTable(tableView)
         let dataSource = createDataSource()
         tableBase.updateDataSource(dataSource)
+        viewModel.update()
     }
     
 }
 
 // MARK: Table view configuring
 
-extension TransactionsConfirmViewController {
+extension FinanceReportBalanceViewController {
     
     func createDataSource() -> TableDataSource {
         let sections = makeTableSections()
@@ -130,11 +132,7 @@ extension TransactionsConfirmViewController {
             makeTableSectionTransactions()
         ]
     }
-    
-}
 
-extension TransactionsConfirmViewController {
-    
     func makeTableSectionTransactions() -> TableSection {
         
         var section = TableSection()
@@ -153,7 +151,8 @@ extension TransactionsConfirmViewController {
         return section
     }
 
-    func makeTransactionTableRow(transaction: FinanceTransaction, order: Int) -> TableRow {
+    func makeTransactionTableRow(transaction: FinanceTransaction, order: Int)
+    -> TableRow {
         let cellModel = TransactionCellModel(transaction: transaction, isShowOrder: true, order: order)
         let config = TransactionViewConfigurator(data: cellModel)
         let row = TableRow(rowId: Swift.type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)

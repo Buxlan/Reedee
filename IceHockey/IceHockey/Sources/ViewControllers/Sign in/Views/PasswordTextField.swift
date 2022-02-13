@@ -49,17 +49,28 @@ class PasswordTextField: UITextField {
 
 extension PasswordTextField {
     
-    typealias DataType = TextFieldModel
+    typealias DataType = TextInputCellModel
     func configure(data: DataType) {
-        placeholder = data.placeholderText
+        text = data.value
         backgroundColor = data.backgroundColor
         font = data.font
         tintColor = data.tintColor
-        let attributes: [NSAttributedString.Key: Any] = [
+        textColor = data.textColor
+        let attr: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.foregroundColor: data.tintColor,
             NSAttributedString.Key.font: data.font
         ]
-        attributedPlaceholder = NSAttributedString(string: data.placeholderText,
-                                                   attributes: attributes)
+        if data.placeholderText.isEmpty,
+            let placeholder = placeholder {
+            attributedPlaceholder = NSAttributedString(
+                string: placeholder,
+                attributes: attr
+            )
+        } else if !data.placeholderText.isEmpty {
+            attributedPlaceholder = NSAttributedString(
+                string: data.placeholderText,
+                attributes: attr
+            )
+        }
     }
 }

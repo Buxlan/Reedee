@@ -26,14 +26,16 @@ class SignUpViewController: UIViewController {
         view.rowHeight = UITableView.automaticDimension
         view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = false
-        view.register(SettingTableCell.self,
-                      forCellReuseIdentifier: SettingViewConfigurator.reuseIdentifier)
-        view.register(ProfileInfoTableCell.self,
-                      forCellReuseIdentifier: ProfileInfoViewConfigurator.reuseIdentifier)
-        view.register(TitleHeaderView.self,
-                      forHeaderFooterViewReuseIdentifier: AuthHeaderViewConfigurator.reuseIdentifier)
+        view.register(LoginInputTableCell.self,
+                      forCellReuseIdentifier: LoginInputViewConfigurator.reuseIdentifier)
+        view.register(EmailInputTableCell.self,
+                      forCellReuseIdentifier: EmailInputViewConfigurator.reuseIdentifier)
+        view.register(PasswordInputTableCell.self,
+                      forCellReuseIdentifier: PasswordInputViewConfigurator.reuseIdentifier)
+        view.register(ConfigurableButtonTableCell.self,
+                      forCellReuseIdentifier: ConfigurableButtonViewConfigurator.reuseIdentifier)
         if #available(iOS 15.0, *) {
-            view.sectionHeaderTopPadding = 0
+            view.sectionHeaderTopPadding = 10
         }
         return view
     }()
@@ -77,7 +79,7 @@ class SignUpViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        title = L10n.Settings.navigationBarTitle
+        title = L10n.SignUp.title
         navigationController?.setToolbarHidden(true, animated: false)
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -98,6 +100,8 @@ class SignUpViewController: UIViewController {
     
 }
 
+// MARK: - Table view configure
+
 extension SignUpViewController {
     
     func createDataSource() -> TableDataSource {
@@ -108,53 +112,26 @@ extension SignUpViewController {
     
     private func makeTableSections() -> [TableSection] {
         return [
-            makeTableSectionMainInfo(),
-            makeTableSectionAuth(),
-            makeTableSectionOperations()
+            makeTableSection()
         ]
     }
-    
-}
-
-extension SignUpViewController {
-    
-    func makeTableSectionMainInfo() -> TableSection {
+   
+    func makeTableSection() -> TableSection {
         var section = TableSection()
-        let rows = [
-            makeProfileInfoTableRow()
-        ]
-        section.addRows(rows)
-        return section
-    }
-    
-    func makeTableSectionAuth() -> TableSection {
-        var section = TableSection()
-        let model = AuthHeaderModel(title: L10n.Profile.authSectionTitle)
-        let config = AuthHeaderViewConfigurator(data: model)
-        section.headerConfig = config
-        section.headerHeight = 50
-        section.headerViewId = type(of: config).reuseIdentifier
+//        let model = AuthHeaderModel(title: L10n.Profile.authSectionTitle)
+//        let config = AuthHeaderViewConfigurator(data: model)
+//        section.headerConfig = config
+//        section.headerHeight = 50
+//        section.headerViewId = type(of: config).reuseIdentifier
         
         let rows = [
-            makeSignUpTableRow(),
-            makeSignInTableRow(),
-            makeLogoutTableRow()
+            makeLoginTableRow(),
+            makeEmailTableRow(),
+            makePasswordTableRow(),
+            makeRepeatPasswordTableRow(),
+            makeSignUpButtonTableRow()
         ]
         section.addRows(rows)
-        return section
-    }
-    
-    func makeTableSectionOperations() -> TableSection {
-        var section = TableSection()
-        let model = AuthHeaderModel(title: L10n.Profile.operationsSectionTitle)
-        let config = AuthHeaderViewConfigurator(data: model)
-        section.headerConfig = config
-        section.headerHeight = 50
-        section.headerViewId = type(of: config).reuseIdentifier
-        
-        let newEventRow = makeEventTableRow(),
-            newMatchResultRow = makeMatchResultTableRow()
-        section.addRows([newEventRow, newMatchResultRow])
         return section
     }
     
@@ -162,11 +139,9 @@ extension SignUpViewController {
 
 extension SignUpViewController {
     
-    func makeSignUpTableRow() -> TableRow {
-        let setting = Setting.signUp
-        let cellModel = SettingCellModel(title: setting.description,
-                                         hasDisclosure: setting.hasDisclosure)
-        let config = SettingViewConfigurator(data: cellModel)
+    func makeLoginTableRow() -> TableRow {
+        let cellModel = TextInputCellModel(value: "")
+        let config = LoginInputViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         row.action = { [weak self] indexPath in
             self?.tableView.deselectRow(at: indexPath, animated: true)
@@ -175,11 +150,9 @@ extension SignUpViewController {
         return row
     }
     
-    func makeLogoutTableRow() -> TableRow {
-        let setting = Setting.logout
-        let cellModel = SettingCellModel(title: setting.description,
-                                         hasDisclosure: setting.hasDisclosure)
-        let config = SettingViewConfigurator(data: cellModel)
+    func makeEmailTableRow() -> TableRow {
+        let cellModel = TextInputCellModel(value: "")
+        let config = EmailInputViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         row.action = { [weak self] indexPath in
             self?.tableView.deselectRow(at: indexPath, animated: true)
@@ -188,29 +161,9 @@ extension SignUpViewController {
         return row
     }
     
-    func makeSignInTableRow() -> TableRow {
-        let setting = Setting.signIn
-        let cellModel = SettingCellModel(title: setting.description,
-                                         hasDisclosure: setting.hasDisclosure)
-        let config = SettingViewConfigurator(data: cellModel)
-        let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
-        row.action = { [weak self] indexPath in
-            self?.tableView.deselectRow(at: indexPath, animated: true)
-            let vc = SignInViewController()
-            vc.modalTransitionStyle = .crossDissolve
-            self?.navigationController?.pushViewController(vc, animated: true)
-        }
-        return row
-    }
-        
-    func makeProfileInfoTableRow() -> TableRow {
-        var cellModel: ProfileInfoCellModel
-        if let user = viewModel.user {
-            cellModel = ProfileInfoCellModel(user: user)
-        } else {
-            cellModel = ProfileInfoCellModel()
-        }
-        let config = ProfileInfoViewConfigurator(data: cellModel)
+    func makePasswordTableRow() -> TableRow {
+        let cellModel = TextInputCellModel(value: "")
+        let config = PasswordInputViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         row.action = { [weak self] indexPath in
             self?.tableView.deselectRow(at: indexPath, animated: true)
@@ -219,11 +172,10 @@ extension SignUpViewController {
         return row
     }
     
-    func makeEventTableRow() -> TableRow {
-        let setting = Setting.newEvent
-        let cellModel = SettingCellModel(title: setting.description,
-                                         hasDisclosure: setting.hasDisclosure)
-        let config = SettingViewConfigurator(data: cellModel)
+    func makeRepeatPasswordTableRow() -> TableRow {
+        let cellModel = TextInputCellModel(value: "",
+                                           placeholderText: L10n.Auth.repeatPasswordPlaceholder)
+        let config = PasswordInputViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         row.action = { [weak self] indexPath in
             self?.tableView.deselectRow(at: indexPath, animated: true)
@@ -232,11 +184,9 @@ extension SignUpViewController {
         return row
     }
     
-    func makeMatchResultTableRow() -> TableRow {
-        let setting = Setting.newMatchResult
-        let cellModel = SettingCellModel(title: setting.description,
-                                         hasDisclosure: setting.hasDisclosure)
-        let config = SettingViewConfigurator(data: cellModel)
+    func makeSignUpButtonTableRow() -> TableRow {
+        let cellModel = ButtonCellModel(text: L10n.Auth.signUp)
+        let config = ConfigurableButtonViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
         row.action = { [weak self] indexPath in
             self?.tableView.deselectRow(at: indexPath, animated: true)

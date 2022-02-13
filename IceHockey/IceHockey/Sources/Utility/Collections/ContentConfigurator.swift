@@ -116,3 +116,16 @@ typealias SquadViewConfigurator = CollectionViewConfigurator<SquadTableCell,
 typealias TransactionViewConfigurator = CollectionViewConfigurator<TransactionTableCell,
                                                                    TransactionCellModel>
 
+// Sign up
+
+typealias LoginInputViewConfigurator = CollectionViewConfigurator<LoginInputTableCell,
+                                                                  TextInputCellModel>
+
+typealias EmailInputViewConfigurator = CollectionViewConfigurator<EmailInputTableCell,
+                                                                  TextInputCellModel>
+
+typealias PasswordInputViewConfigurator = CollectionViewConfigurator<PasswordInputTableCell,
+                                                                     TextInputCellModel>
+
+typealias ConfigurableButtonViewConfigurator = CollectionViewConfigurator<ConfigurableButtonTableCell,
+                                                                          ButtonCellModel>

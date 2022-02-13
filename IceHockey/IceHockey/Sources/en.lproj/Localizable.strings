@@ -11,11 +11,13 @@
 "Onboarding.Buttons.Skip" = "Skip";
 /* Authentication */
 "SignIn.title" = "Login";
+"SignUp.title" = "Sign up";
 "Auth.forgotPassword" = "Forget password?";
 "Auth.title" = "Joining us allow to share you own essay about variable places...";
-"Auth.usernamePlaceholder" = "Username";
-"Auth.emailPlaceholder" = "Email";
-"Auth.passwordPlaceholder" = "Password";
+"Auth.usernamePlaceholder" = "Your username";
+"Auth.emailPlaceholder" = "Your e-mail";
+"Auth.passwordPlaceholder" = "Your Password";
+"Auth.repeatPasswordPlaceholder" = "Repeat your password";
 "Auth.Buttons.signUpSectionTitle" = "Haven't account?";
 "Auth.signUp" = "Sign up now";
 "Auth.Buttons.Login" = "Login";
@@ -190,7 +192,11 @@
 "Finance.Transactions.addCosts" = "Add costs";
 "Finance.Transactions.income" = "Income";
 "Finance.Transactions.costs" = "Costs";
-"Finance.Transactions.amount" = "Amount (not requiered)";
+"Finance.Transactions.amountPlaceholer" = "Amount (not requiered)";
+"Finance.Transactions.commentPlaceholder" = "Comment (not requiered)";
+"Finance.balance" = "Balance";
+"Finance.exportBalance" = "Balance for export";
 "Common.next" = "Next";
 "Common.confirm" = "Confirm";
 "Common.remain" = "Remain";
+"Common.export" = "Export";

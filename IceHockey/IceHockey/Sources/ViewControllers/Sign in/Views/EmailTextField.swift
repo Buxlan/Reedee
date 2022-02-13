@@ -12,7 +12,7 @@ class EmailTextField: UITextField {
     init() {
         super.init(frame: .zero)
         accessibilityIdentifier = "emailTextField"
-        placeholder = L10n.Auth.usernamePlaceholder
+        placeholder = L10n.Auth.emailPlaceholder
         textAlignment = .left
         translatesAutoresizingMaskIntoConstraints = false
         keyboardAppearance = .dark
@@ -27,10 +27,10 @@ class EmailTextField: UITextField {
             NSAttributedString.Key.font: Fonts.Regular.subhead
         ]
         attributedPlaceholder = NSAttributedString(
-            string: L10n.Auth.usernamePlaceholder,
+            string: L10n.Auth.emailPlaceholder,
             attributes: attr
         )
-        self.setImage(Asset.person.image.withRenderingMode(.alwaysTemplate))
+        setImage(Asset.emailAuth.image.withRenderingMode(.alwaysTemplate))
     }
     
     required init?(coder: NSCoder) {
@@ -49,17 +49,28 @@ class EmailTextField: UITextField {
 
 extension EmailTextField {
     
-    typealias DataType = TextFieldModel
+    typealias DataType = TextInputCellModel
     func configure(data: DataType) {
-        placeholder = data.placeholderText
+        text = data.value
         backgroundColor = data.backgroundColor
         font = data.font
         tintColor = data.tintColor
-        let attributes: [NSAttributedString.Key: Any] = [
+        textColor = data.textColor
+        let attr: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.foregroundColor: data.tintColor,
             NSAttributedString.Key.font: data.font
         ]
-        attributedPlaceholder = NSAttributedString(string: data.placeholderText,
-                                                   attributes: attributes)
+        if data.placeholderText.isEmpty,
+            let placeholder = placeholder {
+            attributedPlaceholder = NSAttributedString(
+                string: placeholder,
+                attributes: attr
+            )
+        } else if !data.placeholderText.isEmpty {
+            attributedPlaceholder = NSAttributedString(
+                string: data.placeholderText,
+                attributes: attr
+            )
+        }
     }
 }

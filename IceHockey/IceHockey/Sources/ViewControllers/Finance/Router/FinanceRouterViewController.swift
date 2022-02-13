@@ -112,7 +112,7 @@ extension FinanceRouterViewController {
     }
     
     private func navigateToReportsViewController() {
-        let vc = FinanceReportsViewController()
+        let vc = FinanceReportBalanceViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
     

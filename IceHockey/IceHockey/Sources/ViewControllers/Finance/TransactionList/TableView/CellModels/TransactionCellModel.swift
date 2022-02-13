@@ -9,11 +9,9 @@ import UIKit
 
 struct TransactionCellModel: TableCellModel, TintColorable {
     
-    var name: String
-    var number: String
-    var comment: String
-    var type: TransactionType
-    var amount: Double
+    var transaction: FinanceTransaction
+    var isShowOrder: Bool
+    var order: Int
     
     var backgroundColor: UIColor = .white
     var textColor: UIColor = Asset.textColor.color
@@ -22,12 +20,12 @@ struct TransactionCellModel: TableCellModel, TintColorable {
     
     var action = {}
     
-    init(transaction: FinanceTransaction) {
-        self.name = transaction.name
-        self.number = transaction.number
-        self.comment = transaction.comment
-        self.type = transaction.type
-        self.amount = transaction.amount
+    init(transaction: FinanceTransaction,
+         isShowOrder: Bool = false,
+         order: Int = 0) {
+        self.transaction = transaction
+        self.isShowOrder = isShowOrder
+        self.order = order
     }
     
 }

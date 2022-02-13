@@ -93,8 +93,8 @@ class FinanceTransactionListLoader {
         }
     }
     
-    func load(eventListCompletionHandler: @escaping ([FinanceTransaction]) -> Void,
-              eventLoadedCompletionHandler: @escaping () -> Void) {
+    func load(objectListCompletionHandler: @escaping ([FinanceTransaction]) -> Void,
+              objectLoadedCompletionHandler: @escaping () -> Void) {
         var transactions: [FinanceTransaction] = []
         getNextPortion { [weak self] snapshots in
             guard let self = self else { return }
@@ -110,7 +110,7 @@ class FinanceTransactionListLoader {
                     }) {
                         self.loadings.remove(at: handlerIndex)
                     }
-                    eventLoadedCompletionHandler()
+                    objectLoadedCompletionHandler()
                 }
                 self.loadings[eventID] = (FinanceTransactionCreator(), completionHandler)
             }
@@ -124,7 +124,7 @@ class FinanceTransactionListLoader {
                     transactions.append(object)
                 }
             }
-            eventListCompletionHandler(transactions)
+            objectListCompletionHandler(transactions)
         }
     }
     

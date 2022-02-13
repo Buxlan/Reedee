@@ -11,11 +11,13 @@
 "Onboarding.onboardngText3" = "Регистрация позволит Вам оставлять эссе и предложения о создании новых мест.";
 /* Authentication */
 "SignIn.title" = "Вход в систему";
+"SignUp.title" = "Регистрация";
 "Auth.forgotPassword" = "Забыли пароль?";
 "Auth.title" = "Регистрация позволит Вам оставлять эссе и предложения о создании новых мест.";
-"Auth.usernamePlaceholder" = "Имя / Почта";
-"Auth.emailPlaceholder" = "E-mail";
+"Auth.usernamePlaceholder" = "Имя пользователя";
+"Auth.emailPlaceholder" = "Электронная почта";
 "Auth.passwordPlaceholder" = "Пароль";
+"Auth.repeatPasswordPlaceholder" = "Повторите пароль";
 "Auth.signUp" = "Зарегистрироваться";
 "Auth.Buttons.signUpSectionTitle" = "Нет аккаунта?";
 "Auth.Buttons.Login" = "Вход";
@@ -190,7 +192,11 @@
 "Finance.Transactions.addCosts" = "Добавить расходы";
 "Finance.Transactions.income" = "Поступления";
 "Finance.Transactions.costs" = "Расходы";
-"Finance.Transactions.amount" = "Сумма (необязательно)";
+"Finance.Transactions.amountPlaceholer" = "Сумма (необязательно)";
+"Finance.Transactions.commentPlaceholder" = "Comment (not requiered)";
+"Finance.balance" = "Баланс";
+"Finance.exportBalance" = "Баланс (текст)";
 "Common.next" = "Далее";
 "Common.confirm" = "Подтвердить";
 "Common.remain" = "Остаток";
+"Common.export" = "Экспорт";

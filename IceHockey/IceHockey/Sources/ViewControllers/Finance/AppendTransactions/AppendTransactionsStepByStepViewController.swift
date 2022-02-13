@@ -13,6 +13,7 @@ class AppendTransactionsStepByStepViewController: UIViewController {
     
     private var type: TransactionType
     private lazy var viewModel = AppendTransactionsStepByStepViewModel(type: self.type)
+    private var uploader: FinanceTransactionUploader?
     
     private lazy var inputTextTransactionsViewController: AppendTransactionsViewController = {
         let vc = AppendTransactionsViewController(type: self.type)
@@ -25,7 +26,8 @@ class AppendTransactionsStepByStepViewController: UIViewController {
             var values = self.viewModel.parseText(vc.text)
             values = values.map { value in
                 var transaction = value
-                transaction.amount = value.amount.isZero ? vc.amount : transaction.amount
+                transaction.amount = value.amount.isZero ? vc.amount : value.amount
+                transaction.comment = value.comment.isEmpty ? vc.comment : value.comment
                 return transaction
             }
             let viewModel = TransactionsConfirmViewModel(transactions: values)
@@ -46,7 +48,9 @@ class AppendTransactionsStepByStepViewController: UIViewController {
                 return
             }
             let uploader = FinanceTransactionUploader()
+            self?.uploader = uploader
             uploader.uploadTransactions(vc.viewModel.sections[0].transactions) { [weak self] in
+                self?.uploader = nil
                 self?.navigationController?.popViewController(animated: true)
             }
         }

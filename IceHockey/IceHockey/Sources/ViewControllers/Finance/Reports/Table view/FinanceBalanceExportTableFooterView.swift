@@ -1,5 +1,5 @@
 //
-//  TransactionConfirmTableFooterView.swift
+//  FinanceBalanceExportTableFooterView.swift
 //  IceHockey
 //
 //  Created by Sergey Bush bushmakin@outlook.com on 07.02.2022.
@@ -7,20 +7,22 @@
 
 import SnapKit
 
-class TransactionConfirmTableFooterView: UIView {
+class FinanceBalanceExportTableFooterView: UIView {
     
     // MARK: - Properties
     
-    var onConfirm = {}
+    static let height: CGFloat = 80.0
     
-    private lazy var confirmButton: UIButton = {
+    var onAction = {}
+    
+    private lazy var actionButton: UIButton = {
         let view = UIButton()
-        view.setTitle(L10n.Common.confirm, for: .normal)
+        view.setTitle(L10n.Common.export, for: .normal)
         view.layer.cornerRadius = 6
         view.backgroundColor = Asset.accent1.color
         view.setTitleColor(Colors.Gray.ultraLight, for: .normal)
         view.titleLabel?.font = Fonts.Regular.subhead
-        view.addTarget(self, action: #selector(onConfirmHandle), for: .touchUpInside)
+        view.addTarget(self, action: #selector(onActionHandle), for: .touchUpInside)
         return view
     }()
     
@@ -35,7 +37,7 @@ class TransactionConfirmTableFooterView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(lineView)
-        addSubview(confirmButton)
+        addSubview(actionButton)
         configureConstraints()
     }
     
@@ -53,7 +55,7 @@ class TransactionConfirmTableFooterView: UIView {
             make.centerX.width.equalToSuperview()
         }
         
-        confirmButton.snp.makeConstraints { make in
+        actionButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalTo(self.snp.centerY)
             make.width.equalTo(200)
@@ -65,10 +67,10 @@ class TransactionConfirmTableFooterView: UIView {
 
 // MARK: - Actions
 
-extension TransactionConfirmTableFooterView {
+extension FinanceBalanceExportTableFooterView {
     
-    @objc private func onConfirmHandle() {
-        onConfirm()
+    @objc private func onActionHandle() {
+        onAction()
     }
     
 }

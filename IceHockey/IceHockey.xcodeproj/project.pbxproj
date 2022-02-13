@@ -282,13 +282,24 @@
 		470C215427B07B58002198E1 /* TransactionConfirmTableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C215327B07B58002198E1 /* TransactionConfirmTableFooterView.swift */; };
 		470C215627B08203002198E1 /* FinanceTransactionUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C215527B08203002198E1 /* FinanceTransactionUploader.swift */; };
 		470C215827B09321002198E1 /* TransactionListTableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C215727B09321002198E1 /* TransactionListTableFooterView.swift */; };
+		470C216A27B1A8A2002198E1 /* FinanceBalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C216927B1A8A2002198E1 /* FinanceBalanceViewModel.swift */; };
+		470C216D27B1AA9D002198E1 /* FinanceBalanceExportTableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C216C27B1AA9D002198E1 /* FinanceBalanceExportTableFooterView.swift */; };
+		470C216F27B1BD42002198E1 /* FinanceTextReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C216E27B1BD41002198E1 /* FinanceTextReportViewController.swift */; };
+		4729039327B956F1005D8C29 /* InputEmailCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4729039227B956F1005D8C29 /* InputEmailCellModel.swift */; };
+		4729039527B9571F005D8C29 /* InputPasswordCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4729039427B9571F005D8C29 /* InputPasswordCellModel.swift */; };
+		4729039727B957F1005D8C29 /* LoginInputTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4729039627B957F1005D8C29 /* LoginInputTableCell.swift */; };
+		4729039927B97640005D8C29 /* EmailInputTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4729039827B97640005D8C29 /* EmailInputTableCell.swift */; };
+		4729039B27B97891005D8C29 /* PasswordInputTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4729039A27B97891005D8C29 /* PasswordInputTableCell.swift */; };
+		4729039D27B99322005D8C29 /* ConfigurableButtonTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4729039C27B99322005D8C29 /* ConfigurableButtonTableCell.swift */; };
+		4729039F27B9960F005D8C29 /* ButtonCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4729039E27B9960F005D8C29 /* ButtonCellModel.swift */; };
+		47AAECFA27B9557D00F5613F /* TextInputCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AAECF927B9557D00F5613F /* TextInputCellModel.swift */; };
 		47C609D527AEF5F3007BE5D9 /* FinanceRouterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609D427AEF5F3007BE5D9 /* FinanceRouterViewController.swift */; };
 		47C609DA27AEF69B007BE5D9 /* FinanceTransactionsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609D727AEF69B007BE5D9 /* FinanceTransactionsButton.swift */; };
 		47C609DB27AEF69B007BE5D9 /* FinanceReportsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609D827AEF69B007BE5D9 /* FinanceReportsButton.swift */; };
 		47C609DC27AEF69B007BE5D9 /* FinanceRouterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609D927AEF69B007BE5D9 /* FinanceRouterButton.swift */; };
 		47C609DE27AEF8D1007BE5D9 /* ResourceUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609DD27AEF8D1007BE5D9 /* ResourceUtil.swift */; };
 		47C609E027AF044F007BE5D9 /* FinanceTransactionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609DF27AF044F007BE5D9 /* FinanceTransactionListViewController.swift */; };
-		47C609E227AF0477007BE5D9 /* FinanceReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609E127AF0477007BE5D9 /* FinanceReportsViewController.swift */; };
+		47C609E227AF0477007BE5D9 /* FinanceReportBalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609E127AF0477007BE5D9 /* FinanceReportBalanceViewController.swift */; };
 		47C609E627AF093E007BE5D9 /* FinanceTransactionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609E527AF093E007BE5D9 /* FinanceTransactionListViewModel.swift */; };
 		47C609EA27AF1060007BE5D9 /* TransactionTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609E927AF1060007BE5D9 /* TransactionTableCell.swift */; };
 		47C609EC27AF1085007BE5D9 /* TransactionCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609EB27AF1085007BE5D9 /* TransactionCellModel.swift */; };
@@ -587,13 +598,24 @@
 		470C215327B07B58002198E1 /* TransactionConfirmTableFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConfirmTableFooterView.swift; sourceTree = "<group>"; };
 		470C215527B08203002198E1 /* FinanceTransactionUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTransactionUploader.swift; sourceTree = "<group>"; };
 		470C215727B09321002198E1 /* TransactionListTableFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListTableFooterView.swift; sourceTree = "<group>"; };
+		470C216927B1A8A2002198E1 /* FinanceBalanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceBalanceViewModel.swift; sourceTree = "<group>"; };
+		470C216C27B1AA9D002198E1 /* FinanceBalanceExportTableFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceBalanceExportTableFooterView.swift; sourceTree = "<group>"; };
+		470C216E27B1BD41002198E1 /* FinanceTextReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTextReportViewController.swift; sourceTree = "<group>"; };
+		4729039227B956F1005D8C29 /* InputEmailCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputEmailCellModel.swift; sourceTree = "<group>"; };
+		4729039427B9571F005D8C29 /* InputPasswordCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPasswordCellModel.swift; sourceTree = "<group>"; };
+		4729039627B957F1005D8C29 /* LoginInputTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInputTableCell.swift; sourceTree = "<group>"; };
+		4729039827B97640005D8C29 /* EmailInputTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailInputTableCell.swift; sourceTree = "<group>"; };
+		4729039A27B97891005D8C29 /* PasswordInputTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInputTableCell.swift; sourceTree = "<group>"; };
+		4729039C27B99322005D8C29 /* ConfigurableButtonTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableButtonTableCell.swift; sourceTree = "<group>"; };
+		4729039E27B9960F005D8C29 /* ButtonCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCellModel.swift; sourceTree = "<group>"; };
+		47AAECF927B9557D00F5613F /* TextInputCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputCellModel.swift; sourceTree = "<group>"; };
 		47C609D427AEF5F3007BE5D9 /* FinanceRouterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceRouterViewController.swift; sourceTree = "<group>"; };
 		47C609D727AEF69B007BE5D9 /* FinanceTransactionsButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinanceTransactionsButton.swift; sourceTree = "<group>"; };
 		47C609D827AEF69B007BE5D9 /* FinanceReportsButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinanceReportsButton.swift; sourceTree = "<group>"; };
 		47C609D927AEF69B007BE5D9 /* FinanceRouterButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinanceRouterButton.swift; sourceTree = "<group>"; };
 		47C609DD27AEF8D1007BE5D9 /* ResourceUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceUtil.swift; sourceTree = "<group>"; };
 		47C609DF27AF044F007BE5D9 /* FinanceTransactionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTransactionListViewController.swift; sourceTree = "<group>"; };
-		47C609E127AF0477007BE5D9 /* FinanceReportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceReportsViewController.swift; sourceTree = "<group>"; };
+		47C609E127AF0477007BE5D9 /* FinanceReportBalanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceReportBalanceViewController.swift; sourceTree = "<group>"; };
 		47C609E527AF093E007BE5D9 /* FinanceTransactionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTransactionListViewModel.swift; sourceTree = "<group>"; };
 		47C609E927AF1060007BE5D9 /* TransactionTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableCell.swift; sourceTree = "<group>"; };
 		47C609EB27AF1085007BE5D9 /* TransactionCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCellModel.swift; sourceTree = "<group>"; };
@@ -1191,6 +1213,7 @@
 		409525D9275DD472009A330C /* Sign up */ = {
 			isa = PBXGroup;
 			children = (
+				47AAECF727B9551A00F5613F /* Table view */,
 				409525DA275DD482009A330C /* SignUpViewController.swift */,
 				409525DC275DD48B009A330C /* SignUpViewModel.swift */,
 			);
@@ -1495,13 +1518,55 @@
 			path = TableView;
 			sourceTree = "<group>";
 		};
+		470C216827B1A81D002198E1 /* Reports */ = {
+			isa = PBXGroup;
+			children = (
+				470C216B27B1AA48002198E1 /* Table view */,
+				47C609E127AF0477007BE5D9 /* FinanceReportBalanceViewController.swift */,
+				470C216927B1A8A2002198E1 /* FinanceBalanceViewModel.swift */,
+				470C216E27B1BD41002198E1 /* FinanceTextReportViewController.swift */,
+			);
+			path = Reports;
+			sourceTree = "<group>";
+		};
+		470C216B27B1AA48002198E1 /* Table view */ = {
+			isa = PBXGroup;
+			children = (
+				470C216C27B1AA9D002198E1 /* FinanceBalanceExportTableFooterView.swift */,
+			);
+			path = "Table view";
+			sourceTree = "<group>";
+		};
+		47AAECF727B9551A00F5613F /* Table view */ = {
+			isa = PBXGroup;
+			children = (
+				47AAECF827B9552300F5613F /* Cell models */,
+				4729039627B957F1005D8C29 /* LoginInputTableCell.swift */,
+				4729039827B97640005D8C29 /* EmailInputTableCell.swift */,
+				4729039A27B97891005D8C29 /* PasswordInputTableCell.swift */,
+				4729039C27B99322005D8C29 /* ConfigurableButtonTableCell.swift */,
+			);
+			path = "Table view";
+			sourceTree = "<group>";
+		};
+		47AAECF827B9552300F5613F /* Cell models */ = {
+			isa = PBXGroup;
+			children = (
+				47AAECF927B9557D00F5613F /* TextInputCellModel.swift */,
+				4729039227B956F1005D8C29 /* InputEmailCellModel.swift */,
+				4729039427B9571F005D8C29 /* InputPasswordCellModel.swift */,
+				4729039E27B9960F005D8C29 /* ButtonCellModel.swift */,
+			);
+			path = "Cell models";
+			sourceTree = "<group>";
+		};
 		47C609D327AEF5DA007BE5D9 /* Finance */ = {
 			isa = PBXGroup;
 			children = (
+				470C216827B1A81D002198E1 /* Reports */,
 				47C609FC27AF3F4B007BE5D9 /* AppendTransactions */,
 				47C609E427AF08F8007BE5D9 /* TransactionList */,
 				47C609E327AF08EE007BE5D9 /* Router */,
-				47C609E127AF0477007BE5D9 /* FinanceReportsViewController.swift */,
 			);
 			path = Finance;
 			sourceTree = "<group>";
@@ -1772,6 +1837,7 @@
 				40713A8527204BC4005F1265 /* ContactsViewModel.swift in Sources */,
 				47C609D527AEF5F3007BE5D9 /* FinanceRouterViewController.swift in Sources */,
 				47C609F527AF2466007BE5D9 /* FinanceTransactionCreator.swift in Sources */,
+				470C216A27B1A8A2002198E1 /* FinanceBalanceViewModel.swift in Sources */,
 				401C9B24270D155C00F91DC6 /* FirebaseManager.swift in Sources */,
 				40AE442127411ECC00BD6506 /* CollectionViewBaseVC.swift in Sources */,
 				400B8F4E272B50B5008A8AFE /* FirebaseObject.swift in Sources */,
@@ -1861,9 +1927,11 @@
 				40B947C526EEBD5E00D9E8DA /* ConfigurableCell.swift in Sources */,
 				40C9E9142746A5C9009B0417 /* SportNewsBuilder.swift in Sources */,
 				402EDA6326E42A2A004A2992 /* SportNews.swift in Sources */,
+				4729039327B956F1005D8C29 /* InputEmailCellModel.swift in Sources */,
 				40C106BF26E41E4800B619A1 /* Utils.swift in Sources */,
 				40A6321F272DF7160017F6FE /* SportTeamAnnotation.swift in Sources */,
 				4055FCDC26E816D900E5BB79 /* CellConfigurator.swift in Sources */,
+				4729039F27B9960F005D8C29 /* ButtonCellModel.swift in Sources */,
 				47C609FB27AF2985007BE5D9 /* FinanceTransactionProxy.swift in Sources */,
 				40AE442A274123AA00BD6506 /* PhotoCellModel.swift in Sources */,
 				40DEC8B42718D083008A59A8 /* SportEventType.swift in Sources */,
@@ -1883,6 +1951,7 @@
 				40AE441F27411EB500BD6506 /* CollectionDataSource.swift in Sources */,
 				40E2D65126E55E1E006503C7 /* ShopCategoryItem.swift in Sources */,
 				406D34D1271F7D5400AC9D05 /* EventDetailFooterView.swift in Sources */,
+				4729039527B9571F005D8C29 /* InputPasswordCellModel.swift in Sources */,
 				40A4464826E409D900129B89 /* Strings.swift in Sources */,
 				4065C95D26E853500084E5F2 /* CorneredImageView.swift in Sources */,
 				40B208CD2744F730009B769C /* EventImagesLoader.swift in Sources */,
@@ -1897,7 +1966,7 @@
 				40E70B98274854680074CD2D /* Like.swift in Sources */,
 				407ACEBA2736A907005D522C /* SportEventCreator.swift in Sources */,
 				40C4417F274D4F6200F9EC8B /* ClubProxy.swift in Sources */,
-				47C609E227AF0477007BE5D9 /* FinanceReportsViewController.swift in Sources */,
+				47C609E227AF0477007BE5D9 /* FinanceReportBalanceViewController.swift in Sources */,
 				407BB05C274BA00E008DF228 /* ClubDatabaseLoader.swift in Sources */,
 				409C69E1271CDB0D005434A4 /* OtherProtocols.swift in Sources */,
 				407EF254275CE2F4000F1B76 /* ProfileInfoCellModel.swift in Sources */,
@@ -1915,8 +1984,10 @@
 				40429BB8274ACA8600DAD070 /* WorkoutScheduleBuilder.swift in Sources */,
 				40B6C80F272DB2A600B94A9A /* HockeyPlayerRole.swift in Sources */,
 				401D53C8275AE1A8006B5458 /* SquadCellModel.swift in Sources */,
+				4729039927B97640005D8C29 /* EmailInputTableCell.swift in Sources */,
 				40A91864275D81F600262BDE /* SignInViewController.swift in Sources */,
 				406C306F26F909690040F0A7 /* PhotoCollectionView.swift in Sources */,
+				47AAECFA27B9557D00F5613F /* TextInputCellModel.swift in Sources */,
 				409AFE4C2763C1D800011261 /* FirebaseDatabaseLoader.swift in Sources */,
 				40A1139327471465001BDD99 /* EventLikeInfoBuilder.swift in Sources */,
 				401D53C4275ADC23006B5458 /* ClubInfoCellModel.swift in Sources */,
@@ -1944,11 +2015,13 @@
 				40781509272CA408006D3AD2 /* NewSportTeamFirebaseSaver.swift in Sources */,
 				47C609F127AF1655007BE5D9 /* FinanceTransaction.swift in Sources */,
 				407A62192737D59B00558998 /* MatchResultEditCell.swift in Sources */,
+				4729039727B957F1005D8C29 /* LoginInputTableCell.swift in Sources */,
 				4085A31B27201BDC00CB560E /* EventDetailBoldTextView.swift in Sources */,
 				4063EAE9271EE2A100B6B8C7 /* EventDetailPhotoCollectionViewLayout.swift in Sources */,
 				40A11396274714B9001BDD99 /* LikeDatabaseFlowData.swift in Sources */,
 				406CD2CA26F7248E00F1EDFE /* ScaleAspectFitImageView.swift in Sources */,
 				40A91861275D50CD00262BDE /* TitleHeaderView.swift in Sources */,
+				470C216F27B1BD42002198E1 /* FinanceTextReportViewController.swift in Sources */,
 				40C44197274DBCF100F9EC8B /* SportUserProxy.swift in Sources */,
 				40B3117C27499F1A00E18820 /* TableCellModel.swift in Sources */,
 				4098C04226E572A700F0BBE6 /* UserExtension.swift in Sources */,
@@ -1999,6 +2072,8 @@
 				40781511272CB1C6006D3AD2 /* SquadDetailViewModel.swift in Sources */,
 				40E85C5A27403E6E00AB37A7 /* SaveCellModel.swift in Sources */,
 				401C9B11270D04BF00F91DC6 /* ViewControllerCoordinator.swift in Sources */,
+				4729039D27B99322005D8C29 /* ConfigurableButtonTableCell.swift in Sources */,
+				470C216D27B1AA9D002198E1 /* FinanceBalanceExportTableFooterView.swift in Sources */,
 				4065C95526E84E990084E5F2 /* NewsTableCell.swift in Sources */,
 				47C609EF27AF15C5007BE5D9 /* TransactionType.swift in Sources */,
 				40F4EBDF273DCBBD003DA1D3 /* TextCellModel.swift in Sources */,
@@ -2043,6 +2118,7 @@
 				407F48B2273C9A6000C96B28 /* Fonts.swift in Sources */,
 				409DD4312735E12A00055FBD /* SettingTableCell.swift in Sources */,
 				47C60A0027AFFAA2007BE5D9 /* AppendTransactionsStepByStepViewController.swift in Sources */,
+				4729039B27B97891005D8C29 /* PasswordInputTableCell.swift in Sources */,
 				4094E6CC2756DAF3000737B9 /* FirebaseObjectBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
