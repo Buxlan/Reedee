@@ -14,6 +14,8 @@ protocol FinanceTransaction: FirebaseObject {
     var type: TransactionType  { get set }
     var amount: Double  { get set }
     var date: Date { get set }
+    var author: String { get set }
+    var isActive: Bool { get set }
     
     func encode() -> [String: Any]
 }
@@ -26,6 +28,8 @@ struct FinanceTransactionImpl: FinanceTransaction {
     var type: TransactionType
     var amount: Double
     var date: Date
+    var author: String
+    var isActive: Bool
     
     init(databaseFlowObject: FinanceTransactionDatabaseFlowData = EmptyFinanceTransactionDatabaseFlowData()) {
         self.objectIdentifier = databaseFlowObject.objectIdentifier
@@ -35,6 +39,8 @@ struct FinanceTransactionImpl: FinanceTransaction {
         self.type = databaseFlowObject.type
         self.amount = databaseFlowObject.amount
         self.date = databaseFlowObject.date
+        self.author = databaseFlowObject.author
+        self.isActive = databaseFlowObject.isActive
     }
     
     func encode() -> [String: Any] {
@@ -46,7 +52,9 @@ struct FinanceTransactionImpl: FinanceTransaction {
             "comment": self.comment,
             "type": self.type.rawValue,
             "amount": self.amount,
-            "date": Int(self.date.timeIntervalSince1970)
+            "date": Int(self.date.timeIntervalSince1970),
+            "author": self.author,
+            "isActive": self.isActive
         ]
         
         return dict

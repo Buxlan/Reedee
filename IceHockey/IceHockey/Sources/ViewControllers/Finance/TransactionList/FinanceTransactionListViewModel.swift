@@ -100,6 +100,10 @@ class FinanceTransactionListViewModel {
         }
     }
     
+    func switchActivity(of transaction: FinanceTransaction) {
+        
+    }
+    
 }
 
 extension FinanceTransactionListViewModel: UserObserver {

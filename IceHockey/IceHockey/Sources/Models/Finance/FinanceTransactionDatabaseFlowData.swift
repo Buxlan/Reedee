@@ -14,6 +14,8 @@ protocol FinanceTransactionDatabaseFlowData: FirebaseObject {
     var number: String { get set }
     var comment: String { get set }
     var amount: Double { get set }
+    var author: String { get set }
+    var isActive: Bool { get set }
 }
 
 struct EmptyFinanceTransactionDatabaseFlowData: FinanceTransactionDatabaseFlowData {
@@ -24,6 +26,8 @@ struct EmptyFinanceTransactionDatabaseFlowData: FinanceTransactionDatabaseFlowDa
     var comment: String = ""
     var amount: Double = 0.0
     var objectIdentifier: String = ""
+    var author: String = ""
+    var isActive: Bool = true
 }
 
 struct FinanceTransactionDatabaseFlowDataImpl: FinanceTransactionDatabaseFlowData {
@@ -34,6 +38,8 @@ struct FinanceTransactionDatabaseFlowDataImpl: FinanceTransactionDatabaseFlowDat
     var comment: String
     var amount: Double
     var objectIdentifier: String
+    var author: String
+    var isActive: Bool
     
     init(key: String, dict: [String: Any]) {
         self.objectIdentifier = key
@@ -41,6 +47,8 @@ struct FinanceTransactionDatabaseFlowDataImpl: FinanceTransactionDatabaseFlowDat
         self.number = dict["number"] as? String ?? ""
         self.comment = dict["comment"] as? String ?? ""
         self.amount = dict["amount"] as? Double ?? 0.0
+        self.author = dict["author"] as? String ?? ""
+        self.isActive = dict["isActive"] as? Bool ?? false
         
         self.type = .income
         if let rawType = dict["type"] as? Int,

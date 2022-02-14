@@ -12,13 +12,14 @@ private struct EmptyContentConfig: ContentConfigurator {
     }
 }
 
-final class TableRow {
+class TableRow {
     var rowId: String
     var config: ContentConfigurator
     var height: CGFloat = UITableView.automaticDimension
     var action: (IndexPath) -> Void = { _ in }
     var deselectAction: (IndexPath) -> Void = { _ in }
     var willDisplay: (UITableViewCell, IndexPath) -> Void = { (_, _) in }
+    var contextualAction: ((UIContextualAction, UIView, @escaping (Bool) -> Void) -> Void)? = nil
     
     init(rowId: String,
          config: ContentConfigurator = EmptyContentConfig(),

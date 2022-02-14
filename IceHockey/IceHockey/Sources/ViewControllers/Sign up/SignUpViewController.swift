@@ -14,6 +14,8 @@ class SignUpViewController: UIViewController {
     var tableBase = TableViewBase()
     var viewModel = SettingsViewModel()
     
+    private var keyboardManager = KeyboardAppearanceManager()
+    
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
         view.isUserInteractionEnabled = true
@@ -53,8 +55,14 @@ class SignUpViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        keyboardManager.register(scrollView: tableView)
         configureBars()
         configureViewModel()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        keyboardManager.unregister()
     }
     
     // MARK: - Hepler functions

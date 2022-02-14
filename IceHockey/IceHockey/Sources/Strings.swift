@@ -207,6 +207,8 @@ internal enum L10n {
       internal static let title = L10n.tr("Localizable", "Finance.Reports.title")
     }
     internal enum Transactions {
+      /// Activate
+      internal static let activate = L10n.tr("Localizable", "Finance.Transactions.activate")
       /// Add costs
       internal static let addCosts = L10n.tr("Localizable", "Finance.Transactions.addCosts")
       /// Add income
@@ -217,10 +219,14 @@ internal enum L10n {
       internal static let commentPlaceholder = L10n.tr("Localizable", "Finance.Transactions.commentPlaceholder")
       /// Costs
       internal static let costs = L10n.tr("Localizable", "Finance.Transactions.costs")
+      /// Deactivate
+      internal static let deactivate = L10n.tr("Localizable", "Finance.Transactions.deactivate")
       /// Income
       internal static let income = L10n.tr("Localizable", "Finance.Transactions.income")
       /// Select action
       internal static let selectAction = L10n.tr("Localizable", "Finance.Transactions.selectAction")
+      /// Switch activity
+      internal static let switchActivity = L10n.tr("Localizable", "Finance.Transactions.switchActivity")
       /// Transactions
       internal static let title = L10n.tr("Localizable", "Finance.Transactions.title")
     }

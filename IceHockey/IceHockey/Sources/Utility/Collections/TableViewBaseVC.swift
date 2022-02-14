@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TableViewBase: NSObject {
+class TableViewBase: NSObject {
     var dataSource: TableDataSource
 
     override init() {

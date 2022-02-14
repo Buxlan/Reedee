@@ -180,11 +180,13 @@
 "Day.friday" = "Friday";
 "Day.saturday" = "Saturday";
 "Day.unknown" = "Unknown";
-// TrainingType
+
+// MARK: - TrainingType
 "TrainingType.ice" = "Ice";
 "TrainingType.gym" = "Gym";
 "TrainingType.unknown" = "Unknown";
-// Finance
+
+// MARK: - Finance
 "Finance.Transactions.title" = "Transactions";
 "Finance.Reports.title" = "Reports";
 "Finance.Transactions.selectAction" = "Select action";
@@ -196,6 +198,11 @@
 "Finance.Transactions.commentPlaceholder" = "Comment (not requiered)";
 "Finance.balance" = "Balance";
 "Finance.exportBalance" = "Balance for export";
+"Finance.Transactions.deactivate" = "Deactivate";
+"Finance.Transactions.activate" = "Activate";
+"Finance.Transactions.switchActivity" = "Switch activity";
+
+// MARK: - COMMON
 "Common.next" = "Next";
 "Common.confirm" = "Confirm";
 "Common.remain" = "Remain";

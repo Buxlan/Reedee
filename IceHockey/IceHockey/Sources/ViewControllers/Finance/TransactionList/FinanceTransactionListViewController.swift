@@ -12,7 +12,7 @@ class FinanceTransactionListViewController: UIViewController {
     
     // MARK: - Properties
     
-    var tableBase = TableViewBase()
+    var tableBase = ActionableTableViewBase()
     var viewModel = FinanceTransactionListViewModel()
     
     private lazy var alert: UIAlertController = {
@@ -201,9 +201,13 @@ extension FinanceTransactionListViewController {
             guard let self = self else {
                 return
             }
-            self.tableView.deselectRow(at: indexPath, animated: true)
+            self.tableView.deselectRow(at: indexPath, animated: false)
             let balance = self.viewModel.getBalance(number: transaction.number)
             self.tableFooterView.configure(amount: balance)
+        }
+        row.contextualAction = { [weak self] _, _, _ in
+            log.debug("Switch activity of transaction \(transaction.objectIdentifier)")
+            viewModel.switchActivity(of: transaction)
         }
         return row
     }

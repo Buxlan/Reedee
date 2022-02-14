@@ -72,6 +72,7 @@ class FinanceBalanceViewModel {
         }
         var summaryBalance: [FinanceTransaction] = []
         allTransactions.forEach { transaction in
+            if !transaction.isActive { return }
             if summaryBalance.contains(where: {
                 $0.number == transaction.number
             }) {

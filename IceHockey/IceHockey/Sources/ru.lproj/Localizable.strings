@@ -184,7 +184,8 @@
 "TrainingType.ice" = "Лёд";
 "TrainingType.gym" = "Зал";
 "TrainingType.unknown" = "Неизв. тип";
-// Finance
+
+// MARK: - Finance
 "Finance.Transactions.title" = "Транзакции";
 "Finance.Reports.title" = "Отчеты";
 "Finance.Transactions.selectAction" = "Выберите действие";
@@ -194,8 +195,13 @@
 "Finance.Transactions.costs" = "Расходы";
 "Finance.Transactions.amountPlaceholer" = "Сумма (необязательно)";
 "Finance.Transactions.commentPlaceholder" = "Comment (not requiered)";
+"Finance.Transactions.deactivate" = "Деактивировать";
+"Finance.Transactions.activate" = "Активировать";
+"Finance.Transactions.switchActivity" = "Изм. активность";
 "Finance.balance" = "Баланс";
 "Finance.exportBalance" = "Баланс (текст)";
+
+// MARK: - Common
 "Common.next" = "Далее";
 "Common.confirm" = "Подтвердить";
 "Common.remain" = "Остаток";
