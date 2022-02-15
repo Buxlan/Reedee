@@ -204,6 +204,7 @@
 
 // MARK: - COMMON
 "Common.next" = "Next";
+"Common.back" = "Back";
 "Common.confirm" = "Confirm";
 "Common.remain" = "Remain";
 "Common.export" = "Export";

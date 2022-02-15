@@ -75,6 +75,8 @@ internal enum L10n {
   }
 
   internal enum Common {
+    /// Back
+    internal static let back = L10n.tr("Localizable", "Common.back")
     /// Confirm
     internal static let confirm = L10n.tr("Localizable", "Common.confirm")
     /// Export

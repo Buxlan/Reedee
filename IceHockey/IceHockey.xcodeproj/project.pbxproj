@@ -293,6 +293,7 @@
 		4729039D27B99322005D8C29 /* ConfigurableButtonTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4729039C27B99322005D8C29 /* ConfigurableButtonTableCell.swift */; };
 		4729039F27B9960F005D8C29 /* ButtonCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4729039E27B9960F005D8C29 /* ButtonCellModel.swift */; };
 		472903A127B9ADB0005D8C29 /* ActionableTableViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472903A027B9ADB0005D8C29 /* ActionableTableViewBase.swift */; };
+		472903A427BB08B8005D8C29 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472903A327BB08B8005D8C29 /* CheckBox.swift */; };
 		47AAECFA27B9557D00F5613F /* TextInputCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AAECF927B9557D00F5613F /* TextInputCellModel.swift */; };
 		47C609D527AEF5F3007BE5D9 /* FinanceRouterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609D427AEF5F3007BE5D9 /* FinanceRouterViewController.swift */; };
 		47C609DA27AEF69B007BE5D9 /* FinanceTransactionsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609D727AEF69B007BE5D9 /* FinanceTransactionsButton.swift */; };
@@ -311,7 +312,7 @@
 		47C609F727AF24C8007BE5D9 /* FinanceTransactionDatabaseFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609F627AF24C8007BE5D9 /* FinanceTransactionDatabaseFlowData.swift */; };
 		47C609F927AF28D4007BE5D9 /* FinanceTransactionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609F827AF28D4007BE5D9 /* FinanceTransactionBuilder.swift */; };
 		47C609FB27AF2985007BE5D9 /* FinanceTransactionProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609FA27AF2985007BE5D9 /* FinanceTransactionProxy.swift */; };
-		47C609FE27AF3F7F007BE5D9 /* AppendTransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609FD27AF3F7F007BE5D9 /* AppendTransactionsViewController.swift */; };
+		47C609FE27AF3F7F007BE5D9 /* PrepareTransactionsFromTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609FD27AF3F7F007BE5D9 /* PrepareTransactionsFromTextViewController.swift */; };
 		47C60A0027AFFAA2007BE5D9 /* AppendTransactionsStepByStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609FF27AFFAA2007BE5D9 /* AppendTransactionsStepByStepViewController.swift */; };
 		47C60A0227AFFC57007BE5D9 /* TransactionsConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C60A0127AFFC57007BE5D9 /* TransactionsConfirmViewController.swift */; };
 		47C60A0427B006E8007BE5D9 /* TransactionsConfirmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C60A0327B006E8007BE5D9 /* TransactionsConfirmViewModel.swift */; };
@@ -610,6 +611,7 @@
 		4729039C27B99322005D8C29 /* ConfigurableButtonTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableButtonTableCell.swift; sourceTree = "<group>"; };
 		4729039E27B9960F005D8C29 /* ButtonCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCellModel.swift; sourceTree = "<group>"; };
 		472903A027B9ADB0005D8C29 /* ActionableTableViewBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionableTableViewBase.swift; sourceTree = "<group>"; };
+		472903A327BB08B8005D8C29 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		47AAECF927B9557D00F5613F /* TextInputCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputCellModel.swift; sourceTree = "<group>"; };
 		47C609D427AEF5F3007BE5D9 /* FinanceRouterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceRouterViewController.swift; sourceTree = "<group>"; };
 		47C609D727AEF69B007BE5D9 /* FinanceTransactionsButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinanceTransactionsButton.swift; sourceTree = "<group>"; };
@@ -628,7 +630,7 @@
 		47C609F627AF24C8007BE5D9 /* FinanceTransactionDatabaseFlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTransactionDatabaseFlowData.swift; sourceTree = "<group>"; };
 		47C609F827AF28D4007BE5D9 /* FinanceTransactionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTransactionBuilder.swift; sourceTree = "<group>"; };
 		47C609FA27AF2985007BE5D9 /* FinanceTransactionProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTransactionProxy.swift; sourceTree = "<group>"; };
-		47C609FD27AF3F7F007BE5D9 /* AppendTransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppendTransactionsViewController.swift; sourceTree = "<group>"; };
+		47C609FD27AF3F7F007BE5D9 /* PrepareTransactionsFromTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareTransactionsFromTextViewController.swift; sourceTree = "<group>"; };
 		47C609FF27AFFAA2007BE5D9 /* AppendTransactionsStepByStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppendTransactionsStepByStepViewController.swift; sourceTree = "<group>"; };
 		47C60A0127AFFC57007BE5D9 /* TransactionsConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsConfirmViewController.swift; sourceTree = "<group>"; };
 		47C60A0327B006E8007BE5D9 /* TransactionsConfirmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsConfirmViewModel.swift; sourceTree = "<group>"; };
@@ -926,6 +928,7 @@
 		4065C95A26E853410084E5F2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				472903A227BB089A005D8C29 /* Common */,
 				47C609D627AEF67D007BE5D9 /* Finance */,
 				40E949BE26ED59A600962590 /* CircularView.swift */,
 				400EB96826F00BFD0026EFB1 /* InsetLabel.swift */,
@@ -941,6 +944,7 @@
 				40E70B9927486E4A0074CD2D /* KeyboardAccessoryDoneView.swift */,
 				40B82ECA2738AE9000BED0A1 /* DoneKeyboardAccessoryView.swift */,
 				40F4EBE2273DD212003DA1D3 /* ConfigurableLabel.swift */,
+				472903A327BB08B8005D8C29 /* CheckBox.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1540,6 +1544,13 @@
 			path = "Table view";
 			sourceTree = "<group>";
 		};
+		472903A227BB089A005D8C29 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		47AAECF727B9551A00F5613F /* Table view */ = {
 			isa = PBXGroup;
 			children = (
@@ -1641,7 +1652,7 @@
 				470C215227B07B38002198E1 /* TableView */,
 				47C609FF27AFFAA2007BE5D9 /* AppendTransactionsStepByStepViewController.swift */,
 				47C60A0527B0110C007BE5D9 /* AppendTransactionsStepByStepViewModel.swift */,
-				47C609FD27AF3F7F007BE5D9 /* AppendTransactionsViewController.swift */,
+				47C609FD27AF3F7F007BE5D9 /* PrepareTransactionsFromTextViewController.swift */,
 				47C60A0127AFFC57007BE5D9 /* TransactionsConfirmViewController.swift */,
 				47C60A0327B006E8007BE5D9 /* TransactionsConfirmViewModel.swift */,
 			);
@@ -1915,6 +1926,7 @@
 				47C609E027AF044F007BE5D9 /* FinanceTransactionListViewController.swift in Sources */,
 				40B5953B275E2FB000FA36B2 /* EmailTextField.swift in Sources */,
 				40C106CC26E41F2800B619A1 /* ContactsViewController.swift in Sources */,
+				472903A427BB08B8005D8C29 /* CheckBox.swift in Sources */,
 				40E7203E26E400FE00A64C60 /* AppDelegate.swift in Sources */,
 				4065C96026E854C00084E5F2 /* CorneredView.swift in Sources */,
 				40B82EC7273835D100BED0A1 /* ShareButton.swift in Sources */,
@@ -2090,7 +2102,7 @@
 				40ADABE9273C4517008AAC90 /* SquadHeaderCellModel.swift in Sources */,
 				40C44199274DBE5200F9EC8B /* SportUserDatabaseLoader.swift in Sources */,
 				40C44195274D8CE800F9EC8B /* SportEventProxy.swift in Sources */,
-				47C609FE27AF3F7F007BE5D9 /* AppendTransactionsViewController.swift in Sources */,
+				47C609FE27AF3F7F007BE5D9 /* PrepareTransactionsFromTextViewController.swift in Sources */,
 				40F4EBE5273DD7FE003DA1D3 /* EventDetailUserCellModel.swift in Sources */,
 				40C0526227583AAC00C1930A /* ClubCreator.swift in Sources */,
 				401C9B21270D139800F91DC6 /* MainViewControllerCoordinator.swift in Sources */,

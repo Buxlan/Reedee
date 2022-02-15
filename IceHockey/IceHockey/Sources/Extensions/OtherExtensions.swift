@@ -204,3 +204,14 @@ extension String {
         return ""
     }    
 }
+
+extension Double {
+    func round(to digits: Int,
+               using rule: FloatingPointRoundingRule = .down)
+    -> Double {
+        let divisor = pow(10.0, Double(digits))
+        var value = self * divisor
+        value.round(rule)
+        return value / divisor
+    }
+}

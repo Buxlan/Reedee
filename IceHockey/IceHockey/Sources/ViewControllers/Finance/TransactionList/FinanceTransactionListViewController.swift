@@ -207,7 +207,9 @@ extension FinanceTransactionListViewController {
         }
         row.contextualAction = { [weak self] _, _, _ in
             log.debug("Switch activity of transaction \(transaction.objectIdentifier)")
-            viewModel.switchActivity(of: transaction)
+            self?.viewModel.switchActivity(of: transaction) { result in
+                log.debug("FinanceTransactionListViewController: activity switched")
+            }
         }
         return row
     }

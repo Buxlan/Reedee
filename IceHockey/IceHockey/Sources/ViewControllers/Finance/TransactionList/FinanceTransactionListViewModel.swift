@@ -27,6 +27,8 @@ class FinanceTransactionListViewModel {
         return loader.isLoading
     }
     
+    private var uploads: [String: FinanceTransactionUploader] = [:]
+    
     // MARK: - Actions
     
     private var isAuthCompleted: Bool {
@@ -100,8 +102,28 @@ class FinanceTransactionListViewModel {
         }
     }
     
-    func switchActivity(of transaction: FinanceTransaction) {
-        
+    func switchActivity(of transaction: FinanceTransaction,
+                        with completionHandler: @escaping (Result<Int,
+                                                      FirebaseDataError>) -> Void) {
+        var editedTransaction = transaction
+        editedTransaction.isActive.toggle()
+        let uploader = FinanceTransactionUploader()
+        uploads[transaction.objectIdentifier] = uploader
+        uploader.uploadTransaction(editedTransaction) { [weak self] in
+            guard let self = self,
+                  !self.sections.isEmpty,
+                  let index = self.sections[0].transactions.firstIndex(where: {
+                      $0.objectIdentifier == editedTransaction.objectIdentifier
+                    }) else {
+                        completionHandler(.failure(.common))
+                        return
+                    }
+            
+            self.sections[0].transactions[index] = editedTransaction
+            self.shouldTableRefresh()
+            completionHandler(.success(200))
+            
+        }
     }
     
 }

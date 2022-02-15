@@ -203,6 +203,7 @@
 
 // MARK: - Common
 "Common.next" = "Далее";
+"Common.back" = "Назад";
 "Common.confirm" = "Подтвердить";
 "Common.remain" = "Остаток";
 "Common.export" = "Экспорт";

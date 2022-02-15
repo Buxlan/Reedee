@@ -13,6 +13,7 @@ class TransactionsConfirmViewController: UIViewController {
     // MARK: - Properties
     
     var onNext = {}
+    var onBack = {}
     var viewModel: TransactionsConfirmViewModel
     
     private var type: TransactionType
@@ -43,6 +44,9 @@ class TransactionsConfirmViewController: UIViewController {
         let view = TransactionConfirmTableFooterView(frame: frame)
         view.onConfirm = { [weak self] in
             self?.onNext()
+        }
+        view.onBack = { [weak self] in
+            self?.onBack()
         }
         return view
     }()

@@ -30,6 +30,7 @@ struct AppendTransactionsStepByStepViewModel {
             log.debug("Next string is: \(str)")
             
             var transaction = FinanceTransactionImpl()
+            transaction.isActive = true
             transaction.type = type
             
             guard let match = regex.firstMatch(in: str,

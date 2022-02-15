@@ -26,6 +26,8 @@ struct TransactionCellModel: TableCellModel, TintColorable {
         self.transaction = transaction
         self.isShowOrder = isShowOrder
         self.order = order
+        self.textColor = transaction.isActive ? self.textColor : Colors.Gray.medium
+        log.debug("TransactionCellModel: text color is \(self.textColor)")
     }
     
 }

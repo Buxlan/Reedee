@@ -15,27 +15,52 @@ class AppendTransactionsStepByStepViewController: UIViewController {
     private lazy var viewModel = AppendTransactionsStepByStepViewModel(type: self.type)
     private var uploader: FinanceTransactionUploader?
     
-    private lazy var inputTextTransactionsViewController: AppendTransactionsViewController = {
-        let vc = AppendTransactionsViewController(type: self.type)
+    private lazy var inputTextTransactionsViewController: PrepareTransactionsFromTextViewController = {
+        let vc = PrepareTransactionsFromTextViewController(type: self.type)
         vc.onNext = { [weak self] in
             guard let self = self,
                   self.viewModel.isTextValid(vc.text) else {
                 return
             }
             log.debug("inputTextTransactionsViewController onNext: \(vc.text)")
-            var values = self.viewModel.parseText(vc.text)
-            values = values.map { value in
+            var transactions = self.viewModel.parseText(vc.text)
+            var isCommonAmount = vc.isCommonAmount
+            
+            var amount: Double = vc.amount
+            if isCommonAmount {
+                var nilAmountTransactions = transactions.filter {
+                    $0.amount == 0.0
+                }
+                var allocatedAmount = transactions.reduce(0) { partialResult, transaction in
+                    return partialResult + transaction.amount
+                }
+                let notNilTransactionCount = transactions.count - nilAmountTransactions.count
+                log.debug("inputTextTransactionsViewController: notNilTransactionCount = \(notNilTransactionCount)")
+                let notAllocatedAmount = vc.amount - allocatedAmount
+                log.debug("inputTextTransactionsViewController: notAllocatedAmount = \(notAllocatedAmount)")
+                if nilAmountTransactions.isEmpty {
+                    amount = notAllocatedAmount
+                } else {
+                    amount = (notAllocatedAmount / Double(nilAmountTransactions.count))
+                                .round(to: 2, using: .down)
+                }
+                log.debug("inputTextTransactionsViewController: amount = \(amount)")
+            }
+            
+            transactions = transactions.map { value in
                 var transaction = value
-                transaction.amount = value.amount.isZero ? vc.amount : value.amount
+                transaction.amount = value.amount.isZero ? amount : value.amount
                 transaction.comment = value.comment.isEmpty ? vc.comment : value.comment
                 return transaction
             }
-            let viewModel = TransactionsConfirmViewModel(transactions: values)
+            log.debug("inputTextTransactionsViewController: transactions.count = \(transactions.count)")
+            let viewModel = TransactionsConfirmViewModel(transactions: transactions)
             self.transactionsConfirmViewController.viewModel = viewModel
             self.pageViewController.setViewControllers([self.transactionsConfirmViewController],
                                                        direction: .forward,
-                                                       animated: true,
-                                                       completion: nil)
+                                                       animated: true) { _ in
+                viewModel.update()
+            }
         }
         return vc
     }()
@@ -53,6 +78,13 @@ class AppendTransactionsStepByStepViewController: UIViewController {
                 self?.uploader = nil
                 self?.navigationController?.popViewController(animated: true)
             }
+        }
+        vc.onBack = { [weak self] in
+            guard let self = self else { return }
+            self.pageViewController
+                .setViewControllers([self.inputTextTransactionsViewController],
+                                    direction: .reverse,
+                                    animated: true)
         }
         return vc
     }()

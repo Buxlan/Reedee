@@ -1,5 +1,5 @@
 //
-//  AppendTransactionsViewController.swift
+//  AppendTransactionsFromTextViewController.swift
 //  IceHockey
 //
 //  Created by Sergey Bush bushmakin@outlook.com on 06.02.2022.
@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import UIKit
 
-class AppendTransactionsViewController: UIViewController {
+class PrepareTransactionsFromTextViewController: UIViewController {
     
     // MARK: - Properties
     
@@ -19,9 +19,10 @@ class AppendTransactionsViewController: UIViewController {
     """
     
     var onNext = {}
-    var text: String = AppendTransactionsViewController.str
+    var text: String = PrepareTransactionsFromTextViewController.str
     var amount: Double = 0.0
     var comment: String = ""
+    var isCommonAmount = false
     
     private var disposeBag = DisposeBag()
     
@@ -40,6 +41,17 @@ class AppendTransactionsViewController: UIViewController {
             string: L10n.Finance.Transactions.amountPlaceholer,
             attributes: [NSAttributedString.Key.foregroundColor: Colors.Gray.dark]
         )
+        return view
+    }()
+    
+    private lazy var commonAmountCheckBox: CheckBox = {
+        let view = CheckBox()
+        view.setTitle("Общая сумма", for: .normal)
+        view.backgroundColor = .clear
+        view.tintColor = Asset.textColor.color
+        view.action = { [weak self] isSelected in
+            self?.isCommonAmount = isSelected
+        }
         return view
     }()
     
@@ -111,6 +123,7 @@ class AppendTransactionsViewController: UIViewController {
         view.backgroundColor = Colors.Gray.light
         
         view.addSubview(amountTextField)
+        view.addSubview(commonAmountCheckBox)
         view.addSubview(commentTextField)
         view.addSubview(nextButton)
         view.addSubview(transactionsTextView)
@@ -155,14 +168,21 @@ class AppendTransactionsViewController: UIViewController {
 
 // MARK: - Helpers
 
-extension AppendTransactionsViewController {
+extension PrepareTransactionsFromTextViewController {
     
     private func configureConstraints() {
         
         amountTextField.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
+            make.leading.equalToSuperview().offset(16)
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(8)
-            make.width.equalToSuperview().offset(-32)
+            make.trailing.equalTo(commonAmountCheckBox.snp.leading).offset(-16).priority(250)
+            make.height.equalTo(40)
+        }
+        
+        commonAmountCheckBox.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-16)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(8)
+//            make.width.equalTo(120).priority(750)
             make.height.equalTo(40)
         }
         
@@ -205,7 +225,7 @@ extension AppendTransactionsViewController {
 
 // MARK: - Text field delegate
 
-extension AppendTransactionsViewController: UITextFieldDelegate {
+extension PrepareTransactionsFromTextViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.becomeFirstResponder()
@@ -229,7 +249,7 @@ extension AppendTransactionsViewController: UITextFieldDelegate {
 
 // MARK: - Text view delegate
 
-extension AppendTransactionsViewController: UITextViewDelegate {
+extension PrepareTransactionsFromTextViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         DispatchQueue.main.async {
@@ -250,7 +270,7 @@ extension AppendTransactionsViewController: UITextViewDelegate {
 
 // MARK: - Actions
 
-extension AppendTransactionsViewController {
+extension PrepareTransactionsFromTextViewController {
     
     @objc private func onNextHandle() {
         onNext()

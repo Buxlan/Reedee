@@ -7,6 +7,10 @@
 
 import Firebase
 
+enum FirebaseDataError: Error {
+    case common
+}
+
 class FinanceTransactionUploader {
     
     let databasePart: String = "transactions"

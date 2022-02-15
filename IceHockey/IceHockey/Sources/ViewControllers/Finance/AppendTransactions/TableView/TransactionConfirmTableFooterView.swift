@@ -12,15 +12,27 @@ class TransactionConfirmTableFooterView: UIView {
     // MARK: - Properties
     
     var onConfirm = {}
+    var onBack = {}
     
     private lazy var confirmButton: UIButton = {
         let view = UIButton()
         view.setTitle(L10n.Common.confirm, for: .normal)
         view.layer.cornerRadius = 6
-        view.backgroundColor = Asset.accent1.color
+        view.backgroundColor = Colors.Accent.blue
         view.setTitleColor(Colors.Gray.ultraLight, for: .normal)
         view.titleLabel?.font = Fonts.Regular.subhead
         view.addTarget(self, action: #selector(onConfirmHandle), for: .touchUpInside)
+        return view
+    }()
+    
+    private lazy var backButton: UIButton = {
+        let view = UIButton()
+        view.setTitle(L10n.Common.back, for: .normal)
+        view.layer.cornerRadius = 6
+        view.backgroundColor = Colors.Accent.red
+        view.setTitleColor(Colors.Gray.ultraLight, for: .normal)
+        view.titleLabel?.font = Fonts.Regular.subhead
+        view.addTarget(self, action: #selector(onBackHandle), for: .touchUpInside)
         return view
     }()
     
@@ -36,6 +48,7 @@ class TransactionConfirmTableFooterView: UIView {
         super.init(frame: frame)
         addSubview(lineView)
         addSubview(confirmButton)
+        addSubview(backButton)
         configureConstraints()
     }
     
@@ -54,11 +67,19 @@ class TransactionConfirmTableFooterView: UIView {
         }
         
         confirmButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-16)
             make.centerY.equalTo(self.snp.centerY)
-            make.width.equalTo(200)
+            make.leading.equalTo(self.snp.centerX).offset(16)
             make.height.equalTo(44)
         }
+        
+        backButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(16)
+            make.centerY.equalTo(self.snp.centerY)
+            make.trailing.equalTo(self.snp.centerX).offset(-16)
+            make.height.equalTo(44)
+        }
+        
     }
     
 }
@@ -69,6 +90,10 @@ extension TransactionConfirmTableFooterView {
     
     @objc private func onConfirmHandle() {
         onConfirm()
+    }
+    
+    @objc private func onBackHandle() {
+        onBack()
     }
     
 }

@@ -46,6 +46,10 @@ class TransactionsConfirmViewModel {
         
     }
     
+    func update() {
+        shouldTableRefresh()
+    }
+    
 }
 
 extension TransactionsConfirmViewModel: UserObserver {
