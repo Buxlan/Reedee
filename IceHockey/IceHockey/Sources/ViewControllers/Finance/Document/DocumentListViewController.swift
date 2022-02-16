@@ -1,19 +1,19 @@
 //
-//  FinanceTransactionListViewController.swift
+//  DocumentListViewController.swift
 //  IceHockey
 //
-//  Created by Sergey Bush bushmakin@outlook.com on 05.02.2022.
+//  Created by Sergey Bush bushmakin@outlook.com on 17.02.2022.
 //
 
 import SnapKit
 import FirebaseDatabase
 
-class FinanceTransactionListViewController: UIViewController {
+class DocumentListViewController: UIViewController {
     
     // MARK: - Properties
     
     var tableBase = LeadingSwipableTableViewBase()
-    var viewModel = FinanceTransactionListViewModel()
+    var viewModel = DocumentListViewModel()
     
     private lazy var alert: UIAlertController = {
         let controller = UIAlertController(title: L10n.Finance.Transactions.selectAction,
@@ -156,7 +156,7 @@ class FinanceTransactionListViewController: UIViewController {
 
 // MARK: Table view configuring
 
-extension FinanceTransactionListViewController {
+extension DocumentListViewController {
     
     func createDataSource() -> TableDataSource {
         let sections = makeTableSections()
@@ -172,7 +172,7 @@ extension FinanceTransactionListViewController {
     
 }
 
-extension FinanceTransactionListViewController {
+extension DocumentListViewController {
     
     func makeTableSectionTransactions() -> TableSection {
         
@@ -192,7 +192,7 @@ extension FinanceTransactionListViewController {
     
 }
 
-extension FinanceTransactionListViewController {
+extension DocumentListViewController {
     
     func makeTransactionTableRow(transaction: FinanceTransaction) -> TableRow {
         let cellModel = TransactionCellModel(transaction: transaction)
@@ -219,7 +219,7 @@ extension FinanceTransactionListViewController {
 
 // MARK: - Actions
 
-extension FinanceTransactionListViewController {
+extension DocumentListViewController {
     
     @objc private func appendEventHandle() {
         present(alert, animated: true)

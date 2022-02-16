@@ -7,23 +7,7 @@
 
 import UIKit
 
-class ActionableTableViewBase: TableViewBase {
-    
-    
-    
-//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
-//    {
-//        return true
-//    }
-//
-//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-//        let deleteAction = UITableViewRowAction(style: .normal,
-//                                                title: L10n.Finance.Transactions.deactivate) { (_, indexPath) in
-//            log.debug("action")
-//        }
-//        deleteAction.backgroundColor = Colors.Accent.red
-//        return [deleteAction]
-//    }
+class LeadingSwipableTableViewBase: TableViewBase {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
     {

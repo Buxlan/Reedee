@@ -115,6 +115,21 @@ internal enum L10n {
     internal static let wednesday = L10n.tr("Localizable", "Day.wednesday")
   }
 
+  internal enum Document {
+    internal enum Decrease {
+      /// Decrease
+      internal static let title = L10n.tr("Localizable", "Document.Decrease.title")
+    }
+    internal enum Increase {
+      /// Increase
+      internal static let title = L10n.tr("Localizable", "Document.Increase.title")
+    }
+    internal enum Operation {
+      /// Operation
+      internal static let title = L10n.tr("Localizable", "Document.Operation.title")
+    }
+  }
+
   internal enum EditEventLabel {
     /// Away team
     internal static let awayTeamPlaceholder = L10n.tr("Localizable", "EditEventLabel.awayTeamPlaceholder")
@@ -227,6 +242,8 @@ internal enum L10n {
       internal static let income = L10n.tr("Localizable", "Finance.Transactions.income")
       /// Select action
       internal static let selectAction = L10n.tr("Localizable", "Finance.Transactions.selectAction")
+      /// Summary
+      internal static let summary = L10n.tr("Localizable", "Finance.Transactions.summary")
       /// Switch activity
       internal static let switchActivity = L10n.tr("Localizable", "Finance.Transactions.switchActivity")
       /// Transactions

@@ -92,7 +92,7 @@ class FinanceBalanceViewModel {
             return 0.0
         }
         let filtered = allTransactions.filter {
-            $0.number == number
+            $0.isActive && $0.number == number 
         }
         return filtered.reduce(0.0) { partialResult, transaction in
             let value = (transaction.type == .income ? 1 : -1) * transaction.amount
@@ -106,12 +106,17 @@ class FinanceBalanceViewModel {
         }
         
         var textBalance = ""
-        let sorted = sections[0].transactions.sorted { $0.name < $1.name }
+        let filtered = sections[0].transactions.filter { $0.isActive }
+        let sorted = filtered.sorted { $0.name < $1.name }
+        var summary: Double = 0.0
         
         for (index, transaction) in sorted.enumerated() {
-            let str = "\(index+1)\t\(transaction.name)   \(transaction.number)   \(transaction.amount)р."
+            let amount = transaction.amount.rounded(.down)
+            summary += amount
+            let str = "\(index+1)\t\(transaction.name)   \(transaction.number)   \(amount)р."
             textBalance += (textBalance.isEmpty ? "" : "\n") + str
         }
+        textBalance += (textBalance.isEmpty ? "" : "\n\n") + "Summary" + ": \(summary)"
         return textBalance
     }
     

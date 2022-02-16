@@ -37,6 +37,19 @@ class FinanceRouterViewController: UIViewController {
         return view
     }()
     
+    private lazy var documentsButton: FinanceRouterButton = {
+        let view = FinanceDocumentsButton()
+        view.onSelect = { [weak self] in
+            guard let self = self else {
+                return
+            }
+            // navigate to my files
+            self.navigateToDocumentsViewController()
+        }
+        
+        return view
+    }()
+    
     private lazy var topBackgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = Asset.accent1.color
@@ -53,6 +66,7 @@ class FinanceRouterViewController: UIViewController {
         view.addSubview(topBackgroundView)
         view.addSubview(transactionsButton)
         view.addSubview(reportsButton)
+        view.addSubview(documentsButton)
         
         configureConstraints()
     }
@@ -92,6 +106,13 @@ extension FinanceRouterViewController {
             make.height.equalTo(60)
         }
         
+        documentsButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(reportsButton.snp.bottom).offset(15)
+            make.width.equalToSuperview().offset(-30)
+            make.height.equalTo(60)
+        }
+        
     }
     
     private func configureBars() {
@@ -113,6 +134,11 @@ extension FinanceRouterViewController {
     
     private func navigateToReportsViewController() {
         let vc = FinanceReportBalanceViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func navigateToDocumentsViewController() {
+        let vc = DocumentListViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
     

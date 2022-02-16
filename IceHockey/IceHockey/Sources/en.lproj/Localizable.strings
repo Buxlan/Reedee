@@ -201,6 +201,13 @@
 "Finance.Transactions.deactivate" = "Deactivate";
 "Finance.Transactions.activate" = "Activate";
 "Finance.Transactions.switchActivity" = "Switch activity";
+"Finance.Transactions.summary" = "Summary";
+
+// MARK: - Finance documents
+
+"Document.Operation.title" = "Operation";
+"Document.Increase.title" = "Increase";
+"Document.Decrease.title" = "Decrease";
 
 // MARK: - COMMON
 "Common.next" = "Next";

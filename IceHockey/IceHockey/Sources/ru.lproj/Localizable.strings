@@ -200,6 +200,7 @@
 "Finance.Transactions.switchActivity" = "Изм. активность";
 "Finance.balance" = "Баланс";
 "Finance.exportBalance" = "Баланс (текст)";
+"Finance.Transactions.summary" = "Всего";
 
 // MARK: - Common
 "Common.next" = "Далее";

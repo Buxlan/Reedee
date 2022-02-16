@@ -27,7 +27,8 @@ class FinanceTextReportViewController: UIViewController {
         view.textColor = .black
         view.autocorrectionType = .no
         view.autocapitalizationType = .none
-        view.isEditable = false
+        view.isScrollEnabled = true
+//        view.isEditable = false
         view.font = Fonts.Regular.subhead
         view.backgroundColor = .white
         view.delegate = self

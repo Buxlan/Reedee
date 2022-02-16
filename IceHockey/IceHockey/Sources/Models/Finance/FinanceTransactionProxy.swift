@@ -43,10 +43,6 @@ class FinanceTransactionProxy: FinanceTransaction {
         get { object?.isActive ?? false }
         set { object?.isActive = newValue }
     }
-    var author: String {
-        get { object?.author ?? "" }
-        set { object?.author = newValue }
-    }
     
     func encode() -> [String : Any] {
         if let object = object {

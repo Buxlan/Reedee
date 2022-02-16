@@ -292,8 +292,17 @@
 		4729039B27B97891005D8C29 /* PasswordInputTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4729039A27B97891005D8C29 /* PasswordInputTableCell.swift */; };
 		4729039D27B99322005D8C29 /* ConfigurableButtonTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4729039C27B99322005D8C29 /* ConfigurableButtonTableCell.swift */; };
 		4729039F27B9960F005D8C29 /* ButtonCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4729039E27B9960F005D8C29 /* ButtonCellModel.swift */; };
-		472903A127B9ADB0005D8C29 /* ActionableTableViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472903A027B9ADB0005D8C29 /* ActionableTableViewBase.swift */; };
+		472903A127B9ADB0005D8C29 /* LeadingSwipableTableViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472903A027B9ADB0005D8C29 /* LeadingSwipableTableViewBase.swift */; };
 		472903A427BB08B8005D8C29 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472903A327BB08B8005D8C29 /* CheckBox.swift */; };
+		474EB9A227BD98930008F122 /* FinanceDocumentsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474EB9A127BD98930008F122 /* FinanceDocumentsButton.swift */; };
+		474EB9A627BDA1350008F122 /* DocumentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474EB9A527BDA1350008F122 /* DocumentListViewController.swift */; };
+		474EB9A827BDA2090008F122 /* DocumentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474EB9A727BDA2090008F122 /* DocumentListViewModel.swift */; };
+		474EB9AD27BDA4030008F122 /* DocumentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474EB9AC27BDA4030008F122 /* DocumentType.swift */; };
+		474EB9AF27BDA6120008F122 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474EB9AE27BDA6120008F122 /* Document.swift */; };
+		474EB9B127BDC18B0008F122 /* OperationDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474EB9B027BDC18B0008F122 /* OperationDocument.swift */; };
+		474EB9B327BDC1DC0008F122 /* DocumentTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474EB9B227BDC1DC0008F122 /* DocumentTableRow.swift */; };
+		474EB9B627BDC1F90008F122 /* DocumentTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474EB9B527BDC1F90008F122 /* DocumentTable.swift */; };
+		474EB9B827BDC2500008F122 /* OperationDocumentTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474EB9B727BDC2500008F122 /* OperationDocumentTableRow.swift */; };
 		47AAECFA27B9557D00F5613F /* TextInputCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AAECF927B9557D00F5613F /* TextInputCellModel.swift */; };
 		47C609D527AEF5F3007BE5D9 /* FinanceRouterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609D427AEF5F3007BE5D9 /* FinanceRouterViewController.swift */; };
 		47C609DA27AEF69B007BE5D9 /* FinanceTransactionsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609D727AEF69B007BE5D9 /* FinanceTransactionsButton.swift */; };
@@ -610,8 +619,17 @@
 		4729039A27B97891005D8C29 /* PasswordInputTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInputTableCell.swift; sourceTree = "<group>"; };
 		4729039C27B99322005D8C29 /* ConfigurableButtonTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableButtonTableCell.swift; sourceTree = "<group>"; };
 		4729039E27B9960F005D8C29 /* ButtonCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCellModel.swift; sourceTree = "<group>"; };
-		472903A027B9ADB0005D8C29 /* ActionableTableViewBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionableTableViewBase.swift; sourceTree = "<group>"; };
+		472903A027B9ADB0005D8C29 /* LeadingSwipableTableViewBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadingSwipableTableViewBase.swift; sourceTree = "<group>"; };
 		472903A327BB08B8005D8C29 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		474EB9A127BD98930008F122 /* FinanceDocumentsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceDocumentsButton.swift; sourceTree = "<group>"; };
+		474EB9A527BDA1350008F122 /* DocumentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListViewController.swift; sourceTree = "<group>"; };
+		474EB9A727BDA2090008F122 /* DocumentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListViewModel.swift; sourceTree = "<group>"; };
+		474EB9AC27BDA4030008F122 /* DocumentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentType.swift; sourceTree = "<group>"; };
+		474EB9AE27BDA6120008F122 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		474EB9B027BDC18B0008F122 /* OperationDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDocument.swift; sourceTree = "<group>"; };
+		474EB9B227BDC1DC0008F122 /* DocumentTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTableRow.swift; sourceTree = "<group>"; };
+		474EB9B527BDC1F90008F122 /* DocumentTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTable.swift; sourceTree = "<group>"; };
+		474EB9B727BDC2500008F122 /* OperationDocumentTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDocumentTableRow.swift; sourceTree = "<group>"; };
 		47AAECF927B9557D00F5613F /* TextInputCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputCellModel.swift; sourceTree = "<group>"; };
 		47C609D427AEF5F3007BE5D9 /* FinanceRouterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceRouterViewController.swift; sourceTree = "<group>"; };
 		47C609D727AEF69B007BE5D9 /* FinanceTransactionsButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinanceTransactionsButton.swift; sourceTree = "<group>"; };
@@ -1113,6 +1131,7 @@
 		40940BE626E40C4F0098EF89 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				474EB9AB27BDA3E50008F122 /* FinanceDocument */,
 				47C609ED27AF15B6007BE5D9 /* Finance */,
 				4052F323279CBE060084C8F9 /* Util */,
 				40C4417D274D49C400F9EC8B /* Squads */,
@@ -1334,7 +1353,7 @@
 				40AE442027411ECC00BD6506 /* CollectionViewBaseVC.swift */,
 				409DD42C2735D43500055FBD /* TableDataSource.swift */,
 				409DD42E2735D60F00055FBD /* TableViewBaseVC.swift */,
-				472903A027B9ADB0005D8C29 /* ActionableTableViewBase.swift */,
+				472903A027B9ADB0005D8C29 /* LeadingSwipableTableViewBase.swift */,
 				40AE441E27411EB500BD6506 /* CollectionDataSource.swift */,
 			);
 			path = Collections;
@@ -1551,6 +1570,36 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		474EB9A427BDA10F0008F122 /* Document */ = {
+			isa = PBXGroup;
+			children = (
+				474EB9A527BDA1350008F122 /* DocumentListViewController.swift */,
+				474EB9A727BDA2090008F122 /* DocumentListViewModel.swift */,
+			);
+			path = Document;
+			sourceTree = "<group>";
+		};
+		474EB9AB27BDA3E50008F122 /* FinanceDocument */ = {
+			isa = PBXGroup;
+			children = (
+				474EB9AC27BDA4030008F122 /* DocumentType.swift */,
+				474EB9AE27BDA6120008F122 /* Document.swift */,
+				474EB9B527BDC1F90008F122 /* DocumentTable.swift */,
+				474EB9B227BDC1DC0008F122 /* DocumentTableRow.swift */,
+				474EB9B427BDC1E30008F122 /* OperationDocument */,
+			);
+			path = FinanceDocument;
+			sourceTree = "<group>";
+		};
+		474EB9B427BDC1E30008F122 /* OperationDocument */ = {
+			isa = PBXGroup;
+			children = (
+				474EB9B027BDC18B0008F122 /* OperationDocument.swift */,
+				474EB9B727BDC2500008F122 /* OperationDocumentTableRow.swift */,
+			);
+			path = OperationDocument;
+			sourceTree = "<group>";
+		};
 		47AAECF727B9551A00F5613F /* Table view */ = {
 			isa = PBXGroup;
 			children = (
@@ -1577,6 +1626,7 @@
 		47C609D327AEF5DA007BE5D9 /* Finance */ = {
 			isa = PBXGroup;
 			children = (
+				474EB9A427BDA10F0008F122 /* Document */,
 				470C216827B1A81D002198E1 /* Reports */,
 				47C609FC27AF3F4B007BE5D9 /* AppendTransactions */,
 				47C609E427AF08F8007BE5D9 /* TransactionList */,
@@ -1591,6 +1641,7 @@
 				47C609D927AEF69B007BE5D9 /* FinanceRouterButton.swift */,
 				47C609D727AEF69B007BE5D9 /* FinanceTransactionsButton.swift */,
 				47C609D827AEF69B007BE5D9 /* FinanceReportsButton.swift */,
+				474EB9A127BD98930008F122 /* FinanceDocumentsButton.swift */,
 			);
 			path = Finance;
 			sourceTree = "<group>";
@@ -1851,6 +1902,7 @@
 				40713A8527204BC4005F1265 /* ContactsViewModel.swift in Sources */,
 				47C609D527AEF5F3007BE5D9 /* FinanceRouterViewController.swift in Sources */,
 				47C609F527AF2466007BE5D9 /* FinanceTransactionCreator.swift in Sources */,
+				474EB9B627BDC1F90008F122 /* DocumentTable.swift in Sources */,
 				470C216A27B1A8A2002198E1 /* FinanceBalanceViewModel.swift in Sources */,
 				401C9B24270D155C00F91DC6 /* FirebaseManager.swift in Sources */,
 				40AE442127411ECC00BD6506 /* CollectionViewBaseVC.swift in Sources */,
@@ -1865,6 +1917,7 @@
 				40C4418A274D559800F9EC8B /* SquadBuilder.swift in Sources */,
 				407BB05A274B9E83008DF228 /* Coord.swift in Sources */,
 				406E3147272B08F900C2B30F /* TeamListViewController.swift in Sources */,
+				474EB9B327BDC1DC0008F122 /* DocumentTableRow.swift in Sources */,
 				4052F30E279CA3DD0084C8F9 /* LogInitializer.swift in Sources */,
 				406CE68A2723EDE6002FDDB6 /* EditEventPhotoCollectionViewLayout.swift in Sources */,
 				40429BB3274AC0D400DAD070 /* WorkoutScheduleListLoader.swift in Sources */,
@@ -1886,12 +1939,14 @@
 				40772C0A273B3DC9006CD549 /* ExistingTrainingScheduleFirebaseSaver.swift in Sources */,
 				40C4418D274D559800F9EC8B /* SquadProxy.swift in Sources */,
 				4052F327279CBECE0084C8F9 /* NotificationSetting.swift in Sources */,
+				474EB9A227BD98930008F122 /* FinanceDocumentsButton.swift in Sources */,
 				409DD42B2735D37700055FBD /* ContentConfigurator.swift in Sources */,
 				4052F30B279CA2490084C8F9 /* UserDefaultsState.swift in Sources */,
 				40A1368927358D44005C0007 /* SettingsViewModel.swift in Sources */,
 				40F52E5C2733D4AF005BD851 /* MatchResult.swift in Sources */,
 				407EF252275CDDB3000F1B76 /* ProfileInfoTableCell.swift.swift in Sources */,
 				40940BE126E40C380098EF89 /* OtherExtensions.swift in Sources */,
+				474EB9AF27BDA6120008F122 /* Document.swift in Sources */,
 				406CE6832723EBEB002FDDB6 /* EditEventPhotoCell + CollectionView.swift in Sources */,
 				409DD42F2735D60F00055FBD /* TableViewBaseVC.swift in Sources */,
 				47C609DA27AEF69B007BE5D9 /* FinanceTransactionsButton.swift in Sources */,
@@ -1912,12 +1967,14 @@
 				47C60A0427B006E8007BE5D9 /* TransactionsConfirmViewModel.swift in Sources */,
 				47C609DB27AEF69B007BE5D9 /* FinanceReportsButton.swift in Sources */,
 				4094E6DE272B25A4004ED01B /* TeamTableCell.swift in Sources */,
+				474EB9A627BDA1350008F122 /* DocumentListViewController.swift in Sources */,
 				409AFDB72747ADD300AAD62E /* EventDetailPhotoCellModel.swift in Sources */,
 				40781507272CA3D3006D3AD2 /* SportTeamFirebaseSaver.swift in Sources */,
 				47C609E627AF093E007BE5D9 /* FinanceTransactionListViewModel.swift in Sources */,
 				40940BF026E412F40098EF89 /* AuthUserActions.swift in Sources */,
 				40C44190274D559800F9EC8B /* SquadImagesLoader.swift in Sources */,
 				40F4EBE1273DCC28003DA1D3 /* EventDetailUsefulButtonsCellModel.swift in Sources */,
+				474EB9B827BDC2500008F122 /* OperationDocumentTableRow.swift in Sources */,
 				40940C0626E418E50098EF89 /* MainTabBarViewController.swift in Sources */,
 				40E70B962748534F0074CD2D /* SportEventListLoader.swift in Sources */,
 				4093D9A9271780E000DCF35D /* ApplicationUser.swift in Sources */,
@@ -1928,6 +1985,7 @@
 				40C106CC26E41F2800B619A1 /* ContactsViewController.swift in Sources */,
 				472903A427BB08B8005D8C29 /* CheckBox.swift in Sources */,
 				40E7203E26E400FE00A64C60 /* AppDelegate.swift in Sources */,
+				474EB9A827BDA2090008F122 /* DocumentListViewModel.swift in Sources */,
 				4065C96026E854C00084E5F2 /* CorneredView.swift in Sources */,
 				40B82EC7273835D100BED0A1 /* ShareButton.swift in Sources */,
 				400B8F56272B5DAE008A8AFE /* TeamDetailViewModel.swift in Sources */,
@@ -2070,7 +2128,7 @@
 				470C215427B07B58002198E1 /* TransactionConfirmTableFooterView.swift in Sources */,
 				4052F305279CA2060084C8F9 /* MonitoredState.swift in Sources */,
 				40772C0C273B3E98006CD549 /* NewTrainingScheduleFirebaseSaver.swift in Sources */,
-				472903A127B9ADB0005D8C29 /* ActionableTableViewBase.swift in Sources */,
+				472903A127B9ADB0005D8C29 /* LeadingSwipableTableViewBase.swift in Sources */,
 				40E3115B2752EA4A00A5C24F /* SportNewsProxy.swift in Sources */,
 				406E7C0727232B8800DAD711 /* ImagePickerManager.swift in Sources */,
 				4065C95226E84E410084E5F2 /* ComingEventTableCell.swift in Sources */,
@@ -2080,6 +2138,7 @@
 				406C306526F8F0820040F0A7 /* PhotoGalleryCollectionCell.swift in Sources */,
 				40940BDF26E40C380098EF89 /* UIViewExtension.swift in Sources */,
 				40C4418C274D559800F9EC8B /* SquadDatabaseFlowData.swift in Sources */,
+				474EB9AD27BDA4030008F122 /* DocumentType.swift in Sources */,
 				400B8F4B272B4EAC008A8AFE /* SportTeamFirebaseRemover.swift in Sources */,
 				40F4EBDA273DC9D3003DA1D3 /* EventDetailHeaderCellModel.swift in Sources */,
 				40A6321D272DF1F30017F6FE /* MapTableCell.swift in Sources */,
@@ -2136,6 +2195,7 @@
 				47C60A0027AFFAA2007BE5D9 /* AppendTransactionsStepByStepViewController.swift in Sources */,
 				4729039B27B97891005D8C29 /* PasswordInputTableCell.swift in Sources */,
 				4094E6CC2756DAF3000737B9 /* FirebaseObjectBuilder.swift in Sources */,
+				474EB9B127BDC18B0008F122 /* OperationDocument.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

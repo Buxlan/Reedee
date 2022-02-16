@@ -7,17 +7,19 @@
 
 import UIKit
 
-protocol FinanceTransaction: FirebaseObject {
+protocol FinanceTransactionProtocol {
     var name: String { get set }
     var number: String  { get set }
     var comment: String  { get set }
     var type: TransactionType  { get set }
     var amount: Double  { get set }
     var date: Date { get set }
-    var author: String { get set }
     var isActive: Bool { get set }
     
     func encode() -> [String: Any]
+}
+
+protocol FinanceTransaction: FirebaseObject, FinanceTransactionProtocol {
 }
 
 struct FinanceTransactionImpl: FinanceTransaction {
@@ -28,7 +30,6 @@ struct FinanceTransactionImpl: FinanceTransaction {
     var type: TransactionType
     var amount: Double
     var date: Date
-    var author: String
     var isActive: Bool
     
     init(databaseFlowObject: FinanceTransactionDatabaseFlowData = EmptyFinanceTransactionDatabaseFlowData()) {
@@ -39,7 +40,6 @@ struct FinanceTransactionImpl: FinanceTransaction {
         self.type = databaseFlowObject.type
         self.amount = databaseFlowObject.amount
         self.date = databaseFlowObject.date
-        self.author = databaseFlowObject.author
         self.isActive = databaseFlowObject.isActive
     }
     
@@ -53,7 +53,6 @@ struct FinanceTransactionImpl: FinanceTransaction {
             "type": self.type.rawValue,
             "amount": self.amount,
             "date": Int(self.date.timeIntervalSince1970),
-            "author": self.author,
             "isActive": self.isActive
         ]
         
