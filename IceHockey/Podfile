@@ -29,5 +29,6 @@ target 'IceHockey' do
   pod 'RxCocoa', '6.2.0'
   pod 'SnapKit'
   pod 'XCGLogger', '~> 7.0.1'
+  pod 'FSCalendar'
 
 end

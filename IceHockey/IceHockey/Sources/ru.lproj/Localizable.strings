@@ -202,9 +202,27 @@
 "Finance.exportBalance" = "Баланс (текст)";
 "Finance.Transactions.summary" = "Всего";
 
+// MARK: - Finance documents
+
+"Document.addVarious" = "Добавить смешанные операции (+-)";
+"Document.addIncreases" = "Добавить новые поступления";
+"Document.addDecreases" = "Добавить новые расходы";
+"Document.Operation.title" = "Смешанные операции";
+"Document.Increase.title" = "Увеличение кошелька";
+"Document.Decrease.title" = "Расход из кошелька";
+"Document.listTitle" = "Документы";
+"Document.comment" = "Комментарий";
+
 // MARK: - Common
+
 "Common.next" = "Далее";
 "Common.back" = "Назад";
+"Common.close" = "Закрыть";
+"Common.at" = "от";
+"Common.numberSymbol" = "№";
+"Common.numberText" = "номер";
+"Common.ready" = "Готово";
 "Common.confirm" = "Подтвердить";
 "Common.remain" = "Остаток";
 "Common.export" = "Экспорт";
+"Common.defaultDatePickerTitle" = "Дата";

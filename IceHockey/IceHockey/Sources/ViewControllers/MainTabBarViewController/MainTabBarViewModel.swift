@@ -93,18 +93,23 @@ class MainTabBarViewModel {
         var items = [UIViewController]()
         var vc: UINavigationController
         vc = UINavigationController(rootViewController: HomeViewController())
+        vc.modalTransitionStyle = .crossDissolve
         items.append(vc)        
                 
         vc = UINavigationController(rootViewController: TrainingScheduleViewController())
+        vc.modalTransitionStyle = .crossDissolve
         items.append(vc)
         
         vc = UINavigationController(rootViewController: ContactsViewController())
+        vc.modalTransitionStyle = .crossDissolve
         items.append(vc)
         
         vc = UINavigationController(rootViewController: FinanceRouterViewController())
+        vc.modalTransitionStyle = .crossDissolve
         items.append(vc)
         
         vc = UINavigationController(rootViewController: SettingsViewController())
+        vc.modalTransitionStyle = .crossDissolve
         items.append(vc)
         
         return items

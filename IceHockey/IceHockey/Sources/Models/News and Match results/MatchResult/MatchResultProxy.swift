@@ -88,7 +88,7 @@ class MatchResultProxy: MatchResult {
 
 extension MatchResultProxy {
     
-    func save(completionHandler: @escaping (SportEventSaveError?) -> Void) {
+    func save(completionHandler: @escaping (SaveObjectError?) -> Void) {
         event?.save(completionHandler: completionHandler)
     }
     

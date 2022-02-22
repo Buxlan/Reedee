@@ -13,7 +13,7 @@ protocol ObjectFirebaseSaver {
     func save() throws
 }
 
-enum SportEventSaveError: LocalizedError {
+enum SaveObjectError: LocalizedError {
     case wrongPropertiesError
     case wrongInputError
     case databaseError

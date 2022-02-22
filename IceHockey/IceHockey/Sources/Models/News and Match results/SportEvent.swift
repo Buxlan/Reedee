@@ -22,7 +22,7 @@ protocol SportEvent: Event {
     var likesInfo: EventLikesInfo { get set }
     var viewsInfo: EventViewsInfo { get set }
     
-    func save(completionHandler: @escaping (SportEventSaveError?) -> Void)
+    func save(completionHandler: @escaping (SaveObjectError?) -> Void)
     func delete(completionHandler: @escaping (FirebaseRemoveError?) -> Void)
     func encode() -> [String: Any]
 }

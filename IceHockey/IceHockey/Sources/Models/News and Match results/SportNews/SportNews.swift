@@ -148,7 +148,7 @@ extension SportNewsImpl {
         return dict
     }
     
-    func save(completionHandler: @escaping (SportEventSaveError?) -> Void) {
+    func save(completionHandler: @escaping (SaveObjectError?) -> Void) {
         SportNewsFirebaseSaver(object: self).save(completionHandler: completionHandler)
     }
     

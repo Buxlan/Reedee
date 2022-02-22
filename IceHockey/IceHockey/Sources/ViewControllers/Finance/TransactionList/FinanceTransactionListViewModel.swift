@@ -109,7 +109,7 @@ class FinanceTransactionListViewModel {
         editedTransaction.isActive.toggle()
         let uploader = FinanceTransactionUploader()
         uploads[transaction.objectIdentifier] = uploader
-        uploader.uploadTransaction(editedTransaction) { [weak self] in
+        uploader.uploadTransactions([editedTransaction]) { [weak self] error in
             guard let self = self,
                   !self.sections.isEmpty,
                   let index = self.sections[0].transactions.firstIndex(where: {

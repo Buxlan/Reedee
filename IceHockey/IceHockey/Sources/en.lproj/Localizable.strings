@@ -205,13 +205,25 @@
 
 // MARK: - Finance documents
 
+"Document.addVarious" = "Add mixed operations";
+"Document.addIncreases" = "Add budjet increases";
+"Document.addDecreases" = "Add budjet descreases";
 "Document.Operation.title" = "Operation";
 "Document.Increase.title" = "Increase";
 "Document.Decrease.title" = "Decrease";
+"Document.listTitle" = "Documents";
+"Document.comment" = "Comment";
 
-// MARK: - COMMON
+// MARK: - Common
+
 "Common.next" = "Next";
 "Common.back" = "Back";
+"Common.close" = "Close";
+"Common.at" = "at";
+"Common.numberSymbol" = "№";
+"Common.numberText" = "number";
+"Common.ready" = "Готово";
 "Common.confirm" = "Confirm";
 "Common.remain" = "Remain";
 "Common.export" = "Export";
+"Common.defaultDatePickerTitle" = "Date";

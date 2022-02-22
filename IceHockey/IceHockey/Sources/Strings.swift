@@ -75,14 +75,26 @@ internal enum L10n {
   }
 
   internal enum Common {
+    /// at
+    internal static let at = L10n.tr("Localizable", "Common.at")
     /// Back
     internal static let back = L10n.tr("Localizable", "Common.back")
+    /// Close
+    internal static let close = L10n.tr("Localizable", "Common.close")
     /// Confirm
     internal static let confirm = L10n.tr("Localizable", "Common.confirm")
+    /// Date
+    internal static let defaultDatePickerTitle = L10n.tr("Localizable", "Common.defaultDatePickerTitle")
     /// Export
     internal static let export = L10n.tr("Localizable", "Common.export")
     /// Next
     internal static let next = L10n.tr("Localizable", "Common.next")
+    /// №
+    internal static let numberSymbol = L10n.tr("Localizable", "Common.numberSymbol")
+    /// number
+    internal static let numberText = L10n.tr("Localizable", "Common.numberText")
+    /// Готово
+    internal static let ready = L10n.tr("Localizable", "Common.ready")
     /// Remain
     internal static let remain = L10n.tr("Localizable", "Common.remain")
   }
@@ -116,6 +128,16 @@ internal enum L10n {
   }
 
   internal enum Document {
+    /// Add budjet descreases
+    internal static let addDecreases = L10n.tr("Localizable", "Document.addDecreases")
+    /// Add budjet increases
+    internal static let addIncreases = L10n.tr("Localizable", "Document.addIncreases")
+    /// Add mixed operations
+    internal static let addVarious = L10n.tr("Localizable", "Document.addVarious")
+    /// Comment
+    internal static let comment = L10n.tr("Localizable", "Document.comment")
+    /// Documents
+    internal static let listTitle = L10n.tr("Localizable", "Document.listTitle")
     internal enum Decrease {
       /// Decrease
       internal static let title = L10n.tr("Localizable", "Document.Decrease.title")

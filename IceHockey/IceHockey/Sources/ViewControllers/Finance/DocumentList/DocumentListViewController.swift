@@ -11,21 +11,31 @@ import FirebaseDatabase
 class DocumentListViewController: UIViewController {
     
     // MARK: - Properties
+
     
-    var tableBase = LeadingSwipableTableViewBase()
+    var tableBase = TableViewBase()
     var viewModel = DocumentListViewModel()
     
     private lazy var alert: UIAlertController = {
         let controller = UIAlertController(title: L10n.Finance.Transactions.selectAction,
                                            message: nil,
                                            preferredStyle: .actionSheet)
-        let incomeAction = UIAlertAction(title: L10n.Finance.Transactions.addIncome, style: .default) { _ in
+        let addOperationDocumentAction = UIAlertAction(title: L10n.Document.addVarious,
+                                                       style: .default) { _ in
             let vc = AppendTransactionsStepByStepViewController(type: .income)
             vc.modalPresentationStyle = .pageSheet
             vc.modalTransitionStyle = .crossDissolve
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        let costsAction = UIAlertAction(title: L10n.Finance.Transactions.addCosts, style: .default) { _ in
+        let addIncreaseDocumentAction = UIAlertAction(title: L10n.Document.addIncreases,
+                                                      style: .default) { _ in
+            let vc = AppendTransactionsStepByStepViewController(type: .cost)
+            vc.modalPresentationStyle = .pageSheet
+            vc.modalTransitionStyle = .crossDissolve
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        let addDecreaseDocumentAction = UIAlertAction(title: L10n.Document.addDecreases,
+                                                      style: .default) { _ in
             let vc = AppendTransactionsStepByStepViewController(type: .cost)
             vc.modalPresentationStyle = .pageSheet
             vc.modalTransitionStyle = .crossDissolve
@@ -33,8 +43,9 @@ class DocumentListViewController: UIViewController {
         }
         let cancelAction = UIAlertAction(title: L10n.Other.cancel, style: .cancel) { _ in
         }
-        controller.addAction(incomeAction)
-        controller.addAction(costsAction)
+        controller.addAction(addOperationDocumentAction)
+        controller.addAction(addIncreaseDocumentAction)
+        controller.addAction(addDecreaseDocumentAction)
         controller.addAction(cancelAction)
         
         return controller
@@ -68,25 +79,20 @@ class DocumentListViewController: UIViewController {
         view.allowsMultipleSelection = false
         view.allowsSelectionDuringEditing = false
         view.allowsMultipleSelectionDuringEditing = false
-        view.separatorStyle = .none
+        view.separatorStyle = .singleLine
         view.rowHeight = UITableView.automaticDimension
         view.estimatedRowHeight = 60
         view.tableFooterView = tableFooterView
         view.showsVerticalScrollIndicator = true
-        view.register(TransactionTableCell.self,
-                      forCellReuseIdentifier: TransactionViewConfigurator.reuseIdentifier)
+        view.register(DocumentTableCell.self,
+                      forCellReuseIdentifier: DocumentViewConfigurator.reuseIdentifier)
         if #available(iOS 15.0, *) {
             view.sectionHeaderTopPadding = 0
         }
         return view
     }()
     
-    private lazy var tableFooterView: TransactionListTableFooterView = {
-        let frame = CGRect(x: 0, y: 0, width: 0, height: 80)
-        let view = TransactionListTableFooterView(frame: frame)
-        view.configure(amount: 0.0)
-        return view
-    }()
+    private let tableFooterView = UIView()
         
     // MARK: - Lifecircle
     
@@ -132,7 +138,7 @@ class DocumentListViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        title = L10n.Finance.Transactions.title
+        title = L10n.Document.listTitle
         navigationController?.setToolbarHidden(true, animated: false)
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -166,7 +172,7 @@ extension DocumentListViewController {
     
     private func makeTableSections() -> [TableSection] {
         return [
-            makeTableSectionTransactions()
+            makeTableSectionDocuments()
         ]
     }
     
@@ -174,7 +180,7 @@ extension DocumentListViewController {
 
 extension DocumentListViewController {
     
-    func makeTableSectionTransactions() -> TableSection {
+    func makeTableSectionDocuments() -> TableSection {
         
         var section = TableSection()
         
@@ -182,8 +188,8 @@ extension DocumentListViewController {
             return section
         }
         
-        let rows = viewModel.sections[0].transactions.map { transaction in
-            makeTransactionTableRow(transaction: transaction)
+        let rows = viewModel.sections[0].documents.map { document in
+            makeDocumentTableRow(document: document)
         }
         
         section.addRows(rows)
@@ -194,23 +200,19 @@ extension DocumentListViewController {
 
 extension DocumentListViewController {
     
-    func makeTransactionTableRow(transaction: FinanceTransaction) -> TableRow {
-        let cellModel = TransactionCellModel(transaction: transaction)
-        let config = TransactionViewConfigurator(data: cellModel)
+    func makeDocumentTableRow(document: Document) -> TableRow {
+        let cellModel = DocumentCellModel(document: document)
+        let config = DocumentViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier, config: config, height: UITableView.automaticDimension)
-        row.action = { [weak self] indexPath in
+        row.action = { [weak self, document] indexPath in
             guard let self = self else {
                 return
             }
             self.tableView.deselectRow(at: indexPath, animated: false)
-            let balance = self.viewModel.getBalance(number: transaction.number)
-            self.tableFooterView.configure(amount: balance)
-        }
-        row.contextualAction = { [weak self] _, _, _ in
-            log.debug("Switch activity of transaction \(transaction.objectIdentifier)")
-            self?.viewModel.switchActivity(of: transaction) { result in
-                log.debug("FinanceTransactionListViewController: activity switched")
-            }
+            let vc = OperationDocumentDetailViewController()
+            vc.document = document
+            vc.modalTransitionStyle = .crossDissolve
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         return row
     }

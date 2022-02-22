@@ -7,7 +7,17 @@
 
 import Foundation
 
-protocol DocumentTableRow: FinanceTransactionProtocol {
+protocol DocumentTableRow {
     var index: Int { get set }
-    init?(key: String, value: Any)
+    
+    var name: String { get set }
+    var number: String  { get set }
+    var comment: String  { get set }
+    var type: TransactionType  { get set }
+    var amount: Double  { get set }
+    var date: Date { get set }
+    
+    func encode() -> [String: Any]
+    
+    init(dict: [String: Any])
 }

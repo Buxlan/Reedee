@@ -24,4 +24,15 @@ enum DocumentType: Int, Codable {
         }
     }
     
+    var image: UIImage {
+        switch self {
+        case .operation:
+            return Asset.plusminus.image
+        case .increase:
+            return Asset.plus.image
+        case .decrease:
+            return Asset.minus.image
+        }
+    }
+    
 }

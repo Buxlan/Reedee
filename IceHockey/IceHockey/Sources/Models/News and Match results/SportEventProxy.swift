@@ -61,7 +61,7 @@ class SportEventProxy: SportEvent {
 
 extension SportEventProxy {
     
-    func save(completionHandler: @escaping (SportEventSaveError?) -> Void) {
+    func save(completionHandler: @escaping (SaveObjectError?) -> Void) {
         event?.save(completionHandler: completionHandler)
     }
     

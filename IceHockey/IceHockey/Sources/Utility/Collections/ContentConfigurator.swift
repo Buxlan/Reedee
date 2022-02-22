@@ -129,3 +129,14 @@ typealias PasswordInputViewConfigurator = CollectionViewConfigurator<PasswordInp
 
 typealias ConfigurableButtonViewConfigurator = CollectionViewConfigurator<ConfigurableButtonTableCell,
                                                                           ButtonCellModel>
+
+// MARK: - Documents
+
+typealias DocumentViewConfigurator = CollectionViewConfigurator<DocumentTableCell,
+                                                                DocumentCellModel>
+typealias OperationDocumentTableRowViewConfigurator = CollectionViewConfigurator<OperationDocumentTableRowTableCell,
+                                                                                 OperationDocumentTableRowCellModel>
+
+typealias DetailDocumentTableSectionHeaderViewConfigurator = CollectionViewConfigurator<DetailDocumentTableSectionHeaderView,
+                                                                                        DetailDocumentTableSectionHeaderViewModel>
+

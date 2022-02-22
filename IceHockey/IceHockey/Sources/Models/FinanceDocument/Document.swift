@@ -12,12 +12,14 @@ protocol Document: FirebaseObject {
     var number: String { get set }
     var date: Date  { get set }
     var comment: String  { get set }
-    var type: TransactionType?  { get set }
+    var type: DocumentType  { get set }
     var author: SportUser? { get set }
     var amount: Double { get set }
-    var transactionTable: DocumentTable { get set }
+    
+    var table: DocumentTable { get set }
     
     func encode() -> [String: Any]
+    init(databaseFlowObject: DocumentDatabaseFlowData)
 }
 
 extension Document {

@@ -17,24 +17,21 @@ struct OperationDocumentTableRow: DocumentTableRow {
     var type: TransactionType
     var amount: Double
     var date: Date
-    var isActive: Bool
     
-    init?(key: String, value: Any) {
-        guard !key.isEmpty,
-              let dict = value as? [String: Any],
-              let rawType = dict["type"] as? Int,
-              let type = TransactionType(rawValue: rawType) else {
-                  return nil
-              }
+    init(dict: [String: Any]) {
         
-        self.type = type
         self.index = dict["index"] as? Int ?? 0
         self.name = dict["name"] as? String ?? ""
         self.surname = dict["surname"] as? String ?? ""
         self.number = dict["number"] as? String ?? ""
         self.comment = dict["comment"] as? String ?? ""
         self.amount = dict["amount"] as? Double ?? 0.0
-        self.isActive = dict["isActive"] as? Bool ?? false
+        
+        self.type = .income
+        if let rawType = dict["type"] as? Int,
+           let type = TransactionType(rawValue: rawType) {
+            self.type = type
+        }
         
         self.date = Date()
         if let dateInterval = dict["date"] as? Int {
@@ -53,8 +50,7 @@ struct OperationDocumentTableRow: DocumentTableRow {
             "comment": self.comment,
             "type": self.type.rawValue,
             "amount": self.amount,
-            "date": Int(self.date.timeIntervalSince1970),
-            "isActive": self.isActive
+            "date": Int(self.date.timeIntervalSince1970)
         ]
         
         return dict

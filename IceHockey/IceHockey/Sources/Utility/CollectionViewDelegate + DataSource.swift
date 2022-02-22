@@ -7,10 +7,10 @@
 
 import UIKit
 
-protocol CollectionViewDelegate: class {
+protocol CollectionViewDelegate: AnyObject {
     var delegate: UICollectionViewDelegate? { get set }
 }
 
-protocol CollectionViewDataSource: class {
+protocol CollectionViewDataSource: AnyObject {
     var dataSource: UICollectionViewDataSource? { get set }
 }

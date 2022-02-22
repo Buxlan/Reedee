@@ -13,12 +13,12 @@ struct EmptyDocumentTable: DocumentTable {
     var rows: [DocumentTableRow] = []
 }
 
-struct DocumentTableImpl<RowType: DocumentTableRow> : DocumentTable {
-    var rows: [DocumentTableRow]
-    
-    init(dict: [String: Any]) {
-        self.rows = dict.compactMap { (key, value) -> RowType? in
-            RowType(key: key, value: value)
-        }
-    }
-}
+//struct DocumentTableImpl<RowType: DocumentTableRow> : DocumentTable {
+//    var rows: [DocumentTableRow]
+//    
+//    init(dict: [String: Any]) {
+//        self.rows = dict.compactMap { (key, value) -> RowType? in
+//            RowType(key: key, value: value)
+//        }
+//    }
+//}

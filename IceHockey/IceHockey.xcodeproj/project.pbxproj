@@ -294,6 +294,9 @@
 		4729039F27B9960F005D8C29 /* ButtonCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4729039E27B9960F005D8C29 /* ButtonCellModel.swift */; };
 		472903A127B9ADB0005D8C29 /* LeadingSwipableTableViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472903A027B9ADB0005D8C29 /* LeadingSwipableTableViewBase.swift */; };
 		472903A427BB08B8005D8C29 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472903A327BB08B8005D8C29 /* CheckBox.swift */; };
+		47394D0027BEE455001942E0 /* DocumentListLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394CFF27BEE455001942E0 /* DocumentListLoader.swift */; };
+		47394D0227BEE550001942E0 /* DocumentCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394D0127BEE550001942E0 /* DocumentCreator.swift */; };
+		47394D0427BEE617001942E0 /* DocumentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394D0327BEE617001942E0 /* DocumentBuilder.swift */; };
 		474EB9A227BD98930008F122 /* FinanceDocumentsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474EB9A127BD98930008F122 /* FinanceDocumentsButton.swift */; };
 		474EB9A627BDA1350008F122 /* DocumentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474EB9A527BDA1350008F122 /* DocumentListViewController.swift */; };
 		474EB9A827BDA2090008F122 /* DocumentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474EB9A727BDA2090008F122 /* DocumentListViewModel.swift */; };
@@ -303,6 +306,21 @@
 		474EB9B327BDC1DC0008F122 /* DocumentTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474EB9B227BDC1DC0008F122 /* DocumentTableRow.swift */; };
 		474EB9B627BDC1F90008F122 /* DocumentTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474EB9B527BDC1F90008F122 /* DocumentTable.swift */; };
 		474EB9B827BDC2500008F122 /* OperationDocumentTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474EB9B727BDC2500008F122 /* OperationDocumentTableRow.swift */; };
+		47691C2427C02787008C8F77 /* DocumentCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47691C2327C02787008C8F77 /* DocumentCellModel.swift */; };
+		47691C2627C0285A008C8F77 /* DocumentTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47691C2527C0285A008C8F77 /* DocumentTableCell.swift */; };
+		47691C2827C0404A008C8F77 /* OperationDocumentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47691C2727C0404A008C8F77 /* OperationDocumentDetailViewController.swift */; };
+		47691C2C27C04541008C8F77 /* OperationDocumentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47691C2B27C04541008C8F77 /* OperationDocumentDetailViewModel.swift */; };
+		47691C3027C0490D008C8F77 /* OperationDocumentTableRowCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47691C2F27C0490D008C8F77 /* OperationDocumentTableRowCellModel.swift */; };
+		47691C3227C04A0F008C8F77 /* OperationDocumentTableRowTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47691C3127C04A0F008C8F77 /* OperationDocumentTableRowTableCell.swift */; };
+		47691C3427C05F13008C8F77 /* DetailOperationDocumentTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47691C3327C05F13008C8F77 /* DetailOperationDocumentTableHeaderView.swift */; };
+		47691C3627C0607E008C8F77 /* DatePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47691C3527C0607E008C8F77 /* DatePickerButton.swift */; };
+		47691C3827C062D5008C8F77 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47691C3727C062D5008C8F77 /* DateExtension.swift */; };
+		47691C3B27C0E639008C8F77 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47691C3A27C0E639008C8F77 /* CalendarViewController.swift */; };
+		478AFEBF27C0F3C400479E6F /* EditOperationDocumentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478AFEBE27C0F3C400479E6F /* EditOperationDocumentHeaderView.swift */; };
+		478AFEC127C1016A00479E6F /* DetailDocumentHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478AFEC027C1016A00479E6F /* DetailDocumentHeaderViewModel.swift */; };
+		478AFEC327C2388200479E6F /* DetailDocumentTableSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478AFEC227C2388200479E6F /* DetailDocumentTableSectionHeaderView.swift */; };
+		478AFEC527C23ECA00479E6F /* DetailDocumentTableSectionHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478AFEC427C23ECA00479E6F /* DetailDocumentTableSectionHeaderViewModel.swift */; };
+		478AFEC927C575CC00479E6F /* OperationDocumentFirebaseSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478AFEC827C575CC00479E6F /* OperationDocumentFirebaseSaver.swift */; };
 		47AAECFA27B9557D00F5613F /* TextInputCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AAECF927B9557D00F5613F /* TextInputCellModel.swift */; };
 		47C609D527AEF5F3007BE5D9 /* FinanceRouterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609D427AEF5F3007BE5D9 /* FinanceRouterViewController.swift */; };
 		47C609DA27AEF69B007BE5D9 /* FinanceTransactionsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C609D727AEF69B007BE5D9 /* FinanceTransactionsButton.swift */; };
@@ -326,6 +344,15 @@
 		47C60A0227AFFC57007BE5D9 /* TransactionsConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C60A0127AFFC57007BE5D9 /* TransactionsConfirmViewController.swift */; };
 		47C60A0427B006E8007BE5D9 /* TransactionsConfirmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C60A0327B006E8007BE5D9 /* TransactionsConfirmViewModel.swift */; };
 		47C60A0627B0110C007BE5D9 /* AppendTransactionsStepByStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C60A0527B0110C007BE5D9 /* AppendTransactionsStepByStepViewModel.swift */; };
+		47EC464D27BEF342005C7FC4 /* DocumentDatabaseFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC464C27BEF342005C7FC4 /* DocumentDatabaseFlowData.swift */; };
+		47EC464F27BEFAE3005C7FC4 /* OperationDocumentDatabaseFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC464E27BEFAE3005C7FC4 /* OperationDocumentDatabaseFlowData.swift */; };
+		47EC465127BEFF94005C7FC4 /* DocumentProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC465027BEFF94005C7FC4 /* DocumentProxy.swift */; };
+		47EC465427BF0281005C7FC4 /* IncreaseDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC465327BF0281005C7FC4 /* IncreaseDocument.swift */; };
+		47EC465627BF02E4005C7FC4 /* IncreaseDocumentTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC465527BF02E4005C7FC4 /* IncreaseDocumentTableRow.swift */; };
+		47EC465827BF0340005C7FC4 /* IncreaseDocumentDatabaseFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC465727BF0340005C7FC4 /* IncreaseDocumentDatabaseFlowData.swift */; };
+		47EC465B27BF03A1005C7FC4 /* DecreaseDocumentDatabaseFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC465A27BF03A1005C7FC4 /* DecreaseDocumentDatabaseFlowData.swift */; };
+		47EC465D27BF0431005C7FC4 /* DecreaseDocumentTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC465C27BF0431005C7FC4 /* DecreaseDocumentTableRow.swift */; };
+		47EC465F27BF045E005C7FC4 /* DecreaseDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC465E27BF045E005C7FC4 /* DecreaseDocument.swift */; };
 		B7D8AC654CBB4343456785E1 /* Pods_IceHockey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8325F396C1FF970B449CCE43 /* Pods_IceHockey.framework */; };
 /* End PBXBuildFile section */
 
@@ -621,6 +648,9 @@
 		4729039E27B9960F005D8C29 /* ButtonCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCellModel.swift; sourceTree = "<group>"; };
 		472903A027B9ADB0005D8C29 /* LeadingSwipableTableViewBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadingSwipableTableViewBase.swift; sourceTree = "<group>"; };
 		472903A327BB08B8005D8C29 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		47394CFF27BEE455001942E0 /* DocumentListLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListLoader.swift; sourceTree = "<group>"; };
+		47394D0127BEE550001942E0 /* DocumentCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCreator.swift; sourceTree = "<group>"; };
+		47394D0327BEE617001942E0 /* DocumentBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBuilder.swift; sourceTree = "<group>"; };
 		474EB9A127BD98930008F122 /* FinanceDocumentsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceDocumentsButton.swift; sourceTree = "<group>"; };
 		474EB9A527BDA1350008F122 /* DocumentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListViewController.swift; sourceTree = "<group>"; };
 		474EB9A727BDA2090008F122 /* DocumentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListViewModel.swift; sourceTree = "<group>"; };
@@ -630,6 +660,21 @@
 		474EB9B227BDC1DC0008F122 /* DocumentTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTableRow.swift; sourceTree = "<group>"; };
 		474EB9B527BDC1F90008F122 /* DocumentTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTable.swift; sourceTree = "<group>"; };
 		474EB9B727BDC2500008F122 /* OperationDocumentTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDocumentTableRow.swift; sourceTree = "<group>"; };
+		47691C2327C02787008C8F77 /* DocumentCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCellModel.swift; sourceTree = "<group>"; };
+		47691C2527C0285A008C8F77 /* DocumentTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTableCell.swift; sourceTree = "<group>"; };
+		47691C2727C0404A008C8F77 /* OperationDocumentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDocumentDetailViewController.swift; sourceTree = "<group>"; };
+		47691C2B27C04541008C8F77 /* OperationDocumentDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDocumentDetailViewModel.swift; sourceTree = "<group>"; };
+		47691C2F27C0490D008C8F77 /* OperationDocumentTableRowCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDocumentTableRowCellModel.swift; sourceTree = "<group>"; };
+		47691C3127C04A0F008C8F77 /* OperationDocumentTableRowTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDocumentTableRowTableCell.swift; sourceTree = "<group>"; };
+		47691C3327C05F13008C8F77 /* DetailOperationDocumentTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailOperationDocumentTableHeaderView.swift; sourceTree = "<group>"; };
+		47691C3527C0607E008C8F77 /* DatePickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerButton.swift; sourceTree = "<group>"; };
+		47691C3727C062D5008C8F77 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		47691C3A27C0E639008C8F77 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		478AFEBE27C0F3C400479E6F /* EditOperationDocumentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOperationDocumentHeaderView.swift; sourceTree = "<group>"; };
+		478AFEC027C1016A00479E6F /* DetailDocumentHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDocumentHeaderViewModel.swift; sourceTree = "<group>"; };
+		478AFEC227C2388200479E6F /* DetailDocumentTableSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDocumentTableSectionHeaderView.swift; sourceTree = "<group>"; };
+		478AFEC427C23ECA00479E6F /* DetailDocumentTableSectionHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDocumentTableSectionHeaderViewModel.swift; sourceTree = "<group>"; };
+		478AFEC827C575CC00479E6F /* OperationDocumentFirebaseSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDocumentFirebaseSaver.swift; sourceTree = "<group>"; };
 		47AAECF927B9557D00F5613F /* TextInputCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputCellModel.swift; sourceTree = "<group>"; };
 		47C609D427AEF5F3007BE5D9 /* FinanceRouterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceRouterViewController.swift; sourceTree = "<group>"; };
 		47C609D727AEF69B007BE5D9 /* FinanceTransactionsButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinanceTransactionsButton.swift; sourceTree = "<group>"; };
@@ -653,6 +698,15 @@
 		47C60A0127AFFC57007BE5D9 /* TransactionsConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsConfirmViewController.swift; sourceTree = "<group>"; };
 		47C60A0327B006E8007BE5D9 /* TransactionsConfirmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsConfirmViewModel.swift; sourceTree = "<group>"; };
 		47C60A0527B0110C007BE5D9 /* AppendTransactionsStepByStepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppendTransactionsStepByStepViewModel.swift; sourceTree = "<group>"; };
+		47EC464C27BEF342005C7FC4 /* DocumentDatabaseFlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDatabaseFlowData.swift; sourceTree = "<group>"; };
+		47EC464E27BEFAE3005C7FC4 /* OperationDocumentDatabaseFlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDocumentDatabaseFlowData.swift; sourceTree = "<group>"; };
+		47EC465027BEFF94005C7FC4 /* DocumentProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentProxy.swift; sourceTree = "<group>"; };
+		47EC465327BF0281005C7FC4 /* IncreaseDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncreaseDocument.swift; sourceTree = "<group>"; };
+		47EC465527BF02E4005C7FC4 /* IncreaseDocumentTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncreaseDocumentTableRow.swift; sourceTree = "<group>"; };
+		47EC465727BF0340005C7FC4 /* IncreaseDocumentDatabaseFlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncreaseDocumentDatabaseFlowData.swift; sourceTree = "<group>"; };
+		47EC465A27BF03A1005C7FC4 /* DecreaseDocumentDatabaseFlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecreaseDocumentDatabaseFlowData.swift; sourceTree = "<group>"; };
+		47EC465C27BF0431005C7FC4 /* DecreaseDocumentTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecreaseDocumentTableRow.swift; sourceTree = "<group>"; };
+		47EC465E27BF045E005C7FC4 /* DecreaseDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecreaseDocument.swift; sourceTree = "<group>"; };
 		8325F396C1FF970B449CCE43 /* Pods_IceHockey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IceHockey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B9770323A6212842C2E71D /* Pods-IceHockey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IceHockey.debug.xcconfig"; path = "Target Support Files/Pods-IceHockey/Pods-IceHockey.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -951,6 +1005,7 @@
 				40E949BE26ED59A600962590 /* CircularView.swift */,
 				400EB96826F00BFD0026EFB1 /* InsetLabel.swift */,
 				4065C95C26E853500084E5F2 /* CorneredImageView.swift */,
+				47691C3527C0607E008C8F77 /* DatePickerButton.swift */,
 				40E949BB26ED54BF00962590 /* ScrollingPageControl.swift */,
 				4065C95F26E854C00084E5F2 /* CorneredView.swift */,
 				404C028A26EFDE1800CFAF3F /* ShadowCorneredView.swift */,
@@ -1124,6 +1179,7 @@
 				40940BDE26E40C380098EF89 /* Apponts.swift */,
 				4098C04126E572A700F0BBE6 /* UserExtension.swift */,
 				40940BDB26E40C380098EF89 /* OtherExtensions.swift */,
+				47691C3727C062D5008C8F77 /* DateExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1205,6 +1261,7 @@
 		40940C0126E418B10098EF89 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				47691C3927C0E623008C8F77 /* Common */,
 				47C609D327AEF5DA007BE5D9 /* Finance */,
 				409525D9275DD472009A330C /* Sign up */,
 				40A91862275D81DE00262BDE /* Sign in */,
@@ -1408,6 +1465,7 @@
 				4056F2312729D61B00DD75CA /* SportEventFirebaseSaver.swift */,
 				40772C09273B3DC9006CD549 /* ExistingTrainingScheduleFirebaseSaver.swift */,
 				40772C0B273B3E98006CD549 /* NewTrainingScheduleFirebaseSaver.swift */,
+				478AFEC827C575CC00479E6F /* OperationDocumentFirebaseSaver.swift */,
 			);
 			path = "Database savers";
 			sourceTree = "<group>";
@@ -1570,13 +1628,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		474EB9A427BDA10F0008F122 /* Document */ = {
+		474EB9A427BDA10F0008F122 /* DocumentList */ = {
 			isa = PBXGroup;
 			children = (
+				47691C2127C02771008C8F77 /* Table view */,
 				474EB9A527BDA1350008F122 /* DocumentListViewController.swift */,
 				474EB9A727BDA2090008F122 /* DocumentListViewModel.swift */,
 			);
-			path = Document;
+			path = DocumentList;
 			sourceTree = "<group>";
 		};
 		474EB9AB27BDA3E50008F122 /* FinanceDocument */ = {
@@ -1584,8 +1643,15 @@
 			children = (
 				474EB9AC27BDA4030008F122 /* DocumentType.swift */,
 				474EB9AE27BDA6120008F122 /* Document.swift */,
+				47EC465027BEFF94005C7FC4 /* DocumentProxy.swift */,
 				474EB9B527BDC1F90008F122 /* DocumentTable.swift */,
 				474EB9B227BDC1DC0008F122 /* DocumentTableRow.swift */,
+				47394CFF27BEE455001942E0 /* DocumentListLoader.swift */,
+				47394D0127BEE550001942E0 /* DocumentCreator.swift */,
+				47394D0327BEE617001942E0 /* DocumentBuilder.swift */,
+				47EC464C27BEF342005C7FC4 /* DocumentDatabaseFlowData.swift */,
+				47EC465927BF0382005C7FC4 /* DecreaseDocument */,
+				47EC465227BF026D005C7FC4 /* IncreaseDocument */,
 				474EB9B427BDC1E30008F122 /* OperationDocument */,
 			);
 			path = FinanceDocument;
@@ -1596,8 +1662,97 @@
 			children = (
 				474EB9B027BDC18B0008F122 /* OperationDocument.swift */,
 				474EB9B727BDC2500008F122 /* OperationDocumentTableRow.swift */,
+				47EC464E27BEFAE3005C7FC4 /* OperationDocumentDatabaseFlowData.swift */,
 			);
 			path = OperationDocument;
+			sourceTree = "<group>";
+		};
+		47691C2127C02771008C8F77 /* Table view */ = {
+			isa = PBXGroup;
+			children = (
+				47691C2227C02778008C8F77 /* Cell models */,
+				47691C2527C0285A008C8F77 /* DocumentTableCell.swift */,
+			);
+			path = "Table view";
+			sourceTree = "<group>";
+		};
+		47691C2227C02778008C8F77 /* Cell models */ = {
+			isa = PBXGroup;
+			children = (
+				47691C2327C02787008C8F77 /* DocumentCellModel.swift */,
+			);
+			path = "Cell models";
+			sourceTree = "<group>";
+		};
+		47691C2927C04059008C8F77 /* DocumentDetail */ = {
+			isa = PBXGroup;
+			children = (
+				47691C2A27C0406C008C8F77 /* Operation */,
+			);
+			path = DocumentDetail;
+			sourceTree = "<group>";
+		};
+		47691C2A27C0406C008C8F77 /* Operation */ = {
+			isa = PBXGroup;
+			children = (
+				47691C2D27C048C1008C8F77 /* Table view */,
+				47691C2727C0404A008C8F77 /* OperationDocumentDetailViewController.swift */,
+				47691C2B27C04541008C8F77 /* OperationDocumentDetailViewModel.swift */,
+			);
+			path = Operation;
+			sourceTree = "<group>";
+		};
+		47691C2D27C048C1008C8F77 /* Table view */ = {
+			isa = PBXGroup;
+			children = (
+				47691C2E27C048C8008C8F77 /* Cell models */,
+				47691C3127C04A0F008C8F77 /* OperationDocumentTableRowTableCell.swift */,
+				478AFEC227C2388200479E6F /* DetailDocumentTableSectionHeaderView.swift */,
+				47691C3327C05F13008C8F77 /* DetailOperationDocumentTableHeaderView.swift */,
+			);
+			path = "Table view";
+			sourceTree = "<group>";
+		};
+		47691C2E27C048C8008C8F77 /* Cell models */ = {
+			isa = PBXGroup;
+			children = (
+				47691C2F27C0490D008C8F77 /* OperationDocumentTableRowCellModel.swift */,
+				478AFEC027C1016A00479E6F /* DetailDocumentHeaderViewModel.swift */,
+				478AFEC427C23ECA00479E6F /* DetailDocumentTableSectionHeaderViewModel.swift */,
+			);
+			path = "Cell models";
+			sourceTree = "<group>";
+		};
+		47691C3927C0E623008C8F77 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				47691C3A27C0E639008C8F77 /* CalendarViewController.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		47691C3C27C0F361008C8F77 /* EditDocument */ = {
+			isa = PBXGroup;
+			children = (
+				47691C3D27C0F373008C8F77 /* Operation */,
+			);
+			path = EditDocument;
+			sourceTree = "<group>";
+		};
+		47691C3D27C0F373008C8F77 /* Operation */ = {
+			isa = PBXGroup;
+			children = (
+				47691C3E27C0F37B008C8F77 /* Table view */,
+			);
+			path = Operation;
+			sourceTree = "<group>";
+		};
+		47691C3E27C0F37B008C8F77 /* Table view */ = {
+			isa = PBXGroup;
+			children = (
+				478AFEBE27C0F3C400479E6F /* EditOperationDocumentHeaderView.swift */,
+			);
+			path = "Table view";
 			sourceTree = "<group>";
 		};
 		47AAECF727B9551A00F5613F /* Table view */ = {
@@ -1626,7 +1781,9 @@
 		47C609D327AEF5DA007BE5D9 /* Finance */ = {
 			isa = PBXGroup;
 			children = (
-				474EB9A427BDA10F0008F122 /* Document */,
+				47691C3C27C0F361008C8F77 /* EditDocument */,
+				47691C2927C04059008C8F77 /* DocumentDetail */,
+				474EB9A427BDA10F0008F122 /* DocumentList */,
 				470C216827B1A81D002198E1 /* Reports */,
 				47C609FC27AF3F4B007BE5D9 /* AppendTransactions */,
 				47C609E427AF08F8007BE5D9 /* TransactionList */,
@@ -1708,6 +1865,26 @@
 				47C60A0327B006E8007BE5D9 /* TransactionsConfirmViewModel.swift */,
 			);
 			path = AppendTransactions;
+			sourceTree = "<group>";
+		};
+		47EC465227BF026D005C7FC4 /* IncreaseDocument */ = {
+			isa = PBXGroup;
+			children = (
+				47EC465327BF0281005C7FC4 /* IncreaseDocument.swift */,
+				47EC465527BF02E4005C7FC4 /* IncreaseDocumentTableRow.swift */,
+				47EC465727BF0340005C7FC4 /* IncreaseDocumentDatabaseFlowData.swift */,
+			);
+			path = IncreaseDocument;
+			sourceTree = "<group>";
+		};
+		47EC465927BF0382005C7FC4 /* DecreaseDocument */ = {
+			isa = PBXGroup;
+			children = (
+				47EC465E27BF045E005C7FC4 /* DecreaseDocument.swift */,
+				47EC465C27BF0431005C7FC4 /* DecreaseDocumentTableRow.swift */,
+				47EC465A27BF03A1005C7FC4 /* DecreaseDocumentDatabaseFlowData.swift */,
+			);
+			path = DecreaseDocument;
 			sourceTree = "<group>";
 		};
 		BDCB3E75FEC632B242982B60 /* Frameworks */ = {
@@ -1900,6 +2077,7 @@
 				40C44181274D54F800F9EC8B /* ClubImpl.swift in Sources */,
 				40A88CB4275516ED007A31C5 /* MatchResultEditViewModel.swift in Sources */,
 				40713A8527204BC4005F1265 /* ContactsViewModel.swift in Sources */,
+				478AFEBF27C0F3C400479E6F /* EditOperationDocumentHeaderView.swift in Sources */,
 				47C609D527AEF5F3007BE5D9 /* FinanceRouterViewController.swift in Sources */,
 				47C609F527AF2466007BE5D9 /* FinanceTransactionCreator.swift in Sources */,
 				474EB9B627BDC1F90008F122 /* DocumentTable.swift in Sources */,
@@ -1907,6 +2085,7 @@
 				401C9B24270D155C00F91DC6 /* FirebaseManager.swift in Sources */,
 				40AE442127411ECC00BD6506 /* CollectionViewBaseVC.swift in Sources */,
 				400B8F4E272B50B5008A8AFE /* FirebaseObject.swift in Sources */,
+				47691C3227C04A0F008C8F77 /* OperationDocumentTableRowTableCell.swift in Sources */,
 				401C9B15270D056B00F91DC6 /* Coordinator protocols.swift in Sources */,
 				40B208D2274506AA009B769C /* SportUserDatabaseFlowData.swift in Sources */,
 				4094E6CE2756DED5000737B9 /* EventLikesInfoProxy.swift in Sources */,
@@ -1935,6 +2114,7 @@
 				402EDA6926E43060004A2992 /* SportSquad.swift in Sources */,
 				40D010912729EA3100283D99 /* HomeTableViewHeader.swift in Sources */,
 				406E7BFF2722E85A00DAD711 /* KeyboardAccessoryPhotoView.swift in Sources */,
+				47EC465127BEFF94005C7FC4 /* DocumentProxy.swift in Sources */,
 				400B8F46272B4E0B008A8AFE /* FirebaseObjectRemover.swift in Sources */,
 				40772C0A273B3DC9006CD549 /* ExistingTrainingScheduleFirebaseSaver.swift in Sources */,
 				40C4418D274D559800F9EC8B /* SquadProxy.swift in Sources */,
@@ -1943,12 +2123,14 @@
 				409DD42B2735D37700055FBD /* ContentConfigurator.swift in Sources */,
 				4052F30B279CA2490084C8F9 /* UserDefaultsState.swift in Sources */,
 				40A1368927358D44005C0007 /* SettingsViewModel.swift in Sources */,
+				47691C3027C0490D008C8F77 /* OperationDocumentTableRowCellModel.swift in Sources */,
 				40F52E5C2733D4AF005BD851 /* MatchResult.swift in Sources */,
 				407EF252275CDDB3000F1B76 /* ProfileInfoTableCell.swift.swift in Sources */,
 				40940BE126E40C380098EF89 /* OtherExtensions.swift in Sources */,
 				474EB9AF27BDA6120008F122 /* Document.swift in Sources */,
 				406CE6832723EBEB002FDDB6 /* EditEventPhotoCell + CollectionView.swift in Sources */,
 				409DD42F2735D60F00055FBD /* TableViewBaseVC.swift in Sources */,
+				47EC465D27BF0431005C7FC4 /* DecreaseDocumentTableRow.swift in Sources */,
 				47C609DA27AEF69B007BE5D9 /* FinanceTransactionsButton.swift in Sources */,
 				40FF3091273437A500A9E375 /* NewsTableCellModel.swift in Sources */,
 				4052F316279CA4C10084C8F9 /* ComponentStyle.swift in Sources */,
@@ -1959,6 +2141,7 @@
 				4052F325279CBE170084C8F9 /* PhoneCode.swift in Sources */,
 				40C3BC75272802C800BBA67F /* EditEventDateCell.swift in Sources */,
 				47C60A0627B0110C007BE5D9 /* AppendTransactionsStepByStepViewModel.swift in Sources */,
+				47EC464D27BEF342005C7FC4 /* DocumentDatabaseFlowData.swift in Sources */,
 				40C0526427583F6100C1930A /* FirebaseObjectCreator.swift in Sources */,
 				40429BBE274AE5A200DAD070 /* DayOfWeek.swift in Sources */,
 				40E70B9A27486E4A0074CD2D /* KeyboardAccessoryDoneView.swift in Sources */,
@@ -1969,16 +2152,20 @@
 				4094E6DE272B25A4004ED01B /* TeamTableCell.swift in Sources */,
 				474EB9A627BDA1350008F122 /* DocumentListViewController.swift in Sources */,
 				409AFDB72747ADD300AAD62E /* EventDetailPhotoCellModel.swift in Sources */,
+				47EC465827BF0340005C7FC4 /* IncreaseDocumentDatabaseFlowData.swift in Sources */,
 				40781507272CA3D3006D3AD2 /* SportTeamFirebaseSaver.swift in Sources */,
 				47C609E627AF093E007BE5D9 /* FinanceTransactionListViewModel.swift in Sources */,
 				40940BF026E412F40098EF89 /* AuthUserActions.swift in Sources */,
 				40C44190274D559800F9EC8B /* SquadImagesLoader.swift in Sources */,
 				40F4EBE1273DCC28003DA1D3 /* EventDetailUsefulButtonsCellModel.swift in Sources */,
 				474EB9B827BDC2500008F122 /* OperationDocumentTableRow.swift in Sources */,
+				47691C2627C0285A008C8F77 /* DocumentTableCell.swift in Sources */,
 				40940C0626E418E50098EF89 /* MainTabBarViewController.swift in Sources */,
 				40E70B962748534F0074CD2D /* SportEventListLoader.swift in Sources */,
+				47EC464F27BEFAE3005C7FC4 /* OperationDocumentDatabaseFlowData.swift in Sources */,
 				4093D9A9271780E000DCF35D /* ApplicationUser.swift in Sources */,
 				40C05260275836F200C1930A /* SquadCreator.swift in Sources */,
+				47394D0027BEE455001942E0 /* DocumentListLoader.swift in Sources */,
 				40C4419F274DD98700F9EC8B /* MatchResultProxy.swift in Sources */,
 				47C609E027AF044F007BE5D9 /* FinanceTransactionListViewController.swift in Sources */,
 				40B5953B275E2FB000FA36B2 /* EmailTextField.swift in Sources */,
@@ -2003,6 +2190,7 @@
 				4729039327B956F1005D8C29 /* InputEmailCellModel.swift in Sources */,
 				40C106BF26E41E4800B619A1 /* Utils.swift in Sources */,
 				40A6321F272DF7160017F6FE /* SportTeamAnnotation.swift in Sources */,
+				478AFEC927C575CC00479E6F /* OperationDocumentFirebaseSaver.swift in Sources */,
 				4055FCDC26E816D900E5BB79 /* CellConfigurator.swift in Sources */,
 				4729039F27B9960F005D8C29 /* ButtonCellModel.swift in Sources */,
 				47C609FB27AF2985007BE5D9 /* FinanceTransactionProxy.swift in Sources */,
@@ -2016,12 +2204,15 @@
 				406E7C0D2723302300DAD711 /* FirebaseStorageManager.swift in Sources */,
 				4052F320279CBAA00084C8F9 /* SystemSettings.swift in Sources */,
 				40940C0526E418E50098EF89 /* MainTabBarViewModel.swift in Sources */,
+				47EC465B27BF03A1005C7FC4 /* DecreaseDocumentDatabaseFlowData.swift in Sources */,
 				400E532F273A73E100B407E0 /* NewSportUserFirebaseSaver.swift in Sources */,
 				400E532D273A732F00B407E0 /* ExistingSportUserFirebaseSaver.swift in Sources */,
 				40A63223272E00C60017F6FE /* TeamInfoTableCell.swift in Sources */,
+				47691C3827C062D5008C8F77 /* DateExtension.swift in Sources */,
 				40713A7A27204A41005F1265 /* EditEventViewController.swift in Sources */,
 				406D6FB427243194008ED014 /* EditEventAddPhotoCollectionCell.swift in Sources */,
 				40AE441F27411EB500BD6506 /* CollectionDataSource.swift in Sources */,
+				47691C2427C02787008C8F77 /* DocumentCellModel.swift in Sources */,
 				40E2D65126E55E1E006503C7 /* ShopCategoryItem.swift in Sources */,
 				406D34D1271F7D5400AC9D05 /* EventDetailFooterView.swift in Sources */,
 				4729039527B9571F005D8C29 /* InputPasswordCellModel.swift in Sources */,
@@ -2050,6 +2241,7 @@
 				470C215827B09321002198E1 /* TransactionListTableFooterView.swift in Sources */,
 				4052F314279CA47A0084C8F9 /* AppTheme.swift in Sources */,
 				404C028B26EFDE1800CFAF3F /* ShadowCorneredView.swift in Sources */,
+				478AFEC127C1016A00479E6F /* DetailDocumentHeaderViewModel.swift in Sources */,
 				40A91868275D827D00262BDE /* Colors.swift in Sources */,
 				40F4EBDD273DCAA2003DA1D3 /* EventDetailHeaderView.swift in Sources */,
 				40F4EBE3273DD212003DA1D3 /* ConfigurableLabel.swift in Sources */,
@@ -2066,9 +2258,12 @@
 				401D53C4275ADC23006B5458 /* ClubInfoCellModel.swift in Sources */,
 				40B947C226EE909100D9E8DA /* TableViewCellConfiguration.swift in Sources */,
 				40E85C5827403C4900AB37A7 /* DateCellModel.swift in Sources */,
+				47EC465427BF0281005C7FC4 /* IncreaseDocument.swift in Sources */,
 				409560C926F93F6D00BCA664 /* QuickActions.swift in Sources */,
 				40A1368727358D33005C0007 /* SettingsViewController.swift in Sources */,
 				4085A31E27201D6400CB560E /* EventDetailCopyrightView.swift in Sources */,
+				47691C3627C0607E008C8F77 /* DatePickerButton.swift in Sources */,
+				47691C3427C05F13008C8F77 /* DetailOperationDocumentTableHeaderView.swift in Sources */,
 				4057FB5827326994002E2BBE /* OurSquadsTitleTextViewCell.swift in Sources */,
 				47C60A0227AFFC57007BE5D9 /* TransactionsConfirmViewController.swift in Sources */,
 				4085A3222720216C00CB560E /* EventDetailTitleView.swift in Sources */,
@@ -2084,6 +2279,7 @@
 				40C9E9162746A608009B0417 /* MatchResultBuilder.swift in Sources */,
 				40940BE426E40C380098EF89 /* Apponts.swift in Sources */,
 				40A4464926E409D900129B89 /* Assets.swift in Sources */,
+				47EC465F27BF045E005C7FC4 /* DecreaseDocument.swift in Sources */,
 				4063EAED271EE7E700B6B8C7 /* EventDetailUsefulButtonsView.swift in Sources */,
 				40781509272CA408006D3AD2 /* NewSportTeamFirebaseSaver.swift in Sources */,
 				47C609F127AF1655007BE5D9 /* FinanceTransaction.swift in Sources */,
@@ -2116,6 +2312,7 @@
 				40C4419B274DCC4E00F9EC8B /* UserImageLoader.swift in Sources */,
 				40AE7D6C2734578700052643 /* MatchResultDetailViewController.swift in Sources */,
 				40A9185F275D505D00262BDE /* AuthHeaderModel.swift in Sources */,
+				478AFEC327C2388200479E6F /* DetailDocumentTableSectionHeaderView.swift in Sources */,
 				40C87B4D26EA667400E8217D /* EventCollectionViewLayout.swift in Sources */,
 				401D53C6275ADEC6006B5458 /* MapCellModel.swift in Sources */,
 				40C44193274D78FB00F9EC8B /* FirebaseImagesLoader.swift in Sources */,
@@ -2127,8 +2324,10 @@
 				40940BE826E40D450098EF89 /* Club.swift in Sources */,
 				470C215427B07B58002198E1 /* TransactionConfirmTableFooterView.swift in Sources */,
 				4052F305279CA2060084C8F9 /* MonitoredState.swift in Sources */,
+				47691C2C27C04541008C8F77 /* OperationDocumentDetailViewModel.swift in Sources */,
 				40772C0C273B3E98006CD549 /* NewTrainingScheduleFirebaseSaver.swift in Sources */,
 				472903A127B9ADB0005D8C29 /* LeadingSwipableTableViewBase.swift in Sources */,
+				47EC465627BF02E4005C7FC4 /* IncreaseDocumentTableRow.swift in Sources */,
 				40E3115B2752EA4A00A5C24F /* SportNewsProxy.swift in Sources */,
 				406E7C0727232B8800DAD711 /* ImagePickerManager.swift in Sources */,
 				4065C95226E84E410084E5F2 /* ComingEventTableCell.swift in Sources */,
@@ -2148,16 +2347,19 @@
 				40E85C5A27403E6E00AB37A7 /* SaveCellModel.swift in Sources */,
 				401C9B11270D04BF00F91DC6 /* ViewControllerCoordinator.swift in Sources */,
 				4729039D27B99322005D8C29 /* ConfigurableButtonTableCell.swift in Sources */,
+				47691C2827C0404A008C8F77 /* OperationDocumentDetailViewController.swift in Sources */,
 				470C216D27B1AA9D002198E1 /* FinanceBalanceExportTableFooterView.swift in Sources */,
 				4065C95526E84E990084E5F2 /* NewsTableCell.swift in Sources */,
 				47C609EF27AF15C5007BE5D9 /* TransactionType.swift in Sources */,
 				40F4EBDF273DCBBD003DA1D3 /* TextCellModel.swift in Sources */,
+				47394D0427BEE617001942E0 /* DocumentBuilder.swift in Sources */,
 				40940BEE26E412F40098EF89 /* AuthSection.swift in Sources */,
 				40ADABED273C47F4008AAC90 /* TrainingCellModel.swift in Sources */,
 				4011D8932739B91D00D092B9 /* SportNewsFirebaseRemover.swift in Sources */,
 				40429BC4274AF12300DAD070 /* DayWorkout.swift in Sources */,
 				40A11398274714EC001BDD99 /* LikeManager.swift in Sources */,
 				409525DD275DD48B009A330C /* SignUpViewModel.swift in Sources */,
+				47394D0227BEE550001942E0 /* DocumentCreator.swift in Sources */,
 				40ADABE9273C4517008AAC90 /* SquadHeaderCellModel.swift in Sources */,
 				40C44199274DBE5200F9EC8B /* SportUserDatabaseLoader.swift in Sources */,
 				40C44195274D8CE800F9EC8B /* SportEventProxy.swift in Sources */,
@@ -2167,6 +2369,7 @@
 				401C9B21270D139800F91DC6 /* MainViewControllerCoordinator.swift in Sources */,
 				407A621B2737D5C400558998 /* MatchResultEditCellModel.swift in Sources */,
 				40E7204026E400FE00A64C60 /* SceneDelegate.swift in Sources */,
+				47691C3B27C0E639008C8F77 /* CalendarViewController.swift in Sources */,
 				40772C08273B2B74006CD549 /* WorkoutSchedule.swift in Sources */,
 				47C609EC27AF1085007BE5D9 /* TransactionCellModel.swift in Sources */,
 				40099B112735B1AF0097B1B7 /* SettingCellModel.swift in Sources */,
@@ -2189,6 +2392,7 @@
 				40980ACE2720D2A60022A640 /* EditEventTitleCell.swift in Sources */,
 				408CD10626E539FD005AD6D4 /* ShopItem.swift in Sources */,
 				40A1139B274717AC001BDD99 /* EventViewsInfo.swift in Sources */,
+				478AFEC527C23ECA00479E6F /* DetailDocumentTableSectionHeaderViewModel.swift in Sources */,
 				40E949BC26ED54BF00962590 /* ScrollingPageControl.swift in Sources */,
 				407F48B2273C9A6000C96B28 /* Fonts.swift in Sources */,
 				409DD4312735E12A00055FBD /* SettingTableCell.swift in Sources */,

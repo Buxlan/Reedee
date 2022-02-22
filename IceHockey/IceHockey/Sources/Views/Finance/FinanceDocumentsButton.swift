@@ -11,7 +11,7 @@ class FinanceDocumentsButton: FinanceRouterButton {
     
     init() {
         let image = Asset.docText.image
-        let title = L10n.Finance.Reports.title
+        let title = L10n.Document.listTitle
         super.init(title: title, image: image)
     }
     

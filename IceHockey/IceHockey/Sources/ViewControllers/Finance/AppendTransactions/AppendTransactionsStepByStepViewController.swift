@@ -74,7 +74,7 @@ class AppendTransactionsStepByStepViewController: UIViewController {
             }
             let uploader = FinanceTransactionUploader()
             self?.uploader = uploader
-            uploader.uploadTransactions(vc.viewModel.sections[0].transactions) { [weak self] in
+            uploader.uploadTransactions(vc.viewModel.sections[0].transactions) { [weak self] error in
                 self?.uploader = nil
                 self?.navigationController?.popViewController(animated: true)
             }

@@ -43,6 +43,17 @@ struct FinanceTransactionImpl: FinanceTransaction {
         self.isActive = databaseFlowObject.isActive
     }
     
+    init(tableRow row: DocumentTableRow) {
+        self.objectIdentifier = ""
+        self.name = row.name
+        self.number = row.number
+        self.comment = row.comment
+        self.type = row.type
+        self.amount = row.amount
+        self.date = row.date
+        self.isActive = true
+    }
+    
     func encode() -> [String: Any] {
         
         let dict: [String: Any] = [

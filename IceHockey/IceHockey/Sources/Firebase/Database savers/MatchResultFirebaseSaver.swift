@@ -57,7 +57,7 @@ struct MatchResultFirebaseSaver {
     
     // MARK: - Helper functions
     
-    func save(completionHandler: (SportEventSaveError?) -> Void) {
+    func save(completionHandler: (SaveObjectError?) -> Void) {
         if object.isNew {
             saveExisting()
         } else {

@@ -58,7 +58,7 @@ class SportNewsFirebaseSaver {
     
     // MARK: - Helper functions
     
-    func save(completionHandler: @escaping (SportEventSaveError?) -> Void) {
+    func save(completionHandler: @escaping (SaveObjectError?) -> Void) {
         if object.isNew {
             saveNew(completionHandler: completionHandler)
         } else {
@@ -66,7 +66,7 @@ class SportNewsFirebaseSaver {
         }
     }
     
-    func saveNew(completionHandler: @escaping (SportEventSaveError?) -> Void) {
+    func saveNew(completionHandler: @escaping (SaveObjectError?) -> Void) {
                 
         let imagesManager = ImagesManager.shared
         object.order = orderValue
@@ -97,7 +97,7 @@ class SportNewsFirebaseSaver {
         
     }
     
-    func saveExisting(completionHandler: @escaping (SportEventSaveError?) -> Void) {
+    func saveExisting(completionHandler: @escaping (SaveObjectError?) -> Void) {
         
         let imagesManager = ImagesManager.shared
         object.order = orderValue
@@ -135,7 +135,7 @@ class SportNewsFirebaseSaver {
         
     }
         
-    private func saveData(imagesDictionary imagesTableData: [String: String], completionHandler: @escaping (SportEventSaveError?) -> Void) {
+    private func saveData(imagesDictionary imagesTableData: [String: String], completionHandler: @escaping (SaveObjectError?) -> Void) {
         
         var storageErrorWasHappened = false
         var handlers: [String: (StorageMetadata?, Error?) -> Void] = [:]
@@ -146,7 +146,7 @@ class SportNewsFirebaseSaver {
                     storageErrorWasHappened = true
                 }
                 if handlers.isEmpty {
-                    let error = storageErrorWasHappened ? SportEventSaveError.storageError : nil
+                    let error = storageErrorWasHappened ? SaveObjectError.storageError : nil
                     completionHandler(error)
                 }
             }

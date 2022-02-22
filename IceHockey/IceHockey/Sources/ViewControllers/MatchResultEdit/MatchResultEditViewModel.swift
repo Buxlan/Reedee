@@ -32,7 +32,7 @@ extension MatchResultEditViewModel {
     
     // MARK: - Helper methods
         
-    func save(completionHandler: @escaping (SportEventSaveError?) -> Void) {
+    func save(completionHandler: @escaping (SaveObjectError?) -> Void) {
         event.save(completionHandler: completionHandler)
     }
     
