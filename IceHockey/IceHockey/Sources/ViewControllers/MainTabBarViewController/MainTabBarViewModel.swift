@@ -108,6 +108,8 @@ class MainTabBarViewModel {
         vc.modalTransitionStyle = .crossDissolve
         items.append(vc)
         
+        DocumentCoordinator.shared.navigationController = vc
+        
         vc = UINavigationController(rootViewController: SettingsViewController())
         vc.modalTransitionStyle = .crossDissolve
         items.append(vc)

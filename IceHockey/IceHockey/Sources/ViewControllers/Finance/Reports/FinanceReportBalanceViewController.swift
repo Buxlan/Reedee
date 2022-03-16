@@ -26,7 +26,7 @@ class FinanceReportBalanceViewController: UIViewController {
         view.separatorStyle = .none
         view.rowHeight = UITableView.automaticDimension
         view.tableFooterView = tableFooterView
-        view.showsVerticalScrollIndicator = false
+        view.showsVerticalScrollIndicator = true
         view.register(TransactionTableCell.self,
                       forCellReuseIdentifier: TransactionViewConfigurator.reuseIdentifier)
         if #available(iOS 15.0, *) {
@@ -151,7 +151,7 @@ extension FinanceReportBalanceViewController {
         return section
     }
 
-    func makeTransactionTableRow(transaction: FinanceTransaction, order: Int)
+    func makeTransactionTableRow(transaction: FinanceTransactionProtocol, order: Int)
     -> TableRow {
         let cellModel = TransactionCellModel(transaction: transaction, isShowOrder: true, order: order)
         let config = TransactionViewConfigurator(data: cellModel)

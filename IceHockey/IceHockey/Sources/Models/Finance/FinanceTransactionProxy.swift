@@ -15,9 +15,21 @@ class FinanceTransactionProxy: FinanceTransaction {
         get { object?.objectIdentifier ?? "" }
         set { object?.objectIdentifier = newValue }
     }
+    var documentIdentifier: String {
+        get { object?.documentIdentifier ?? "" }
+        set { object?.documentIdentifier = newValue }
+    }
+    var documentView: String {
+        get { object?.documentView ?? "" }
+        set { object?.documentView = newValue }
+    }
     var name: String {
         get { object?.name ?? "" }
         set { object?.name = newValue }
+    }
+    var surname: String {
+        get { object?.surname ?? "" }
+        set { object?.surname = newValue }
     }
     var number: String {
         get { object?.number ?? "" }
@@ -50,6 +62,10 @@ class FinanceTransactionProxy: FinanceTransaction {
         } else {
             return [:]
         }
+    }
+    
+    func clone() -> FinanceTransactionProtocol {
+        return object ?? FinanceTransactionImpl(databaseFlowObject: EmptyFinanceTransactionDatabaseFlowData())
     }
     
 }

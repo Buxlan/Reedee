@@ -97,10 +97,11 @@ class PrepareTransactionsFromTextViewController: UIViewController {
         return view
     }()
     
-    private var keyboardAccessoryView: DoneKeyboardAccessoryView = {
+    private lazy var keyboardAccessoryView: DoneKeyboardAccessoryView = {
         let width = UIScreen.main.bounds.width
         let frame = CGRect(x: 0, y: 0, width: width, height: 44)
         let view = DoneKeyboardAccessoryView(frame: frame)
+        view.delegate = self
         return view
     }()
     
@@ -153,8 +154,6 @@ class PrepareTransactionsFromTextViewController: UIViewController {
             .subscribe(onNext: { [weak self] value in
                 self?.text = value
             }).disposed(by: disposeBag)
-        
-        keyboardAccessoryView.doneButton.addTarget(self, action: #selector(handleDoneButton), for: .touchUpInside)
         
     }
     
@@ -268,6 +267,16 @@ extension PrepareTransactionsFromTextViewController: UITextViewDelegate {
     
 }
 
+// MARK: -
+
+extension PrepareTransactionsFromTextViewController: DoneKeyboardAccessoryViewDelegate {
+    
+    func onDone() {
+        handleDoneButton()
+    }
+    
+}
+
 // MARK: - Actions
 
 extension PrepareTransactionsFromTextViewController {
@@ -276,7 +285,7 @@ extension PrepareTransactionsFromTextViewController {
         onNext()
     }
     
-    @objc private func handleDoneButton() {
+    private func handleDoneButton() {
         view.subviews.forEach { (view) in
             if view.isFirstResponder {
                 view.resignFirstResponder()

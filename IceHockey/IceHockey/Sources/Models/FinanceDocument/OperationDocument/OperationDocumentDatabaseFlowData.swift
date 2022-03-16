@@ -16,6 +16,7 @@ struct OperationDocumentDatabaseFlowData: DocumentDatabaseFlowData {
     var number: String
     var comment: String
     var amount: Double
+    var decreaseAmount: Double
     var isActive: Bool
     var author: String
     var table: DocumentTable
@@ -28,6 +29,7 @@ struct OperationDocumentDatabaseFlowData: DocumentDatabaseFlowData {
         self.number = dict["number"] as? String ?? ""
         self.comment = dict["comment"] as? String ?? ""
         self.amount = dict["amount"] as? Double ?? 0.0
+        self.decreaseAmount = dict["decreaseAmount"] as? Double ?? 0.0
         self.isActive = dict["isActive"] as? Bool ?? false
         self.author = dict["author"] as? String ?? ""
         
@@ -37,7 +39,7 @@ struct OperationDocumentDatabaseFlowData: DocumentDatabaseFlowData {
         }
         
         table = EmptyDocumentTable()
-        if let rowsDict = dict["tableRows"] as? NSArray {
+        if let rowsDict = dict["transactionTable"] as? NSArray {
             let rows = rowsDict.compactMap { value -> OperationDocumentTableRow? in
                 if let dict = value as? [String: Any] {
                     return OperationDocumentTableRow(dict: dict)
@@ -47,6 +49,21 @@ struct OperationDocumentDatabaseFlowData: DocumentDatabaseFlowData {
             table.rows = rows
         }
         
+    }
+    
+    init() {
+        objectIdentifier = ""
+        isActive = false
+        name = ""
+        number = ""
+        date = Date()
+        comment = ""
+        type = .operation
+        author = ""
+        amount = 0.0
+        decreaseAmount = 0.0
+        author = ""
+        table = EmptyDocumentTable()
     }
     
 }

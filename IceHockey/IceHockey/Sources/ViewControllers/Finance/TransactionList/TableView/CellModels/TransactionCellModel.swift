@@ -9,7 +9,7 @@ import UIKit
 
 struct TransactionCellModel: TableCellModel, TintColorable {
     
-    var transaction: FinanceTransaction
+    var transaction: FinanceTransactionProtocol
     var isShowOrder: Bool
     var order: Int
     
@@ -20,7 +20,7 @@ struct TransactionCellModel: TableCellModel, TintColorable {
     
     var action = {}
     
-    init(transaction: FinanceTransaction,
+    init(transaction: FinanceTransactionProtocol,
          isShowOrder: Bool = false,
          order: Int = 0) {
         self.transaction = transaction

@@ -83,7 +83,7 @@ internal enum L10n {
     internal static let close = L10n.tr("Localizable", "Common.close")
     /// Confirm
     internal static let confirm = L10n.tr("Localizable", "Common.confirm")
-    /// Date
+    /// Select date
     internal static let defaultDatePickerTitle = L10n.tr("Localizable", "Common.defaultDatePickerTitle")
     /// Export
     internal static let export = L10n.tr("Localizable", "Common.export")
@@ -147,8 +147,26 @@ internal enum L10n {
       internal static let title = L10n.tr("Localizable", "Document.Increase.title")
     }
     internal enum Operation {
+      /// Type comment
+      internal static let commentPlaceholder = L10n.tr("Localizable", "Document.Operation.commentPlaceholder")
+      /// Edit operation doc
+      internal static let editTitle = L10n.tr("Localizable", "Document.Operation.editTitle")
+      /// New operation doc
+      internal static let newTitle = L10n.tr("Localizable", "Document.Operation.newTitle")
+      /// Type number
+      internal static let numberPlaceholder = L10n.tr("Localizable", "Document.Operation.numberPlaceholder")
       /// Operation
       internal static let title = L10n.tr("Localizable", "Document.Operation.title")
+    }
+    internal enum Transaction {
+      /// Type amount
+      internal static let amountPlaceholder = L10n.tr("Localizable", "Document.Transaction.amountPlaceholder")
+      /// Type comment
+      internal static let commentPlaceholder = L10n.tr("Localizable", "Document.Transaction.commentPlaceholder")
+      /// Type name
+      internal static let namePlaceholder = L10n.tr("Localizable", "Document.Transaction.namePlaceholder")
+      /// Type number
+      internal static let numberPlaceholder = L10n.tr("Localizable", "Document.Transaction.numberPlaceholder")
     }
   }
 
@@ -239,8 +257,12 @@ internal enum L10n {
   internal enum Finance {
     /// Balance
     internal static let balance = L10n.tr("Localizable", "Finance.balance")
+    /// rub.
+    internal static let currency = L10n.tr("Localizable", "Finance.currency")
     /// Balance for export
     internal static let exportBalance = L10n.tr("Localizable", "Finance.exportBalance")
+    /// Type filter
+    internal static let searchPlaceholder = L10n.tr("Localizable", "Finance.searchPlaceholder")
     internal enum Reports {
       /// Reports
       internal static let title = L10n.tr("Localizable", "Finance.Reports.title")
@@ -260,8 +282,12 @@ internal enum L10n {
       internal static let costs = L10n.tr("Localizable", "Finance.Transactions.costs")
       /// Deactivate
       internal static let deactivate = L10n.tr("Localizable", "Finance.Transactions.deactivate")
+      /// Decreases
+      internal static let decreases = L10n.tr("Localizable", "Finance.Transactions.decreases")
       /// Income
       internal static let income = L10n.tr("Localizable", "Finance.Transactions.income")
+      /// Increases
+      internal static let increases = L10n.tr("Localizable", "Finance.Transactions.increases")
       /// Select action
       internal static let selectAction = L10n.tr("Localizable", "Finance.Transactions.selectAction")
       /// Summary

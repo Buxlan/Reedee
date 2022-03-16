@@ -13,7 +13,7 @@ class FinanceBalanceViewModel {
     
     struct SectionData {
         var title: String = ""
-        var transactions: [FinanceTransaction] = []
+        var transactions: [FinanceTransactionProtocol] = []
     }
     var sections: [SectionData] = []
     lazy var user: ApplicationUser? = authManager.current
@@ -66,11 +66,11 @@ class FinanceBalanceViewModel {
                     objectLoadedCompletionHandler: objectLoadedCompletionHandler)
     }
     
-    func getPlayersBalance() -> [FinanceTransaction] {
+    func getPlayersBalance() -> [FinanceTransactionProtocol] {
         guard !allTransactions.isEmpty else {
             return []
         }
-        var summaryBalance: [FinanceTransaction] = []
+        var summaryBalance: [FinanceTransactionProtocol] = []
         allTransactions.forEach { transaction in
             if !transaction.isActive { return }
             if summaryBalance.contains(where: {
@@ -78,10 +78,12 @@ class FinanceBalanceViewModel {
             }) {
                 return
             }
-            var balanceTransaction = transaction
+            var balanceTransaction = transaction.clone()
             balanceTransaction.amount = getBalanceByPlayer(number: transaction.number)
             balanceTransaction.type = balanceTransaction.amount >= 0.0 ? .income : .cost
-            summaryBalance.append(balanceTransaction)
+            if balanceTransaction.amount != 0 {
+                summaryBalance.append(balanceTransaction)
+            }
         }
         summaryBalance.sort { $0.name < $1.name }
         return summaryBalance
@@ -94,10 +96,12 @@ class FinanceBalanceViewModel {
         let filtered = allTransactions.filter {
             $0.isActive && $0.number == number 
         }
-        return filtered.reduce(0.0) { partialResult, transaction in
+        var balance = filtered.reduce(0.0) { partialResult, transaction in
             let value = (transaction.type == .income ? 1 : -1) * transaction.amount
             return partialResult + value
         }
+        balance = balance.round(to: 2, using: .down)
+        return balance
     }
     
     func exportBalance() -> String {

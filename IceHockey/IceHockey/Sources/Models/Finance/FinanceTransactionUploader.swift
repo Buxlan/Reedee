@@ -58,7 +58,9 @@ class FinanceTransactionUploader {
                 }
                 
                 self.uploads[editableTransaction.objectIdentifier] = nil
-                completionHander(nil)
+                if self.uploads.isEmpty {
+                    completionHander(nil)
+                }
             }
             
             uploads[editableTransaction.objectIdentifier] = handler

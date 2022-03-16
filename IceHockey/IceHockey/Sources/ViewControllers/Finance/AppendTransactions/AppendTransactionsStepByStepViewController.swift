@@ -13,7 +13,7 @@ class AppendTransactionsStepByStepViewController: UIViewController {
     
     private var type: TransactionType
     private lazy var viewModel = AppendTransactionsStepByStepViewModel(type: self.type)
-    private var uploader: FinanceTransactionUploader?
+    private var uploader: OperationDocumentFirebaseSaver?
     
     private lazy var inputTextTransactionsViewController: PrepareTransactionsFromTextViewController = {
         let vc = PrepareTransactionsFromTextViewController(type: self.type)
@@ -68,15 +68,26 @@ class AppendTransactionsStepByStepViewController: UIViewController {
     private lazy var transactionsConfirmViewController: TransactionsConfirmViewController = {
         let viewModel = TransactionsConfirmViewModel()
         let vc = TransactionsConfirmViewController(type: self.type, viewModel: viewModel)
-        vc.onNext = { [weak self] in
-            guard !vc.viewModel.sections.isEmpty else {
+        vc.onNext = { [weak self, vc] in
+            guard let self = self,
+                !vc.viewModel.sections.isEmpty else {
                 return
             }
-            let uploader = FinanceTransactionUploader()
-            self?.uploader = uploader
-            uploader.uploadTransactions(vc.viewModel.sections[0].transactions) { [weak self] error in
+            let transactions = vc.viewModel.sections[0].transactions,
+                creator = DocumentCreator(),
+                document = creator.createOperationDocument(with: transactions),
+                saver = OperationDocumentFirebaseSaver(object: document)
+            
+            self.uploader = saver
+            saver.save { [weak self] error in
+                if error != nil {
+                    log.debug("AppendTransactionsStepByStepViewController saving document error ")
+                }
                 self?.uploader = nil
-                self?.navigationController?.popViewController(animated: true)
+                self?.navigationController?.popViewController(animated: false)
+                let vc = OperationDocumentDetailViewController()
+                vc.document = document
+                self?.navigationController?.pushViewController(vc, animated: true)
             }
         }
         vc.onBack = { [weak self] in

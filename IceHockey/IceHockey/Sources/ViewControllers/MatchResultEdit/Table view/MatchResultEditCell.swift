@@ -221,10 +221,11 @@ class MatchResultEditCell: UITableViewCell {
         return view
     }()
     
-    private var keyboardAccessoryView: DoneKeyboardAccessoryView = {
+    private lazy var keyboardAccessoryView: DoneKeyboardAccessoryView = {
         let width = UIScreen.main.bounds.width
         let frame = CGRect(x: 0, y: 0, width: width, height: 44)
         let view = DoneKeyboardAccessoryView(frame: frame)
+        view.delegate = self
         return view
     }()
     
@@ -262,7 +263,6 @@ class MatchResultEditCell: UITableViewCell {
         contentView.addSubview(likeButton)
         contentView.addSubview(shareButton)
         contentView.addSubview(typeLabel)
-        keyboardAccessoryView.doneButton.addTarget(self, action: #selector(handleDoneButton), for: .touchUpInside)
         
         configureConstraints()
         isInterfaceConfigured = true
@@ -444,6 +444,14 @@ extension MatchResultEditCell: UITextViewDelegate {
     
 }
 
+extension MatchResultEditCell: DoneKeyboardAccessoryViewDelegate {
+    
+    func onDone() {
+        handleDoneButton()
+    }
+    
+}
+
 extension MatchResultEditCell {
     
     func setInputViewBackgroundColor() {
@@ -469,7 +477,7 @@ extension MatchResultEditCell {
         return true
     }
     
-    @objc private func handleDoneButton() {
+    private func handleDoneButton() {
         contentView.subviews.forEach { (view) in
             if view.isFirstResponder {
                 view.resignFirstResponder()

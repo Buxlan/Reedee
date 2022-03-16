@@ -10,8 +10,11 @@ import UIKit
 struct OperationDocumentTableRowCellModel: TableCellModel, TintColorable {
     
     var row: OperationDocumentTableRow
+    var index: Int
+    var orderNumber: Int
     var isShowOrder: Bool
-    var order: Int
+    
+    weak var delegate: EditTransactionCellDelegate?
     
     var backgroundColor: UIColor = .white
     var textColor: UIColor = Asset.textColor.color
@@ -21,12 +24,14 @@ struct OperationDocumentTableRowCellModel: TableCellModel, TintColorable {
     var action = {}
     
     init(data: OperationDocumentTableRow,
-         isShowOrder: Bool = true,
-         order: Int = 0) {
+         index: Int,
+         orderNumber: Int,
+         isShowOrder: Bool = true) {
         self.row = data
         self.isShowOrder = isShowOrder
-        self.order = order
+        self.index = index
         self.textColor = Asset.textColor.color
+        self.orderNumber = orderNumber
     }
     
 }

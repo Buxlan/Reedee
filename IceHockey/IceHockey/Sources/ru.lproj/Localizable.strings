@@ -201,6 +201,10 @@
 "Finance.balance" = "Баланс";
 "Finance.exportBalance" = "Баланс (текст)";
 "Finance.Transactions.summary" = "Всего";
+"Finance.Transactions.increases" = "Доходы";
+"Finance.Transactions.decreases" = "Расходы";
+"Finance.currency" = "руб.";
+"Finance.searchPlaceholder" = "Введите запрос";
 
 // MARK: - Finance documents
 
@@ -212,6 +216,14 @@
 "Document.Decrease.title" = "Расход из кошелька";
 "Document.listTitle" = "Документы";
 "Document.comment" = "Комментарий";
+"Document.Operation.commentPlaceholder" = "Добавьте комментарий";
+"Document.Operation.numberPlaceholder" = "Введите номер";
+"Document.Operation.newTitle" = "Новый док. Операция";
+"Document.Operation.editTitle" = "Редакт. док. Операция";
+"Document.Transaction.commentPlaceholder" = "Комментарий";
+"Document.Transaction.numberPlaceholder" = "Номер";
+"Document.Transaction.namePlaceholder" = "Фамилия / Имя";
+"Document.Transaction.amountPlaceholder" = "Сумма";
 
 // MARK: - Common
 
@@ -225,4 +237,4 @@
 "Common.confirm" = "Подтвердить";
 "Common.remain" = "Остаток";
 "Common.export" = "Экспорт";
-"Common.defaultDatePickerTitle" = "Дата";
+"Common.defaultDatePickerTitle" = "Выберите дату";

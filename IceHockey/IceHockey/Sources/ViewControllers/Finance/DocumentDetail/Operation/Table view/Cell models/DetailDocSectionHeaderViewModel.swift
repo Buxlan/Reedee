@@ -7,11 +7,14 @@
 
 import UIKit
 
-struct DetailDocumentTableSectionHeaderViewModel: TableCellModel,
+struct DetailDocSectionHeaderViewModel: TableCellModel,
                                                   TintColorable {
     
     var plusAmount: Double
     var minusAmount: Double
+    
+    var onAppend = {}
+    var onRemove = {}
     
     var backgroundColor: UIColor = .white
     var textColor: UIColor = Asset.textColor.color

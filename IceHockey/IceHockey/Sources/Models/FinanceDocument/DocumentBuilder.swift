@@ -54,7 +54,7 @@ class DocumentBuilder<DocType: Document>: FirebaseObjectBuilder {
         activeLoaders.removeAll()
         activeBuilders.removeAll()
         buildDatabasePart { [weak self] in
-            self?.buildAuthor {
+            self?.buildTransactions {
                 self?.buildLikesInfo {
                     self?.buildStoragePart {
                         guard let self = self else { return }
@@ -74,9 +74,8 @@ class DocumentBuilder<DocType: Document>: FirebaseObjectBuilder {
     private func buildDatabasePart(completionHandler: @escaping () -> Void) {
         log.debug("DocumentBuilder buildDatabasePart")
         if let dict = dict,
-           let databasePart
-            = DocumentCreator().makeDatabasePart(key: objectIdentifier,
-                                                 dict: dict) {
+           let databasePart = DocumentCreator().makeDatabasePart(key: objectIdentifier,
+                                                                 dict: dict) {
             self.databasePart = databasePart
         }
         completionHandler()
@@ -90,7 +89,7 @@ class DocumentBuilder<DocType: Document>: FirebaseObjectBuilder {
         completionHandler()
     }
     
-    private func buildAuthor(completionHandler: @escaping () -> Void) {
+    private func buildTransactions(completionHandler: @escaping () -> Void) {
         completionHandler()
     }
     

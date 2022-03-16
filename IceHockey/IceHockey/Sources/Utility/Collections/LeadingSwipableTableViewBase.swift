@@ -9,18 +9,27 @@ import UIKit
 
 class LeadingSwipableTableViewBase: TableViewBase {
     
+    var actionTitle: String
+    var actionColor: UIColor
+    
+    init(actionTitle: String, actionColor: UIColor) {
+        self.actionTitle = actionTitle
+        self.actionColor = actionColor
+        super.init()
+    }
+    
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
     {
         
         let row = dataSource.rowFromIndexPath(indexPath)
         guard let contextualAction = row.contextualAction else { return nil }
         
-        let switchActivityAction = UIContextualAction(style: .normal,
-                                                      title: L10n.Finance.Transactions.switchActivity,
+        let activityAction = UIContextualAction(style: .normal,
+                                                      title: actionTitle,
                                                       handler: contextualAction)
         
-        switchActivityAction.backgroundColor = .blue
-        let configuration = UISwipeActionsConfiguration(actions: [switchActivityAction])
+        activityAction.backgroundColor = actionColor
+        let configuration = UISwipeActionsConfiguration(actions: [activityAction])
         configuration.performsFirstActionWithFullSwipe = false
         return configuration
     }

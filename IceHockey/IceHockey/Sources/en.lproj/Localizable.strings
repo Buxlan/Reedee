@@ -202,6 +202,10 @@
 "Finance.Transactions.activate" = "Activate";
 "Finance.Transactions.switchActivity" = "Switch activity";
 "Finance.Transactions.summary" = "Summary";
+"Finance.Transactions.increases" = "Increases";
+"Finance.Transactions.decreases" = "Decreases";
+"Finance.currency" = "rub.";
+"Finance.searchPlaceholder" = "Type filter";
 
 // MARK: - Finance documents
 
@@ -213,6 +217,14 @@
 "Document.Decrease.title" = "Decrease";
 "Document.listTitle" = "Documents";
 "Document.comment" = "Comment";
+"Document.Operation.commentPlaceholder" = "Type comment";
+"Document.Operation.numberPlaceholder" = "Type number";
+"Document.Operation.newTitle" = "New operation doc";
+"Document.Operation.editTitle" = "Edit operation doc";
+"Document.Transaction.commentPlaceholder" = "Type comment";
+"Document.Transaction.numberPlaceholder" = "Type number";
+"Document.Transaction.namePlaceholder" = "Type name";
+"Document.Transaction.amountPlaceholder" = "Type amount";
 
 // MARK: - Common
 
@@ -226,4 +238,4 @@
 "Common.confirm" = "Confirm";
 "Common.remain" = "Remain";
 "Common.export" = "Export";
-"Common.defaultDatePickerTitle" = "Date";
+"Common.defaultDatePickerTitle" = "Select date";

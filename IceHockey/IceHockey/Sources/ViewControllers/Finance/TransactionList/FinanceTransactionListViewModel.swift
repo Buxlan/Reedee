@@ -94,12 +94,14 @@ class FinanceTransactionListViewModel {
             return 0.0
         }
         let filtered = sections[0].transactions.filter {
-            $0.number == number
+            $0.isActive && $0.number == number
         }
-        return filtered.reduce(0.0) { partialResult, transaction in
+        var balance = filtered.reduce(0.0) { partialResult, transaction in
             let value = (transaction.type == .income ? 1 : -1) * transaction.amount
             return partialResult + value
         }
+        balance = balance.round(to: 2, using: .down)
+        return balance
     }
     
     func switchActivity(of transaction: FinanceTransaction,
@@ -124,6 +126,45 @@ class FinanceTransactionListViewModel {
             completionHandler(.success(200))
             
         }
+    }
+    
+    func update(sections: [SectionData], filter: String) {
+        guard !filter.isEmpty else {
+            self.sections = sections
+            shouldTableRefresh()
+            return
+        }
+        self.sections.removeAll()
+        let filter = filter.lowercased()
+        sections.forEach { sectionData in
+            let rows: [FinanceTransaction] = sectionData.transactions.compactMap { transaction in
+                if transaction.name.lowercased().contains(filter) {
+                    return transaction
+                }
+                if transaction.surname.lowercased().contains(filter) {
+                    return transaction
+                }
+                if transaction.number.lowercased().contains(filter) {
+                    return transaction
+                }
+                if transaction.type.description.lowercased().contains(filter) {
+                    return transaction
+                }
+                if transaction.comment.lowercased().contains(filter) {
+                    return transaction
+                }
+                if "\(transaction.amount)".contains(filter) {
+                    return transaction
+                }
+                return nil
+            }
+            if !rows.isEmpty {
+                let section = SectionData(title: sectionData.title,
+                                          transactions: rows)
+                self.sections.append(section)
+            }
+        }
+        shouldTableRefresh()
     }
     
 }

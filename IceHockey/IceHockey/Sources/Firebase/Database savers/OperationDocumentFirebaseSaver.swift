@@ -6,6 +6,7 @@
 //
 
 import Firebase
+import Foundation
 
 class OperationDocumentFirebaseSaver {
     
@@ -13,6 +14,12 @@ class OperationDocumentFirebaseSaver {
     
     typealias DataType = OperationDocument
     internal var object: DataType
+    internal var transactionLoader: DocumentTransactionsLoader?
+    internal var uploader: FinanceTransactionUploader?
+    
+    internal var transactionsDatabaseReference: DatabaseReference {
+        FirebaseManager.shared.databaseManager.root.child("transactions")
+    }
     
     internal var objectsDatabaseReference: DatabaseReference {
         FirebaseManager.shared.databaseManager.root.child("documents")
@@ -49,52 +56,96 @@ class OperationDocumentFirebaseSaver {
     // MARK: - Helper functions
     
     func save(completionHandler: @escaping (SaveObjectError?) -> Void) {
+        guard object.beforeSave() else {
+            return completionHandler(.objectEventError)
+        }
         if object.isNew {
             saveNew(completionHandler: completionHandler)
         } else {
             saveExisting(completionHandler: completionHandler)
         }
+        object.afterSave()
     }
     
-    func saveNew(completionHandler: @escaping (SaveObjectError?) -> Void) {
+    private func saveNew(completionHandler: @escaping (SaveObjectError?) -> Void) {
         
         saveData(completionHandler: completionHandler)
         
     }
     
-    func saveExisting(completionHandler: @escaping (SaveObjectError?) -> Void) {
+    private func saveExisting(completionHandler: @escaping (SaveObjectError?) -> Void) {
         
         saveData(completionHandler: completionHandler)
         
+    }
+    
+    private func prepareTransactionsQuery(documentId: String) -> DatabaseQuery {
+        let query = transactionsDatabaseReference
+            .queryOrdered(byChild: "document")
+            .queryEqual(toValue: documentId)
+        
+        return query
     }
         
     private func saveData(completionHandler: @escaping (SaveObjectError?) -> Void) {
         
         let dataDict = object.encode()
+        
         objectReference.setValue(dataDict) { [weak self] (error, ref) in
             
             guard let self = self,
                   error == nil,
-                  ref.key != nil
+                  let identifier = ref.key
             else {
                 completionHandler(.databaseError)
                 return
             }
             
-            log.debug("OperationDocumentFirebaseSaver saveData uploading transactions")
-            let transactions = self.object.table.rows.map { row in
-                FinanceTransactionImpl(tableRow: row)
-            }
-            let uploader = FinanceTransactionUploader()
-            uploader.uploadTransactions(transactions) { error in
-                guard error == nil else {
-                    log.debug("OperationDocumentFirebaseSaver saveData error upload transactions")
-                    completionHandler(.databaseError)
+            self.transactionLoader = DocumentTransactionsLoader(documentIdentifier: identifier)
+            self.transactionLoader?.loadKeys(completionHandler: { [weak self] keys in
+                guard let self = self else { return }
+                
+                // remove old transactions
+                keys.forEach { key in
+                    self.transactionsDatabaseReference
+                        .child(key)
+                        .removeValue()
+                }
+                
+                if !self.object.isActive {
+                    log.debug("OperationDocumentFirebaseSaver saveData success")
+                    completionHandler(nil)
+                    self.uploader = nil
+                    self.transactionLoader = nil
                     return
                 }
-                log.debug("OperationDocumentFirebaseSaver saveData success")
-                completionHandler(nil)
-            }
+                
+                // save new transactions
+                
+                log.debug("OperationDocumentFirebaseSaver saveData uploading transactions")
+                let rows = self.object.table.rows
+                let transactions: [FinanceTransaction] = rows.map { row in
+                    var transaction = FinanceTransactionImpl(tableRow: row)
+                    transaction.documentIdentifier = identifier
+                    transaction.documentView = self.object.view
+                    return transaction
+                }
+                self.uploader = FinanceTransactionUploader()
+                self.uploader?.uploadTransactions(transactions) { [weak self] error in
+                    guard error == nil else {
+                        log.debug("OperationDocumentFirebaseSaver saveData error upload transactions")
+                        completionHandler(.databaseError)
+                        self?.uploader = nil
+                        self?.transactionLoader = nil
+                        return
+                    }
+                    log.debug("OperationDocumentFirebaseSaver saveData success")
+                    completionHandler(nil)
+                    self?.uploader = nil
+                    self?.transactionLoader = nil
+                }
+            })
+            
         }
         
     }

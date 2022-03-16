@@ -94,7 +94,7 @@ class OperationDocumentTableRowTableCell: UITableViewCell {
         
         if let data = data {
             
-            orderLabel.text = "\(data.row.index)"
+            orderLabel.text = "\(data.orderNumber)"
             orderLabel.textColor = data.textColor
             orderLabel.font = data.font
             

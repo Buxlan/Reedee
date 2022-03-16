@@ -7,11 +7,17 @@
 
 import UIKit
 
+protocol DoneKeyboardAccessoryViewDelegate: AnyObject {
+    func onDone()
+}
+
 class DoneKeyboardAccessoryView: UIView {
     
     // MARK: - Properties
+    
+    weak var delegate: DoneKeyboardAccessoryViewDelegate?
             
-    lazy var doneButton: UIButton = {
+    private lazy var doneButton: UIButton = {
         let width = self.frame.width
         let frame = CGRect(x: width,
                            y: 0,
@@ -29,6 +35,8 @@ class DoneKeyboardAccessoryView: UIView {
                             y: 0,
                             width: view.frame.width,
                             height: 44)
+        view.addTarget(self, action: #selector(buttonTapped),
+                       for: .touchUpInside)
         return view
     }()
     
@@ -45,5 +53,9 @@ class DoneKeyboardAccessoryView: UIView {
     }
     
     // MARK: - Helper methods
+    
+    @objc private func buttonTapped() {
+        delegate?.onDone()
+    }
     
 }

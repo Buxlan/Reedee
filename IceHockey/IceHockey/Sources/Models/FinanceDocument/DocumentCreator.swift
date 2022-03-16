@@ -54,6 +54,34 @@ class DocumentCreator {
         }
     }
     
+    func createOperationDocument(with transactions: [FinanceTransaction])
+    -> OperationDocument {
+        var databaseData = OperationDocumentDatabaseFlowData()
+        var table = EmptyDocumentTable()
+        var index = 0
+        var increaseAmount: Double = 0.0,
+            decreaseAmount: Double = 0.0
+        
+        let rows: [DocumentTableRow] = transactions.map {
+            index += 1
+            switch $0.type {
+            case .income:
+                increaseAmount += $0.amount
+            case .cost:
+                decreaseAmount += $0.amount
+            }
+            return OperationDocumentTableRow(transaction: $0, index: index)
+        }
+        table.rows.append(contentsOf: rows)
+        databaseData.table = table
+        databaseData.amount = increaseAmount
+        databaseData.decreaseAmount = decreaseAmount
+        
+        var document = OperationDocument(databaseFlowObject: databaseData)
+        document.isActive = true
+        return document
+    }
+    
     func makeDatabasePart(from snapshot: DataSnapshot)
     -> DocumentDatabaseFlowData? {
         

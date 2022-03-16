@@ -19,9 +19,11 @@ class DatePickerButton: UIButton {
         super.init(frame: frame)
         let color: UIColor = Asset.textColor.color
         let image = Asset.calendar.image
+            .resizeImage(to: 16, aspectRatio: .current)
             .withRenderingMode(.alwaysTemplate)
         backgroundColor = .white
         layer.cornerRadius = 4
+        titleLabel?.font = Fonts.Regular.subhead
         setImage(image, for: .normal)
         setTitle(defaultTitle, for: .normal)
         setTitleColor(color, for: .normal)

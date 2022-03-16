@@ -6,9 +6,8 @@
 //
 
 import SnapKit
-import FSCalendar
 
-class DetailOperationDocumentTableHeaderView: UIView {
+class DetailOperationDocTableHeaderView: UIView {
     
     // MARK: - Properties
     
@@ -81,12 +80,7 @@ class DetailOperationDocumentTableHeaderView: UIView {
         
         let document = data.document
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
-        let formattedDate = dateFormatter.string(from: document.date)
-        
-        nameLabel.text = "\(L10n.Document.Operation.title) \(L10n.Common.numberSymbol) \(document.number)\n\(formattedDate)"
+        nameLabel.text = document.view
         nameLabel.textColor = data.textColor
         nameLabel.font = data.font
         
@@ -128,7 +122,7 @@ class DetailOperationDocumentTableHeaderView: UIView {
 
 // MARK: - Actions
 
-extension DetailOperationDocumentTableHeaderView {
+extension DetailOperationDocTableHeaderView {
     
     @objc private func addMeasureNoteHandle() {
         onAction()

@@ -47,6 +47,7 @@ struct OperationDocument: Document {
     var type: DocumentType
     var author: SportUser?
     var amount: Double
+    var decreaseAmount: Double
     
     var table: DocumentTable
     
@@ -63,6 +64,7 @@ struct OperationDocument: Document {
         self.type = .operation
         self.author = nil
         self.amount = databaseFlowObject.amount
+        self.decreaseAmount = databaseFlowObject.decreaseAmount
         self.table = databaseFlowObject.table
     }
     
@@ -97,12 +99,26 @@ struct OperationDocument: Document {
             "comment": self.comment,
             "type": self.type.rawValue,
             "amount": self.amount,
-            "transactionTable": self.table,
-            "author": self.author?.objectIdentifier as Any,
+            "decreaseAmount": self.decreaseAmount,
+            "transactionTable": self.table.encode(),
+            "author": self.author?.objectIdentifier ?? "",
             "isActive": self.isActive
         ]
         
         return dict
+    }
+    
+    mutating func beforeSave() -> Bool {
+        amount = 0.0; decreaseAmount = 0.0
+        table.rows.forEach { row in
+            switch row.type {
+            case .income:
+                amount += row.amount
+            case .cost:
+                decreaseAmount += row.amount
+            }
+        }
+        return true
     }
     
 }

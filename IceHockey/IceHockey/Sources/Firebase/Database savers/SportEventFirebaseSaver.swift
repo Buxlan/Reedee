@@ -18,6 +18,7 @@ enum SaveObjectError: LocalizedError {
     case wrongInputError
     case databaseError
     case storageError
+    case objectEventError
     
     var errorDescription: String? {
         switch self {
@@ -29,6 +30,8 @@ enum SaveObjectError: LocalizedError {
             return "Database error occured"
         case .storageError:
             return "Storage error occured"
+        case .objectEventError:
+            return "Object event error occured"
         }
     }
 }

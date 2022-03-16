@@ -11,6 +11,8 @@ class TransactionTableCell: UITableViewCell {
     
     // MARK: - Properties
     
+    typealias DataType = TransactionCellModel
+    
     var data: DataType?
     
     private var isInterfaceConfigured = false
@@ -54,6 +56,15 @@ class TransactionTableCell: UITableViewCell {
     private lazy var commentLabel: UILabel = {
         let view = UILabel()
         view.accessibilityIdentifier = "commentLabel"
+        view.numberOfLines = 3
+        view.textAlignment = .left
+        view.font = Fonts.Regular.body
+        return view
+    }()
+    
+    private lazy var documentLabel: UILabel = {
+        let view = UILabel()
+        view.accessibilityIdentifier = "documentLabel"
         view.numberOfLines = 1
         view.textAlignment = .left
         view.font = Fonts.Regular.body
@@ -66,6 +77,12 @@ class TransactionTableCell: UITableViewCell {
         view.contentMode = .scaleAspectFit
         view.clipsToBounds = true
         view.isHidden = false
+        return view
+    }()
+    
+    private lazy var lineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = Colors.Gray.dark
         return view
     }()
     
@@ -113,6 +130,10 @@ class TransactionTableCell: UITableViewCell {
             commentLabel.textColor = data.textColor
             commentLabel.font = data.font
             
+            documentLabel.text = "\(data.transaction.documentView)"
+            documentLabel.textColor = data.textColor
+            documentLabel.font = data.font
+            
             typeImageView.image = data.transaction.type.image.withRenderingMode(.alwaysTemplate)
             
             typeImageView.tintColor = data.transaction.type == .income ? .green : .red
@@ -134,6 +155,8 @@ class TransactionTableCell: UITableViewCell {
         contentView.addSubview(amountLabel)
         contentView.addSubview(typeImageView)
         contentView.addSubview(commentLabel)
+        contentView.addSubview(documentLabel)
+        contentView.addSubview(lineView)
         configureConstraints()
     }
     
@@ -153,18 +176,25 @@ class TransactionTableCell: UITableViewCell {
             make.height.equalTo(16)
         }
         
-        commentLabel.snp.makeConstraints { make in
-            make.leading.equalTo(typeImageView.snp.trailing).offset(16)
-            make.trailing.equalTo(amountLabel.snp.leading).offset(-8).priority(500)
-            make.top.equalTo(numberLabel.snp.bottom).offset(4)
-            make.bottom.equalToSuperview().offset(-16)
-            make.height.equalTo(16)
-        }
-        
         amountLabel.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-8)
             make.width.equalTo(80)
             make.centerY.equalToSuperview()
+            make.height.equalTo(16)
+        }
+        
+        commentLabel.snp.makeConstraints { make in
+            make.leading.equalTo(typeImageView.snp.trailing).offset(16)
+            make.trailing.equalTo(amountLabel.snp.leading).offset(-8).priority(750)
+            make.top.equalTo(numberLabel.snp.bottom).offset(4)
+            make.height.lessThanOrEqualToSuperview()
+        }
+        
+        documentLabel.snp.makeConstraints { make in
+            make.leading.equalTo(typeImageView.snp.trailing).offset(16)
+            make.trailing.equalTo(amountLabel.snp.leading).offset(-8).priority(500)
+            make.top.equalTo(commentLabel.snp.bottom).offset(4)
+            make.bottom.equalToSuperview().offset(-16)
             make.height.equalTo(16)
         }
         
@@ -173,6 +203,13 @@ class TransactionTableCell: UITableViewCell {
             make.top.equalToSuperview().offset(16)
             make.height.equalTo(16)
             make.width.equalTo(16)
+        }
+        
+        lineView.snp.makeConstraints { make in
+            make.bottom.equalTo(self.snp.bottom)
+            make.height.equalTo(0.5)
+            make.centerX.width.equalToSuperview()
+            make.width.equalToSuperview().offset(-30)
         }
         
         setTypeImageViewConstraints()
@@ -205,8 +242,6 @@ class TransactionTableCell: UITableViewCell {
 
 // MARK: - ConfigurableCell extension
 extension TransactionTableCell: ConfigurableCollectionContent {
-        
-    typealias DataType = TransactionCellModel
     
     func configure(with data: DataType) {
         self.data = data

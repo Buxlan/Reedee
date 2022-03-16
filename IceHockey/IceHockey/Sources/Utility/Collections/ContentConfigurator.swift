@@ -137,6 +137,15 @@ typealias DocumentViewConfigurator = CollectionViewConfigurator<DocumentTableCel
 typealias OperationDocumentTableRowViewConfigurator = CollectionViewConfigurator<OperationDocumentTableRowTableCell,
                                                                                  OperationDocumentTableRowCellModel>
 
-typealias DetailDocumentTableSectionHeaderViewConfigurator = CollectionViewConfigurator<DetailDocumentTableSectionHeaderView,
-                                                                                        DetailDocumentTableSectionHeaderViewModel>
+typealias DetailDocSectionViewConfigurator = CollectionViewConfigurator<DetailDocSectionView,
+                                                                                        DetailDocSectionHeaderViewModel>
+
+typealias EditDocSectionViewConfigurator = CollectionViewConfigurator<EditDocSectionView,
+                                                                                        DetailDocSectionHeaderViewModel>
+
+typealias EditDocSectionFooterViewConfigurator = CollectionViewConfigurator<EditDocSectionFooterView,
+                                                                                        DetailDocSectionFooterViewModel>
+
+typealias EditTransactionViewConfigurator = CollectionViewConfigurator<EditTransactionCell,
+                                                                       OperationDocumentTableRowCellModel>
 

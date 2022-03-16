@@ -6,13 +6,13 @@
 //
 
 import SnapKit
-import FirebaseDatabase
 
 class FinanceTransactionListViewController: UIViewController {
     
     // MARK: - Properties
     
-    var tableBase = LeadingSwipableTableViewBase()
+    var tableBase = LeadingSwipableTableViewBase(actionTitle: L10n.Finance.Transactions.switchActivity,
+                                                 actionColor: .blue)
     var viewModel = FinanceTransactionListViewModel()
     
     private lazy var alert: UIAlertController = {
@@ -87,6 +87,41 @@ class FinanceTransactionListViewController: UIViewController {
         view.configure(amount: 0.0)
         return view
     }()
+    
+    private lazy var searchResultsViewController: SearchTransactionListViewController = {
+        let vc = SearchTransactionListViewController()
+        return vc
+    }()
+    
+    private lazy var searchController: UISearchController = {
+        let controller = UISearchController(searchResultsController: searchResultsViewController)
+        controller.searchResultsUpdater = self
+//        controller.obscuresBackgroundDuringPresentation = false
+        controller.searchBar.placeholder = L10n.Finance.searchPlaceholder
+        controller.searchBar.barStyle = .default
+        controller.hidesNavigationBarDuringPresentation = true
+//        controller.searchBar.setShowsCancelButton(true, animated: true)
+        
+        if let textField = controller.searchBar.value(forKey: "searchField") as? UITextField {
+            textField.backgroundColor = .white
+            textField.clearButtonMode = .always
+            textField.tintColor = .white
+            textField.isOpaque = true
+            guard textField.subviews.count > 0 else {
+                print("Warning: textField seach bar view has no subviews. It's very strange!")
+                return controller
+            }
+            textField.subviews[0].backgroundColor = .white
+            textField.subviews[0].tintColor = .white
+        }
+        guard controller.searchBar.subviews.count > 0 else {
+            print("Warning: seach bar view has no subviews. It's very strange!")
+            return controller
+        }
+        controller.searchBar.subviews[0].backgroundColor = Colors.Accent.blue
+        controller.searchBar.subviews[0].tintColor = .white
+        return controller
+    }()
         
     // MARK: - Lifecircle
     
@@ -101,6 +136,7 @@ class FinanceTransactionListViewController: UIViewController {
         super.viewWillAppear(animated)
         configureBars()
         configureViewModel()
+        configureSearchController()
     }
     
     // MARK: - Hepler functions
@@ -136,6 +172,19 @@ class FinanceTransactionListViewController: UIViewController {
         navigationController?.setToolbarHidden(true, animated: false)
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
+    private func configureSearchController() {
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.searchBar.delegate = self
+        searchController.searchBar.showsCancelButton = false
+        searchController.searchBar.showsSearchResultsButton = true
+        searchController.searchBar.isOpaque = true
+        searchController.searchBar.barTintColor = .black
+        searchController.searchBar.tintColor = .black
+        
+        definesPresentationContext = true
     }
     
     private func configureViewModel() {
@@ -189,6 +238,45 @@ extension FinanceTransactionListViewController {
         section.addRows(rows)
         return section
     }
+    
+}
+
+// MARK: - UISearchBarDelegate
+
+extension FinanceTransactionListViewController: UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.becomeFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+        let filter = searchController.searchBar.text ?? ""
+        searchResultsViewController
+            .viewModel
+            .update(sections: viewModel.sections,
+                    filter: filter)
+    }
+    
+//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+//        searchBar.endEditing(true)
+//        navigationController?.popViewController(animated: true)
+//    }
+}
+
+extension FinanceTransactionListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+//        let filter = searchController.searchBar.text ?? ""
+//        searchResultsViewController
+//            .viewModel
+//            .update(sections: viewModel.sections,
+//                    filter: filter)
+    }
+}
+
+extension FinanceTransactionListViewController: UISearchControllerDelegate {
+    
+    
     
 }
 

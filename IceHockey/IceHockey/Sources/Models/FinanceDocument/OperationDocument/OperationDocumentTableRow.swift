@@ -40,6 +40,32 @@ struct OperationDocumentTableRow: DocumentTableRow {
         
     }
     
+    init(type: TransactionType, index: Int) {
+        
+        self.index = index
+        self.type = type
+        self.name = ""
+        self.surname = ""
+        self.number = ""
+        self.comment = ""
+        self.amount = 0.0
+        
+        self.date = Date()
+        
+    }
+    
+    init(transaction: FinanceTransaction, index: Int = 0) {
+        self.index = index
+        self.name = transaction.name
+        self.surname = transaction.surname
+        self.number = transaction.number
+        self.comment = transaction.comment
+        self.amount = transaction.amount
+        
+        self.type = transaction.type
+        self.date = transaction.date
+    }
+    
     func encode() -> [String : Any] {
         
         let dict: [String: Any] = [

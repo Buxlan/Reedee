@@ -5,7 +5,6 @@
 //  Created by  Buxlan on 11/22/21.
 //
 
-import UIKit
 import Firebase
 
 protocol SquadDatabaseFlowData: SnapshotInitiable {

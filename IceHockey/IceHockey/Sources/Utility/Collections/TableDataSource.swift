@@ -20,6 +20,7 @@ class TableRow {
     var deselectAction: (IndexPath) -> Void = { _ in }
     var willDisplay: (UITableViewCell, IndexPath) -> Void = { (_, _) in }
     var contextualAction: ((UIContextualAction, UIView, @escaping (Bool) -> Void) -> Void)? = nil
+    var leadingSwipeAction: (IndexPath) -> Void = { _ in }
     
     init(rowId: String,
          config: ContentConfigurator = EmptyContentConfig(),

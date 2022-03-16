@@ -61,6 +61,16 @@ class DocumentTableCell: UITableViewCell {
         return view
     }()
     
+    private lazy var decreaseAmountLabel: UILabel = {
+        let view = UILabel()
+        view.accessibilityIdentifier = "decreaseAmountLabel"
+        view.numberOfLines = 1
+        view.textAlignment = .left
+        view.font = Fonts.Bold.title
+        view.isHidden = true
+        return view
+    }()
+    
     private lazy var commentLabel: UILabel = {
         let view = UILabel()
         view.accessibilityIdentifier = "commentLabel"
@@ -92,6 +102,7 @@ class DocumentTableCell: UITableViewCell {
     override func prepareForReuse() {
         typeImageView.image = nil
         typeImageView.isHidden = false
+        decreaseAmountLabel.isHidden = true
         accessoryType = .none
     }
     
@@ -128,6 +139,21 @@ class DocumentTableCell: UITableViewCell {
             amountLabel.textColor = data.textColor
             amountLabel.font = data.font
             
+            if let operationDoc = data.document as? OperationDocument {
+                decreaseAmountLabel.text = "\(operationDoc.decreaseAmount)"
+                decreaseAmountLabel.textColor = data.textColor
+                decreaseAmountLabel.font = data.font
+                decreaseAmountLabel.isHidden = false
+            }
+            
+            if let proxy = data.document as? DocumentProxy,
+               let operationDoc = proxy.object as? OperationDocument {
+                decreaseAmountLabel.text = "\(operationDoc.decreaseAmount)"
+                decreaseAmountLabel.textColor = data.textColor
+                decreaseAmountLabel.font = data.font
+                decreaseAmountLabel.isHidden = false
+            }
+            
             commentLabel.text = "\(data.document.comment)"
             commentLabel.textColor = data.textColor
             commentLabel.font = data.font
@@ -161,6 +187,7 @@ class DocumentTableCell: UITableViewCell {
         contentView.addSubview(typeImageView)
         contentView.addSubview(commentLabel)
         contentView.addSubview(dateLabel)
+        contentView.addSubview(decreaseAmountLabel)
         configureConstraints()
     }
     
@@ -199,6 +226,13 @@ class DocumentTableCell: UITableViewCell {
             make.trailing.equalToSuperview().offset(-8)
             make.width.equalTo(80)
             make.centerY.equalToSuperview()
+            make.height.equalTo(16)
+        }
+        
+        decreaseAmountLabel.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-8)
+            make.width.equalTo(80)
+            make.top.equalTo(amountLabel.snp.bottom).offset(4)
             make.height.equalTo(16)
         }
         

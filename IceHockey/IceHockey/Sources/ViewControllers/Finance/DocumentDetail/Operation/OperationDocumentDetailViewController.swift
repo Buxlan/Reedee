@@ -43,20 +43,46 @@ class OperationDocumentDetailViewController: UIViewController {
         view.showsVerticalScrollIndicator = true
         view.register(OperationDocumentTableRowTableCell.self,
                       forCellReuseIdentifier: OperationDocumentTableRowViewConfigurator.reuseIdentifier)
-        view.register(DetailDocumentTableSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: DetailDocumentTableSectionHeaderViewConfigurator.reuseIdentifier)
+        view.register(DetailDocSectionView.self,
+                      forHeaderFooterViewReuseIdentifier: DetailDocSectionViewConfigurator.reuseIdentifier)
         if #available(iOS 15.0, *) {
             view.sectionHeaderTopPadding = 0
         }
         return view
     }()
     
-    private lazy var tableHeaderView: DetailOperationDocumentTableHeaderView = {
+    private lazy var tableHeaderView: DetailOperationDocTableHeaderView = {
         let viewModel = DetailDocumentHeaderViewModel(data: self.viewModel.document)
         let frame = CGRect(x: 0, y: 0, width: 0, height: 105)
-        let view = DetailOperationDocumentTableHeaderView(frame: frame)
+        let view = DetailOperationDocTableHeaderView(frame: frame)
         view.configure(data: viewModel)
         
         return view
+    }()
+    
+    private lazy var alert: UIAlertController = {
+        let controller = UIAlertController(title: L10n.Other.selectAction,
+                                           message: nil,
+                                           preferredStyle: .actionSheet)
+        let editAction = UIAlertAction(title: L10n.Other.edit, style: .default) { _ in
+            self.editEvent()
+        }
+        let reportAction = UIAlertAction(title: L10n.Other.bugReport, style: .destructive) { _ in
+            self.report()
+        }
+        let cancelAction = UIAlertAction(title: L10n.Other.cancel, style: .cancel) { _ in
+        }
+        controller.addAction(editAction)
+        controller.addAction(reportAction)
+        controller.addAction(cancelAction)
+        
+        return controller
+    }()
+    
+    private lazy var menuImage: UIImage = {
+        let imageHeight: CGFloat = 32.0
+        return Asset.menu.image.resizeImage(to: imageHeight, aspectRatio: .current)
+        
     }()
         
     // MARK: - Lifecircle
@@ -100,6 +126,10 @@ class OperationDocumentDetailViewController: UIViewController {
         navigationController?.setToolbarHidden(true, animated: false)
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationBar.prefersLargeTitles = false
+        
+        let menuItem = UIBarButtonItem(image: menuImage, style: .plain, target: self, action: #selector(handleMenu))
+        navigationItem.rightBarButtonItem = menuItem
+        
     }
     
     private func configureViewModel() {
@@ -142,29 +172,54 @@ extension OperationDocumentDetailViewController {
             return section
         }
 
-        let model = DetailDocumentTableSectionHeaderViewModel(data: self.document)
-        let headerConfig = DetailDocumentTableSectionHeaderViewConfigurator(data: model)
+        let model = DetailDocSectionHeaderViewModel(data: viewModel.document)
+        let headerConfig = DetailDocSectionViewConfigurator(data: model)
         section.headerConfig = headerConfig
         section.headerHeight = UITableView.automaticDimension
         section.headerViewId = type(of: headerConfig).reuseIdentifier
         
-        let rows = viewModel.document.table.rows.compactMap { row in
-            makeDocumentTableRow(row: row)
+        var orderNumber = 0
+        
+        let rows: [TableRow] = viewModel.document.table.rows.compactMap { row in
+            guard let tableRowData = row as? OperationDocumentTableRow else { return nil }
+            orderNumber += 1
+            return makeDocumentTableRow(row: tableRowData,
+                                        orderNumber: orderNumber)
         }
         
         section.addRows(rows)
         return section
     }
 
-    func makeDocumentTableRow(row: DocumentTableRow) -> TableRow? {
-        guard let tableRowData = row as? OperationDocumentTableRow else { return nil }
+    func makeDocumentTableRow(row: OperationDocumentTableRow, orderNumber: Int)
+    -> TableRow {
         
-        let cellModel = OperationDocumentTableRowCellModel(data: tableRowData)
+        let cellModel = OperationDocumentTableRowCellModel(data: row,
+                                                           index: row.index,
+                                                           orderNumber: orderNumber)
         let config = OperationDocumentTableRowViewConfigurator(data: cellModel)
         let row = TableRow(rowId: type(of: config).reuseIdentifier,
                            config: config,
                            height: UITableView.automaticDimension)
         return row
+    }
+    
+}
+
+// MARK: - Actions
+
+extension OperationDocumentDetailViewController {
+    
+    @objc private func handleMenu() {
+        present(alert, animated: true)
+    }
+    
+    @objc private func report() {
+        
+    }
+    
+    @objc private func editEvent() {
+        DocumentCoordinator.shared.goToDocumentEditing(document: viewModel.document)
     }
     
 }
