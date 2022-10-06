@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         Database.database().isPersistenceEnabled = true
         
-        Session.isAppLoaded = false
+//        Session.isAppLoaded = false
         
         prepareWindow()
         
