@@ -1,4 +1,5 @@
-"App.name" = "Place";
+"Loading" = "Загрузка";
+"App.name" = "Наши деньги";
 "Onboarding.Buttons.futher1" = "Далее (1 из 3)";
 "Onboarding.Buttons.futher2" = "Далее (2 из 3)";
 "Onboarding.Buttons.Later" = "Начать без регистрации";
@@ -9,6 +10,7 @@
 "Onboarding.onboardngText1" = "We're glad to see you at Place. Here are we're sharing thoughts, dreams and imaginations about favorite Saint-petersburg places";
 "Onboarding.onboardngText2" = "Share your imaginations! Listen and share audio, text and pictures with other";
 "Onboarding.onboardngText3" = "Регистрация позволит Вам оставлять эссе и предложения о создании новых мест.";
+"Onboarding.Buttons.Continue" = "Продолжить";
 /* Authentication */
 "SignIn.title" = "Вход в систему";
 "SignUp.title" = "Регистрация";
@@ -32,7 +34,12 @@
 "Auth.authLinkHeader" = "Управляйте привязкой аккаунтов между провайдерами";
 "Auth.authLinkFooter" = "Select an unchecked row to link the currently signed in user to that auth provider. To unlink the user from a linked provider, select its corresponding row marked with a checkmark.";
 /* Main tab bar */
+"TabBar.news" = "События";
+"TabBar.squads" = "Команды";
+"TabBar.contacts" = "Контакты";
 "TabBar.finance" = "Финансы";
+"TabBar.profile" = "Мой кабинет";
+"TabBar.trainingSchedule" = "Расписание";
 /* Place list */
 "PlacesList.title" = "Лента";
 "PlacesList.toReviews" = "К обзорам";
@@ -45,8 +52,10 @@
 "Profile.authSectionTitle" = "Авторизация";
 "Profile.operationsSectionTitle" = "Функции редактора";
 "Profile.signIn" = "Войти";
+"Profile.signUpHint" = "Нет аккаунта? ";
 "Profile.signUp" = "Зарегистрироваться";
 "Profile.logout" = "Выйти";
+"Profile.forgetPassword" = "Забыли пароль?";
 "Profile.privacy" = "Приватность";
 "Profile.communication" = "Уведомления";
 "Profile.edit" = "Редактировать профиль";
@@ -138,6 +147,7 @@
 "Actions.showOnMap" = "Мы на карте";
 /* Other */
 "Other.done" = "Готово";
+"Other.ok" = "Ок";
 "Other.cancel" = "Отменить";
 "Other.edit" = "Изменить";
 "Other.back" = "Назад";

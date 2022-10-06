@@ -48,6 +48,7 @@ class EventLikeInfoBuilder: FirebaseObjectBuilder {
             .child(objectIdentifier)
             .getData { [weak self] error, snapshot in
                 assert(error == nil)
+                guard let snapshot = snapshot else { return }
                 if let databasePart = LikeDatabaseFlowDataImpl(snapshot: snapshot) {
                     self?.databasePart = databasePart
                 }

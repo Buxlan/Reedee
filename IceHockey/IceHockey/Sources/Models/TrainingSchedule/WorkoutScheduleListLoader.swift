@@ -52,6 +52,10 @@ class WorkoutScheduleListLoader {
         query.getData { [weak self] error, snapshot in
             guard let self = self else { return }
             assert(error == nil)
+            guard let snapshot = snapshot else {
+                assertionFailure()
+                return
+            }
             if snapshot.childrenCount < self.capacity {
                 self.endOfListIsReached = true
             }

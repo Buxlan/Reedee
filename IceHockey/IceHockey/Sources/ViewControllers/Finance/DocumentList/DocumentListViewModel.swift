@@ -16,7 +16,7 @@ class DocumentListViewModel {
         var documents: [Document] = []
     }
     var sections: [SectionData] = []
-    private var authManager: AuthManager = FirebaseAuthManager.shared
+    private var authManager: AuthManagerProtocol = AuthManager.shared
     
     var shouldTableRefresh = {}
     var setRightsEventAddition: (UserRoleManager.Role) -> Void = { _ in }

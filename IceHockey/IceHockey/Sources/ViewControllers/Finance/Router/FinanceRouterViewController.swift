@@ -7,9 +7,11 @@
 
 import SnapKit
 
-class FinanceRouterViewController: UIViewController {
+class FinanceRouterViewController: UIViewController, FinanceViewProtocol {
     
     // MARK: - Properties
+    
+    var onCompletion: CompletionBlock?
     
     private lazy var transactionsButton: FinanceRouterButton = {
         let view = FinanceTransactionsButton()
@@ -121,7 +123,7 @@ extension FinanceRouterViewController {
     }
     
     private func configureNavigationBar() {
-        title = L10n.TabBar.finance
+        navigationItem.title = L10n.TabBar.finance
         navigationController?.setToolbarHidden(true, animated: false)
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationBar.prefersLargeTitles = false

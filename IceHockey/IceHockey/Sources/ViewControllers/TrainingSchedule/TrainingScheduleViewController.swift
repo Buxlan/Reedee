@@ -8,17 +8,18 @@
 import UIKit
 import FirebaseDatabase
 
-class TrainingScheduleViewController: UIViewController {
-    
+class TrainingScheduleViewController: UIViewController, TrainingScheduleViewProtocol {    
     // MARK: - Properties
     
     typealias InputDataType = Club
+    
+    var onCompletion: CompletionBlock?
     var viewModel: TrainingScheduleViewModel = TrainingScheduleViewModel()
     private var tableBase = TableViewBase()
     var team = ClubManager.shared.current
     
     private lazy var tableView: UITableView = {
-        let view = UITableView(frame: .zero, style: .plain)
+        let view = UITableView(frame: .zero, style: .grouped)
         view.isUserInteractionEnabled = true
         view.backgroundColor = Asset.other3.color
         view.allowsSelection = true
@@ -27,6 +28,7 @@ class TrainingScheduleViewController: UIViewController {
         view.allowsMultipleSelectionDuringEditing = false
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tableFooterView = tableFooterView
+        view.tableHeaderView = nil
         view.showsVerticalScrollIndicator = true
         view.register(TrainingCell.self, forCellReuseIdentifier: TrainingViewConfigurator.reuseIdentifier)
         view.register(SquadHeaderView.self, forHeaderFooterViewReuseIdentifier: SquadHeaderViewConfigurator.reuseIdentifier)
@@ -92,9 +94,9 @@ class TrainingScheduleViewController: UIViewController {
     private func configureConstraints() {
         let constraints: [NSLayoutConstraint] = [
             tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            tableView.centerYAnchor.constraint(equalTo: view.layoutMarginsGuide.centerYAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            tableView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
     }

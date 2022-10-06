@@ -7,8 +7,11 @@
 
 import RxSwift
 import RxRelay
+import Firebase
 
 class SignInViewModel {
+    
+    weak var delegate: Alertable?
     
     var disposeBag = DisposeBag()
 
@@ -36,6 +39,21 @@ class SignInViewModel {
                         && password.count > 3
                         && password.count < 25
             }
+    }
+    
+    func loginWithEmail(completion: @escaping CompletionBlock) {
+        AuthManager.shared.signIn(with: loginBehaviorRelay.value,
+                                  password: passwordBehaviorRelay.value) { [weak self] errorStr in
+            if let errorStr = errorStr {
+                self?.delegate?.showAlert(title: "Login error", message: errorStr,
+                                          style: .alert,
+                                          completion: {
+                    log.debug("Try again")
+                    return
+                })
+            }
+            completion()
+        }
     }
         
 }

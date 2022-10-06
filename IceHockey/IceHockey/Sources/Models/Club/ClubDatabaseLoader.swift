@@ -35,6 +35,10 @@ class ClubDatabaseLoader: FirebaseLoader {
             return
         }
         databaseQuery.getData { error, snapshot in
+            guard let snapshot = snapshot else {
+                assertionFailure()
+                return
+            }
             assert(error == nil && !(snapshot.value is NSNull))
             let object = DataTypeImpl(snapshot: snapshot)
             completionHandler(object)

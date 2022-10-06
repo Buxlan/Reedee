@@ -76,7 +76,7 @@ class FinanceTransactionUploader {
     private func uploadTransaction(_ transaction: FinanceTransaction,
                            completionHander: @escaping (FirebaseDataError?) -> Void) {
         
-        guard FirebaseAuthManager.shared.current != nil else {
+        guard AuthManager.shared.current != nil else {
             completionHander(.common)
             return
         }

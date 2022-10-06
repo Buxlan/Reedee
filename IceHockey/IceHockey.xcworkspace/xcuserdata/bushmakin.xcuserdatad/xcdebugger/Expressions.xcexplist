@@ -11,9 +11,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "FinanceTransactionImpl.encode():FinanceTransaction.swift">
-      </ContextState>
-      <ContextState
          contextName = "closure #1 in closure #1 in OperationDocumentFirebaseSaver.saveData(completionHandler:):OperationDocumentFirebaseSaver.swift">
          <PersistentStrings>
             <PersistentString
@@ -24,6 +21,17 @@
             </PersistentString>
             <PersistentString
                value = "snapshot.value as [String: Any]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "FinanceTransactionImpl.encode():FinanceTransaction.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Router.setRootModule(_:hideBar:):Router.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "UIApplication.shared.delegate?.window">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

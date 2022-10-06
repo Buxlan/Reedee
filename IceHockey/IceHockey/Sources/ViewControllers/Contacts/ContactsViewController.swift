@@ -7,9 +7,11 @@
 
 import UIKit
 
-class ContactsViewController: UIViewController {
+class ContactsViewController: UIViewController, ContactsViewProtocol {
     
     // MARK: - Properties
+    
+    var onCompletion: CompletionBlock?
     
     var tableBase = TableViewBase()
     var viewModel: ContactsViewModel
@@ -133,7 +135,7 @@ class ContactsViewController: UIViewController {
     }
     
     private func configureBars() {
-        title = L10n.Contacts.title
+        navigationItem.title = L10n.Contacts.title
         tabBarController?.tabBar.isHidden = false
         configureNavigationBar()
     }

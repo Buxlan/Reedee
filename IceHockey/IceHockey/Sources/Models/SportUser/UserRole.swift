@@ -25,6 +25,7 @@ struct UserRoleManager {
             .child("moderators")
             .child(uid).getData { error, snapshot in
                 guard error == nil,
+                      let snapshot = snapshot,
                       !(snapshot.value is NSNull),
                       let value = snapshot.value as? Bool,
                       value == true else {

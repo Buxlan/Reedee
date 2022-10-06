@@ -8,12 +8,14 @@
 import UIKit
 import Firebase
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, NewsViewProtocol {
     
     // MARK: - Properties
     
     var tableBase = TableViewBase()
     var viewModel = HomeViewModel()
+    
+    var onCompletion: CompletionBlock?
     
     private let refreshControl = UIRefreshControl()
     private lazy var alert: UIAlertController = {
@@ -138,7 +140,7 @@ class HomeViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        title = L10n.News.navigationBarTitle
+        navigationItem.title = L10n.News.navigationBarTitle
         navigationController?.setToolbarHidden(true, animated: false)
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationBar.prefersLargeTitles = false

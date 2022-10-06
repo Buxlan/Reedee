@@ -27,8 +27,10 @@ target 'IceHockey' do
   pod 'Kingfisher', '~> 7.0'
   pod 'RxSwift', '6.2.0'
   pod 'RxCocoa', '6.2.0'
-  pod 'SnapKit'
+  pod 'SnapKit', '5.0.1'
   pod 'XCGLogger', '~> 7.0.1'
   pod 'FSCalendar'
+  pod 'IQKeyboardManagerSwift'
+  pod 'MBProgressHUD', '~> 1.2.0'
 
 end

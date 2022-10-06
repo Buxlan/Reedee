@@ -28,7 +28,9 @@ extension FirebaseDatabaseLoader {
             return
         }
         databaseQuery.getData { error, snapshot in
-            guard error == nil && !(snapshot.value is NSNull) else {
+            guard error == nil,
+                  let snapshot = snapshot,
+                  !(snapshot.value is NSNull) else {
                 completionHandler(.failure(.notFound))
                 return
             }

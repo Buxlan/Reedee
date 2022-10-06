@@ -31,7 +31,7 @@ class TransactionsConfirmViewModel {
         authManager.removeObserver(self)
     }
     
-    private var authManager: AuthManager = FirebaseAuthManager.shared
+    private var authManager: AuthManagerProtocol = AuthManager.shared
     lazy var user: ApplicationUser? = authManager.current
     
     var shouldTableRefresh = {}

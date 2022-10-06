@@ -7,9 +7,11 @@
 
 import UIKit
 
-class SquadDetailViewController: UIViewController {
+class SquadDetailViewController: UIViewController, SquadsViewProtocol {
     
     // MARK: - Properties
+    
+    var onCompletion: CompletionBlock?
     
     typealias InputDataType = Squad
     private lazy var viewModel: SquadDetailViewModel = {
@@ -46,6 +48,7 @@ class SquadDetailViewController: UIViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
+    
     init() {
         super.init(nibName: nil, bundle: nil)
         configureTabBarItem()
@@ -91,7 +94,7 @@ class SquadDetailViewController: UIViewController {
     }
     
     private func configureBars() {
-        title = viewModel.filter?.displayName ?? ""
+        navigationItem.title = viewModel.filter?.displayName ?? ""
         let itemReport = UIBarButtonItem(title: "Report", style: .plain, target: self, action: #selector(reportHandle))
         let itemEdit = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editHandle))
         navigationItem.rightBarButtonItems = [itemReport, itemEdit]

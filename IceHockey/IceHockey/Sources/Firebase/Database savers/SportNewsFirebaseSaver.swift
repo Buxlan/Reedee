@@ -121,7 +121,7 @@ class SportNewsFirebaseSaver {
                     let imageStorageRef = imagesStorageReference
                         .child(self.object.objectIdentifier)
                         .child(imageName)
-                    imageStorageRef.delete()
+                    imageStorageRef.delete { _ in }
                     let index = imagesCount - 1 - index
                     object.images.remove(at: index)
                 } else {

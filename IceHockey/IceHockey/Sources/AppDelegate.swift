@@ -7,12 +7,21 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
+import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var coordinator: ViewControllerCoordinator?
+    
+    fileprivate lazy var coordinator: Coordinatable = self.makeCoordinator()
+    
+    var rootController: UINavigationController = {
+        let navController = UINavigationController()
+        navController.setNavigationBarHidden(false, animated: false)
+        return navController
+    }()
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -21,15 +30,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         Database.database().isPersistenceEnabled = true
         
-//        prepareWindow()
+        Session.isAppLoaded = false
         
-        prepareFirstLaunch()
+        prepareWindow()
+        
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = true
         
         configureAppearance()
+        
+        coordinator.start()
                 
-        let authManager = FirebaseAuthManager.shared
+        let authManager = AuthManager.shared
         Auth.auth().addStateDidChangeListener(authManager.authStateListener)
-        authManager.signInAnonymously()
         
         return true
     }
@@ -44,27 +57,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     @available(iOS 13.0, *)
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
+    func application(_ application: UIApplication,
+                     didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+    
+    func application(_ app: UIApplication, open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey : Any] = [:])
+    -> Bool {
+        return GIDSignIn.sharedInstance.handle(url)
+    }
+    
 }
 
 extension AppDelegate {
     
-//    private func prepareWindow() {
-//        let navigationController = UINavigationController()
-//        coordinator = MainViewControllerCoordinator(navigationController: navigationController)
-//        coordinator?.start()
-//
-//        window = UIWindow(frame: UIScreen.main.bounds)
-//        window?.rootViewController = navigationController
-//        window?.makeKeyAndVisible()
-//    }
-    
-    private func prepareFirstLaunch() {
-        
+    private func prepareWindow() {
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = rootController
+        self.window?.makeKeyAndVisible()
     }
     
     private func configureAppearance() {
@@ -99,4 +112,13 @@ extension AppDelegate {
         
     }
     
+}
+
+// MARK: - Private methods
+private extension AppDelegate {
+    func makeCoordinator() -> Coordinatable {
+        let router = Router(rootController: rootController)
+        let factory = CoordinatorFactory()
+        return AppCoordinator(router: router, factory: factory)
+    }
 }

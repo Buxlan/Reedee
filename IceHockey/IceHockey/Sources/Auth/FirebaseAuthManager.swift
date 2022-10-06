@@ -9,11 +9,12 @@ import Firebase
 import RxSwift
 import RxRelay
 
-class FirebaseAuthManager: AuthManager {
+
+class FirebaseAuthManager: AuthManagerProtocol {
     
     // MARK: - Properties
     
-    static let shared: AuthManager = FirebaseAuthManager()
+    static let shared: AuthManagerProtocol = FirebaseAuthManager()
     var current: ApplicationUser?
         
     var currentUser: PublishRelay<ApplicationUser> = PublishRelay()
@@ -50,10 +51,6 @@ class FirebaseAuthManager: AuthManager {
     
     // MARK: - Hepler methods
     
-    func signInAnonymously() {
-        Auth.auth().signInAnonymously()
-    }
-    
     func addObserver(_ observer: UserObserver) {
         let weakObserver = WeakUserObserver(value: observer)
         observers.append(weakObserver)
@@ -63,6 +60,105 @@ class FirebaseAuthManager: AuthManager {
         if let index = observers.firstIndex(where: { $0.value === observer }) {
             observers.remove(at: index)
         }
+    }
+    
+}
+
+// MARK: - Login methods
+extension FirebaseAuthManager {
+    
+    func signIn(coordinator: Coordinatable) {
+        if Session.isAuthorized,
+           let token = UserDefaultsWrapper.token {
+            signIn(using: token) { [weak coordinator] result in
+                coordinator?.start()
+            }
+        } else {
+            signInAnonymously()
+        }
+    }
+    
+    func signInAnonymously() {
+        Auth.auth().signInAnonymously()
+    }
+    
+    func signIn(using token: String,
+                completion: @escaping (String?) -> Void) {
+        Auth.auth().signIn(withCustomToken: token) { authResult, error in
+            
+            if let error = error {
+                log.debug("Sign in error: \(error.localizedDescription)")
+                completion(error.localizedDescription)
+                return
+            }
+            
+            guard let authResult = authResult else {
+                log.debug("Sign in authResult is nil")
+                completion("Sign in authResult is nil")
+                return
+            }
+            
+            log.debug(authResult)
+            
+            authResult.user.getIDToken { token, error in
+                if let error = error {
+                    log.debug("Sign in error: \(error.localizedDescription)")
+                    completion(error.localizedDescription)
+                    return
+                }
+                
+                guard let token = token else {
+                    log.debug("Token is nil")
+                    completion("Token is nil")
+                    return
+                }
+                
+                UserDefaultsWrapper.token = token
+                completion(nil)
+            }
+            
+        }
+    }
+    
+    func signIn(with email: String, password: String,
+                completion: @escaping (String?) -> Void) {
+        
+        Auth.auth().signIn(withEmail: email,
+                           password: password) { authResult, error in
+            
+            if let error = error {
+                log.debug("Sign in error: \(error.localizedDescription)")
+                completion(error.localizedDescription)
+                return
+            }
+            
+            guard let authResult = authResult else {
+                log.debug("Sign in authResult is nil")
+                completion("Sign in authResult is nil")
+                return
+            }
+            
+            log.debug(authResult)
+            
+            authResult.user.getIDToken { token, error in
+                if let error = error {
+                    log.debug("Sign in error: \(error.localizedDescription)")
+                    completion(error.localizedDescription)
+                    return
+                }
+                
+                guard let token = token else {
+                    log.debug("Token is nil")
+                    completion("Token is nil")
+                    return
+                }
+                
+                UserDefaultsWrapper.token = token
+                completion(nil)
+            }
+            
+        }
+        
     }
     
 }

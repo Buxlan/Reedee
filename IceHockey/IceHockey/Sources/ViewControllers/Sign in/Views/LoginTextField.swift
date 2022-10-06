@@ -17,6 +17,7 @@ class LoginTextField: UITextField {
         translatesAutoresizingMaskIntoConstraints = false
         keyboardAppearance = .dark
         keyboardType = .default
+        autocorrectionType = .no
         backgroundColor = Colors.Gray.light
         font = Fonts.Regular.subhead
         layer.cornerRadius = 8

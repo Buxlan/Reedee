@@ -22,4 +22,28 @@ extension UIViewController {
         errorAlertController.addAction(UIAlertAction(title: "OK", style: .default))
         present(errorAlertController, animated: true, completion: nil)
     }
+    
+}
+
+extension UIViewController: ProgressPresenting { }
+
+extension UIViewController: Presentable, Alertable {
+    
+    var toPresent: UIViewController? {
+        return self
+    }
+    
+    func showAlert(title: String,
+                   message: String? = nil,
+                   style: UIAlertController.Style = .alert,
+                   completion: (() -> Void)?) {
+        let alertController = UIAlertController(title: title,
+                                                message: message,
+                                                preferredStyle: style)
+        let okAction = UIAlertAction(title: L10n.Other.ok, style: .cancel) { _ in
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: completion)
+    }
+    
 }

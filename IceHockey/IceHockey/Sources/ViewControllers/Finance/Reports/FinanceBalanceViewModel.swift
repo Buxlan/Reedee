@@ -29,7 +29,7 @@ class FinanceBalanceViewModel {
     }
     
     private var loader = FinanceTransactionListLoader()
-    private var authManager: AuthManager = FirebaseAuthManager.shared
+    private var authManager: AuthManagerProtocol = AuthManager.shared
     private var allTransactions: [FinanceTransaction] = []
  
     // MARK: Lifecircle

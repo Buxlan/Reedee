@@ -97,6 +97,8 @@ class SettingsViewController: UIViewController {
     
 }
 
+// MARK: - Table view configuring
+
 extension SettingsViewController {
     
     func createDataSource() -> TableDataSource {
@@ -114,6 +116,8 @@ extension SettingsViewController {
     }
     
 }
+
+// Sections
 
 extension SettingsViewController {
     
@@ -162,7 +166,7 @@ extension SettingsViewController {
 extension SettingsViewController {
     
     func makeSignUpTableRow() -> TableRow {
-        let setting = Setting.signUp
+        let setting = ProfileSetting.signUp
         let cellModel = SettingCellModel(title: setting.description,
                                          hasDisclosure: setting.hasDisclosure)
         let config = SettingViewConfigurator(data: cellModel)
@@ -177,7 +181,7 @@ extension SettingsViewController {
     }
     
     func makeLogoutTableRow() -> TableRow {
-        let setting = Setting.logout
+        let setting = ProfileSetting.logout
         let cellModel = SettingCellModel(title: setting.description,
                                          hasDisclosure: setting.hasDisclosure)
         let config = SettingViewConfigurator(data: cellModel)
@@ -190,7 +194,7 @@ extension SettingsViewController {
     }
     
     func makeSignInTableRow() -> TableRow {
-        let setting = Setting.signIn
+        let setting = ProfileSetting.signIn
         let cellModel = SettingCellModel(title: setting.description,
                                          hasDisclosure: setting.hasDisclosure)
         let config = SettingViewConfigurator(data: cellModel)
@@ -221,7 +225,7 @@ extension SettingsViewController {
     }
     
     func makeEventTableRow() -> TableRow {
-        let setting = Setting.newEvent
+        let setting = ProfileSetting.newEvent
         let cellModel = SettingCellModel(title: setting.description,
                                          hasDisclosure: setting.hasDisclosure)
         let config = SettingViewConfigurator(data: cellModel)
@@ -234,7 +238,7 @@ extension SettingsViewController {
     }
     
     func makeMatchResultTableRow() -> TableRow {
-        let setting = Setting.newMatchResult
+        let setting = ProfileSetting.newMatchResult
         let cellModel = SettingCellModel(title: setting.description,
                                          hasDisclosure: setting.hasDisclosure)
         let config = SettingViewConfigurator(data: cellModel)

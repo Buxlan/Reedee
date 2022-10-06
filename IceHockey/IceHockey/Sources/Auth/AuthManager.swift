@@ -2,35 +2,7 @@
 //  AuthManager.swift
 //  IceHockey
 //
-//  Created by  Buxlan on 10/6/21.
+//  Created by Sergey Bush bushmakin@outlook.com on 20.03.2022.
 //
 
-import Firebase
-import RxCocoa
-import RxSwift
-
-protocol SaveStateProtocol {
-    func save()
-}
-
-protocol RestoreStateProtocol {
-    func restore() -> ApplicationUser?
-}
-
-protocol AuthManager: SaveStateProtocol, RestoreStateProtocol {
-    static var shared: AuthManager { get }
-    var current: ApplicationUser? { get set }
-    var currentUser: PublishRelay<ApplicationUser> { get }
-    func signInAnonymously()
-    var authStateListener: (Auth, User?) -> Void { get }
-    func addObserver(_ observer: UserObserver)
-    func removeObserver(_ observer: UserObserver)
-}
-
-struct WeakUserObserver {
-    weak var value: UserObserver?
-}
-
-protocol UserObserver: AnyObject {
-    func didChangeUser(_ user: ApplicationUser)
-}
+typealias AuthManager = FirebaseAuthManager

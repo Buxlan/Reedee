@@ -51,7 +51,7 @@ struct SportTeamFirebaseRemover: FirebaseObjectRemover {
             let imageStorageRef = imagesStorageReference
                 .child(object.objectIdentifier)
                 .child(smallImageID)
-            imageStorageRef.delete()
+            imageStorageRef.delete { _ in }
         }
         
         let largeImageID = object.largeLogoID
@@ -59,7 +59,7 @@ struct SportTeamFirebaseRemover: FirebaseObjectRemover {
             let imageRef = imagesStorageReference
                 .child(object.objectIdentifier)
                 .child(largeImageID)
-            imageRef.delete()
+            imageRef.delete { _ in }
         }
         completionHandler(nil)
     }    

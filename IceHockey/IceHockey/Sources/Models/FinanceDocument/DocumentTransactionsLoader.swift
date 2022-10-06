@@ -53,6 +53,10 @@ class DocumentTransactionsLoader {
             return
         }
         prepareQuery().getData { error, snapshot in
+            guard let snapshot = snapshot else {
+                assertionFailure("Snapshot is nil")
+                return
+            }
             assert(error == nil && !(snapshot.value is [String: Any]))
             guard let dict = snapshot.value as? [String: Any] else {
                 completionHandler([])
@@ -73,6 +77,10 @@ class DocumentTransactionsLoader {
         }
         prepareQuery().getData { error, snapshot in
             assert(error == nil)
+            guard let snapshot = snapshot else {
+                assertionFailure()
+                return
+            }
             guard let dict = snapshot.value as? [String: Any] else {
                 completionHandler([])
                 return

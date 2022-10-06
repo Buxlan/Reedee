@@ -48,8 +48,8 @@ struct SportNewsFirebaseRemover: FirebaseObjectRemover {
                     completionHandler(FirebaseRemoveError.storageError)
                     return
                 }
-                result.items.forEach { ref in
-                    ref.delete()
+                result?.items.forEach { ref in
+                    ref.delete { _ in }
                 }
             }
         objectDatabaseReference.removeValue()

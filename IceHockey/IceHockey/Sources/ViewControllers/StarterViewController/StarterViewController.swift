@@ -1,0 +1,58 @@
+//
+//  StarterViewController.swift
+//  IceHockey
+//
+//  Created by Sergey Bush bushmakin@outlook.com on 21.03.2022.
+//
+
+import SnapKit
+
+class StarterViewController: UIViewController, StarterViewProtocol {
+    
+    var onCompletion: CompletionBlock?
+    
+    let logoImage = Asset.logo.image
+        
+    private lazy var imageView: UIImageView = {
+        let view = UIImageView()
+        view.image = logoImage
+        
+        return view
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .white
+        view.addSubview(imageView)
+        configureConstraints()
+        
+        showProgress(title: L10n.loading, subTitle: "")
+        AuthManager.shared.addObserver(self)
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        AuthManager.shared.removeObserver(self)
+    }
+    
+    private func configureConstraints() {
+        imageView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalTo(logoImage.size.width)
+            make.height.equalTo(logoImage.size.height)
+        }
+    }
+    
+}
+
+extension StarterViewController: UserObserver {
+    
+    func didChangeUser(_ user: ApplicationUser) {
+        hideProgress()
+        Session.isAppLoaded = true
+        onCompletion?()
+    }
+    
+}
+

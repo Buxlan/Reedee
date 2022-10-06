@@ -18,7 +18,7 @@ class HomeViewModel {
     var sections: [SectionData] = []
     var dataSource = TableDataSource()
     var club: Club = ClubManager.shared.current
-    private var authManager: AuthManager = FirebaseAuthManager.shared
+    private var authManager: AuthManagerProtocol = AuthManager.shared
     lazy var user: ApplicationUser? = authManager.current
     
     var shouldTableRefreshRelay = {}

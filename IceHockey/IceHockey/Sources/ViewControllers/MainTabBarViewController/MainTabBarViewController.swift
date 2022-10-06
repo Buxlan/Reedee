@@ -9,9 +9,12 @@ import UIKit
 import UserNotifications
 import CoreGraphics
 
-class MainTabBarViewController: UITabBarController {
+class MainTabBarViewController: UITabBarController, MainViewProtocol {
     
     // MARK: - Properties
+    
+    var onCompletion: CompletionBlock?
+    
     private let viewModel = MainTabBarViewModel()
         
     // MARK: - Init
@@ -28,13 +31,8 @@ class MainTabBarViewController: UITabBarController {
         
         super.viewDidLoad()
         
-        title = L10n.App.name
+        title = "L10n.App.name"
         delegate = self
-        let items = viewModel.viewControllers
-        setViewControllers(items, animated: false)
-        viewModel.configureTabBarItems(tabBar.items)
-        
-        self.navigationController?.isNavigationBarHidden = false
         
         selectedIndex = 0
         if let item = tabBar.items?[selectedIndex] {
@@ -45,6 +43,7 @@ class MainTabBarViewController: UITabBarController {
     
     // MARK: - Helper functions
     private func configureBars() {
+        navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.isHidden = true
         navigationController?.tabBarController?.tabBar.isHidden = false
     }
@@ -53,6 +52,25 @@ class MainTabBarViewController: UITabBarController {
 // UITabBarControllerDelegate
 extension MainTabBarViewController: UITabBarControllerDelegate {
     
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {     
+}
+
+extension MainTabBarViewController: MainCoordinatorDelegate {
+    func switchTab(at index: Int) {
+        guard let count = viewControllers?.count,
+              count >= index,
+              selectedIndex != index
+        else { return }
+        selectedIndex = index
+    }
+    
+    func tabsWasUpdated(_ newViewControllers: [UIViewController]?) {
+        // Save selection
+        let selectedTab = self.selectedIndex
+        
+        log.debug("MainViewController tabsWasUpdated start \(String(describing: newViewControllers))")
+        setViewControllers(newViewControllers, animated: false)
+        
+        // Restore selection
+        self.selectedIndex = selectedTab
     }
 }

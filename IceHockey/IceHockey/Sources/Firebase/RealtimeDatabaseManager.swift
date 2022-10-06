@@ -44,6 +44,7 @@ extension RealtimeDatabaseManager {
             .child(eventID)
             .getData { error, snapshot in
                 guard error == nil,
+                      let snapshot = snapshot,
                       !(snapshot.value is NSNull),
                       let dict = snapshot.value as? [String: Any],
                       let count = dict["count"] as? Int,
@@ -63,6 +64,7 @@ extension RealtimeDatabaseManager {
             .child(eventID)
             .getData { error, snapshot in
                 guard error == nil,
+                      let snapshot = snapshot,
                       !(snapshot.value is NSNull),
                       let dict = snapshot.value as? [String: Any],
                       let count = dict["count"] as? Int else {

@@ -46,6 +46,10 @@ class FinanceTransactionListLoader {
         let query = prepareQuery()
         query.getData { [weak self] error, snapshot in
             assert(error == nil)
+            guard let snapshot = snapshot else {
+                assertionFailure()
+                return
+            }
             var count = 0
             for child in snapshot.children {
                 guard let child = child as? DataSnapshot else {

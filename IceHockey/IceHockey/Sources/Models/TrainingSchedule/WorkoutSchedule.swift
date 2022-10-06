@@ -73,6 +73,10 @@ extension WorkoutSchedule: FirebaseObject {
                     print(error)
                     return
                 }
+                guard let snapshot = snapshot else {
+                    assertionFailure()
+                    return
+                }
                 if snapshot.value is NSNull {
                     print("Query result is nil")
                     handler(nil)

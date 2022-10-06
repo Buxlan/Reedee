@@ -24,7 +24,7 @@ class ClubManager {
     private var observers: [WeakClubObserver] = []
     var clubCreator: ClubCreator?
     
-    private let authManager: AuthManager = FirebaseAuthManager.shared
+    private let authManager: AuthManagerProtocol = AuthManager.shared
     private let disposeBag = DisposeBag()
 
     private init() {
