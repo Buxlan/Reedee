@@ -31,7 +31,7 @@ extension StarterCoordinator: Coordinatable {
 extension StarterCoordinator {
     func performFlow() {
         let vc = factory.makeStartViewController()
-        vc.onCompletion = finishFlow
+        vc.onCompletion = finishFlow        
         router.setRootModule(vc, hideBar: true)
     }
 }

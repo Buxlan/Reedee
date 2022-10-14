@@ -17,11 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     fileprivate lazy var coordinator: Coordinatable = makeCoordinator()
     
-    var rootController: UINavigationController = {
-        let navController = UINavigationController()
-        navController.setNavigationBarHidden(false, animated: false)
-        return navController
-    }()
+    var rootController: UINavigationController = MainNavigationController()
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -78,9 +74,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
     
     private func prepareWindow() {
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = rootController
-        self.window?.makeKeyAndVisible()
+        if #available(iOS 13, *) { return }
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = rootController
+        window?.makeKeyAndVisible()
     }
     
     private func configureAppearance() {

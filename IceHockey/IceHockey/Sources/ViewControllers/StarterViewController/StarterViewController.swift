@@ -33,6 +33,8 @@ class StarterViewController: UIViewController, StarterViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("StarterViewController viewDidLoad")
+        
         view.backgroundColor = .white
         view.addSubview(imageView)
         configureConstraints()

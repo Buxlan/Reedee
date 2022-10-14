@@ -5,6 +5,8 @@
 //  Created by Sergey Bush bushmakin@outlook.com on 19.03.2022.
 //
 
+import UIKit
+
 fileprivate enum LaunchInstructor {
     case onboarding,
          authorization,
@@ -66,6 +68,9 @@ extension AppCoordinator: Coordinatable {
         case .starter:
             print("AppCoordinator starter")
             performStarterFlow()
+        }
+        if let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
+            print("AppCoordinator navController \(navController), viewControllers: \(navController.viewControllers)")
         }
     }
 }

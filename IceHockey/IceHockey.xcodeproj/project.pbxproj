@@ -454,6 +454,7 @@
 		47EC465F27BF045E005C7FC4 /* DecreaseDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC465E27BF045E005C7FC4 /* DecreaseDocument.swift */; };
 		47FC5DD928F8741B003D9EA4 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC5DD828F8741B003D9EA4 /* NotificationName.swift */; };
 		47FC5DDB28F88867003D9EA4 /* TokenUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC5DDA28F88867003D9EA4 /* TokenUtil.swift */; };
+		47FC5DDD28F94540003D9EA4 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC5DDC28F94540003D9EA4 /* MainNavigationController.swift */; };
 		B68C6DD20266C69757C3A543 /* Pods_IceHockey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A75858F089259A7EB5009751 /* Pods_IceHockey.framework */; };
 /* End PBXBuildFile section */
 
@@ -909,6 +910,7 @@
 		47EC465E27BF045E005C7FC4 /* DecreaseDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecreaseDocument.swift; sourceTree = "<group>"; };
 		47FC5DD828F8741B003D9EA4 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 		47FC5DDA28F88867003D9EA4 /* TokenUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenUtil.swift; sourceTree = "<group>"; };
+		47FC5DDC28F94540003D9EA4 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		4D9A0BBDF65DCBDFAD6A578B /* Pods-IceHockey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IceHockey.debug.xcconfig"; path = "Target Support Files/Pods-IceHockey/Pods-IceHockey.debug.xcconfig"; sourceTree = "<group>"; };
 		A75858F089259A7EB5009751 /* Pods_IceHockey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IceHockey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -2122,6 +2124,7 @@
 				47AE0F0E28EE0598007B72F2 /* FinanceNavigationController.swift */,
 				47AE0F1028EE06CB007B72F2 /* ProfileNavigationController.swift */,
 				4742B44728EF7DD100F25067 /* TrainingScheduleNavigationController.swift */,
+				47FC5DDC28F94540003D9EA4 /* MainNavigationController.swift */,
 			);
 			path = NavigationControllers;
 			sourceTree = "<group>";
@@ -2742,6 +2745,7 @@
 				409DD42D2735D43500055FBD /* TableDataSource.swift in Sources */,
 				407BB05E274BA6D0008DF228 /* ClubBuilder.swift in Sources */,
 				4098C04526E5756800F0BBE6 /* SportPlayer.swift in Sources */,
+				47FC5DDD28F94540003D9EA4 /* MainNavigationController.swift in Sources */,
 				47B2DB0B27E5ECCF00D51B54 /* Router.swift in Sources */,
 				40940BEF26E412F40098EF89 /* AuthProvider.swift in Sources */,
 				400EB96926F00BFD0026EFB1 /* InsetLabel.swift in Sources */,
