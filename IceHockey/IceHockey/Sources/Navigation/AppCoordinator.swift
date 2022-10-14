@@ -41,6 +41,10 @@ final class AppCoordinator: BaseCoordinator {
     init(router: Routable, factory: CoordinatorFactory) {
         self.router = router
         self.factory = factory
+        
+        super.init()
+        
+        AuthManager.shared.addObserver(self)
     }
     
 }
@@ -48,14 +52,19 @@ final class AppCoordinator: BaseCoordinator {
 // MARK: - Coordinatable
 extension AppCoordinator: Coordinatable {
     func start() {
+        print("AppCoordinator start")
         switch instructor {
         case .authorization:
+            print("AppCoordinator auth")
             performAuthorization()
         case .main:
+            print("AppCoordinator main")
             performMainFlow()
         case .onboarding:
+            print("AppCoordinator onboarding")
             performOnboardingFlow()
         case .starter:
+            print("AppCoordinator starter")
             performStarterFlow()
         }
     }
@@ -126,4 +135,10 @@ private extension AppCoordinator {
         coordinator.start()
     }
     
+}
+
+extension AppCoordinator: AuthObserver {
+    func didChangeUser(_ user: ApplicationUser) {
+        start()
+    }
 }

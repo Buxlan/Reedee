@@ -13,4 +13,6 @@ public enum RDKeyChainKey: String, CaseIterable {
     case refreshToken
     case accessTokenExpiresIn
     case refreshTokenExpiresIn
+    case pushToken
+    case voipToken
 }

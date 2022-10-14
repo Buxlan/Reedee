@@ -52,7 +52,7 @@ class TransactionsConfirmViewModel {
     
 }
 
-extension TransactionsConfirmViewModel: UserObserver {
+extension TransactionsConfirmViewModel: AuthObserver {
     func didChangeUser(_ user: ApplicationUser) {
         log.debug("HomeViewModel didChangeUser: user: \(user)")
         self.user = user

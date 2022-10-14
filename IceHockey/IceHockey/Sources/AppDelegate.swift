@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    fileprivate lazy var coordinator: Coordinatable = self.makeCoordinator()
+    fileprivate lazy var coordinator: Coordinatable = makeCoordinator()
     
     var rootController: UINavigationController = {
         let navController = UINavigationController()
@@ -40,6 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureAppearance()
         
         coordinator.start()
+        if let navController = window?.rootViewController as? UINavigationController {
+            print("AppDelegate navController \(navController), viewControllers: \(navController.viewControllers)")
+        }
                 
         let authManager = AuthManager.shared
         Auth.auth().addStateDidChangeListener(authManager.authStateListener)

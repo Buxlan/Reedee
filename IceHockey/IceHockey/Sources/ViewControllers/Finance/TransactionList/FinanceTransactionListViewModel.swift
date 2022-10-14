@@ -169,7 +169,7 @@ class FinanceTransactionListViewModel {
     
 }
 
-extension FinanceTransactionListViewModel: UserObserver {
+extension FinanceTransactionListViewModel: AuthObserver {
     func didChangeUser(_ user: ApplicationUser) {
         log.debug("HomeViewModel didChangeUser: user: \(user)")
         self.user = user

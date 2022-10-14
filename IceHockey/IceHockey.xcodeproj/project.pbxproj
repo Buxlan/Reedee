@@ -441,6 +441,7 @@
 		47C60A0227AFFC57007BE5D9 /* TransactionsConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C60A0127AFFC57007BE5D9 /* TransactionsConfirmViewController.swift */; };
 		47C60A0427B006E8007BE5D9 /* TransactionsConfirmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C60A0327B006E8007BE5D9 /* TransactionsConfirmViewModel.swift */; };
 		47C60A0627B0110C007BE5D9 /* AppendTransactionsStepByStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C60A0527B0110C007BE5D9 /* AppendTransactionsStepByStepViewModel.swift */; };
+		47CEEF8A28F86F17002C681E /* NetworkIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CEEF8928F86F17002C681E /* NetworkIssueViewController.swift */; };
 		47E4B9E727D6BB2F00F4632A /* EditTransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E4B9E627D6BB2F00F4632A /* EditTransactionCell.swift */; };
 		47EC464D27BEF342005C7FC4 /* DocumentDatabaseFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC464C27BEF342005C7FC4 /* DocumentDatabaseFlowData.swift */; };
 		47EC464F27BEFAE3005C7FC4 /* OperationDocumentDatabaseFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC464E27BEFAE3005C7FC4 /* OperationDocumentDatabaseFlowData.swift */; };
@@ -451,9 +452,13 @@
 		47EC465B27BF03A1005C7FC4 /* DecreaseDocumentDatabaseFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC465A27BF03A1005C7FC4 /* DecreaseDocumentDatabaseFlowData.swift */; };
 		47EC465D27BF0431005C7FC4 /* DecreaseDocumentTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC465C27BF0431005C7FC4 /* DecreaseDocumentTableRow.swift */; };
 		47EC465F27BF045E005C7FC4 /* DecreaseDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC465E27BF045E005C7FC4 /* DecreaseDocument.swift */; };
+		47FC5DD928F8741B003D9EA4 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC5DD828F8741B003D9EA4 /* NotificationName.swift */; };
+		47FC5DDB28F88867003D9EA4 /* TokenUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC5DDA28F88867003D9EA4 /* TokenUtil.swift */; };
+		B68C6DD20266C69757C3A543 /* Pods_IceHockey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A75858F089259A7EB5009751 /* Pods_IceHockey.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D228083F2C704F9290D2A2F /* Pods-IceHockey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IceHockey.release.xcconfig"; path = "Target Support Files/Pods-IceHockey/Pods-IceHockey.release.xcconfig"; sourceTree = "<group>"; };
 		4007F7E82754F43A0013E348 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		40099B102735B1AF0097B1B7 /* SettingCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCellModel.swift; sourceTree = "<group>"; };
 		400A2AC126E5987B00F13BCF /* SportCoach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCoach.swift; sourceTree = "<group>"; };
@@ -891,6 +896,7 @@
 		47C60A0127AFFC57007BE5D9 /* TransactionsConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsConfirmViewController.swift; sourceTree = "<group>"; };
 		47C60A0327B006E8007BE5D9 /* TransactionsConfirmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsConfirmViewModel.swift; sourceTree = "<group>"; };
 		47C60A0527B0110C007BE5D9 /* AppendTransactionsStepByStepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppendTransactionsStepByStepViewModel.swift; sourceTree = "<group>"; };
+		47CEEF8928F86F17002C681E /* NetworkIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkIssueViewController.swift; sourceTree = "<group>"; };
 		47E4B9E627D6BB2F00F4632A /* EditTransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionCell.swift; sourceTree = "<group>"; };
 		47EC464C27BEF342005C7FC4 /* DocumentDatabaseFlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDatabaseFlowData.swift; sourceTree = "<group>"; };
 		47EC464E27BEFAE3005C7FC4 /* OperationDocumentDatabaseFlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDocumentDatabaseFlowData.swift; sourceTree = "<group>"; };
@@ -901,6 +907,10 @@
 		47EC465A27BF03A1005C7FC4 /* DecreaseDocumentDatabaseFlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecreaseDocumentDatabaseFlowData.swift; sourceTree = "<group>"; };
 		47EC465C27BF0431005C7FC4 /* DecreaseDocumentTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecreaseDocumentTableRow.swift; sourceTree = "<group>"; };
 		47EC465E27BF045E005C7FC4 /* DecreaseDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecreaseDocument.swift; sourceTree = "<group>"; };
+		47FC5DD828F8741B003D9EA4 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
+		47FC5DDA28F88867003D9EA4 /* TokenUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenUtil.swift; sourceTree = "<group>"; };
+		4D9A0BBDF65DCBDFAD6A578B /* Pods-IceHockey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IceHockey.debug.xcconfig"; path = "Target Support Files/Pods-IceHockey/Pods-IceHockey.debug.xcconfig"; sourceTree = "<group>"; };
+		A75858F089259A7EB5009751 /* Pods_IceHockey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IceHockey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -908,12 +918,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B68C6DD20266C69757C3A543 /* Pods_IceHockey.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D57CF939C12B78910444594 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A75858F089259A7EB5009751 /* Pods_IceHockey.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		400A2AC726E59AB700F13BCF /* TeamStaff */ = {
 			isa = PBXGroup;
 			children = (
@@ -1428,6 +1447,8 @@
 		40940BF226E413150098EF89 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				47FC5DDA28F88867003D9EA4 /* TokenUtil.swift */,
+				47FC5DD728F87405003D9EA4 /* Notifications */,
 				40AE442327411EE100BD6506 /* Collections */,
 				40AE7D6F27348B1100052643 /* CollectionViewDelegate + DataSource.swift */,
 				40C106D626E4202600B619A1 /* Log.swift */,
@@ -1466,6 +1487,7 @@
 		40940C0126E418B10098EF89 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				47CEEF8828F86EE2002C681E /* Network */,
 				479EDAA327F0BB7700A3FCDE /* Profile */,
 				479CE51827E90EB400C6221E /* StarterViewController */,
 				47B2DAFA27E5C24600D51B54 /* Onboarding */,
@@ -1776,6 +1798,7 @@
 				40E7203C26E400FE00A64C60 /* IceHockey */,
 				40E7203B26E400FE00A64C60 /* Products */,
 				F04DFA82FC63DB8D9E533CEC /* Pods */,
+				3D57CF939C12B78910444594 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2371,6 +2394,14 @@
 			path = AppendTransactions;
 			sourceTree = "<group>";
 		};
+		47CEEF8828F86EE2002C681E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				47CEEF8928F86F17002C681E /* NetworkIssueViewController.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		47EC465227BF026D005C7FC4 /* IncreaseDocument */ = {
 			isa = PBXGroup;
 			children = (
@@ -2391,9 +2422,19 @@
 			path = DecreaseDocument;
 			sourceTree = "<group>";
 		};
+		47FC5DD728F87405003D9EA4 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				47FC5DD828F8741B003D9EA4 /* NotificationName.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		F04DFA82FC63DB8D9E533CEC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				4D9A0BBDF65DCBDFAD6A578B /* Pods-IceHockey.debug.xcconfig */,
+				2D228083F2C704F9290D2A2F /* Pods-IceHockey.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -2405,11 +2446,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 40E7204E26E400FF00A64C60 /* Build configuration list for PBXNativeTarget "IceHockey" */;
 			buildPhases = (
+				68ECD7D5553F9A85A1E02179 /* [CP] Check Pods Manifest.lock */,
 				407028E726E4030100C6CE5F /* Lint */,
 				407028E826E4031C00C6CE5F /* Swiftgen */,
 				40E7203626E400FE00A64C60 /* Sources */,
 				40E7203726E400FE00A64C60 /* Frameworks */,
 				40E7203826E400FE00A64C60 /* Resources */,
+				1145F9B029A2EBA403392BC6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2475,6 +2518,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1145F9B029A2EBA403392BC6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IceHockey/Pods-IceHockey-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IceHockey/Pods-IceHockey-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IceHockey/Pods-IceHockey-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		407028E726E4030100C6CE5F /* Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2510,6 +2570,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = " ${PODS_ROOT}/SwiftGen/bin/swiftgen config run\n";
+		};
+		68ECD7D5553F9A85A1E02179 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IceHockey-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2636,6 +2718,7 @@
 				40E70B962748534F0074CD2D /* SportEventListLoader.swift in Sources */,
 				479EDABD27F1175E00A3FCDE /* SquadsFactoryProtocol.swift in Sources */,
 				47EC464F27BEFAE3005C7FC4 /* OperationDocumentDatabaseFlowData.swift in Sources */,
+				47FC5DD928F8741B003D9EA4 /* NotificationName.swift in Sources */,
 				4093D9A9271780E000DCF35D /* ApplicationUser.swift in Sources */,
 				40C05260275836F200C1930A /* SquadCreator.swift in Sources */,
 				47394D0027BEE455001942E0 /* DocumentListLoader.swift in Sources */,
@@ -2786,6 +2869,7 @@
 				40F4EBEB273DE1B8003DA1D3 /* EventDetailCopyrightCellModel.swift in Sources */,
 				40C9E9162746A608009B0417 /* MatchResultBuilder.swift in Sources */,
 				40940BE426E40C380098EF89 /* Apponts.swift in Sources */,
+				47FC5DDB28F88867003D9EA4 /* TokenUtil.swift in Sources */,
 				40A4464926E409D900129B89 /* Assets.swift in Sources */,
 				47EC465F27BF045E005C7FC4 /* DecreaseDocument.swift in Sources */,
 				4063EAED271EE7E700B6B8C7 /* EventDetailUsefulButtonsView.swift in Sources */,
@@ -2800,6 +2884,7 @@
 				4063EAE9271EE2A100B6B8C7 /* EventDetailPhotoCollectionViewLayout.swift in Sources */,
 				40A11396274714B9001BDD99 /* LikeDatabaseFlowData.swift in Sources */,
 				47AE0F0D28EE055F007B72F2 /* ContactsNavigationController.swift in Sources */,
+				47CEEF8A28F86F17002C681E /* NetworkIssueViewController.swift in Sources */,
 				406CD2CA26F7248E00F1EDFE /* ScaleAspectFitImageView.swift in Sources */,
 				40A91861275D50CD00262BDE /* TitleHeaderView.swift in Sources */,
 				47BB7C3427E2A52500F92141 /* GroupMember.swift in Sources */,
@@ -3097,6 +3182,7 @@
 		};
 		40E7204F26E400FF00A64C60 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D9A0BBDF65DCBDFAD6A578B /* Pods-IceHockey.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -3116,6 +3202,7 @@
 		};
 		40E7205026E400FF00A64C60 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D228083F2C704F9290D2A2F /* Pods-IceHockey.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

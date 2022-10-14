@@ -249,3 +249,6 @@
 "Common.remain" = "Remain";
 "Common.export" = "Export";
 "Common.defaultDatePickerTitle" = "Select date";
+
+// Errors
+"Error.networkUnavailable" = "Network is unavailable";

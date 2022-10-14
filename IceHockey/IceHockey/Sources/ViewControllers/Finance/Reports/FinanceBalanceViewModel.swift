@@ -126,7 +126,7 @@ class FinanceBalanceViewModel {
     
 }
 
-extension FinanceBalanceViewModel: UserObserver {
+extension FinanceBalanceViewModel: AuthObserver {
     
     func didChangeUser(_ user: ApplicationUser) {
         log.debug("HomeViewModel didChangeUser: user: \(user)")

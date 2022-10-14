@@ -248,3 +248,5 @@
 "Common.remain" = "Остаток";
 "Common.export" = "Экспорт";
 "Common.defaultDatePickerTitle" = "Выберите дату";
+
+"Error.networkUnavailable" = "Сеть недоступна";

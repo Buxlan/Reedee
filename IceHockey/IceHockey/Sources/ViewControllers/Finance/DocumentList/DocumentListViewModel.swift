@@ -89,7 +89,7 @@ class DocumentListViewModel {
     
 }
 
-extension DocumentListViewModel: UserObserver {
+extension DocumentListViewModel: AuthObserver {
     func didChangeUser(_ user: ApplicationUser) {
         log.debug("HomeViewModel didChangeUser: user: \(user)")
         UserRoleManager().getRole(for: user) { [weak self] role in

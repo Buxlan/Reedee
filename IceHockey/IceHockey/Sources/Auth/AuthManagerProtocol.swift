@@ -27,14 +27,14 @@ protocol AuthManagerProtocol: SaveStateProtocol, RestoreStateProtocol {
     func signInAnonymously()
     func signIn(with email: String, password: String,
                 completion: @escaping (String?) -> Void)
-    func addObserver(_ observer: UserObserver)
-    func removeObserver(_ observer: UserObserver)
+    func addObserver(_ observer: AuthObserver)
+    func removeObserver(_ observer: AuthObserver)
 }
 
 struct WeakUserObserver {
-    weak var value: UserObserver?
+    weak var value: AuthObserver?
 }
 
-protocol UserObserver: AnyObject {
+protocol AuthObserver: AnyObject {
     func didChangeUser(_ user: ApplicationUser)
 }

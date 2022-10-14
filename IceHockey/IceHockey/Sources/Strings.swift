@@ -196,6 +196,10 @@ internal enum L10n {
     /// Realy want to delete?
     internal static let wantDelete = L10n.tr("Localizable", "EditEventLabel.wantDelete", fallback: "Realy want to delete?")
   }
+  internal enum Error {
+    /// Network is unavailable
+    internal static let networkUnavailable = L10n.tr("Localizable", "Error.networkUnavailable", fallback: "Network is unavailable")
+  }
   internal enum EventDetail {
     /// Event
     internal static let title = L10n.tr("Localizable", "EventDetail.title", fallback: "Event")
