@@ -18,8 +18,8 @@ Tech stack:
 
 2) Просмотр и редактирование результата матча
 
-![Simulator Screen Shot - iPhone 8 - 2022-10-15 at 02 08 10](https://user-images.githubusercontent.com/5717020/195956224-e7a16df9-e605-445d-bb71-555ae51bfd9f.png)
 ![Simulator Screen Shot - iPhone 8 - 2022-10-15 at 02 07 29](https://user-images.githubusercontent.com/5717020/195956225-99d10732-931d-47b0-b557-c933cc45287d.png)
+![Simulator Screen Shot - iPhone 8 - 2022-10-15 at 02 08 10](https://user-images.githubusercontent.com/5717020/195956224-e7a16df9-e605-445d-bb71-555ae51bfd9f.png)
 
 3) Информация о расписании тренировок
 
