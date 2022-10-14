@@ -6,8 +6,10 @@
 //
 
 import SnapKit
+import RxSwift
+import UIKit
 
-class EditOperationDocumentViewController: UIViewController {
+final class EditOperationDocumentViewController: BaseViewController<EditOperationDocumentViewModel> {
     
     // MARK: - Properties
     
@@ -28,7 +30,8 @@ class EditOperationDocumentViewController: UIViewController {
     
     var tableBase = LeadingSwipableTableViewBase(actionTitle: L10n.Other.delete,
                                                  actionColor: .red)
-    var viewModel = EditOperationDocumentViewModel()
+    
+    private let disposeBag = DisposeBag()
     
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
@@ -121,14 +124,13 @@ class EditOperationDocumentViewController: UIViewController {
     }
     
     private func configureViewModel() {
-        viewModel.onRefresh = { [weak self] in
+        viewModel.uiRefreshHandler = { [weak self] in
             guard let self = self else { return }
             let dataSource = self.createDataSource()
             self.tableBase.updateDataSource(dataSource)
             self.tableView.reloadData()
         }
-        viewModel.update()
-        
+        viewModel.updateData()
         tableBase.setupTable(tableView)
         let dataSource = createDataSource()
         tableBase.updateDataSource(dataSource)
@@ -163,7 +165,7 @@ extension EditOperationDocumentViewController {
             let index = self.viewModel.document.table.getNewRowIndex()
             let row = OperationDocumentTableRow(type: .income, index: index)
             self.viewModel.document.table.rows.insert(row, at: 0)
-            self.viewModel.update()
+            self.viewModel.updateInterface()
         }
         let headerConfig = EditDocSectionViewConfigurator(data: model)
         section.headerConfig = headerConfig
@@ -201,7 +203,7 @@ extension EditOperationDocumentViewController {
             let index = self.viewModel.document.table.getNewRowIndex()
             let row = OperationDocumentTableRow(type: .cost, index: index)
             self.viewModel.document.table.rows.insert(row, at: 0)
-            self.viewModel.update()
+            self.viewModel.updateInterface()
         }
         let headerConfig = EditDocSectionViewConfigurator(data: model)
         section.headerConfig = headerConfig
@@ -271,7 +273,7 @@ extension EditOperationDocumentViewController: EditOperationDocHeaderViewDelegat
             self?.viewModel.document.date = date
             self?.tableHeaderView.configureDatePickerButton(startDate: date,
                                                             endDate: dates.last)
-            self?.viewModel.update()
+            self?.viewModel.updateInterface()
         }
         self.present(vc, animated: true, completion: nil)
     }

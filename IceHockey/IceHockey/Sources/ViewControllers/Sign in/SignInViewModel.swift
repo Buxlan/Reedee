@@ -46,11 +46,8 @@ class SignInViewModel {
                                   password: passwordBehaviorRelay.value) { [weak self] errorStr in
             if let errorStr = errorStr {
                 self?.delegate?.showAlert(title: "Login error", message: errorStr,
-                                          style: .alert,
-                                          completion: {
-                    log.debug("Try again")
-                    return
-                })
+                                          type: .ok,
+                                          completion: nil)
             }
             completion()
         }

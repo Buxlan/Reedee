@@ -248,5 +248,11 @@
 "Common.remain" = "Остаток";
 "Common.export" = "Экспорт";
 "Common.defaultDatePickerTitle" = "Выберите дату";
+"Common.ok" = "Ок";
+"Common.cancel" = "Отмена";
+"Common.savingCompleted" = "Сохранение завершено";
+"Common.deletingCompleted" = "Удаление завершено";
 
+"Common.error" = "Ошибка";
 "Error.networkUnavailable" = "Сеть недоступна";
+"Error.databaseKeyIsNil" = "Ключ записи в БД пустой";

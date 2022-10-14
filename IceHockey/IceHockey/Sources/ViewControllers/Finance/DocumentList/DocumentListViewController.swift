@@ -12,7 +12,6 @@ class DocumentListViewController: UIViewController {
     
     // MARK: - Properties
 
-    
     var tableBase = TableViewBase()
     var viewModel = DocumentListViewModel()
     
@@ -46,6 +45,10 @@ class DocumentListViewController: UIViewController {
         
         return controller
     }()
+    
+    @objc private func alertBarButtonPressed() {
+        print("Pressed")
+    }
     
     private lazy var appendEventImage: UIImage = {
         Asset.plus.image
@@ -220,6 +223,13 @@ extension DocumentListViewController {
 extension DocumentListViewController {
     
     @objc private func appendEventHandle() {
+        if let popoverController = alert.popoverPresentationController {
+//            popoverController.barButtonItem = UIBarButtonItem(title: "Press", style: .plain, target: self, action: #selector(alertBarButtonPressed))
+            popoverController.sourceView = self.view
+            popoverController.sourceRect = CGRect(x: self.view.bounds.midX + 50, y: self.view.bounds.maxY-50, width: 200, height: 100)
+            popoverController.permittedArrowDirections = []
+        }
+        
         present(alert, animated: true)
     }
     

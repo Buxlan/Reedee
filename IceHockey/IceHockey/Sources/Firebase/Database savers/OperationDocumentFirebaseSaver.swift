@@ -55,9 +55,9 @@ class OperationDocumentFirebaseSaver {
     
     // MARK: - Helper functions
     
-    func save(completionHandler: @escaping (SaveObjectError?) -> Void) {
+    func save(completionHandler: @escaping (Result<Void, SaveObjectError>) -> Void) {
         guard object.beforeSave() else {
-            return completionHandler(.objectEventError)
+            return completionHandler(.failure(.objectEventError))
         }
         if object.isNew {
             saveNew(completionHandler: completionHandler)
@@ -67,13 +67,13 @@ class OperationDocumentFirebaseSaver {
         object.afterSave()
     }
     
-    private func saveNew(completionHandler: @escaping (SaveObjectError?) -> Void) {
+    private func saveNew(completionHandler: @escaping (Result<Void, SaveObjectError>) -> Void) {
         
         saveData(completionHandler: completionHandler)
         
     }
     
-    private func saveExisting(completionHandler: @escaping (SaveObjectError?) -> Void) {
+    private func saveExisting(completionHandler: @escaping (Result<Void, SaveObjectError>) -> Void) {
         
         saveData(completionHandler: completionHandler)
         
@@ -87,17 +87,19 @@ class OperationDocumentFirebaseSaver {
         return query
     }
         
-    private func saveData(completionHandler: @escaping (SaveObjectError?) -> Void) {
+    private func saveData(completionHandler: @escaping (Result<Void, SaveObjectError>) -> Void) {
         
         let dataDict = object.encode()
         
         objectReference.setValue(dataDict) { [weak self] (error, ref) in
-            
-            guard let self = self,
-                  error == nil,
-                  let identifier = ref.key
+            guard let self = self else { return }
+            if let error = error {
+                completionHandler(.failure(.databaseError(error.localizedDescription)))
+                return
+            }
+            guard let identifier = ref.key
             else {
-                completionHandler(.databaseError)
+                completionHandler(.failure(.databaseError(L10n.Error.databaseKeyIsNil)))
                 return
             }
             
@@ -114,7 +116,7 @@ class OperationDocumentFirebaseSaver {
                 
                 if !self.object.isActive {
                     log.debug("OperationDocumentFirebaseSaver saveData success")
-                    completionHandler(nil)
+                    completionHandler(.success(()))
                     self.uploader = nil
                     self.transactionLoader = nil
                     return
@@ -132,15 +134,15 @@ class OperationDocumentFirebaseSaver {
                 }
                 self.uploader = FinanceTransactionUploader()
                 self.uploader?.uploadTransactions(transactions) { [weak self] error in
-                    guard error == nil else {
+                    if let error = error {
                         log.debug("OperationDocumentFirebaseSaver saveData error upload transactions")
-                        completionHandler(.databaseError)
+                        completionHandler(.failure(.databaseError(error.localizedDescription)))
                         self?.uploader = nil
                         self?.transactionLoader = nil
                         return
                     }
                     log.debug("OperationDocumentFirebaseSaver saveData success")
-                    completionHandler(nil)
+                    completionHandler(.success(()))
                     self?.uploader = nil
                     self?.transactionLoader = nil
                 }

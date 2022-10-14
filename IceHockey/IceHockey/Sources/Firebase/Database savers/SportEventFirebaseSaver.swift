@@ -16,7 +16,7 @@ protocol ObjectFirebaseSaver {
 enum SaveObjectError: LocalizedError {
     case wrongPropertiesError
     case wrongInputError
-    case databaseError
+    case databaseError(String)
     case storageError
     case objectEventError
     
@@ -26,8 +26,8 @@ enum SaveObjectError: LocalizedError {
             return "Not every properties is defined"
         case .wrongInputError:
             return "Wrong type of input data"
-        case .databaseError:
-            return "Database error occured"
+        case .databaseError(let text):
+            return text
         case .storageError:
             return "Storage error occured"
         case .objectEventError:

@@ -153,10 +153,15 @@ class SportNewsFirebaseSaver {
         }
         
         let dataDict = object.encode()
-        eventReference.setValue(dataDict) { (error, ref) in
-            guard error == nil,
-               let objectIdentifier = ref.key else {
-                completionHandler(.databaseError)
+        eventReference.setValue(dataDict) { [weak self] (error, ref) in
+            guard let self = self else { return }
+            if let error = error {
+                completionHandler(.databaseError(error.localizedDescription))
+                return
+            }
+            guard let objectIdentifier = ref.key
+            else {
+                completionHandler(.databaseError(L10n.Error.databaseKeyIsNil))
                 return
             }
             

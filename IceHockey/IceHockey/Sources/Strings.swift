@@ -77,12 +77,18 @@ internal enum L10n {
     internal static let at = L10n.tr("Localizable", "Common.at", fallback: "at")
     /// Back
     internal static let back = L10n.tr("Localizable", "Common.back", fallback: "Back")
+    /// Cancel
+    internal static let cancel = L10n.tr("Localizable", "Common.cancel", fallback: "Cancel")
     /// Close
     internal static let close = L10n.tr("Localizable", "Common.close", fallback: "Close")
     /// Confirm
     internal static let confirm = L10n.tr("Localizable", "Common.confirm", fallback: "Confirm")
     /// Select date
     internal static let defaultDatePickerTitle = L10n.tr("Localizable", "Common.defaultDatePickerTitle", fallback: "Select date")
+    /// Deleting completed
+    internal static let deletingCompleted = L10n.tr("Localizable", "Common.deletingCompleted", fallback: "Deleting completed")
+    /// Error
+    internal static let error = L10n.tr("Localizable", "Common.error", fallback: "Error")
     /// Export
     internal static let export = L10n.tr("Localizable", "Common.export", fallback: "Export")
     /// Next
@@ -91,10 +97,14 @@ internal enum L10n {
     internal static let numberSymbol = L10n.tr("Localizable", "Common.numberSymbol", fallback: "№")
     /// number
     internal static let numberText = L10n.tr("Localizable", "Common.numberText", fallback: "number")
+    /// Ok
+    internal static let ok = L10n.tr("Localizable", "Common.ok", fallback: "Ok")
     /// Готово
     internal static let ready = L10n.tr("Localizable", "Common.ready", fallback: "Готово")
     /// Remain
     internal static let remain = L10n.tr("Localizable", "Common.remain", fallback: "Remain")
+    /// Saving completed
+    internal static let savingCompleted = L10n.tr("Localizable", "Common.savingCompleted", fallback: "Saving completed")
   }
   internal enum Contacts {
     /// Contacts
@@ -197,6 +207,8 @@ internal enum L10n {
     internal static let wantDelete = L10n.tr("Localizable", "EditEventLabel.wantDelete", fallback: "Realy want to delete?")
   }
   internal enum Error {
+    /// Database key is null
+    internal static let databaseKeyIsNil = L10n.tr("Localizable", "Error.databaseKeyIsNil", fallback: "Database key is null")
     /// Network is unavailable
     internal static let networkUnavailable = L10n.tr("Localizable", "Error.networkUnavailable", fallback: "Network is unavailable")
   }

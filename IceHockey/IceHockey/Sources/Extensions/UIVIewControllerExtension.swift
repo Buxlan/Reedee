@@ -35,15 +35,16 @@ extension UIViewController: Presentable, Alertable {
     
     func showAlert(title: String,
                    message: String? = nil,
-                   style: UIAlertController.Style = .alert,
-                   completion: (() -> Void)?) {
+                   type: AlertType = .ok,
+                   completion: (() -> Void)? = nil) {
         let alertController = UIAlertController(title: title,
                                                 message: message,
-                                                preferredStyle: style)
+                                                preferredStyle: .alert)
         let okAction = UIAlertAction(title: L10n.Other.ok, style: .cancel) { _ in
+            completion?()
         }
         alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: completion)
+        self.present(alertController, animated: true, completion: nil)
     }
     
 }

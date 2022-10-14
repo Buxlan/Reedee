@@ -10,6 +10,6 @@ import UIKit
 protocol Alertable: AnyObject {
     func showAlert(title: String,
                    message: String?,
-                   style: UIAlertController.Style,
+                   type: AlertType,
                    completion: (() -> Void)?)
 }

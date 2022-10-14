@@ -6,41 +6,44 @@
 //
 
 import Foundation
+import RxCocoa
+import RxSwift
 
-class EditOperationDocumentViewModel {
+class EditOperationDocumentViewModel: BaseViewModel {
     
     // MARK: - Properties
     
     var document: OperationDocument
     var saver: OperationDocumentFirebaseSaver?
     
-    var onRefresh = {}
+    var uiRefreshHandler: () -> Void = {}
+    
+    let statusRelay = BehaviorRelay<Status?>(value: nil)
+    let disposeBag = DisposeBag()
     
     // MARK: Lifecircle
     
-    init() {
+    required init() {
         document = OperationDocument(databaseFlowObject: OperationDocumentDatabaseFlowData())
         document.isActive = true
     }
     
     // MARK: - Hepler functions
     
-    func update() {
-        onRefresh()
-    }
-    
     func save() {
         saver = OperationDocumentFirebaseSaver(object: document)
-        saver?.save { [weak self] error in
-            guard error == nil else {
-                log.debug("Document saver error \(error)")
-//                assertionFailure()
+        saver?.save { [weak self] result in
+            switch result {
+            case .success:
+                log.debug("Document saved!")
                 self?.saver = nil
-                return
+                DocumentCoordinator.shared.goToDocumentListFromDocumentEditing()
+            case .failure(let error):
+                log.debug("Document saver error \(error.localizedDescription)")
+//                assertionFailure()
+                self?.statusRelay.accept(.alert(L10n.Common.error, error.localizedDescription, .ok))
+                self?.saver = nil
             }
-            log.debug("Document saved!")
-            self?.saver = nil
-            DocumentCoordinator.shared.goToDocumentListFromDocumentEditing()
         }
     }
     
@@ -51,7 +54,11 @@ class EditOperationDocumentViewModel {
             return
         }
         document.table.rows.remove(at: index)
-        onRefresh()
+        updateInterface()
+    }
+    
+    func updateData() {
+        updateInterface()
     }
     
 }

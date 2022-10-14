@@ -68,6 +68,10 @@ class FinanceTransactionUploader {
             return editableTransaction
         }
         
+        if transactionsWithIds.isEmpty {
+            completionHander(nil)
+        }
+        
         transactionsWithIds.forEach { transaction in
             self.uploadTransaction(transaction, completionHander: completionHander)
         }

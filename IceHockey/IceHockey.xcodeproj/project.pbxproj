@@ -293,6 +293,14 @@
 		4729039F27B9960F005D8C29 /* ButtonCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4729039E27B9960F005D8C29 /* ButtonCellModel.swift */; };
 		472903A127B9ADB0005D8C29 /* LeadingSwipableTableViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472903A027B9ADB0005D8C29 /* LeadingSwipableTableViewBase.swift */; };
 		472903A427BB08B8005D8C29 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472903A327BB08B8005D8C29 /* CheckBox.swift */; };
+		472C02C328F9F54000E0D481 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472C02C228F9F54000E0D481 /* Status.swift */; };
+		472C02C528F9F55000E0D481 /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472C02C428F9F55000E0D481 /* AlertType.swift */; };
+		472C02C828F9FBC700E0D481 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472C02C728F9FBC700E0D481 /* BaseViewController.swift */; };
+		472C02CB28F9FC4900E0D481 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472C02CA28F9FC4900E0D481 /* BaseViewModel.swift */; };
+		472C02CD28F9FC9800E0D481 /* DisposeBagContaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472C02CC28F9FC9800E0D481 /* DisposeBagContaining.swift */; };
+		472C02CF28F9FCDE00E0D481 /* StatusRelayContaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472C02CE28F9FCDE00E0D481 /* StatusRelayContaining.swift */; };
+		472C02D128FA002500E0D481 /* UserInterfaceUpdatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472C02D028FA002500E0D481 /* UserInterfaceUpdatable.swift */; };
+		472C02D328FA02E100E0D481 /* DataUpdatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472C02D228FA02E100E0D481 /* DataUpdatable.swift */; };
 		47394D0027BEE455001942E0 /* DocumentListLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394CFF27BEE455001942E0 /* DocumentListLoader.swift */; };
 		47394D0227BEE550001942E0 /* DocumentCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394D0127BEE550001942E0 /* DocumentCreator.swift */; };
 		47394D0427BEE617001942E0 /* DocumentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394D0327BEE617001942E0 /* DocumentBuilder.swift */; };
@@ -749,6 +757,14 @@
 		4729039E27B9960F005D8C29 /* ButtonCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCellModel.swift; sourceTree = "<group>"; };
 		472903A027B9ADB0005D8C29 /* LeadingSwipableTableViewBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadingSwipableTableViewBase.swift; sourceTree = "<group>"; };
 		472903A327BB08B8005D8C29 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		472C02C228F9F54000E0D481 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		472C02C428F9F55000E0D481 /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
+		472C02C728F9FBC700E0D481 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		472C02CA28F9FC4900E0D481 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		472C02CC28F9FC9800E0D481 /* DisposeBagContaining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisposeBagContaining.swift; sourceTree = "<group>"; };
+		472C02CE28F9FCDE00E0D481 /* StatusRelayContaining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusRelayContaining.swift; sourceTree = "<group>"; };
+		472C02D028FA002500E0D481 /* UserInterfaceUpdatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInterfaceUpdatable.swift; sourceTree = "<group>"; };
+		472C02D228FA02E100E0D481 /* DataUpdatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUpdatable.swift; sourceTree = "<group>"; };
 		47394CFF27BEE455001942E0 /* DocumentListLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListLoader.swift; sourceTree = "<group>"; };
 		47394D0127BEE550001942E0 /* DocumentCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCreator.swift; sourceTree = "<group>"; };
 		47394D0327BEE617001942E0 /* DocumentBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBuilder.swift; sourceTree = "<group>"; };
@@ -1449,6 +1465,7 @@
 		40940BF226E413150098EF89 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				472C02C228F9F54000E0D481 /* Status.swift */,
 				47FC5DDA28F88867003D9EA4 /* TokenUtil.swift */,
 				47FC5DD728F87405003D9EA4 /* Notifications */,
 				40AE442327411EE100BD6506 /* Collections */,
@@ -1464,6 +1481,7 @@
 				479CE51B27E9173800C6221E /* ProgressPresenting.swift */,
 				47AE0F2A28EE13E0007B72F2 /* Presentable.swift */,
 				479CE52627E9A5A400C6221E /* ObjectAssociation.swift */,
+				472C02C428F9F55000E0D481 /* AlertType.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -1489,6 +1507,7 @@
 		40940C0126E418B10098EF89 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				472C02C628F9FBB600E0D481 /* BaseViewController */,
 				47CEEF8828F86EE2002C681E /* Network */,
 				479EDAA327F0BB7700A3FCDE /* Profile */,
 				479CE51827E90EB400C6221E /* StarterViewController */,
@@ -1859,6 +1878,27 @@
 			children = (
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		472C02C628F9FBB600E0D481 /* BaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				472C02C928F9FC4100E0D481 /* Protocols */,
+				472C02C728F9FBC700E0D481 /* BaseViewController.swift */,
+			);
+			path = BaseViewController;
+			sourceTree = "<group>";
+		};
+		472C02C928F9FC4100E0D481 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				472C02CA28F9FC4900E0D481 /* BaseViewModel.swift */,
+				472C02D028FA002500E0D481 /* UserInterfaceUpdatable.swift */,
+				472C02CC28F9FC9800E0D481 /* DisposeBagContaining.swift */,
+				472C02CE28F9FCDE00E0D481 /* StatusRelayContaining.swift */,
+				472C02D228FA02E100E0D481 /* DataUpdatable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		4742B43528EF663E00F25067 /* KeyChain */ = {
@@ -2620,6 +2660,7 @@
 				40713A8527204BC4005F1265 /* ContactsViewModel.swift in Sources */,
 				479CE52727E9A5A400C6221E /* ObjectAssociation.swift in Sources */,
 				478AFEBF27C0F3C400479E6F /* EditOperationDocHeaderView.swift in Sources */,
+				472C02C528F9F55000E0D481 /* AlertType.swift in Sources */,
 				47C609D527AEF5F3007BE5D9 /* FinanceRouterViewController.swift in Sources */,
 				47C609F527AF2466007BE5D9 /* FinanceTransactionCreator.swift in Sources */,
 				474EB9B627BDC1F90008F122 /* DocumentTable.swift in Sources */,
@@ -2724,6 +2765,7 @@
 				47FC5DD928F8741B003D9EA4 /* NotificationName.swift in Sources */,
 				4093D9A9271780E000DCF35D /* ApplicationUser.swift in Sources */,
 				40C05260275836F200C1930A /* SquadCreator.swift in Sources */,
+				472C02CB28F9FC4900E0D481 /* BaseViewModel.swift in Sources */,
 				47394D0027BEE455001942E0 /* DocumentListLoader.swift in Sources */,
 				40C4419F274DD98700F9EC8B /* MatchResultProxy.swift in Sources */,
 				47C609E027AF044F007BE5D9 /* FinanceTransactionListViewController.swift in Sources */,
@@ -2797,6 +2839,7 @@
 				40B208CD2744F730009B769C /* EventImagesLoader.swift in Sources */,
 				401C9B0E270D034700F91DC6 /* AuthManagerProtocol.swift in Sources */,
 				406E7C0A27232FFB00DAD711 /* RealtimeDatabaseManager.swift in Sources */,
+				472C02CD28F9FC9800E0D481 /* DisposeBagContaining.swift in Sources */,
 				40ADABEB273C47D4008AAC90 /* TrainingCell.swift in Sources */,
 				479CE52327E91F2200C6221E /* StarterCoordinator.swift in Sources */,
 				479EDAC927F1183400A3FCDE /* SquadsCoordinator.swift in Sources */,
@@ -2937,6 +2980,7 @@
 				47B2DAC927E51CE400D51B54 /* Routable.swift in Sources */,
 				40B208CB2744F701009B769C /* SportNewsDatabaseFlowData.swift in Sources */,
 				40429BAB274A81AC00DAD070 /* TitleCellModel.swift in Sources */,
+				472C02D128FA002500E0D481 /* UserInterfaceUpdatable.swift in Sources */,
 				479EDACB27F1187C00A3FCDE /* ContactsCoordinator.swift in Sources */,
 				47AE0F1B28EE0BC2007B72F2 /* MainCoordinatorFactoryProtocol.swift in Sources */,
 				40940BE826E40D450098EF89 /* Club.swift in Sources */,
@@ -2950,6 +2994,7 @@
 				47EC465627BF02E4005C7FC4 /* IncreaseDocumentTableRow.swift in Sources */,
 				40E3115B2752EA4A00A5C24F /* SportNewsProxy.swift in Sources */,
 				47A19BD627D550C500A6E5B5 /* EditOperationDocumentViewModel.swift in Sources */,
+				472C02CF28F9FCDE00E0D481 /* StatusRelayContaining.swift in Sources */,
 				406E7C0727232B8800DAD711 /* ImagePickerManager.swift in Sources */,
 				4742B43928EF665300F25067 /* RDKeyChainKey.swift in Sources */,
 				4065C95226E84E410084E5F2 /* ComingEventTableCell.swift in Sources */,
@@ -2967,6 +3012,7 @@
 				47B2DADC27E52F8000D51B54 /* ModulesFactory.swift in Sources */,
 				40429BC2274AF10800DAD070 /* Workout.swift in Sources */,
 				4742B44828EF7DD100F25067 /* TrainingScheduleNavigationController.swift in Sources */,
+				472C02C828F9FBC700E0D481 /* BaseViewController.swift in Sources */,
 				4742B44228EF7C4800F25067 /* TrainingScheduleFactoryProtocol.swift in Sources */,
 				40B82ECD2738B65C00BED0A1 /* SaveTableCell.swift in Sources */,
 				40781511272CB1C6006D3AD2 /* SquadDetailViewModel.swift in Sources */,
@@ -3019,9 +3065,11 @@
 				470C215627B08203002198E1 /* FinanceTransactionUploader.swift in Sources */,
 				4052F312279CA45A0084C8F9 /* ApplicationContext.swift in Sources */,
 				40C44191274D559800F9EC8B /* SquadDatabaseLoader.swift in Sources */,
+				472C02D328FA02E100E0D481 /* DataUpdatable.swift in Sources */,
 				40A63221272DFD5F0017F6FE /* MKMapViewExtension.swift in Sources */,
 				4052F309279CA22D0084C8F9 /* StateListener.swift in Sources */,
 				4035DAB6273077BE00AAFDA8 /* TrainingScheduleViewController.swift in Sources */,
+				472C02C328F9F54000E0D481 /* Status.swift in Sources */,
 				400B8F58272B5DAE008A8AFE /* SquadTableCell.swift in Sources */,
 				40C106B526E419CB00B619A1 /* AppController.swift in Sources */,
 				479EDAA727F0BC7E00A3FCDE /* ProfileViewModel.swift in Sources */,

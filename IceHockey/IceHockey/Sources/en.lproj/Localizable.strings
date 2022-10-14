@@ -249,6 +249,12 @@
 "Common.remain" = "Remain";
 "Common.export" = "Export";
 "Common.defaultDatePickerTitle" = "Select date";
+"Common.ok" = "Ok";
+"Common.cancel" = "Cancel";
+"Common.savingCompleted" = "Saving completed";
+"Common.deletingCompleted" = "Deleting completed";
 
 // Errors
+"Common.error" = "Error";
 "Error.networkUnavailable" = "Network is unavailable";
+"Error.databaseKeyIsNil" = "Database key is null";
