@@ -123,7 +123,7 @@ final class EditOperationDocumentViewController: BaseViewController<EditOperatio
         navigationItem.rightBarButtonItem = menuItem
     }
     
-    private func configureViewModel() {
+    override func configureViewModel() {
         viewModel.uiRefreshHandler = { [weak self] in
             guard let self = self else { return }
             let dataSource = self.createDataSource()

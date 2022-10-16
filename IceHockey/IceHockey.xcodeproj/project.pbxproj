@@ -284,6 +284,9 @@
 		470C216A27B1A8A2002198E1 /* FinanceBalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C216927B1A8A2002198E1 /* FinanceBalanceViewModel.swift */; };
 		470C216D27B1AA9D002198E1 /* FinanceBalanceExportTableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C216C27B1AA9D002198E1 /* FinanceBalanceExportTableFooterView.swift */; };
 		470C216F27B1BD42002198E1 /* FinanceTextReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C216E27B1BD41002198E1 /* FinanceTextReportViewController.swift */; };
+		4711FC7D28FC9EB90049B1AA /* StandAloneTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4711FC7C28FC9EB90049B1AA /* StandAloneTransactionViewController.swift */; };
+		4711FC7F28FC9EF60049B1AA /* StandAloneTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4711FC7E28FC9EF50049B1AA /* StandAloneTransactionViewModel.swift */; };
+		4711FC8328FCA1CB0049B1AA /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4711FC8228FCA1CB0049B1AA /* BaseTableViewController.swift */; };
 		4729039327B956F1005D8C29 /* InputEmailCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4729039227B956F1005D8C29 /* InputEmailCellModel.swift */; };
 		4729039527B9571F005D8C29 /* InputPasswordCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4729039427B9571F005D8C29 /* InputPasswordCellModel.swift */; };
 		4729039727B957F1005D8C29 /* LoginInputTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4729039627B957F1005D8C29 /* LoginInputTableCell.swift */; };
@@ -315,6 +318,7 @@
 		4742B44428EF7C6D00F25067 /* TrainingScheduleViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4742B44328EF7C6D00F25067 /* TrainingScheduleViewProtocol.swift */; };
 		4742B44628EF7D6B00F25067 /* TrainingScheduleCoordinatorFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4742B44528EF7D6B00F25067 /* TrainingScheduleCoordinatorFactoryProtocol.swift */; };
 		4742B44828EF7DD100F25067 /* TrainingScheduleNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4742B44728EF7DD100F25067 /* TrainingScheduleNavigationController.swift */; };
+		4747FC2628FCA5380048647C /* BaseTableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4747FC2528FCA5380048647C /* BaseTableViewProtocol.swift */; };
 		474EB9A227BD98930008F122 /* FinanceDocumentsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474EB9A127BD98930008F122 /* FinanceDocumentsButton.swift */; };
 		474EB9A627BDA1350008F122 /* DocumentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474EB9A527BDA1350008F122 /* DocumentListViewController.swift */; };
 		474EB9A827BDA2090008F122 /* DocumentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474EB9A727BDA2090008F122 /* DocumentListViewModel.swift */; };
@@ -748,6 +752,9 @@
 		470C216927B1A8A2002198E1 /* FinanceBalanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceBalanceViewModel.swift; sourceTree = "<group>"; };
 		470C216C27B1AA9D002198E1 /* FinanceBalanceExportTableFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceBalanceExportTableFooterView.swift; sourceTree = "<group>"; };
 		470C216E27B1BD41002198E1 /* FinanceTextReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTextReportViewController.swift; sourceTree = "<group>"; };
+		4711FC7C28FC9EB90049B1AA /* StandAloneTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandAloneTransactionViewController.swift; sourceTree = "<group>"; };
+		4711FC7E28FC9EF50049B1AA /* StandAloneTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandAloneTransactionViewModel.swift; sourceTree = "<group>"; };
+		4711FC8228FCA1CB0049B1AA /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		4729039227B956F1005D8C29 /* InputEmailCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputEmailCellModel.swift; sourceTree = "<group>"; };
 		4729039427B9571F005D8C29 /* InputPasswordCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPasswordCellModel.swift; sourceTree = "<group>"; };
 		4729039627B957F1005D8C29 /* LoginInputTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInputTableCell.swift; sourceTree = "<group>"; };
@@ -779,6 +786,7 @@
 		4742B44328EF7C6D00F25067 /* TrainingScheduleViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingScheduleViewProtocol.swift; sourceTree = "<group>"; };
 		4742B44528EF7D6B00F25067 /* TrainingScheduleCoordinatorFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingScheduleCoordinatorFactoryProtocol.swift; sourceTree = "<group>"; };
 		4742B44728EF7DD100F25067 /* TrainingScheduleNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingScheduleNavigationController.swift; sourceTree = "<group>"; };
+		4747FC2528FCA5380048647C /* BaseTableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewProtocol.swift; sourceTree = "<group>"; };
 		474EB9A127BD98930008F122 /* FinanceDocumentsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceDocumentsButton.swift; sourceTree = "<group>"; };
 		474EB9A527BDA1350008F122 /* DocumentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListViewController.swift; sourceTree = "<group>"; };
 		474EB9A727BDA2090008F122 /* DocumentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListViewModel.swift; sourceTree = "<group>"; };
@@ -1507,7 +1515,7 @@
 		40940C0126E418B10098EF89 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				472C02C628F9FBB600E0D481 /* BaseViewController */,
+				4711FC8028FCA19C0049B1AA /* BaseViewControllers */,
 				47CEEF8828F86EE2002C681E /* Network */,
 				479EDAA327F0BB7700A3FCDE /* Profile */,
 				479CE51827E90EB400C6221E /* StarterViewController */,
@@ -1871,6 +1879,42 @@
 				470C216C27B1AA9D002198E1 /* FinanceBalanceExportTableFooterView.swift */,
 			);
 			path = "Table view";
+			sourceTree = "<group>";
+		};
+		4711FC7A28FC9E8F0049B1AA /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				4711FC7B28FC9EA40049B1AA /* StandAloneTransaction */,
+				47C609FC27AF3F4B007BE5D9 /* AppendTransactions */,
+				47C609E427AF08F8007BE5D9 /* TransactionList */,
+			);
+			path = Transactions;
+			sourceTree = "<group>";
+		};
+		4711FC7B28FC9EA40049B1AA /* StandAloneTransaction */ = {
+			isa = PBXGroup;
+			children = (
+				4711FC7C28FC9EB90049B1AA /* StandAloneTransactionViewController.swift */,
+				4711FC7E28FC9EF50049B1AA /* StandAloneTransactionViewModel.swift */,
+			);
+			path = StandAloneTransaction;
+			sourceTree = "<group>";
+		};
+		4711FC8028FCA19C0049B1AA /* BaseViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4711FC8128FCA1B30049B1AA /* BaseTableViewController */,
+				472C02C628F9FBB600E0D481 /* BaseViewController */,
+			);
+			path = BaseViewControllers;
+			sourceTree = "<group>";
+		};
+		4711FC8128FCA1B30049B1AA /* BaseTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4711FC8228FCA1CB0049B1AA /* BaseTableViewController.swift */,
+			);
+			path = BaseTableViewController;
 			sourceTree = "<group>";
 		};
 		472903A227BB089A005D8C29 /* Common */ = {
@@ -2257,6 +2301,7 @@
 				479EDABA27F1174500A3FCDE /* SquadsViewProtocol.swift */,
 				47B2DAE227E5304B00D51B54 /* BaseViewProtocol.swift */,
 				4742B44328EF7C6D00F25067 /* TrainingScheduleViewProtocol.swift */,
+				4747FC2528FCA5380048647C /* BaseTableViewProtocol.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -2350,12 +2395,11 @@
 		47C609D327AEF5DA007BE5D9 /* Finance */ = {
 			isa = PBXGroup;
 			children = (
+				4711FC7A28FC9E8F0049B1AA /* Transactions */,
 				47691C3C27C0F361008C8F77 /* EditDocument */,
 				47691C2927C04059008C8F77 /* DocumentDetail */,
 				474EB9A427BDA10F0008F122 /* DocumentList */,
 				470C216827B1A81D002198E1 /* Reports */,
-				47C609FC27AF3F4B007BE5D9 /* AppendTransactions */,
-				47C609E427AF08F8007BE5D9 /* TransactionList */,
 				47C609E327AF08EE007BE5D9 /* Router */,
 			);
 			path = Finance;
@@ -2953,6 +2997,7 @@
 				406D49E8271E3806000A9666 /* EventDetailPhotoCollectionViewCell.swift in Sources */,
 				479CE51327E71AA400C6221E /* AuthManager.swift in Sources */,
 				406E36A927219BD600C5FEF0 /* EditEventDescriptionCell.swift in Sources */,
+				4747FC2628FCA5380048647C /* BaseTableViewProtocol.swift in Sources */,
 				407A62162737CCCE00558998 /* MatchResultEditViewController.swift in Sources */,
 				47B2DAF527E5BC5200D51B54 /* OnboardingFactoryProtocol.swift in Sources */,
 				40C106BB26E41A2200B619A1 /* HomeViewController.swift in Sources */,
@@ -2964,6 +3009,7 @@
 				474270B027DFDC48006E9ACA /* DocumentTransactionsLoader.swift in Sources */,
 				40C4419B274DCC4E00F9EC8B /* UserImageLoader.swift in Sources */,
 				47B2DAE827E5435E00D51B54 /* Session.swift in Sources */,
+				4711FC7D28FC9EB90049B1AA /* StandAloneTransactionViewController.swift in Sources */,
 				40AE7D6C2734578700052643 /* MatchResultDetailViewController.swift in Sources */,
 				40A9185F275D505D00262BDE /* AuthHeaderModel.swift in Sources */,
 				478AFEC327C2388200479E6F /* DetailDocSectionView.swift in Sources */,
@@ -2980,6 +3026,7 @@
 				47B2DAC927E51CE400D51B54 /* Routable.swift in Sources */,
 				40B208CB2744F701009B769C /* SportNewsDatabaseFlowData.swift in Sources */,
 				40429BAB274A81AC00DAD070 /* TitleCellModel.swift in Sources */,
+				4711FC7F28FC9EF60049B1AA /* StandAloneTransactionViewModel.swift in Sources */,
 				472C02D128FA002500E0D481 /* UserInterfaceUpdatable.swift in Sources */,
 				479EDACB27F1187C00A3FCDE /* ContactsCoordinator.swift in Sources */,
 				47AE0F1B28EE0BC2007B72F2 /* MainCoordinatorFactoryProtocol.swift in Sources */,
@@ -2987,6 +3034,7 @@
 				470C215427B07B58002198E1 /* TransactionConfirmTableFooterView.swift in Sources */,
 				4052F305279CA2060084C8F9 /* MonitoredState.swift in Sources */,
 				47691C2C27C04541008C8F77 /* OperationDocumentDetailViewModel.swift in Sources */,
+				4711FC8328FCA1CB0049B1AA /* BaseTableViewController.swift in Sources */,
 				47B2DAFF27E5C26600D51B54 /* OnboardingPageViewController.swift in Sources */,
 				47AE0F2928EE11C6007B72F2 /* MainCoordinatorDelegate.swift in Sources */,
 				40772C0C273B3E98006CD549 /* NewTrainingScheduleFirebaseSaver.swift in Sources */,

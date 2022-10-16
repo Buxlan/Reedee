@@ -19,6 +19,11 @@ class BaseViewController<ViewModelType: BaseViewModel>: UIViewController {
         subsribeToStatusProcessing()
     }
     
+    func configureViewModel() {
+        viewModel.uiRefreshHandler = {}
+        viewModel.updateData()
+    }
+    
 }
 
 extension BaseViewController {
