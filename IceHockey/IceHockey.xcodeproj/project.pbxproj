@@ -1244,7 +1244,6 @@
 		4065C95A26E853410084E5F2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				472903A227BB089A005D8C29 /* Common */,
 				47C609D627AEF67D007BE5D9 /* Finance */,
 				40E949BE26ED59A600962590 /* CircularView.swift */,
 				400EB96826F00BFD0026EFB1 /* InsetLabel.swift */,
@@ -1915,13 +1914,6 @@
 				4711FC8228FCA1CB0049B1AA /* BaseTableViewController.swift */,
 			);
 			path = BaseTableViewController;
-			sourceTree = "<group>";
-		};
-		472903A227BB089A005D8C29 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Common;
 			sourceTree = "<group>";
 		};
 		472C02C628F9FBB600E0D481 /* BaseViewController */ = {
